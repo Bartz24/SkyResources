@@ -1,0 +1,16 @@
+[
+{
+  "modid": "skymod",
+  "name": "Sky Mod",
+  "description": "Resources from the air.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Bartz24"],
+  "credits": "The Forge and FML guys for 1.9",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

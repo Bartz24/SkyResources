@@ -1,0 +1,6 @@
+{
+  "parent":"skymod:item/CactusCuttingKnife",
+  "textures": {
+    "layer0":"skymod:items/ironKnife"
+  }
+}

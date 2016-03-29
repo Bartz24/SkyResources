@@ -1,0 +1,57 @@
+item.skymod.alchemyItemComponent.cactusNeedle.name=Cactus Needle
+item.skymod.alchemyItemComponent.cactusNeedleBloody.name=Bloody Cactus Needle
+item.skymod.baseItemComponent.woodHeatComponent.name=Wooden Heat Component
+item.skymod.baseItemComponent.ironHeatComponent.name=Iron Heat Component
+item.skymod.cactusFruit.name=Cactus Fruit
+item.skymod.cactusCuttingKnife.name=Cactus Cutting Knife
+item.skymod.ironCuttingKnife.name=Iron Cutting Knife
+item.skymod.diamondCuttingKnife.name=Diamond Cutting Knife
+item.skymod.itemHealthRing.name=Health Ring
+item.skymod.waterExtractor.name=Water Extractor
+item.skymod.sandstoneInfusionStone.name=Sandstone Infusion Stone
+item.skymod.crystalFluidBucket.name=Crystal Liquid Bucket
+item.skymod.metalCrystal.name=Crystal Shard
+item.skymod.stoneGrinder.name=Stone Rock Grinder
+item.skymod.ironGrinder.name=Iron Rock Grinder
+item.skymod.diamondGrinder.name=Diamond Rock Grinder
+
+tile.skymod.cactusFruitNeedle.name=Cactus Fruit On A Needle
+tile.skymod.compressedCoalBlock.name=Hardened Coal Block
+tile.skymod.compressedCoalBlock2.name=Adamant Coal Block
+tile.skymod.dryCactus.name=Dehydrated Cactus
+tile.skymod.combustionHeater.wood.name=Wooden Combustion Heater
+tile.skymod.combustionHeater.iron.name=Iron Combustion Heater
+tile.skymod.alchemicalCondenser.name=Alchemical Condenser
+tile.skymod.BlazePowderBlock.name=Blaze Powder Block
+
+
+tile.skymod.ironCrystalFluidBlock.name=Iron Crystal Liquid
+tile.skymod.goldCrystalFluidBlock.name=Gold Crystal Liquid
+tile.skymod.copperCrystalFluidBlock.name=Copper Crystal Liquid
+tile.skymod.tinCrystalFluidBlock.name=Tin Crystal Liquid
+tile.skymod.silverCrystalFluidBlock.name=Silver Crystal Liquid
+tile.skymod.zincCrystalFluidBlock.name=Zinc Crystal Liquid
+
+
+jei.skymod.desc.cactusNeedle=Obtained by shift right-clicking on a cactus block.\n\nNOTE: You will take damage.\nNOT CURRENTLY WORKING IN THIS VERSION.\nCRAFTING RECIPE TEMPORARY.
+jei.skymod.desc.cactusNeedleBloody=Obtained by shift right-clicking with a Cactus Needle.\n\nNOTE: You will take damage.
+jei.skymod.desc.dryCactus=Obtained by using a Water Extractor on a cactus.\n\nNOTE: May take a while.
+
+jei.skymod.recipe.healthNeeded=Health Needed: 
+jei.skymod.recipe.rightClickOn=Right-Clicked On
+jei.skymod.recipe.infusion=Life Infusion 
+jei.skymod.recipe.combustion=Combustion
+
+
+container.skymod.combustionHeater=Combustion Heater
+
+name.skymod.metal.iron=Iron
+name.skymod.metal.gold=Gold
+name.skymod.metal.copper=Copper
+name.skymod.metal.tin=Tin
+name.skymod.metal.silver=Silver
+name.skymod.metal.zinc=Zinc
+
+itemGroup.skymod.tabMain=Sky Mod:Main
+itemGroup.skymod.tabAlchemy=Sky Mod:Alchemy
+itemGroup.skymod.tabTech=Sky Mod:Technology

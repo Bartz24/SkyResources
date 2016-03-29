@@ -1,0 +1,70 @@
+package com.bartz24.skymod.base.item;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import com.bartz24.skymod.References;
+import com.bartz24.skymod.registry.ModCreativeTabs;
+import com.bartz24.skymod.registry.ModItems;
+
+public class BaseItemComponent extends Item
+{
+    private static ArrayList<String> names = new ArrayList<String>();
+
+    public static final String woodHeatComp = "woodHeatComponent";
+    public static final String ironHeatComp = "ironHeatComponent";
+
+    public BaseItemComponent()
+    {
+        super();
+        
+        setUnlocalizedName(References.ModID + ".baseItemComponent.");
+        setRegistryName("BaseItemComponent");
+        setHasSubtypes(true);
+		this.setCreativeTab(ModCreativeTabs.tabMain);
+
+        itemList();
+    }
+
+    private void itemList()
+    {
+        names.add(0, woodHeatComp);
+        names.add(1, ironHeatComp);
+    }
+
+    @Override
+    public String getUnlocalizedName(ItemStack stack)
+    {
+        return super.getUnlocalizedName(stack) + names.get(stack.getItemDamage());
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void getSubItems(Item id, CreativeTabs creativeTab, List<ItemStack> list)
+    {
+        for (int i = 0; i < names.size(); i++)
+            list.add(new ItemStack(id, 1, i));
+    }
+
+    public static ItemStack getStack(String name)
+    {
+        return new ItemStack(ModItems.baseComponent, 1, names.indexOf(name));
+    }
+
+    public static ArrayList<String> getNames()
+    {
+    	return names;
+    }
+}
