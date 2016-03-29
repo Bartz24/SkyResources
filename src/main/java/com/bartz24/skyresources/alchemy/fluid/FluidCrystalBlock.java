@@ -63,8 +63,8 @@ public class FluidCrystalBlock extends BlockFluidClassic
 						SoundEvents.entity_arrow_hit_player,
 						SoundCategory.BLOCKS, 1.0F,
 						2.2F / (rand.nextFloat() * 0.2F + 0.9F));
-				if (rand.nextInt(5 + ModFluids.crystalFluidRarity()[ModBlocks.crystalFluidBlocks
-						.indexOf(this)]) > 4)
+				if (rand.nextInt(8 + ModFluids.crystalFluidRarity()[ModBlocks.crystalFluidBlocks
+						.indexOf(this)]/2) >= 8)
 					world.setBlockToAir(pos);
 			}
 		}

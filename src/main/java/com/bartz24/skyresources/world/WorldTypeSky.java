@@ -26,6 +26,17 @@ public class WorldTypeSky extends WorldType
 	{
 		return 2;
 	}
+	
+	public float getCloudHeight()
+    {
+        return 32.0F;
+    }
+	
+	public double getHorizon(World world)
+    {
+		return 40.0D;
+    }
+
 
 	public IChunkGenerator getChunkGenerator(World world, String generatorOptions)
 	{
