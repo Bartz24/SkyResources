@@ -1,0 +1,59 @@
+item.skyresources.alchemyItemComponent.cactusNeedle.name=Cactus Needle
+item.skyresources.alchemyItemComponent.cactusNeedleBloody.name=Bloody Cactus Needle
+item.skyresources.baseItemComponent.woodHeatComponent.name=Wooden Heat Component
+item.skyresources.baseItemComponent.ironHeatComponent.name=Iron Heat Component
+item.skyresources.cactusFruit.name=Cactus Fruit
+item.skyresources.cactusCuttingKnife.name=Cactus Cutting Knife
+item.skyresources.ironCuttingKnife.name=Iron Cutting Knife
+item.skyresources.diamondCuttingKnife.name=Diamond Cutting Knife
+item.skyresources.itemHealthRing.name=Health Ring
+item.skyresources.waterExtractor.name=Water Extractor
+item.skyresources.sandstoneInfusionStone.name=Sandstone Infusion Stone
+item.skyresources.redSandstoneInfusionStone.name=Red Sandstone Infusion Stone
+item.skyresources.crystalFluidBucket.name=Crystal Liquid Bucket
+item.skyresources.metalCrystal.name=Crystal Shard
+item.skyresources.stoneGrinder.name=Stone Rock Grinder
+item.skyresources.ironGrinder.name=Iron Rock Grinder
+item.skyresources.diamondGrinder.name=Diamond Rock Grinder
+
+tile.skyresources.cactusFruitNeedle.name=Cactus Fruit On A Needle
+tile.skyresources.compressedCoalBlock.name=Hardened Coal Block
+tile.skyresources.compressedCoalBlock2.name=Adamant Coal Block
+tile.skyresources.dryCactus.name=Dehydrated Cactus
+tile.skyresources.combustionHeater.wood.name=Wooden Combustion Heater
+tile.skyresources.combustionHeater.iron.name=Iron Combustion Heater
+tile.skyresources.alchemicalCondenser.name=Alchemical Condenser
+tile.skyresources.BlazePowderBlock.name=Blaze Powder Block
+
+
+tile.skyresources.ironCrystalFluidBlock.name=Iron Crystal Liquid
+tile.skyresources.goldCrystalFluidBlock.name=Gold Crystal Liquid
+tile.skyresources.copperCrystalFluidBlock.name=Copper Crystal Liquid
+tile.skyresources.tinCrystalFluidBlock.name=Tin Crystal Liquid
+tile.skyresources.silverCrystalFluidBlock.name=Silver Crystal Liquid
+tile.skyresources.zincCrystalFluidBlock.name=Zinc Crystal Liquid
+
+
+jei.skyresources.desc.cactusNeedle=Obtained by shift right-clicking on a cactus block.\n\nNOTE: You will take damage.\nNOT CURRENTLY WORKING IN THIS VERSION.\nCRAFTING RECIPE TEMPORARY.
+jei.skyresources.desc.cactusNeedleBloody=Obtained by shift right-clicking with a Cactus Needle.\n\nNOTE: You will take damage.
+jei.skyresources.desc.dryCactus=Obtained by using a Water Extractor on a cactus.\n\nNOTE: May take a while.
+jei.skyresources.desc.blazePowderBlock=Heat above a heat source to turn into lava.\n\nNOTE: Better heat sources are generally faster.
+
+jei.skyresources.recipe.healthNeeded=Health Needed: 
+jei.skyresources.recipe.rightClickOn=Right-Clicked On
+jei.skyresources.recipe.infusion=Life Infusion 
+jei.skyresources.recipe.combustion=Combustion
+
+
+container.skyresources.combustionHeater=Combustion Heater
+
+name.skyresources.metal.iron=Iron
+name.skyresources.metal.gold=Gold
+name.skyresources.metal.copper=Copper
+name.skyresources.metal.tin=Tin
+name.skyresources.metal.silver=Silver
+name.skyresources.metal.zinc=Zinc
+
+itemGroup.skyresources.tabMain=Sky Mod:Main
+itemGroup.skyresources.tabAlchemy=Sky Mod:Alchemy
+itemGroup.skyresources.tabTech=Sky Mod:Technology

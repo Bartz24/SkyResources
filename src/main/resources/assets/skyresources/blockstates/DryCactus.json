@@ -1,0 +1,10 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "skyresources:DryCactus"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}]
+  }
+}

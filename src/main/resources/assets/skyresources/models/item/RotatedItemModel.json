@@ -1,0 +1,10 @@
+{
+  "parent":"skyresources:item/BaseItemModel",
+  "display": {
+    "thirdperson": {
+      "rotation": [0, 90, -90 ],
+      "translation": [ 0, 1, -3 ],
+      "scale": [ 0.55, 0.55, 0.55 ]
+    }
+  }
+}

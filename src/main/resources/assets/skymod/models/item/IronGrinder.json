@@ -1,6 +1,0 @@
-{
-  "parent":"skymod:item/StoneGrinder",
-  "textures": {
-    "layer0":"skymod:items/ironRockGrinder"
-  }
-}

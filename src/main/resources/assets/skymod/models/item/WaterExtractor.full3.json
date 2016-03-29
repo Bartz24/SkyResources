@@ -1,6 +1,0 @@
-{
-  "parent":"skymod:item/waterExtractor.empty",
-  "textures": {
-    "layer0":"skymod:items/waterExtractor.full3"
-  }
-}

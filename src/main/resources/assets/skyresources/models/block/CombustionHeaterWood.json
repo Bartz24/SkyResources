@@ -1,0 +1,19 @@
+{
+  "parent":"block/cube_all",
+  "textures": {
+       "down": "blocks/log_oak",
+         "up": "skyresources:blocks/combustionHeaterWood",
+      "north": "blocks/log_oak",
+      "south": "blocks/log_oak",
+       "west": "blocks/log_oak",
+       "east": "blocks/log_oak",
+   "particle": "skyresources:blocks/combustionHeaterWood"
+  },
+  "display": {
+        "thirdperson": {
+            "rotation": [ 10, -45, 170 ],
+            "translation": [ 0, 1.5, -2.75 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        }
+    }
+}
