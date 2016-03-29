@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bartz24.skyresources.References;
+import com.bartz24.skyresources.registry.ModAchievements;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModItems;
 
@@ -79,6 +80,7 @@ public class AlchemyItemComponent extends Item
             {
             	stack.stackSize--;
             	
+            	player.addStat(ModAchievements.cactusNeedle, 1);
             	if (!player.inventory.addItemStackToInventory(new ItemStack(ModItems.alchemyComponent, 1, names.indexOf(cactusNeedleBloody))))
                 {
                     player.dropPlayerItemWithRandomChoice(new ItemStack(ModItems.alchemyComponent, 1, names.indexOf(cactusNeedleBloody)), false);

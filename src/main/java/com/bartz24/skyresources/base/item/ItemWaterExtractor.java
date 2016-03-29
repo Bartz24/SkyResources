@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
+import com.bartz24.skyresources.registry.ModAchievements;
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 
@@ -61,87 +62,96 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 		return 70000;
 	}
 
-	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer playerIn)
+	public ItemStack onItemUseFinish(ItemStack stack, World worldIn,
+			EntityPlayer playerIn)
 	{
 		return stack;
 	}
 
-	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world,
-			EntityPlayer player, EnumHand hand)
+	public ActionResult<ItemStack> onItemRightClick(ItemStack stack,
+			World world, EntityPlayer player, EnumHand hand)
 	{
 
 		player.setActiveHand(hand);
 		return new ActionResult(EnumActionResult.SUCCESS, stack);
 	}
 
-	public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase entity,
-			int timeLeft)
+	public void onPlayerStoppedUsing(ItemStack stack, World world,
+			EntityLivingBase entity, int timeLeft)
 	{
 		SkyResources.logger.debug("HERE");
 		if (entity instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) entity;
-			if (!world.isRemote && timeLeft <= getMaxItemUseDuration(stack) - 50)
+			if (!world.isRemote
+					&& timeLeft <= getMaxItemUseDuration(stack) - 50)
 			{
 				if ((player.rayTrace(200, 1.0F) != null))
 				{
 					BlockPos pos = player.rayTrace(200, 1.0F).getBlockPos();
 
-					EnumFacing blockHitSide = player.rayTrace(200, 1.0F).sideHit;
+					EnumFacing blockHitSide = player.rayTrace(200,
+							1.0F).sideHit;
 
 					Block block = world.getBlockState(pos).getBlock();
 					if (block == Blocks.cactus)
 					{
-						getCompound(stack)
-								.setInteger(
-										"amount",
-										stack.getTagCompound().getInteger("amount")
-												+ fill(null,
-														new FluidStack(FluidRegistry.WATER, 50),
-														true));
-						tank.getFluid().amount = stack.getTagCompound().getInteger("amount");
-						world.setBlockState(pos, ModBlocks.dryCactus.getDefaultState());
-						world.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ,
-								SoundEvents.entity_player_splash, SoundCategory.NEUTRAL, 1.0F,
+						getCompound(stack).setInteger("amount", stack
+								.getTagCompound().getInteger("amount")
+								+ fill(null,
+										new FluidStack(FluidRegistry.WATER, 50),
+										true));
+						tank.getFluid().amount = stack.getTagCompound()
+								.getInteger("amount");
+						world.setBlockState(pos,
+								ModBlocks.dryCactus.getDefaultState());
+						world.playSound((EntityPlayer) null, player.posX,
+								player.posY, player.posZ,
+								SoundEvents.entity_player_splash,
+								SoundCategory.NEUTRAL, 1.0F,
 								1.0F / (itemRand.nextFloat() * 0.4F + 1.2F));
 						return;
-					}
-					else if(world.getBlockState(pos.add(0, 1, 0)).getBlock() == Blocks.water && getCompound(stack).getInteger("amount") < 1000)
+					} else if (world.getBlockState(pos.add(0, 1, 0))
+							.getBlock() == Blocks.water
+							&& getCompound(stack).getInteger("amount") < 1000)
 					{
 						world.setBlockToAir(pos.add(0, 1, 0));
-						getCompound(stack).setInteger("amount", 1000);		
-						world.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ,
-								SoundEvents.entity_player_splash, SoundCategory.NEUTRAL, 1.0F,
-								1.0F / (itemRand.nextFloat() * 0.4F + 1.2F));				
+						getCompound(stack).setInteger("amount", 1000);
+						world.playSound((EntityPlayer) null, player.posX,
+								player.posY, player.posZ,
+								SoundEvents.entity_player_splash,
+								SoundCategory.NEUTRAL, 1.0F,
+								1.0F / (itemRand.nextFloat() * 0.4F + 1.2F));
 					}
-								
+
 				}
 			}
 		}
 	}
 
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn,
-			BlockPos pos, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
+	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn,
+			World worldIn, BlockPos pos, EnumHand hand, EnumFacing side,
+			float hitX, float hitY, float hitZ)
 	{
 		IBlockState iblockstate = worldIn.getBlockState(pos);
 		Block block = iblockstate.getBlock();
-		
 
 		if (worldIn.getTileEntity(pos) instanceof IFluidHandler)
 		{
 			IFluidHandler tile = (IFluidHandler) worldIn.getTileEntity(pos);
-			getCompound(stack).setInteger(
-					"amount",
+			getCompound(stack).setInteger("amount",
 					stack.getTagCompound().getInteger("amount")
 							- tile.fill(side, tank.getFluid(), true));
-			tank.getFluid().amount = stack.getTagCompound().getInteger("amount");
+			tank.getFluid().amount = stack.getTagCompound()
+					.getInteger("amount");
 			return EnumActionResult.FAIL;
 		}
-		
+
 		if (getCompound(stack).getInteger("amount") >= 1000)
 		{
 			if (block == Blocks.snow_layer
-					&& ((Integer) iblockstate.getValue(BlockSnow.LAYERS)).intValue() < 1)
+					&& ((Integer) iblockstate.getValue(BlockSnow.LAYERS))
+							.intValue() < 1)
 			{
 				side = EnumFacing.UP;
 			} else if (!block.isReplaceable(worldIn, pos))
@@ -149,23 +159,29 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 				pos = pos.offset(side);
 			}
 
-			if (!playerIn.canPlayerEdit(pos, side, stack) || stack.stackSize == 0)
+			if (!playerIn.canPlayerEdit(pos, side, stack)
+					|| stack.stackSize == 0)
 			{
 				return EnumActionResult.FAIL;
 			} else
 			{
-				if (worldIn.canBlockBePlaced(Blocks.water, pos, false, side, (Entity) null, stack))
+				if (worldIn.canBlockBePlaced(Blocks.water, pos, false, side,
+						(Entity) null, stack))
 				{
-					IBlockState iblockstate1 = Blocks.water.onBlockPlaced(worldIn, pos, side, hitX,
-							hitY, hitZ, 0, playerIn);
+					IBlockState iblockstate1 = Blocks.water.onBlockPlaced(
+							worldIn, pos, side, hitX, hitY, hitZ, 0, playerIn);
 
 					worldIn.setBlockState(pos, iblockstate1, 3);
 					getCompound(stack).setInteger("amount",
 							stack.getTagCompound().getInteger("amount") - 1000);
-					tank.getFluid().amount = stack.getTagCompound().getInteger("amount");
-					worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ,
-							SoundEvents.entity_player_splash, SoundCategory.NEUTRAL, 1.0F,
+					tank.getFluid().amount = stack.getTagCompound()
+							.getInteger("amount");
+					worldIn.playSound((EntityPlayer) null, playerIn.posX,
+							playerIn.posY, playerIn.posZ,
+							SoundEvents.entity_player_splash,
+							SoundCategory.NEUTRAL, 1.0F,
 							1.0F / (itemRand.nextFloat() * 0.4F + 1.2F));
+					playerIn.addStat(ModAchievements.firstWater, 1);
 					return EnumActionResult.SUCCESS;
 				}
 
@@ -189,7 +205,8 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 	{
 		itemStack.setTagCompound(new NBTTagCompound());
 		itemStack.getTagCompound().setInteger("amount", 0);
-		tank.getFluid().amount = itemStack.getTagCompound().getInteger("amount");
+		tank.getFluid().amount = itemStack.getTagCompound()
+				.getInteger("amount");
 
 	}
 
@@ -208,7 +225,8 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 	}
 
 	@Override
-	public FluidStack drain(EnumFacing from, FluidStack resource, boolean doDrain)
+	public FluidStack drain(EnumFacing from, FluidStack resource,
+			boolean doDrain)
 	{
 		if (resource != null && canDrain(from, resource.getFluid()))
 		{
@@ -240,7 +258,8 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 	{
 		if (tank != null)
 		{
-			if (fluid == null || tank.getFluid() != null && tank.getFluid().getFluid() == fluid)
+			if (fluid == null || tank.getFluid() != null
+					&& tank.getFluid().getFluid() == fluid)
 			{
 				return true;
 			}
@@ -261,11 +280,13 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 		return tank;
 	}
 
-	public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4)
+	public void addInformation(ItemStack itemStack, EntityPlayer player,
+			List list, boolean par4)
 	{
 		if (itemStack.getTagCompound() != null)
 		{
-			list.add("Water: " + itemStack.getTagCompound().getInteger("amount"));
+			list.add("Water: "
+					+ itemStack.getTagCompound().getInteger("amount"));
 		} else
 			list.add("Water: " + 0);
 	}

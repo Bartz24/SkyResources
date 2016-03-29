@@ -2,13 +2,13 @@
 {
   "modid": "skyresources",
   "name": "Sky Resources",
-  "description": "Resources from the air.",
-  "version": "Alpha 0.1.0",
+  "description": "Everything in the air.",
+  "version": "0.1.0 Alpha",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "https://github.com/Bartz24/SkyResources",
   "updateUrl": "",
   "authorList": ["Bartz24"],
-  "credits": "The Forge and FML people for 1.9, other mod authors for world spawn, jei compat, etc",
+  "credits": "The Forge and FML people for 1.9, other mod authors for examples of world spawn, JEI compat, etc",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

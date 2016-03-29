@@ -61,3 +61,28 @@ itemGroup.skyresources.tabTech=Sky Mod:Technology
 
 generator.skyworld=Sky World
 generator.skyworld.info=Creates a random platform in the sky. NOTE:Only functional spawn is the sand platform.
+
+achievement.CactusNeedle=Ouch!
+achievement.CactusNeedle.desc=Poke yourself with a cactus needle.
+achievement.FirstSapling=Tiny Tree From A Cactus
+achievement.FirstSapling.desc=Infuse a cactus fruit into a sapling.
+achievement.FirstWater=Water Syringe
+achievement.FirstWater.desc=Use a water extractor to place down water.
+achievement.LavaMelting=Dangerous Heating
+achievement.LavaMelting.desc=Melt a blaze powder block down into lava.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

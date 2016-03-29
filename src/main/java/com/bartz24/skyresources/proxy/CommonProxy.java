@@ -5,6 +5,7 @@ import com.bartz24.skyresources.alchemy.infusion.InfusionRecipes;
 import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.events.EventHandler;
 import com.bartz24.skyresources.events.ModBucketHandler;
+import com.bartz24.skyresources.registry.ModAchievements;
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModCrafting;
 import com.bartz24.skyresources.registry.ModEntities;
@@ -15,6 +16,7 @@ import com.bartz24.skyresources.technology.combustion.CombustionRecipes;
 import com.bartz24.skyresources.technology.rockgrinder.RockGrinderRecipes;
 import com.bartz24.skyresources.world.WorldTypeSky;
 
+import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -46,6 +48,8 @@ public class CommonProxy
 		NetworkRegistry.INSTANCE.registerGuiHandler(SkyResources.instance, new ModGuiHandler());
 		ModEntities.init();
 		ModCrafting.init();		
+		
+		AchievementPage.registerAchievementPage(ModAchievements.modAchievePage);
 	}
 
 	public void postInit(FMLPostInitializationEvent e)
