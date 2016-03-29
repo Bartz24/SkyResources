@@ -1,8 +1,11 @@
 package com.bartz24.skyresources.technology.item;
 
+import com.bartz24.skyresources.ItemHelper;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
+import com.bartz24.skyresources.technology.rockgrinder.RockGrinderRecipe;
+import com.bartz24.skyresources.technology.rockgrinder.RockGrinderRecipes;
 import com.google.common.collect.Multimap;
 
 import net.minecraft.block.Block;
@@ -28,7 +31,7 @@ public class ItemRockGrinder extends Item
 			String registryName)
 	{
 		toolMaterial = material;
-		this.setMaxDamage((int) (material.getMaxUses() * 1.4F));
+		this.setMaxDamage((int) (material.getMaxUses() * 0.6F));
 		this.damageVsEntity = 2.5F + material.getDamageVsEntity();
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
 		setRegistryName(registryName);
@@ -36,6 +39,8 @@ public class ItemRockGrinder extends Item
 		this.setNoRepair();
 		this.setCreativeTab(ModCreativeTabs.tabTech);
 		this.setHarvestLevel("rockGrinder", material.getHarvestLevel());
+		
+		ItemHelper.addRockGrinder(this);
 	}
 
 	public float getStrVsBlock(ItemStack stack, IBlockState state)
@@ -58,13 +63,17 @@ public class ItemRockGrinder extends Item
 		{
 			if (!world.isRemote)
 			{
-				if (state.getBlock() == Blocks.cobblestone)
-					RandomHelper.spawnItemInWorld(world, new ItemStack(
-							Blocks.sand), pos);
-				else if (state.getBlock() == Blocks.sandstone)
-					RandomHelper.spawnItemInWorld(world, new ItemStack(
-							Blocks.gravel), pos);
-				world.destroyBlock(pos, false);
+
+				RockGrinderRecipe recipe = RockGrinderRecipes.getRecipe(state);
+				
+				if(recipe != null && recipe.getOutput() != null)
+				{
+					RandomHelper.spawnItemInWorld(world, recipe.getOutput().copy(), pos);
+					
+					world.destroyBlock(pos, false);
+				}
+				else				
+					world.destroyBlock(pos, true);
 			}
 
 			item.damageItem(1, player);

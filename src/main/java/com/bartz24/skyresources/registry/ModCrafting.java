@@ -3,6 +3,7 @@ package com.bartz24.skyresources.registry;
 import com.bartz24.skyresources.alchemy.infusion.InfusionRecipes;
 import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.technology.combustion.CombustionRecipes;
+import com.bartz24.skyresources.technology.rockgrinder.RockGrinderRecipes;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -30,55 +31,51 @@ public class ModCrafting
 		GameRegistry.addRecipe(new ItemStack(ModItems.diamondKnife),
 				new Object[]
 				{ "#  ", "#X ", " #X", 'X', new ItemStack(Items.stick), '#', new ItemStack(Items.diamond) });
-
+		GameRegistry.addRecipe(new ItemStack(ModItems.stoneGrinder),
+				new Object[]
+				{ "#  ", " X ", "  X", 'X', new ItemStack(Items.stick), '#', new ItemStack(Blocks.cobblestone) });
+		GameRegistry.addRecipe(new ItemStack(ModItems.ironGrinder), new Object[]
+		{ "#  ", " X ", "  X", 'X', new ItemStack(Items.stick), '#',
+				new ItemStack(Items.iron_ingot) });
+		GameRegistry.addRecipe(new ItemStack(ModItems.diamondGrinder),
+				new Object[]
+				{ "#  ", " X ", "  X", 'X', new ItemStack(Items.stick), '#', new ItemStack(Items.diamond) });
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.cactusFruitNeedle),
 				new Object[]
 				{ "X", "Y", 'X', new ItemStack(ModItems.cactusFruit), 'Y', new ItemStack(ModItems.alchemyComponent, 1, 0) });
-
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModItems.sandstoneInfusionStone), new Object[]
 				{ "X", "Y", 'X', new ItemStack(ModItems.alchemyComponent, 1, 0), 'Y', "sandstone" }));
-
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModItems.redSandstoneInfusionStone), new Object[]
 				{ "X", "Y", 'X', new ItemStack(ModItems.alchemyComponent, 1, 0), 'Y', new ItemStack(Blocks.red_sandstone, 1, OreDictionary.WILDCARD_VALUE) }));
-
 		GameRegistry.addRecipe(new ItemStack(ModItems.alchemyComponent, 8, 0),
 				new Object[]
 				{ "X", 'X', new ItemStack(Blocks.cactus) });
-
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModItems.baseComponent, 1, 0), new Object[]
 				{ "XXX", "XYX", "XXX", 'X', "plankWood", 'Y', Items.gunpowder }));
-
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModItems.baseComponent, 1, 1), new Object[]
 				{ "XXX", "XYX", "XXX", 'X', "ingotIron", 'Y', Items.blaze_powder }));
-
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModBlocks.combustionHeater, 1, 0), new Object[]
 				{ "XYX", "X X", "XXX", 'X', "logWood", 'Y', new ItemStack(ModItems.baseComponent, 1, 0) }));
-
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModBlocks.combustionHeater, 1, 1), new Object[]
 				{ "XYX", "X X", "XXX", 'X', "ingotIron", 'Y', new ItemStack(ModItems.baseComponent, 1, 1) }));
-
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModBlocks.compressedCoalBlock), new Object[]
 				{ "XXX", "XXX", "XXX", 'X', new ItemStack(Blocks.coal_block) }));
-
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModBlocks.blazePowderBlock), new Object[]
 				{ "XXX", "XXX", "XXX", 'X', new ItemStack(Items.blaze_powder) }));
-
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModBlocks.alchemicalCondenser), new Object[]
 				{ "XXX", "X X", "XYX", 'X', "cobblestone", 'Y', new ItemStack(ModItems.baseComponent, 1, 0) }));
-
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModBlocks.compressedCoalBlock2), new Object[]
 				{ "XXX", "XXX", "XXX", 'X', new ItemStack(ModBlocks.compressedCoalBlock) }));
-
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModItems.waterExtractor), new Object[]
 				{ "XXX", " XX", 'X', "plankWood" }));
@@ -89,8 +86,9 @@ public class ModCrafting
 				ModItems.ironKnife, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("toolCuttingKnife", new ItemStack(
 				ModItems.diamondKnife, 1, OreDictionary.WILDCARD_VALUE));
+		
 		GameRegistry.addSmelting(ModBlocks.dryCactus,
-				new ItemStack(Items.dye, 2, 2), 0.2F);
+				new ItemStack(Items.dye, 1, 7), 0.2F);
 
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.sapling, 1, 4),
 				new ItemStack(ModItems.alchemyComponent, 10, 1),
@@ -114,6 +112,11 @@ public class ModCrafting
 		CombustionRecipes.addRecipe(new ItemStack(Items.diamond, 1, 0), 1000,
 				new ItemStack(ModBlocks.compressedCoalBlock2, 2),
 				new ItemStack(Blocks.obsidian, 1));
+
+		RockGrinderRecipes.addRecipe(new ItemStack(Blocks.sand), false,
+				Blocks.cobblestone.getDefaultState());
+		RockGrinderRecipes.addRecipe(new ItemStack(Blocks.gravel), false,
+				Blocks.sandstone.getDefaultState());
 
 		HeatSources.addHeatSource(Blocks.fire.getDefaultState(), 20);
 		HeatSources.addHeatSource(Blocks.lava.getDefaultState(), 15);

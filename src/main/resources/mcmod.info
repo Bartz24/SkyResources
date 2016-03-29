@@ -3,7 +3,7 @@
   "modid": "skyresources",
   "name": "Sky Resources",
   "description": "Resources from the air.",
-  "version": "${version}",
+  "version": "Alpha 0.1.0",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",

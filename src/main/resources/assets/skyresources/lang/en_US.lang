@@ -43,6 +43,7 @@ jei.skyresources.recipe.healthNeeded=Health Needed:
 jei.skyresources.recipe.rightClickOn=Right-Clicked On
 jei.skyresources.recipe.infusion=Life Infusion 
 jei.skyresources.recipe.combustion=Combustion
+jei.skyresources.recipe.rockgrinder=Rock Grinder
 
 
 container.skyresources.combustionHeater=Combustion Heater
@@ -57,3 +58,6 @@ name.skyresources.metal.zinc=Zinc
 itemGroup.skyresources.tabMain=Sky Mod:Main
 itemGroup.skyresources.tabAlchemy=Sky Mod:Alchemy
 itemGroup.skyresources.tabTech=Sky Mod:Technology
+
+generator.skyworld=Sky World
+generator.skyworld.info=Creates a random platform in the sky. NOTE:Only functional spawn is the sand platform.

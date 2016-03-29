@@ -28,7 +28,6 @@ public class BlazePowderBlock extends BaseBlock
 		super.updateTick(world, pos, state, rand);
 		if (!world.isRemote)
 		{
-			System.out.println("Here");
 			if (HeatSources.isValidHeatSource(world.getBlockState(pos.down()))
 					&& rand.nextInt(50) <= HeatSources.getHeatSourceValue(
 							world.getBlockState(pos.down())))

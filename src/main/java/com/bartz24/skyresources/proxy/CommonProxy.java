@@ -12,6 +12,7 @@ import com.bartz24.skyresources.registry.ModFluids;
 import com.bartz24.skyresources.registry.ModGuiHandler;
 import com.bartz24.skyresources.registry.ModItems;
 import com.bartz24.skyresources.technology.combustion.CombustionRecipes;
+import com.bartz24.skyresources.technology.rockgrinder.RockGrinderRecipes;
 import com.bartz24.skyresources.world.WorldTypeSky;
 
 import net.minecraftforge.common.MinecraftForge;
@@ -32,6 +33,7 @@ public class CommonProxy
 		new HeatSources();
 		new InfusionRecipes();
 		new CombustionRecipes();
+		new RockGrinderRecipes();
 		new WorldTypeSky();
 
 		MinecraftForge.EVENT_BUS.register(events);

@@ -27,7 +27,6 @@ public class CombustionRecipes
 		{
 			if (rec.isInputRecipeEqualTo(recipe))
 			{
-				System.out.println("HERE");
 				return recipe;
 			}
 		}

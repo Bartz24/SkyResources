@@ -6,6 +6,9 @@ import com.bartz24.skyresources.jei.combustion.CombustionRecipeMaker;
 import com.bartz24.skyresources.jei.infusion.InfusionRecipeCategory;
 import com.bartz24.skyresources.jei.infusion.InfusionRecipeHandler;
 import com.bartz24.skyresources.jei.infusion.InfusionRecipeMaker;
+import com.bartz24.skyresources.jei.rockgrinder.RockGrinderRecipeCategory;
+import com.bartz24.skyresources.jei.rockgrinder.RockGrinderRecipeHandler;
+import com.bartz24.skyresources.jei.rockgrinder.RockGrinderRecipeMaker;
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModItems;
 
@@ -29,11 +32,13 @@ public class JEIPlugin implements IModPlugin
 	{
 		IJeiHelpers jeiHelpers = registry.getJeiHelpers();
 		registry.addRecipeCategories(new InfusionRecipeCategory(jeiHelpers.getGuiHelper()),
-				new CombustionRecipeCategory(jeiHelpers.getGuiHelper()));
-		registry.addRecipeHandlers(new InfusionRecipeHandler(), new CombustionRecipeHandler());
+				new CombustionRecipeCategory(jeiHelpers.getGuiHelper()),
+				new RockGrinderRecipeCategory(jeiHelpers.getGuiHelper()));
+		registry.addRecipeHandlers(new InfusionRecipeHandler(), new CombustionRecipeHandler(), new RockGrinderRecipeHandler());
 
 		registry.addRecipes(InfusionRecipeMaker.getRecipes());
 		registry.addRecipes(CombustionRecipeMaker.getRecipes());
+		registry.addRecipes(RockGrinderRecipeMaker.getRecipes());
 
 		registry.addDescription(new ItemStack(ModItems.alchemyComponent, 1, 0),
 				"jei.skyresources.desc.cactusNeedle");

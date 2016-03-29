@@ -1,5 +1,6 @@
 package com.bartz24.skyresources.alchemy.item;
 
+import com.bartz24.skyresources.ItemHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.alchemy.infusion.InfusionRecipe;
 import com.bartz24.skyresources.alchemy.infusion.InfusionRecipes;
@@ -27,6 +28,8 @@ public class ItemInfusionStone extends Item
         this.setMaxStackSize(1);
         this.setNoRepair();
 		this.setCreativeTab(ModCreativeTabs.tabAlchemy);
+		
+		ItemHelper.addInfusionStone(this);
 	}
     @Override
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world,

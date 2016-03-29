@@ -110,8 +110,6 @@ public class ModItems
 					.setContainerItem(Items.bucket).setCreativeTab(ModCreativeTabs.tabAlchemy)));
 		}
 
-		ItemHelper.addInfusionStone(sandstoneInfusionStone);
-		ItemHelper.addInfusionStone(redSandstoneInfusionStone);
 	}
 
 	private static Item registerItem(Item item, String name)
