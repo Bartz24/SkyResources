@@ -187,6 +187,7 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 		super.writeToNBT(compound);
 
 		tank.writeToNBT(compound);
+		
 
 		compound.setInteger("amount", itemAmount);
 		compound.setInteger("type", currentType);

@@ -61,6 +61,7 @@ public class ModBlocks
 
 		alchemicalCondenser = registerBlock(new CondenserBlock(
 				"alchemicalCondenser", "AlchemicalCondenser", 2F, 12F));
+		
 
 		crucible = registerBlock(
 				new CrucibleBlock("crucible", "Crucible", 2F, 12F));

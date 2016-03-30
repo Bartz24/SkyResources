@@ -77,6 +77,7 @@ public class ModCrafting
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModBlocks.compressedCoalBlock2), new Object[]
 				{ "XXX", "XXX", "XXX", 'X', new ItemStack(ModBlocks.compressedCoalBlock) }));
+		
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModItems.waterExtractor), new Object[]
 				{ "XXX", " XX", 'X', "plankWood" }));

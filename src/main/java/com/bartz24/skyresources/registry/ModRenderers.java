@@ -123,6 +123,7 @@ public class ModRenderers
 						"inventory"),
 				new ModelResourceLocation("skyresources:WaterExtractor.full2",
 						"inventory"),
+				
 				new ModelResourceLocation("skyresources:WaterExtractor.full3",
 						"inventory"),
 				new ModelResourceLocation("skyresources:WaterExtractor.full4",

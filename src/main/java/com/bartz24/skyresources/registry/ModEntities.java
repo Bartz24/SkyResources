@@ -16,5 +16,6 @@ public final class ModEntities
 		GameRegistry.registerTileEntity(FluidDropperTile.class, "fluidDropperTile");
 		GameRegistry.registerTileEntity(CondenserTile.class, "condenserTile");
 		GameRegistry.registerTileEntity(CrucibleTile.class, "crucibleTile");
+		
 	}
 }

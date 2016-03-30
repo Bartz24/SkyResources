@@ -45,6 +45,7 @@ public class ModItems
 
 	public static Item sandstoneInfusionStone;
 	public static Item redSandstoneInfusionStone;
+	
 
 	public static List<Item> crystalFluidBuckets;
 
