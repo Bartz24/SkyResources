@@ -8,6 +8,7 @@ import com.bartz24.skyresources.technology.rockgrinder.RockGrinderRecipes;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -102,6 +103,10 @@ public class ModCrafting
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.cactus, 2, 0),
 				new ItemStack(ModItems.alchemyComponent, 6, 1), Blocks.cactus,
 				0, 8);
+		InfusionRecipes.addRecipe(new ItemStack(Blocks.tallgrass, 1),
+				new ItemStack(Items.rotten_flesh, 4), "treeSapling", 0, 10);
+		InfusionRecipes.addRecipe(new ItemStack(Blocks.grass, 1),
+				new ItemStack(Items.wheat_seeds, 4), Blocks.dirt, 0, 14);
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.coal, 1), 50,
 				new ItemStack(Items.coal, 4, 1));
@@ -142,13 +147,20 @@ public class ModCrafting
 				new ItemStack(Items.blaze_powder, 2));
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.dye, 32, 4), 600,
-				new ItemStack(Items.diamond, 1),
-				new ItemStack(Items.flint, 8));
+				new ItemStack(Items.diamond, 1), new ItemStack(Items.flint, 8));
+
+		CombustionRecipes.addRecipe(new ItemStack(Items.wheat_seeds, 1), 50,
+				new ItemStack(Blocks.tallgrass, 1),
+				new ItemStack(Items.flint, 2));
 
 		RockGrinderRecipes.addRecipe(new ItemStack(Blocks.sand), false,
 				Blocks.cobblestone.getDefaultState());
 		RockGrinderRecipes.addRecipe(new ItemStack(Blocks.gravel), false,
 				Blocks.sandstone.getDefaultState());
+
+		MinecraftForge.addGrassSeed(new ItemStack(Items.beetroot_seeds), 10);
+		MinecraftForge.addGrassSeed(new ItemStack(Items.melon_seeds), 8);
+		MinecraftForge.addGrassSeed(new ItemStack(Items.pumpkin_seeds), 8);
 
 		HeatSources.addHeatSource(Blocks.fire.getDefaultState(), 20);
 		HeatSources.addHeatSource(Blocks.lava.getDefaultState(), 15);
