@@ -141,6 +141,10 @@ public class ModCrafting
 				new ItemStack(Items.gunpowder, 2),
 				new ItemStack(Items.blaze_powder, 2));
 
+		CombustionRecipes.addRecipe(new ItemStack(Items.dye, 32, 4), 600,
+				new ItemStack(Items.diamond, 1),
+				new ItemStack(Items.flint, 8));
+
 		RockGrinderRecipes.addRecipe(new ItemStack(Blocks.sand), false,
 				Blocks.cobblestone.getDefaultState());
 		RockGrinderRecipes.addRecipe(new ItemStack(Blocks.gravel), false,
