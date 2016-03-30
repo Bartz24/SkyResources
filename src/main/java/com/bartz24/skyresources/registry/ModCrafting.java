@@ -79,6 +79,8 @@ public class ModCrafting
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModItems.waterExtractor), new Object[]
 				{ "XXX", " XX", 'X', "plankWood" }));
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.crucible), new Object[]
+		{ "X X", "X X", "XXX", 'X', new ItemStack(Items.brick) });
 
 		OreDictionary.registerOre("toolCuttingKnife", new ItemStack(
 				ModItems.cactusKnife, 1, OreDictionary.WILDCARD_VALUE));
