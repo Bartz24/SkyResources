@@ -67,8 +67,6 @@ public class CrucibleTESR extends TileEntitySpecialRenderer<CrucibleTile>
 					ModFluids.crystalFluidColors()[ModFluids.crystalFluids
 							.indexOf(tank.getFluid().getFluid())]);
 
-			System.out.println(color.toString());
-
 			GlStateManager.color(color.getRed(), color.getGreen(),
 					color.getBlue(), 0.25F);
 
