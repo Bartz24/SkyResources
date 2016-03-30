@@ -14,6 +14,7 @@ import com.bartz24.skyresources.base.block.BlockDryCactus;
 import com.bartz24.skyresources.base.block.ItemBlockMeta;
 import com.bartz24.skyresources.base.block.TransparentBlock;
 import com.bartz24.skyresources.technology.block.CombustionHeaterBlock;
+import com.bartz24.skyresources.technology.block.FluidDropperBlock;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -27,6 +28,7 @@ public class ModBlocks
 
 	public static Block combustionHeater;
 	public static Block crucible;
+	public static Block fluidDropper;
 	public static Block alchemicalCondenser;
 
 	public static Block compressedCoalBlock;
@@ -62,6 +64,9 @@ public class ModBlocks
 
 		crucible = registerBlock(
 				new CrucibleBlock("crucible", "Crucible", 2F, 12F));
+		
+		fluidDropper = registerBlock(
+				new FluidDropperBlock("fluidDropper", "FluidDropper", 2F, 12F));
 
 		GameRegistry.registerBlock(
 				combustionHeater = new CombustionHeaterBlock("combustionHeater",

@@ -110,6 +110,7 @@ public class ModRenderers
 		registerItemRenderer(
 				Item.getItemFromBlock(ModBlocks.alchemicalCondenser));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.crucible));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.fluidDropper));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.blazePowderBlock));
 
 		registerItemRenderer(ModItems.sandstoneInfusionStone);

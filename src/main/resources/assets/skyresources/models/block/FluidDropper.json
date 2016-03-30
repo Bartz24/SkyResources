@@ -1,0 +1,19 @@
+{
+  "parent":"block/cube_all",
+  "textures": {
+       "down": "skyresources:blocks/fluidDropper",
+         "up": "blocks/furnace_top",
+      "north": "blocks/furnace_side",
+      "south": "blocks/furnace_side",
+       "west": "blocks/furnace_side",
+       "east": "blocks/furnace_side",
+   "particle": "skyresources:blocks/fluidDropper"
+  },
+  "display": {
+        "thirdperson": {
+            "rotation": [ 10, -45, 170 ],
+            "translation": [ 0, 1.5, -2.75 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        }
+    }
+}
