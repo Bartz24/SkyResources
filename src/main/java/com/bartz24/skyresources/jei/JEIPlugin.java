@@ -3,6 +3,9 @@ package com.bartz24.skyresources.jei;
 import com.bartz24.skyresources.jei.combustion.CombustionRecipeCategory;
 import com.bartz24.skyresources.jei.combustion.CombustionRecipeHandler;
 import com.bartz24.skyresources.jei.combustion.CombustionRecipeMaker;
+import com.bartz24.skyresources.jei.crucible.CrucibleRecipeCategory;
+import com.bartz24.skyresources.jei.crucible.CrucibleRecipeHandler;
+import com.bartz24.skyresources.jei.crucible.CrucibleRecipeMaker;
 import com.bartz24.skyresources.jei.infusion.InfusionRecipeCategory;
 import com.bartz24.skyresources.jei.infusion.InfusionRecipeHandler;
 import com.bartz24.skyresources.jei.infusion.InfusionRecipeMaker;
@@ -16,6 +19,7 @@ import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
 @mezz.jei.api.JEIPlugin
@@ -31,14 +35,19 @@ public class JEIPlugin implements IModPlugin
 	public void register(IModRegistry registry)
 	{
 		IJeiHelpers jeiHelpers = registry.getJeiHelpers();
-		registry.addRecipeCategories(new InfusionRecipeCategory(jeiHelpers.getGuiHelper()),
+		registry.addRecipeCategories(
+				new InfusionRecipeCategory(jeiHelpers.getGuiHelper()),
 				new CombustionRecipeCategory(jeiHelpers.getGuiHelper()),
-				new RockGrinderRecipeCategory(jeiHelpers.getGuiHelper()));
-		registry.addRecipeHandlers(new InfusionRecipeHandler(), new CombustionRecipeHandler(), new RockGrinderRecipeHandler());
+				new RockGrinderRecipeCategory(jeiHelpers.getGuiHelper()),
+				new CrucibleRecipeCategory(jeiHelpers.getGuiHelper()));
+		registry.addRecipeHandlers(new InfusionRecipeHandler(),
+				new CombustionRecipeHandler(), new RockGrinderRecipeHandler(),
+				new CrucibleRecipeHandler());
 
 		registry.addRecipes(InfusionRecipeMaker.getRecipes());
 		registry.addRecipes(CombustionRecipeMaker.getRecipes());
 		registry.addRecipes(RockGrinderRecipeMaker.getRecipes());
+		registry.addRecipes(CrucibleRecipeMaker.getRecipes());
 
 		registry.addDescription(new ItemStack(ModItems.alchemyComponent, 1, 0),
 				"jei.skyresources.desc.cactusNeedle");
@@ -48,6 +57,8 @@ public class JEIPlugin implements IModPlugin
 				"jei.skyresources.desc.dryCactus");
 		registry.addDescription(new ItemStack(ModBlocks.blazePowderBlock, 1, 0),
 				"jei.skyresources.desc.blazePowderBlock");
+		registry.addDescription(new ItemStack(Blocks.clay, 1, 0),
+				"jei.skyresources.desc.clay");
 	}
 
 }

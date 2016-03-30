@@ -6,6 +6,7 @@ import java.util.List;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.alchemy.block.CondenserBlock;
+import com.bartz24.skyresources.alchemy.block.CrucibleBlock;
 import com.bartz24.skyresources.alchemy.fluid.FluidCrystalBlock;
 import com.bartz24.skyresources.base.block.BaseBlock;
 import com.bartz24.skyresources.base.block.BlazePowderBlock;
@@ -25,6 +26,7 @@ public class ModBlocks
 	public static Block cactusFruitNeedle;
 
 	public static Block combustionHeater;
+	public static Block crucible;
 	public static Block alchemicalCondenser;
 
 	public static Block compressedCoalBlock;
@@ -57,6 +59,9 @@ public class ModBlocks
 
 		alchemicalCondenser = registerBlock(new CondenserBlock(
 				"alchemicalCondenser", "AlchemicalCondenser", 2F, 12F));
+
+		crucible = registerBlock(new CrucibleBlock(
+				"crucible", "Crucible", 2F, 12F));
 
 		GameRegistry.registerBlock(
 				combustionHeater = new CombustionHeaterBlock(

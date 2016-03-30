@@ -149,6 +149,24 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 
 		if (getCompound(stack).getInteger("amount") >= 1000)
 		{
+			if(block == Blocks.dirt)
+			{
+				worldIn.setBlockState(pos, Blocks.clay.getDefaultState(), 3);
+				getCompound(stack).setInteger("amount",
+						stack.getTagCompound().getInteger("amount") - 1000);
+				tank.getFluid().amount = stack.getTagCompound()
+						.getInteger("amount");
+				worldIn.playSound((EntityPlayer) null, playerIn.posX,
+						playerIn.posY, playerIn.posZ,
+						SoundEvents.entity_player_splash,
+						SoundCategory.NEUTRAL, 1.0F,
+						1.0F / (itemRand.nextFloat() * 0.4F + 1.2F));
+				playerIn.addStat(ModAchievements.firstWater, 1);
+				
+				return EnumActionResult.SUCCESS;				
+			}
+				
+			
 			if (block == Blocks.snow_layer
 					&& ((Integer) iblockstate.getValue(BlockSnow.LAYERS))
 							.intValue() < 1)

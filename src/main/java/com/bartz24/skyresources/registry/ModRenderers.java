@@ -1,7 +1,9 @@
 package com.bartz24.skyresources.registry;
 
+import com.bartz24.skyresources.alchemy.crucible.CrucibleTESR;
 import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
 import com.bartz24.skyresources.alchemy.item.MetalCrystalItem;
+import com.bartz24.skyresources.alchemy.tile.CrucibleTile;
 import com.bartz24.skyresources.base.item.BaseItemComponent;
 import com.bartz24.skyresources.base.item.ItemWaterExtractor;
 import com.bartz24.skyresources.technology.block.CombustionHeaterBlock.CombustionHeaterVariants;
@@ -22,6 +24,7 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelDynBucket;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 
 public class ModRenderers
 {
@@ -104,6 +107,8 @@ public class ModRenderers
 		registerItemRenderer(Item
 				.getItemFromBlock(ModBlocks.alchemicalCondenser));
 		registerItemRenderer(Item
+				.getItemFromBlock(ModBlocks.crucible));
+		registerItemRenderer(Item
 				.getItemFromBlock(ModBlocks.blazePowderBlock));
 
 		registerItemRenderer(ModItems.sandstoneInfusionStone);
@@ -173,6 +178,8 @@ public class ModRenderers
 					}
 
 				}, ModItems.metalCrystal);
+
+        ClientRegistry.bindTileEntitySpecialRenderer(CrucibleTile.class, new CrucibleTESR());
 	}
 
 	public static void registerItemRenderer(Item item, int meta, String name)

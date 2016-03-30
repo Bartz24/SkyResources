@@ -86,7 +86,7 @@ public class ModCrafting
 				ModItems.ironKnife, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("toolCuttingKnife", new ItemStack(
 				ModItems.diamondKnife, 1, OreDictionary.WILDCARD_VALUE));
-		
+
 		GameRegistry.addSmelting(ModBlocks.dryCactus,
 				new ItemStack(Items.dye, 1, 7), 0.2F);
 
@@ -95,10 +95,6 @@ public class ModCrafting
 				ModBlocks.cactusFruitNeedle, 0, 10);
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.sapling, 1, 0),
 				new ItemStack(Items.apple, 20, 0), "treeSapling", 0, 20);
-		InfusionRecipes.addRecipe(new ItemStack(Blocks.sand, 1, 1),
-				new ItemStack(Items.dye, 1, 1), Blocks.sand, 0, 2);
-		InfusionRecipes.addRecipe(new ItemStack(Blocks.sand, 1, 0),
-				new ItemStack(Items.dye, 1, 15), Blocks.sand, 1, 2);
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.dirt, 1, 1),
 				new ItemStack(ModItems.cactusFruit, 4), Blocks.sand, 1, 15);
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.cactus, 2, 0),
@@ -112,6 +108,32 @@ public class ModCrafting
 		CombustionRecipes.addRecipe(new ItemStack(Items.diamond, 1, 0), 1000,
 				new ItemStack(ModBlocks.compressedCoalBlock2, 2),
 				new ItemStack(Blocks.obsidian, 1));
+		CombustionRecipes.addRecipe(new ItemStack(Blocks.sand, 8, 1), 200,
+				new ItemStack(Blocks.sand, 12), new ItemStack(Items.dye, 1, 1));
+		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 0),
+				90, new ItemStack(Blocks.glass, 6),
+				new ItemStack(Items.rotten_flesh, 4),
+				new ItemStack(Items.blaze_powder, 2));
+		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 1),
+				240, new ItemStack(ModItems.metalCrystal, 6, 0),
+				new ItemStack(Items.iron_ingot, 2),
+				new ItemStack(Items.redstone, 6));
+		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 2),
+				125, new ItemStack(ModItems.metalCrystal, 2, 0),
+				new ItemStack(Items.iron_ingot, 1),
+				new ItemStack(Items.gunpowder, 3));
+		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 3),
+				230, new ItemStack(ModItems.metalCrystal, 2, 2),
+				new ItemStack(Items.iron_ingot, 2),
+				new ItemStack(Items.blaze_powder, 4));
+		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 4),
+				400, new ItemStack(ModItems.metalCrystal, 3, 1),
+				new ItemStack(Items.gold_ingot, 2),
+				new ItemStack(Items.sugar, 6));
+		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 5),
+				180, new ItemStack(ModItems.metalCrystal, 4, 0),
+				new ItemStack(Items.iron_ingot, 3),
+				new ItemStack(Items.sugar, 2));
 
 		RockGrinderRecipes.addRecipe(new ItemStack(Blocks.sand), false,
 				Blocks.cobblestone.getDefaultState());
