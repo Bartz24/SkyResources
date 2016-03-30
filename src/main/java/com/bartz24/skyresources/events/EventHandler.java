@@ -94,7 +94,8 @@ public class EventHandler
 
 	private static void createSpawn(World world, BlockPos spawn)
 	{
-		Random random = world.rand;
+		sandSpawn(world, spawn);
+		/*Random random = world.rand;
 		switch (random.nextInt(3))
 		{
 		case 0:
@@ -106,7 +107,7 @@ public class EventHandler
 		case 2:
 			snowSpawn(world, spawn);
 			break;
-		}
+		}*/
 	}
 
 	private static void sandSpawn(World world, BlockPos spawn)
