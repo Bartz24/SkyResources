@@ -159,11 +159,9 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 					}
 				}
 			}
-			// System.out.println(tank.getFluidAmount());
 			if (itemAmount > 0)
 			{
 				int val = Math.min(getHeatSourceVal(), itemAmount);
-
 				if (currentType >= 0 && val > 0
 						&& tank.getFluidAmount() + val <= tank.getCapacity())
 				{
@@ -175,7 +173,7 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 					itemAmount -= val;
 				}
 
-				if (tank.getFluidAmount() == 0)
+				if (tank.getFluidAmount() == 0 && itemAmount == 0)
 					currentType = -1;
 
 			}
