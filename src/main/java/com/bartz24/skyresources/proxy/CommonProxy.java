@@ -26,12 +26,13 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 public class CommonProxy
 {
 	EventHandler events = new EventHandler();
+
 	public void preInit(FMLPreInitializationEvent e)
 	{
 		ModFluids.registerCrystalFluid();
 		ModBlocks.init();
 		ModItems.init();
-		
+
 		new HeatSources();
 		new InfusionRecipes();
 		new CombustionRecipes();
@@ -45,10 +46,11 @@ public class CommonProxy
 
 	public void init(FMLInitializationEvent e)
 	{
-		NetworkRegistry.INSTANCE.registerGuiHandler(SkyResources.instance, new ModGuiHandler());
+		NetworkRegistry.INSTANCE.registerGuiHandler(SkyResources.instance,
+				new ModGuiHandler());
 		ModEntities.init();
-		ModCrafting.init();		
-		
+		ModCrafting.init();
+
 		AchievementPage.registerAchievementPage(ModAchievements.modAchievePage);
 	}
 

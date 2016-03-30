@@ -5,7 +5,8 @@ import com.bartz24.skyresources.References;
 import mezz.jei.api.recipe.IRecipeHandler;
 import mezz.jei.api.recipe.IRecipeWrapper;
 
-public class RockGrinderRecipeHandler implements IRecipeHandler<RockGrinderRecipeJEI>
+public class RockGrinderRecipeHandler
+		implements IRecipeHandler<RockGrinderRecipeJEI>
 {
 
 	@Override
@@ -28,8 +29,8 @@ public class RockGrinderRecipeHandler implements IRecipeHandler<RockGrinderRecip
 
 	@Override
 	public boolean isRecipeValid(RockGrinderRecipeJEI recipe)
-    {
-        return recipe.getInputs().size() > 0 && recipe.getOutputs().size() > 0;
-    }
+	{
+		return recipe.getInputs().size() > 0 && recipe.getOutputs().size() > 0;
+	}
 
 }

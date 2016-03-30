@@ -27,7 +27,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 
-public class CombustionHeaterTile extends RedstoneCompatibleTile implements IInventory, ITickable
+public class CombustionHeaterTile extends RedstoneCompatibleTile
+		implements IInventory, ITickable
 {
 	private ItemStack[] inventory = new ItemStack[1];
 
@@ -40,11 +41,13 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile implements IInv
 
 	public List<Material> ValidMaterialsForCrafting()
 	{
-		if (!(worldObj.getBlockState(pos).getBlock() instanceof CombustionHeaterBlock))
+		if (!(worldObj.getBlockState(pos)
+				.getBlock() instanceof CombustionHeaterBlock))
 			return null;
 		IBlockState blockMeta = worldObj.getBlockState(pos);
 		List<Material> mats = new ArrayList<Material>();
-		switch (worldObj.getBlockState(pos).getBlock().getMetaFromState(blockMeta))
+		switch (worldObj.getBlockState(pos).getBlock()
+				.getMetaFromState(blockMeta))
 		{
 		case 0: // WOOD
 			mats.add(Material.wood);
@@ -60,20 +63,22 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile implements IInv
 
 	public int getMaxHeat()
 	{
-		if (!(worldObj.getBlockState(pos).getBlock() instanceof CombustionHeaterBlock))
+		if (!(worldObj.getBlockState(pos)
+				.getBlock() instanceof CombustionHeaterBlock))
 			return 0;
-		CombustionHeaterBlock block = (CombustionHeaterBlock) worldObj.getBlockState(pos)
-				.getBlock();
+		CombustionHeaterBlock block = (CombustionHeaterBlock) worldObj
+				.getBlockState(pos).getBlock();
 
 		return block.getMaximumHeat(worldObj.getBlockState(pos));
 	}
 
 	public int getMaxHeatPerTick()
 	{
-		if (!(worldObj.getBlockState(pos).getBlock() instanceof CombustionHeaterBlock))
+		if (!(worldObj.getBlockState(pos)
+				.getBlock() instanceof CombustionHeaterBlock))
 			return 0;
-		CombustionHeaterBlock block = (CombustionHeaterBlock) worldObj.getBlockState(pos)
-				.getBlock();
+		CombustionHeaterBlock block = (CombustionHeaterBlock) worldObj
+				.getBlockState(pos).getBlock();
 
 		switch (block.getMetaFromState(worldObj.getBlockState(pos)))
 		{
@@ -91,7 +96,7 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile implements IInv
 		int fuelTime = TileEntityFurnace.getItemBurnTime(stack);
 		if (fuelTime > 0)
 		{
-			return (int) Math.cbrt((float) fuelTime/2);
+			return (int) Math.cbrt((float) fuelTime / 2);
 		}
 
 		return 0;
@@ -102,13 +107,16 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile implements IInv
 		if ((float) getHeatPerTick(stack) <= 0)
 			return 0;
 
-		return (int) ((float) Math.pow(TileEntityFurnace.getItemBurnTime(stack), 0.75F) / (float) getHeatPerTick(stack));
+		return (int) ((float) Math.pow(TileEntityFurnace.getItemBurnTime(stack),
+				0.75F) / getHeatPerTick(stack));
 	}
 
 	public boolean isValidFuel(ItemStack stack)
 	{
-		if (TileEntityFurnace.getItemBurnTime(stack) <= 0 || getHeatPerTick(stack) <= 0
-				|| getHeatPerTick(stack) > getMaxHeatPerTick() || getFuelBurnTime(stack) <= 0)
+		if (TileEntityFurnace.getItemBurnTime(stack) <= 0
+				|| getHeatPerTick(stack) <= 0
+				|| getHeatPerTick(stack) > getMaxHeatPerTick()
+				|| getFuelBurnTime(stack) <= 0)
 			return false;
 
 		return true;
@@ -153,7 +161,8 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile implements IInv
 		{
 			NBTTagCompound stackTag = list.getCompoundTagAt(i);
 			int slot = stackTag.getByte("Slot") & 255;
-			this.setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(stackTag));
+			this.setInventorySlotContents(slot,
+					ItemStack.loadItemStackFromNBT(stackTag));
 		}
 	}
 
@@ -181,7 +190,8 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile implements IInv
 				if (fuelBurnTime == 0 && currentHeatValue < getMaxHeat()
 						&& isValidFuel(inventory[0]))
 				{
-					this.currentItemBurnTime = this.fuelBurnTime = getFuelBurnTime(inventory[0]);
+					this.currentItemBurnTime = this.fuelBurnTime = getFuelBurnTime(
+							inventory[0]);
 					heatPerTick = getHeatPerTick(inventory[0]);
 
 					if (fuelBurnTime > 0)
@@ -192,8 +202,8 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile implements IInv
 
 							if (this.inventory[0].stackSize == 0)
 							{
-								this.inventory[0] = inventory[0].getItem().getContainerItem(
-										inventory[0]);
+								this.inventory[0] = inventory[0].getItem()
+										.getContainerItem(inventory[0]);
 							}
 						}
 					}
@@ -219,15 +229,20 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile implements IInv
 	public boolean hasValidMultiblock()
 	{
 		List<Material> materials = ValidMaterialsForCrafting();
-		if (!materials.contains(worldObj.getBlockState(pos.add(-1, 1, 0)).getMaterial())
+		if (!materials.contains(
+				worldObj.getBlockState(pos.add(-1, 1, 0)).getMaterial())
 				|| !worldObj.isBlockFullCube(pos.add(-1, 1, 0))
-				|| !materials.contains(worldObj.getBlockState(pos.add(1, 1, 0)).getMaterial())
+				|| !materials.contains(
+						worldObj.getBlockState(pos.add(1, 1, 0)).getMaterial())
 				|| !worldObj.isBlockFullCube(pos.add(1, 1, 0))
-				|| !materials.contains(worldObj.getBlockState(pos.add(0, 2, 0)).getMaterial())
+				|| !materials.contains(
+						worldObj.getBlockState(pos.add(0, 2, 0)).getMaterial())
 				|| !worldObj.isBlockFullCube(pos.add(0, 2, 0))
-				|| !materials.contains(worldObj.getBlockState(pos.add(0, 1, -1)).getMaterial())
+				|| !materials.contains(
+						worldObj.getBlockState(pos.add(0, 1, -1)).getMaterial())
 				|| !worldObj.isBlockFullCube(pos.add(0, 1, -1))
-				|| !materials.contains(worldObj.getBlockState(pos.add(0, 1, 1)).getMaterial())
+				|| !materials.contains(
+						worldObj.getBlockState(pos.add(0, 1, 1)).getMaterial())
 				|| !worldObj.isBlockFullCube(pos.add(0, 1, 1))
 				|| !worldObj.isAirBlock(pos.add(0, 1, 0)))
 			return false;
@@ -239,19 +254,25 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile implements IInv
 		CombustionRecipe recipe = recipeToCraft();
 		if (recipe != null)
 		{
-			this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX(),
-					pos.getY() + 1.5D, pos.getZ(), 0.0D, 0.0D, 0.0D, new int[0]);
+			this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_LARGE,
+					pos.getX(), pos.getY() + 1.5D, pos.getZ(), 0.0D, 0.0D, 0.0D,
+					new int[0]);
 			this.worldObj
-					.playSound((EntityPlayer) null, pos.getX(), pos.getY() + 1.5D, pos.getZ(),
-							SoundEvents.entity_generic_explode, SoundCategory.BLOCKS, 4.0F,
-							(1.0F + (this.worldObj.rand.nextFloat() - this.worldObj.rand
-									.nextFloat()) * 0.2F) * 0.7F);
+					.playSound((EntityPlayer) null, pos.getX(),
+							pos.getY() + 1.5D, pos.getZ(),
+							SoundEvents.entity_generic_explode,
+							SoundCategory.BLOCKS, 4.0F,
+							(1.0F + (this.worldObj.rand.nextFloat()
+									- this.worldObj.rand.nextFloat()) * 0.2F)
+									* 0.7F);
 
 			if (!worldObj.isRemote)
 			{
-				List<EntityItem> list = worldObj.getEntitiesWithinAABB(EntityItem.class,
-						new AxisAlignedBB(pos.getX(), pos.getY() + 1, pos.getZ(), pos.getX() + 1,
-								pos.getY() + 1.5F, pos.getZ() + 1));
+				List<EntityItem> list = worldObj.getEntitiesWithinAABB(
+						EntityItem.class,
+						new AxisAlignedBB(pos.getX(), pos.getY() + 1,
+								pos.getZ(), pos.getX() + 1, pos.getY() + 1.5F,
+								pos.getZ() + 1));
 
 				List<String> itemIgnores = new ArrayList<String>();
 				for (EntityItem i : list)
@@ -260,7 +281,8 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile implements IInv
 
 					for (ItemStack s : recipe.getInputStacks())
 					{
-						if (stack.isItemEqual(s) && !itemIgnores.contains(s.getUnlocalizedName()))
+						if (stack.isItemEqual(s) && !itemIgnores
+								.contains(s.getUnlocalizedName()))
 						{
 							stack.stackSize -= s.stackSize;
 							itemIgnores.add(s.getUnlocalizedName());
@@ -272,8 +294,8 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile implements IInv
 
 				ItemStack stack = recipe.getOutput().copy();
 
-				Entity entity = new EntityItem(worldObj, pos.getX() + 0.5F, pos.getY() + 0.5F,
-						pos.getZ() + 0.5F, stack);
+				Entity entity = new EntityItem(worldObj, pos.getX() + 0.5F,
+						pos.getY() + 0.5F, pos.getZ() + 0.5F, stack);
 				worldObj.spawnEntityInWorld(entity);
 			}
 		}
@@ -281,10 +303,9 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile implements IInv
 
 	public CombustionRecipe recipeToCraft()
 	{
-		List<EntityItem> list = worldObj.getEntitiesWithinAABB(
-				EntityItem.class,
-				new AxisAlignedBB(pos.getX(), pos.getY() + 1, pos.getZ(), pos.getX() + 1, pos
-						.getY() + 1.5F, pos.getZ() + 1));
+		List<EntityItem> list = worldObj.getEntitiesWithinAABB(EntityItem.class,
+				new AxisAlignedBB(pos.getX(), pos.getY() + 1, pos.getZ(),
+						pos.getX() + 1, pos.getY() + 1.5F, pos.getZ() + 1));
 
 		List<ItemStack> items = new ArrayList<ItemStack>();
 
@@ -293,7 +314,8 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile implements IInv
 			items.add(i.getEntityItem());
 		}
 
-		CombustionRecipe recipe = CombustionRecipes.getRecipe(items, currentHeatValue);
+		CombustionRecipe recipe = CombustionRecipes.getRecipe(items,
+				currentHeatValue);
 
 		return recipe;
 	}
@@ -353,7 +375,8 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile implements IInv
 				} else
 				{
 					// Just to show that changes happened
-					this.setInventorySlotContents(index, this.getStackInSlot(index));
+					this.setInventorySlotContents(index,
+							this.getStackInSlot(index));
 				}
 
 				this.markDirty();

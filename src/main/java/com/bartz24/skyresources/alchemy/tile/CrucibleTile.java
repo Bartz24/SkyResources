@@ -26,7 +26,7 @@ import net.minecraftforge.fluids.IFluidHandler;
 public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 {
 	FluidTank tank;
-	
+
 	public static int tankCapacity = 4000;
 
 	int itemAmount;
@@ -210,7 +210,7 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 		if (HeatSources.isValidHeatSource(worldObj.getBlockState(pos.down())))
 		{
 			return HeatSources
-					.getHeatSourceValue(worldObj.getBlockState(pos.down()))/5;
+					.getHeatSourceValue(worldObj.getBlockState(pos.down())) / 5;
 		}
 		return 0;
 	}

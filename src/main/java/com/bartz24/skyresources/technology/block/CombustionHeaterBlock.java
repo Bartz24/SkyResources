@@ -29,16 +29,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class CombustionHeaterBlock extends BlockContainer implements IMetaBlockName
+public class CombustionHeaterBlock extends BlockContainer
+		implements IMetaBlockName
 {
-	public static final PropertyEnum<CombustionHeaterVariants> heaterVariant = PropertyEnum.create(
-			"variant", CombustionHeaterVariants.class);
+	public static final PropertyEnum<CombustionHeaterVariants> heaterVariant = PropertyEnum
+			.create("variant", CombustionHeaterVariants.class);
 
 	private String[] combustionHeaterTypes = new String[]
 	{ "wood", "iron" };
 
-	public CombustionHeaterBlock(String unlocalizedName, String registryName, float hardness,
-			float resistance)
+	public CombustionHeaterBlock(String unlocalizedName, String registryName,
+			float hardness, float resistance)
 	{
 		super(Material.wood);
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
@@ -52,11 +53,13 @@ public class CombustionHeaterBlock extends BlockContainer implements IMetaBlockN
 				CombustionHeaterVariants.WOOD));
 	}
 
+	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
 		return EnumBlockRenderType.MODEL;
 	}
 
+	@Override
 	public Material getMaterial(IBlockState state)
 	{
 		switch (getMetaFromState(state))
@@ -126,7 +129,8 @@ public class CombustionHeaterBlock extends BlockContainer implements IMetaBlockN
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state)
 	{
-		CombustionHeaterTile te = (CombustionHeaterTile) world.getTileEntity(pos);
+		CombustionHeaterTile te = (CombustionHeaterTile) world
+				.getTileEntity(pos);
 		InventoryHelper.dropInventoryItems(world, pos, te);
 		super.breakBlock(world, pos, state);
 	}
@@ -146,12 +150,13 @@ public class CombustionHeaterBlock extends BlockContainer implements IMetaBlockN
 	}
 
 	@Override
-	public boolean onBlockEventReceived(World worldIn, BlockPos pos, IBlockState state,
-			int eventID, int eventParam)
+	public boolean onBlockEventReceived(World worldIn, BlockPos pos,
+			IBlockState state, int eventID, int eventParam)
 	{
 		super.onBlockEventReceived(worldIn, pos, state, eventID, eventParam);
 		TileEntity tileentity = worldIn.getTileEntity(pos);
-		return tileentity == null ? false : tileentity.receiveClientEvent(eventID, eventParam);
+		return tileentity == null ? false
+				: tileentity.receiveClientEvent(eventID, eventParam);
 	}
 
 	@Override
@@ -160,20 +165,26 @@ public class CombustionHeaterBlock extends BlockContainer implements IMetaBlockN
 		return combustionHeaterTypes[stack.getItemDamage()];
 	}
 
-	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world,
-			BlockPos pos, EntityPlayer player)
+	@Override
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target,
+			World world, BlockPos pos, EntityPlayer player)
 	{
-		return new ItemStack(Item.getItemFromBlock(this), 1, this.getMetaFromState(world
-				.getBlockState(pos)));
+		return new ItemStack(Item.getItemFromBlock(this), 1,
+				this.getMetaFromState(world.getBlockState(pos)));
 	}
-	
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
-    {
+
+	@Override
+	public boolean onBlockActivated(World world, BlockPos pos,
+			IBlockState state, EntityPlayer player, EnumHand hand,
+			ItemStack heldItem, EnumFacing side, float hitX, float hitY,
+			float hitZ)
+	{
 		if (!world.isRemote)
 		{
-			player.openGui(SkyResources.instance, ModGuiHandler.CombustionHeaterGUI, world, pos.getX(),
+			player.openGui(SkyResources.instance,
+					ModGuiHandler.CombustionHeaterGUI, world, pos.getX(),
 					pos.getY(), pos.getZ());
 		}
 		return true;
-    }
+	}
 }

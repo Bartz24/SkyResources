@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 public class ItemRockGrinder extends Item
 {
 	private float damageVsEntity;
-	
+
 	ToolMaterial toolMaterial;
 
 	public ItemRockGrinder(ToolMaterial material, String unlocalizedName,
@@ -39,16 +39,19 @@ public class ItemRockGrinder extends Item
 		this.setNoRepair();
 		this.setCreativeTab(ModCreativeTabs.tabTech);
 		this.setHarvestLevel("rockGrinder", material.getHarvestLevel());
-		
+
 		ItemHelper.addRockGrinder(this);
 	}
 
+	@Override
 	public float getStrVsBlock(ItemStack stack, IBlockState state)
 	{
 		Block block = state.getBlock();
 		Material material = block.getMaterial(state);
-		if(toolMaterial.getHarvestLevel()<block.getHarvestLevel(state)) return 0.5F;
-		return material != Material.rock ? 1.0F : toolMaterial.getEfficiencyOnProperMaterial();
+		if (toolMaterial.getHarvestLevel() < block.getHarvestLevel(state))
+			return 0.5F;
+		return material != Material.rock ? 1.0F
+				: toolMaterial.getEfficiencyOnProperMaterial();
 	}
 
 	@Override
@@ -65,14 +68,14 @@ public class ItemRockGrinder extends Item
 			{
 
 				RockGrinderRecipe recipe = RockGrinderRecipes.getRecipe(state);
-				
-				if(recipe != null && recipe.getOutput() != null)
+
+				if (recipe != null && recipe.getOutput() != null)
 				{
-					RandomHelper.spawnItemInWorld(world, recipe.getOutput().copy(), pos);
-					
+					RandomHelper.spawnItemInWorld(world,
+							recipe.getOutput().copy(), pos);
+
 					world.destroyBlock(pos, false);
-				}
-				else				
+				} else
 					world.destroyBlock(pos, true);
 			}
 
@@ -83,23 +86,26 @@ public class ItemRockGrinder extends Item
 		return false;
 	}
 
+	@Override
 	public Multimap<String, AttributeModifier> getItemAttributeModifiers(
 			EntityEquipmentSlot equipmentSlot)
 	{
 
-		Multimap<String, AttributeModifier> multimap = super
-				.getItemAttributeModifiers(equipmentSlot);
+		Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(
+				equipmentSlot);
 
 		if (equipmentSlot == EntityEquipmentSlot.MAINHAND)
 		{
-			multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE
-					.getAttributeUnlocalizedName(), new AttributeModifier(
-					ATTACK_DAMAGE_MODIFIER, "Weapon modifier",
-					(double) this.damageVsEntity, 0));
-			multimap.put(SharedMonsterAttributes.ATTACK_SPEED
-					.getAttributeUnlocalizedName(), new AttributeModifier(
-					ATTACK_SPEED_MODIFIER, "Weapon modifier",
-					-2.4000000953674316D, 0));
+			multimap.put(
+					SharedMonsterAttributes.ATTACK_DAMAGE
+							.getAttributeUnlocalizedName(),
+					new AttributeModifier(ATTACK_DAMAGE_MODIFIER,
+							"Weapon modifier", this.damageVsEntity, 0));
+			multimap.put(
+					SharedMonsterAttributes.ATTACK_SPEED
+							.getAttributeUnlocalizedName(),
+					new AttributeModifier(ATTACK_SPEED_MODIFIER,
+							"Weapon modifier", -2.4000000953674316D, 0));
 		}
 
 		return multimap;

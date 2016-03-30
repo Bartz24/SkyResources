@@ -23,14 +23,13 @@ public class InfusionRecipes
 	{
 		if (inputBlock == null)
 		{
-			SkyResources.instance.logger.error("Need a block input for recipe.");
+			SkyResources.logger.error("Need a block input for recipe.");
 			return null;
 		}
 
 		InfusionRecipe rec = new InfusionRecipe(inputStack,
 				inputStack == null ? 0 : inputStack.stackSize, inputBlock,
 				inputBlockMeta);
-		
 
 		for (InfusionRecipe recipe : Recipes)
 		{
@@ -53,14 +52,14 @@ public class InfusionRecipes
 	{
 		if (inputBlock == null)
 		{
-			SkyResources.instance.logger
-					.error("Need a block input for recipe. DID NOT ADD RECIPE FOR NULL.");
+			SkyResources.logger.error(
+					"Need a block input for recipe. DID NOT ADD RECIPE FOR NULL.");
 			return;
 		}
 
 		if (!(inputBlock instanceof Block) && !(inputBlock instanceof String))
 		{
-			SkyResources.instance.logger
+			SkyResources.logger
 					.error("Need a input block as a Block or String for recipe. DID NOT ADD RECIPE FOR "
 							+ inputBlock.getClass().getName() + ".");
 			return;
@@ -68,8 +67,8 @@ public class InfusionRecipes
 
 		if (output == null)
 		{
-			SkyResources.instance.logger
-					.error("Need a output for recipe. DID NOT ADD RECIPE FOR NULL.");
+			SkyResources.logger.error(
+					"Need a output for recipe. DID NOT ADD RECIPE FOR NULL.");
 			return;
 		}
 

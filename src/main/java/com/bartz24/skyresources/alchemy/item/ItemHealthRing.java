@@ -34,9 +34,10 @@ public class ItemHealthRing extends Item implements IHealthBoostItem
 	@Override
 	public int getHealthBoost(ItemStack stack)
 	{
-		return (int) ((float) getCompound(stack).getInteger("health") * 0.05F);
+		return (int) (getCompound(stack).getInteger("health") * 0.05F);
 	}
 
+	@Override
 	public void onCreated(ItemStack itemStack, World world, EntityPlayer player)
 	{
 		itemStack.setTagCompound(new NBTTagCompound());
@@ -44,7 +45,9 @@ public class ItemHealthRing extends Item implements IHealthBoostItem
 		itemStack.getTagCompound().setInteger("cooldown", 0);
 	}
 
-	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand)
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(ItemStack stack,
+			World world, EntityPlayer player, EnumHand hand)
 	{
 		super.onItemRightClick(stack, world, player, hand);
 
@@ -66,15 +69,17 @@ public class ItemHealthRing extends Item implements IHealthBoostItem
 			}
 		}
 
-        return new ActionResult(EnumActionResult.PASS, stack);
+		return new ActionResult(EnumActionResult.PASS, stack);
 	}
 
+	@Override
 	public boolean shouldCauseReequipAnimation(ItemStack oldStack,
 			ItemStack newStack, boolean slotChanged)
 	{
 		return false;
 	}
 
+	@Override
 	public void addInformation(ItemStack itemStack, EntityPlayer player,
 			List list, boolean par4)
 	{
@@ -85,7 +90,7 @@ public class ItemHealthRing extends Item implements IHealthBoostItem
 		} else
 			list.add("Health Injected: " + 0);
 	}
-	
+
 	public NBTTagCompound getCompound(ItemStack stack)
 	{
 		NBTTagCompound com = stack.getTagCompound();

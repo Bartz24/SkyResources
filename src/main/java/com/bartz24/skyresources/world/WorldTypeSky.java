@@ -12,11 +12,13 @@ public class WorldTypeSky extends WorldType
 		super("skyworld");
 	}
 
+	@Override
 	public boolean showWorldInfoNotice()
 	{
 		return true;
 	}
 
+	@Override
 	public int getMinimumSpawnHeight(World world)
 	{
 		return 86;
@@ -26,19 +28,22 @@ public class WorldTypeSky extends WorldType
 	{
 		return 2;
 	}
-	
+
+	@Override
 	public float getCloudHeight()
-    {
-        return 32.0F;
-    }
-	
+	{
+		return 32.0F;
+	}
+
+	@Override
 	public double getHorizon(World world)
-    {
+	{
 		return 40.0D;
-    }
+	}
 
-
-	public IChunkGenerator getChunkGenerator(World world, String generatorOptions)
+	@Override
+	public IChunkGenerator getChunkGenerator(World world,
+			String generatorOptions)
 	{
 		return new ChunkProviderFlat(world, world.getSeed(), false, "2;1x0;");
 	}

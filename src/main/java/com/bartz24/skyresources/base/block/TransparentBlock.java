@@ -12,33 +12,41 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TransparentBlock extends BaseBlock
 {
-	protected static AxisAlignedBB BoundingBox = new AxisAlignedBB(0.0D, 0.5D, 0.0D, 1.0D, 1.0D, 1.0D);
+	protected static AxisAlignedBB BoundingBox = new AxisAlignedBB(0.0D, 0.5D,
+			0.0D, 1.0D, 1.0D, 1.0D);
 
 	public TransparentBlock(Material material, String unlocalizedName,
-			String registryName, float hardness, float resistance, AxisAlignedBB bounds, SoundType stepSound)
+			String registryName, float hardness, float resistance,
+			AxisAlignedBB bounds, SoundType stepSound)
 	{
-		super(material, unlocalizedName, registryName, hardness, resistance, stepSound);
+		super(material, unlocalizedName, registryName, hardness, resistance,
+				stepSound);
 		BoundingBox = bounds;
 	}
 
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return BoundingBox;
-    }
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source,
+			BlockPos pos)
+	{
+		return BoundingBox;
+	}
 
-    public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
-    }
+	@Override
+	public boolean isOpaqueCube(IBlockState state)
+	{
+		return false;
+	}
 
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
+	@Override
+	public boolean isFullCube(IBlockState state)
+	{
+		return false;
+	}
 
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
-    {
-        return BlockRenderLayer.CUTOUT;
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public BlockRenderLayer getBlockLayer()
+	{
+		return BlockRenderLayer.CUTOUT;
+	}
 }

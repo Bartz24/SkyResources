@@ -20,18 +20,22 @@ public class ModBucketHandler
 	{
 		for (int i = 0; i < ModFluids.crystalFluidNames().length; i++)
 		{
-			FluidContainerRegistry
-					.registerFluidContainer(ModFluids.crystalFluids.get(i), new ItemStack(
-							ModItems.crystalFluidBuckets.get(i)), new ItemStack(Items.bucket));
+			FluidContainerRegistry.registerFluidContainer(
+					ModFluids.crystalFluids.get(i),
+					new ItemStack(ModItems.crystalFluidBuckets.get(i)),
+					new ItemStack(Items.bucket));
 		}
 	}
 
 	@SubscribeEvent
 	public void onBucketFill(FillBucketEvent event)
 	{
-		Block block = event.getWorld().getBlockState(event.getTarget().getBlockPos()).getBlock();
+		Block block = event.getWorld()
+				.getBlockState(event.getTarget().getBlockPos()).getBlock();
 
-		if (event.entityPlayer.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND).getItem() == Items.bucket
+		if (event.getEntityPlayer()
+				.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND)
+				.getItem() == Items.bucket
 				&& event.getTarget().typeOfHit == Type.BLOCK)
 		{
 
@@ -40,8 +44,10 @@ public class ModBucketHandler
 				if (block == ModBlocks.crystalFluidBlocks.get(i))
 				{
 					event.setResult(Result.ALLOW);
-					event.setFilledBucket(new ItemStack(ModItems.crystalFluidBuckets.get(i)));
-					event.getWorld().setBlockToAir(event.getTarget().getBlockPos());
+					event.setFilledBucket(
+							new ItemStack(ModItems.crystalFluidBuckets.get(i)));
+					event.getWorld()
+							.setBlockToAir(event.getTarget().getBlockPos());
 					return;
 				}
 			}

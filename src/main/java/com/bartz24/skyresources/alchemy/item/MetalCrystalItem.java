@@ -63,13 +63,16 @@ public class MetalCrystalItem extends Item
 		return names;
 	}
 
+	@Override
 	public String getItemStackDisplayName(ItemStack stack)
 	{
 		String base = ("" + I18n.translateToLocal("name.skyresources.metal."
 				+ ModFluids.crystalFluidNames()[stack.getMetadata()])).trim();
-		
-		String type = ("" + I18n.translateToLocal("item.skyresources.metalCrystal.name")).trim();
-		
+
+		String type = (""
+				+ I18n.translateToLocal("item.skyresources.metalCrystal.name"))
+						.trim();
+
 		return base + " " + type;
 	}
 }

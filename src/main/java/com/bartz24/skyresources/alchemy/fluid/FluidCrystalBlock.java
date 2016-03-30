@@ -37,12 +37,14 @@ public class FluidCrystalBlock extends BlockFluidClassic
 		this.setRegistryName(registryName);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 
+	@Override
 	public void updateTick(World world, BlockPos pos, IBlockState state,
 			Random rand)
 	{
@@ -51,8 +53,11 @@ public class FluidCrystalBlock extends BlockFluidClassic
 		{
 			if (this.isSourceBlock(world, pos)
 					&& isNotFlowing(world, pos, state)
-					&& rand.nextInt(ModFluids.crystalFluidRarity()[ModBlocks.crystalFluidBlocks
-							.indexOf(this)]) == 0 && !(world.getBlockState(pos.add(0, -1, 0)).getBlock() instanceof CondenserBlock))
+					&& rand.nextInt(ModFluids
+							.crystalFluidRarity()[ModBlocks.crystalFluidBlocks
+									.indexOf(this)]) == 0
+					&& !(world.getBlockState(pos.add(0, -1, 0))
+							.getBlock() instanceof CondenserBlock))
 			{
 				ItemStack stack = new ItemStack(ModItems.metalCrystal, 1,
 						ModBlocks.crystalFluidBlocks.indexOf(this));
@@ -63,8 +68,10 @@ public class FluidCrystalBlock extends BlockFluidClassic
 						SoundEvents.entity_arrow_hit_player,
 						SoundCategory.BLOCKS, 1.0F,
 						2.2F / (rand.nextFloat() * 0.2F + 0.9F));
-				if (rand.nextInt(8 + ModFluids.crystalFluidRarity()[ModBlocks.crystalFluidBlocks
-						.indexOf(this)]/2) >= 8)
+				if (rand.nextInt(8 + ModFluids
+						.crystalFluidRarity()[ModBlocks.crystalFluidBlocks
+								.indexOf(this)]
+						/ 2) >= 8)
 					world.setBlockToAir(pos);
 			}
 		}
@@ -90,11 +97,13 @@ public class FluidCrystalBlock extends BlockFluidClassic
 		return true;
 	}
 
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return null;
 	}
 
+	@Override
 	public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState,
 			World worldIn, BlockPos pos)
 	{

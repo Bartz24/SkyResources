@@ -14,17 +14,25 @@ public class ModGuiHandler implements IGuiHandler
 	public static final int CombustionHeaterGUI = 0;
 
 	@Override
-	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-	    if (id == CombustionHeaterGUI)
-	        return new ContainerCombustionHeater(player.inventory, (CombustionHeaterTile) world.getTileEntity(new BlockPos(x, y, z)));
-	    return null;
+	public Object getServerGuiElement(int id, EntityPlayer player, World world,
+			int x, int y, int z)
+	{
+		if (id == CombustionHeaterGUI)
+			return new ContainerCombustionHeater(player.inventory,
+					(CombustionHeaterTile) world
+							.getTileEntity(new BlockPos(x, y, z)));
+		return null;
 	}
 
 	@Override
-	public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-	    if (id == CombustionHeaterGUI)
-	        return new GuiCombustionHeater(player.inventory, (CombustionHeaterTile) world.getTileEntity(new BlockPos(x, y, z)));
+	public Object getClientGuiElement(int id, EntityPlayer player, World world,
+			int x, int y, int z)
+	{
+		if (id == CombustionHeaterGUI)
+			return new GuiCombustionHeater(player.inventory,
+					(CombustionHeaterTile) world
+							.getTileEntity(new BlockPos(x, y, z)));
 
-	    return null;
+		return null;
 	}
 }

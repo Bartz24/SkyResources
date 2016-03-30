@@ -12,38 +12,48 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockDryCactus extends BaseBlock
 {
-    protected static final AxisAlignedBB CACTUS_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.9375D, 0.9375D);
-    protected static final AxisAlignedBB CACTUS_COLLISION_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 1.0D, 0.9375D);
+	protected static final AxisAlignedBB CACTUS_AABB = new AxisAlignedBB(
+			0.0625D, 0.0D, 0.0625D, 0.9375D, 0.9375D, 0.9375D);
+	protected static final AxisAlignedBB CACTUS_COLLISION_AABB = new AxisAlignedBB(
+			0.0625D, 0.0D, 0.0625D, 0.9375D, 1.0D, 0.9375D);
 
 	public BlockDryCactus()
 	{
-		super(Material.plants, "dryCactus", "DryCactus", 0.5F, 0.5F,SoundType.PLANT);
+		super(Material.plants, "dryCactus", "DryCactus", 0.5F, 0.5F,
+				SoundType.PLANT);
 	}
-	
-	public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
-    {
-        return CACTUS_AABB;
-    }
 
-    @SideOnly(Side.CLIENT)
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState worldIn, World pos, BlockPos state)
-    {
-        return CACTUS_COLLISION_AABB.offset(state);
-    }
+	@Override
+	public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState,
+			World worldIn, BlockPos pos)
+	{
+		return CACTUS_AABB;
+	}
 
-    public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState worldIn, World pos,
+			BlockPos state)
+	{
+		return CACTUS_COLLISION_AABB.offset(state);
+	}
 
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
-    
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
-    {
-        return BlockRenderLayer.CUTOUT;
-    }
+	@Override
+	public boolean isOpaqueCube(IBlockState state)
+	{
+		return false;
+	}
+
+	@Override
+	public boolean isFullCube(IBlockState state)
+	{
+		return false;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public BlockRenderLayer getBlockLayer()
+	{
+		return BlockRenderLayer.CUTOUT;
+	}
 }

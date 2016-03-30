@@ -15,8 +15,8 @@ import net.minecraft.world.World;
 public class CondenserBlock extends BlockContainer
 {
 
-	public CondenserBlock(String unlocalizedName, String registryName, float hardness,
-			float resistance)
+	public CondenserBlock(String unlocalizedName, String registryName,
+			float hardness, float resistance)
 	{
 		super(Material.rock);
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
@@ -27,6 +27,7 @@ public class CondenserBlock extends BlockContainer
 		this.isBlockContainer = true;
 	}
 
+	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
 		return EnumBlockRenderType.MODEL;
@@ -39,11 +40,12 @@ public class CondenserBlock extends BlockContainer
 	}
 
 	@Override
-	public boolean onBlockEventReceived(World worldIn, BlockPos pos, IBlockState state,
-			int eventID, int eventParam)
+	public boolean onBlockEventReceived(World worldIn, BlockPos pos,
+			IBlockState state, int eventID, int eventParam)
 	{
 		super.onBlockEventReceived(worldIn, pos, state, eventID, eventParam);
 		TileEntity tileentity = worldIn.getTileEntity(pos);
-		return tileentity == null ? false : tileentity.receiveClientEvent(eventID, eventParam);
+		return tileentity == null ? false
+				: tileentity.receiveClientEvent(eventID, eventParam);
 	}
 }

@@ -15,19 +15,23 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class BaseBlock extends Block
 {
 
-	public BaseBlock(Material material, String unlocalizedName, String registryName, float hardness, float resistance, SoundType stepSound)
+	public BaseBlock(Material material, String unlocalizedName,
+			String registryName, float hardness, float resistance,
+			SoundType stepSound)
 	{
 		super(material);
-        this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
+		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
 		this.setCreativeTab(ModCreativeTabs.tabMain);
-        this.setHardness(hardness);
-        this.setResistance(resistance);
-        this.setRegistryName(registryName);
-        this.setStepSound(stepSound);
+		this.setHardness(hardness);
+		this.setResistance(resistance);
+		this.setRegistryName(registryName);
+		this.setStepSound(stepSound);
 	}
 
 	@SideOnly(Side.CLIENT)
-    public void initModel() {
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
-    }
+	public void initModel()
+	{
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this),
+				0, new ModelResourceLocation(getRegistryName(), "inventory"));
+	}
 }

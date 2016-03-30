@@ -60,7 +60,7 @@ public class InfusionRecipe
 		stack = rightClickStack;
 
 		if (inputBlock instanceof Block)
-			input = (Block) inputBlock;
+			input = inputBlock;
 
 		inputMeta = inMetadata;
 	}
@@ -102,7 +102,7 @@ public class InfusionRecipe
 	}
 
 	public ItemStack getInputStack()
-	{		
+	{
 		return stack;
 	}
 
@@ -113,7 +113,7 @@ public class InfusionRecipe
 		else
 		{
 			List<ItemStack> inputs = OreDictionary.getOres(oreDictBlock);
-			
+
 			if (inputs.size() > 0)
 				return inputs.get(0);
 		}

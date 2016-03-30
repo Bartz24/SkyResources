@@ -17,27 +17,28 @@ public class SkyResources
 {
 	@SidedProxy(clientSide = "com.bartz24.skyresources.proxy.ClientProxy", serverSide = "com.bartz24.skyresources.proxy.ServerProxy")
 	public static CommonProxy proxy;
-	
+
 	@Mod.Instance
 	public static SkyResources instance;
-	
+
 	public static Logger logger;
-	
-	public static ToolMaterial materialCactusNeedle = EnumHelper.addToolMaterial("CACTUSNEEDLE", 0, 4, 5, 1, 5);
-	
+
+	public static ToolMaterial materialCactusNeedle = EnumHelper
+			.addToolMaterial("CACTUSNEEDLE", 0, 4, 5, 1, 5);
+
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		logger = event.getModLog();
 		proxy.preInit(event);
 	}
-	
+
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
 	{
 		proxy.init(event);
 	}
-	
+
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{

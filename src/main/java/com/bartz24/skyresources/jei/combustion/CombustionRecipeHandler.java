@@ -5,7 +5,8 @@ import com.bartz24.skyresources.References;
 import mezz.jei.api.recipe.IRecipeHandler;
 import mezz.jei.api.recipe.IRecipeWrapper;
 
-public class CombustionRecipeHandler implements IRecipeHandler<CombustionRecipeJEI>
+public class CombustionRecipeHandler
+		implements IRecipeHandler<CombustionRecipeJEI>
 {
 
 	@Override
@@ -28,8 +29,8 @@ public class CombustionRecipeHandler implements IRecipeHandler<CombustionRecipeJ
 
 	@Override
 	public boolean isRecipeValid(CombustionRecipeJEI recipe)
-    {
-        return recipe.getInputs().size() > 0 && recipe.getOutputs().size() > 0;
-    }
+	{
+		return recipe.getInputs().size() > 0 && recipe.getOutputs().size() > 0;
+	}
 
 }

@@ -3,7 +3,6 @@ package com.bartz24.skyresources.registry;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bartz24.skyresources.ItemHelper;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
@@ -57,10 +56,11 @@ public class ModItems
 		baseComponent = registerItem(new BaseItemComponent());
 		healthRing = registerItem(new ItemHealthRing());
 		waterExtractor = registerItem(new ItemWaterExtractor());
-		cactusFruit = registerItem(new ModItemFood(3, 2F, false, "cactusFruit",
-				"CactusFruit"));
-		cactusKnife = registerItem(new ItemKnife(SkyResources.materialCactusNeedle,
-				"cactusCuttingKnife", "CactusCuttingKnife"));
+		cactusFruit = registerItem(
+				new ModItemFood(3, 2F, false, "cactusFruit", "CactusFruit"));
+		cactusKnife = registerItem(
+				new ItemKnife(SkyResources.materialCactusNeedle,
+						"cactusCuttingKnife", "CactusCuttingKnife"));
 		ironKnife = registerItem(new ItemKnife(ToolMaterial.IRON,
 				"ironCuttingKnife", "IronCuttingKnife"));
 		diamondKnife = registerItem(new ItemKnife(ToolMaterial.DIAMOND,
@@ -83,31 +83,31 @@ public class ModItems
 			final int val = i;
 			Item bucket = new ItemBucket(ModBlocks.crystalFluidBlocks.get(i))
 			{
+				@Override
 				public String getItemStackDisplayName(ItemStack stack)
 				{
-					String base = ("" + I18n
-							.translateToLocal("name.skyresources.metal."
+					String base = (""
+							+ I18n.translateToLocal("name.skyresources.metal."
 									+ ModFluids.crystalFluidNames()[val]))
-							.trim();
+											.trim();
 
-					String type = ("" + I18n
-							.translateToLocal("item.skyresources.crystalFluidBucket.name"))
-							.trim();
+					String type = ("" + I18n.translateToLocal(
+							"item.skyresources.crystalFluidBucket.name"))
+									.trim();
 
 					return base + " " + type;
 				}
 
 			};
 			crystalFluidBuckets.add(registerItem(bucket
-					.setUnlocalizedName(
-							References.ModID + "."
-									+ ModFluids.crystalFluidNames()[i]
-									+ "CrystalFluidBucket")
-					.setRegistryName(
-							RandomHelper.capatilizeString(ModFluids
-									.crystalFluidNames()[i])
-									+ "CrystalFluidBucket")
-					.setContainerItem(Items.bucket).setCreativeTab(ModCreativeTabs.tabAlchemy)));
+					.setUnlocalizedName(References.ModID
+							+ "." + ModFluids.crystalFluidNames()[i]
+							+ "CrystalFluidBucket")
+					.setRegistryName(RandomHelper
+							.capatilizeString(ModFluids.crystalFluidNames()[i])
+							+ "CrystalFluidBucket")
+					.setContainerItem(Items.bucket)
+					.setCreativeTab(ModCreativeTabs.tabAlchemy)));
 		}
 
 	}
@@ -123,9 +123,9 @@ public class ModItems
 	{
 		if (item.getRegistryName() == null)
 		{
-			SkyResources.instance.logger
-					.error("Item {} doesn't have a registry name. Item will not be registered.",
-							item.getClass().getCanonicalName());
+			SkyResources.logger.error(
+					"Item {} doesn't have a registry name. Item will not be registered.",
+					item.getClass().getCanonicalName());
 			return item;
 		}
 		GameRegistry.registerItem(item);

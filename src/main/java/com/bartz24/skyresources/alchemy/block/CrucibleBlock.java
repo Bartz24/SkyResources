@@ -12,7 +12,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
@@ -49,6 +48,7 @@ public class CrucibleBlock extends BlockContainer
 		this.isBlockContainer = true;
 	}
 
+	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn,
 			BlockPos pos, AxisAlignedBB p_185477_4_,
 			List<AxisAlignedBB> p_185477_5_, Entity p_185477_6_)
@@ -60,17 +60,20 @@ public class CrucibleBlock extends BlockContainer
 		addCollisionBoxToList(pos, p_185477_4_, p_185477_5_, AABB_WALL_SOUTH);
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source,
 			BlockPos pos)
 	{
 		return FULL_BLOCK_AABB;
 	}
 
+	@Override
 	public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
 	{
 		return true;
 	}
 
+	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
 		return EnumBlockRenderType.MODEL;
@@ -82,16 +85,19 @@ public class CrucibleBlock extends BlockContainer
 		return new CrucibleTile();
 	}
 
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean onBlockActivated(World world, BlockPos pos,
 			IBlockState state, EntityPlayer player, EnumHand hand,
 			ItemStack heldItem, EnumFacing side, float hitX, float hitY,

@@ -16,34 +16,40 @@ public class RandomHelper
 	{
 		return s.substring(0, 1).toUpperCase() + s.substring(1);
 	}
-	
-	public static void spawnItemInWorld(World world, ItemStack stack, BlockPos pos)
+
+	public static void spawnItemInWorld(World world, ItemStack stack,
+			BlockPos pos)
 	{
 		Entity entity = new EntityItem(world, pos.getX() + 0.5F,
 				pos.getY() + 1.5F, pos.getZ() + 0.5F, stack);
 		world.spawnEntityInWorld(entity);
 	}
-	
-	public static void dispatchTEToNearbyPlayers(TileEntity tile) {
+
+	public static void dispatchTEToNearbyPlayers(TileEntity tile)
+	{
 		World world = tile.getWorld();
 		List players = world.playerEntities;
-		for(Object player : players)
-			if(player instanceof EntityPlayerMP) {
+		for (Object player : players)
+			if (player instanceof EntityPlayerMP)
+			{
 				EntityPlayerMP mp = (EntityPlayerMP) player;
-				if(Math.hypot(mp.posX - tile.getPos().getX() - 0.5, mp.posZ - tile.getPos().getZ() - 0.5) < 64)
-					((EntityPlayerMP) player).playerNetServerHandler.sendPacket(tile.getDescriptionPacket());
+				if (Math.hypot(mp.posX - tile.getPos().getX() - 0.5,
+						mp.posZ - tile.getPos().getZ() - 0.5) < 64)
+					((EntityPlayerMP) player).playerNetServerHandler
+							.sendPacket(tile.getDescriptionPacket());
 			}
 	}
 
-	public static void dispatchTEToNearbyPlayers(World world, BlockPos pos) {
+	public static void dispatchTEToNearbyPlayers(World world, BlockPos pos)
+	{
 		TileEntity tile = world.getTileEntity(pos);
-		if(tile != null)
+		if (tile != null)
 			dispatchTEToNearbyPlayers(tile);
 	}
-	
 
-
-	public static float pointDistancePlane(double x1, double y1, double x2, double y2) {
+	public static float pointDistancePlane(double x1, double y1, double x2,
+			double y2)
+	{
 		return (float) Math.hypot(x1 - x2, y1 - y2);
 	}
 }

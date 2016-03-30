@@ -52,11 +52,13 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 		setRegistryName("WaterExtractor");
 	}
 
+	@Override
 	public EnumAction getItemUseAction(ItemStack stack)
 	{
 		return EnumAction.BOW;
 	}
 
+	@Override
 	public int getMaxItemUseDuration(ItemStack stack)
 	{
 		return 70000;
@@ -68,6 +70,7 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 		return stack;
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack stack,
 			World world, EntityPlayer player, EnumHand hand)
 	{
@@ -76,6 +79,7 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 		return new ActionResult(EnumActionResult.SUCCESS, stack);
 	}
 
+	@Override
 	public void onPlayerStoppedUsing(ItemStack stack, World world,
 			EntityLivingBase entity, int timeLeft)
 	{
@@ -129,6 +133,7 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 		}
 	}
 
+	@Override
 	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn,
 			World worldIn, BlockPos pos, EnumHand hand, EnumFacing side,
 			float hitX, float hitY, float hitZ)
@@ -149,7 +154,7 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 
 		if (getCompound(stack).getInteger("amount") >= 1000)
 		{
-			if(block == Blocks.dirt)
+			if (block == Blocks.dirt)
 			{
 				worldIn.setBlockState(pos, Blocks.clay.getDefaultState(), 3);
 				getCompound(stack).setInteger("amount",
@@ -158,18 +163,15 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 						.getInteger("amount");
 				worldIn.playSound((EntityPlayer) null, playerIn.posX,
 						playerIn.posY, playerIn.posZ,
-						SoundEvents.entity_player_splash,
-						SoundCategory.NEUTRAL, 1.0F,
-						1.0F / (itemRand.nextFloat() * 0.4F + 1.2F));
+						SoundEvents.entity_player_splash, SoundCategory.NEUTRAL,
+						1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F));
 				playerIn.addStat(ModAchievements.firstWater, 1);
-				
-				return EnumActionResult.SUCCESS;				
+
+				return EnumActionResult.SUCCESS;
 			}
-				
-			
+
 			if (block == Blocks.snow_layer
-					&& ((Integer) iblockstate.getValue(BlockSnow.LAYERS))
-							.intValue() < 1)
+					&& iblockstate.getValue(BlockSnow.LAYERS).intValue() < 1)
 			{
 				side = EnumFacing.UP;
 			} else if (!block.isReplaceable(worldIn, pos))
@@ -219,6 +221,7 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 		return com;
 	}
 
+	@Override
 	public void onCreated(ItemStack itemStack, World world, EntityPlayer player)
 	{
 		itemStack.setTagCompound(new NBTTagCompound());
@@ -298,6 +301,7 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 		return tank;
 	}
 
+	@Override
 	public void addInformation(ItemStack itemStack, EntityPlayer player,
 			List list, boolean par4)
 	{

@@ -4,27 +4,18 @@ import java.awt.Color;
 
 import org.lwjgl.opengl.GL11;
 
-import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.alchemy.tile.CrucibleTile;
 import com.bartz24.skyresources.registry.ModFluids;
-import com.google.common.base.Function;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
-import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class CrucibleTESR extends TileEntitySpecialRenderer<CrucibleTile>
 {
@@ -58,26 +49,28 @@ public class CrucibleTESR extends TileEntitySpecialRenderer<CrucibleTile>
 			if (tank.getFluidAmount() == 0)
 				height = 0;
 
-
 			GlStateManager.pushMatrix();
 
 			TextureAtlasSprite texture = Minecraft.getMinecraft()
 					.getTextureMapBlocks().getAtlasSprite(
 							tank.getFluid().getFluid().getStill().toString());
 
-			double minU = (double) texture.getMinU();
-			double maxU = (double) texture.getMaxU();
-			double minV = (double) texture.getMinV();
-			double maxV = (double) texture.getMaxV();
+			double minU = texture.getMinU();
+			double maxU = texture.getMaxU();
+			double minV = texture.getMinV();
+			double maxV = texture.getMaxV();
 
 			Tessellator tessellator = Tessellator.getInstance();
 			VertexBuffer renderer = tessellator.getBuffer();
-			
-			Color color = new Color(ModFluids.crystalFluidColors()[ModFluids.crystalFluids.indexOf(tank.getFluid().getFluid())]);
-			
+
+			Color color = new Color(
+					ModFluids.crystalFluidColors()[ModFluids.crystalFluids
+							.indexOf(tank.getFluid().getFluid())]);
+
 			System.out.println(color.toString());
-			
-			GlStateManager.color(color.getRed(), color.getGreen(), color.getBlue(), 0.25F);
+
+			GlStateManager.color(color.getRed(), color.getGreen(),
+					color.getBlue(), 0.25F);
 
 			renderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
 			renderer.pos(1.0d, height, 1.0d).tex(maxU, maxV).endVertex();

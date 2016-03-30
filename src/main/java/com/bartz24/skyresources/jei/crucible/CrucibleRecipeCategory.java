@@ -5,7 +5,6 @@ import com.bartz24.skyresources.alchemy.tile.CrucibleTile;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
-import mezz.jei.api.gui.IDrawableStatic;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
@@ -28,10 +27,8 @@ public class CrucibleRecipeCategory extends BlankRecipeCategory
 	{
 		super();
 		background = guiHelper
-				.createDrawable(
-						new ResourceLocation(References.ModID,
-								"textures/gui/jei/crucible.png"),
-						0, 0, 70, 46);
+				.createDrawable(new ResourceLocation(References.ModID,
+						"textures/gui/jei/crucible.png"), 0, 0, 70, 46);
 	}
 
 	@Override

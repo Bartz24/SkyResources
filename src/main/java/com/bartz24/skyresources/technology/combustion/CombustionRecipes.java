@@ -18,10 +18,10 @@ public class CombustionRecipes
 
 	private static List<CombustionRecipe> Recipes;
 
-	public static CombustionRecipe getRecipe(List<ItemStack> input, int heatValue)
-	{		
+	public static CombustionRecipe getRecipe(List<ItemStack> input,
+			int heatValue)
+	{
 		CombustionRecipe rec = new CombustionRecipe(heatValue, input);
-		
 
 		for (CombustionRecipe recipe : Recipes)
 		{
@@ -30,7 +30,6 @@ public class CombustionRecipes
 				return recipe;
 			}
 		}
-		
 
 		return null;
 	}
@@ -46,21 +45,21 @@ public class CombustionRecipes
 
 		if (input == null || input.size() == 0)
 		{
-			SkyResources.instance.logger
+			SkyResources.logger
 					.error("Need input stacks for recipe. DID NOT ADD RECIPE.");
 			return;
 		}
 
 		if (output == null)
 		{
-			SkyResources.instance.logger
-					.error("Need a output for recipe. DID NOT ADD RECIPE FOR NULL.");
+			SkyResources.logger.error(
+					"Need a output for recipe. DID NOT ADD RECIPE FOR NULL.");
 			return;
 		}
 
 		Recipes.add(new CombustionRecipe(output, heatValue, input));
 	}
-	
+
 	public static void addRecipe(ItemStack output, int heatValue,
 			ItemStack... input)
 	{

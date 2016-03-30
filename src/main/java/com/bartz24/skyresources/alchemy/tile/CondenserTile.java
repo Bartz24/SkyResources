@@ -31,8 +31,9 @@ public class CondenserTile extends TileEntity implements ITickable
 		{
 			FluidCrystalBlock crystalBlock = (FluidCrystalBlock) block;
 			Fluid fluid = crystalBlock.getFluid();
-			String type = ModFluids.crystalFluidNames()[ModBlocks.crystalFluidBlocks
-					.indexOf(crystalBlock)];
+			String type = ModFluids
+					.crystalFluidNames()[ModBlocks.crystalFluidBlocks
+							.indexOf(crystalBlock)];
 
 			String oreDictCheck = "ingot" + RandomHelper.capatilizeString(type);
 
@@ -40,15 +41,16 @@ public class CondenserTile extends TileEntity implements ITickable
 					&& crystalBlock.isNotFlowing(worldObj, pos.add(0, 1, 0),
 							worldObj.getBlockState(pos.add(0, 1, 0)))
 					&& OreDictionary.doesOreNameExist(oreDictCheck)
-					&& HeatSources.isValidHeatSource(worldObj.getBlockState(pos
-							.down())))
+					&& HeatSources.isValidHeatSource(
+							worldObj.getBlockState(pos.down())))
 			{
 				this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL,
 						pos.getX() + rand.nextFloat(), pos.getY() + 1.5D,
-						pos.getZ() + rand.nextFloat(), 0.0D, 0.0D, 0.0D, new int[0]);
+						pos.getZ() + rand.nextFloat(), 0.0D, 0.0D, 0.0D,
+						new int[0]);
 				if (!worldObj.isRemote)
-					timeCondense+=HeatSources.getHeatSourceValue(worldObj.getBlockState(pos
-							.down()));
+					timeCondense += HeatSources.getHeatSourceValue(
+							worldObj.getBlockState(pos.down()));
 			} else if (!worldObj.isRemote)
 				timeCondense = 0;
 

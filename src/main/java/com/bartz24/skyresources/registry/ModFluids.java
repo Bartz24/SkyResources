@@ -5,12 +5,9 @@ import java.util.List;
 
 import com.bartz24.skyresources.References;
 
-import scala.actors.threadpool.Arrays;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
 
 public class ModFluids
 {
@@ -28,9 +25,9 @@ public class ModFluids
 			{
 				@Override
 				public int getColor()
-			    {
-			        return crystalFluidColors()[val];
-			    }
+				{
+					return crystalFluidColors()[val];
+				}
 			};
 			crystalFluids.add(fluid);
 			FluidRegistry.registerFluid(fluid);
@@ -56,7 +53,8 @@ public class ModFluids
 	public static int[] crystalFluidColors()
 	{
 		return new int[]
-		{ 0xFFCC0000, 0xFFCCCC00, 0xFFFF6600, 0xFFBFBFBF, 0xFFD1F4FF, 0xFFFFF7C2 };
+		{ 0xFFCC0000, 0xFFCCCC00, 0xFFFF6600, 0xFFBFBFBF, 0xFFD1F4FF,
+				0xFFFFF7C2 };
 	}
 
 	public static int[] crystalFluidRarity()

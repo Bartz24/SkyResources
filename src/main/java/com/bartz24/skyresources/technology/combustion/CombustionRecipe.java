@@ -11,14 +11,16 @@ public class CombustionRecipe
 	private List<ItemStack> inputs;
 	private int heatRequired;
 
-	public CombustionRecipe(ItemStack output, int heatNeeded, ItemStack... input)
+	public CombustionRecipe(ItemStack output, int heatNeeded,
+			ItemStack... input)
 	{
 		this.output = output;
 		this.heatRequired = heatNeeded;
 		inputs = Arrays.asList(input);
 	}
-	
-	public CombustionRecipe(ItemStack output, int heatNeeded, List<ItemStack> input)
+
+	public CombustionRecipe(ItemStack output, int heatNeeded,
+			List<ItemStack> input)
 	{
 		this.output = output;
 		this.heatRequired = heatNeeded;
@@ -44,19 +46,22 @@ public class CombustionRecipe
 
 	boolean stacksAreValid(CombustionRecipe recipe)
 	{
-		if(inputs.size() == 0) return false;
+		if (inputs.size() == 0)
+			return false;
 		for (ItemStack i : inputs)
 		{
 			boolean valid = false;
 			for (ItemStack i2 : recipe.inputs)
 			{
-				if(i.isItemEqual(i2) && i.stackSize < i2.stackSize) return false;
-				else if(i.isItemEqual(i2) && i.stackSize >= i2.stackSize) valid = true;
+				if (i.isItemEqual(i2) && i.stackSize < i2.stackSize)
+					return false;
+				else if (i.isItemEqual(i2) && i.stackSize >= i2.stackSize)
+					valid = true;
 			}
-			if(!valid)
-			return false;
+			if (!valid)
+				return false;
 		}
-		
+
 		return true;
 	}
 
@@ -65,14 +70,14 @@ public class CombustionRecipe
 		System.out.println("Here" + (heatRequired >= recipe.heatRequired));
 		return heatRequired >= recipe.heatRequired;
 	}
-	
+
 	public ItemStack getOutput()
 	{
 		return output;
 	}
 
 	public List<ItemStack> getInputStacks()
-	{		
+	{
 		return inputs;
 	}
 

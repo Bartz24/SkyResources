@@ -1,27 +1,20 @@
 package com.bartz24.skyresources.events;
 
-import java.util.Random;
-
 import com.bartz24.skyresources.alchemy.effects.IHealthBoostItem;
-import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
 import com.bartz24.skyresources.base.item.ItemKnife;
 import com.bartz24.skyresources.registry.ModItems;
 import com.bartz24.skyresources.world.WorldTypeSky;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
@@ -31,10 +24,10 @@ public class EventHandler
 	@SubscribeEvent
 	public void playerUpdate(LivingUpdateEvent event)
 	{
-		if (event.entityLiving instanceof EntityPlayer
-				&& !event.entity.worldObj.isRemote)
+		if (event.getEntityLiving() instanceof EntityPlayer
+				&& !event.getEntity().worldObj.isRemote)
 		{
-			EntityPlayer player = (EntityPlayer) event.entityLiving;
+			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 			NBTTagCompound data = player.getEntityData();
 			if (!data.hasKey(EntityPlayer.PERSISTED_NBT_TAG))
 				data.setTag(EntityPlayer.PERSISTED_NBT_TAG,
@@ -45,7 +38,8 @@ public class EventHandler
 			if (player.ticksExisted > 3 && !persist.getBoolean("worldCreated"))
 			{
 				World world = player.worldObj;
-				if (world.getWorldInfo().getTerrainType() instanceof WorldTypeSky)
+				if (world.getWorldInfo()
+						.getTerrainType() instanceof WorldTypeSky)
 				{
 					BlockPos spawn = world.getSpawnPoint();
 					if (world.getBlockState(spawn.down(4)) != Blocks.bedrock
@@ -95,19 +89,11 @@ public class EventHandler
 	private static void createSpawn(World world, BlockPos spawn)
 	{
 		sandSpawn(world, spawn);
-		/*Random random = world.rand;
-		switch (random.nextInt(3))
-		{
-		case 0:
-			sandSpawn(world, spawn);
-			break;
-		case 1:
-			dirtSpawn(world, spawn);
-			break;
-		case 2:
-			snowSpawn(world, spawn);
-			break;
-		}*/
+		/*
+		 * Random random = world.rand; switch (random.nextInt(3)) { case 0:
+		 * sandSpawn(world, spawn); break; case 1: dirtSpawn(world, spawn);
+		 * break; case 2: snowSpawn(world, spawn); break; }
+		 */
 	}
 
 	private static void sandSpawn(World world, BlockPos spawn)
@@ -147,7 +133,8 @@ public class EventHandler
 		}
 		BlockPos pos = new BlockPos(spawn.getX() + -1, spawn.getY(),
 				spawn.getZ() + 1);
-		world.setBlockState(pos.down(2), Blocks.yellow_flower.getDefaultState());
+		world.setBlockState(pos.down(2),
+				Blocks.yellow_flower.getDefaultState());
 	}
 
 	private static void snowSpawn(World world, BlockPos spawn)
@@ -172,37 +159,25 @@ public class EventHandler
 		}
 	}
 
-	
-	//TODO Not currently implemented
+	// TODO Not currently implemented
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
 	{
-		ItemStack equip = event.entityPlayer.getHeldItem(EnumHand.MAIN_HAND);
-		if (event.pos == null)
-			return;
-		Block block = event.world.getBlockState(event.pos).getBlock();
-		if (event.action == Action.RIGHT_CLICK_BLOCK && equip == null
-				&& event.entityPlayer.isSneaking())
-		{
-			if (block == Blocks.cactus)
-			{
-				if (event.world.isRemote)
-					event.entityPlayer.swingArm(EnumHand.MAIN_HAND);
-				else
-				{
-					event.entityPlayer
-							.dropPlayerItemWithRandomChoice(
-									new ItemStack(
-											ModItems.alchemyComponent,
-											1,
-											((AlchemyItemComponent) ModItems.alchemyComponent)
-													.getNames().indexOf(
-															"cactusNeedle")),
-									false);
-					event.entityPlayer.attackEntityFrom(DamageSource.cactus, 2);
-				}
-			}
-		}
+		/*
+		 * ItemStack equip =
+		 * event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND); if
+		 * (event.getPos() == null) return; Block block =
+		 * event.getWorld().getBlockState(event.pos).getBlock(); if
+		 * (event.getAction() == Action.RIGHT_CLICK_BLOCK && equip == null &&
+		 * event.getEntityPlayer().isSneaking()) { if (block == Blocks.cactus) {
+		 * if (event.getWorld().isRemote)
+		 * event.getEntityPlayer().swingArm(EnumHand.MAIN_HAND); else {
+		 * event.getEntityPlayer() .dropPlayerItemWithRandomChoice( new
+		 * ItemStack( ModItems.alchemyComponent, 1, ((AlchemyItemComponent)
+		 * ModItems.alchemyComponent) .getNames().indexOf( "cactusNeedle")),
+		 * false); event.getEntityPlayer().attackEntityFrom(DamageSource.cactus,
+		 * 2); } } }
+		 */
 	}
 
 	@SubscribeEvent
@@ -253,11 +228,9 @@ public class EventHandler
 				{
 					if (stack.getTagCompound().getInteger("cooldown") > 0)
 					{
-						stack.getTagCompound()
-								.setInteger(
-										"cooldown",
-										stack.getTagCompound().getInteger(
-												"cooldown") - 1);
+						stack.getTagCompound().setInteger("cooldown",
+								stack.getTagCompound().getInteger("cooldown")
+										- 1);
 					}
 				}
 			}

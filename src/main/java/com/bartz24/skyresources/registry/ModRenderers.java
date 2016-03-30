@@ -45,6 +45,7 @@ public class ModRenderers
 					Item.getItemFromBlock(ModBlocks.crystalFluidBlocks.get(i)),
 					new ItemMeshDefinition()
 					{
+						@Override
 						public ModelResourceLocation getModelLocation(
 								ItemStack stack)
 						{
@@ -54,6 +55,7 @@ public class ModRenderers
 			ModelLoader.setCustomStateMapper(
 					ModBlocks.crystalFluidBlocks.get(i), new StateMapperBase()
 					{
+						@Override
 						protected ModelResourceLocation getModelResourceLocation(
 								IBlockState state)
 						{
@@ -98,32 +100,34 @@ public class ModRenderers
 		registerItemRenderer(ModItems.ironGrinder);
 		registerItemRenderer(ModItems.diamondGrinder);
 		registerItemRenderer(ModItems.healthRing);
-		registerItemRenderer(Item.getItemFromBlock(ModBlocks.cactusFruitNeedle));
-		registerItemRenderer(Item
-				.getItemFromBlock(ModBlocks.compressedCoalBlock));
-		registerItemRenderer(Item
-				.getItemFromBlock(ModBlocks.compressedCoalBlock2));
+		registerItemRenderer(
+				Item.getItemFromBlock(ModBlocks.cactusFruitNeedle));
+		registerItemRenderer(
+				Item.getItemFromBlock(ModBlocks.compressedCoalBlock));
+		registerItemRenderer(
+				Item.getItemFromBlock(ModBlocks.compressedCoalBlock2));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.dryCactus));
-		registerItemRenderer(Item
-				.getItemFromBlock(ModBlocks.alchemicalCondenser));
-		registerItemRenderer(Item
-				.getItemFromBlock(ModBlocks.crucible));
-		registerItemRenderer(Item
-				.getItemFromBlock(ModBlocks.blazePowderBlock));
+		registerItemRenderer(
+				Item.getItemFromBlock(ModBlocks.alchemicalCondenser));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.crucible));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.blazePowderBlock));
 
 		registerItemRenderer(ModItems.sandstoneInfusionStone);
 		registerItemRenderer(ModItems.redSandstoneInfusionStone);
 
-		ModelLoader.registerItemVariants(ModItems.waterExtractor,
+		ModelBakery.registerItemVariants(ModItems.waterExtractor,
 				new ModelResourceLocation("skyresources:WaterExtractor.empty",
-						"inventory"), new ModelResourceLocation(
-						"skyresources:WaterExtractor.full1", "inventory"),
+						"inventory"),
+				new ModelResourceLocation("skyresources:WaterExtractor.full1",
+						"inventory"),
 				new ModelResourceLocation("skyresources:WaterExtractor.full2",
-						"inventory"), new ModelResourceLocation(
-						"skyresources:WaterExtractor.full3", "inventory"),
+						"inventory"),
+				new ModelResourceLocation("skyresources:WaterExtractor.full3",
+						"inventory"),
 				new ModelResourceLocation("skyresources:WaterExtractor.full4",
-						"inventory"), new ModelResourceLocation(
-						"skyresources:WaterExtractor.full5", "inventory"),
+						"inventory"),
+				new ModelResourceLocation("skyresources:WaterExtractor.full5",
+						"inventory"),
 				new ModelResourceLocation("skyresources:WaterExtractor.full6",
 						"inventory"));
 
@@ -144,17 +148,17 @@ public class ModRenderers
 							amount = tagCompound.getInteger("amount");
 						}
 
-						int level = (int) ((float) amount * 6F / (float) ((ItemWaterExtractor) stack
-								.getItem()).getMaxAmount());
+						int level = (int) (amount * 6F
+								/ ((ItemWaterExtractor) stack.getItem())
+										.getMaxAmount());
 						if (level < 0)
 							level = 0;
 						else if (level > 6)
 							level = 6;
 
-						return new ModelResourceLocation(stack.getItem()
-								.getRegistryName()
-								+ "."
-								+ ItemWaterExtractor.extractorIcons[level],
+						return new ModelResourceLocation(
+								stack.getItem().getRegistryName() + "."
+										+ ItemWaterExtractor.extractorIcons[level],
 								"inventory");
 					}
 				});
@@ -171,15 +175,18 @@ public class ModRenderers
 							int tintIndex)
 					{
 						if (stack.getMetadata() < 0
-								|| stack.getMetadata() >= ModFluids.crystalFluidColors().length)
+								|| stack.getMetadata() >= ModFluids
+										.crystalFluidColors().length)
 							return -1;
 
-						return ModFluids.crystalFluidColors()[stack.getMetadata()];
+						return ModFluids.crystalFluidColors()[stack
+								.getMetadata()];
 					}
 
 				}, ModItems.metalCrystal);
 
-        ClientRegistry.bindTileEntitySpecialRenderer(CrucibleTile.class, new CrucibleTESR());
+		ClientRegistry.bindTileEntitySpecialRenderer(CrucibleTile.class,
+				new CrucibleTESR());
 	}
 
 	public static void registerItemRenderer(Item item, int meta, String name)
@@ -230,10 +237,9 @@ public class ModRenderers
 		{
 			String variantName = variantHeader + "="
 					+ e.getName().toLowerCase();
-			ModelLoader
-					.setCustomModelResourceLocation(item, e.ordinal(),
-							new ModelResourceLocation(b.getRegistryName(),
-									variantName));
+			ModelLoader.setCustomModelResourceLocation(item, e.ordinal(),
+					new ModelResourceLocation(b.getRegistryName(),
+							variantName));
 		}
 	}
 }

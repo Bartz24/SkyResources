@@ -45,40 +45,38 @@ public class ModBlocks
 				new AxisAlignedBB(0.3D, 0D, 0.3D, 0.7D, 0.8D, 0.7D),
 				SoundType.PLANT));
 
-		compressedCoalBlock = registerBlock(new BaseBlock(Material.rock,
-				"compressedCoalBlock", "CompressedCoalBlock", 6F, 6F,
-				SoundType.STONE));
+		compressedCoalBlock = registerBlock(
+				new BaseBlock(Material.rock, "compressedCoalBlock",
+						"CompressedCoalBlock", 6F, 6F, SoundType.STONE));
 
-		compressedCoalBlock2 = registerBlock(new BaseBlock(Material.rock,
-				"compressedCoalBlock2", "CompressedCoalBlock2", 9F, 9F,
-				SoundType.STONE));
+		compressedCoalBlock2 = registerBlock(
+				new BaseBlock(Material.rock, "compressedCoalBlock2",
+						"CompressedCoalBlock2", 9F, 9F, SoundType.STONE));
 
-		blazePowderBlock = registerBlock(new BlazePowderBlock(Material.clay,
-				"blazePowderBlock", "BlazePowderBlock", 0.5F, 0.5F,
-				SoundType.GROUND));
+		blazePowderBlock = registerBlock(
+				new BlazePowderBlock(Material.clay, "blazePowderBlock",
+						"BlazePowderBlock", 0.5F, 0.5F, SoundType.GROUND));
 
 		alchemicalCondenser = registerBlock(new CondenserBlock(
 				"alchemicalCondenser", "AlchemicalCondenser", 2F, 12F));
 
-		crucible = registerBlock(new CrucibleBlock(
-				"crucible", "Crucible", 2F, 12F));
+		crucible = registerBlock(
+				new CrucibleBlock("crucible", "Crucible", 2F, 12F));
 
 		GameRegistry.registerBlock(
-				combustionHeater = new CombustionHeaterBlock(
-						"combustionHeater", "CombustionHeater", 2F, 12F),
+				combustionHeater = new CombustionHeaterBlock("combustionHeater",
+						"CombustionHeater", 2F, 12F),
 				ItemBlockMeta.class, "combustionHeater");
 		dryCactus = registerBlock(new BlockDryCactus());
 
 		for (int i = 0; i < ModFluids.crystalFluidNames().length; i++)
 		{
-			crystalFluidBlocks
-					.add(registerBlock(new FluidCrystalBlock(
-							ModFluids.crystalFluids.get(i), Material.water,
-							ModFluids.crystalFluidNames()[i]
-									+ "CrystalFluidBlock", RandomHelper
-									.capatilizeString(ModFluids
-											.crystalFluidNames()[i])
-									+ "CrystalFluidBlock")));
+			crystalFluidBlocks.add(registerBlock(new FluidCrystalBlock(
+					ModFluids.crystalFluids.get(i), Material.water,
+					ModFluids.crystalFluidNames()[i] + "CrystalFluidBlock",
+					RandomHelper
+							.capatilizeString(ModFluids.crystalFluidNames()[i])
+							+ "CrystalFluidBlock")));
 		}
 	}
 
@@ -93,9 +91,9 @@ public class ModBlocks
 	{
 		if (block.getRegistryName() == null)
 		{
-			SkyResources.instance.logger
-					.error("Block {} doesn't have a registry name. Block will not be registered.",
-							block.getClass().getCanonicalName());
+			SkyResources.logger.error(
+					"Block {} doesn't have a registry name. Block will not be registered.",
+					block.getClass().getCanonicalName());
 			return block;
 		}
 		GameRegistry.registerBlock(block);

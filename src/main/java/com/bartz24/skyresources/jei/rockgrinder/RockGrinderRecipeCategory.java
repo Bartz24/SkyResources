@@ -2,7 +2,6 @@ package com.bartz24.skyresources.jei.rockgrinder;
 
 import com.bartz24.skyresources.ItemHelper;
 import com.bartz24.skyresources.References;
-import com.bartz24.skyresources.jei.combustion.CombustionRecipeJEI;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;

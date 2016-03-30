@@ -28,8 +28,9 @@ public class CrucibleRecipeHandler implements IRecipeHandler<CrucibleRecipeJEI>
 
 	@Override
 	public boolean isRecipeValid(CrucibleRecipeJEI recipe)
-    {
-        return recipe.getInputs().size() > 0 && recipe.getFluidOutputs().size() > 0;
-    }
+	{
+		return recipe.getInputs().size() > 0
+				&& recipe.getFluidOutputs().size() > 0;
+	}
 
 }

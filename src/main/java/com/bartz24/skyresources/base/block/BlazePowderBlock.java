@@ -26,6 +26,7 @@ public class BlazePowderBlock extends BaseBlock
 				stepSound);
 	}
 
+	@Override
 	public void updateTick(World world, BlockPos pos, IBlockState state,
 			Random rand)
 	{
@@ -48,12 +49,13 @@ public class BlazePowderBlock extends BaseBlock
 		world.scheduleUpdate(pos, this, tickRate(world));
 	}
 
+	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos,
 			EnumFacing facing, float hitX, float hitY, float hitZ, int meta,
 			EntityLivingBase placer)
 	{
 		if (placer instanceof EntityPlayer)
-			((EntityPlayer)placer).addStat(ModAchievements.lavaMelting, 1);
+			((EntityPlayer) placer).addStat(ModAchievements.lavaMelting, 1);
 		return this.getStateFromMeta(meta);
 	}
 }

@@ -28,8 +28,8 @@ public class InfusionRecipeHandler implements IRecipeHandler<InfusionRecipeJEI>
 
 	@Override
 	public boolean isRecipeValid(InfusionRecipeJEI recipe)
-    {
-        return recipe.getInputs().size() > 0 && recipe.getOutputs().size() > 0;
-    }
+	{
+		return recipe.getInputs().size() > 0 && recipe.getOutputs().size() > 0;
+	}
 
 }

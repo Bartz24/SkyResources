@@ -19,7 +19,8 @@ public class ContainerCombustionHeater extends Container
 	private int heatPerTick;
 	private int currentItemBurnTime;
 
-	public ContainerCombustionHeater(IInventory playerInv, CombustionHeaterTile te)
+	public ContainerCombustionHeater(IInventory playerInv,
+			CombustionHeaterTile te)
 	{
 		tile = te;
 
@@ -29,7 +30,8 @@ public class ContainerCombustionHeater extends Container
 		{
 			for (int x = 0; x < 9; ++x)
 			{
-				this.addSlotToContainer(new Slot(playerInv, x + y * 9 + 9, 8 + x * 18, 84 + y * 18));
+				this.addSlotToContainer(new Slot(playerInv, x + y * 9 + 9,
+						8 + x * 18, 84 + y * 18));
 			}
 		}
 
@@ -49,7 +51,7 @@ public class ContainerCombustionHeater extends Container
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int fromSlot)
 	{
 		ItemStack previous = null;
-		Slot slot = (Slot) this.inventorySlots.get(fromSlot);
+		Slot slot = this.inventorySlots.get(fromSlot);
 
 		if (slot != null && slot.getHasStack())
 		{
@@ -78,13 +80,14 @@ public class ContainerCombustionHeater extends Container
 		return previous;
 	}
 
+	@Override
 	public void detectAndSendChanges()
 	{
 		super.detectAndSendChanges();
 
 		for (int i = 0; i < this.crafters.size(); ++i)
 		{
-			ICrafting icrafting = (ICrafting) this.crafters.get(i);
+			ICrafting icrafting = this.crafters.get(i);
 
 			icrafting.sendProgressBarUpdate(this, 0, this.tile.getField(0));
 
@@ -101,6 +104,7 @@ public class ContainerCombustionHeater extends Container
 		this.heatPerTick = this.tile.getField(3);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void updateProgressBar(int id, int data)
 	{
