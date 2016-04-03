@@ -1,12 +1,12 @@
 package com.bartz24.skyresources.technology.combustion;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.bartz24.skyresources.SkyResources;
 
 import net.minecraft.item.ItemStack;
-import scala.actors.threadpool.Arrays;
 
 public class CombustionRecipes
 {

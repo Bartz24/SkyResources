@@ -3,7 +3,7 @@ package com.bartz24.skyresources.technology.combustion;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
-import scala.actors.threadpool.Arrays;
+import java.util.Arrays;
 
 public class CombustionRecipe
 {
@@ -27,7 +27,7 @@ public class CombustionRecipe
 		inputs = input;
 	}
 
-	public CombustionRecipe(int currentHeat, Object... input)
+	public CombustionRecipe(int currentHeat, ItemStack... input)
 	{
 		inputs = Arrays.asList(input);
 		this.heatRequired = currentHeat;

@@ -14,7 +14,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
-import scala.actors.threadpool.Arrays;
+import java.util.Arrays;
 
 public class FluidDropperTile extends RedstoneCompatibleTile
 		implements ITickable, IFluidHandler
