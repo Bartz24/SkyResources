@@ -19,6 +19,7 @@ import com.bartz24.skyresources.technology.block.FluidDropperBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -68,11 +69,10 @@ public class ModBlocks
 		
 		fluidDropper = registerBlock(
 				new FluidDropperBlock("fluidDropper", "FluidDropper", 2F, 12F));
-
-		GameRegistry.registerBlock(
+		
+		registerItemBlock(
 				combustionHeater = new CombustionHeaterBlock("combustionHeater",
-						"CombustionHeater", 2F, 12F),
-				ItemBlockMeta.class, "combustionHeater");
+						"CombustionHeater", 2F, 12F));
 		dryCactus = registerBlock(new BlockDryCactus());
 
 		for (int i = 0; i < ModFluids.crystalFluidNames().length; i++)
@@ -105,5 +105,12 @@ public class ModBlocks
 		GameRegistry.registerBlock(block);
 
 		return block;
+	}
+	
+	public static void registerItemBlock(Block block)
+	{
+        GameRegistry.register(block);
+        GameRegistry.register(new ItemBlockMeta(block).setRegistryName(block.getRegistryName()));
+		
 	}
 }

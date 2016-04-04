@@ -25,6 +25,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelDynBucket;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModRenderers
 {
@@ -123,7 +124,7 @@ public class ModRenderers
 						"inventory"),
 				new ModelResourceLocation("skyresources:WaterExtractor.full2",
 						"inventory"),
-				
+
 				new ModelResourceLocation("skyresources:WaterExtractor.full3",
 						"inventory"),
 				new ModelResourceLocation("skyresources:WaterExtractor.full4",
@@ -191,18 +192,18 @@ public class ModRenderers
 				new CrucibleTESR());
 	}
 
-	public static void registerItemRenderer(Item item, int meta, String name)
+	public static void registerItemRenderer(Item item, int meta,
+			ResourceLocation name)
 	{
-		ResourceLocation resource = new ResourceLocation(name);
-
-		ModelBakery.registerItemVariants(item, resource);
+		ModelBakery.registerItemVariants(item, name);
 		ModelLoader.setCustomModelResourceLocation(item, meta,
-				new ModelResourceLocation(resource, "inventory"));
+				new ModelResourceLocation(name, "inventory"));
 	}
 
 	public static void registerItemRenderer(Item item, int meta)
 	{
-		registerItemRenderer(item, meta, item.getRegistryName() + meta);
+		registerItemRenderer(item, meta,
+				new ResourceLocation(item.getRegistryName().toString()+meta));
 	}
 
 	public static void registerItemRenderer(Item item, int meta, boolean global)
@@ -218,7 +219,7 @@ public class ModRenderers
 		registerItemRenderer(item, item.getRegistryName());
 	}
 
-	public static void registerItemRenderer(Item item, String name)
+	public static void registerItemRenderer(Item item, ResourceLocation name)
 	{
 		registerItemRenderer(item, 0, name);
 	}
