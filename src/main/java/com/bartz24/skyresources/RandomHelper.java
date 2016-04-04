@@ -2,6 +2,7 @@ package com.bartz24.skyresources;
 
 import java.util.List;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -52,4 +53,13 @@ public class RandomHelper
 	{
 		return (float) Math.hypot(x1 - x2, y1 - y2);
 	}
+	
+	public static void setGLColorFromIntPlusAlpha(int color) {
+        float alpha = (color >> 24 & 255) / 255.0F;
+        float red = (color >> 16 & 255) / 255.0F;
+        float green = (color >> 8 & 255) / 255.0F;
+        float blue = (color & 255) / 255.0F;
+
+        GlStateManager.color(red, green, blue, alpha);
+    }
 }

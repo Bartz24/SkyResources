@@ -1,11 +1,9 @@
 package com.bartz24.skyresources.alchemy.crucible;
 
-import java.awt.Color;
-
 import org.lwjgl.opengl.GL11;
 
+import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.alchemy.tile.CrucibleTile;
-import com.bartz24.skyresources.registry.ModFluids;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -63,12 +61,10 @@ public class CrucibleTESR extends TileEntitySpecialRenderer<CrucibleTile>
 			Tessellator tessellator = Tessellator.getInstance();
 			VertexBuffer renderer = tessellator.getBuffer();
 
-			Color color = new Color(
-					ModFluids.crystalFluidColors()[ModFluids.crystalFluids
-							.indexOf(tank.getFluid().getFluid())]);
+			int color;
+			color = tank.getFluid().getFluid().getColor(tank.getFluid());
 
-			GlStateManager.color(color.getRed(), color.getGreen(),
-					color.getBlue(), 0.25F);
+			RandomHelper.setGLColorFromIntPlusAlpha(color);
 
 			renderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
 			renderer.pos(1.0d, height, 1.0d).tex(maxU, maxV).endVertex();
