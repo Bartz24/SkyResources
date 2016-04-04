@@ -3,6 +3,7 @@ package com.bartz24.skyresources.jei.crucible;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModFluids;
 import com.bartz24.skyresources.registry.ModItems;
 
@@ -19,7 +20,7 @@ public class CrucibleRecipeMaker
 		{
 			CrucibleRecipeJEI addRecipe = new CrucibleRecipeJEI(
 					new ItemStack(ModItems.metalCrystal, 1, i),
-					new FluidStack(ModFluids.crystalFluids.get(i), 1000));
+					new FluidStack(ModFluids.crystalFluids.get(i), ConfigOptions.crucibleCrystalAmount));
 			recipes.add(addRecipe);
 		}
 

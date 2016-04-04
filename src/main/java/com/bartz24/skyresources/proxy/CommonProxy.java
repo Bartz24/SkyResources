@@ -3,6 +3,7 @@ package com.bartz24.skyresources.proxy;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.alchemy.infusion.InfusionRecipes;
 import com.bartz24.skyresources.base.HeatSources;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.events.EventHandler;
 import com.bartz24.skyresources.events.ModBucketHandler;
 import com.bartz24.skyresources.registry.ModAchievements;
@@ -18,6 +19,7 @@ import com.bartz24.skyresources.world.WorldTypeSky;
 
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -42,6 +44,8 @@ public class CommonProxy
 		MinecraftForge.EVENT_BUS.register(events);
 		ModBucketHandler.registerBuckets();
 		MinecraftForge.EVENT_BUS.register(new ModBucketHandler());
+		
+		ConfigOptions.loadConfigThenSave(e);
 	}
 
 	public void init(FMLInitializationEvent e)
@@ -56,6 +60,5 @@ public class CommonProxy
 
 	public void postInit(FMLPostInitializationEvent e)
 	{
-
 	}
 }

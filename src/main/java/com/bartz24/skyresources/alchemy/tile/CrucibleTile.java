@@ -5,6 +5,7 @@ import java.util.List;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.alchemy.item.MetalCrystalItem;
 import com.bartz24.skyresources.base.HeatSources;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModFluids;
 
 import net.minecraft.entity.item.EntityItem;
@@ -27,10 +28,10 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 {
 	FluidTank tank;
 
-	public static int tankCapacity = 4000;
+	public static int tankCapacity = ConfigOptions.crucibleCapacity;
 
 	int itemAmount;
-	int maxItemAmount = 4000;
+	int maxItemAmount = ConfigOptions.crucibleCapacity;
 	int currentType;
 
 	@Override
@@ -128,7 +129,7 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 	{
 		if (!worldObj.isRemote)
 		{
-			if (itemAmount <= maxItemAmount - 1000)
+			if (itemAmount <= maxItemAmount - ConfigOptions.crucibleCrystalAmount)
 			{
 				List<EntityItem> list = worldObj.getEntitiesWithinAABB(
 						EntityItem.class,
@@ -140,7 +141,7 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 				{
 					ItemStack stack = entity.getEntityItem();
 
-					if (itemAmount + 1000 <= maxItemAmount
+					if (itemAmount + ConfigOptions.crucibleCrystalAmount <= maxItemAmount
 							&& stack.getItem() instanceof MetalCrystalItem)
 					{
 						int itemType = stack.getItem().getMetadata(stack);
@@ -153,7 +154,7 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 
 						if (currentType == itemType)
 						{
-							itemAmount += 1000;
+							itemAmount += ConfigOptions.crucibleCrystalAmount;
 							stack.stackSize--;
 						}
 					}

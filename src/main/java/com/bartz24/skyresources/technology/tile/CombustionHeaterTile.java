@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bartz24.skyresources.api.RedstoneCompatibleTile;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.technology.block.CombustionHeaterBlock;
 import com.bartz24.skyresources.technology.combustion.CombustionRecipe;
 import com.bartz24.skyresources.technology.combustion.CombustionRecipes;
@@ -96,7 +97,7 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile
 		int fuelTime = TileEntityFurnace.getItemBurnTime(stack);
 		if (fuelTime > 0)
 		{
-			return (int) Math.cbrt((float) fuelTime / 2);
+			return (int) Math.cbrt((float) fuelTime * ConfigOptions.combustionHeatMultiplier);
 		}
 
 		return 0;

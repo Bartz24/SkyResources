@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.alchemy.effects.IHealthBoostItem;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,7 +19,7 @@ import net.minecraft.world.World;
 
 public class ItemHealthRing extends Item implements IHealthBoostItem
 {
-	private final int maxHealth = 100;
+	private final int maxHealth = ConfigOptions.healthRingMaxHealth;
 
 	public ItemHealthRing()
 	{
@@ -34,7 +35,7 @@ public class ItemHealthRing extends Item implements IHealthBoostItem
 	@Override
 	public int getHealthBoost(ItemStack stack)
 	{
-		return (int) (getCompound(stack).getInteger("health") * 0.05F);
+		return (int) (getCompound(stack).getInteger("health") * ConfigOptions.healthRingPercentage);
 	}
 
 	@Override

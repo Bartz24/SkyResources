@@ -5,6 +5,7 @@ import java.util.Random;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.alchemy.fluid.FluidCrystalBlock;
 import com.bartz24.skyresources.base.HeatSources;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModFluids;
 
@@ -71,7 +72,7 @@ public class CondenserTile extends TileEntity implements ITickable
 	public int getTimeToCondense(FluidCrystalBlock block)
 	{
 		return ModFluids.crystalFluidRarity()[ModBlocks.crystalFluidBlocks
-				.indexOf(block)] * 2000;
+				.indexOf(block)] * ConfigOptions.condenserProcessTimeBase;
 	}
 
 	public Block getBlockAbove()

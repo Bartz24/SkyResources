@@ -1,6 +1,7 @@
 package com.bartz24.skyresources.technology.tile;
 
 import com.bartz24.skyresources.api.RedstoneCompatibleTile;
+import com.bartz24.skyresources.config.ConfigOptions;
 
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
@@ -94,7 +95,7 @@ public class FluidDropperTile extends RedstoneCompatibleTile
 
 	public FluidDropperTile()
 	{
-		tank = new FluidTank(1000);
+		tank = new FluidTank(ConfigOptions.fluidDropperCapacity);
 	}
 
 	@Override

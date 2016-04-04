@@ -1,6 +1,7 @@
 package com.bartz24.skyresources.base.item;
 
 import com.bartz24.skyresources.References;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.google.common.collect.Multimap;
 
@@ -20,8 +21,8 @@ public class ItemKnife extends Item
 	public ItemKnife(Item.ToolMaterial material, String unlocalizedName,
 			String registryName)
 	{
-		this.setMaxDamage((int) (material.getMaxUses() * 0.8F));
-		this.damageVsEntity = 1.5F + material.getDamageVsEntity();
+		this.setMaxDamage((int) (material.getMaxUses() * ConfigOptions.knifeBaseDurability));
+		this.damageVsEntity = ConfigOptions.knifeBaseDamage + material.getDamageVsEntity();
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
 		setRegistryName(registryName);
 		this.setMaxStackSize(1);

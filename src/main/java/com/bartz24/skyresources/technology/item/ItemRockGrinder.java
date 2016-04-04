@@ -3,6 +3,7 @@ package com.bartz24.skyresources.technology.item;
 import com.bartz24.skyresources.ItemHelper;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.technology.rockgrinder.RockGrinderRecipe;
 import com.bartz24.skyresources.technology.rockgrinder.RockGrinderRecipes;
@@ -31,8 +32,8 @@ public class ItemRockGrinder extends Item
 			String registryName)
 	{
 		toolMaterial = material;
-		this.setMaxDamage((int) (material.getMaxUses() * 0.6F));
-		this.damageVsEntity = 2.5F + material.getDamageVsEntity();
+		this.setMaxDamage((int) (material.getMaxUses() * ConfigOptions.rockGrinderBaseDurability));
+		this.damageVsEntity = ConfigOptions.rockGrinderBaseDamage + material.getDamageVsEntity();
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
 		setRegistryName(registryName);
 		this.setMaxStackSize(1);
