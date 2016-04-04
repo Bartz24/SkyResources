@@ -20,9 +20,9 @@ plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
 */
-version = "1.0"
-group= "com.yourname.modid" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "modid"
+version = "0.2.3 Alpha"
+group= "com.bartz24.skyresources" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "skyresources"
 
 minecraft {
     version = "1.9-12.16.0.1837-1.9"
@@ -43,7 +43,7 @@ dependencies {
     //compile "some.group:artifact:version:classifier"
     //compile "some.group:artifact:version"
       
-	compile files("lib/jei_1.9-3.1.2.172.jar")
+	compile files("lib/jei_1.9-3.2.5.179.jar")
 	  
     // real examples
     //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
