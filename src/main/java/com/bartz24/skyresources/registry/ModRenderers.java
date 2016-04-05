@@ -107,10 +107,13 @@ public class ModRenderers
 				Item.getItemFromBlock(ModBlocks.compressedCoalBlock));
 		registerItemRenderer(
 				Item.getItemFromBlock(ModBlocks.compressedCoalBlock2));
+		registerItemRenderer(
+				Item.getItemFromBlock(ModBlocks.compressedStone));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.dryCactus));
 		registerItemRenderer(
 				Item.getItemFromBlock(ModBlocks.alchemicalCondenser));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.crucible));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.concentrator));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.fluidDropper));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.blazePowderBlock));
 

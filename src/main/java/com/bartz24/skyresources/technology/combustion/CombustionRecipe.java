@@ -67,7 +67,6 @@ public class CombustionRecipe
 
 	boolean heatHighEnough(CombustionRecipe recipe)
 	{
-		System.out.println("Here" + (heatRequired >= recipe.heatRequired));
 		return heatRequired >= recipe.heatRequired;
 	}
 

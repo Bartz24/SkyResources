@@ -14,12 +14,12 @@ import com.bartz24.skyresources.base.block.BlockDryCactus;
 import com.bartz24.skyresources.base.block.ItemBlockMeta;
 import com.bartz24.skyresources.base.block.TransparentBlock;
 import com.bartz24.skyresources.technology.block.CombustionHeaterBlock;
+import com.bartz24.skyresources.technology.block.ConcentratorBlock;
 import com.bartz24.skyresources.technology.block.FluidDropperBlock;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -28,12 +28,15 @@ public class ModBlocks
 	public static Block cactusFruitNeedle;
 
 	public static Block combustionHeater;
+	public static Block concentrator;
 	public static Block crucible;
 	public static Block fluidDropper;
 	public static Block alchemicalCondenser;
 
 	public static Block compressedCoalBlock;
 	public static Block compressedCoalBlock2;
+	public static Block compressedStone;
+	
 	public static Block blazePowderBlock;
 
 	public static Block dryCactus;
@@ -47,6 +50,10 @@ public class ModBlocks
 				"cactusFruitNeedle", "CactusFruitNeedle", 0.5F, 0.5F,
 				new AxisAlignedBB(0.3D, 0D, 0.3D, 0.7D, 0.8D, 0.7D),
 				SoundType.PLANT));
+		
+		compressedStone = registerBlock(
+				new BaseBlock(Material.rock, "compressedStone",
+						"compressedStone", 6F, 6F, SoundType.STONE));
 
 		compressedCoalBlock = registerBlock(
 				new BaseBlock(Material.rock, "compressedCoalBlock",
@@ -66,6 +73,9 @@ public class ModBlocks
 
 		crucible = registerBlock(
 				new CrucibleBlock("crucible", "Crucible", 2F, 12F));
+
+		concentrator = registerBlock(
+				new ConcentratorBlock("concentrator", "Concentrator", 2F, 12F));
 		
 		fluidDropper = registerBlock(
 				new FluidDropperBlock("fluidDropper", "FluidDropper", 2F, 12F));

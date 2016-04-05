@@ -1,10 +1,13 @@
 package com.bartz24.skyresources.registry;
 
+import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.alchemy.infusion.InfusionRecipes;
 import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.technology.combustion.CombustionRecipes;
+import com.bartz24.skyresources.technology.concentrator.ConcentratorRecipes;
 import com.bartz24.skyresources.technology.rockgrinder.RockGrinderRecipes;
 
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -77,7 +80,10 @@ public class ModCrafting
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModBlocks.compressedCoalBlock2), new Object[]
 				{ "XXX", "XXX", "XXX", 'X', new ItemStack(ModBlocks.compressedCoalBlock) }));
-		
+		GameRegistry.addRecipe(new ShapedOreRecipe(
+				new ItemStack(ModBlocks.compressedStone), new Object[]
+				{ "XXX", "XXX", "XXX", 'X', new ItemStack(Blocks.stone) }));
+
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModItems.waterExtractor), new Object[]
 				{ "XXX", " XX", 'X', "plankWood" }));
@@ -145,6 +151,22 @@ public class ModCrafting
 				180, new ItemStack(ModItems.metalCrystal, 4, 0),
 				new ItemStack(Items.iron_ingot, 3),
 				new ItemStack(Items.sugar, 2));
+		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 6),
+				420, new ItemStack(ModItems.metalCrystal, 6, 0),
+				new ItemStack(Items.iron_ingot, 3),
+				new ItemStack(Items.glowstone_dust, 3));
+		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 7),
+				600, new ItemStack(ModItems.metalCrystal, 5, 1),
+				new ItemStack(Items.gold_ingot, 6),
+				new ItemStack(Items.dye, 8, 4));
+		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 8),
+				160, new ItemStack(ModItems.metalCrystal, 3, 0),
+				new ItemStack(Items.iron_ingot, 3),
+				new ItemStack(Items.dye, 6, 15));
+		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 9),
+				300, new ItemStack(ModItems.metalCrystal, 5, 0),
+				new ItemStack(Items.iron_ingot, 5),
+				new ItemStack(Items.coal, 4));
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.redstone, 3), 400,
 				new ItemStack(Items.gunpowder, 2),
@@ -161,6 +183,8 @@ public class ModCrafting
 				Blocks.cobblestone.getDefaultState());
 		RockGrinderRecipes.addRecipe(new ItemStack(Blocks.gravel), false,
 				Blocks.sandstone.getDefaultState());
+		RockGrinderRecipes.addRecipe(new ItemStack(Items.flint), false,
+				Blocks.gravel.getDefaultState());
 
 		MinecraftForge.addGrassSeed(new ItemStack(Items.beetroot_seeds), 10);
 		MinecraftForge.addGrassSeed(new ItemStack(Items.melon_seeds), 8);
@@ -169,5 +193,31 @@ public class ModCrafting
 		HeatSources.addHeatSource(Blocks.fire.getDefaultState(), 20);
 		HeatSources.addHeatSource(Blocks.lava.getDefaultState(), 15);
 		HeatSources.addHeatSource(Blocks.torch.getDefaultState(), 5);
+
+		for (int i = 0; i < ModFluids.crystalFluidNames().length; i++)
+		{
+			String ingotName = "ingot" + RandomHelper
+					.capatilizeString(ModFluids.crystalFluidNames()[i]);
+			String oreName = "ore" + RandomHelper
+					.capatilizeString(ModFluids.crystalFluidNames()[i]);
+
+			if (OreDictionary.doesOreNameExist(ingotName)
+					&& OreDictionary.doesOreNameExist(oreName))
+			{
+				ConcentratorRecipes
+						.addRecipe(
+								Block.getBlockFromItem(OreDictionary
+										.getOres(oreName).get(0)
+										.getItem()).getDefaultState(),
+								ModFluids.crystalFluidRarity()[i] * 100,
+								new ItemStack(
+										OreDictionary.getOres(ingotName).get(0)
+												.copy().getItem(),
+										1,
+										OreDictionary.getOres(ingotName).get(0)
+												.copy().getMetadata()),
+								ModBlocks.compressedStone.getDefaultState());
+			}
+		}
 	}
 }

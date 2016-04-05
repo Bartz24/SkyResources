@@ -14,12 +14,12 @@ import com.bartz24.skyresources.registry.ModFluids;
 import com.bartz24.skyresources.registry.ModGuiHandler;
 import com.bartz24.skyresources.registry.ModItems;
 import com.bartz24.skyresources.technology.combustion.CombustionRecipes;
+import com.bartz24.skyresources.technology.concentrator.ConcentratorRecipes;
 import com.bartz24.skyresources.technology.rockgrinder.RockGrinderRecipes;
 import com.bartz24.skyresources.world.WorldTypeSky;
 
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -38,6 +38,7 @@ public class CommonProxy
 		new HeatSources();
 		new InfusionRecipes();
 		new CombustionRecipes();
+		new ConcentratorRecipes();
 		new RockGrinderRecipes();
 		new WorldTypeSky();
 

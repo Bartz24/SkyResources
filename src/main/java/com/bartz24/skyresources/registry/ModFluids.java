@@ -47,19 +47,20 @@ public class ModFluids
 	public static String[] crystalFluidNames()
 	{
 		return new String[]
-		{ "iron", "gold", "copper", "tin", "silver", "zinc" };
+		{ "iron", "gold", "copper", "tin", "silver", "zinc", "nickel",
+				"platinum", "aluminum", "lead" };
 	}
 
 	public static int[] crystalFluidColors()
 	{
 		return new int[]
 		{ 0xFFCC0000, 0xFFCCCC00, 0xFFFF6600, 0xFFBFBFBF, 0xFFD1F4FF,
-				0xFFFFF7C2 };
+				0xFFFFF7C2, 0xFFFAF191, 0xFF44EAFC, 0xFFF5FFFD, 0xFF5B2EFF };
 	}
 
 	public static int[] crystalFluidRarity()
 	{
 		return new int[]
-		{ 4, 6, 2, 4, 5, 3 };
+		{ 4, 6, 2, 4, 5, 3, 6, 8, 4, 5 };
 	}
 }

@@ -26,6 +26,8 @@ tile.skyresources.alchemicalCondenser.name=Alchemical Condenser
 tile.skyresources.BlazePowderBlock.name=Blaze Powder Block
 tile.skyresources.crucible.name=Crucible
 tile.skyresources.fluidDropper.name=Fluid Dropper
+tile.skyresources.compressedStone.name=Hardened Stone
+tile.skyresources.concentrator.name=Concentrator
 
 
 tile.skyresources.ironCrystalFluidBlock.name=Iron Crystal Liquid
@@ -34,6 +36,10 @@ tile.skyresources.copperCrystalFluidBlock.name=Copper Crystal Liquid
 tile.skyresources.tinCrystalFluidBlock.name=Tin Crystal Liquid
 tile.skyresources.silverCrystalFluidBlock.name=Silver Crystal Liquid
 tile.skyresources.zincCrystalFluidBlock.name=Zinc Crystal Liquid
+tile.skyresources.nickelCrystalFluidBlock.name=Nickel Crystal Liquid
+tile.skyresources.platinumCrystalFluidBlock.name=Platinum Crystal Liquid
+tile.skyresources.aluminumCrystalFluidBlock.name=Aluminum Crystal Liquid
+tile.skyresources.leadCrystalFluidBlock.name=Lead Crystal Liquid
 
 
 jei.skyresources.desc.cactusNeedle=Obtained by shift right-clicking on a cactus block.\n\nNOTE: You will take damage.\nNOT CURRENTLY WORKING IN THIS VERSION.\nCRAFTING RECIPE TEMPORARY.
@@ -48,9 +54,12 @@ jei.skyresources.recipe.infusion=Life Infusion
 jei.skyresources.recipe.combustion=Combustion
 jei.skyresources.recipe.rockgrinder=Rock Grinder
 jei.skyresources.recipe.crucible=Crucible
+jei.skyresources.recipe.concentrator=Concentrator
+jei.skyresources.recipe.condenser=Condenser
 
 
 container.skyresources.combustionHeater=Combustion Heater
+container.skyresources.concentrator=Concentrator
 
 name.skyresources.metal.iron=Iron
 name.skyresources.metal.gold=Gold
@@ -58,6 +67,10 @@ name.skyresources.metal.copper=Copper
 name.skyresources.metal.tin=Tin
 name.skyresources.metal.silver=Silver
 name.skyresources.metal.zinc=Zinc
+name.skyresources.metal.nickel=Nickel
+name.skyresources.metal.platinum=Platinum
+name.skyresources.metal.aluminum=Aluminum
+name.skyresources.metal.lead=Lead
 
 itemGroup.skyresources.tabMain=Sky Mod:Main
 itemGroup.skyresources.tabAlchemy=Sky Mod:Alchemy
@@ -81,6 +94,10 @@ fluid.tincrystalfluid=Tin Crystal Fluid
 fluid.coppercrystalfluid=Copper Crystal Fluid
 fluid.silvercrystalfluid=Silver Crystal Fluid
 fluid.zinccrystalfluid=Zinc Crystal Fluid
+fluid.nickelcrystalfluid=Nickel Crystal Fluid
+fluid.platinumcrystalfluid=Platinum Crystal Fluid
+fluid.aluminumcrystalfluid=Aluminum Crystal Fluid
+fluid.leadcrystalfluid=Lead Crystal Fluid
 
 
 

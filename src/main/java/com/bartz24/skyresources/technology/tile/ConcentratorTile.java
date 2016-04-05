@@ -3,15 +3,12 @@ package com.bartz24.skyresources.technology.tile;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bartz24.skyresources.api.RedstoneCompatibleTile;
 import com.bartz24.skyresources.config.ConfigOptions;
-import com.bartz24.skyresources.technology.block.CombustionHeaterBlock;
-import com.bartz24.skyresources.technology.combustion.CombustionRecipe;
-import com.bartz24.skyresources.technology.combustion.CombustionRecipes;
+import com.bartz24.skyresources.technology.concentrator.ConcentratorRecipe;
+import com.bartz24.skyresources.technology.concentrator.ConcentratorRecipes;
 
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -20,6 +17,7 @@ import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
@@ -28,9 +26,10 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 
-public class CombustionHeaterTile extends RedstoneCompatibleTile
+public class ConcentratorTile extends TileEntity
 		implements IInventory, ITickable
 {
+	int timeCondense;
 	private ItemStack[] inventory = new ItemStack[1];
 
 	public int currentHeatValue;
@@ -40,56 +39,14 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile
 
 	private int currentItemBurnTime;
 
-	public List<Material> ValidMaterialsForCrafting()
-	{
-		if (!(worldObj.getBlockState(pos)
-				.getBlock() instanceof CombustionHeaterBlock))
-			return null;
-		IBlockState blockMeta = worldObj.getBlockState(pos);
-		List<Material> mats = new ArrayList<Material>();
-		switch (worldObj.getBlockState(pos).getBlock()
-				.getMetaFromState(blockMeta))
-		{
-		case 0: // WOOD
-			mats.add(Material.wood);
-			break;
-		case 1: // IRON
-			mats.add(Material.clay);
-			mats.add(Material.iron);
-			mats.add(Material.rock);
-			break;
-		}
-		return mats;
-	}
-
 	public int getMaxHeat()
 	{
-		if (!(worldObj.getBlockState(pos)
-				.getBlock() instanceof CombustionHeaterBlock))
-			return 0;
-		CombustionHeaterBlock block = (CombustionHeaterBlock) worldObj
-				.getBlockState(pos).getBlock();
-
-		return block.getMaximumHeat(worldObj.getBlockState(pos));
+		return 1538;
 	}
 
 	public int getMaxHeatPerTick()
 	{
-		if (!(worldObj.getBlockState(pos)
-				.getBlock() instanceof CombustionHeaterBlock))
-			return 0;
-		CombustionHeaterBlock block = (CombustionHeaterBlock) worldObj
-				.getBlockState(pos).getBlock();
-
-		switch (block.getMetaFromState(worldObj.getBlockState(pos)))
-		{
-		case 0:
-			return 8;
-		case 1:
-			return 16;
-		}
-
-		return 0;
+		return 16;
 	}
 
 	public int getHeatPerTick(ItemStack stack)
@@ -97,7 +54,8 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile
 		int fuelTime = TileEntityFurnace.getItemBurnTime(stack);
 		if (fuelTime > 0)
 		{
-			return (int) Math.cbrt((float) fuelTime * ConfigOptions.combustionHeatMultiplier);
+			return (int) Math.cbrt(
+					(float) fuelTime * ConfigOptions.combustionHeatMultiplier * 0.5F);
 		}
 
 		return 0;
@@ -109,7 +67,7 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile
 			return 0;
 
 		return (int) ((float) Math.pow(TileEntityFurnace.getItemBurnTime(stack),
-				0.75F) / getHeatPerTick(stack));
+				0.75F) / (getHeatPerTick(stack) * 2));
 	}
 
 	public boolean isValidFuel(ItemStack stack)
@@ -132,6 +90,7 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile
 		compound.setInteger("fuel", fuelBurnTime);
 		compound.setInteger("item", currentItemBurnTime);
 		compound.setInteger("hpt", heatPerTick);
+		compound.setInteger("time", timeCondense);
 
 		NBTTagList list = new NBTTagList();
 		for (int i = 0; i < this.getSizeInventory(); ++i)
@@ -156,6 +115,7 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile
 		fuelBurnTime = compound.getInteger("fuel");
 		currentItemBurnTime = compound.getInteger("item");
 		heatPerTick = compound.getInteger("hpt");
+		timeCondense = compound.getInteger("time");
 
 		NBTTagList list = compound.getTagList("Items", 10);
 		for (int i = 0; i < list.tagCount(); ++i)
@@ -170,13 +130,7 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile
 	@Override
 	public void update()
 	{
-		if (receivedPulse() && hasValidMultiblock())
-		{
-			craftItem();
-		}
-
-		if (!worldObj.isRemote)
-			prevRedstoneSignal = getRedstoneSignal();
+		craftItem();
 
 		if (fuelBurnTime > 0)
 		{
@@ -216,93 +170,59 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile
 				}
 			}
 
-			if (!hasValidMultiblock())
-			{
-				if (currentHeatValue > 0)
-					currentHeatValue--;
-			}
-
 			if (currentHeatValue > getMaxHeat())
 				currentHeatValue = getMaxHeat();
 		}
 	}
 
-	public boolean hasValidMultiblock()
-	{
-		List<Material> materials = ValidMaterialsForCrafting();
-		if (!materials.contains(
-				worldObj.getBlockState(pos.add(-1, 1, 0)).getMaterial())
-				|| !worldObj.isBlockFullCube(pos.add(-1, 1, 0))
-				|| !materials.contains(
-						worldObj.getBlockState(pos.add(1, 1, 0)).getMaterial())
-				|| !worldObj.isBlockFullCube(pos.add(1, 1, 0))
-				|| !materials.contains(
-						worldObj.getBlockState(pos.add(0, 2, 0)).getMaterial())
-				|| !worldObj.isBlockFullCube(pos.add(0, 2, 0))
-				|| !materials.contains(
-						worldObj.getBlockState(pos.add(0, 1, -1)).getMaterial())
-				|| !worldObj.isBlockFullCube(pos.add(0, 1, -1))
-				|| !materials.contains(
-						worldObj.getBlockState(pos.add(0, 1, 1)).getMaterial())
-				|| !worldObj.isBlockFullCube(pos.add(0, 1, 1))
-				|| !worldObj.isAirBlock(pos.add(0, 1, 0)))
-			return false;
-		return true;
-	}
-
 	void craftItem()
 	{
-		CombustionRecipe recipe = recipeToCraft();
+		ConcentratorRecipe recipe = recipeToCraft();
 		if (recipe != null)
 		{
-			this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL,
-					pos.getX(), pos.getY() + 1.5D, pos.getZ(), 0.0D, 0.0D, 0.0D,
+			this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL,
+					pos.getX() + worldObj.rand.nextFloat(), pos.getY() + 1.5D,
+					pos.getZ() + worldObj.rand.nextFloat(), 0.0D, 0.0D, 0.0D,
 					new int[0]);
-			this.worldObj
-					.playSound((EntityPlayer) null, pos.getX(),
-							pos.getY() + 1.5D, pos.getZ(),
-							SoundEvents.entity_generic_explode,
-							SoundCategory.BLOCKS, 4.0F,
-							(1.0F + (this.worldObj.rand.nextFloat()
-									- this.worldObj.rand.nextFloat()) * 0.2F)
-									* 0.7F);
-
 			if (!worldObj.isRemote)
-			{
-				List<EntityItem> list = worldObj.getEntitiesWithinAABB(
-						EntityItem.class,
-						new AxisAlignedBB(pos.getX(), pos.getY() + 1,
-								pos.getZ(), pos.getX() + 1, pos.getY() + 1.5F,
-								pos.getZ() + 1));
-
-				List<String> itemIgnores = new ArrayList<String>();
-				for (EntityItem i : list)
+			{				
+				if (timeCondense >= 500)
 				{
-					ItemStack stack = i.getEntityItem();
+					List<EntityItem> list = worldObj.getEntitiesWithinAABB(
+							EntityItem.class,
+							new AxisAlignedBB(pos.getX(), pos.getY() + 1,
+									pos.getZ(), pos.getX() + 1,
+									pos.getY() + 1.5F, pos.getZ() + 1));
 
-					for (ItemStack s : recipe.getInputStacks())
+					for (EntityItem i : list)
 					{
-						if (stack.isItemEqual(s) && !itemIgnores
-								.contains(s.getUnlocalizedName()))
+						ItemStack stack = i.getEntityItem();
+						if (stack.isItemEqual(recipe.getInputStacks()))
 						{
-							stack.stackSize -= s.stackSize;
-							itemIgnores.add(s.getUnlocalizedName());
+							stack.stackSize -= recipe
+									.getInputStacks().stackSize;
+							break;
 						}
 					}
+
+					currentHeatValue *= 0.8F;
+
+					IBlockState block = recipe.getOutput();
+
+					worldObj.setBlockState(pos.down(), block);
 				}
-
-				currentHeatValue *= 0.8F;
-
-				ItemStack stack = recipe.getOutput().copy();
-
-				Entity entity = new EntityItem(worldObj, pos.getX() + 0.5F,
-						pos.getY() + 0.5F, pos.getZ() + 0.5F, stack);
-				worldObj.spawnEntityInWorld(entity);
+				else
+				{
+					timeCondense++;
+					currentHeatValue -= 4;				
+				}
 			}
 		}
+		else
+			timeCondense=0;
 	}
 
-	public CombustionRecipe recipeToCraft()
+	public ConcentratorRecipe recipeToCraft()
 	{
 		List<EntityItem> list = worldObj.getEntitiesWithinAABB(EntityItem.class,
 				new AxisAlignedBB(pos.getX(), pos.getY() + 1, pos.getZ(),
@@ -315,10 +235,14 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile
 			items.add(i.getEntityItem());
 		}
 
-		CombustionRecipe recipe = CombustionRecipes.getRecipe(items,
-				currentHeatValue);
-
-		return recipe;
+		for (ItemStack stack : items)
+		{
+			ConcentratorRecipe recipe = ConcentratorRecipes.getRecipe(stack,
+					worldObj.getBlockState(pos.down()), currentHeatValue);
+			if (recipe != null)
+				return recipe;
+		}
+		return null;
 	}
 
 	@Override
@@ -332,7 +256,7 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile
 	@Override
 	public String getName()
 	{
-		return "container.skyresources.combustionHeater";
+		return "container.skyresources.concentrator";
 	}
 
 	@Override
@@ -375,7 +299,6 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile
 					this.setInventorySlotContents(index, null);
 				} else
 				{
-					// Just to show that changes happened
 					this.setInventorySlotContents(index,
 							this.getStackInSlot(index));
 				}
