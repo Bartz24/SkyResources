@@ -24,6 +24,10 @@ public class ModBucketHandler
 					ModFluids.crystalFluids.get(i),
 					new ItemStack(ModItems.crystalFluidBuckets.get(i)),
 					new ItemStack(Items.bucket));
+			FluidContainerRegistry.registerFluidContainer(
+					ModFluids.dirtyCrystalFluids.get(i),
+					new ItemStack(ModItems.dirtyCrystalFluidBuckets.get(i)),
+					new ItemStack(Items.bucket));
 		}
 	}
 
@@ -46,6 +50,15 @@ public class ModBucketHandler
 					event.setResult(Result.ALLOW);
 					event.setFilledBucket(
 							new ItemStack(ModItems.crystalFluidBuckets.get(i)));
+					event.getWorld()
+							.setBlockToAir(event.getTarget().getBlockPos());
+					return;
+				}
+				else if (block == ModBlocks.dirtyCrystalFluidBlocks.get(i))
+				{
+					event.setResult(Result.ALLOW);
+					event.setFilledBucket(
+							new ItemStack(ModItems.dirtyCrystalFluidBuckets.get(i)));
 					event.getWorld()
 							.setBlockToAir(event.getTarget().getBlockPos());
 					return;

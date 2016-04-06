@@ -12,6 +12,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 public class ModFluids
 {
 	public static List<Fluid> crystalFluids;
+	public static List<Fluid> dirtyCrystalFluids;
 
 	public static void registerCrystalFluid()
 	{
@@ -30,6 +31,27 @@ public class ModFluids
 				}
 			};
 			crystalFluids.add(fluid);
+			FluidRegistry.registerFluid(fluid);
+		}
+	}
+	
+	public static void registerDirtyCrystalFluid()
+	{
+		dirtyCrystalFluids = new ArrayList<Fluid>();
+		for (int i = 0; i < crystalFluidNames().length; i++)
+		{
+			final int val = i;
+			Fluid fluid = new Fluid(crystalFluidNames()[i] + "dirtycrystalfluid",
+					getStill("blocks/dirtycrystalfluid_still"),
+					getFlowing("blocks/dirtycrystalfluid_flow"))
+			{
+				@Override
+				public int getColor()
+				{
+					return crystalFluidColors()[val];
+				}
+			};
+			dirtyCrystalFluids.add(fluid);
 			FluidRegistry.registerFluid(fluid);
 		}
 	}

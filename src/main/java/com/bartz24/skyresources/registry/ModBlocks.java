@@ -42,10 +42,12 @@ public class ModBlocks
 	public static Block dryCactus;
 
 	public static List<Block> crystalFluidBlocks;
+	public static List<Block> dirtyCrystalFluidBlocks;
 
 	public static void init()
 	{
 		crystalFluidBlocks = new ArrayList<Block>();
+		dirtyCrystalFluidBlocks = new ArrayList<Block>();
 		cactusFruitNeedle = registerBlock(new TransparentBlock(Material.plants,
 				"cactusFruitNeedle", "CactusFruitNeedle", 0.5F, 0.5F,
 				new AxisAlignedBB(0.3D, 0D, 0.3D, 0.7D, 0.8D, 0.7D),
@@ -93,6 +95,16 @@ public class ModBlocks
 					RandomHelper
 							.capatilizeString(ModFluids.crystalFluidNames()[i])
 							+ "CrystalFluidBlock")));
+		}
+
+		for (int i = 0; i < ModFluids.crystalFluidNames().length; i++)
+		{
+			dirtyCrystalFluidBlocks.add(registerBlock(new FluidCrystalBlock(
+					ModFluids.dirtyCrystalFluids.get(i), Material.water,
+					ModFluids.crystalFluidNames()[i] + "DirtyCrystalFluidBlock",
+					RandomHelper
+							.capatilizeString(ModFluids.crystalFluidNames()[i])
+							+ "DirtyCrystalFluidBlock")));
 		}
 	}
 

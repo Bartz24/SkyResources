@@ -28,8 +28,9 @@ public class CondenserTile extends TileEntity implements ITickable
 	{
 		Random rand = worldObj.rand;
 		Block block = getBlockAbove();
-		if (getBlockAbove() instanceof FluidCrystalBlock)
+		if (block instanceof FluidCrystalBlock)
 		{
+			if(!ModBlocks.crystalFluidBlocks.contains(block)) return;
 			FluidCrystalBlock crystalBlock = (FluidCrystalBlock) block;
 			Fluid fluid = crystalBlock.getFluid();
 			String type = ModFluids

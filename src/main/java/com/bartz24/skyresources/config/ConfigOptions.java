@@ -23,6 +23,8 @@ public class ConfigOptions
 
 	public static int fluidDropperCapacity;
 
+	public static int crystalConcentratorAmount;
+
 	public static void loadConfigThenSave(FMLPreInitializationEvent e)
 	{
 		Configuration config = new Configuration(
@@ -58,6 +60,10 @@ public class ConfigOptions
 		fluidDropperCapacity = config
 				.get("fluidDropper", "Fluid Dropper Capacity", 1000)
 				.getInt(1000);
+		crystalConcentratorAmount = config
+				.get("concentrator", "Crystal Concentrator Amount", 1)
+				.getInt(1);
+
 
 		config.save();
 	}

@@ -41,6 +41,17 @@ tile.skyresources.platinumCrystalFluidBlock.name=Platinum Crystal Liquid
 tile.skyresources.aluminumCrystalFluidBlock.name=Aluminum Crystal Liquid
 tile.skyresources.leadCrystalFluidBlock.name=Lead Crystal Liquid
 
+tile.skyresources.ironDirtyCrystalFluidBlock.name=Dirty Iron Crystal Liquid
+tile.skyresources.goldDirtyCrystalFluidBlock.name=Dirty Gold Crystal Liquid
+tile.skyresources.copperDirtyCrystalFluidBlock.name=Dirty Copper Crystal Liquid
+tile.skyresources.tinDirtyCrystalFluidBlock.name=Dirty Tin Crystal Liquid
+tile.skyresources.silverDirtyCrystalFluidBlock.name=Dirty Silver Crystal Liquid
+tile.skyresources.zincDirtyCrystalFluidBlock.name=Dirty Zinc Crystal Liquid
+tile.skyresources.nickelDirtyCrystalFluidBlock.name=Dirty Nickel Crystal Liquid
+tile.skyresources.platinumDirtyCrystalFluidBlock.name=Dirty Platinum Crystal Liquid
+tile.skyresources.aluminumDirtyCrystalFluidBlock.name=Dirty Aluminum Crystal Liquid
+tile.skyresources.leadDirtyCrystalFluidBlock.name=Dirty Lead Crystal Liquid
+
 
 jei.skyresources.desc.cactusNeedle=Obtained by shift right-clicking on a cactus block.\n\nNOTE: You will take damage.\nNOT CURRENTLY WORKING IN THIS VERSION.\nCRAFTING RECIPE TEMPORARY.
 jei.skyresources.desc.cactusNeedleBloody=Obtained by shift right-clicking with a Cactus Needle.\n\nNOTE: You will take damage.
@@ -72,6 +83,8 @@ name.skyresources.metal.platinum=Platinum
 name.skyresources.metal.aluminum=Aluminum
 name.skyresources.metal.lead=Lead
 
+name.skyresources.dirty=Dirty
+
 itemGroup.skyresources.tabMain=Sky Mod:Main
 itemGroup.skyresources.tabAlchemy=Sky Mod:Alchemy
 itemGroup.skyresources.tabTech=Sky Mod:Technology
@@ -98,6 +111,17 @@ fluid.nickelcrystalfluid=Nickel Crystal Fluid
 fluid.platinumcrystalfluid=Platinum Crystal Fluid
 fluid.aluminumcrystalfluid=Aluminum Crystal Fluid
 fluid.leadcrystalfluid=Lead Crystal Fluid
+
+fluid.irondirtycrystalfluid=Dirty Iron Crystal Fluid
+fluid.golddirtycrystalfluid=Dirty Gold Crystal Fluid
+fluid.tindirtycrystalfluid=Dirty Tin Crystal Fluid
+fluid.copperdirtycrystalfluid=Dirty Copper Crystal Fluid
+fluid.silverdirtycrystalfluid=Dirty Silver Crystal Fluid
+fluid.zincdirtycrystalfluid=Dirty Zinc Crystal Fluid
+fluid.nickeldirtycrystalfluid=Dirty Nickel Crystal Fluid
+fluid.platinumdirtycrystalfluid=Dirty Platinum Crystal Fluid
+fluid.aluminumdirtycrystalfluid=Dirty Aluminum Crystal Fluid
+fluid.leaddirtycrystalfluid=Dirty Lead Crystal Fluid
 
 
 

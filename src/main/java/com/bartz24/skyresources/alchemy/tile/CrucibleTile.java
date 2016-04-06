@@ -168,7 +168,7 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 				{
 					this.fill(null,
 							new FluidStack(
-									ModFluids.crystalFluids.get(currentType),
+									ModFluids.dirtyCrystalFluids.get(currentType),
 									val),
 							true);
 					itemAmount -= val;

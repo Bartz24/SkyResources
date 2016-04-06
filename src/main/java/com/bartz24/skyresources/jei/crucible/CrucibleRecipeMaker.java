@@ -20,7 +20,7 @@ public class CrucibleRecipeMaker
 		{
 			CrucibleRecipeJEI addRecipe = new CrucibleRecipeJEI(
 					new ItemStack(ModItems.metalCrystal, 1, i),
-					new FluidStack(ModFluids.crystalFluids.get(i), ConfigOptions.crucibleCrystalAmount));
+					new FluidStack(ModFluids.dirtyCrystalFluids.get(i), ConfigOptions.crucibleCrystalAmount));
 			recipes.add(addRecipe);
 		}
 

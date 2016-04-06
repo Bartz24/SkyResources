@@ -3,6 +3,7 @@ package com.bartz24.skyresources.registry;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.alchemy.infusion.InfusionRecipes;
 import com.bartz24.skyresources.base.HeatSources;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.technology.combustion.CombustionRecipes;
 import com.bartz24.skyresources.technology.concentrator.ConcentratorRecipes;
 import com.bartz24.skyresources.technology.rockgrinder.RockGrinderRecipes;
@@ -196,27 +197,18 @@ public class ModCrafting
 
 		for (int i = 0; i < ModFluids.crystalFluidNames().length; i++)
 		{
-			String ingotName = "ingot" + RandomHelper
-					.capatilizeString(ModFluids.crystalFluidNames()[i]);
 			String oreName = "ore" + RandomHelper
 					.capatilizeString(ModFluids.crystalFluidNames()[i]);
 
-			if (OreDictionary.doesOreNameExist(ingotName)
-					&& OreDictionary.doesOreNameExist(oreName))
+			if (OreDictionary.doesOreNameExist(oreName))
 			{
-				ConcentratorRecipes
-						.addRecipe(
-								Block.getBlockFromItem(OreDictionary
-										.getOres(oreName).get(0)
-										.getItem()).getDefaultState(),
-								ModFluids.crystalFluidRarity()[i] * 100,
-								new ItemStack(
-										OreDictionary.getOres(ingotName).get(0)
-												.copy().getItem(),
-										1,
-										OreDictionary.getOres(ingotName).get(0)
-												.copy().getMetadata()),
-								ModBlocks.compressedStone.getDefaultState());
+				ConcentratorRecipes.addRecipe(
+						Block.getBlockFromItem(
+								OreDictionary.getOres(oreName).get(0).getItem())
+								.getDefaultState(),
+						ModFluids.crystalFluidRarity()[i] * 100,
+						new ItemStack(ModItems.metalCrystal, ConfigOptions.crystalConcentratorAmount, i),
+						ModBlocks.compressedStone.getDefaultState());
 			}
 		}
 	}

@@ -51,6 +51,9 @@ public class FluidCrystalBlock extends BlockFluidClassic
 		super.updateTick(world, pos, state, rand);
 		if (!world.isRemote)
 		{
+			if (!ModFluids.crystalFluids.contains(this))
+				return;
+			
 			if (this.isSourceBlock(world, pos)
 					&& isNotFlowing(world, pos, state)
 					&& rand.nextInt(ModFluids

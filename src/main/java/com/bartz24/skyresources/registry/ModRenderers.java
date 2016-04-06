@@ -78,6 +78,52 @@ public class ModRenderers
 			ModelBakery.registerItemVariants(
 					ModItems.crystalFluidBuckets.get(i),
 					ModelDynBucket.LOCATION);
+			
+
+			final ModelResourceLocation dirtyFluidModelLocation = new ModelResourceLocation(
+					ModBlocks.dirtyCrystalFluidBlocks.get(i).getRegistryName(),
+					"fluid");
+
+			ModelBakery.registerItemVariants(
+					Item.getItemFromBlock(ModBlocks.dirtyCrystalFluidBlocks.get(i)),
+					dirtyFluidModelLocation);
+
+			ModelLoader.setCustomMeshDefinition(
+					Item.getItemFromBlock(ModBlocks.dirtyCrystalFluidBlocks.get(i)),
+					new ItemMeshDefinition()
+					{
+						@Override
+						public ModelResourceLocation getModelLocation(
+								ItemStack stack)
+						{
+							return dirtyFluidModelLocation;
+						}
+					});
+			ModelLoader.setCustomStateMapper(
+					ModBlocks.dirtyCrystalFluidBlocks.get(i), new StateMapperBase()
+					{
+						@Override
+						protected ModelResourceLocation getModelResourceLocation(
+								IBlockState state)
+						{
+							return dirtyFluidModelLocation;
+						}
+					});
+
+			ModelLoader.setCustomMeshDefinition(
+					ModItems.dirtyCrystalFluidBuckets.get(i),
+					new ItemMeshDefinition()
+					{
+						@Override
+						public ModelResourceLocation getModelLocation(
+								ItemStack stack)
+						{
+							return ModelDynBucket.LOCATION;
+						}
+					});
+			ModelBakery.registerItemVariants(
+					ModItems.dirtyCrystalFluidBuckets.get(i),
+					ModelDynBucket.LOCATION);
 		}
 
 		for (int i = 0; i < AlchemyItemComponent.getNames().size(); i++)
