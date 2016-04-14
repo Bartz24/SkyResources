@@ -7,6 +7,7 @@ import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.alchemy.block.CondenserBlock;
 import com.bartz24.skyresources.alchemy.block.CrucibleBlock;
+import com.bartz24.skyresources.alchemy.block.PurificationVesselBlock;
 import com.bartz24.skyresources.alchemy.fluid.FluidCrystalBlock;
 import com.bartz24.skyresources.base.block.BaseBlock;
 import com.bartz24.skyresources.base.block.BlazePowderBlock;
@@ -32,6 +33,7 @@ public class ModBlocks
 	public static Block crucible;
 	public static Block fluidDropper;
 	public static Block alchemicalCondenser;
+	public static Block purificationVessel;
 
 	public static Block compressedCoalBlock;
 	public static Block compressedCoalBlock2;
@@ -71,6 +73,10 @@ public class ModBlocks
 
 		alchemicalCondenser = registerBlock(new CondenserBlock(
 				"alchemicalCondenser", "AlchemicalCondenser", 2F, 12F));
+		
+		purificationVessel = registerBlock(new PurificationVesselBlock(
+				"purificationVessel", "PurificationVessel", 2F, 12F));
+		
 		
 
 		crucible = registerBlock(

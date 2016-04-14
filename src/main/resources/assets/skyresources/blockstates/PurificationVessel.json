@@ -1,0 +1,10 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "skyresources:PurificationVessel"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}]
+  }
+}

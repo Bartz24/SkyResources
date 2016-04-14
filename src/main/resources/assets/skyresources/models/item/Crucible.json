@@ -1,6 +1,0 @@
-{
-  "parent":"skyresources:item/BaseItemModel",
-  "textures": {
-    "layer0":"skyresources:items/crucible"
-  }
-}

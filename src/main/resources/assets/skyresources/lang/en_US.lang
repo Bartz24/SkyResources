@@ -28,6 +28,7 @@ tile.skyresources.crucible.name=Crucible
 tile.skyresources.fluidDropper.name=Fluid Dropper
 tile.skyresources.compressedStone.name=Hardened Stone
 tile.skyresources.concentrator.name=Concentrator
+tile.skyresources.purificationVessel.name=Purification Vessel
 
 
 tile.skyresources.ironCrystalFluidBlock.name=Iron Crystal Liquid
@@ -67,6 +68,7 @@ jei.skyresources.recipe.rockgrinder=Rock Grinder
 jei.skyresources.recipe.crucible=Crucible
 jei.skyresources.recipe.concentrator=Concentrator
 jei.skyresources.recipe.condenser=Condenser
+jei.skyresources.recipe.purificationVessel=Purification Vessel
 
 
 container.skyresources.combustionHeater=Combustion Heater

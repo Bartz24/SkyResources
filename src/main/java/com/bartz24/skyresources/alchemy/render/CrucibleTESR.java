@@ -1,4 +1,4 @@
-package com.bartz24.skyresources.alchemy.crucible;
+package com.bartz24.skyresources.alchemy.render;
 
 import org.lwjgl.opengl.GL11;
 
@@ -42,7 +42,7 @@ public class CrucibleTESR extends TileEntitySpecialRenderer<CrucibleTile>
 		if (tank.getFluid() != null && tank.getFluid().getFluid() != null)
 		{
 			float height = MathHelper.clamp_float(
-					(float) tank.getFluidAmount() / (float) tank.getCapacity(),
+					(float) tank.getFluidAmount() * 0.65F / (float) tank.getCapacity() + 0.3F,
 					0.3F, 0.95F);
 			if (tank.getFluidAmount() == 0)
 				height = 0;

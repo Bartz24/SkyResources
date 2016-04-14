@@ -15,6 +15,9 @@ import com.bartz24.skyresources.jei.crucible.CrucibleRecipeMaker;
 import com.bartz24.skyresources.jei.infusion.InfusionRecipeCategory;
 import com.bartz24.skyresources.jei.infusion.InfusionRecipeHandler;
 import com.bartz24.skyresources.jei.infusion.InfusionRecipeMaker;
+import com.bartz24.skyresources.jei.purificationVessel.PurificationVesselRecipeCategory;
+import com.bartz24.skyresources.jei.purificationVessel.PurificationVesselRecipeHandler;
+import com.bartz24.skyresources.jei.purificationVessel.PurificationVesselRecipeMaker;
 import com.bartz24.skyresources.jei.rockgrinder.RockGrinderRecipeCategory;
 import com.bartz24.skyresources.jei.rockgrinder.RockGrinderRecipeHandler;
 import com.bartz24.skyresources.jei.rockgrinder.RockGrinderRecipeMaker;
@@ -47,11 +50,12 @@ public class JEIPlugin implements IModPlugin
 				new RockGrinderRecipeCategory(jeiHelpers.getGuiHelper()),
 				new CrucibleRecipeCategory(jeiHelpers.getGuiHelper()),
 				new ConcentratorRecipeCategory(jeiHelpers.getGuiHelper()),
-				new CondenserRecipeCategory(jeiHelpers.getGuiHelper()));
+				new CondenserRecipeCategory(jeiHelpers.getGuiHelper()),
+				new PurificationVesselRecipeCategory(jeiHelpers.getGuiHelper()));
 		registry.addRecipeHandlers(new InfusionRecipeHandler(),
 				new CombustionRecipeHandler(), new RockGrinderRecipeHandler(),
 				new CrucibleRecipeHandler(), new ConcentratorRecipeHandler(),
-				new CondenserRecipeHandler());
+				new CondenserRecipeHandler(), new PurificationVesselRecipeHandler());
 
 		registry.addRecipes(InfusionRecipeMaker.getRecipes());
 		registry.addRecipes(CombustionRecipeMaker.getRecipes());
@@ -59,6 +63,7 @@ public class JEIPlugin implements IModPlugin
 		registry.addRecipes(CrucibleRecipeMaker.getRecipes());
 		registry.addRecipes(ConcentratorRecipeMaker.getRecipes());
 		registry.addRecipes(CondenserRecipeMaker.getRecipes());
+		registry.addRecipes(PurificationVesselRecipeMaker.getRecipes());
 
 		registry.addDescription(new ItemStack(ModItems.alchemyComponent, 1, 0),
 				"jei.skyresources.desc.cactusNeedle");
