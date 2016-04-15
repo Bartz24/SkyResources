@@ -49,6 +49,8 @@ public class CombustionRecipe
 	{		
 		if (inputs.size() == 0)
 			return false;
+		
+		int falseChecks = 0;
 		for (ItemStack i : inputs)
 		{
 			boolean valid = false;
@@ -56,15 +58,16 @@ public class CombustionRecipe
 			{
 				if (i.isItemEqual(i2) && i.stackSize < i2.stackSize)
 				{
-					return false;
+					valid = false;
 				} else if (i.isItemEqual(i2) && i.stackSize >= i2.stackSize)
 					valid = true;
+				
 			}
-			if (!valid)
-				return false;
+			if(!valid)
+			falseChecks++;
 		}
 
-		return true;
+		return falseChecks == 0;
 	}
 
 	boolean heatHighEnough(CombustionRecipe recipe)

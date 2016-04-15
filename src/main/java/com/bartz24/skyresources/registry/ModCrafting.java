@@ -177,7 +177,7 @@ public class ModCrafting
 				new ItemStack(Items.diamond, 1), new ItemStack(Items.flint, 8));
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.wheat_seeds, 1), 50,
-				new ItemStack(Blocks.tallgrass, 1),
+				new ItemStack(Blocks.deadbush, 1),
 				new ItemStack(Items.flint, 2));
 
 		RockGrinderRecipes.addRecipe(new ItemStack(Blocks.sand), false,

@@ -255,7 +255,6 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile
 		CombustionRecipe recipe = recipeToCraft();
 		if (recipe != null)
 		{
-			System.out.println("HERE");
 			this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL,
 					pos.getX(), pos.getY() + 1.5D, pos.getZ(), 0.0D, 0.0D, 0.0D,
 					new int[0]);
