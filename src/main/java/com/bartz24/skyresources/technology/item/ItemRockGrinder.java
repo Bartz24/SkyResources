@@ -37,7 +37,6 @@ public class ItemRockGrinder extends Item
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
 		setRegistryName(registryName);
 		this.setMaxStackSize(1);
-		this.setNoRepair();
 		this.setCreativeTab(ModCreativeTabs.tabTech);
 		this.setHarvestLevel("rockGrinder", material.getHarvestLevel());
 
@@ -61,13 +60,10 @@ public class ItemRockGrinder extends Item
 	{
 		World world = player.worldObj;
 		IBlockState state = world.getBlockState(pos);
+		item.attemptDamageItem(1, this.itemRand);
 
-		if (state.getBlock() == Blocks.cobblestone
-				|| state.getBlock() == Blocks.sandstone)
-		{
 			if (!world.isRemote)
 			{
-
 				RockGrinderRecipe recipe = RockGrinderRecipes.getRecipe(state);
 
 				if (recipe != null && recipe.getOutput() != null)
@@ -78,11 +74,9 @@ public class ItemRockGrinder extends Item
 					world.destroyBlock(pos, false);
 				} else
 					world.destroyBlock(pos, true);
+				return true;
 			}
 
-			item.damageItem(1, player);
-			return true;
-		}
 
 		return false;
 	}

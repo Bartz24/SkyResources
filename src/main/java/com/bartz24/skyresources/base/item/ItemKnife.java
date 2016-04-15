@@ -20,7 +20,7 @@ public class ItemKnife extends Item
 
 	public ItemKnife(Item.ToolMaterial material, String unlocalizedName,
 			String registryName)
-	{
+	{		
 		this.setMaxDamage((int) (material.getMaxUses() * ConfigOptions.knifeBaseDurability));
 		this.damageVsEntity = ConfigOptions.knifeBaseDamage + material.getDamageVsEntity();
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);

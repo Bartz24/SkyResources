@@ -48,7 +48,7 @@ public class ItemInfusionStone extends Item
 		ItemStack offHand = player.getHeldItemOffhand();
 
 		InfusionRecipe recipe = InfusionRecipes.getRecipe(offHand, block,
-				block.getMetaFromState(world.getBlockState(pos)), world);
+				block.getMetaFromState(world.getBlockState(pos)));
 
 		if (recipe != null && recipe.getOutput() != null)
 		{

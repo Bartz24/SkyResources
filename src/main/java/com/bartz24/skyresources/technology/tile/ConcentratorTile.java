@@ -181,7 +181,7 @@ public class ConcentratorTile extends TileEntity
 		if (recipe != null)
 		{
 			this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL,
-					pos.getX() + worldObj.rand.nextFloat(), pos.getY() + 1.5D,
+					pos.getX() + worldObj.rand.nextFloat(), pos.getY() + 1D,
 					pos.getZ() + worldObj.rand.nextFloat(), 0.0D, 0.0D, 0.0D,
 					new int[0]);
 			if (!worldObj.isRemote)

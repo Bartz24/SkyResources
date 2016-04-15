@@ -65,7 +65,7 @@ public class InfusionRecipe
 		inputMeta = inMetadata;
 	}
 
-	public boolean isInputRecipeEqualTo(InfusionRecipe recipe, World world)
+	public boolean isInputRecipeEqualTo(InfusionRecipe recipe)
 	{
 		return stackIsValid(recipe) && blockIsValid(recipe);
 	}

@@ -6,6 +6,7 @@ import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.events.EventHandler;
 import com.bartz24.skyresources.events.ModBucketHandler;
+import com.bartz24.skyresources.minetweaker.MinetweakerPlugin;
 import com.bartz24.skyresources.registry.ModAchievements;
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModCrafting;
@@ -20,6 +21,7 @@ import com.bartz24.skyresources.world.WorldTypeSky;
 
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -30,7 +32,8 @@ public class CommonProxy
 	EventHandler events = new EventHandler();
 
 	public void preInit(FMLPreInitializationEvent e)
-	{
+	{		
+		ConfigOptions.loadConfigThenSave(e);
 		ModFluids.registerCrystalFluid();
 		ModFluids.registerDirtyCrystalFluid();
 		ModBlocks.init();
@@ -46,8 +49,6 @@ public class CommonProxy
 		MinecraftForge.EVENT_BUS.register(events);
 		ModBucketHandler.registerBuckets();
 		MinecraftForge.EVENT_BUS.register(new ModBucketHandler());
-		
-		ConfigOptions.loadConfigThenSave(e);
 	}
 
 	public void init(FMLInitializationEvent e)
@@ -62,5 +63,7 @@ public class CommonProxy
 
 	public void postInit(FMLPostInitializationEvent e)
 	{
+		if(Loader.isModLoaded("MineTweaker3"))
+		MinetweakerPlugin.postInit(e);
 	}
 }

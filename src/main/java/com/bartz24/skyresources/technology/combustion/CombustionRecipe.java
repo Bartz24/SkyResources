@@ -2,6 +2,7 @@ package com.bartz24.skyresources.technology.combustion;
 
 import java.util.List;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import java.util.Arrays;
 
@@ -45,7 +46,7 @@ public class CombustionRecipe
 	}
 
 	boolean stacksAreValid(CombustionRecipe recipe)
-	{
+	{		
 		if (inputs.size() == 0)
 			return false;
 		for (ItemStack i : inputs)
@@ -54,8 +55,9 @@ public class CombustionRecipe
 			for (ItemStack i2 : recipe.inputs)
 			{
 				if (i.isItemEqual(i2) && i.stackSize < i2.stackSize)
+				{
 					return false;
-				else if (i.isItemEqual(i2) && i.stackSize >= i2.stackSize)
+				} else if (i.isItemEqual(i2) && i.stackSize >= i2.stackSize)
 					valid = true;
 			}
 			if (!valid)
