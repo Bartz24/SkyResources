@@ -19,6 +19,7 @@ public class BaseItemComponent extends Item
 
 	public static final String woodHeatComp = "woodHeatComponent";
 	public static final String ironHeatComp = "ironHeatComponent";
+	public static final String plantMatter = "plantMatter";
 
 	public BaseItemComponent()
 	{
@@ -36,6 +37,7 @@ public class BaseItemComponent extends Item
 	{
 		names.add(0, woodHeatComp);
 		names.add(1, ironHeatComp);
+		names.add(2, plantMatter);
 	}
 
 	@Override

@@ -1,10 +1,12 @@
 package com.bartz24.skyresources.config;
 
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class ConfigOptions
 {
+	public static int worldSpawnType;
 	public static int healthRingMaxHealth;
 	public static float healthRingPercentage;
 
@@ -32,6 +34,12 @@ public class ConfigOptions
 
 		config.load();
 
+		Property worldTypeProperty = config.get(Configuration.CATEGORY_GENERAL, "WorldSpawnType", 0);
+		
+		worldTypeProperty.setComment("0=random, 1=sand, 2=snow, 3=dirt (DIRT NOT IMPLEMENTED)");
+		
+		worldSpawnType = worldTypeProperty.getInt();
+		
 		healthRingMaxHealth = config
 				.get("healthRing", "Health Ring Max Health", 100).getInt(100);
 		healthRingPercentage = (float) config

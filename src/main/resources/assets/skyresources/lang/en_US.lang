@@ -2,6 +2,7 @@ item.skyresources.alchemyItemComponent.cactusNeedle.name=Cactus Needle
 item.skyresources.alchemyItemComponent.cactusNeedleBloody.name=Bloody Cactus Needle
 item.skyresources.baseItemComponent.woodHeatComponent.name=Wooden Heat Component
 item.skyresources.baseItemComponent.ironHeatComponent.name=Iron Heat Component
+item.skyresources.baseItemComponent.plantMatter.name=Plant Matter
 item.skyresources.cactusFruit.name=Cactus Fruit
 item.skyresources.cactusCuttingKnife.name=Cactus Cutting Knife
 item.skyresources.ironCuttingKnife.name=Iron Cutting Knife
@@ -15,6 +16,7 @@ item.skyresources.metalCrystal.name=Crystal Shard
 item.skyresources.stoneGrinder.name=Stone Rock Grinder
 item.skyresources.ironGrinder.name=Iron Rock Grinder
 item.skyresources.diamondGrinder.name=Diamond Rock Grinder
+item.skyresources.heavySnowball.name=Heavy Snowball
 
 tile.skyresources.cactusFruitNeedle.name=Cactus Fruit On A Needle
 tile.skyresources.compressedCoalBlock.name=Hardened Coal Block
@@ -54,7 +56,7 @@ tile.skyresources.aluminumDirtyCrystalFluidBlock.name=Dirty Aluminum Crystal Liq
 tile.skyresources.leadDirtyCrystalFluidBlock.name=Dirty Lead Crystal Liquid
 
 
-jei.skyresources.desc.cactusNeedle=Obtained by shift right-clicking on a cactus block.\n\nNOTE: You will take damage.\nNOT CURRENTLY WORKING IN THIS VERSION.\nCRAFTING RECIPE TEMPORARY.
+jei.skyresources.desc.cactusNeedle=Obtained by shift right-clicking on a cactus block.\n\nNOTE: You will take damage.
 jei.skyresources.desc.cactusNeedleBloody=Obtained by shift right-clicking with a Cactus Needle.\n\nNOTE: You will take damage.
 jei.skyresources.desc.dryCactus=Obtained by using a Water Extractor on a cactus.\n\nNOTE: May take a while.
 jei.skyresources.desc.blazePowderBlock=Heat above a heat source to turn into lava.\n\nNOTE: Better heat sources are generally faster.
@@ -92,7 +94,7 @@ itemGroup.skyresources.tabAlchemy=Sky Mod:Alchemy
 itemGroup.skyresources.tabTech=Sky Mod:Technology
 
 generator.skyworld=Sky World
-generator.skyworld.info=Creates a random platform in the sky. NOTE:Only functional spawn is the sand platform.
+generator.skyworld.info=Creates a platform in the sky. NOTE:Based on config option.
 
 achievement.CactusNeedle=Ouch!
 achievement.CactusNeedle.desc=Poke yourself with a cactus needle.

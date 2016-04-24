@@ -11,6 +11,7 @@ import com.bartz24.skyresources.alchemy.item.ItemHealthRing;
 import com.bartz24.skyresources.alchemy.item.ItemInfusionStone;
 import com.bartz24.skyresources.alchemy.item.MetalCrystalItem;
 import com.bartz24.skyresources.base.item.BaseItemComponent;
+import com.bartz24.skyresources.base.item.ItemHeavySnowball;
 import com.bartz24.skyresources.base.item.ItemKnife;
 import com.bartz24.skyresources.base.item.ItemWaterExtractor;
 import com.bartz24.skyresources.base.item.ModItemFood;
@@ -34,6 +35,8 @@ public class ModItems
 	public static Item cactusFruit;
 
 	public static Item waterExtractor;
+	
+	public static Item heavySnowball;
 
 	public static Item cactusKnife;
 	public static Item ironKnife;
@@ -58,6 +61,7 @@ public class ModItems
 		baseComponent = registerItem(new BaseItemComponent());
 		healthRing = registerItem(new ItemHealthRing());
 		waterExtractor = registerItem(new ItemWaterExtractor());
+		heavySnowball = registerItem(new ItemHeavySnowball("heavySnowball", "HeavySnowball"));
 		cactusFruit = registerItem(
 				new ModItemFood(3, 2F, false, "cactusFruit", "CactusFruit"));
 		cactusKnife = registerItem(

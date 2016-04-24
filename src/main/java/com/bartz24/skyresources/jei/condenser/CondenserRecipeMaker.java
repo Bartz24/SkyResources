@@ -30,6 +30,15 @@ public class CondenserRecipeMaker
 						ModBlocks.crystalFluidBlocks.get(i).getDefaultState(),
 						ModFluids.crystalFluidRarity()[i] * ConfigOptions.condenserProcessTimeBase);
 				recipes.add(addRecipe);
+				CondenserRecipeJEI addDirtyRecipe = new CondenserRecipeJEI(
+						OreDictionary
+								.getOres("ingot" + RandomHelper
+										.capatilizeString(ModFluids
+												.crystalFluidNames()[i]))
+								.get(0),
+						ModBlocks.dirtyCrystalFluidBlocks.get(i).getDefaultState(),
+						ModFluids.crystalFluidRarity()[i] * ConfigOptions.condenserProcessTimeBase * 2);
+				recipes.add(addDirtyRecipe);
 			}
 		}
 

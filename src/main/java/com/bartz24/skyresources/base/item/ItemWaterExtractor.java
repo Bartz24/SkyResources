@@ -115,6 +115,22 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 								SoundCategory.NEUTRAL, 1.0F,
 								1.0F / (itemRand.nextFloat() * 0.4F + 1.2F));
 						return;
+					} else if (block == Blocks.snow)
+					{
+						getCompound(stack).setInteger("amount", stack
+								.getTagCompound().getInteger("amount")
+								+ fill(null,
+										new FluidStack(FluidRegistry.WATER, 50),
+										true));
+						tank.getFluid().amount = stack.getTagCompound()
+								.getInteger("amount");
+						world.setBlockToAir(pos);
+						world.playSound((EntityPlayer) null, player.posX,
+								player.posY, player.posZ,
+								SoundEvents.entity_player_splash,
+								SoundCategory.NEUTRAL, 1.0F,
+								1.0F / (itemRand.nextFloat() * 0.4F + 1.2F));
+						return;
 					} else if (world.getBlockState(pos.add(0, 1, 0))
 							.getBlock() == Blocks.water
 							&& getCompound(stack).getInteger("amount") < 1000)

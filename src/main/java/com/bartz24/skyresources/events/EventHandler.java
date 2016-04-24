@@ -1,22 +1,34 @@
 package com.bartz24.skyresources.events;
 
+import java.util.Random;
+
+import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.alchemy.effects.IHealthBoostItem;
+import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
 import com.bartz24.skyresources.base.item.ItemKnife;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModItems;
 import com.bartz24.skyresources.world.WorldTypeSky;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
 public class EventHandler
@@ -48,7 +60,8 @@ public class EventHandler
 				}
 
 				persist.setBoolean("worldCreated", true);
-			}
+			}		
+			
 		}
 	}
 
@@ -88,12 +101,22 @@ public class EventHandler
 
 	private static void createSpawn(World world, BlockPos spawn)
 	{
-		sandSpawn(world, spawn);
+		Random random = world.rand;
+		int type = ConfigOptions.worldSpawnType == 0 ? random.nextInt(2)
+				: ConfigOptions.worldSpawnType - 1;
+		switch (type)
+		{
+		case 0:
+			sandSpawn(world, spawn);
+			break;
+		case 1:
+			snowSpawn(world, spawn);
+			break;
 		/*
-		 * Random random = world.rand; switch (random.nextInt(3)) { case 0:
-		 * sandSpawn(world, spawn); break; case 1: dirtSpawn(world, spawn);
-		 * break; case 2: snowSpawn(world, spawn); break; }
+		 * case 2: dirtSpawn(world, spawn); break;
 		 */
+		}
+
 	}
 
 	private static void sandSpawn(World world, BlockPos spawn)
@@ -149,7 +172,7 @@ public class EventHandler
 				world.setBlockState(pos.down(4),
 						Blocks.bedrock.getDefaultState());
 
-				if (x == -1 && z == 1)
+				if ((x == -1 && z == 1) || (x == 1 && z == 1))
 					world.setBlockState(pos.down(2),
 							Blocks.pumpkin.getDefaultState());
 				else
@@ -159,25 +182,62 @@ public class EventHandler
 		}
 	}
 
-	// TODO Not currently implemented
 	@SubscribeEvent
-	public void onPlayerInteract(PlayerInteractEvent event)
+	public void onPlayerRightClick(RightClickBlock event)
 	{
-		/*
-		 * ItemStack equip =
-		 * event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND); if
-		 * (event.getPos() == null) return; Block block =
-		 * event.getWorld().getBlockState(event.pos).getBlock(); if
-		 * (event.getAction() == Action.RIGHT_CLICK_BLOCK && equip == null &&
-		 * event.getEntityPlayer().isSneaking()) { if (block == Blocks.cactus) {
-		 * if (event.getWorld().isRemote)
-		 * event.getEntityPlayer().swingArm(EnumHand.MAIN_HAND); else {
-		 * event.getEntityPlayer() .dropPlayerItemWithRandomChoice( new
-		 * ItemStack( ModItems.alchemyComponent, 1, ((AlchemyItemComponent)
-		 * ModItems.alchemyComponent) .getNames().indexOf( "cactusNeedle")),
-		 * false); event.getEntityPlayer().attackEntityFrom(DamageSource.cactus,
-		 * 2); } } }
-		 */
+		if (!event.getWorld().isRemote)
+		{
+			ItemStack equip = event.getEntityPlayer()
+					.getHeldItem(event.getHand());
+			if (event.getPos() == null)
+				return;
+			Block block = event.getWorld().getBlockState(event.getPos())
+					.getBlock();
+			if (block != null && equip == null
+					&& event.getEntityPlayer().isSneaking())
+			{
+				if (block == Blocks.cactus)
+				{
+					RandomHelper.spawnItemInWorld(event.getWorld(),
+							new ItemStack(ModItems.alchemyComponent, 1,
+									((AlchemyItemComponent) ModItems.alchemyComponent)
+											.getNames()
+											.indexOf("cactusNeedle")),
+							event.getEntityPlayer().getPosition());
+					event.getEntityPlayer()
+							.attackEntityFrom(DamageSource.cactus, 4);
+				} else if (block == Blocks.snow_layer)
+				{
+					RandomHelper.spawnItemInWorld(event.getWorld(),
+							new ItemStack(Items.snowball), event.getPos());
+					event.getEntityPlayer().addPotionEffect(
+							new PotionEffect(MobEffects.digSlowdown,
+									event.getWorld().rand.nextInt(750) + 750,
+									event.getWorld().rand.nextInt(4)));
+
+					int meta = Blocks.snow_layer.getMetaFromState(
+							event.getWorld().getBlockState(event.getPos()));
+
+					if (meta <= 1)
+						event.getWorld().setBlockToAir(event.getPos());
+					else
+						event.getWorld().setBlockState(event.getPos(),
+								Blocks.snow_layer.getStateFromMeta(meta - 2));
+				} else if (block == Blocks.snow)
+				{
+					RandomHelper.spawnItemInWorld(event.getWorld(),
+							new ItemStack(Items.snowball), event.getPos());
+					event.getEntityPlayer().addPotionEffect(
+							new PotionEffect(MobEffects.digSlowdown,
+									event.getWorld().rand.nextInt(750) + 750,
+									event.getWorld().rand.nextInt(4)));
+
+					event.getWorld().setBlockState(event.getPos(),
+							Blocks.snow_layer.getStateFromMeta(5));
+				}
+			}
+		}
+
 	}
 
 	@SubscribeEvent
@@ -242,4 +302,12 @@ public class EventHandler
 		}
 
 	}
+
+	@SubscribeEvent
+	public void onPlayerJoinEvent(PlayerLoggedInEvent event)
+	{
+		event.player.addChatMessage(new TextComponentString(
+				"Need help or a guide? Go to §9https://github.com/Bartz24/SkyResources/wiki"));
+	}
+
 }

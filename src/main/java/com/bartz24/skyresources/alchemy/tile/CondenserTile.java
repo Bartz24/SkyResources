@@ -30,12 +30,20 @@ public class CondenserTile extends TileEntity implements ITickable
 		Block block = getBlockAbove();
 		if (block instanceof FluidCrystalBlock)
 		{
-			if(!ModBlocks.crystalFluidBlocks.contains(block)) return;
 			FluidCrystalBlock crystalBlock = (FluidCrystalBlock) block;
 			Fluid fluid = crystalBlock.getFluid();
-			String type = ModFluids
-					.crystalFluidNames()[ModBlocks.crystalFluidBlocks
-							.indexOf(crystalBlock)];
+			String type = "";
+			boolean clean = false;
+			if (ModBlocks.crystalFluidBlocks.contains(block))
+			{
+				type = ModFluids
+						.crystalFluidNames()[ModBlocks.crystalFluidBlocks
+								.indexOf(crystalBlock)];
+				clean = true;
+			} else if (ModBlocks.dirtyCrystalFluidBlocks.contains(block))
+				type = ModFluids
+						.crystalFluidNames()[ModBlocks.dirtyCrystalFluidBlocks
+								.indexOf(crystalBlock)];
 
 			String oreDictCheck = "ingot" + RandomHelper.capatilizeString(type);
 
@@ -48,15 +56,14 @@ public class CondenserTile extends TileEntity implements ITickable
 			{
 				this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL,
 						pos.getX() + rand.nextFloat(), pos.getY() + 1.5D,
-						pos.getZ() + rand.nextFloat(), 0.0D, 0.0D, 0.0D,
-						new int[0]);
+						pos.getZ() + rand.nextFloat(), 0.0D, 0.0D, 0.0D);
 				if (!worldObj.isRemote)
 					timeCondense += HeatSources.getHeatSourceValue(
 							worldObj.getBlockState(pos.down()));
 			} else if (!worldObj.isRemote)
 				timeCondense = 0;
 
-			if (timeCondense >= getTimeToCondense(crystalBlock))
+			if (timeCondense >= getTimeToCondense(crystalBlock, clean))
 			{
 				worldObj.setBlockToAir(pos.add(0, 1, 0));
 				ItemStack stack = OreDictionary.getOres(oreDictCheck).get(0)
@@ -70,8 +77,12 @@ public class CondenserTile extends TileEntity implements ITickable
 
 	}
 
-	public int getTimeToCondense(FluidCrystalBlock block)
+	public int getTimeToCondense(FluidCrystalBlock block, boolean clean)
 	{
+		if (!clean)
+			return ModFluids.crystalFluidRarity()[ModBlocks.dirtyCrystalFluidBlocks
+					.indexOf(block)] * ConfigOptions.condenserProcessTimeBase * 2;
+
 		return ModFluids.crystalFluidRarity()[ModBlocks.crystalFluidBlocks
 				.indexOf(block)] * ConfigOptions.condenserProcessTimeBase;
 	}

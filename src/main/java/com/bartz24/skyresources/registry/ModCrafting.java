@@ -50,13 +50,10 @@ public class ModCrafting
 				{ "X", "Y", 'X', new ItemStack(ModItems.cactusFruit), 'Y', new ItemStack(ModItems.alchemyComponent, 1, 0) });
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModItems.sandstoneInfusionStone), new Object[]
-				{ "X", "Y", 'X', new ItemStack(ModItems.alchemyComponent, 1, 0), 'Y', "sandstone" }));
+				{ "X", "Y", 'X', new ItemStack(ModItems.alchemyComponent, 1, 0), 'Y', new ItemStack(Blocks.sandstone, 1, OreDictionary.WILDCARD_VALUE) }));
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModItems.redSandstoneInfusionStone), new Object[]
 				{ "X", "Y", 'X', new ItemStack(ModItems.alchemyComponent, 1, 0), 'Y', new ItemStack(Blocks.red_sandstone, 1, OreDictionary.WILDCARD_VALUE) }));
-		GameRegistry.addRecipe(new ItemStack(ModItems.alchemyComponent, 8, 0),
-				new Object[]
-				{ "X", 'X', new ItemStack(Blocks.cactus) });
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModItems.baseComponent, 1, 0), new Object[]
 				{ "XXX", "XYX", "XXX", 'X', "plankWood", 'Y', Items.gunpowder }));
@@ -79,11 +76,32 @@ public class ModCrafting
 				new ItemStack(ModBlocks.alchemicalCondenser), new Object[]
 				{ "XXX", "X X", "XYX", 'X', "cobblestone", 'Y', new ItemStack(ModItems.baseComponent, 1, 0) }));
 		GameRegistry.addRecipe(new ShapedOreRecipe(
+				new ItemStack(ModBlocks.concentrator), new Object[]
+				{ "XXX", "XYX", "XZX", 'X', "ingotIron", 'Y', new ItemStack(ModBlocks.alchemicalCondenser), 'Z', new ItemStack(Items.diamond) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModBlocks.compressedCoalBlock2), new Object[]
 				{ "XXX", "XXX", "XXX", 'X', new ItemStack(ModBlocks.compressedCoalBlock) }));
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModBlocks.compressedStone), new Object[]
 				{ "XXX", "XXX", "XXX", 'X', new ItemStack(Blocks.stone) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(
+				new ItemStack(ModItems.heavySnowball, 4), new Object[]
+				{ "XX", "XX", 'X', new ItemStack(Blocks.snow) }));
+		GameRegistry.addRecipe(new ShapelessOreRecipe(
+				new ItemStack(Blocks.dirt, 1, 1), new Object[]
+				{ new ItemStack(Blocks.snow), new ItemStack(Blocks.snow), new ItemStack(Items.rotten_flesh), new ItemStack(Items.rotten_flesh) }));
+		GameRegistry.addRecipe(new ShapelessOreRecipe(
+				new ItemStack(Blocks.sapling, 1, 1), new Object[]
+				{ new ItemStack(Items.pumpkin_seeds), new ItemStack(Items.pumpkin_seeds), new ItemStack(Blocks.snow), new ItemStack(Items.dye, 1, 15) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(
+				new ItemStack(ModItems.baseComponent, 4, 2), new Object[]
+				{ " X ", "XXX", " X ", 'X', "treeSapling" }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(
+				new ItemStack(ModItems.baseComponent, 4, 2), new Object[]
+				{ " X ", "XXX", " X ", 'X', "cropWheat" }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(
+				new ItemStack(ModItems.baseComponent, 4, 2), new Object[]
+				{ " X ", "XXX", " X ", 'X', "treeLeaves" }));
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModItems.waterExtractor), new Object[]
@@ -93,6 +111,9 @@ public class ModCrafting
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModBlocks.fluidDropper), new Object[]
 				{ "XXX", "X X", "X X", 'X', "cobblestone" }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(
+				new ItemStack(ModBlocks.purificationVessel), new Object[]
+				{ "XXX", "XYX", "XXX", 'X', "blockGlass", 'Y', Blocks.heavy_weighted_pressure_plate }));
 
 		OreDictionary.registerOre("toolCuttingKnife", new ItemStack(
 				ModItems.cactusKnife, 1, OreDictionary.WILDCARD_VALUE));
@@ -179,6 +200,8 @@ public class ModCrafting
 		CombustionRecipes.addRecipe(new ItemStack(Items.wheat_seeds, 1), 50,
 				new ItemStack(Blocks.deadbush, 1),
 				new ItemStack(Items.flint, 2));
+		CombustionRecipes.addRecipe(new ItemStack(Blocks.dirt), 150,
+				new ItemStack(ModItems.baseComponent, 12, 2));
 
 		RockGrinderRecipes.addRecipe(new ItemStack(Blocks.sand), false,
 				Blocks.cobblestone.getDefaultState());
@@ -207,7 +230,8 @@ public class ModCrafting
 								OreDictionary.getOres(oreName).get(0).getItem())
 								.getDefaultState(),
 						ModFluids.crystalFluidRarity()[i] * 100,
-						new ItemStack(ModItems.metalCrystal, ConfigOptions.crystalConcentratorAmount, i),
+						new ItemStack(ModItems.metalCrystal,
+								ConfigOptions.crystalConcentratorAmount, i),
 						ModBlocks.compressedStone.getDefaultState());
 			}
 		}
