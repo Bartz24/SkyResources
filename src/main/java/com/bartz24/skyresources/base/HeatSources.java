@@ -27,4 +27,9 @@ public class HeatSources
 	{
 		return validHeatSources.get(blockState);
 	}
+	
+	public static void removeHeatSource(IBlockState blockState)
+	{
+		validHeatSources.remove(blockState);
+	}
 }

@@ -1,13 +1,10 @@
 {
     "ambientocclusion": false,
     "textures": {
-        "particle": "blocks/glass",
-        "top": "skyresources:blocks/vesselTop",
-        "bottom": "skyresources:blocks/vesselTop",
-        "side": "skyresources:blocks/vesselSide",
-        "inside": "blocks/glass",
-        "topInside": "blocks/iron_block",
-        "pipe": "blocks/cauldron_inner"
+        "particle": "blocks/snow",
+        "top": "blocks/snow",
+        "bottom": "blocks/snow",
+        "side": "blocks/snow"
     },
     "elements": [
         {   "from": [ 2, 0, 2 ],
@@ -25,7 +22,7 @@
             "to": [ 13, 1, 13 ],
             "faces": {
                 "down":  { "texture": "#bottom" },
-                "up":    { "texture": "#inside", "cullface": "up" },
+                "up":    { "texture": "#top", "cullface": "up" },
                 "north": { "texture": "#side", "cullface": "north" },
                 "south": { "texture": "#side", "cullface": "south" },
                 "west":  { "texture": "#side", "cullface": "west" },
@@ -36,22 +33,11 @@
             "to": [ 13, 16, 13 ],
             "faces": {
                 "down":  { "texture": "#bottom" },
-                "up":    { "texture": "#inside", "cullface": "up" },
+                "up":    { "texture": "#top", "cullface": "up" },
                 "north": { "texture": "#side", "cullface": "north" },
                 "south": { "texture": "#side", "cullface": "south" },
                 "west":  { "texture": "#side", "cullface": "west" },
                 "east":  { "texture": "#side", "cullface": "east" }
-            }
-        },
-        {   "from": [ 7.5, 1, 7.5 ],
-            "to": [ 8.5, 12, 8.5 ],
-            "faces": {
-                "down":  { "texture": "#pipe" },
-                "up":    { "texture": "#pipe", "cullface": "up" },
-                "north": { "texture": "#pipe", "cullface": "north" },
-                "south": { "texture": "#pipe", "cullface": "south" },
-                "west":  { "texture": "#pipe", "cullface": "west" },
-                "east":  { "texture": "#pipe", "cullface": "east" }
             }
         },
         {   "from": [ 13, 0, 2 ],
@@ -87,15 +73,15 @@
                 "east":  { "texture": "#side", "cullface": "east" }
             }
         },
-        {   "from": [ 3, 10, 3 ],
-            "to": [ 13, 11, 13 ],
+        {   "from": [ 5, 9, 1 ],
+            "to": [ 6, 12, 2 ],
             "faces": {
-                "down":  { "texture": "#topInside" },
-                "up":    { "texture": "#topInside", "cullface": "up" },
-                "north": { "texture": "#topInside", "cullface": "north" },
-                "south": { "texture": "#topInside", "cullface": "south" },
-                "west":  { "texture": "#topInside", "cullface": "west" },
-                "east":  { "texture": "#topInside", "cullface": "east" }
+                "down":  { "texture": "#bottom" },
+                "up":    { "texture": "#top", "cullface": "up" },
+                "north": { "texture": "#side", "cullface": "north" },
+                "south": { "texture": "#side", "cullface": "south" },
+                "west":  { "texture": "#side", "cullface": "west" },
+                "east":  { "texture": "#side", "cullface": "east" }
             }
         }
     ],

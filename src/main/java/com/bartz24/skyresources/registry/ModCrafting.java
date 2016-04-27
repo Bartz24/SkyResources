@@ -6,6 +6,7 @@ import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.technology.combustion.CombustionRecipes;
 import com.bartz24.skyresources.technology.concentrator.ConcentratorRecipes;
+import com.bartz24.skyresources.technology.freezer.FreezerRecipes;
 import com.bartz24.skyresources.technology.rockgrinder.RockGrinderRecipes;
 
 import net.minecraft.block.Block;
@@ -209,6 +210,8 @@ public class ModCrafting
 				Blocks.sandstone.getDefaultState());
 		RockGrinderRecipes.addRecipe(new ItemStack(Items.flint), false,
 				Blocks.gravel.getDefaultState());
+
+		//FreezerRecipes.addRecipe(new ItemStack(Items.diamond, 4), 600, new ItemStack(Items.iron_ingot, 2));
 
 		MinecraftForge.addGrassSeed(new ItemStack(Items.beetroot_seeds), 10);
 		MinecraftForge.addGrassSeed(new ItemStack(Items.melon_seeds), 8);

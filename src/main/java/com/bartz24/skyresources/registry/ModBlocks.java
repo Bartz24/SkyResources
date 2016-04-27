@@ -14,6 +14,7 @@ import com.bartz24.skyresources.base.block.BlazePowderBlock;
 import com.bartz24.skyresources.base.block.BlockDryCactus;
 import com.bartz24.skyresources.base.block.ItemBlockMeta;
 import com.bartz24.skyresources.base.block.TransparentBlock;
+import com.bartz24.skyresources.technology.block.BlockMiniFreezer;
 import com.bartz24.skyresources.technology.block.CombustionHeaterBlock;
 import com.bartz24.skyresources.technology.block.ConcentratorBlock;
 import com.bartz24.skyresources.technology.block.FluidDropperBlock;
@@ -21,6 +22,7 @@ import com.bartz24.skyresources.technology.block.FluidDropperBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -34,6 +36,7 @@ public class ModBlocks
 	public static Block fluidDropper;
 	public static Block alchemicalCondenser;
 	public static Block purificationVessel;
+	public static Block miniFreezer;
 
 	public static Block compressedCoalBlock;
 	public static Block compressedCoalBlock2;
@@ -77,6 +80,8 @@ public class ModBlocks
 		purificationVessel = registerBlock(new PurificationVesselBlock(
 				"purificationVessel", "PurificationVessel", 2F, 12F));
 		
+		miniFreezer = registerBlock(new BlockMiniFreezer(
+				"miniFreezer", "MiniFreezer", 0.5F, 0.5F));		
 		
 
 		crucible = registerBlock(

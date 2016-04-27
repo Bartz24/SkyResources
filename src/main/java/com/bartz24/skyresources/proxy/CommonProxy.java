@@ -16,6 +16,7 @@ import com.bartz24.skyresources.registry.ModGuiHandler;
 import com.bartz24.skyresources.registry.ModItems;
 import com.bartz24.skyresources.technology.combustion.CombustionRecipes;
 import com.bartz24.skyresources.technology.concentrator.ConcentratorRecipes;
+import com.bartz24.skyresources.technology.freezer.FreezerRecipes;
 import com.bartz24.skyresources.technology.rockgrinder.RockGrinderRecipes;
 import com.bartz24.skyresources.world.WorldTypeSky;
 
@@ -44,6 +45,7 @@ public class CommonProxy
 		new CombustionRecipes();
 		new ConcentratorRecipes();
 		new RockGrinderRecipes();
+		new FreezerRecipes();
 		new WorldTypeSky();
 
 		MinecraftForge.EVENT_BUS.register(events);

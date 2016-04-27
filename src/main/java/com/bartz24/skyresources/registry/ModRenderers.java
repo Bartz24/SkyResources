@@ -161,6 +161,7 @@ public class ModRenderers
 		registerItemRenderer(
 				Item.getItemFromBlock(ModBlocks.alchemicalCondenser));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.purificationVessel));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.miniFreezer));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.crucible));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.concentrator));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.fluidDropper));

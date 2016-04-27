@@ -12,6 +12,9 @@ import com.bartz24.skyresources.jei.condenser.CondenserRecipeMaker;
 import com.bartz24.skyresources.jei.crucible.CrucibleRecipeCategory;
 import com.bartz24.skyresources.jei.crucible.CrucibleRecipeHandler;
 import com.bartz24.skyresources.jei.crucible.CrucibleRecipeMaker;
+import com.bartz24.skyresources.jei.freezer.FreezerRecipeCategory;
+import com.bartz24.skyresources.jei.freezer.FreezerRecipeHandler;
+import com.bartz24.skyresources.jei.freezer.FreezerRecipeMaker;
 import com.bartz24.skyresources.jei.infusion.InfusionRecipeCategory;
 import com.bartz24.skyresources.jei.infusion.InfusionRecipeHandler;
 import com.bartz24.skyresources.jei.infusion.InfusionRecipeMaker;
@@ -51,11 +54,14 @@ public class JEIPlugin implements IModPlugin
 				new CrucibleRecipeCategory(jeiHelpers.getGuiHelper()),
 				new ConcentratorRecipeCategory(jeiHelpers.getGuiHelper()),
 				new CondenserRecipeCategory(jeiHelpers.getGuiHelper()),
-				new PurificationVesselRecipeCategory(jeiHelpers.getGuiHelper()));
+				new PurificationVesselRecipeCategory(jeiHelpers.getGuiHelper()),
+				new FreezerRecipeCategory(jeiHelpers.getGuiHelper()));
 		registry.addRecipeHandlers(new InfusionRecipeHandler(),
 				new CombustionRecipeHandler(), new RockGrinderRecipeHandler(),
 				new CrucibleRecipeHandler(), new ConcentratorRecipeHandler(),
-				new CondenserRecipeHandler(), new PurificationVesselRecipeHandler());
+				new CondenserRecipeHandler(),
+				new PurificationVesselRecipeHandler(),
+				new FreezerRecipeHandler());
 
 		registry.addRecipes(InfusionRecipeMaker.getRecipes());
 		registry.addRecipes(CombustionRecipeMaker.getRecipes());
@@ -64,6 +70,7 @@ public class JEIPlugin implements IModPlugin
 		registry.addRecipes(ConcentratorRecipeMaker.getRecipes());
 		registry.addRecipes(CondenserRecipeMaker.getRecipes());
 		registry.addRecipes(PurificationVesselRecipeMaker.getRecipes());
+		registry.addRecipes(FreezerRecipeMaker.getRecipes());
 
 		registry.addDescription(new ItemStack(ModItems.alchemyComponent, 1, 0),
 				"jei.skyresources.desc.cactusNeedle");

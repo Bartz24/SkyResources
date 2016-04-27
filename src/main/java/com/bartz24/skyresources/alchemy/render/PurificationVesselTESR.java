@@ -67,6 +67,7 @@ public class PurificationVesselTESR
 			int color;
 			color = tank.getFluid().getFluid().getColor(tank.getFluid());
 
+			GL11.glEnable(GL11.GL_BLEND);
 			RandomHelper.setGLColorFromIntPlusAlpha(color);
 
 			renderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
@@ -124,6 +125,7 @@ public class PurificationVesselTESR
 			renderer.pos(13d / 16d, 1F / 16F, 13d / 16d).tex(maxU, maxV)
 					.endVertex();
 			tessellator.draw();
+			GL11.glDisable(GL11.GL_BLEND);
 
 			GlStateManager.popMatrix();
 		}
@@ -159,6 +161,7 @@ public class PurificationVesselTESR
 			int color;
 			color = tank.getFluid().getFluid().getColor(tank.getFluid());
 
+			GL11.glEnable(GL11.GL_BLEND);
 			RandomHelper.setGLColorFromIntPlusAlpha(color);
 
 			renderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
@@ -208,6 +211,7 @@ public class PurificationVesselTESR
 					.endVertex();
 			tessellator.draw();
 
+			GL11.glDisable(GL11.GL_BLEND);
 			GlStateManager.popMatrix();
 		}
 	}

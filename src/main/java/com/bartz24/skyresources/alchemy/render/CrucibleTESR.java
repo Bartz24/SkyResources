@@ -64,6 +64,7 @@ public class CrucibleTESR extends TileEntitySpecialRenderer<CrucibleTile>
 			int color;
 			color = tank.getFluid().getFluid().getColor(tank.getFluid());
 
+			GL11.glEnable(GL11.GL_BLEND);
 			RandomHelper.setGLColorFromIntPlusAlpha(color);
 
 			renderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
@@ -72,6 +73,7 @@ public class CrucibleTESR extends TileEntitySpecialRenderer<CrucibleTile>
 			renderer.pos(0, height, 0).tex(minU, minV).endVertex();
 			renderer.pos(0, height, 1.0d).tex(minU, maxV).endVertex();
 			tessellator.draw();
+			GL11.glDisable(GL11.GL_BLEND);
 
 			GlStateManager.popMatrix();
 		}

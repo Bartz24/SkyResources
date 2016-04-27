@@ -6,6 +6,7 @@ import com.bartz24.skyresources.alchemy.tile.PurificationVesselTile;
 import com.bartz24.skyresources.technology.tile.CombustionHeaterTile;
 import com.bartz24.skyresources.technology.tile.ConcentratorTile;
 import com.bartz24.skyresources.technology.tile.FluidDropperTile;
+import com.bartz24.skyresources.technology.tile.FreezerTile;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -20,6 +21,7 @@ public final class ModEntities
 		GameRegistry.registerTileEntity(CrucibleTile.class, "crucibleTile");
 		GameRegistry.registerTileEntity(ConcentratorTile.class, "concentratorTile");
 		GameRegistry.registerTileEntity(PurificationVesselTile.class, "purificationVesselTile");
+		GameRegistry.registerTileEntity(FreezerTile.class, "freezerTile");
 		
 	}
 }
