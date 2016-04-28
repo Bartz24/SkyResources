@@ -13,6 +13,7 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 
 public class GuiConcentrator extends GuiContainer
 {
@@ -68,8 +69,8 @@ public class GuiConcentrator extends GuiContainer
 			int k = (this.width - this.xSize) / 2;
 			int l = (this.height - this.ySize) / 2;
 			List list = new ArrayList();
-			list.add("§cCurrent Temp: " + tile.getField(2));
-			list.add("§7Maximum Temp: " + tile.getMaxHeat());
+			list.add(TextFormatting.RED.toString() + "Current Temp: " + tile.getField(2));
+			list.add(TextFormatting.GRAY.toString() +"Maximum Temp: " + tile.getMaxHeat());
 			this.drawHoveringText(list, mouseX - k, mouseY - l,
 					fontRendererObj);
 		} 

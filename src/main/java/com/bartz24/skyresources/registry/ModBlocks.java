@@ -41,6 +41,8 @@ public class ModBlocks
 	public static Block compressedCoalBlock;
 	public static Block compressedCoalBlock2;
 	public static Block compressedStone;
+	public static Block heavySnow;
+	public static Block heavySnow2;
 	
 	public static Block blazePowderBlock;
 
@@ -60,7 +62,7 @@ public class ModBlocks
 		
 		compressedStone = registerBlock(
 				new BaseBlock(Material.rock, "compressedStone",
-						"compressedStone", 6F, 6F, SoundType.STONE));
+						"CompressedStone", 6F, 6F, SoundType.STONE));
 
 		compressedCoalBlock = registerBlock(
 				new BaseBlock(Material.rock, "compressedCoalBlock",
@@ -73,6 +75,12 @@ public class ModBlocks
 		blazePowderBlock = registerBlock(
 				new BlazePowderBlock(Material.clay, "blazePowderBlock",
 						"BlazePowderBlock", 0.5F, 0.5F, SoundType.GROUND));
+		heavySnow = registerBlock(
+				new BaseBlock(Material.clay, "heavySnow",
+						"HeavySnow", 0.5F, 0.5F, SoundType.SNOW));
+		heavySnow2 = registerBlock(
+				new BaseBlock(Material.clay, "heavySnow2",
+						"HeavySnow2", 1F, 1F, SoundType.SNOW));
 
 		alchemicalCondenser = registerBlock(new CondenserBlock(
 				"alchemicalCondenser", "AlchemicalCondenser", 2F, 12F));

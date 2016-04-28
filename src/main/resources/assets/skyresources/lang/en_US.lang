@@ -32,6 +32,8 @@ tile.skyresources.compressedStone.name=Hardened Stone
 tile.skyresources.concentrator.name=Concentrator
 tile.skyresources.purificationVessel.name=Purification Vessel
 tile.skyresources.miniFreezer.name=Mini Freezer
+tile.skyresources.heavySnow.name=Heavy Snow
+tile.skyresources.heavySnow2.name=Very Heavy Snow
 
 
 tile.skyresources.ironCrystalFluidBlock.name=Iron Crystal Liquid

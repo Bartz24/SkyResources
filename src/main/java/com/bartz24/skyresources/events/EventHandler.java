@@ -23,6 +23,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
@@ -307,7 +308,7 @@ public class EventHandler
 	public void onPlayerJoinEvent(PlayerLoggedInEvent event)
 	{
 		event.player.addChatMessage(new TextComponentString(
-				"Need help or a guide? Go to §9https://github.com/Bartz24/SkyResources/wiki"));
+				"Need help or a guide? Go to " + TextFormatting.BLUE.toString() + "https://github.com/Bartz24/SkyResources/wiki"));
 	}
 
 }

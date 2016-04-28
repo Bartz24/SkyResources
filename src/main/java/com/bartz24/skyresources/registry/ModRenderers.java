@@ -157,6 +157,10 @@ public class ModRenderers
 				Item.getItemFromBlock(ModBlocks.compressedCoalBlock2));
 		registerItemRenderer(
 				Item.getItemFromBlock(ModBlocks.compressedStone));
+		registerItemRenderer(
+				Item.getItemFromBlock(ModBlocks.heavySnow));
+		registerItemRenderer(
+				Item.getItemFromBlock(ModBlocks.heavySnow2));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.dryCactus));
 		registerItemRenderer(
 				Item.getItemFromBlock(ModBlocks.alchemicalCondenser));

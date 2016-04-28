@@ -74,6 +74,12 @@ public class ModCrafting
 				new ItemStack(ModBlocks.blazePowderBlock), new Object[]
 				{ "XXX", "XXX", "XXX", 'X', new ItemStack(Items.blaze_powder) }));
 		GameRegistry.addRecipe(new ShapedOreRecipe(
+				new ItemStack(ModBlocks.heavySnow), new Object[]
+				{ "XX", "XX", 'X', new ItemStack(ModItems.heavySnowball) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(
+				new ItemStack(ModBlocks.miniFreezer), new Object[]
+				{ "X", "X", 'X', new ItemStack(Blocks.snow) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModBlocks.alchemicalCondenser), new Object[]
 				{ "XXX", "X X", "XYX", 'X', "cobblestone", 'Y', new ItemStack(ModItems.baseComponent, 1, 0) }));
 		GameRegistry.addRecipe(new ShapedOreRecipe(
@@ -85,15 +91,12 @@ public class ModCrafting
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModBlocks.compressedStone), new Object[]
 				{ "XXX", "XXX", "XXX", 'X', new ItemStack(Blocks.stone) }));
-		GameRegistry.addRecipe(new ShapedOreRecipe(
-				new ItemStack(ModItems.heavySnowball, 4), new Object[]
-				{ "XX", "XX", 'X', new ItemStack(Blocks.snow) }));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(
-				new ItemStack(Blocks.dirt, 1, 1), new Object[]
-				{ new ItemStack(Blocks.snow), new ItemStack(Blocks.snow), new ItemStack(Items.rotten_flesh), new ItemStack(Items.rotten_flesh) }));
+				new ItemStack(ModBlocks.heavySnow2), new Object[]
+				{ new ItemStack(ModBlocks.heavySnow), new ItemStack(ModBlocks.heavySnow), new ItemStack(Items.rotten_flesh), new ItemStack(Items.rotten_flesh) }));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(
 				new ItemStack(Blocks.sapling, 1, 1), new Object[]
-				{ new ItemStack(Items.pumpkin_seeds), new ItemStack(Items.pumpkin_seeds), new ItemStack(Blocks.snow), new ItemStack(Items.dye, 1, 15) }));
+				{ new ItemStack(Blocks.dirt, 1, OreDictionary.WILDCARD_VALUE), new ItemStack(Items.pumpkin_seeds), new ItemStack(Items.pumpkin_seeds), new ItemStack(Items.dye, 1, 15) }));
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModItems.baseComponent, 4, 2), new Object[]
 				{ " X ", "XXX", " X ", 'X', "treeSapling" }));
@@ -130,7 +133,7 @@ public class ModCrafting
 				new ItemStack(ModItems.alchemyComponent, 10, 1),
 				ModBlocks.cactusFruitNeedle, 0, 10);
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.sapling, 1, 0),
-				new ItemStack(Items.apple, 20, 0), "treeSapling", 0, 20);
+				new ItemStack(Items.apple, 10, 0), "treeSapling", 0, 20);
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.dirt, 1, 1),
 				new ItemStack(ModItems.cactusFruit, 4), Blocks.sand, 1, 15);
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.cactus, 2, 0),
@@ -140,6 +143,10 @@ public class ModCrafting
 				new ItemStack(Items.rotten_flesh, 4), "treeSapling", 0, 10);
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.grass, 1),
 				new ItemStack(Items.wheat_seeds, 4), Blocks.dirt, 0, 14);
+		InfusionRecipes.addRecipe(new ItemStack(Items.apple),
+				new ItemStack(Items.sugar, 10), Blocks.hay_block, 0, 10);
+		InfusionRecipes.addRecipe(new ItemStack(Blocks.sapling, 1, 5),
+				new ItemStack(Items.gunpowder, 10), Blocks.sapling, 0, 20);
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.coal, 1), 50,
 				new ItemStack(Items.coal, 4, 1));
@@ -211,11 +218,15 @@ public class ModCrafting
 		RockGrinderRecipes.addRecipe(new ItemStack(Items.flint), false,
 				Blocks.gravel.getDefaultState());
 
-		//FreezerRecipes.addRecipe(new ItemStack(Items.diamond, 4), 600, new ItemStack(Items.iron_ingot, 2));
+		FreezerRecipes.addRecipe(new ItemStack(ModItems.heavySnowball), 100,
+				new ItemStack(Items.snowball, 4));
+		FreezerRecipes.addRecipe(new ItemStack(Blocks.dirt, 1, 1), 800,
+				new ItemStack(ModBlocks.heavySnow2, 4));
 
 		MinecraftForge.addGrassSeed(new ItemStack(Items.beetroot_seeds), 10);
 		MinecraftForge.addGrassSeed(new ItemStack(Items.melon_seeds), 8);
 		MinecraftForge.addGrassSeed(new ItemStack(Items.pumpkin_seeds), 8);
+		MinecraftForge.addGrassSeed(new ItemStack(Items.dye, 1, 3), 1);
 
 		HeatSources.addHeatSource(Blocks.fire.getDefaultState(), 20);
 		HeatSources.addHeatSource(Blocks.lava.getDefaultState(), 15);

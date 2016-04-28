@@ -34,7 +34,7 @@ public class CombustionRecipeJEI extends BlankRecipeWrapper
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight,
 			int mouseX, int mouseY)
 	{
-		String s = Integer.toString(heatReq) + "°C";
+		String s = Integer.toString(heatReq) + " C";
 		FontRenderer fontRendererObj = minecraft.fontRendererObj;
 		int stringWidth = fontRendererObj.getStringWidth(s);
 		fontRendererObj.drawString(s, 118 - stringWidth, 8,

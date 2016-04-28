@@ -17,7 +17,7 @@ public class ConcentratorRecipeJEI extends BlankRecipeWrapper
 	private final IBlockState outputBlock;
 
 	private final ItemStack inputStack;
-	
+
 	private final int heatRequired;
 
 	public ConcentratorRecipeJEI(IBlockState output, IBlockState input,
@@ -43,7 +43,7 @@ public class ConcentratorRecipeJEI extends BlankRecipeWrapper
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight,
 			int mouseX, int mouseY)
 	{
-		String s = Integer.toString(heatRequired) + "°C";
+		String s = Integer.toString(heatRequired) + " C";
 		FontRenderer fontRendererObj = minecraft.fontRendererObj;
 		int stringWidth = fontRendererObj.getStringWidth(s);
 		fontRendererObj.drawString(s, 85 - stringWidth, 8,
@@ -53,8 +53,8 @@ public class ConcentratorRecipeJEI extends BlankRecipeWrapper
 	@Override
 	public List getOutputs()
 	{
-		return Collections.singletonList(new ItemStack(outputBlock.getBlock(), 1,
-				outputBlock.getBlock().getMetaFromState(outputBlock)));
+		return Collections.singletonList(new ItemStack(outputBlock.getBlock(),
+				1, outputBlock.getBlock().getMetaFromState(outputBlock)));
 	}
 
 	@Override
