@@ -58,13 +58,14 @@ public class CommonProxy
 		NetworkRegistry.INSTANCE.registerGuiHandler(SkyResources.instance,
 				new ModGuiHandler());
 		ModEntities.init();
-		ModCrafting.init();
+		ModCrafting.initOreDict();
 
 		AchievementPage.registerAchievementPage(ModAchievements.modAchievePage);
 	}
 
 	public void postInit(FMLPostInitializationEvent e)
 	{
+		ModCrafting.init();
 		if(Loader.isModLoaded("MineTweaker3"))
 		MinetweakerPlugin.postInit(e);
 	}

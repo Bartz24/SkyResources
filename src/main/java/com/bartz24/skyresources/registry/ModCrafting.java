@@ -119,13 +119,6 @@ public class ModCrafting
 				new ItemStack(ModBlocks.purificationVessel), new Object[]
 				{ "XXX", "XYX", "XXX", 'X', "blockGlass", 'Y', Blocks.heavy_weighted_pressure_plate }));
 
-		OreDictionary.registerOre("toolCuttingKnife", new ItemStack(
-				ModItems.cactusKnife, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("toolCuttingKnife", new ItemStack(
-				ModItems.ironKnife, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("toolCuttingKnife", new ItemStack(
-				ModItems.diamondKnife, 1, OreDictionary.WILDCARD_VALUE));
-
 		GameRegistry.addSmelting(ModBlocks.dryCactus,
 				new ItemStack(Items.dye, 1, 7), 0.2F);
 
@@ -236,18 +229,30 @@ public class ModCrafting
 		{
 			String oreName = "ore" + RandomHelper
 					.capatilizeString(ModFluids.crystalFluidNames()[i]);
-
-			if (OreDictionary.doesOreNameExist(oreName))
+			
+			if (OreDictionary.getOres(oreName).size() > 0)
 			{
 				ConcentratorRecipes.addRecipe(
 						Block.getBlockFromItem(
 								OreDictionary.getOres(oreName).get(0).getItem())
-								.getDefaultState(),
+								.getStateFromMeta(OreDictionary.getOres(oreName).get(0).getMetadata()),
 						ModFluids.crystalFluidRarity()[i] * 100,
 						new ItemStack(ModItems.metalCrystal,
 								ConfigOptions.crystalConcentratorAmount, i),
 						ModBlocks.compressedStone.getDefaultState());
 			}
 		}
+	}
+	
+	public static void initOreDict()
+	{
+
+		OreDictionary.registerOre("toolCuttingKnife", new ItemStack(
+				ModItems.cactusKnife, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("toolCuttingKnife", new ItemStack(
+				ModItems.ironKnife, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("toolCuttingKnife", new ItemStack(
+				ModItems.diamondKnife, 1, OreDictionary.WILDCARD_VALUE));
+		
 	}
 }
