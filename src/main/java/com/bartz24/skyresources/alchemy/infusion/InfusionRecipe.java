@@ -86,6 +86,9 @@ public class InfusionRecipe
 		if (input == null || input == Blocks.air)
 			return false;
 
+		if (recipe.inputMeta == OreDictionary.WILDCARD_VALUE)
+			return recipe.input == input;
+
 		for (int i : OreDictionary
 				.getOreIDs(new ItemStack(input, 1, inputMeta)))
 		{

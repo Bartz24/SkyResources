@@ -75,6 +75,7 @@ jei.skyresources.recipe.concentrator=Concentrator
 jei.skyresources.recipe.condenser=Condenser
 jei.skyresources.recipe.purificationVessel=Purification Vessel
 jei.skyresources.recipe.freezer=Freezer
+jei.skyresources.recipe.heatsources=Heat Sources
 
 
 container.skyresources.combustionHeater=Combustion Heater

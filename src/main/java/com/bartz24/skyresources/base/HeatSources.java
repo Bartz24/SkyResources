@@ -1,6 +1,7 @@
 package com.bartz24.skyresources.base;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import net.minecraft.block.state.IBlockState;
 
@@ -31,5 +32,10 @@ public class HeatSources
 	public static void removeHeatSource(IBlockState blockState)
 	{
 		validHeatSources.remove(blockState);
+	}
+	
+	public static HashMap<IBlockState, Integer> getHeatSources()
+	{
+		return validHeatSources;
 	}
 }

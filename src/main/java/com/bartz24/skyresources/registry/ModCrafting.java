@@ -131,7 +131,7 @@ public class ModCrafting
 				new ItemStack(ModItems.cactusFruit, 4), Blocks.sand, 1, 15);
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.cactus, 2, 0),
 				new ItemStack(ModItems.alchemyComponent, 6, 1), Blocks.cactus,
-				0, 8);
+				OreDictionary.WILDCARD_VALUE, 8);
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.tallgrass, 1),
 				new ItemStack(Items.rotten_flesh, 4), "treeSapling", 0, 10);
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.grass, 1),
