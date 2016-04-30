@@ -55,14 +55,18 @@ public class EventHandler
 						.getTerrainType() instanceof WorldTypeSky)
 				{
 					BlockPos spawn = world.getSpawnPoint();
-					if (world.getBlockState(spawn.down(4)) != Blocks.bedrock
-							&& world.provider.getDimension() == 0)
-						spawnPlayer(player, spawn);
+					for (int i = 0; i < 6; i++)
+					{
+						if (world.getBlockState(spawn.down(i)) == Blocks.bedrock
+								&& world.provider.getDimension() == 0)
+							return;
+					}
+					spawnPlayer(player, spawn);
 				}
 
 				persist.setBoolean("worldCreated", true);
-			}		
-			
+			}
+
 		}
 	}
 
@@ -308,7 +312,8 @@ public class EventHandler
 	public void onPlayerJoinEvent(PlayerLoggedInEvent event)
 	{
 		event.player.addChatMessage(new TextComponentString(
-				"Need help or a guide? Go to " + TextFormatting.BLUE.toString() + "https://github.com/Bartz24/SkyResources/wiki"));
+				"Need help or a guide? Go to " + TextFormatting.BLUE.toString()
+						+ "https://github.com/Bartz24/SkyResources/wiki"));
 	}
 
 }
