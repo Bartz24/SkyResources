@@ -2,6 +2,7 @@ package com.bartz24.skyresources;
 
 import org.apache.logging.log4j.Logger;
 
+import com.bartz24.skyresources.base.commands.CreatePlatformCommand;
 import com.bartz24.skyresources.proxy.CommonProxy;
 import com.bartz24.skyresources.waila.WailaPlugin;
 
@@ -13,6 +14,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 @Mod(modid = References.ModID, name = References.ModName, useMetadata = true)
 public class SkyResources
@@ -27,6 +29,13 @@ public class SkyResources
 
 	public static ToolMaterial materialCactusNeedle = EnumHelper
 			.addToolMaterial("CACTUSNEEDLE", 0, 4, 5, 1, 5);
+	
+	@Mod.EventHandler
+    public void serverLoading(FMLServerStartingEvent event) {
+        logger.info("Registering Sky Resources commands.");
+        event.registerServerCommand(new CreatePlatformCommand());
+        logger.info("Finished registering Sky Resources commands.");
+    }
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)

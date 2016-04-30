@@ -48,7 +48,8 @@ public class EventHandler
 
 			NBTTagCompound persist = data
 					.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
-			if (player.ticksExisted > 3 && !persist.getBoolean("worldCreated"))
+			if (player.ticksExisted > 3 && !persist.getBoolean("worldCreated")
+					&& player.getBedLocation(0) == null)
 			{
 				World world = player.worldObj;
 				if (world.getWorldInfo()
@@ -57,16 +58,18 @@ public class EventHandler
 					BlockPos spawn = world.getSpawnPoint();
 					for (int i = 0; i < 6; i++)
 					{
-						if (world.getBlockState(spawn.down(i)) == Blocks.bedrock.getDefaultState()
+						if (world.getBlockState(spawn.down(i)) == Blocks.bedrock
+								.getDefaultState()
 								&& world.provider.getDimension() == 0)
+						{
+
 							return;
+						}
 					}
 					spawnPlayer(player, spawn);
+
 				}
-
-				persist.setBoolean("worldCreated", true);
 			}
-
 		}
 	}
 
@@ -78,29 +81,15 @@ public class EventHandler
 		NBTTagCompound persist = data
 				.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
 
-		if (!persist.getBoolean("worldCreated"))
-		{
-			createSpawn(player.worldObj, pos);
+		createSpawn(player.worldObj, pos);
 
-			if (player instanceof EntityPlayerMP)
-			{
-				EntityPlayerMP pmp = (EntityPlayerMP) player;
-				pmp.setPositionAndUpdate(pos.getX() + 0.5, pos.getY() + 1.6,
-						pos.getZ() + 0.5);
-				pmp.setSpawnChunk(pos, true,
-						player.worldObj.provider.getDimension());
-			}
-		} else
+		if (player instanceof EntityPlayerMP)
 		{
-			double posX = persist.getDouble("spawnX");
-			double posY = persist.getDouble("spawnY");
-			double posZ = persist.getDouble("spawnZ");
-
-			if (player instanceof EntityPlayerMP)
-			{
-				EntityPlayerMP pmp = (EntityPlayerMP) player;
-				pmp.setPositionAndUpdate(posX, posY, posZ);
-			}
+			EntityPlayerMP pmp = (EntityPlayerMP) player;
+			pmp.setPositionAndUpdate(pos.getX() + 0.5, pos.getY() + 1.6,
+					pos.getZ() + 0.5);
+			pmp.setSpawnChunk(pos, true,
+					player.worldObj.provider.getDimension());
 		}
 	}
 
@@ -311,8 +300,27 @@ public class EventHandler
 	@SubscribeEvent
 	public void onPlayerJoinEvent(PlayerLoggedInEvent event)
 	{
-		event.player.addChatMessage(new TextComponentString(
-				"Need help or a guide? Go to " + TextFormatting.BLUE.toString()
+		EntityPlayer player = event.player;
+		NBTTagCompound data = player.getEntityData();
+		if (!data.hasKey(EntityPlayer.PERSISTED_NBT_TAG))
+			data.setTag(EntityPlayer.PERSISTED_NBT_TAG, new NBTTagCompound());
+
+		NBTTagCompound persist = data
+				.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
+
+		if (event.player.worldObj.getWorldInfo()
+				.getTerrainType() instanceof WorldTypeSky)
+		{
+			if (!persist.getBoolean("worldCreated")
+					&& player.getBedLocation(0) == null)
+				player.addChatMessage(new TextComponentString(
+						"Would you like to have your own island? Type "
+								+ TextFormatting.RED.toString()
+								+ "/placCreate <x> <z>"));
+		}
+
+		player.addChatMessage(new TextComponentString(
+				"Need help or a guide? Go to\n" + TextFormatting.BLUE.toString()
 						+ "https://github.com/Bartz24/SkyResources/wiki"));
 	}
 
