@@ -227,6 +227,7 @@ public class ModCrafting
 
 		HeatSources.addHeatSource(Blocks.fire.getDefaultState(), 20);
 		HeatSources.addHeatSource(Blocks.lava.getDefaultState(), 15);
+		HeatSources.addHeatSource(Blocks.flowing_lava.getDefaultState(), 10);
 		HeatSources.addHeatSource(Blocks.torch.getDefaultState(), 5);
 
 		for (int i = 0; i < ModFluids.crystalFluidNames().length; i++)

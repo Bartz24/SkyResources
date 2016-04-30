@@ -16,17 +16,14 @@ public class HeatSourcesRecipeMaker
 	{
 		ArrayList<HeatSourcesRecipeJEI> recipes = new ArrayList<HeatSourcesRecipeJEI>();
 
-		Iterator it = HeatSources.getHeatSources().entrySet().iterator();
-		while (it.hasNext())
+		for (IBlockState key : HeatSources.getHeatSources().keySet())
 		{
-			Map.Entry pair = (Map.Entry) it.next();
-			IBlockState block = (IBlockState) pair.getKey();
-			int val = (Integer) pair.getValue();
+			IBlockState block = key;
+			int val = (Integer) HeatSources.getHeatSources().get(key);
 			HeatSourcesRecipeJEI addRecipe = new HeatSourcesRecipeJEI(
 					block.getBlock().getLocalizedName(), val);
 			recipes.add(addRecipe);
 		}
-		it.remove();
 
 		return recipes;
 	}
