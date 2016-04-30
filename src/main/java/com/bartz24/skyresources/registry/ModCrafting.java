@@ -140,6 +140,10 @@ public class ModCrafting
 				new ItemStack(Items.sugar, 10), Blocks.hay_block, 0, 10);
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.sapling, 1, 5),
 				new ItemStack(Items.gunpowder, 10), Blocks.sapling, 0, 20);
+		InfusionRecipes.addRecipe(new ItemStack(Blocks.sapling, 1, 3),
+				new ItemStack(Items.dye, 10, 3), "treeSapling", 0, 20);
+		InfusionRecipes.addRecipe(new ItemStack(Blocks.sapling, 1, 2),
+				new ItemStack(Items.dye, 10, 15), "treeSapling", 0, 20);
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.coal, 1), 50,
 				new ItemStack(Items.coal, 4, 1));
