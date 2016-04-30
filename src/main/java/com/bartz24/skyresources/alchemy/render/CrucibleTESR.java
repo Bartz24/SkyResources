@@ -7,6 +7,7 @@ import com.bartz24.skyresources.alchemy.tile.CrucibleTile;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -63,7 +64,7 @@ public class CrucibleTESR extends TileEntitySpecialRenderer<CrucibleTile>
 
 			int color;
 			color = tank.getFluid().getFluid().getColor(tank.getFluid());
-
+			
 			GL11.glEnable(GL11.GL_BLEND);
 			RandomHelper.setGLColorFromIntPlusAlpha(color);
 

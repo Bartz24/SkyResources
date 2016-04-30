@@ -57,7 +57,7 @@ public class EventHandler
 					BlockPos spawn = world.getSpawnPoint();
 					for (int i = 0; i < 6; i++)
 					{
-						if (world.getBlockState(spawn.down(i)) == Blocks.bedrock
+						if (world.getBlockState(spawn.down(i)) == Blocks.bedrock.getDefaultState()
 								&& world.provider.getDimension() == 0)
 							return;
 					}
