@@ -2,7 +2,10 @@ package com.bartz24.skyresources.events;
 
 import java.util.Random;
 
+import com.bartz24.skyresources.IslandPos;
 import com.bartz24.skyresources.RandomHelper;
+import com.bartz24.skyresources.References;
+import com.bartz24.skyresources.SkyResourcesSaveData;
 import com.bartz24.skyresources.alchemy.effects.IHealthBoostItem;
 import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
 import com.bartz24.skyresources.base.item.ItemKnife;
@@ -27,6 +30,9 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
+import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.event.world.WorldEvent.Save;
+import net.minecraftforge.event.world.WorldEvent.Unload;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
@@ -48,13 +54,15 @@ public class EventHandler
 
 			NBTTagCompound persist = data
 					.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
-			if (player.ticksExisted > 3 && !persist.getBoolean("worldCreated")
-					&& player.getBedLocation(0) == null)
+			if (player.ticksExisted > 3 && !persist.getBoolean("worldCreated"))
 			{
 				World world = player.worldObj;
 				if (world.getWorldInfo()
 						.getTerrainType() instanceof WorldTypeSky)
 				{
+					if (world.getSpawnPoint().getX() != 0
+							&& world.getSpawnPoint().getY() != 0)
+						world.setSpawnPoint(new BlockPos(0, 86, 0));
 					BlockPos spawn = world.getSpawnPoint();
 					for (int i = 0; i < 6; i++)
 					{
@@ -65,15 +73,18 @@ public class EventHandler
 
 							return;
 						}
-					}
-					spawnPlayer(player, spawn);
+					}			
+					
+					References.CurrentIslandsList.add(new IslandPos(0, 0, player.getName()));
+					
+					spawnPlayer(player, spawn, true);
 
 				}
 			}
 		}
 	}
 
-	public static void spawnPlayer(EntityPlayer player, BlockPos pos)
+	public static void spawnPlayer(EntityPlayer player, BlockPos pos, boolean spawnPlat)
 	{
 		NBTTagCompound data = player.getEntityData();
 		if (!data.hasKey(EntityPlayer.PERSISTED_NBT_TAG))
@@ -81,7 +92,9 @@ public class EventHandler
 		NBTTagCompound persist = data
 				.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
 
-		createSpawn(player.worldObj, pos);
+		if(spawnPlat)
+		createSpawn(player.worldObj, pos);	
+		
 
 		if (player instanceof EntityPlayerMP)
 		{
@@ -311,17 +324,27 @@ public class EventHandler
 		if (event.player.worldObj.getWorldInfo()
 				.getTerrainType() instanceof WorldTypeSky)
 		{
-			if (!persist.getBoolean("worldCreated")
-					&& player.getBedLocation(0) == null)
+			if (!References.playerHasIsland(player.getName()))
 				player.addChatMessage(new TextComponentString(
 						"Would you like to have your own island? Type "
 								+ TextFormatting.RED.toString()
-								+ "/placCreate <x> <z>"));
+								+ "/platCreate <x> <z>"));
 		}
 
 		player.addChatMessage(new TextComponentString(
 				"Need help or a guide? Go to\n" + TextFormatting.BLUE.toString()
 						+ "https://github.com/Bartz24/SkyResources/wiki"));
+	}
+	
+	@SubscribeEvent
+	public void onSave(Save event)
+	{
+		SkyResourcesSaveData.setDirty(0);
+	}
+	@SubscribeEvent
+	public void onUnload(Unload event)
+	{
+		SkyResourcesSaveData.setDirty(0);
 	}
 
 }

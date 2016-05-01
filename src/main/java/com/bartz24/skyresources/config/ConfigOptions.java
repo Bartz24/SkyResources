@@ -27,6 +27,8 @@ public class ConfigOptions
 
 	public static int crystalConcentratorAmount;
 
+	public static int islandDistance;
+
 	public static void loadConfigThenSave(FMLPreInitializationEvent e)
 	{
 		Configuration config = new Configuration(
@@ -39,6 +41,10 @@ public class ConfigOptions
 		worldTypeProperty.setComment("0=random, 1=sand, 2=snow, 3=dirt (DIRT NOT IMPLEMENTED)");
 		
 		worldSpawnType = worldTypeProperty.getInt();
+		
+		islandDistance = config
+				.get("islands", "Island Gap Distance", 1000)
+				.getInt(1000);
 		
 		healthRingMaxHealth = config
 				.get("healthRing", "Health Ring Max Health", 100).getInt(100);
