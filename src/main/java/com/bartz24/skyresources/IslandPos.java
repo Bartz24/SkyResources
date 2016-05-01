@@ -1,12 +1,12 @@
 package com.bartz24.skyresources;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
-import scala.actors.threadpool.Arrays;
 
 public class IslandPos
 {
