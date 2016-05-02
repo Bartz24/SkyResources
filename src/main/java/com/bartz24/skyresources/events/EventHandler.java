@@ -73,18 +73,24 @@ public class EventHandler
 
 							return;
 						}
-					}			
-					
-					References.CurrentIslandsList.add(new IslandPos(0, 0, player.getName()));
-					
-					spawnPlayer(player, spawn, true);
+					}
+
+					if (!References.hasPosition(0, 0))
+					{
+						References.CurrentIslandsList
+								.add(new IslandPos(0, 0, player.getName()));
+
+						spawnPlayer(player, spawn, true);
+					} else
+						spawnPlayer(player, spawn, false);
 
 				}
 			}
 		}
 	}
 
-	public static void spawnPlayer(EntityPlayer player, BlockPos pos, boolean spawnPlat)
+	public static void spawnPlayer(EntityPlayer player, BlockPos pos,
+			boolean spawnPlat)
 	{
 		NBTTagCompound data = player.getEntityData();
 		if (!data.hasKey(EntityPlayer.PERSISTED_NBT_TAG))
@@ -92,17 +98,15 @@ public class EventHandler
 		NBTTagCompound persist = data
 				.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
 
-		if(spawnPlat)
-		createSpawn(player.worldObj, pos);	
-		
+		if (spawnPlat)
+			createSpawn(player.worldObj, pos);
 
 		if (player instanceof EntityPlayerMP)
 		{
 			EntityPlayerMP pmp = (EntityPlayerMP) player;
 			pmp.setPositionAndUpdate(pos.getX() + 0.5, pos.getY() + 1.6,
 					pos.getZ() + 0.5);
-			pmp.setSpawnChunk(pos, true,
-					player.worldObj.provider.getDimension());
+			pmp.setSpawnPoint(pos, true);
 		}
 	}
 
@@ -314,33 +318,18 @@ public class EventHandler
 	public void onPlayerJoinEvent(PlayerLoggedInEvent event)
 	{
 		EntityPlayer player = event.player;
-		NBTTagCompound data = player.getEntityData();
-		if (!data.hasKey(EntityPlayer.PERSISTED_NBT_TAG))
-			data.setTag(EntityPlayer.PERSISTED_NBT_TAG, new NBTTagCompound());
-
-		NBTTagCompound persist = data
-				.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
-
-		if (event.player.worldObj.getWorldInfo()
-				.getTerrainType() instanceof WorldTypeSky)
-		{
-			if (!References.playerHasIsland(player.getName()))
-				player.addChatMessage(new TextComponentString(
-						"Would you like to have your own island? Type "
-								+ TextFormatting.RED.toString()
-								+ "/platCreate <x> <z>"));
-		}
 
 		player.addChatMessage(new TextComponentString(
 				"Need help or a guide? Go to\n" + TextFormatting.BLUE.toString()
 						+ "https://github.com/Bartz24/SkyResources/wiki"));
 	}
-	
+
 	@SubscribeEvent
 	public void onSave(Save event)
 	{
 		SkyResourcesSaveData.setDirty(0);
 	}
+
 	@SubscribeEvent
 	public void onUnload(Unload event)
 	{
