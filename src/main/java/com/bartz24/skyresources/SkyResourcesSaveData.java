@@ -30,6 +30,7 @@ public class SkyResourcesSaveData extends WorldSavedData
 	public void readFromNBT(NBTTagCompound nbt)
 	{
 		References.CurrentIslandsList.clear();
+		References.spawnedPlayers.clear();
 		NBTTagList list = nbt.getTagList("Positions", Constants.NBT.TAG_COMPOUND);
 		for (int i = 0; i < list.tagCount(); ++i)
 		{
@@ -38,6 +39,16 @@ public class SkyResourcesSaveData extends WorldSavedData
 			IslandPos pos = new IslandPos(0,0);
 			pos.readFromNBT(stackTag);
 			References.CurrentIslandsList.add(pos);
+		}
+		
+		list = nbt.getTagList("SpawnedPlayers", Constants.NBT.TAG_COMPOUND);
+		for (int i = 0; i < list.tagCount(); ++i)
+		{
+			NBTTagCompound stackTag = list.getCompoundTagAt(i);
+
+			String name = stackTag.getString("name");
+			
+			References.spawnedPlayers.add(name);
 		}
 	}
 
@@ -54,6 +65,16 @@ public class SkyResourcesSaveData extends WorldSavedData
 			list.appendTag(stackTag);
 		}
 		nbt.setTag("Positions", list);
+		NBTTagList list2 = new NBTTagList();
+		for (int i = 0; i < References.spawnedPlayers.size(); i++)
+		{
+			NBTTagCompound stackTag = new NBTTagCompound();
+
+			stackTag.setString("name", References.spawnedPlayers.get(i));
+			
+			list2.appendTag(stackTag);
+		}
+		nbt.setTag("SpawnedPlayers", list2);
 	}
 
 	public static void setDirty(int dimension)

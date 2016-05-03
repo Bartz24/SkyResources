@@ -54,7 +54,8 @@ public class EventHandler
 
 			NBTTagCompound persist = data
 					.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
-			if (player.ticksExisted > 3 && !persist.getBoolean("worldCreated"))
+
+			if (!References.hasPlayerSpawned(player.getName()))
 			{
 				World world = player.worldObj;
 				if (world.getWorldInfo()
@@ -64,25 +65,17 @@ public class EventHandler
 							&& world.getSpawnPoint().getY() != 0)
 						world.setSpawnPoint(new BlockPos(0, 86, 0));
 					BlockPos spawn = world.getSpawnPoint();
-					for (int i = 0; i < 6; i++)
-					{
-						if (world.getBlockState(spawn.down(i)) == Blocks.bedrock
-								.getDefaultState()
-								&& world.provider.getDimension() == 0)
-						{
-
-							return;
-						}
-					}
 
 					if (!References.hasPosition(0, 0))
 					{
 						References.CurrentIslandsList
-								.add(new IslandPos(0, 0, player.getName()));
+								.add(new IslandPos(0, 0));
 
 						spawnPlayer(player, spawn, true);
 					} else
 						spawnPlayer(player, spawn, false);
+
+					References.spawnedPlayers.add(player.getName());
 
 				}
 			}
@@ -112,6 +105,12 @@ public class EventHandler
 
 	private static void createSpawn(World world, BlockPos spawn)
 	{
+		if(spawn.getX() == 0 && spawn.getZ() == 0)
+		{
+			mainSpawn(world, spawn);
+			return;
+		}
+		
 		Random random = world.rand;
 		int type = ConfigOptions.worldSpawnType == 0 ? random.nextInt(2)
 				: ConfigOptions.worldSpawnType - 1;
@@ -128,6 +127,22 @@ public class EventHandler
 		 */
 		}
 
+	}
+
+	private static void mainSpawn(World world, BlockPos spawn)
+	{
+		for (int x = -1; x < 2; x++)
+		{
+			for (int z = -1; z < 2; z++)
+			{
+				BlockPos pos = new BlockPos(spawn.getX() + x, spawn.getY(),
+						spawn.getZ() + z);
+				world.setBlockState(pos.down(3),
+						Blocks.bedrock.getDefaultState());
+				world.setBlockState(pos.down(4),
+						Blocks.bedrock.getDefaultState());
+			}
+		}
 	}
 
 	private static void sandSpawn(World world, BlockPos spawn)
@@ -318,6 +333,10 @@ public class EventHandler
 	public void onPlayerJoinEvent(PlayerLoggedInEvent event)
 	{
 		EntityPlayer player = event.player;
+		
+		if(!References.playerHasIsland(player.getName()))
+			player.addChatMessage(new TextComponentString(
+					"Type " + TextFormatting.AQUA.toString() + "/" + ConfigOptions.commandName + " create" + TextFormatting.WHITE.toString() + " to create your starting island"));
 
 		player.addChatMessage(new TextComponentString(
 				"Need help or a guide? Go to\n" + TextFormatting.BLUE.toString()

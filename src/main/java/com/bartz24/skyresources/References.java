@@ -1,6 +1,7 @@
 package com.bartz24.skyresources;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class References
 {
@@ -8,6 +9,8 @@ public class References
 	public static final String ModName = "Sky Resources";
 
 	public static ArrayList<IslandPos> CurrentIslandsList = new ArrayList<IslandPos>();
+	
+	public static ArrayList<String> spawnedPlayers = new ArrayList<String>();
 
 	public static IslandPos getNextIsland()
 	{
@@ -77,5 +80,10 @@ public class References
 	{
 		IslandPos pos = getPlayerIsland(playerName);
 		pos.removePlayer(playerName);
+	}
+	
+	public static boolean hasPlayerSpawned(String playerName)
+	{
+		return spawnedPlayers.contains(playerName);
 	}
 }

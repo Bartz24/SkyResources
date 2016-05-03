@@ -43,6 +43,7 @@ public class SkyResources
 		if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
 		{
 			References.CurrentIslandsList.clear();
+			References.spawnedPlayers.clear();
 			World world = event.getServer().getEntityWorld();
 			if (!world.isRemote)
 			{

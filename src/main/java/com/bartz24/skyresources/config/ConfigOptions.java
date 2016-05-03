@@ -29,6 +29,8 @@ public class ConfigOptions
 
 	public static int islandDistance;
 
+	public static String commandName;
+
 	public static void loadConfigThenSave(FMLPreInitializationEvent e)
 	{
 		Configuration config = new Configuration(
@@ -45,6 +47,9 @@ public class ConfigOptions
 		islandDistance = config
 				.get("islands", "Island Gap Distance", 1000)
 				.getInt(1000);
+		
+		commandName = config
+				.get("islands", "Name For Command (Default: platform)", "platform").getString();
 		
 		healthRingMaxHealth = config
 				.get("healthRing", "Health Ring Max Health", 100).getInt(100);

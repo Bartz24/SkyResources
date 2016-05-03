@@ -8,6 +8,7 @@ import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResourcesSaveData;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.events.EventHandler;
+import com.bartz24.skyresources.world.WorldTypeSky;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -26,8 +27,13 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 	public CreatePlatformCommand()
 	{
 		aliases = new ArrayList<String>();
-		aliases.add("platform");
-		aliases.add("plat");
+		if (ConfigOptions.commandName.equals("platform"))
+		{
+			aliases.add("platform");
+			aliases.add("plat");
+		} else
+			aliases.add(ConfigOptions.commandName);
+
 	}
 
 	@Override
@@ -51,7 +57,7 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 	@Override
 	public String getCommandUsage(ICommandSender sender)
 	{
-		return "platform";
+		return ConfigOptions.commandName;
 	}
 
 	@Override
@@ -68,6 +74,13 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 		World world = sender.getEntityWorld();
 		EntityPlayerMP player = (EntityPlayerMP) world.getPlayerEntityByName(
 				sender.getCommandSenderEntity().getName());
+
+		if (!(world.getWorldInfo().getTerrainType() instanceof WorldTypeSky))
+		{
+			player.addChatMessage(new TextComponentString(
+					"You're not in a sky world. You can't use this command"));
+			return;
+		}
 
 		if (args.length == 0)
 			showHelp(player);
@@ -88,6 +101,9 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 			} else if (subCommand.equals("home"))
 			{
 				tpHome(player, args);
+			} else if (subCommand.equals("spawn"))
+			{
+				tpSpawn(player, args);
 			}
 		}
 
@@ -100,7 +116,7 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 				"create : Spawn a new platform. Must not already be on an island."));
 
 		player.addChatMessage(new TextComponentString(
-				"invite <player> : Have another player join your island. Player must not already be on an island"));
+				"invite <player> : Have another player join your island. Player must not already be on an island."));
 
 		player.addChatMessage(new TextComponentString(
 				"leave : Leave your island. Must be someone else on the island to leave it to."));
@@ -108,6 +124,9 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 		player.addChatMessage(new TextComponentString(
 				"home : Teleport back to your home island. Must be at least "
 						+ ConfigOptions.islandDistance / 2 + " blocks away."));
+
+		player.addChatMessage(new TextComponentString(
+				"spawn : Teleport back to spawn (0, 0)."));
 	}
 
 	void newPlatform(EntityPlayerMP player, String[] args)
@@ -225,6 +244,13 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 		}
 
 		IslandPos isPos = References.getPlayerIsland(player.getName());
+		
+		if(isPos == null)
+		{
+			player.addChatMessage(
+					new TextComponentString("You don't have an island yet."));	
+			return;
+		}
 
 		BlockPos home = new BlockPos(
 				isPos.getX() * ConfigOptions.islandDistance, 86,
@@ -241,6 +267,17 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 			return;
 		}
 
-		player.teleportTo_(home.getX() + 0.5, home.getY(), home.getZ() + 0.5);
+		player.playerNetServerHandler.setPlayerLocation(
+				home.getX() + 0.5, home.getY(), home.getZ() + 0.5, player.rotationYaw,
+				player.rotationPitch);
+
+	}
+
+	void tpSpawn(EntityPlayerMP player, String[] args) throws CommandException
+	{
+
+		player.playerNetServerHandler.setPlayerLocation(
+				0 + 0.5, 86, 0 + 0.5, player.rotationYaw,
+				player.rotationPitch);
 	}
 }
