@@ -43,6 +43,12 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 	}
 
 	@Override
+	public boolean checkPermission(MinecraftServer server, ICommandSender sender)
+	{
+		return true;
+	}
+
+	@Override
 	public String getCommandName()
 	{
 		return aliases.get(0);
@@ -244,11 +250,11 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 		}
 
 		IslandPos isPos = References.getPlayerIsland(player.getName());
-		
-		if(isPos == null)
+
+		if (isPos == null)
 		{
 			player.addChatMessage(
-					new TextComponentString("You don't have an island yet."));	
+					new TextComponentString("You don't have an island yet."));
 			return;
 		}
 
@@ -267,8 +273,8 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 			return;
 		}
 
-		player.playerNetServerHandler.setPlayerLocation(
-				home.getX() + 0.5, home.getY(), home.getZ() + 0.5, player.rotationYaw,
+		player.playerNetServerHandler.setPlayerLocation(home.getX() + 0.5,
+				home.getY(), home.getZ() + 0.5, player.rotationYaw,
 				player.rotationPitch);
 
 	}
@@ -276,8 +282,7 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 	void tpSpawn(EntityPlayerMP player, String[] args) throws CommandException
 	{
 
-		player.playerNetServerHandler.setPlayerLocation(
-				0 + 0.5, 86, 0 + 0.5, player.rotationYaw,
-				player.rotationPitch);
+		player.playerNetServerHandler.setPlayerLocation(0 + 0.5, 86, 0 + 0.5,
+				player.rotationYaw, player.rotationPitch);
 	}
 }
