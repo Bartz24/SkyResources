@@ -80,11 +80,12 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 		World world = sender.getEntityWorld();
 		EntityPlayerMP player = (EntityPlayerMP) world.getPlayerEntityByName(
 				sender.getCommandSenderEntity().getName());
-
-		if (!(world.getWorldInfo().getTerrainType() instanceof WorldTypeSky))
+		
+		if (!(world.getWorldInfo()
+				.getTerrainType() instanceof WorldTypeSky))
 		{
 			player.addChatMessage(new TextComponentString(
-					"You're not in a sky world. You can't use this command"));
+					"You are not in a sky world type."));	
 			return;
 		}
 
