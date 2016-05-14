@@ -1,6 +1,8 @@
 package com.bartz24.skyresources.registry;
 
+import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
+import com.bartz24.skyresources.alchemy.item.DirtyGemItem;
 import com.bartz24.skyresources.alchemy.item.MetalCrystalItem;
 import com.bartz24.skyresources.alchemy.render.CrucibleTESR;
 import com.bartz24.skyresources.alchemy.render.PurificationVesselTESR;
@@ -136,6 +138,11 @@ public class ModRenderers
 		{
 			registerItemRenderer(ModItems.metalCrystal, i, true);
 		}
+
+		for (int i = 0; i < DirtyGemItem.getNames().size(); i++)
+		{
+			registerItemRenderer(ModItems.dirtyGem, i, true);
+		}
 		for (int i = 0; i < BaseItemComponent.getNames().size(); i++)
 		{
 			registerItemRenderer(ModItems.baseComponent, i);
@@ -148,6 +155,7 @@ public class ModRenderers
 		registerItemRenderer(ModItems.stoneGrinder);
 		registerItemRenderer(ModItems.ironGrinder);
 		registerItemRenderer(ModItems.diamondGrinder);
+		registerItemRenderer(ModItems.alchemicalInfusionStone);
 		registerItemRenderer(ModItems.healthRing);
 		registerItemRenderer(
 				Item.getItemFromBlock(ModBlocks.cactusFruitNeedle));
@@ -155,6 +163,8 @@ public class ModRenderers
 				Item.getItemFromBlock(ModBlocks.compressedCoalBlock));
 		registerItemRenderer(
 				Item.getItemFromBlock(ModBlocks.compressedCoalBlock2));
+		registerItemRenderer(
+				Item.getItemFromBlock(ModBlocks.coalInfusedBlock));
 		registerItemRenderer(
 				Item.getItemFromBlock(ModBlocks.compressedStone));
 		registerItemRenderer(
@@ -166,6 +176,7 @@ public class ModRenderers
 				Item.getItemFromBlock(ModBlocks.alchemicalCondenser));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.purificationVessel));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.miniFreezer));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.ironFreezer));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.crucible));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.concentrator));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.fluidDropper));
@@ -238,12 +249,32 @@ public class ModRenderers
 								|| stack.getMetadata() >= ModFluids
 										.crystalFluidColors().length)
 							return -1;
+						
 
 						return ModFluids.crystalFluidColors()[stack
 								.getMetadata()];
 					}
 
 				}, ModItems.metalCrystal);
+		
+		Minecraft.getMinecraft().getItemColors()
+		.registerItemColorHandler(new IItemColor()
+		{
+
+			@Override
+			public int getColorFromItemstack(ItemStack stack,
+					int tintIndex)
+			{
+				if (stack.getMetadata() < 0
+						|| stack.getMetadata() >= ModFluids
+								.crystalFluidColors().length)
+					return -1;
+				
+
+				return References.gemColorList.get(stack.getMetadata());
+			}
+
+		}, ModItems.dirtyGem);
 
 		ClientRegistry.bindTileEntitySpecialRenderer(CrucibleTile.class,
 				new CrucibleTESR());

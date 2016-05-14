@@ -69,4 +69,25 @@ public class ItemKnife extends Item
 
 		return multimap;
 	}
+
+    @Override
+    public boolean getShareTag()
+    {
+        return true;
+    }
+
+    public boolean hasContainerItem(ItemStack itemStack)
+    {
+       return true;
+    }
+    @Override
+    public ItemStack getContainerItem(ItemStack itemStack)
+    {
+        ItemStack stack = itemStack.copy();
+
+        stack.setItemDamage(stack.getItemDamage() + 1);
+        stack.stackSize = 1;
+
+        return stack;
+    }
 }

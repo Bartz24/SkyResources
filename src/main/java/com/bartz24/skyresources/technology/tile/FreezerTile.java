@@ -1,9 +1,12 @@
 package com.bartz24.skyresources.technology.tile;
 
 import com.bartz24.skyresources.registry.ModBlocks;
+import com.bartz24.skyresources.technology.block.BlockFreezer;
+import com.bartz24.skyresources.technology.block.BlockFreezer.EnumPartType;
 import com.bartz24.skyresources.technology.freezer.FreezerRecipe;
 import com.bartz24.skyresources.technology.freezer.FreezerRecipes;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -19,26 +22,28 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 {
 	float[] timeFreeze;
 	private ItemStack[] inventory;
-	
+
 	public float getFreezerSpeed()
 	{
 		if (worldObj.getBlockState(pos).getBlock() == ModBlocks.miniFreezer)
 			return 0.25f;
+		else if (worldObj.getBlockState(pos)
+				.getBlock() == ModBlocks.ironFreezer)
+			return 1f;
 
 		return 1;
-		
+
 	}
-	
 
 	@Override
 	public void writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
 
-		if(timeFreeze != null)
+		if (timeFreeze != null)
 		{
-		for (float i : timeFreeze)
-			compound.setFloat("time" + i, i);
+			for (float i : timeFreeze)
+				compound.setFloat("time" + i, i);
 		}
 
 		NBTTagList list = new NBTTagList();
@@ -81,6 +86,9 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 	@Override
 	public void update()
 	{
+		updateMulti2x1();
+		if (!validMulti2x1())
+			return;
 		if (inventory == null)
 		{
 			inventory = new ItemStack[this.getSizeInventory()];
@@ -91,19 +99,62 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 		{
 			FreezerRecipe recipe = recipeToCraft(i);
 
-			if(recipe!=null)
+			if (recipe != null)
 			{
-				if(timeFreeze[i] >= recipe.getTimeReq())
+				if (timeFreeze[i] >= recipe.getTimeReq())
 				{
 					this.inventory[i] = recipe.getOutput().copy();
-				}
-				else
-					timeFreeze[i]+=getFreezerSpeed();
-			}
-			else
-			timeFreeze[i] = 0;
-			
+				} else
+					timeFreeze[i] += getFreezerSpeed();
+			} else
+				timeFreeze[i] = 0;
+
 		}
+	}
+
+	void updateMulti2x1()
+	{
+		IBlockState state = this.worldObj.getBlockState(pos);
+		IBlockState stateUp = this.worldObj.getBlockState(pos.up());
+		IBlockState stateDown = this.worldObj.getBlockState(pos.down());
+		if (state.getBlock() instanceof BlockFreezer)
+		{
+			if (stateUp.getBlock() instanceof BlockFreezer
+					&& state.getProperties()
+							.get(BlockFreezer.PART) == BlockFreezer.EnumPartType.BOTTOM
+					&& stateUp.getProperties().get(
+							BlockFreezer.PART) == BlockFreezer.EnumPartType.BOTTOM)
+			{
+				worldObj.setBlockState(pos.up(), stateUp.withProperty(
+						BlockFreezer.PART, BlockFreezer.EnumPartType.TOP));
+			} else if (!(stateDown.getBlock() instanceof BlockFreezer)
+					&& state.getProperties().get(
+							BlockFreezer.PART) == BlockFreezer.EnumPartType.TOP)
+			{
+				worldObj.setBlockState(pos, state.withProperty(
+						BlockFreezer.PART, BlockFreezer.EnumPartType.BOTTOM));
+			}
+		}
+	}
+
+	boolean validMulti2x1()
+	{
+		IBlockState state = this.worldObj.getBlockState(pos);
+		IBlockState stateUp = this.worldObj.getBlockState(pos.up());
+
+		if (!(state.getBlock() instanceof BlockFreezer))
+			return true;
+
+		if (!(stateUp.getBlock() instanceof BlockFreezer))
+			return false;
+
+		if (state.getProperties()
+				.get(BlockFreezer.PART) != BlockFreezer.EnumPartType.BOTTOM
+				|| stateUp.getProperties().get(
+						BlockFreezer.PART) != BlockFreezer.EnumPartType.TOP)
+			return false;
+
+		return true;
 	}
 
 	public FreezerRecipe recipeToCraft(int slot)
@@ -144,6 +195,9 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 	{
 		if (worldObj.getBlockState(pos).getBlock() == ModBlocks.miniFreezer)
 			return 1;
+		else if (worldObj.getBlockState(pos)
+				.getBlock() == ModBlocks.ironFreezer)
+			return 3;
 
 		return 0;
 	}
@@ -232,15 +286,17 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 	@Override
 	public int getField(int id)
 	{
-		if(timeFreeze == null || id>=timeFreeze.length) return 0;
-		return (int)timeFreeze[id];
+		if (timeFreeze == null || id >= timeFreeze.length)
+			return 0;
+		return (int) timeFreeze[id];
 	}
 
 	@Override
 	public void setField(int id, int value)
 	{
-		if(id>=timeFreeze.length) return;
-			timeFreeze[id] = value;
+		if (timeFreeze == null || id >= timeFreeze.length)
+			return;
+		timeFreeze[id] = value;
 	}
 
 	@Override

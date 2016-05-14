@@ -14,6 +14,7 @@ import com.bartz24.skyresources.base.block.BlazePowderBlock;
 import com.bartz24.skyresources.base.block.BlockDryCactus;
 import com.bartz24.skyresources.base.block.ItemBlockMeta;
 import com.bartz24.skyresources.base.block.TransparentBlock;
+import com.bartz24.skyresources.technology.block.BlockFreezer;
 import com.bartz24.skyresources.technology.block.BlockMiniFreezer;
 import com.bartz24.skyresources.technology.block.CombustionHeaterBlock;
 import com.bartz24.skyresources.technology.block.ConcentratorBlock;
@@ -22,7 +23,6 @@ import com.bartz24.skyresources.technology.block.FluidDropperBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -37,9 +37,11 @@ public class ModBlocks
 	public static Block alchemicalCondenser;
 	public static Block purificationVessel;
 	public static Block miniFreezer;
+	public static Block ironFreezer;
 
 	public static Block compressedCoalBlock;
 	public static Block compressedCoalBlock2;
+	public static Block coalInfusedBlock;
 	public static Block compressedStone;
 	public static Block heavySnow;
 	public static Block heavySnow2;
@@ -72,6 +74,10 @@ public class ModBlocks
 				new BaseBlock(Material.rock, "compressedCoalBlock2",
 						"CompressedCoalBlock2", 9F, 9F, SoundType.STONE));
 
+		coalInfusedBlock = registerBlock(
+				new BaseBlock(Material.rock, "coalInfusedBlock",
+						"CoalInfusedBlock", 6F, 6F, SoundType.STONE));
+
 		blazePowderBlock = registerBlock(
 				new BlazePowderBlock(Material.clay, "blazePowderBlock",
 						"BlazePowderBlock", 0.5F, 0.5F, SoundType.GROUND));
@@ -89,7 +95,9 @@ public class ModBlocks
 				"purificationVessel", "PurificationVessel", 2F, 12F));
 		
 		miniFreezer = registerBlock(new BlockMiniFreezer(
-				"miniFreezer", "MiniFreezer", 0.5F, 0.5F));		
+				"miniFreezer", "MiniFreezer", 0.5F, 0.5F));	
+		ironFreezer = registerBlock(new BlockFreezer(
+				"ironFreezer", "IronFreezer", 2F, 2F));	
 		
 
 		crucible = registerBlock(

@@ -7,6 +7,7 @@ import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
+import com.bartz24.skyresources.alchemy.item.DirtyGemItem;
 import com.bartz24.skyresources.alchemy.item.ItemHealthRing;
 import com.bartz24.skyresources.alchemy.item.ItemInfusionStone;
 import com.bartz24.skyresources.alchemy.item.MetalCrystalItem;
@@ -38,6 +39,8 @@ public class ModItems
 	
 	public static Item heavySnowball;
 
+	public static Item dirtyGem;
+
 	public static Item cactusKnife;
 	public static Item ironKnife;
 	public static Item diamondKnife;
@@ -48,16 +51,31 @@ public class ModItems
 
 	public static Item sandstoneInfusionStone;
 	public static Item redSandstoneInfusionStone;
+	public static Item alchemicalInfusionStone;
 
 	public static List<Item> crystalFluidBuckets;
 	public static List<Item> dirtyCrystalFluidBuckets;
 
 	public static void init()
 	{
+		References.gemList.add("emerald");
+		References.gemColorList.add(0xFF12DB3A);
+		References.gemList.add("ruby");
+		References.gemColorList.add(0xFFFA1E1E);
+		References.gemList.add("sapphire");
+		References.gemColorList.add(0xFF1E46FA);
+		References.gemList.add("peridot");
+		References.gemColorList.add(0xFF1CB800);
+		References.gemList.add("redGarnet");
+		References.gemColorList.add(0xFFC90014);
+		References.gemList.add("yellowGarnet");
+		References.gemColorList.add(0xFFF7FF0F);
+		
 		crystalFluidBuckets = new ArrayList<Item>();
 		dirtyCrystalFluidBuckets = new ArrayList<Item>();
 		alchemyComponent = registerItem(new AlchemyItemComponent());
 		metalCrystal = registerItem(new MetalCrystalItem());
+		dirtyGem = registerItem(new DirtyGemItem());
 		baseComponent = registerItem(new BaseItemComponent());
 		healthRing = registerItem(new ItemHealthRing());
 		waterExtractor = registerItem(new ItemWaterExtractor());
@@ -83,6 +101,8 @@ public class ModItems
 				"sandstoneInfusionStone", "SandstoneInfusionStone"));
 		redSandstoneInfusionStone = registerItem(new ItemInfusionStone(80,
 				"redSandstoneInfusionStone", "RedSandstoneInfusionStone"));
+		alchemicalInfusionStone = registerItem(new ItemInfusionStone(1500,
+				"alchemicalInfusionStone", "AlchemicalInfusionStone"));
 
 		for (int i = 0; i < ModFluids.crystalFluidNames().length; i++)
 		{

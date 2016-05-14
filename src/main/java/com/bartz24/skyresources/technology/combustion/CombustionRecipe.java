@@ -59,7 +59,7 @@ public class CombustionRecipe
 				if (i.isItemEqual(i2) && i.stackSize < i2.stackSize)
 				{
 					valid = false;
-				} else if (i.isItemEqual(i2) && i.stackSize >= i2.stackSize)
+				} else if (i.isItemEqual(i2) && i.stackSize == i2.stackSize)
 					valid = true;
 				
 			}

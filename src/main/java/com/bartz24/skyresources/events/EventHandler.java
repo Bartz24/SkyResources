@@ -1,5 +1,6 @@
 package com.bartz24.skyresources.events;
 
+import java.util.List;
 import java.util.Random;
 
 import com.bartz24.skyresources.IslandPos;
@@ -14,6 +15,7 @@ import com.bartz24.skyresources.registry.ModItems;
 import com.bartz24.skyresources.world.WorldTypeSky;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockCauldron;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -24,19 +26,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
-import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.event.world.WorldEvent.Save;
 import net.minecraftforge.event.world.WorldEvent.Unload;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class EventHandler
 {
@@ -68,8 +71,7 @@ public class EventHandler
 
 					if (!References.hasPosition(0, 0))
 					{
-						References.CurrentIslandsList
-								.add(new IslandPos(0, 0));
+						References.CurrentIslandsList.add(new IslandPos(0, 0));
 
 						spawnPlayer(player, spawn, true);
 					} else
@@ -105,12 +107,12 @@ public class EventHandler
 
 	private static void createSpawn(World world, BlockPos spawn)
 	{
-		if(spawn.getX() == 0 && spawn.getZ() == 0)
+		if (spawn.getX() == 0 && spawn.getZ() == 0)
 		{
 			mainSpawn(world, spawn);
 			return;
 		}
-		
+
 		Random random = world.rand;
 		int type = ConfigOptions.worldSpawnType == 0 ? random.nextInt(2)
 				: ConfigOptions.worldSpawnType - 1;
@@ -261,31 +263,45 @@ public class EventHandler
 					event.getWorld().setBlockState(event.getPos(),
 							Blocks.snow_layer.getStateFromMeta(5));
 				}
-			}
-		}
-
-	}
-
-	@SubscribeEvent
-	public void onItemCraft(ItemCraftedEvent event)
-	{
-		for (int i = 0; i < event.craftMatrix.getSizeInventory(); i++)
-		{
-			if (event.craftMatrix.getStackInSlot(i) != null)
+			} else if (block != null && equip == null)
 			{
-				ItemStack j = event.craftMatrix.getStackInSlot(i);
-				if (j.getItem() != null && j.getItem() instanceof ItemKnife)
+				if (block == Blocks.cauldron)
 				{
-					ItemStack k = new ItemStack(j.getItem(), 2,
-							(j.getItemDamage() + 1));
-					if (k.getItemDamage() >= k.getMaxDamage())
+
+					int i = ((Integer) event.getWorld()
+							.getBlockState(event.getPos())
+							.getValue(BlockCauldron.LEVEL)).intValue();
+					ItemStack item = event.getEntityPlayer()
+							.getHeldItem(EnumHand.MAIN_HAND);
+					if (i > 0 && item != null
+							&& item.getItem() == ModItems.dirtyGem)
 					{
-						k.stackSize--;
+						List<ItemStack> items = OreDictionary
+								.getOres("gem" + RandomHelper
+										.capatilizeString(References.gemList
+												.get(item.getMetadata())));
+
+						if (items.size() > 0)
+						{
+							item.stackSize--;
+							if (item.stackSize == 0)
+								event.getEntityPlayer()
+										.setHeldItem(EnumHand.MAIN_HAND, null);
+							RandomHelper.spawnItemInWorld(event.getWorld(),
+									new ItemStack(items.get(0).getItem(), 1,
+											items.get(0).getMetadata()),
+									event.getPos());
+
+							new BlockCauldron().setWaterLevel(event.getWorld(),
+									event.getPos(), event.getWorld()
+											.getBlockState(event.getPos()),
+									i - 1);
+						}
 					}
-					event.craftMatrix.setInventorySlotContents(i, k);
 				}
 			}
 		}
+
 	}
 
 	@SubscribeEvent
@@ -333,10 +349,13 @@ public class EventHandler
 	public void onPlayerJoinEvent(PlayerLoggedInEvent event)
 	{
 		EntityPlayer player = event.player;
-		
-		if(!References.playerHasIsland(player.getName()))
+
+		if (!References.playerHasIsland(player.getName()))
 			player.addChatMessage(new TextComponentString(
-					"Type " + TextFormatting.AQUA.toString() + "/" + ConfigOptions.commandName + " create" + TextFormatting.WHITE.toString() + " to create your starting island"));
+					"Type " + TextFormatting.AQUA.toString() + "/"
+							+ ConfigOptions.commandName + " create"
+							+ TextFormatting.WHITE.toString()
+							+ " to create your starting island"));
 
 		player.addChatMessage(new TextComponentString(
 				"Need help or a guide? Go to\n" + TextFormatting.BLUE.toString()

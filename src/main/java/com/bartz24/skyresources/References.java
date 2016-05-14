@@ -86,4 +86,8 @@ public class References
 	{
 		return spawnedPlayers.contains(playerName);
 	}
+	
+
+	public static ArrayList<String> gemList = new ArrayList<String>();
+	public static ArrayList<Integer> gemColorList = new ArrayList<Integer>();
 }

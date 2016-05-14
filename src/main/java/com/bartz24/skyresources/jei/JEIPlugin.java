@@ -1,5 +1,8 @@
 package com.bartz24.skyresources.jei;
 
+import com.bartz24.skyresources.jei.cauldron.CauldronRecipeCategory;
+import com.bartz24.skyresources.jei.cauldron.CauldronRecipeHandler;
+import com.bartz24.skyresources.jei.cauldron.CauldronRecipeMaker;
 import com.bartz24.skyresources.jei.combustion.CombustionRecipeCategory;
 import com.bartz24.skyresources.jei.combustion.CombustionRecipeHandler;
 import com.bartz24.skyresources.jei.combustion.CombustionRecipeMaker;
@@ -59,14 +62,15 @@ public class JEIPlugin implements IModPlugin
 				new CondenserRecipeCategory(jeiHelpers.getGuiHelper()),
 				new PurificationVesselRecipeCategory(jeiHelpers.getGuiHelper()),
 				new FreezerRecipeCategory(jeiHelpers.getGuiHelper()),
-				new HeatSourcesRecipeCategory(jeiHelpers.getGuiHelper()));
+				new HeatSourcesRecipeCategory(jeiHelpers.getGuiHelper()),
+				new CauldronRecipeCategory(jeiHelpers.getGuiHelper()));
 		registry.addRecipeHandlers(new InfusionRecipeHandler(),
 				new CombustionRecipeHandler(), new RockGrinderRecipeHandler(),
 				new CrucibleRecipeHandler(), new ConcentratorRecipeHandler(),
 				new CondenserRecipeHandler(),
 				new PurificationVesselRecipeHandler(),
-				new FreezerRecipeHandler(),
-				new HeatSourcesRecipeHandler());
+				new FreezerRecipeHandler(), new HeatSourcesRecipeHandler(),
+				new CauldronRecipeHandler());
 
 		registry.addRecipes(InfusionRecipeMaker.getRecipes());
 		registry.addRecipes(CombustionRecipeMaker.getRecipes());
@@ -77,6 +81,7 @@ public class JEIPlugin implements IModPlugin
 		registry.addRecipes(PurificationVesselRecipeMaker.getRecipes());
 		registry.addRecipes(FreezerRecipeMaker.getRecipes());
 		registry.addRecipes(HeatSourcesRecipeMaker.getRecipes());
+		registry.addRecipes(CauldronRecipeMaker.getRecipes());
 
 		registry.addDescription(new ItemStack(ModItems.alchemyComponent, 1, 0),
 				"jei.skyresources.desc.cactusNeedle");

@@ -1,5 +1,10 @@
 item.skyresources.alchemyItemComponent.cactusNeedle.name=Cactus Needle
 item.skyresources.alchemyItemComponent.cactusNeedleBloody.name=Bloody Cactus Needle
+item.skyresources.alchemyItemComponent.coalAlchemical.name=Alchemical Coal
+item.skyresources.alchemyItemComponent.dustAlchemical.name=Alchemical Dust
+item.skyresources.alchemyItemComponent.diamondAlchemical.name=Alchemical Diamond
+item.skyresources.alchemyItemComponent.goldIngotAlchemical.name=Alchemical Gold Ingot
+item.skyresources.alchemyItemComponent.goldNeedleAlchemical.name=Alchemical Gold Needle
 item.skyresources.baseItemComponent.woodHeatComponent.name=Wooden Heat Component
 item.skyresources.baseItemComponent.ironHeatComponent.name=Iron Heat Component
 item.skyresources.baseItemComponent.plantMatter.name=Plant Matter
@@ -11,6 +16,7 @@ item.skyresources.itemHealthRing.name=Health Ring
 item.skyresources.waterExtractor.name=Water Extractor
 item.skyresources.sandstoneInfusionStone.name=Sandstone Infusion Stone
 item.skyresources.redSandstoneInfusionStone.name=Red Sandstone Infusion Stone
+item.skyresources.alchemicalInfusionStone.name=Alchemical Infusion Stone
 item.skyresources.crystalFluidBucket.name=Crystal Liquid Bucket
 item.skyresources.metalCrystal.name=Crystal Shard
 item.skyresources.stoneGrinder.name=Stone Rock Grinder
@@ -21,6 +27,7 @@ item.skyresources.heavySnowball.name=Heavy Snowball
 tile.skyresources.cactusFruitNeedle.name=Cactus Fruit On A Needle
 tile.skyresources.compressedCoalBlock.name=Hardened Coal Block
 tile.skyresources.compressedCoalBlock2.name=Adamant Coal Block
+tile.skyresources.coalInfusedBlock.name=Alchemical Coal Block
 tile.skyresources.dryCactus.name=Dehydrated Cactus
 tile.skyresources.combustionHeater.wood.name=Wooden Combustion Heater
 tile.skyresources.combustionHeater.iron.name=Iron Combustion Heater
@@ -76,6 +83,7 @@ jei.skyresources.recipe.condenser=Condenser
 jei.skyresources.recipe.purificationVessel=Purification Vessel
 jei.skyresources.recipe.freezer=Freezer
 jei.skyresources.recipe.heatsources=Heat Sources
+jei.skyresources.recipe.cauldron=Cauldron
 
 
 container.skyresources.combustionHeater=Combustion Heater
@@ -92,6 +100,13 @@ name.skyresources.metal.nickel=Nickel
 name.skyresources.metal.platinum=Platinum
 name.skyresources.metal.aluminum=Aluminum
 name.skyresources.metal.lead=Lead
+
+name.skyresources.gem.emerald=Emerald
+name.skyresources.gem.ruby=Ruby
+name.skyresources.gem.peridot=Peridot
+name.skyresources.gem.sapphire=Sapphire
+name.skyresources.gem.redGarnet=Red Garnet
+name.skyresources.gem.yellowGarnet=Yellow Garnet
 
 name.skyresources.dirty=Dirty
 
