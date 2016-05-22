@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.bartz24.skyresources.IslandPos;
 import com.bartz24.skyresources.References;
-import com.bartz24.skyresources.SkyResourcesSaveData;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.events.EventHandler;
 import com.bartz24.skyresources.world.WorldTypeSky;
@@ -20,11 +19,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
-public class CreatePlatformCommand extends CommandBase implements ICommand
+public class PlatformCommand extends CommandBase implements ICommand
 {
 	private List<String> aliases;
 
-	public CreatePlatformCommand()
+	public PlatformCommand()
 	{
 		aliases = new ArrayList<String>();
 		if (ConfigOptions.commandName.equals("platform"))
@@ -43,7 +42,8 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 	}
 
 	@Override
-	public boolean checkPermission(MinecraftServer server, ICommandSender sender)
+	public boolean checkPermission(MinecraftServer server,
+			ICommandSender sender)
 	{
 		return true;
 	}
@@ -80,12 +80,11 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 		World world = sender.getEntityWorld();
 		EntityPlayerMP player = (EntityPlayerMP) world.getPlayerEntityByName(
 				sender.getCommandSenderEntity().getName());
-		
-		if (!(world.getWorldInfo()
-				.getTerrainType() instanceof WorldTypeSky))
+
+		if (!(world.getWorldInfo().getTerrainType() instanceof WorldTypeSky))
 		{
 			player.addChatMessage(new TextComponentString(
-					"You are not in a sky world type."));	
+					"You are not in a sky world type."));
 			return;
 		}
 
@@ -111,6 +110,10 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 			} else if (subCommand.equals("spawn"))
 			{
 				tpSpawn(player, args);
+			} else if (subCommand.equals("reset"))
+			{
+				leavePlatform(player, args);
+				newPlatform(player, args);
 			}
 		}
 
@@ -126,7 +129,7 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 				"invite <player> : Have another player join your island. Player must not already be on an island."));
 
 		player.addChatMessage(new TextComponentString(
-				"leave : Leave your island. Must be someone else on the island to leave it to."));
+				"leave : Leave your island, clear inventory, and go to spawn.\n      (If you are the last person, no one can claim that island again.)"));
 
 		player.addChatMessage(new TextComponentString(
 				"home : Teleport back to your home island. Must be at least "
@@ -134,6 +137,9 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 
 		player.addChatMessage(new TextComponentString(
 				"spawn : Teleport back to spawn (0, 0)."));
+
+		player.addChatMessage(new TextComponentString(
+				"reset : Resets your platform and clears the players inventory.\n      (If it doesn't clear everything, be nice and toss the rest? Maybe?)"));
 	}
 
 	void newPlatform(EntityPlayerMP player, String[] args)
@@ -178,6 +184,13 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 		{
 			player.addChatMessage(
 					new TextComponentString(player2Name + " is yourself."));
+			return;
+		}
+
+		if (!References.playerHasIsland(player.getName()))
+		{
+			player.addChatMessage(
+					new TextComponentString("You don't have an island."));
 			return;
 		}
 
@@ -228,17 +241,20 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 			return;
 		}
 
-		if (References.getPlayerIsland(player.getName()).getPlayerNames()
-				.size() == 1)
+		if (!References.playerHasIsland(player.getName()))
 		{
-			player.addChatMessage(new TextComponentString(
-					"You can't abandon the island! There has to be someone to stay on it!"));
+			player.addChatMessage(
+					new TextComponentString("You don't have an island!"));
 			return;
 		}
 
 		References.removePlayer(player.getName());
 		player.addChatMessage(new TextComponentString(
 				"You are now free to join another island!"));
+
+		player.inventory.clear();
+
+		tpSpawn(player, args);
 	}
 
 	void tpHome(EntityPlayerMP player, String[] args) throws CommandException
@@ -274,9 +290,8 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 			return;
 		}
 
-		player.connection.setPlayerLocation(home.getX() + 0.5,
-				home.getY(), home.getZ() + 0.5, player.rotationYaw,
-				player.rotationPitch);
+		player.connection.setPlayerLocation(home.getX() + 0.5, home.getY(),
+				home.getZ() + 0.5, player.rotationYaw, player.rotationPitch);
 
 	}
 

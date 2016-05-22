@@ -2,7 +2,7 @@ package com.bartz24.skyresources;
 
 import org.apache.logging.log4j.Logger;
 
-import com.bartz24.skyresources.base.commands.CreatePlatformCommand;
+import com.bartz24.skyresources.base.commands.PlatformCommand;
 import com.bartz24.skyresources.proxy.CommonProxy;
 import com.bartz24.skyresources.waila.WailaPlugin;
 
@@ -37,7 +37,7 @@ public class SkyResources
 	public void serverLoading(FMLServerStartingEvent event)
 	{
 		logger.info("Registering Sky Resources commands.");
-		event.registerServerCommand(new CreatePlatformCommand());
+		event.registerServerCommand(new PlatformCommand());
 		logger.info("Finished registering Sky Resources commands.");
 
 		if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)

@@ -13,17 +13,17 @@ public class IslandPos
 	private int posX;
 	private int posY;
 
-	private List<String> playerNames;
+	private ArrayList<String> playerNames;
 
 	public IslandPos(int x, int y, String... names)
 	{
 		posX = x;
 		posY = y;
-		
-		playerNames = Arrays.asList(names);
-
 		if (playerNames == null)
 			playerNames = new ArrayList<String>();
+		
+		playerNames.addAll(Arrays.asList(names));
+
 	}
 
 	public void addNewPlayer(String playerName)
