@@ -1,5 +1,7 @@
 package com.bartz24.skyresources.jei;
 
+import com.bartz24.skyresources.ItemHelper;
+import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.jei.cauldron.CauldronRecipeCategory;
 import com.bartz24.skyresources.jei.cauldron.CauldronRecipeHandler;
 import com.bartz24.skyresources.jei.cauldron.CauldronRecipeMaker;
@@ -38,6 +40,7 @@ import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 @mezz.jei.api.JEIPlugin
@@ -83,6 +86,46 @@ public class JEIPlugin implements IModPlugin
 		registry.addRecipes(HeatSourcesRecipeMaker.getRecipes());
 		registry.addRecipes(CauldronRecipeMaker.getRecipes());
 
+		registry.addRecipeCategoryCraftingItem(
+				new ItemStack(ModBlocks.combustionHeater, 1, 0),
+				References.ModID + ":combustion");
+		registry.addRecipeCategoryCraftingItem(
+				new ItemStack(ModBlocks.combustionHeater, 1, 1),
+				References.ModID + ":combustion");
+		registry.addRecipeCategoryCraftingItem(
+				new ItemStack(Items.CAULDRON, 1, 0),
+				References.ModID + ":cauldron");
+		registry.addRecipeCategoryCraftingItem(
+				new ItemStack(ModBlocks.concentrator, 1, 0),
+				References.ModID + ":concentrator");
+		registry.addRecipeCategoryCraftingItem(
+				new ItemStack(ModBlocks.alchemicalCondenser, 1, 0),
+				References.ModID + ":condenser");
+		registry.addRecipeCategoryCraftingItem(
+				new ItemStack(ModBlocks.crucible, 1, 0),
+				References.ModID + ":crucible");
+		registry.addRecipeCategoryCraftingItem(
+				new ItemStack(ModBlocks.miniFreezer, 1, 0),
+				References.ModID + ":freezer");
+		registry.addRecipeCategoryCraftingItem(
+				new ItemStack(ModBlocks.ironFreezer, 1, 0),
+				References.ModID + ":freezer");
+		registry.addRecipeCategoryCraftingItem(
+				new ItemStack(ModBlocks.purificationVessel, 1, 0),
+				References.ModID + ":purificationVessel");
+		for (ItemStack i : ItemHelper.getRockGrinders())
+		{
+			registry.addRecipeCategoryCraftingItem(
+					i,
+					References.ModID + ":rockgrinder");
+		}
+		for (ItemStack i : ItemHelper.getInfusionStones())
+		{
+			registry.addRecipeCategoryCraftingItem(
+					i,
+					References.ModID + ":infusion");
+		}
+
 		registry.addDescription(new ItemStack(ModItems.alchemyComponent, 1, 0),
 				"jei.skyresources.desc.cactusNeedle");
 		registry.addDescription(new ItemStack(ModItems.alchemyComponent, 1, 1),
@@ -91,7 +134,7 @@ public class JEIPlugin implements IModPlugin
 				"jei.skyresources.desc.dryCactus");
 		registry.addDescription(new ItemStack(ModBlocks.blazePowderBlock, 1, 0),
 				"jei.skyresources.desc.blazePowderBlock");
-		registry.addDescription(new ItemStack(Blocks.clay, 1, 0),
+		registry.addDescription(new ItemStack(Blocks.CLAY, 1, 0),
 				"jei.skyresources.desc.clay");
 	}
 

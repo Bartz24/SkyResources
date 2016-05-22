@@ -99,7 +99,7 @@ public class AlchemyItemComponent extends Item
 						new ItemStack(ModItems.alchemyComponent, 1,
 								names.indexOf(cactusNeedleBloody))))
 				{
-					player.dropPlayerItemWithRandomChoice(
+					player.dropItem(
 							new ItemStack(ModItems.alchemyComponent, 1,
 									names.indexOf(cactusNeedleBloody)),
 							false);

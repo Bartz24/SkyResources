@@ -114,7 +114,7 @@ public class PurificationVesselTile extends TileEntity
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket()
 	{
 		NBTTagCompound nbtTag = new NBTTagCompound();
 		this.writeToNBT(nbtTag);
@@ -163,7 +163,7 @@ public class PurificationVesselTile extends TileEntity
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound compound)
+	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
 
@@ -179,6 +179,7 @@ public class PurificationVesselTile extends TileEntity
 			list.appendTag(stackTag);
 		}
 		compound.setTag("Tanks", list);
+		return compound;
 	}
 
 	@Override

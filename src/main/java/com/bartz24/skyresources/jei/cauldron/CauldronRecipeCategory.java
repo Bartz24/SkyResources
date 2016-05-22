@@ -80,7 +80,7 @@ public class CauldronRecipeCategory extends BlankRecipeCategory
 					(ItemStack) recipe.getInputs().get(0));
 			layout.getItemStacks().set(slotOutput, recipe.getOutputs());
 			layout.getItemStacks().set(slotCauldron,
-					new ItemStack(Items.cauldron));
+					new ItemStack(Items.CAULDRON));
 		}
 	}
 

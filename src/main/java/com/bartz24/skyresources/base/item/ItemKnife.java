@@ -35,9 +35,9 @@ public class ItemKnife extends Item
 	{
 		Block block = state.getBlock();
 		Material material = block.getMaterial(state);
-		return material != Material.plants && material != Material.vine
-				&& material != Material.coral && material != Material.leaves
-				&& material != Material.gourd ? 1.0F : 3F;
+		return material != Material.PLANTS && material != Material.VINE
+				&& material != Material.CORAL && material != Material.LEAVES
+				&& material != Material.GOURD ? 1.0F : 3F;
 	}
 
 	public boolean canHarvestBlock(Block blockIn)

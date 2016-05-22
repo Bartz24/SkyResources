@@ -34,14 +34,14 @@ public class PurificationVesselBlock extends BlockContainer
 	public PurificationVesselBlock(String unlocalizedName, String registryName,
 			float hardness, float resistance)
 	{
-		super(Material.glass);
+		super(Material.GLASS);
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
 		this.setCreativeTab(ModCreativeTabs.tabAlchemy);
 		this.setHardness(hardness);
 		this.setResistance(resistance);
 		this.setRegistryName(registryName);
 		this.isBlockContainer = true;
-		this.setStepSound(SoundType.GLASS);
+		this.setSoundType(SoundType.GLASS);
 	}
 
 	@Override
@@ -184,12 +184,12 @@ public class PurificationVesselBlock extends BlockContainer
 
 						if (!player.capabilities.isCreativeMode)
 						{
-							if (item.getItem() == Items.potionitem
+							if (item.getItem() == Items.POTIONITEM
 									&& item.getItemDamage() == 0)
 							{
 								player.inventory.setInventorySlotContents(
 										player.inventory.currentItem,
-										new ItemStack(Items.glass_bottle, 1,
+										new ItemStack(Items.GLASS_BOTTLE, 1,
 												0));
 							} else
 							{
@@ -208,16 +208,5 @@ public class PurificationVesselBlock extends BlockContainer
 			return true;
 		}
 		return true;
-	}
-
-	@Override
-	public boolean onBlockEventReceived(World worldIn, BlockPos pos,
-			IBlockState state, int eventID, int eventParam)
-	{
-		super.onBlockEventReceived(worldIn, pos, state, eventID, eventParam);
-		TileEntity tileentity = worldIn.getTileEntity(pos);
-		return tileentity == null ? false
-				: tileentity.receiveClientEvent(eventID, eventParam);
-
 	}
 }

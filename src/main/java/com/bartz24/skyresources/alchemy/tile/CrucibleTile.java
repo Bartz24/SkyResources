@@ -110,7 +110,7 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket()
 	{
 		NBTTagCompound nbtTag = new NBTTagCompound();
 		this.writeToNBT(nbtTag);
@@ -183,7 +183,7 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound compound)
+	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
 
@@ -192,6 +192,7 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 
 		compound.setInteger("amount", itemAmount);
 		compound.setInteger("type", currentType);
+		return compound;
 	}
 
 	@Override

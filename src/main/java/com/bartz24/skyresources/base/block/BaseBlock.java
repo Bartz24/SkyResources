@@ -25,7 +25,7 @@ public class BaseBlock extends Block
 		this.setHardness(hardness);
 		this.setResistance(resistance);
 		this.setRegistryName(registryName);
-		this.setStepSound(stepSound);
+		this.setSoundType(stepSound);
 	}
 
 	@SideOnly(Side.CLIENT)

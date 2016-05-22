@@ -17,6 +17,7 @@ import com.bartz24.skyresources.base.item.ItemKnife;
 import com.bartz24.skyresources.base.item.ItemWaterExtractor;
 import com.bartz24.skyresources.base.item.ModItemFood;
 import com.bartz24.skyresources.technology.item.ItemRockGrinder;
+import com.bartz24.skyresources.technology.item.TechItemComponent;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -31,6 +32,7 @@ public class ModItems
 	public static Item alchemyComponent;
 	public static Item metalCrystal;
 	public static Item baseComponent;
+	public static Item techComponent;
 	public static Item healthRing;
 
 	public static Item cactusFruit;
@@ -77,6 +79,7 @@ public class ModItems
 		metalCrystal = registerItem(new MetalCrystalItem());
 		dirtyGem = registerItem(new DirtyGemItem());
 		baseComponent = registerItem(new BaseItemComponent());
+		techComponent = registerItem(new TechItemComponent());
 		healthRing = registerItem(new ItemHealthRing());
 		waterExtractor = registerItem(new ItemWaterExtractor());
 		heavySnowball = registerItem(new ItemHeavySnowball("heavySnowball", "HeavySnowball"));
@@ -132,7 +135,7 @@ public class ModItems
 					.setRegistryName(RandomHelper
 							.capatilizeString(ModFluids.crystalFluidNames()[i])
 							+ "CrystalFluidBucket")
-					.setContainerItem(Items.bucket)
+					.setContainerItem(Items.BUCKET)
 					.setCreativeTab(ModCreativeTabs.tabAlchemy)));
 		}
 
@@ -169,7 +172,7 @@ public class ModItems
 					.setRegistryName(RandomHelper
 							.capatilizeString(ModFluids.crystalFluidNames()[i])
 							+ "DirtyCrystalFluidBucket")
-					.setContainerItem(Items.bucket)
+					.setContainerItem(Items.BUCKET)
 					.setCreativeTab(ModCreativeTabs.tabAlchemy)));
 		}
 

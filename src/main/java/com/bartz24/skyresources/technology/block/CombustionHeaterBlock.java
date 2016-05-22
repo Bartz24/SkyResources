@@ -41,7 +41,7 @@ public class CombustionHeaterBlock extends BlockContainer
 	public CombustionHeaterBlock(String unlocalizedName, String registryName,
 			float hardness, float resistance)
 	{
-		super(Material.wood);
+		super(Material.WOOD);
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
 		this.setCreativeTab(ModCreativeTabs.tabTech);
 		this.setHardness(hardness);
@@ -65,11 +65,11 @@ public class CombustionHeaterBlock extends BlockContainer
 		switch (getMetaFromState(state))
 		{
 		case 0:
-			return Material.wood;
+			return Material.WOOD;
 		case 1:
-			return Material.iron;
+			return Material.IRON;
 		}
-		return Material.wood;
+		return Material.IRON;
 	}
 
 	@Override
@@ -147,16 +147,6 @@ public class CombustionHeaterBlock extends BlockContainer
 			return 1538;
 		}
 		return 0;
-	}
-
-	@Override
-	public boolean onBlockEventReceived(World worldIn, BlockPos pos,
-			IBlockState state, int eventID, int eventParam)
-	{
-		super.onBlockEventReceived(worldIn, pos, state, eventID, eventParam);
-		TileEntity tileentity = worldIn.getTileEntity(pos);
-		return tileentity == null ? false
-				: tileentity.receiveClientEvent(eventID, eventParam);
 	}
 
 	@Override

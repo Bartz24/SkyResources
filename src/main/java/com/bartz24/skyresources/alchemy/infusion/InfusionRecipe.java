@@ -83,7 +83,7 @@ public class InfusionRecipe
 
 	boolean blockIsValid(InfusionRecipe recipe)
 	{
-		if (input == null || input == Blocks.air)
+		if (input == null || input == Blocks.AIR)
 			return false;
 
 		if (recipe.inputMeta == OreDictionary.WILDCARD_VALUE)
@@ -111,7 +111,7 @@ public class InfusionRecipe
 
 	public ItemStack getInputBlock()
 	{
-		if (input != Blocks.air && input != null)
+		if (input != Blocks.AIR && input != null)
 			return new ItemStack(input, 1, inputMeta);
 		else
 		{

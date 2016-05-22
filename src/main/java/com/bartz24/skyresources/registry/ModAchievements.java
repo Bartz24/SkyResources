@@ -11,11 +11,11 @@ public class ModAchievements
 	public static final Achievement cactusNeedle = new Achievement(
 			"cactusNeedle", "CactusNeedle", 0, 1,
 			new ItemStack(ModItems.alchemyComponent, 1, 1),
-			AchievementList.openInventory).registerStat();
+			AchievementList.OPEN_INVENTORY).registerStat();
 
 	public static final Achievement firstSapling = new Achievement(
 			"firstSapling", "FirstSapling", 2, 2,
-			new ItemStack(Blocks.sapling, 1, 4), cactusNeedle).registerStat();
+			new ItemStack(Blocks.SAPLING, 1, 4), cactusNeedle).registerStat();
 
 	public static final Achievement firstWater = new Achievement("firstWater",
 			"FirstWater", 4, 1, new ItemStack(ModItems.waterExtractor),

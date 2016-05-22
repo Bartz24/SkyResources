@@ -19,7 +19,7 @@ public class FluidDropperBlock extends BlockContainer
 	public FluidDropperBlock(String unlocalizedName,
 			String registryName, float hardness, float resistance)
 	{
-		super(Material.rock);
+		super(Material.ROCK);
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
 		this.setCreativeTab(ModCreativeTabs.tabTech);
 		this.setHardness(hardness);
@@ -39,15 +39,5 @@ public class FluidDropperBlock extends BlockContainer
 	{
 		return new FluidDropperTile();
 		
-	}
-
-	@Override
-	public boolean onBlockEventReceived(World worldIn, BlockPos pos,
-			IBlockState state, int eventID, int eventParam)
-	{
-		super.onBlockEventReceived(worldIn, pos, state, eventID, eventParam);
-		TileEntity tileentity = worldIn.getTileEntity(pos);
-		return tileentity == null ? false
-				: tileentity.receiveClientEvent(eventID, eventParam);
 	}
 }

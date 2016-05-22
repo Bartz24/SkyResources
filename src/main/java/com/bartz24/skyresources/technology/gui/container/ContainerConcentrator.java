@@ -1,11 +1,10 @@
 package com.bartz24.skyresources.technology.gui.container;
 
-import com.bartz24.skyresources.technology.tile.CombustionHeaterTile;
 import com.bartz24.skyresources.technology.tile.ConcentratorTile;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -86,9 +85,9 @@ public class ContainerConcentrator extends Container
 	{
 		super.detectAndSendChanges();
 
-		for (int i = 0; i < this.crafters.size(); ++i)
+		for (int i = 0; i < this.listeners.size(); ++i)
 		{
-			ICrafting icrafting = this.crafters.get(i);
+			IContainerListener icrafting = this.listeners.get(i);
 
 			icrafting.sendProgressBarUpdate(this, 0, this.tile.getField(0));
 

@@ -51,12 +51,11 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile
 				.getMetaFromState(blockMeta))
 		{
 		case 0: // WOOD
-			mats.add(Material.wood);
+			mats.add(Material.WOOD);
 			break;
 		case 1: // IRON
-			mats.add(Material.clay);
-			mats.add(Material.iron);
-			mats.add(Material.rock);
+			mats.add(Material.IRON);
+			mats.add(Material.ROCK);
 			break;
 		}
 		return mats;
@@ -124,7 +123,7 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound compound)
+	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
 
@@ -145,6 +144,7 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile
 			}
 		}
 		compound.setTag("Items", list);
+		return compound;
 	}
 
 	@Override
@@ -261,7 +261,7 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile
 			this.worldObj
 					.playSound((EntityPlayer) null, pos.getX(),
 							pos.getY() + 1.5D, pos.getZ(),
-							SoundEvents.entity_generic_explode,
+							SoundEvents.ENTITY_GENERIC_EXPLODE,
 							SoundCategory.BLOCKS, 4.0F,
 							(1.0F + (this.worldObj.rand.nextFloat()
 									- this.worldObj.rand.nextFloat()) * 0.2F)
@@ -484,6 +484,6 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile
 	@Override
 	public ItemStack removeStackFromSlot(int index)
 	{
-		return ItemStackHelper.func_188383_a(this.inventory, index);
+		return ItemStackHelper.getAndRemove(this.inventory, index);
 	}
 }

@@ -11,6 +11,7 @@ import com.bartz24.skyresources.alchemy.tile.PurificationVesselTile;
 import com.bartz24.skyresources.base.item.BaseItemComponent;
 import com.bartz24.skyresources.base.item.ItemWaterExtractor;
 import com.bartz24.skyresources.technology.block.CombustionHeaterBlock.CombustionHeaterVariants;
+import com.bartz24.skyresources.technology.item.TechItemComponent;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -146,6 +147,10 @@ public class ModRenderers
 		for (int i = 0; i < BaseItemComponent.getNames().size(); i++)
 		{
 			registerItemRenderer(ModItems.baseComponent, i);
+		}
+		for (int i = 0; i < TechItemComponent.getNames().size(); i++)
+		{
+			registerItemRenderer(ModItems.techComponent, i);
 		}
 		registerItemRenderer(ModItems.cactusFruit);
 		registerItemRenderer(ModItems.heavySnowball);

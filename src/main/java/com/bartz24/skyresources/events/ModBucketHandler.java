@@ -23,12 +23,12 @@ public class ModBucketHandler
 			FluidContainerRegistry.registerFluidContainer(
 					ModFluids.crystalFluids.get(i),
 					new ItemStack(ModItems.crystalFluidBuckets.get(i)),
-					new ItemStack(Items.bucket));
+					new ItemStack(Items.BUCKET));
 			FluidContainerRegistry
 					.registerFluidContainer(ModFluids.dirtyCrystalFluids.get(i),
 							new ItemStack(
 									ModItems.dirtyCrystalFluidBuckets.get(i)),
-							new ItemStack(Items.bucket));
+							new ItemStack(Items.BUCKET));
 		}
 	}
 
@@ -47,7 +47,7 @@ public class ModBucketHandler
 
 		if (event.getEntityPlayer()
 				.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND)
-				.getItem() == Items.bucket
+				.getItem() == Items.BUCKET
 				&& event.getTarget().typeOfHit == Type.BLOCK)
 		{
 

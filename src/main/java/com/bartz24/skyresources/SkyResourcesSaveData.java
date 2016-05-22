@@ -53,7 +53,7 @@ public class SkyResourcesSaveData extends WorldSavedData
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound nbt)
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt)
 	{
 		NBTTagList list = new NBTTagList();
 		for (int i = 0; i < References.CurrentIslandsList.size(); i++)
@@ -75,6 +75,7 @@ public class SkyResourcesSaveData extends WorldSavedData
 			list2.appendTag(stackTag);
 		}
 		nbt.setTag("SpawnedPlayers", list2);
+		return nbt;
 	}
 
 	public static void setDirty(int dimension)

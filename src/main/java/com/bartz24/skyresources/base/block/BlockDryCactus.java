@@ -19,7 +19,7 @@ public class BlockDryCactus extends BaseBlock
 
 	public BlockDryCactus()
 	{
-		super(Material.plants, "dryCactus", "DryCactus", 0.5F, 0.5F,
+		super(Material.PLANTS, "dryCactus", "DryCactus", 0.5F, 0.5F,
 				SoundType.PLANT);
 	}
 

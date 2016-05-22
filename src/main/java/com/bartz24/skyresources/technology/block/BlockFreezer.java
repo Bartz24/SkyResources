@@ -45,7 +45,7 @@ public class BlockFreezer extends BlockContainer
 	public BlockFreezer(String unlocalizedName, String registryName,
 			float hardness, float resistance)
 	{
-		super(Material.iron);
+		super(Material.IRON);
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
 		this.setCreativeTab(ModCreativeTabs.tabTech);
 		this.setHardness(hardness);
@@ -93,18 +93,6 @@ public class BlockFreezer extends BlockContainer
 		FreezerTile te = (FreezerTile) world.getTileEntity(pos);
 		InventoryHelper.dropInventoryItems(world, pos, te);
 		super.breakBlock(world, pos, state);
-	}
-
-	@Override
-	public boolean onBlockEventReceived(World worldIn, BlockPos pos,
-			IBlockState state, int eventID, int eventParam)
-	{
-		BlockPos bottomPos = state.getProperties()
-				.get(PART) == EnumPartType.BOTTOM ? pos : pos.down();
-		super.onBlockEventReceived(worldIn, pos, state, eventID, eventParam);
-		TileEntity tileentity = worldIn.getTileEntity(bottomPos);
-		return tileentity == null ? false
-				: tileentity.receiveClientEvent(eventID, eventParam);
 	}
 
 	@Override

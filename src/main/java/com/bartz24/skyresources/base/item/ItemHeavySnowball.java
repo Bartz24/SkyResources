@@ -35,7 +35,7 @@ public class ItemHeavySnowball extends Item
 		}
 
 		worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY,
-				playerIn.posZ, SoundEvents.entity_snowball_throw,
+				playerIn.posZ, SoundEvents.ENTITY_SNOWBALL_THROW,
 				SoundCategory.NEUTRAL, 0.5F,
 				0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
@@ -43,7 +43,7 @@ public class ItemHeavySnowball extends Item
 		{
 			EntityHeavySnowball entitysnowball = new EntityHeavySnowball(
 					worldIn, playerIn);
-			entitysnowball.func_184538_a(playerIn, playerIn.rotationPitch,
+			entitysnowball.setHeadingFromThrower(playerIn, playerIn.rotationPitch,
 					playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
 			worldIn.spawnEntityInWorld(entitysnowball);
 		}

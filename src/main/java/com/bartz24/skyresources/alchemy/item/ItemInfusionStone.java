@@ -63,14 +63,13 @@ public class ItemInfusionStone extends Item
 				if (!world.isRemote)
 				{
 					if (recipe.getOutput().getItem() == Item
-							.getItemFromBlock(Blocks.sapling))
+							.getItemFromBlock(Blocks.SAPLING))
 						player.addStat(ModAchievements.firstSapling, 1);
 
 					player.attackEntityFrom(DamageSource.magic,
 							recipe.getHealthReq());
 					world.setBlockToAir(pos);
-					player.dropPlayerItemWithRandomChoice(
-							recipe.getOutput().copy(), false);
+					player.dropItem(recipe.getOutput().copy(), false);
 					if (offHand != null)
 						offHand.stackSize -= recipe.getInputStack().stackSize;
 

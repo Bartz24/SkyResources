@@ -274,7 +274,7 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 			return;
 		}
 
-		player.playerNetServerHandler.setPlayerLocation(home.getX() + 0.5,
+		player.connection.setPlayerLocation(home.getX() + 0.5,
 				home.getY(), home.getZ() + 0.5, player.rotationYaw,
 				player.rotationPitch);
 
@@ -283,7 +283,7 @@ public class CreatePlatformCommand extends CommandBase implements ICommand
 	void tpSpawn(EntityPlayerMP player, String[] args) throws CommandException
 	{
 
-		player.playerNetServerHandler.setPlayerLocation(0 + 0.5, 86, 0 + 0.5,
+		player.connection.setPlayerLocation(0 + 0.5, 86, 0 + 0.5,
 				player.rotationYaw, player.rotationPitch);
 	}
 }

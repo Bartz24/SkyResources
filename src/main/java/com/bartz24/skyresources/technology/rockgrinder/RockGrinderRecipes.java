@@ -19,19 +19,24 @@ public class RockGrinderRecipes
 
 	private static List<RockGrinderRecipe> Recipes;
 
-	public static RockGrinderRecipe getRecipe(IBlockState block)
+	public static List<RockGrinderRecipe> getRecipes(IBlockState block)
 	{
 		RockGrinderRecipe rec = new RockGrinderRecipe(block);
+
+		List<RockGrinderRecipe> recs = new ArrayList<RockGrinderRecipe>();
 
 		for (RockGrinderRecipe recipe : Recipes)
 		{
 			if (rec.isInputRecipeEqualTo(recipe))
 			{
-				return recipe;
+				recs.add(recipe);
 			}
 		}
 
-		return null;
+		if (recs.size() == 0)
+			return null;
+		else
+			return recs;
 	}
 
 	public static List<RockGrinderRecipe> getRecipes()
@@ -58,6 +63,27 @@ public class RockGrinderRecipes
 		}
 
 		Recipes.add(new RockGrinderRecipe(output, fuzzyInput, block));
+	}
+
+	public static void addRecipe(ItemStack output, boolean fuzzyInput,
+			IBlockState block, float chance)
+	{
+
+		if (block == null)
+		{
+			SkyResources.logger
+					.error("Need input block for recipe. DID NOT ADD RECIPE.");
+			return;
+		}
+
+		if (output == null)
+		{
+			SkyResources.logger.error(
+					"Need a output for recipe. DID NOT ADD RECIPE FOR NULL.");
+			return;
+		}
+
+		Recipes.add(new RockGrinderRecipe(output, chance, fuzzyInput, block));
 	}
 
 	public static void addRecipe(RockGrinderRecipe recipe)

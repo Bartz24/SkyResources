@@ -6,6 +6,7 @@ import java.util.List;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -16,13 +17,15 @@ public class RockGrinderRecipeJEI extends BlankRecipeWrapper
 	private final ItemStack output;
 
 	private final boolean fuzzyInput;
+	private final float outChance;
 
 	public RockGrinderRecipeJEI(ItemStack output, IBlockState input,
-			boolean fuzzyIn)
+			boolean fuzzyIn, float chance)
 	{
 		inputBlock = input;
 		this.output = output;
 		fuzzyInput = fuzzyIn;
+		outChance = chance;
 	}
 
 	@Override
@@ -37,6 +40,9 @@ public class RockGrinderRecipeJEI extends BlankRecipeWrapper
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight,
 			int mouseX, int mouseY)
 	{
+		String s =  Float.toString(outChance * 100) + "%";
+		FontRenderer fontRendererObj = minecraft.fontRendererObj;
+		fontRendererObj.drawString(s, 70, 0, java.awt.Color.gray.getRGB());
 	}
 
 	@Override

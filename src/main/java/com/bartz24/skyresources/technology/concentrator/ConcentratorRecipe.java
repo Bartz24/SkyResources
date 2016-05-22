@@ -39,7 +39,7 @@ public class ConcentratorRecipe
 
 	boolean blockIsValid(ConcentratorRecipe recipe)
 	{
-		if (inputBlock == null || inputBlock == Blocks.air.getDefaultState())
+		if (inputBlock == null || inputBlock == Blocks.AIR.getDefaultState())
 			return false;
 
 		return recipe.inputBlock == inputBlock;

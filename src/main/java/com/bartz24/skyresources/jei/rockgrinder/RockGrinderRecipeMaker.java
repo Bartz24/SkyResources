@@ -19,7 +19,7 @@ public class RockGrinderRecipeMaker
 		{
 			RockGrinderRecipeJEI addRecipe = new RockGrinderRecipeJEI(
 					recipe.getOutput(), recipe.getInputBlock(),
-					recipe.getFuzzyInput());
+					recipe.getFuzzyInput(), recipe.getOutputChance());
 			recipes.add(addRecipe);
 		}
 

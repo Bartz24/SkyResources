@@ -37,7 +37,7 @@ public class BlazePowderBlock extends BaseBlock
 					&& rand.nextInt(50) <= HeatSources.getHeatSourceValue(
 							world.getBlockState(pos.down())))
 			{
-				world.setBlockState(pos, Blocks.lava.getDefaultState());
+				world.setBlockState(pos, Blocks.LAVA.getDefaultState());
 			} else
 				world.scheduleUpdate(pos, this, tickRate(world));
 		}

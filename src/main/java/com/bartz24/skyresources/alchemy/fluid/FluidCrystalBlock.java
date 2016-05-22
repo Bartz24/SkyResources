@@ -68,7 +68,7 @@ public class FluidCrystalBlock extends BlockFluidClassic
 						pos.getY() + 0.5F, pos.getZ() + 0.5F, stack);
 				world.spawnEntityInWorld(entity);
 				world.playSound((EntityPlayer) null, pos,
-						SoundEvents.entity_arrow_hit_player,
+						SoundEvents.ENTITY_ARROW_HIT_PLAYER,
 						SoundCategory.BLOCKS, 1.0F,
 						2.2F / (rand.nextFloat() * 0.2F + 0.9F));
 				if (rand.nextInt(8 + ModFluids

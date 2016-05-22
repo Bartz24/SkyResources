@@ -82,7 +82,7 @@ public class ConcentratorTile extends TileEntity
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound compound)
+	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
 
@@ -104,6 +104,7 @@ public class ConcentratorTile extends TileEntity
 			}
 		}
 		compound.setTag("Items", list);
+		return compound;
 	}
 
 	@Override
@@ -407,6 +408,6 @@ public class ConcentratorTile extends TileEntity
 	@Override
 	public ItemStack removeStackFromSlot(int index)
 	{
-		return ItemStackHelper.func_188383_a(this.inventory, index);
+		return ItemStackHelper.getAndRemove(this.inventory, index);
 	}
 }

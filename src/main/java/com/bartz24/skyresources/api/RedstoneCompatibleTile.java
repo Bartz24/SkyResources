@@ -46,11 +46,12 @@ public class RedstoneCompatibleTile extends TileEntity
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound compound)
+	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
 
 		compound.setInteger("pSignal", prevRedstoneSignal);
+		return compound;
 	}
 
 	@Override

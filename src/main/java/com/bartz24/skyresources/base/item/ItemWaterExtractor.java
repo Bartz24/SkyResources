@@ -98,7 +98,7 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 							1.0F).sideHit;
 
 					Block block = world.getBlockState(pos).getBlock();
-					if (block == Blocks.cactus)
+					if (block == Blocks.CACTUS)
 					{
 						getCompound(stack).setInteger("amount", stack
 								.getTagCompound().getInteger("amount")
@@ -111,11 +111,11 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 								ModBlocks.dryCactus.getDefaultState());
 						world.playSound((EntityPlayer) null, player.posX,
 								player.posY, player.posZ,
-								SoundEvents.entity_player_splash,
+								SoundEvents.ENTITY_PLAYER_SPLASH,
 								SoundCategory.NEUTRAL, 1.0F,
 								1.0F / (itemRand.nextFloat() * 0.4F + 1.2F));
 						return;
-					} else if (block == Blocks.snow)
+					} else if (block == Blocks.SNOW)
 					{
 						getCompound(stack).setInteger("amount", stack
 								.getTagCompound().getInteger("amount")
@@ -127,19 +127,19 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 						world.setBlockToAir(pos);
 						world.playSound((EntityPlayer) null, player.posX,
 								player.posY, player.posZ,
-								SoundEvents.entity_player_splash,
+								SoundEvents.ENTITY_PLAYER_SPLASH,
 								SoundCategory.NEUTRAL, 1.0F,
 								1.0F / (itemRand.nextFloat() * 0.4F + 1.2F));
 						return;
 					} else if (world.getBlockState(pos.add(0, 1, 0))
-							.getBlock() == Blocks.water
+							.getBlock() == Blocks.WATER
 							&& getCompound(stack).getInteger("amount") < 1000)
 					{
 						world.setBlockToAir(pos.add(0, 1, 0));
 						getCompound(stack).setInteger("amount", 1000);
 						world.playSound((EntityPlayer) null, player.posX,
 								player.posY, player.posZ,
-								SoundEvents.entity_player_splash,
+								SoundEvents.ENTITY_PLAYER_SPLASH,
 								SoundCategory.NEUTRAL, 1.0F,
 								1.0F / (itemRand.nextFloat() * 0.4F + 1.2F));
 					}
@@ -170,23 +170,23 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 
 		if (getCompound(stack).getInteger("amount") >= 1000)
 		{
-			if (block == Blocks.dirt)
+			if (block == Blocks.DIRT)
 			{
-				worldIn.setBlockState(pos, Blocks.clay.getDefaultState(), 3);
+				worldIn.setBlockState(pos, Blocks.CLAY.getDefaultState(), 3);
 				getCompound(stack).setInteger("amount",
 						stack.getTagCompound().getInteger("amount") - 1000);
 				tank.getFluid().amount = stack.getTagCompound()
 						.getInteger("amount");
 				worldIn.playSound((EntityPlayer) null, playerIn.posX,
 						playerIn.posY, playerIn.posZ,
-						SoundEvents.entity_player_splash, SoundCategory.NEUTRAL,
+						SoundEvents.ENTITY_PLAYER_SPLASH, SoundCategory.NEUTRAL,
 						1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F));
 				playerIn.addStat(ModAchievements.firstWater, 1);
 
 				return EnumActionResult.SUCCESS;
 			}
 
-			if (block == Blocks.snow_layer
+			if (block == Blocks.SNOW_LAYER
 					&& iblockstate.getValue(BlockSnow.LAYERS).intValue() < 1)
 			{
 				side = EnumFacing.UP;
@@ -201,10 +201,10 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 				return EnumActionResult.FAIL;
 			} else
 			{
-				if (worldIn.canBlockBePlaced(Blocks.water, pos, false, side,
+				if (worldIn.canBlockBePlaced(Blocks.WATER, pos, false, side,
 						(Entity) null, stack))
 				{
-					IBlockState iblockstate1 = Blocks.water.onBlockPlaced(
+					IBlockState iblockstate1 = Blocks.WATER.onBlockPlaced(
 							worldIn, pos, side, hitX, hitY, hitZ, 0, playerIn);
 
 					worldIn.setBlockState(pos, iblockstate1, 3);
@@ -214,7 +214,7 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 							.getInteger("amount");
 					worldIn.playSound((EntityPlayer) null, playerIn.posX,
 							playerIn.posY, playerIn.posZ,
-							SoundEvents.entity_player_splash,
+							SoundEvents.ENTITY_PLAYER_SPLASH,
 							SoundCategory.NEUTRAL, 1.0F,
 							1.0F / (itemRand.nextFloat() * 0.4F + 1.2F));
 					playerIn.addStat(ModAchievements.firstWater, 1);

@@ -36,8 +36,8 @@ public class RandomHelper
 				EntityPlayerMP mp = (EntityPlayerMP) player;
 				if (Math.hypot(mp.posX - tile.getPos().getX() - 0.5,
 						mp.posZ - tile.getPos().getZ() - 0.5) < 64)
-					((EntityPlayerMP) player).playerNetServerHandler
-							.sendPacket(tile.getDescriptionPacket());
+					((EntityPlayerMP) player).connection
+							.sendPacket(tile.getUpdatePacket());
 			}
 	}
 

@@ -57,35 +57,35 @@ public class ModBlocks
 	{
 		crystalFluidBlocks = new ArrayList<Block>();
 		dirtyCrystalFluidBlocks = new ArrayList<Block>();
-		cactusFruitNeedle = registerBlock(new TransparentBlock(Material.plants,
+		cactusFruitNeedle = registerBlock(new TransparentBlock(Material.PLANTS,
 				"cactusFruitNeedle", "CactusFruitNeedle", 0.5F, 0.5F,
 				new AxisAlignedBB(0.3D, 0D, 0.3D, 0.7D, 0.8D, 0.7D),
 				SoundType.PLANT));
 		
 		compressedStone = registerBlock(
-				new BaseBlock(Material.rock, "compressedStone",
+				new BaseBlock(Material.ROCK, "compressedStone",
 						"CompressedStone", 6F, 6F, SoundType.STONE));
 
 		compressedCoalBlock = registerBlock(
-				new BaseBlock(Material.rock, "compressedCoalBlock",
+				new BaseBlock(Material.ROCK, "compressedCoalBlock",
 						"CompressedCoalBlock", 6F, 6F, SoundType.STONE));
 
 		compressedCoalBlock2 = registerBlock(
-				new BaseBlock(Material.rock, "compressedCoalBlock2",
+				new BaseBlock(Material.ROCK, "compressedCoalBlock2",
 						"CompressedCoalBlock2", 9F, 9F, SoundType.STONE));
 
 		coalInfusedBlock = registerBlock(
-				new BaseBlock(Material.rock, "coalInfusedBlock",
+				new BaseBlock(Material.ROCK, "coalInfusedBlock",
 						"CoalInfusedBlock", 6F, 6F, SoundType.STONE));
 
 		blazePowderBlock = registerBlock(
-				new BlazePowderBlock(Material.clay, "blazePowderBlock",
+				new BlazePowderBlock(Material.CLAY, "blazePowderBlock",
 						"BlazePowderBlock", 0.5F, 0.5F, SoundType.GROUND));
 		heavySnow = registerBlock(
-				new BaseBlock(Material.clay, "heavySnow",
+				new BaseBlock(Material.CLAY, "heavySnow",
 						"HeavySnow", 0.5F, 0.5F, SoundType.SNOW));
 		heavySnow2 = registerBlock(
-				new BaseBlock(Material.clay, "heavySnow2",
+				new BaseBlock(Material.CLAY, "heavySnow2",
 						"HeavySnow2", 1F, 1F, SoundType.SNOW));
 
 		alchemicalCondenser = registerBlock(new CondenserBlock(
@@ -117,7 +117,7 @@ public class ModBlocks
 		for (int i = 0; i < ModFluids.crystalFluidNames().length; i++)
 		{
 			crystalFluidBlocks.add(registerBlock(new FluidCrystalBlock(
-					ModFluids.crystalFluids.get(i), Material.water,
+					ModFluids.crystalFluids.get(i), Material.WATER,
 					ModFluids.crystalFluidNames()[i] + "CrystalFluidBlock",
 					RandomHelper
 							.capatilizeString(ModFluids.crystalFluidNames()[i])
@@ -127,7 +127,7 @@ public class ModBlocks
 		for (int i = 0; i < ModFluids.crystalFluidNames().length; i++)
 		{
 			dirtyCrystalFluidBlocks.add(registerBlock(new FluidCrystalBlock(
-					ModFluids.dirtyCrystalFluids.get(i), Material.water,
+					ModFluids.dirtyCrystalFluids.get(i), Material.WATER,
 					ModFluids.crystalFluidNames()[i] + "DirtyCrystalFluidBlock",
 					RandomHelper
 							.capatilizeString(ModFluids.crystalFluidNames()[i])

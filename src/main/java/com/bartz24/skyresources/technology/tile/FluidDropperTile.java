@@ -99,11 +99,12 @@ public class FluidDropperTile extends RedstoneCompatibleTile
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound compound)
+	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
 
 		tank.writeToNBT(compound);
+		return compound;
 	}
 
 	@Override
@@ -127,7 +128,7 @@ public class FluidDropperTile extends RedstoneCompatibleTile
 						.getBlock().getDefaultState());
 				tank.setFluid(null);
 				worldObj.playSound(pos.getX(), pos.getY(), pos.getZ(),
-						SoundEvents.item_bucket_empty, SoundCategory.BLOCKS,
+						SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS,
 						0.5F, 1, true);
 			}
 		}

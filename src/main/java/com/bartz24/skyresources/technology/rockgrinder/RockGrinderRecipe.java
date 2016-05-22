@@ -10,6 +10,8 @@ public class RockGrinderRecipe
 	boolean fuzzyInput;
 
 	ItemStack output;
+	
+	float outputChance;
 
 	public RockGrinderRecipe(ItemStack outputStack, boolean fuzzy,
 			IBlockState inputState)
@@ -17,6 +19,16 @@ public class RockGrinderRecipe
 		inputBlock = inputState;
 		fuzzyInput = fuzzy;
 		output = outputStack;
+		outputChance = 1;
+	}
+	
+	public RockGrinderRecipe(ItemStack outputStack, float chance, boolean fuzzy,
+			IBlockState inputState)
+	{
+		inputBlock = inputState;
+		fuzzyInput = fuzzy;
+		output = outputStack;
+		outputChance = chance;
 	}
 
 	public RockGrinderRecipe(IBlockState inputState)
@@ -43,6 +55,11 @@ public class RockGrinderRecipe
 	public ItemStack getOutput()
 	{
 		return output;
+	}
+
+	public float getOutputChance()
+	{
+		return outputChance;
 	}
 
 	public boolean getFuzzyInput()

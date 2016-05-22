@@ -39,7 +39,7 @@ public class BlockMiniFreezer extends BlockContainer
 	public BlockMiniFreezer(String unlocalizedName, String registryName,
 			float hardness, float resistance)
 	{
-		super(Material.ground);
+		super(Material.GROUND);
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
 		this.setCreativeTab(ModCreativeTabs.tabTech);
 		this.setHardness(hardness);
@@ -96,16 +96,6 @@ public class BlockMiniFreezer extends BlockContainer
 				.getTileEntity(pos);
 		InventoryHelper.dropInventoryItems(world, pos, te);
 		super.breakBlock(world, pos, state);
-	}
-
-	@Override
-	public boolean onBlockEventReceived(World worldIn, BlockPos pos,
-			IBlockState state, int eventID, int eventParam)
-	{
-		super.onBlockEventReceived(worldIn, pos, state, eventID, eventParam);
-		TileEntity tileentity = worldIn.getTileEntity(pos);
-		return tileentity == null ? false
-				: tileentity.receiveClientEvent(eventID, eventParam);
 	}
 
 	@Override

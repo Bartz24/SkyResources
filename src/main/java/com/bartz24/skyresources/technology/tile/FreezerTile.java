@@ -36,7 +36,7 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound compound)
+	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
 
@@ -58,6 +58,7 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 			}
 		}
 		compound.setTag("Items", list);
+		return compound;
 	}
 
 	@Override
@@ -315,6 +316,6 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 	@Override
 	public ItemStack removeStackFromSlot(int index)
 	{
-		return ItemStackHelper.func_188383_a(this.inventory, index);
+		return ItemStackHelper.getAndRemove(this.inventory, index);
 	}
 }

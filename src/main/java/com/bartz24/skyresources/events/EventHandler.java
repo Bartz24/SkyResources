@@ -140,9 +140,9 @@ public class EventHandler
 				BlockPos pos = new BlockPos(spawn.getX() + x, spawn.getY(),
 						spawn.getZ() + z);
 				world.setBlockState(pos.down(3),
-						Blocks.bedrock.getDefaultState());
+						Blocks.BEDROCK.getDefaultState());
 				world.setBlockState(pos.down(4),
-						Blocks.bedrock.getDefaultState());
+						Blocks.BEDROCK.getDefaultState());
 			}
 		}
 	}
@@ -156,16 +156,16 @@ public class EventHandler
 				BlockPos pos = new BlockPos(spawn.getX() + x, spawn.getY(),
 						spawn.getZ() + z);
 				world.setBlockState(pos.down(3),
-						Blocks.sand.getStateFromMeta(1));
+						Blocks.SAND.getStateFromMeta(1));
 				world.setBlockState(pos.down(4),
-						Blocks.bedrock.getDefaultState());
+						Blocks.BEDROCK.getDefaultState());
 			}
 		}
 		BlockPos pos = new BlockPos(spawn.getX() + -1, spawn.getY(),
 				spawn.getZ() + 1);
-		world.setBlockState(pos.down(2), Blocks.cactus.getDefaultState());
-		world.setBlockState(pos.down(1), Blocks.cactus.getDefaultState());
-		world.setBlockState(pos, Blocks.cactus.getDefaultState());
+		world.setBlockState(pos.down(2), Blocks.CACTUS.getDefaultState());
+		world.setBlockState(pos.down(1), Blocks.CACTUS.getDefaultState());
+		world.setBlockState(pos, Blocks.CACTUS.getDefaultState());
 	}
 
 	private static void dirtSpawn(World world, BlockPos spawn)
@@ -177,15 +177,15 @@ public class EventHandler
 				BlockPos pos = new BlockPos(spawn.getX() + x, spawn.getY(),
 						spawn.getZ() + z);
 				world.setBlockState(pos.down(3),
-						Blocks.dirt.getStateFromMeta(1));
+						Blocks.DIRT.getStateFromMeta(1));
 				world.setBlockState(pos.down(4),
-						Blocks.bedrock.getDefaultState());
+						Blocks.BEDROCK.getDefaultState());
 			}
 		}
 		BlockPos pos = new BlockPos(spawn.getX() + -1, spawn.getY(),
 				spawn.getZ() + 1);
 		world.setBlockState(pos.down(2),
-				Blocks.yellow_flower.getDefaultState());
+				Blocks.YELLOW_FLOWER.getDefaultState());
 	}
 
 	private static void snowSpawn(World world, BlockPos spawn)
@@ -196,16 +196,16 @@ public class EventHandler
 			{
 				BlockPos pos = new BlockPos(spawn.getX() + x, spawn.getY(),
 						spawn.getZ() + z);
-				world.setBlockState(pos.down(3), Blocks.snow.getDefaultState());
+				world.setBlockState(pos.down(3), Blocks.SNOW.getDefaultState());
 				world.setBlockState(pos.down(4),
-						Blocks.bedrock.getDefaultState());
+						Blocks.BEDROCK.getDefaultState());
 
 				if ((x == -1 && z == 1) || (x == 1 && z == 1))
 					world.setBlockState(pos.down(2),
-							Blocks.pumpkin.getDefaultState());
+							Blocks.PUMPKIN.getDefaultState());
 				else
 					world.setBlockState(pos.down(2),
-							Blocks.snow_layer.getDefaultState());
+							Blocks.SNOW_LAYER.getDefaultState());
 			}
 		}
 	}
@@ -224,7 +224,7 @@ public class EventHandler
 			if (block != null && equip == null
 					&& event.getEntityPlayer().isSneaking())
 			{
-				if (block == Blocks.cactus)
+				if (block == Blocks.CACTUS)
 				{
 					RandomHelper.spawnItemInWorld(event.getWorld(),
 							new ItemStack(ModItems.alchemyComponent, 1,
@@ -234,38 +234,38 @@ public class EventHandler
 							event.getEntityPlayer().getPosition());
 					event.getEntityPlayer()
 							.attackEntityFrom(DamageSource.cactus, 4);
-				} else if (block == Blocks.snow_layer)
+				} else if (block == Blocks.SNOW_LAYER)
 				{
 					RandomHelper.spawnItemInWorld(event.getWorld(),
-							new ItemStack(Items.snowball), event.getPos());
+							new ItemStack(Items.SNOWBALL), event.getPos());
 					event.getEntityPlayer().addPotionEffect(
-							new PotionEffect(MobEffects.digSlowdown,
+							new PotionEffect(MobEffects.MINING_FATIGUE,
 									event.getWorld().rand.nextInt(750) + 750,
 									event.getWorld().rand.nextInt(4)));
 
-					int meta = Blocks.snow_layer.getMetaFromState(
+					int meta = Blocks.SNOW_LAYER.getMetaFromState(
 							event.getWorld().getBlockState(event.getPos()));
 
 					if (meta <= 1)
 						event.getWorld().setBlockToAir(event.getPos());
 					else
 						event.getWorld().setBlockState(event.getPos(),
-								Blocks.snow_layer.getStateFromMeta(meta - 2));
-				} else if (block == Blocks.snow)
+								Blocks.SNOW_LAYER.getStateFromMeta(meta - 2));
+				} else if (block == Blocks.SNOW)
 				{
 					RandomHelper.spawnItemInWorld(event.getWorld(),
-							new ItemStack(Items.snowball), event.getPos());
+							new ItemStack(Items.SNOWBALL), event.getPos());
 					event.getEntityPlayer().addPotionEffect(
-							new PotionEffect(MobEffects.digSlowdown,
+							new PotionEffect(MobEffects.MINING_FATIGUE,
 									event.getWorld().rand.nextInt(750) + 750,
 									event.getWorld().rand.nextInt(4)));
 
 					event.getWorld().setBlockState(event.getPos(),
-							Blocks.snow_layer.getStateFromMeta(5));
+							Blocks.SNOW_LAYER.getStateFromMeta(5));
 				}
 			} else if (block != null && equip == null)
 			{
-				if (block == Blocks.cauldron)
+				if (block == Blocks.CAULDRON)
 				{
 
 					int i = ((Integer) event.getWorld()

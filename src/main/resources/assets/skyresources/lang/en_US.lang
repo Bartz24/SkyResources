@@ -8,6 +8,7 @@ item.skyresources.alchemyItemComponent.goldNeedleAlchemical.name=Alchemical Gold
 item.skyresources.baseItemComponent.woodHeatComponent.name=Wooden Heat Component
 item.skyresources.baseItemComponent.ironHeatComponent.name=Iron Heat Component
 item.skyresources.baseItemComponent.plantMatter.name=Plant Matter
+item.skyresources.techItemComponent.stoneCrushed.name=Crushed Stone
 item.skyresources.cactusFruit.name=Cactus Fruit
 item.skyresources.cactusCuttingKnife.name=Cactus Cutting Knife
 item.skyresources.ironCuttingKnife.name=Iron Cutting Knife
@@ -39,6 +40,7 @@ tile.skyresources.compressedStone.name=Hardened Stone
 tile.skyresources.concentrator.name=Concentrator
 tile.skyresources.purificationVessel.name=Purification Vessel
 tile.skyresources.miniFreezer.name=Mini Freezer
+tile.skyresources.ironFreezer.name=Iron Freezer
 tile.skyresources.heavySnow.name=Heavy Snow
 tile.skyresources.heavySnow2.name=Very Heavy Snow
 

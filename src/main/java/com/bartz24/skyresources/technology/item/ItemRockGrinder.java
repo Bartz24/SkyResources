@@ -1,5 +1,7 @@
 package com.bartz24.skyresources.technology.item;
 
+import java.util.List;
+
 import com.bartz24.skyresources.ItemHelper;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
@@ -12,17 +14,19 @@ import com.google.common.collect.Multimap;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
+import net.minecraft.init.Enchantments;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
+import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemRockGrinder extends Item
+public class ItemRockGrinder extends ItemPickaxe
 {
 	private float damageVsEntity;
 
@@ -31,9 +35,12 @@ public class ItemRockGrinder extends Item
 	public ItemRockGrinder(ToolMaterial material, String unlocalizedName,
 			String registryName)
 	{
+		super(material);
 		toolMaterial = material;
-		this.setMaxDamage((int) (material.getMaxUses() * ConfigOptions.rockGrinderBaseDurability));
-		this.damageVsEntity = ConfigOptions.rockGrinderBaseDamage + material.getDamageVsEntity();
+		this.setMaxDamage((int) (material.getMaxUses()
+				* ConfigOptions.rockGrinderBaseDurability));
+		this.damageVsEntity = ConfigOptions.rockGrinderBaseDamage
+				+ material.getDamageVsEntity();
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
 		setRegistryName(registryName);
 		this.setMaxStackSize(1);
@@ -50,7 +57,7 @@ public class ItemRockGrinder extends Item
 		Material material = block.getMaterial(state);
 		if (toolMaterial.getHarvestLevel() < block.getHarvestLevel(state))
 			return 0.5F;
-		return material != Material.rock ? 1.0F
+		return material != Material.ROCK ? 1.0F
 				: toolMaterial.getEfficiencyOnProperMaterial();
 	}
 
@@ -62,21 +69,36 @@ public class ItemRockGrinder extends Item
 		IBlockState state = world.getBlockState(pos);
 		item.attemptDamageItem(1, this.itemRand);
 
-			if (!world.isRemote)
+		if (!world.isRemote)
+		{
+			List<RockGrinderRecipe> recipes = RockGrinderRecipes
+					.getRecipes(state);
+			boolean worked = false;
+			for (RockGrinderRecipe r : recipes)
+
 			{
-				RockGrinderRecipe recipe = RockGrinderRecipes.getRecipe(state);
-
-				if (recipe != null && recipe.getOutput() != null)
+				if (r != null && r.getOutput() != null)
 				{
-					RandomHelper.spawnItemInWorld(world,
-							recipe.getOutput().copy(), pos);
-
-					world.destroyBlock(pos, false);
-				} else
-					world.destroyBlock(pos, true);
-				return true;
+					worked = true;
+					int level = EnchantmentHelper
+							.getEnchantmentLevel(Enchantments.FORTUNE, item);
+					float chance = r.getOutputChance()
+							* (((float) level + 3F)/3F);
+					System.out.println(chance);
+					while (chance >= 1)
+					{
+						RandomHelper.spawnItemInWorld(world,
+								r.getOutput().copy(), pos);
+						chance -= 1;
+					}
+					if (itemRand.nextFloat() <= chance)
+						RandomHelper.spawnItemInWorld(world,
+								r.getOutput().copy(), pos);
+				}
 			}
-
+			world.destroyBlock(pos, !worked);
+			return worked;
+		}
 
 		return false;
 	}
