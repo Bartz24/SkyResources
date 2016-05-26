@@ -46,7 +46,7 @@ public class RockGrinderRecipe
 		if (inputBlock == null)
 			return false;
 
-		if (fuzzyInput)
+		if (recipe.fuzzyInput)
 			return recipe.inputBlock.getBlock() == this.inputBlock.getBlock();
 		else
 			return recipe.inputBlock == inputBlock;

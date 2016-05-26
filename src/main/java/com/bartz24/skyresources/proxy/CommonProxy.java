@@ -3,6 +3,7 @@ package com.bartz24.skyresources.proxy;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.alchemy.infusion.InfusionRecipes;
 import com.bartz24.skyresources.base.HeatSources;
+import com.bartz24.skyresources.base.waterextractor.WaterExtractorRecipes;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.events.EventHandler;
 import com.bartz24.skyresources.events.ModBucketHandler;
@@ -44,6 +45,7 @@ public class CommonProxy
 		new ConcentratorRecipes();
 		new RockGrinderRecipes();
 		new FreezerRecipes();
+		new WaterExtractorRecipes();
 		new WorldTypeSky();
 
 		MinecraftForge.EVENT_BUS.register(events);

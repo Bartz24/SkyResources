@@ -86,6 +86,7 @@ jei.skyresources.recipe.purificationVessel=Purification Vessel
 jei.skyresources.recipe.freezer=Freezer
 jei.skyresources.recipe.heatsources=Heat Sources
 jei.skyresources.recipe.cauldron=Cauldron
+jei.skyresources.recipe.waterextractor=Water Extractor
 
 
 container.skyresources.combustionHeater=Combustion Heater

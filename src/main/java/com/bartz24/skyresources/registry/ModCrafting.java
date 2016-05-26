@@ -5,6 +5,7 @@ import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.alchemy.infusion.InfusionRecipes;
 import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.base.ModFuelHandler;
+import com.bartz24.skyresources.base.waterextractor.WaterExtractorRecipes;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.technology.combustion.CombustionRecipes;
 import com.bartz24.skyresources.technology.concentrator.ConcentratorRecipes;
@@ -251,14 +252,33 @@ public class ModCrafting
 				Blocks.SANDSTONE.getDefaultState());
 		RockGrinderRecipes.addRecipe(new ItemStack(Items.FLINT), false,
 				Blocks.GRAVEL.getDefaultState());
-		RockGrinderRecipes.addRecipe(new ItemStack(ModItems.techComponent, 1, 0), false,
+		RockGrinderRecipes.addRecipe(
+				new ItemStack(ModItems.techComponent, 1, 0), false,
 				Blocks.STONE.getDefaultState());
-		
+
 		for (int i = 0; i < References.gemList.size(); i++)
 		{
-			RockGrinderRecipes.addRecipe(new ItemStack(ModItems.dirtyGem, 1, i), false,
-					Blocks.STONE.getDefaultState(), 0.005F);			
+			RockGrinderRecipes.addRecipe(new ItemStack(ModItems.dirtyGem, 1, i),
+					false, Blocks.STONE.getDefaultState(), 0.005F);
 		}
+
+		WaterExtractorRecipes.addExtractRecipe(50, true,
+				Blocks.CACTUS.getDefaultState(),
+				ModBlocks.dryCactus.getDefaultState());
+
+		WaterExtractorRecipes.addExtractRecipe(50, true,
+				Blocks.SNOW.getDefaultState(),
+				null);
+
+		WaterExtractorRecipes.addExtractRecipe(20, true,
+				Blocks.LEAVES.getDefaultState(),
+				null);
+
+		WaterExtractorRecipes.addExtractRecipe(20, true,
+				Blocks.LEAVES2.getDefaultState(),
+				null);
+		
+		WaterExtractorRecipes.addInsertRecipe(Blocks.CLAY.getDefaultState(), false, Blocks.DIRT.getDefaultState(), 1000);
 
 		FreezerRecipes.addRecipe(new ItemStack(ModItems.heavySnowball), 100,
 				new ItemStack(Items.SNOWBALL, 4));

@@ -9,7 +9,6 @@ import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResourcesSaveData;
 import com.bartz24.skyresources.alchemy.effects.IHealthBoostItem;
 import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
-import com.bartz24.skyresources.base.item.ItemKnife;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModItems;
 import com.bartz24.skyresources.world.WorldTypeSky;
@@ -28,15 +27,17 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.event.ClickEvent;
+import net.minecraft.util.text.event.ClickEvent.Action;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.event.world.WorldEvent.Save;
 import net.minecraftforge.event.world.WorldEvent.Unload;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.oredict.OreDictionary;
@@ -357,9 +358,13 @@ public class EventHandler
 							+ TextFormatting.WHITE.toString()
 							+ " to create your starting island"));
 
-		player.addChatMessage(new TextComponentString(
+		ClickEvent openUrl = new ClickEvent(Action.OPEN_URL,
+				"https://github.com/Bartz24/SkyResources/wiki");
+		Style clickableChatStyle = new Style().setClickEvent(openUrl);
+		TextComponentString text = new TextComponentString(
 				"Need help or a guide? Go to\n" + TextFormatting.BLUE.toString()
-						+ "https://github.com/Bartz24/SkyResources/wiki"));
+						+ "https://github.com/Bartz24/SkyResources/wiki");
+		player.addChatMessage(text.setStyle(clickableChatStyle));
 	}
 
 	@SubscribeEvent
