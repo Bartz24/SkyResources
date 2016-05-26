@@ -11,6 +11,8 @@ public class References
 	public static ArrayList<IslandPos> CurrentIslandsList = new ArrayList<IslandPos>();
 	
 	public static ArrayList<String> spawnedPlayers = new ArrayList<String>();
+	
+	public static boolean worldOneChunk = false;
 
 	public static IslandPos getNextIsland()
 	{

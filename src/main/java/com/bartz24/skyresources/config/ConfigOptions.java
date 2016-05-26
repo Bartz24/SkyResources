@@ -31,6 +31,9 @@ public class ConfigOptions
 
 	public static String commandName;
 
+	public static boolean oneChunk;
+	public static boolean oneChunkCommandAllowed;
+
 	public static void loadConfigThenSave(FMLPreInitializationEvent e)
 	{
 		Configuration config = new Configuration(
@@ -38,19 +41,28 @@ public class ConfigOptions
 
 		config.load();
 
-		Property worldTypeProperty = config.get(Configuration.CATEGORY_GENERAL, "WorldSpawnType", 0);
-		
-		worldTypeProperty.setComment("0=random, 1=sand, 2=snow, 3=dirt (DIRT NOT IMPLEMENTED)");
-		
+		Property worldTypeProperty = config.get(Configuration.CATEGORY_GENERAL,
+				"WorldSpawnType", 0);
+
+		worldTypeProperty.setComment(
+				"0=random, 1=sand, 2=snow, 3=dirt (DIRT NOT IMPLEMENTED)");
+
 		worldSpawnType = worldTypeProperty.getInt();
-		
-		islandDistance = config
-				.get("islands", "Island Gap Distance", 1000)
+
+		islandDistance = config.get("islands", "Island Gap Distance", 1000)
 				.getInt(1000);
+
+		commandName = config.get("islands",
+				"Name For Command (Default: platform)", "platform").getString();
+
+		oneChunk = config.get("islands",
+				"One Chunk Challenge (Required before world creation as it changes the spawn platform)",
+				false).getBoolean(false);
 		
-		commandName = config
-				.get("islands", "Name For Command (Default: platform)", "platform").getString();
-		
+		oneChunkCommandAllowed = config.get("islands",
+				"Allow One Chunk Mode to be activated",
+				false).getBoolean(false);
+
 		healthRingMaxHealth = config
 				.get("healthRing", "Health Ring Max Health", 100).getInt(100);
 		healthRingPercentage = (float) config
@@ -82,7 +94,6 @@ public class ConfigOptions
 		crystalConcentratorAmount = config
 				.get("concentrator", "Crystal Concentrator Amount", 1)
 				.getInt(1);
-
 
 		config.save();
 	}

@@ -3,6 +3,7 @@ package com.bartz24.skyresources;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.events.EventHandler;
 import com.sun.corba.se.pept.transport.Connection;
 
@@ -31,6 +32,7 @@ public class SkyResourcesSaveData extends WorldSavedData
 	{
 		References.CurrentIslandsList.clear();
 		References.spawnedPlayers.clear();
+		References.worldOneChunk = false;
 		NBTTagList list = nbt.getTagList("Positions", Constants.NBT.TAG_COMPOUND);
 		for (int i = 0; i < list.tagCount(); ++i)
 		{
@@ -50,6 +52,8 @@ public class SkyResourcesSaveData extends WorldSavedData
 			
 			References.spawnedPlayers.add(name);
 		}
+		if(nbt.hasKey("oneChunkWorld"))
+		References.worldOneChunk = nbt.getBoolean("oneChunkWorld");
 	}
 
 	@Override
@@ -75,6 +79,10 @@ public class SkyResourcesSaveData extends WorldSavedData
 			list2.appendTag(stackTag);
 		}
 		nbt.setTag("SpawnedPlayers", list2);
+		
+		if(References.worldOneChunk)
+		nbt.setBoolean("oneChunkWorld", true);
+		
 		return nbt;
 	}
 

@@ -33,6 +33,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.ClickEvent.Action;
 import net.minecraft.world.World;
+import net.minecraft.world.border.WorldBorder;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.event.world.WorldEvent.Save;
@@ -74,6 +75,20 @@ public class EventHandler
 					{
 						References.CurrentIslandsList.add(new IslandPos(0, 0));
 
+						if (ConfigOptions.oneChunk)
+						{
+							WorldBorder border = event.getEntityLiving()
+									.getEntityWorld()
+									.getMinecraftServer().worldServers[0]
+											.getWorldBorder();
+							
+							border.setCenter(0, 0);
+							border.setTransition(16);
+							border.setWarningDistance(1);
+							
+							References.worldOneChunk = true;
+						}
+
 						spawnPlayer(player, spawn, true);
 					} else
 						spawnPlayer(player, spawn, false);
@@ -88,12 +103,6 @@ public class EventHandler
 	public static void spawnPlayer(EntityPlayer player, BlockPos pos,
 			boolean spawnPlat)
 	{
-		NBTTagCompound data = player.getEntityData();
-		if (!data.hasKey(EntityPlayer.PERSISTED_NBT_TAG))
-			data.setTag(EntityPlayer.PERSISTED_NBT_TAG, new NBTTagCompound());
-		NBTTagCompound persist = data
-				.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
-
 		if (spawnPlat)
 			createSpawn(player.worldObj, pos);
 
@@ -106,9 +115,9 @@ public class EventHandler
 		}
 	}
 
-	private static void createSpawn(World world, BlockPos spawn)
+	public static void createSpawn(World world, BlockPos spawn)
 	{
-		if (spawn.getX() == 0 && spawn.getZ() == 0)
+		if (spawn.getX() == 0 && spawn.getZ() == 0 && !References.worldOneChunk)
 		{
 			mainSpawn(world, spawn);
 			return;
@@ -351,7 +360,7 @@ public class EventHandler
 	{
 		EntityPlayer player = event.player;
 
-		if (!References.playerHasIsland(player.getName()))
+		if (!References.playerHasIsland(player.getName()) && !References.worldOneChunk)
 			player.addChatMessage(new TextComponentString(
 					"Type " + TextFormatting.AQUA.toString() + "/"
 							+ ConfigOptions.commandName + " create"

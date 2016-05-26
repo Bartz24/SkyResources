@@ -15,9 +15,12 @@ import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraft.world.border.WorldBorder;
 
 public class PlatformCommand extends CommandBase implements ICommand
 {
@@ -112,11 +115,67 @@ public class PlatformCommand extends CommandBase implements ICommand
 				tpSpawn(player, args);
 			} else if (subCommand.equals("reset"))
 			{
-				leavePlatform(player, args);
-				newPlatform(player, args);
+				reset(player, args, world);
+			} else if (subCommand.equals("onechunk"))
+			{
+				if (References.worldOneChunk)
+				{
+					player.addChatMessage(new TextComponentString(
+							"Already in one chunk mode!"));
+					return;
+				}
+				References.CurrentIslandsList.clear();
+
+				References.CurrentIslandsList.add(new IslandPos(0, 0));
+				WorldBorder border = world.getMinecraftServer().worldServers[0]
+						.getWorldBorder();
+
+				border.setCenter(0, 0);
+				border.setTransition(16);
+				border.setWarningDistance(1);
+
+				References.worldOneChunk = true;
+				reset(player, args, world);
 			}
 		}
 
+	}
+
+	void reset(EntityPlayerMP player, String[] args, World world)
+			throws CommandException
+	{
+		if (!References.worldOneChunk)
+		{
+			leavePlatform(player, args);
+			newPlatform(player, args);
+		} else
+		{
+
+			PlayerList players = world.getMinecraftServer().getPlayerList();
+			for (EntityPlayerMP p : players.getPlayerList())
+			{
+				player.addChatMessage(
+						new TextComponentString("Lag incoming for reset!"));
+			}
+			for (int x = -8; x < 9; x++)
+			{
+				for (int z = -8; z < 9; z++)
+				{
+					for (int y = 0; y < 256; y++)
+					{
+						world.destroyBlock(new BlockPos(x, y, z), false);
+					}
+				}
+			}
+			EventHandler.createSpawn(world, new BlockPos(0, 86, 0));
+			for (EntityPlayerMP p : players.getPlayerList())
+			{
+				p.inventory.clear();
+
+				EventHandler.spawnPlayer(p, new BlockPos(0, 86, 0), false);
+				p.addChatMessage(new TextComponentString("Chunk Reset!"));
+			}
+		}
 	}
 
 	void showHelp(EntityPlayerMP player)
@@ -139,7 +198,11 @@ public class PlatformCommand extends CommandBase implements ICommand
 				"spawn : Teleport back to spawn (0, 0)."));
 
 		player.addChatMessage(new TextComponentString(
-				"reset : Resets your platform and clears the players inventory.\n      (If it doesn't clear everything, be nice and toss the rest? Maybe?)"));
+				"reset : Resets/moves and creates a new platform (or reset in One Chunk Mode) and clears the players inventory.\n      (If it doesn't clear everything, be nice and toss the rest? Maybe?)"));
+
+		player.addChatMessage(new TextComponentString(
+				"onechunk : Play in one chunk, on one island. Also resets the spawn chunk."
+						+ (ConfigOptions.oneChunkCommandAllowed ? "" : TextFormatting.RED + "\n THE COMMAND IS NOT ALLOWED TO BE USED. SET THE CONFIG OPTION TO TRUE.")));
 	}
 
 	void newPlatform(EntityPlayerMP player, String[] args)
@@ -149,6 +212,12 @@ public class PlatformCommand extends CommandBase implements ICommand
 		{
 			player.addChatMessage(
 					new TextComponentString("Must have no arguments"));
+			return;
+		}
+		if (References.worldOneChunk)
+		{
+			player.addChatMessage(new TextComponentString(
+					"Can't use this command in this mode."));
 			return;
 		}
 
@@ -177,6 +246,12 @@ public class PlatformCommand extends CommandBase implements ICommand
 		{
 			player.addChatMessage(
 					new TextComponentString("Must have 1 argument"));
+			return;
+		}
+		if (References.worldOneChunk)
+		{
+			player.addChatMessage(new TextComponentString(
+					"Can't use this command in this mode."));
 			return;
 		}
 		String player2Name = args[1];
@@ -240,6 +315,12 @@ public class PlatformCommand extends CommandBase implements ICommand
 					new TextComponentString("Must have no arguments"));
 			return;
 		}
+		if (References.worldOneChunk)
+		{
+			player.addChatMessage(new TextComponentString(
+					"Can't use this command in this mode."));
+			return;
+		}
 
 		if (!References.playerHasIsland(player.getName()))
 		{
@@ -263,6 +344,12 @@ public class PlatformCommand extends CommandBase implements ICommand
 		{
 			player.addChatMessage(
 					new TextComponentString("Must have no arguments"));
+			return;
+		}
+		if (References.worldOneChunk)
+		{
+			player.addChatMessage(new TextComponentString(
+					"Can't use this command in this mode."));
 			return;
 		}
 
@@ -297,7 +384,12 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 	void tpSpawn(EntityPlayerMP player, String[] args) throws CommandException
 	{
-
+		if (References.worldOneChunk)
+		{
+			player.addChatMessage(new TextComponentString(
+					"Can't use this command in this mode."));
+			return;
+		}
 		player.connection.setPlayerLocation(0 + 0.5, 86, 0 + 0.5,
 				player.rotationYaw, player.rotationPitch);
 	}

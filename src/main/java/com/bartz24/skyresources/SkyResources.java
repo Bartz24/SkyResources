@@ -44,6 +44,7 @@ public class SkyResources
 		{
 			References.CurrentIslandsList.clear();
 			References.spawnedPlayers.clear();
+			References.worldOneChunk = false;
 			World world = event.getServer().getEntityWorld();
 			if (!world.isRemote)
 			{

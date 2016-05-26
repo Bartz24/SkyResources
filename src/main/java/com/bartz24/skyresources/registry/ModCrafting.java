@@ -121,6 +121,9 @@ public class ModCrafting
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModItems.alchemyComponent, 9, 2), new Object[]
 				{ "X", 'X', new ItemStack(ModBlocks.coalInfusedBlock) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(
+				new ItemStack(ModBlocks.ironFreezer), new Object[]
+				{ "XXX", "XZX", "XXX", 'X', new ItemStack(Items.IRON_INGOT), 'Z', new ItemStack(ModBlocks.miniFreezer) }));
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModItems.waterExtractor), new Object[]
