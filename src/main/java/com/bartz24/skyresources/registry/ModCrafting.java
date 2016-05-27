@@ -165,6 +165,8 @@ public class ModCrafting
 				new ItemStack(Items.DYE, 10, 3), "treeSapling", 0, 20);
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.SAPLING, 1, 2),
 				new ItemStack(Items.DYE, 10, 15), "treeSapling", 0, 20);
+		InfusionRecipes.addRecipe(new ItemStack(Items.REEDS),
+				new ItemStack(Items.SPECKLED_MELON, 3), Blocks.PUMPKIN, OreDictionary.WILDCARD_VALUE, 20);
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.COAL, 1), 50,
 				new ItemStack(Items.COAL, 2, 1));

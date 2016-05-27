@@ -2,7 +2,6 @@ package com.bartz24.skyresources.technology.tile;
 
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.technology.block.BlockFreezer;
-import com.bartz24.skyresources.technology.block.BlockFreezer.EnumPartType;
 import com.bartz24.skyresources.technology.freezer.FreezerRecipe;
 import com.bartz24.skyresources.technology.freezer.FreezerRecipes;
 
@@ -87,14 +86,15 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 	@Override
 	public void update()
 	{
-		updateMulti2x1();
-		if (!validMulti2x1())
-			return;
 		if (inventory == null)
 		{
 			inventory = new ItemStack[this.getSizeInventory()];
 			timeFreeze = new float[this.getSizeInventory()];
+			return;
 		}
+		updateMulti2x1();
+		if (!validMulti2x1())
+			return;
 
 		for (int i = 0; i < this.getSizeInventory(); i++)
 		{
@@ -149,6 +149,10 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 		if (!(stateUp.getBlock() instanceof BlockFreezer))
 			return false;
 
+		if (state.getProperties().get(BlockFreezer.PART) != stateUp
+				.getProperties().get(BlockFreezer.PART))
+			return false;
+
 		if (state.getProperties()
 				.get(BlockFreezer.PART) != BlockFreezer.EnumPartType.BOTTOM
 				|| stateUp.getProperties().get(
@@ -168,9 +172,18 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 	@Override
 	public ItemStack getStackInSlot(int index)
 	{
-		if (inventory == null || index < 0 || index >= this.getSizeInventory())
+		IBlockState state = this.worldObj.getBlockState(pos);
+
+		FreezerTile tile = this;
+		
+		if (worldObj.getBlockState(pos).getBlock() instanceof BlockFreezer
+				&& state.getProperties().get(
+						BlockFreezer.PART) == BlockFreezer.EnumPartType.TOP)		
+		tile = (FreezerTile) worldObj.getTileEntity(pos.down());
+		
+		if (tile.getInv() == null || index < 0 || index >= this.getSizeInventory())
 			return null;
-		return this.inventory[index];
+		return tile.getInv()[index];
 	}
 
 	@Override
@@ -241,6 +254,15 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 	@Override
 	public void setInventorySlotContents(int index, ItemStack stack)
 	{
+		IBlockState state = this.worldObj.getBlockState(pos);
+
+		FreezerTile tile = this;
+		
+		if (worldObj.getBlockState(pos).getBlock() instanceof BlockFreezer
+				&& state.getProperties().get(
+						BlockFreezer.PART) == BlockFreezer.EnumPartType.TOP)		
+		tile = (FreezerTile) worldObj.getTileEntity(pos.down());
+		
 		if (index < 0 || index >= this.getSizeInventory())
 			return;
 
@@ -250,8 +272,8 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 		if (stack != null && stack.stackSize == 0)
 			stack = null;
 
-		this.inventory[index] = stack;
-		this.markDirty();
+		tile.inventory[index] = stack;
+		tile.markDirty();
 
 	}
 
@@ -281,6 +303,15 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack)
 	{
+		IBlockState state = this.worldObj.getBlockState(pos);
+
+		if (worldObj.getBlockState(pos).getBlock() instanceof BlockFreezer
+				&& state.getProperties().get(
+						BlockFreezer.PART) == BlockFreezer.EnumPartType.TOP)
+			return worldObj.getTileEntity(pos.down()) instanceof FreezerTile
+					&& ((FreezerTile) worldObj.getTileEntity(pos.down()))
+							.isItemValidForSlot(index, stack);
+
 		return true;
 	}
 
@@ -317,5 +348,10 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 	public ItemStack removeStackFromSlot(int index)
 	{
 		return ItemStackHelper.getAndRemove(this.inventory, index);
+	}
+
+	public ItemStack[] getInv()
+	{
+		return inventory;
 	}
 }

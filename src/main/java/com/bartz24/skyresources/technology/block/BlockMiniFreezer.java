@@ -3,10 +3,12 @@ package com.bartz24.skyresources.technology.block;
 import java.util.List;
 import java.util.Random;
 
+import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModGuiHandler;
+import com.bartz24.skyresources.technology.tile.CombustionHeaterTile;
 import com.bartz24.skyresources.technology.tile.FreezerTile;
 
 import net.minecraft.block.BlockContainer;
@@ -35,7 +37,8 @@ import net.minecraft.world.World;
 
 public class BlockMiniFreezer extends BlockContainer
 {
-    public static final PropertyDirection FACING = BlockHorizontal.FACING;
+	public static final PropertyDirection FACING = BlockHorizontal.FACING;
+
 	public BlockMiniFreezer(String unlocalizedName, String registryName,
 			float hardness, float resistance)
 	{
@@ -46,9 +49,10 @@ public class BlockMiniFreezer extends BlockContainer
 		this.setResistance(resistance);
 		this.setRegistryName(registryName);
 		this.isBlockContainer = true;
-        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING,
+				EnumFacing.NORTH));
 	}
-	
+
 	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn,
 			BlockPos pos, AxisAlignedBB p_185477_4_,
@@ -92,9 +96,12 @@ public class BlockMiniFreezer extends BlockContainer
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state)
 	{
-		FreezerTile te = (FreezerTile) world
-				.getTileEntity(pos);
-		InventoryHelper.dropInventoryItems(world, pos, te);
+		FreezerTile te = (FreezerTile) world.getTileEntity(pos);
+		for (int i = 0; i < te.getInv().length; i++)
+		{
+			if(te.getInv()[i] != null)
+			RandomHelper.spawnItemInWorld(world, te.getInv()[i].copy(), pos);
+		}
 		super.breakBlock(world, pos, state);
 	}
 
@@ -106,96 +113,107 @@ public class BlockMiniFreezer extends BlockContainer
 	{
 		if (!world.isRemote)
 		{
-			player.openGui(SkyResources.instance,
-					ModGuiHandler.FreezerGUI, world, pos.getX(),
-					pos.getY(), pos.getZ());
+			player.openGui(SkyResources.instance, ModGuiHandler.FreezerGUI,
+					world, pos.getX(), pos.getY(), pos.getZ());
 		}
 		return true;
 	}
-	
+
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
-    {
+	{
 		super.onBlockAdded(worldIn, pos, state);
-        this.setDefaultFacing(worldIn, pos, state);
-    }
+		this.setDefaultFacing(worldIn, pos, state);
+	}
 
-    private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state)
-    {
-        if (!worldIn.isRemote)
-        {
-            IBlockState iblockstate = worldIn.getBlockState(pos.north());
-            IBlockState iblockstate1 = worldIn.getBlockState(pos.south());
-            IBlockState iblockstate2 = worldIn.getBlockState(pos.west());
-            IBlockState iblockstate3 = worldIn.getBlockState(pos.east());
-            EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
+	private void setDefaultFacing(World worldIn, BlockPos pos,
+			IBlockState state)
+	{
+		if (!worldIn.isRemote)
+		{
+			IBlockState iblockstate = worldIn.getBlockState(pos.north());
+			IBlockState iblockstate1 = worldIn.getBlockState(pos.south());
+			IBlockState iblockstate2 = worldIn.getBlockState(pos.west());
+			IBlockState iblockstate3 = worldIn.getBlockState(pos.east());
+			EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
 
-            if (enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock() && !iblockstate1.isFullBlock())
-            {
-                enumfacing = EnumFacing.SOUTH;
-            }
-            else if (enumfacing == EnumFacing.SOUTH && iblockstate1.isFullBlock() && !iblockstate.isFullBlock())
-            {
-                enumfacing = EnumFacing.NORTH;
-            }
-            else if (enumfacing == EnumFacing.WEST && iblockstate2.isFullBlock() && !iblockstate3.isFullBlock())
-            {
-                enumfacing = EnumFacing.EAST;
-            }
-            else if (enumfacing == EnumFacing.EAST && iblockstate3.isFullBlock() && !iblockstate2.isFullBlock())
-            {
-                enumfacing = EnumFacing.WEST;
-            }
+			if (enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock()
+					&& !iblockstate1.isFullBlock())
+			{
+				enumfacing = EnumFacing.SOUTH;
+			} else if (enumfacing == EnumFacing.SOUTH
+					&& iblockstate1.isFullBlock() && !iblockstate.isFullBlock())
+			{
+				enumfacing = EnumFacing.NORTH;
+			} else if (enumfacing == EnumFacing.WEST
+					&& iblockstate2.isFullBlock()
+					&& !iblockstate3.isFullBlock())
+			{
+				enumfacing = EnumFacing.EAST;
+			} else if (enumfacing == EnumFacing.EAST
+					&& iblockstate3.isFullBlock()
+					&& !iblockstate2.isFullBlock())
+			{
+				enumfacing = EnumFacing.WEST;
+			}
 
-            worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing), 2);
-        }
-    }
-    
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
-    {
-    	super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
-        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
-    }
+			worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing),
+					2);
+		}
+	}
 
-    public IBlockState getStateFromMeta(int meta)
-    {
-        EnumFacing enumfacing = EnumFacing.getFront(meta);
+	public IBlockState onBlockPlaced(World worldIn, BlockPos pos,
+			EnumFacing facing, float hitX, float hitY, float hitZ, int meta,
+			EntityLivingBase placer)
+	{
+		super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta,
+				placer);
+		return this.getDefaultState().withProperty(FACING,
+				placer.getHorizontalFacing().getOpposite());
+	}
 
-        if (enumfacing.getAxis() == EnumFacing.Axis.Y)
-        {
-            enumfacing = EnumFacing.NORTH;
-        }
+	public IBlockState getStateFromMeta(int meta)
+	{
+		EnumFacing enumfacing = EnumFacing.getFront(meta);
 
-        return this.getDefaultState().withProperty(FACING, enumfacing);
-    }
+		if (enumfacing.getAxis() == EnumFacing.Axis.Y)
+		{
+			enumfacing = EnumFacing.NORTH;
+		}
 
-    /**
-     * Convert the BlockState into the correct metadata value
-     */
-    public int getMetaFromState(IBlockState state)
-    {
-        return ((EnumFacing)state.getValue(FACING)).getIndex();
-    }
+		return this.getDefaultState().withProperty(FACING, enumfacing);
+	}
 
-    /**
-     * Returns the blockstate with the given rotation from the passed blockstate. If inapplicable, returns the passed
-     * blockstate.
-     */
-    public IBlockState withRotation(IBlockState state, Rotation rot)
-    {
-        return state.withProperty(FACING, rot.rotate((EnumFacing)state.getValue(FACING)));
-    }
+	/**
+	 * Convert the BlockState into the correct metadata value
+	 */
+	public int getMetaFromState(IBlockState state)
+	{
+		return ((EnumFacing) state.getValue(FACING)).getIndex();
+	}
 
-    /**
-     * Returns the blockstate with the given mirror of the passed blockstate. If inapplicable, returns the passed
-     * blockstate.
-     */
-    public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
-    {
-        return state.withRotation(mirrorIn.toRotation((EnumFacing)state.getValue(FACING)));
-    }
+	/**
+	 * Returns the blockstate with the given rotation from the passed
+	 * blockstate. If inapplicable, returns the passed blockstate.
+	 */
+	public IBlockState withRotation(IBlockState state, Rotation rot)
+	{
+		return state.withProperty(FACING,
+				rot.rotate((EnumFacing) state.getValue(FACING)));
+	}
 
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, new IProperty[] {FACING});
-    }
+	/**
+	 * Returns the blockstate with the given mirror of the passed blockstate. If
+	 * inapplicable, returns the passed blockstate.
+	 */
+	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
+	{
+		return state.withRotation(
+				mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
+	}
+
+	protected BlockStateContainer createBlockState()
+	{
+		return new BlockStateContainer(this, new IProperty[]
+		{ FACING });
+	}
 }

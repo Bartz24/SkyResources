@@ -1,15 +1,13 @@
 package com.bartz24.skyresources.technology.block;
 
-import java.util.List;
-import java.util.Random;
-
+import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModGuiHandler;
+import com.bartz24.skyresources.technology.tile.CombustionHeaterTile;
 import com.bartz24.skyresources.technology.tile.FreezerTile;
 
-import net.minecraft.block.BlockBed;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
@@ -18,11 +16,9 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
@@ -31,9 +27,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockFreezer extends BlockContainer
@@ -89,9 +83,13 @@ public class BlockFreezer extends BlockContainer
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state)
 	{
-
-		FreezerTile te = (FreezerTile) world.getTileEntity(pos);
-		InventoryHelper.dropInventoryItems(world, pos, te);
+		FreezerTile te = (FreezerTile) world
+				.getTileEntity(pos);
+		for (int i = 0; i < te.getInv().length; i++)
+		{
+			if(te.getInv()[i] != null)
+			RandomHelper.spawnItemInWorld(world, te.getInv()[i].copy(), pos);
+		}
 		super.breakBlock(world, pos, state);
 	}
 
@@ -105,9 +103,9 @@ public class BlockFreezer extends BlockContainer
 		{
 			BlockPos bottomPos = state.getProperties()
 					.get(PART) == EnumPartType.BOTTOM ? pos : pos.down();
-				player.openGui(SkyResources.instance, ModGuiHandler.FreezerGUI,
-						world, bottomPos.getX(), bottomPos.getY(),
-						bottomPos.getZ());
+			player.openGui(SkyResources.instance, ModGuiHandler.FreezerGUI,
+					world, bottomPos.getX(), bottomPos.getY(),
+					bottomPos.getZ());
 		}
 		return true;
 	}
