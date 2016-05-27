@@ -146,8 +146,41 @@ public class PlatformCommand extends CommandBase implements ICommand
 	{
 		if (!References.worldOneChunk)
 		{
-			leavePlatform(player, args);
-			newPlatform(player, args);
+			IslandPos pos = References.getPlayerIsland(player.getName());
+
+			PlayerList players = world.getMinecraftServer().getPlayerList();
+			for (EntityPlayerMP p : players.getPlayerList())
+			{
+				player.addChatMessage(
+						new TextComponentString("Lag incoming for reset!"));
+			}
+			for (int x = pos.getX()
+					- ConfigOptions.islandDistance / 2; x < pos.getX()
+							+ ConfigOptions.islandDistance / 2 + 1; x++)
+			{
+				for (int z = pos.getY()
+						- ConfigOptions.islandDistance / 2; z < pos.getY()
+								+ ConfigOptions.islandDistance / 2 + 1; z++)
+				{
+					for (int y = 0; y < 256; y++)
+					{
+						world.destroyBlock(new BlockPos(x, y, z), false);
+					}
+				}
+			}
+			EventHandler.createSpawn(world,
+					new BlockPos(pos.getX() * 1000, 86, pos.getY() * 1000));
+			for (EntityPlayerMP p : players.getPlayerList())
+			{
+				if (pos.getPlayerNames().contains(p.getName()))
+				{
+					p.inventory.clear();
+
+					EventHandler.spawnPlayer(p, new BlockPos(pos.getX() * 1000,
+							86, pos.getY() * 1000), false);
+					p.addChatMessage(new TextComponentString("Island Reset!"));
+				}
+			}
 		} else
 		{
 
@@ -198,11 +231,13 @@ public class PlatformCommand extends CommandBase implements ICommand
 				"spawn : Teleport back to spawn (0, 0)."));
 
 		player.addChatMessage(new TextComponentString(
-				"reset : Resets/moves and creates a new platform (or reset in One Chunk Mode) and clears the players inventory.\n      (If it doesn't clear everything, be nice and toss the rest? Maybe?)"));
+				"reset : Resets the platform and clears the players' inventory.\n      (If it doesn't clear everything, be nice and toss the rest? Maybe?\nNot recommended unless all players for that island are online)"));
 
 		player.addChatMessage(new TextComponentString(
 				"onechunk : Play in one chunk, on one island. Also resets the spawn chunk."
-						+ (ConfigOptions.oneChunkCommandAllowed ? "" : TextFormatting.RED + "\n THE COMMAND IS NOT ALLOWED TO BE USED. SET THE CONFIG OPTION TO TRUE.")));
+						+ (ConfigOptions.oneChunkCommandAllowed ? ""
+								: TextFormatting.RED
+										+ "\n THE COMMAND IS NOT ALLOWED TO BE USED. SET THE CONFIG OPTION TO TRUE.")));
 	}
 
 	void newPlatform(EntityPlayerMP player, String[] args)
