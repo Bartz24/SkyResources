@@ -2,6 +2,7 @@ package com.bartz24.skyresources.technology.tile;
 
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.technology.block.BlockFreezer;
+import com.bartz24.skyresources.technology.block.BlockMiniFreezer;
 import com.bartz24.skyresources.technology.freezer.FreezerRecipe;
 import com.bartz24.skyresources.technology.freezer.FreezerRecipes;
 
@@ -93,7 +94,7 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 			return;
 		}
 		updateMulti2x1();
-		if (!validMulti2x1())
+		if (!hasValidMulti())
 			return;
 
 		for (int i = 0; i < this.getSizeInventory(); i++)
@@ -137,6 +138,17 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 			}
 		}
 	}
+	
+	public boolean hasValidMulti()
+	{
+		IBlockState state = this.worldObj.getBlockState(pos);
+		
+		if(state.getBlock() instanceof BlockMiniFreezer)
+			return true;
+		else if(state.getBlock() instanceof BlockFreezer)
+			return validMulti2x1();
+		return false;
+	}
 
 	boolean validMulti2x1()
 	{
@@ -144,13 +156,13 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 		IBlockState stateUp = this.worldObj.getBlockState(pos.up());
 
 		if (!(state.getBlock() instanceof BlockFreezer))
-			return true;
+			return false;
 
 		if (!(stateUp.getBlock() instanceof BlockFreezer))
 			return false;
 
-		if (state.getProperties().get(BlockFreezer.PART) != stateUp
-				.getProperties().get(BlockFreezer.PART))
+		if (state.getProperties().get(BlockFreezer.FACING) != stateUp
+				.getProperties().get(BlockFreezer.FACING))
 			return false;
 
 		if (state.getProperties()
@@ -158,7 +170,6 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 				|| stateUp.getProperties().get(
 						BlockFreezer.PART) != BlockFreezer.EnumPartType.TOP)
 			return false;
-
 		return true;
 	}
 

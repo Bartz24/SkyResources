@@ -70,7 +70,33 @@ public class GuiFreezer extends GuiContainer
 		this.fontRendererObj.drawString(
 				this.playerInv.getDisplayName().getUnformattedText(), 8, 72,
 				4210752);
+			
+		
 		drawProgress();
+		
+		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
+		this.mc.getTextureManager().bindTexture(new ResourceLocation(
+				References.ModID, "textures/gui/guiIcons.png"));
+		this.drawTexturedModalRect(3, 12, 0, 16, 32, 32);
+		
+		if (tile.hasValidMulti())
+			this.drawTexturedModalRect(35, 20, 0, 0, 16, 16);
+		else
+			this.drawTexturedModalRect(35, 20, 16, 0, 16, 16);
+		
+		if (GuiHelper.isMouseInRect(3 + guiLeft, 12 + guiTop, 50, 32,
+				mouseX, mouseY))
+		{
+			int k = (this.width - this.xSize) / 2;
+			int l = (this.height - this.ySize) / 2;
+			List list = new ArrayList();
+			if (tile.hasValidMulti())
+				list.add("Multiblock Formed!");
+			else
+				list.add("Multiblock Not Formed.");
+			this.drawHoveringText(list, mouseX - k, mouseY - l,
+					fontRendererObj);
+		}
 	}
 
 	void drawProgress()

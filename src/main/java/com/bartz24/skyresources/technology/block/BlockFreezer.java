@@ -83,12 +83,15 @@ public class BlockFreezer extends BlockContainer
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state)
 	{
-		FreezerTile te = (FreezerTile) world
-				.getTileEntity(pos);
-		for (int i = 0; i < te.getInv().length; i++)
+		FreezerTile te = (FreezerTile) world.getTileEntity(pos);
+		if (te.getInv() != null)
 		{
-			if(te.getInv()[i] != null)
-			RandomHelper.spawnItemInWorld(world, te.getInv()[i].copy(), pos);
+			for (int i = 0; i < te.getInv().length; i++)
+			{
+				if (te.getInv()[i] != null)
+					RandomHelper.spawnItemInWorld(world, te.getInv()[i].copy(),
+							pos);
+			}
 		}
 		super.breakBlock(world, pos, state);
 	}
