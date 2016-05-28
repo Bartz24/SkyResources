@@ -110,14 +110,26 @@ public class ModCrafting
 				new ItemStack(Blocks.SAPLING, 1, 1), new Object[]
 				{ new ItemStack(Blocks.DIRT, 1, OreDictionary.WILDCARD_VALUE), new ItemStack(Items.PUMPKIN_SEEDS), new ItemStack(Items.PUMPKIN_SEEDS), new ItemStack(Items.DYE, 1, 15) }));
 		GameRegistry.addRecipe(new ShapedOreRecipe(
-				new ItemStack(ModItems.baseComponent, 1, 2), new Object[]
+				new ItemStack(ModItems.baseComponent, 2, 2), new Object[]
 				{ " X ", "XXX", " X ", 'X', "treeSapling" }));
 		GameRegistry.addRecipe(new ShapedOreRecipe(
-				new ItemStack(ModItems.baseComponent, 1, 2), new Object[]
+				new ItemStack(ModItems.baseComponent, 2, 2), new Object[]
 				{ " X ", "XXX", " X ", 'X', "cropWheat" }));
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModItems.baseComponent, 1, 2), new Object[]
 				{ " X ", "XXX", " X ", 'X', "treeLeaves" }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(
+				new ItemStack(ModItems.baseComponent, 2, 2), new Object[]
+				{ " X ", "XXX", " X ", 'X', ModItems.cactusFruit }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(
+				new ItemStack(ModItems.baseComponent, 2, 2), new Object[]
+				{ " X ", "XXX", " X ", 'X', "cropPotato" }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(
+				new ItemStack(ModItems.baseComponent, 2, 2), new Object[]
+				{ " X ", "XXX", " X ", 'X', "cropCarrot" }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(
+				new ItemStack(ModItems.baseComponent, 1, 2), new Object[]
+				{ " X ", "XXX", " X ", 'X', "sugarcane" }));
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModItems.alchemyComponent, 9, 2), new Object[]
 				{ "X", 'X', new ItemStack(ModBlocks.coalInfusedBlock) }));
@@ -150,7 +162,7 @@ public class ModCrafting
 				new ItemStack(Items.APPLE, 10, 0), "treeSapling", 0, 20);
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.DIRT, 1, 1),
 				new ItemStack(ModItems.cactusFruit, 4), Blocks.SAND, 1, 15);
-		InfusionRecipes.addRecipe(new ItemStack(Blocks.CACTUS, 2, 0),
+		InfusionRecipes.addRecipe(new ItemStack(Blocks.CACTUS, 3, 0),
 				new ItemStack(ModItems.alchemyComponent, 6, 1), Blocks.CACTUS,
 				OreDictionary.WILDCARD_VALUE, 8);
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.TALLGRASS, 1),
@@ -248,7 +260,7 @@ public class ModCrafting
 		CombustionRecipes.addRecipe(new ItemStack(Items.WHEAT_SEEDS, 1), 50,
 				new ItemStack(Blocks.DEADBUSH, 1),
 				new ItemStack(Items.FLINT, 2));
-		CombustionRecipes.addRecipe(new ItemStack(Blocks.DIRT), 150,
+		CombustionRecipes.addRecipe(new ItemStack(Blocks.DIRT), 100,
 				new ItemStack(ModItems.baseComponent, 12, 2));
 
 		RockGrinderRecipes.addRecipe(new ItemStack(Blocks.SAND), false,
@@ -289,6 +301,10 @@ public class ModCrafting
 				new ItemStack(Items.SNOWBALL, 4));
 		FreezerRecipes.addRecipe(new ItemStack(Blocks.DIRT, 1, 1), 800,
 				new ItemStack(ModBlocks.heavySnow2, 4));
+		FreezerRecipes.addRecipe(new ItemStack(Items.SLIME_BALL), 1200,
+				new ItemStack(Items.MAGMA_CREAM));
+		FreezerRecipes.addRecipe(new ItemStack(Blocks.ICE), 2000,
+				new ItemStack(Items.POTIONITEM, 1, 0));
 
 		MinecraftForge.addGrassSeed(new ItemStack(Items.BEETROOT_SEEDS), 10);
 		MinecraftForge.addGrassSeed(new ItemStack(Items.MELON_SEEDS), 8);
