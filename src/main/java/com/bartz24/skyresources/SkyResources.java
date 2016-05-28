@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod(modid = References.ModID, name = References.ModName, useMetadata = true)
+@Mod(modid = References.ModID, name = References.ModName, useMetadata = true, guiFactory = "com.bartz24.skyresources.config.ConfigGuiFactory")
 public class SkyResources
 {
 	@SidedProxy(clientSide = "com.bartz24.skyresources.proxy.ClientProxy", serverSide = "com.bartz24.skyresources.proxy.ServerProxy")

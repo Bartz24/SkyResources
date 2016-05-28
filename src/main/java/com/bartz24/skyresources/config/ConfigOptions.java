@@ -1,11 +1,18 @@
 package com.bartz24.skyresources.config;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import net.minecraftforge.fml.client.config.IConfigElement;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class ConfigOptions
 {
+	public static Configuration config;
+	
 	public static int worldSpawnType;
 	public static int healthRingMaxHealth;
 	public static float healthRingPercentage;
@@ -34,10 +41,49 @@ public class ConfigOptions
 
 	public static boolean oneChunk;
 	public static boolean oneChunkCommandAllowed;
+	
+
+	public static List<IConfigElement> getConfigElements()
+	{
+		List<IConfigElement> list = new ArrayList<IConfigElement>();
+		
+		list.addAll(new ConfigElement(config
+				.getCategory(Configuration.CATEGORY_GENERAL))
+						.getChildElements());
+		list.addAll(new ConfigElement(config
+				.getCategory("islands"))
+						.getChildElements());
+		list.addAll(new ConfigElement(config
+				.getCategory("healthRing"))
+						.getChildElements());
+		list.addAll(new ConfigElement(config
+				.getCategory("condenser"))
+						.getChildElements());
+		list.addAll(new ConfigElement(config
+				.getCategory("crucible"))
+						.getChildElements());
+		list.addAll(new ConfigElement(config
+				.getCategory("knife"))
+						.getChildElements());
+		list.addAll(new ConfigElement(config
+				.getCategory("rockGrinder"))
+						.getChildElements());
+		list.addAll(new ConfigElement(config
+				.getCategory("combustion"))
+						.getChildElements());
+		list.addAll(new ConfigElement(config
+				.getCategory("fluidDropper"))
+						.getChildElements());
+		list.addAll(new ConfigElement(config
+				.getCategory("concentrator"))
+						.getChildElements());
+		
+		return list;
+	}
 
 	public static void loadConfigThenSave(FMLPreInitializationEvent e)
 	{
-		Configuration config = new Configuration(
+		config = new Configuration(
 				e.getSuggestedConfigurationFile());
 
 		config.load();

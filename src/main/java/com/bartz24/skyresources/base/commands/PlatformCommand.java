@@ -118,6 +118,15 @@ public class PlatformCommand extends CommandBase implements ICommand
 				reset(player, args, world);
 			} else if (subCommand.equals("onechunk"))
 			{
+				
+				if(!ConfigOptions.oneChunkCommandAllowed)
+				{
+					player.addChatMessage(new TextComponentString(
+							"This command is not allowed!"));
+					return;
+					
+				}
+				
 				if (References.worldOneChunk)
 				{
 					player.addChatMessage(new TextComponentString(
