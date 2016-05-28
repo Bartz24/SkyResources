@@ -162,7 +162,7 @@ public class ModCrafting
 				new ItemStack(Items.APPLE, 10, 0), "treeSapling", 0, 20);
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.DIRT, 1, 1),
 				new ItemStack(ModItems.cactusFruit, 4), Blocks.SAND, 1, 15);
-		InfusionRecipes.addRecipe(new ItemStack(Blocks.CACTUS, 3, 0),
+		InfusionRecipes.addRecipe(new ItemStack(Blocks.CACTUS, 3),
 				new ItemStack(ModItems.alchemyComponent, 6, 1), Blocks.CACTUS,
 				OreDictionary.WILDCARD_VALUE, 8);
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.TALLGRASS, 1),
