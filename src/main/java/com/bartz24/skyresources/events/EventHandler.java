@@ -81,11 +81,11 @@ public class EventHandler
 									.getEntityWorld()
 									.getMinecraftServer().worldServers[0]
 											.getWorldBorder();
-							
+
 							border.setCenter(0, 0);
 							border.setTransition(16);
 							border.setWarningDistance(1);
-							
+
 							References.worldOneChunk = true;
 						}
 
@@ -143,9 +143,13 @@ public class EventHandler
 
 	private static void mainSpawn(World world, BlockPos spawn)
 	{
-		for (int x = -1; x < 2; x++)
+		for (int x = -(int) Math
+				.floor((float) ConfigOptions.islandSize / 2F); x <= (int) Math
+						.floor((float) ConfigOptions.islandSize / 2F); x++)
 		{
-			for (int z = -1; z < 2; z++)
+			for (int z = -(int) Math.floor(
+					(float) ConfigOptions.islandSize / 2F); z <= (int) Math
+							.floor((float) ConfigOptions.islandSize / 2F); z++)
 			{
 				BlockPos pos = new BlockPos(spawn.getX() + x, spawn.getY(),
 						spawn.getZ() + z);
@@ -159,9 +163,13 @@ public class EventHandler
 
 	private static void sandSpawn(World world, BlockPos spawn)
 	{
-		for (int x = -1; x < 2; x++)
+		for (int x = -(int) Math
+				.floor((float) ConfigOptions.islandSize / 2F); x <= (int) Math
+						.floor((float) ConfigOptions.islandSize / 2F); x++)
 		{
-			for (int z = -1; z < 2; z++)
+			for (int z = -(int) Math.floor(
+					(float) ConfigOptions.islandSize / 2F); z <= (int) Math
+							.floor((float) ConfigOptions.islandSize / 2F); z++)
 			{
 				BlockPos pos = new BlockPos(spawn.getX() + x, spawn.getY(),
 						spawn.getZ() + z);
@@ -180,9 +188,13 @@ public class EventHandler
 
 	private static void dirtSpawn(World world, BlockPos spawn)
 	{
-		for (int x = -1; x < 2; x++)
+		for (int x = -(int) Math
+				.floor((float) ConfigOptions.islandSize / 2F); x <= (int) Math
+						.floor((float) ConfigOptions.islandSize / 2F); x++)
 		{
-			for (int z = -1; z < 2; z++)
+			for (int z = -(int) Math.floor(
+					(float) ConfigOptions.islandSize / 2F); z <= (int) Math
+							.floor((float) ConfigOptions.islandSize / 2F); z++)
 			{
 				BlockPos pos = new BlockPos(spawn.getX() + x, spawn.getY(),
 						spawn.getZ() + z);
@@ -200,9 +212,13 @@ public class EventHandler
 
 	private static void snowSpawn(World world, BlockPos spawn)
 	{
-		for (int x = -1; x < 2; x++)
+		for (int x = -(int) Math
+				.floor((float) ConfigOptions.islandSize / 2F); x <= (int) Math
+						.floor((float) ConfigOptions.islandSize / 2F); x++)
 		{
-			for (int z = -1; z < 2; z++)
+			for (int z = -(int) Math.floor(
+					(float) ConfigOptions.islandSize / 2F); z <= (int) Math
+							.floor((float) ConfigOptions.islandSize / 2F); z++)
 			{
 				BlockPos pos = new BlockPos(spawn.getX() + x, spawn.getY(),
 						spawn.getZ() + z);
@@ -360,7 +376,8 @@ public class EventHandler
 	{
 		EntityPlayer player = event.player;
 
-		if (!References.playerHasIsland(player.getName()) && !References.worldOneChunk)
+		if (!References.playerHasIsland(player.getName())
+				&& !References.worldOneChunk)
 			player.addChatMessage(new TextComponentString(
 					"Type " + TextFormatting.AQUA.toString() + "/"
 							+ ConfigOptions.commandName + " create"

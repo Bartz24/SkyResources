@@ -28,6 +28,7 @@ public class ConfigOptions
 	public static int crystalConcentratorAmount;
 
 	public static int islandDistance;
+	public static int islandSize;
 
 	public static String commandName;
 
@@ -51,6 +52,9 @@ public class ConfigOptions
 
 		islandDistance = config.get("islands", "Island Gap Distance", 1000)
 				.getInt(1000);
+		
+		islandSize = config.get("islands", "Island Width/Length", 3)
+				.getInt(3);
 
 		commandName = config.get("islands",
 				"Name For Command (Default: platform)", "platform").getString();

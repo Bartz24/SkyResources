@@ -152,6 +152,13 @@ public class PlatformCommand extends CommandBase implements ICommand
 						"This isn't going to work. The island distance has changed!"));
 				return;
 			}
+
+			if (!References.playerHasIsland(player.getName()))
+			{
+				player.addChatMessage(
+						new TextComponentString("You don't have an island!"));
+				return;
+			}
 			IslandPos pos = References.getPlayerIsland(player.getName());
 
 			PlayerList players = world.getMinecraftServer().getPlayerList();
