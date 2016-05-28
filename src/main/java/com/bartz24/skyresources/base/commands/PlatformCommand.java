@@ -146,6 +146,12 @@ public class PlatformCommand extends CommandBase implements ICommand
 	{
 		if (!References.worldOneChunk)
 		{
+			if (References.initialIslandDistance != ConfigOptions.islandDistance)
+			{
+				player.addChatMessage(new TextComponentString(
+						"This isn't going to work. The island distance has changed!"));
+				return;
+			}
 			IslandPos pos = References.getPlayerIsland(player.getName());
 
 			PlayerList players = world.getMinecraftServer().getPlayerList();
@@ -255,6 +261,12 @@ public class PlatformCommand extends CommandBase implements ICommand
 					"Can't use this command in this mode."));
 			return;
 		}
+		if (References.initialIslandDistance != ConfigOptions.islandDistance)
+		{
+			player.addChatMessage(new TextComponentString(
+					"This isn't going to work. The island distance has changed!"));
+			return;
+		}
 
 		if (References.playerHasIsland(player.getName()))
 		{
@@ -287,6 +299,12 @@ public class PlatformCommand extends CommandBase implements ICommand
 		{
 			player.addChatMessage(new TextComponentString(
 					"Can't use this command in this mode."));
+			return;
+		}
+		if (References.initialIslandDistance != ConfigOptions.islandDistance)
+		{
+			player.addChatMessage(new TextComponentString(
+					"This isn't going to work. The island distance has changed!"));
 			return;
 		}
 		String player2Name = args[1];
@@ -356,6 +374,12 @@ public class PlatformCommand extends CommandBase implements ICommand
 					"Can't use this command in this mode."));
 			return;
 		}
+		if (References.initialIslandDistance != ConfigOptions.islandDistance)
+		{
+			player.addChatMessage(new TextComponentString(
+					"This isn't going to work. The island distance has changed!"));
+			return;
+		}
 
 		if (!References.playerHasIsland(player.getName()))
 		{
@@ -385,6 +409,12 @@ public class PlatformCommand extends CommandBase implements ICommand
 		{
 			player.addChatMessage(new TextComponentString(
 					"Can't use this command in this mode."));
+			return;
+		}
+		if (References.initialIslandDistance != ConfigOptions.islandDistance)
+		{
+			player.addChatMessage(new TextComponentString(
+					"This isn't going to work. The island distance has changed!"));
 			return;
 		}
 

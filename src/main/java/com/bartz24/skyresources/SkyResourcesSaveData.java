@@ -33,6 +33,7 @@ public class SkyResourcesSaveData extends WorldSavedData
 		References.CurrentIslandsList.clear();
 		References.spawnedPlayers.clear();
 		References.worldOneChunk = false;
+		References.initialIslandDistance = ConfigOptions.islandDistance;
 		NBTTagList list = nbt.getTagList("Positions", Constants.NBT.TAG_COMPOUND);
 		for (int i = 0; i < list.tagCount(); ++i)
 		{
@@ -54,6 +55,8 @@ public class SkyResourcesSaveData extends WorldSavedData
 		}
 		if(nbt.hasKey("oneChunkWorld"))
 		References.worldOneChunk = nbt.getBoolean("oneChunkWorld");
+		if(nbt.hasKey("initialDist"))
+		References.initialIslandDistance = nbt.getInteger("initialDist");
 	}
 
 	@Override
@@ -82,6 +85,8 @@ public class SkyResourcesSaveData extends WorldSavedData
 		
 		if(References.worldOneChunk)
 		nbt.setBoolean("oneChunkWorld", true);
+		
+		nbt.setInteger("initialDist", References.initialIslandDistance);
 		
 		return nbt;
 	}

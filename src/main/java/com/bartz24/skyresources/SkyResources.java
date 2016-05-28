@@ -3,6 +3,7 @@ package com.bartz24.skyresources;
 import org.apache.logging.log4j.Logger;
 
 import com.bartz24.skyresources.base.commands.PlatformCommand;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.proxy.CommonProxy;
 import com.bartz24.skyresources.waila.WailaPlugin;
 
@@ -45,6 +46,7 @@ public class SkyResources
 			References.CurrentIslandsList.clear();
 			References.spawnedPlayers.clear();
 			References.worldOneChunk = false;
+			References.initialIslandDistance = ConfigOptions.islandDistance;
 			World world = event.getServer().getEntityWorld();
 			if (!world.isRemote)
 			{

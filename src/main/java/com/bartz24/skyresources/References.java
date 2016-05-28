@@ -3,6 +3,8 @@ package com.bartz24.skyresources;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.bartz24.skyresources.config.ConfigOptions;
+
 public class References
 {
 	public static final String ModID = "skyresources";
@@ -13,6 +15,7 @@ public class References
 	public static ArrayList<String> spawnedPlayers = new ArrayList<String>();
 	
 	public static boolean worldOneChunk = false;
+	public static int initialIslandDistance = ConfigOptions.islandDistance;
 
 	public static IslandPos getNextIsland()
 	{
