@@ -388,7 +388,7 @@ public class EventHandler
 				"https://github.com/Bartz24/SkyResources/wiki");
 		Style clickableChatStyle = new Style().setClickEvent(openUrl);
 		TextComponentString text = new TextComponentString(
-				"Need help or a guide? Go to\n" + TextFormatting.BLUE.toString()
+				"Need help or a guide? Click here to go to wiki.\n" + TextFormatting.BLUE.toString()
 						+ "https://github.com/Bartz24/SkyResources/wiki");
 		player.addChatMessage(text.setStyle(clickableChatStyle));
 	}

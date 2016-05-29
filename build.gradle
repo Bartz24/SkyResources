@@ -25,7 +25,7 @@ group= "com.bartz24.skyresources" // http://maven.apache.org/guides/mini/guide-n
 archivesBaseName = "skyresources"
 
 minecraft {
-    version = "1.9.4-12.17.0.1922-1.9.4"
+    version = "1.9.4-12.17.0.1932-1.9.4"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.
