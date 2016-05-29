@@ -136,6 +136,9 @@ public class ModCrafting
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModBlocks.ironFreezer), new Object[]
 				{ "XXX", "XZX", "XXX", 'X', new ItemStack(Items.IRON_INGOT), 'Z', new ItemStack(ModBlocks.miniFreezer) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(
+				new ItemStack(ModBlocks.dirtFurnace), new Object[]
+				{ "XXX", "X X", "XYX", 'X', "dirt", 'Y', new ItemStack(ModItems.baseComponent, 1, 0) }));
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModItems.waterExtractor), new Object[]
@@ -165,7 +168,7 @@ public class ModCrafting
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.CACTUS, 3),
 				new ItemStack(ModItems.alchemyComponent, 6, 1), Blocks.CACTUS,
 				OreDictionary.WILDCARD_VALUE, 8);
-		InfusionRecipes.addRecipe(new ItemStack(Blocks.TALLGRASS, 1),
+		InfusionRecipes.addRecipe(new ItemStack(Blocks.DEADBUSH),
 				new ItemStack(Items.ROTTEN_FLESH, 4), "treeSapling", 0, 10);
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.GRASS, 1),
 				new ItemStack(Items.WHEAT_SEEDS, 4), Blocks.DIRT, 0, 14);
@@ -185,8 +188,7 @@ public class ModCrafting
 		CombustionRecipes.addRecipe(new ItemStack(Items.BLAZE_POWDER, 2), 75,
 				new ItemStack(Items.GUNPOWDER, 1));
 		CombustionRecipes.addRecipe(new ItemStack(Items.DIAMOND, 1, 0), 1000,
-				new ItemStack(ModBlocks.compressedCoalBlock2, 2),
-				new ItemStack(Blocks.OBSIDIAN, 1));
+				new ItemStack(ModBlocks.compressedCoalBlock2, 2));
 		CombustionRecipes.addRecipe(new ItemStack(Blocks.SANDSTONE, 8, 1), 200,
 				new ItemStack(Blocks.SAND, 12), new ItemStack(Items.DYE, 1, 1));
 		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 0),

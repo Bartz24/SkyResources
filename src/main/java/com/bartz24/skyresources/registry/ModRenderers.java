@@ -186,6 +186,7 @@ public class ModRenderers
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.concentrator));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.fluidDropper));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.blazePowderBlock));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.dirtFurnace));
 
 		registerItemRenderer(ModItems.sandstoneInfusionStone);
 		registerItemRenderer(ModItems.redSandstoneInfusionStone);

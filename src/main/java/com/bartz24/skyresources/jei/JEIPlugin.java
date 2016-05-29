@@ -126,6 +126,12 @@ public class JEIPlugin implements IModPlugin
 		registry.addRecipeCategoryCraftingItem(
 				new ItemStack(ModItems.waterExtractor),
 				References.ModID + ":waterextractor");
+		registry.addRecipeCategoryCraftingItem(
+				new ItemStack(ModBlocks.dirtFurnace),
+				"minecraft.smelting");
+		registry.addRecipeCategoryCraftingItem(
+				new ItemStack(ModBlocks.dirtFurnace),
+				"minecraft.fuel");
 		for (ItemStack i : ItemHelper.getRockGrinders())
 		{
 			registry.addRecipeCategoryCraftingItem(i,

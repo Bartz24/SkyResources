@@ -141,10 +141,11 @@ public class PurificationVesselTile extends TileEntity
 			if (ModFluids.dirtyCrystalFluids
 					.contains(lowerTank.getFluid().getFluid()))
 				type = ModFluids.dirtyCrystalFluids
-						.indexOf(lowerTank.getFluid().getFluid());
+						.indexOf(lowerTank.getFluid().getFluid());			
 
-			if (type > 0)
+			if (type >= 0)
 			{
+				System.out.println("Here");
 				if (HeatSources
 						.isValidHeatSource(worldObj.getBlockState(pos.down())))
 				{

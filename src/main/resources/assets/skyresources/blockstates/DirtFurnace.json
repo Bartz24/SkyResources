@@ -1,0 +1,22 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "skyresources:DirtFurnace"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}],
+    "facing": {
+      "north": {},
+      "south": {"y": 180},
+      "west": {"y": 270},
+      "east": {"y": 90}
+    },
+    "burning": {
+      "false": {},
+      "true": {
+              "model": "skyresources:DirtFurnaceOn"        
+      }
+    }
+  }
+}

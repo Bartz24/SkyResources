@@ -14,6 +14,7 @@ import com.bartz24.skyresources.base.block.BlazePowderBlock;
 import com.bartz24.skyresources.base.block.BlockDryCactus;
 import com.bartz24.skyresources.base.block.ItemBlockMeta;
 import com.bartz24.skyresources.base.block.TransparentBlock;
+import com.bartz24.skyresources.technology.block.BlockDirtFurnace;
 import com.bartz24.skyresources.technology.block.BlockFreezer;
 import com.bartz24.skyresources.technology.block.BlockMiniFreezer;
 import com.bartz24.skyresources.technology.block.CombustionHeaterBlock;
@@ -45,10 +46,11 @@ public class ModBlocks
 	public static Block compressedStone;
 	public static Block heavySnow;
 	public static Block heavySnow2;
-	
+
 	public static Block blazePowderBlock;
 
 	public static Block dryCactus;
+	public static Block dirtFurnace;
 
 	public static List<Block> crystalFluidBlocks;
 	public static List<Block> dirtyCrystalFluidBlocks;
@@ -61,10 +63,9 @@ public class ModBlocks
 				"cactusFruitNeedle", "CactusFruitNeedle", 0.5F, 0.5F,
 				new AxisAlignedBB(0.3D, 0D, 0.3D, 0.7D, 0.8D, 0.7D),
 				SoundType.PLANT));
-		
-		compressedStone = registerBlock(
-				new BaseBlock(Material.ROCK, "compressedStone",
-						"CompressedStone", 6F, 6F, SoundType.STONE));
+
+		compressedStone = registerBlock(new BaseBlock(Material.ROCK,
+				"compressedStone", "CompressedStone", 6F, 6F, SoundType.STONE));
 
 		compressedCoalBlock = registerBlock(
 				new BaseBlock(Material.ROCK, "compressedCoalBlock",
@@ -81,38 +82,37 @@ public class ModBlocks
 		blazePowderBlock = registerBlock(
 				new BlazePowderBlock(Material.CLAY, "blazePowderBlock",
 						"BlazePowderBlock", 0.5F, 0.5F, SoundType.GROUND));
-		heavySnow = registerBlock(
-				new BaseBlock(Material.CLAY, "heavySnow",
-						"HeavySnow", 0.5F, 0.5F, SoundType.SNOW));
-		heavySnow2 = registerBlock(
-				new BaseBlock(Material.CLAY, "heavySnow2",
-						"HeavySnow2", 1F, 1F, SoundType.SNOW));
+		heavySnow = registerBlock(new BaseBlock(Material.CLAY, "heavySnow",
+				"HeavySnow", 0.5F, 0.5F, SoundType.SNOW));
+		heavySnow2 = registerBlock(new BaseBlock(Material.CLAY, "heavySnow2",
+				"HeavySnow2", 1F, 1F, SoundType.SNOW));
 
 		alchemicalCondenser = registerBlock(new CondenserBlock(
 				"alchemicalCondenser", "AlchemicalCondenser", 2F, 12F));
-		
+
 		purificationVessel = registerBlock(new PurificationVesselBlock(
 				"purificationVessel", "PurificationVessel", 2F, 12F));
-		
-		miniFreezer = registerBlock(new BlockMiniFreezer(
-				"miniFreezer", "MiniFreezer", 0.5F, 0.5F));	
-		ironFreezer = registerBlock(new BlockFreezer(
-				"ironFreezer", "IronFreezer", 2F, 2F));	
-		
+
+		miniFreezer = registerBlock(
+				new BlockMiniFreezer("miniFreezer", "MiniFreezer", 0.5F, 0.5F));
+		ironFreezer = registerBlock(
+				new BlockFreezer("ironFreezer", "IronFreezer", 2F, 2F));
 
 		crucible = registerBlock(
 				new CrucibleBlock("crucible", "Crucible", 2F, 12F));
 
 		concentrator = registerBlock(
 				new ConcentratorBlock("concentrator", "Concentrator", 2F, 12F));
-		
+
 		fluidDropper = registerBlock(
 				new FluidDropperBlock("fluidDropper", "FluidDropper", 2F, 12F));
-		
-		registerItemBlock(
-				combustionHeater = new CombustionHeaterBlock("combustionHeater",
-						"CombustionHeater", 2F, 12F));
+
+		registerItemBlock(combustionHeater = new CombustionHeaterBlock(
+				"combustionHeater", "CombustionHeater", 2F, 12F));
 		dryCactus = registerBlock(new BlockDryCactus());
+
+		dirtFurnace = registerBlock(
+				new BlockDirtFurnace("dirtFurnace", "DirtFurnace", 0.5F, 0.5F));
 
 		for (int i = 0; i < ModFluids.crystalFluidNames().length; i++)
 		{
@@ -155,11 +155,12 @@ public class ModBlocks
 
 		return block;
 	}
-	
+
 	public static void registerItemBlock(Block block)
 	{
-        GameRegistry.register(block);
-        GameRegistry.register(new ItemBlockMeta(block).setRegistryName(block.getRegistryName()));
-		
+		GameRegistry.register(block);
+		GameRegistry.register(new ItemBlockMeta(block)
+				.setRegistryName(block.getRegistryName()));
+
 	}
 }

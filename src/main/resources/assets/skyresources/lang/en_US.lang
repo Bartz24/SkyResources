@@ -43,6 +43,7 @@ tile.skyresources.miniFreezer.name=Mini Freezer
 tile.skyresources.ironFreezer.name=Iron Freezer
 tile.skyresources.heavySnow.name=Heavy Snow
 tile.skyresources.heavySnow2.name=Very Heavy Snow
+tile.skyresources.dirtFurnace.name=Dirt Furnace
 
 
 tile.skyresources.ironCrystalFluidBlock.name=Iron Crystal Liquid
