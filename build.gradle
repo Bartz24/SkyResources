@@ -44,7 +44,7 @@ dependencies {
     //compile "some.group:artifact:version"
       
 	compile files("lib/jei_1.9.4-3.6.7.216.jar")
-	compile files("lib/CraftTweaker-Customized-1.9-3.0.9.jar")
+	compile files("lib/CraftTweaker-1.9-3.0.9.jar")
 	compile files("lib/Waila-1.7.0-B3_1.9.4.jar")
 	  
     // real examples
