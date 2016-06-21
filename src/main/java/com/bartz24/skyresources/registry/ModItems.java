@@ -55,9 +55,6 @@ public class ModItems
 	public static Item redSandstoneInfusionStone;
 	public static Item alchemicalInfusionStone;
 
-	public static List<Item> crystalFluidBuckets;
-	public static List<Item> dirtyCrystalFluidBuckets;
-
 	public static void init()
 	{
 		References.gemList.add("emerald");
@@ -73,8 +70,6 @@ public class ModItems
 		References.gemList.add("yellowGarnet");
 		References.gemColorList.add(0xFFF7FF0F);
 		
-		crystalFluidBuckets = new ArrayList<Item>();
-		dirtyCrystalFluidBuckets = new ArrayList<Item>();
 		alchemyComponent = registerItem(new AlchemyItemComponent());
 		metalCrystal = registerItem(new MetalCrystalItem());
 		dirtyGem = registerItem(new DirtyGemItem());
@@ -105,77 +100,7 @@ public class ModItems
 		redSandstoneInfusionStone = registerItem(new ItemInfusionStone(80,
 				"redSandstoneInfusionStone", "RedSandstoneInfusionStone"));
 		alchemicalInfusionStone = registerItem(new ItemInfusionStone(1500,
-				"alchemicalInfusionStone", "AlchemicalInfusionStone"));
-
-		for (int i = 0; i < ModFluids.crystalFluidNames().length; i++)
-		{
-			final int val = i;
-			Item bucket = new ItemBucket(ModBlocks.crystalFluidBlocks.get(i))
-			{
-				@Override
-				public String getItemStackDisplayName(ItemStack stack)
-				{
-					String base = (""
-							+ I18n.translateToLocal("name.skyresources.metal."
-									+ ModFluids.crystalFluidNames()[val]))
-											.trim();
-
-					String type = ("" + I18n.translateToLocal(
-							"item.skyresources.crystalFluidBucket.name"))
-									.trim();
-
-					return base + " " + type;
-				}
-
-			};
-			crystalFluidBuckets.add(registerItem(bucket
-					.setUnlocalizedName(References.ModID
-							+ "." + ModFluids.crystalFluidNames()[i]
-							+ "CrystalFluidBucket")
-					.setRegistryName(RandomHelper
-							.capatilizeString(ModFluids.crystalFluidNames()[i])
-							+ "CrystalFluidBucket")
-					.setContainerItem(Items.BUCKET)
-					.setCreativeTab(ModCreativeTabs.tabAlchemy)));
-		}
-
-		for (int i = 0; i < ModFluids.crystalFluidNames().length; i++)
-		{
-			final int val = i;
-			Item bucket = new ItemBucket(
-					ModBlocks.dirtyCrystalFluidBlocks.get(i))
-			{
-				@Override
-				public String getItemStackDisplayName(ItemStack stack)
-				{
-					String dirty = (""
-							+ I18n.translateToLocal("name.skyresources.dirty")
-									.trim());
-
-					String base = (""
-							+ I18n.translateToLocal("name.skyresources.metal."
-									+ ModFluids.crystalFluidNames()[val]))
-											.trim();
-
-					String type = ("" + I18n.translateToLocal(
-							"item.skyresources.crystalFluidBucket.name"))
-									.trim();
-
-					return dirty + " " + base + " " + type;
-				}
-
-			};
-			dirtyCrystalFluidBuckets.add(registerItem(bucket
-					.setUnlocalizedName(References.ModID
-							+ "." + ModFluids.crystalFluidNames()[i]
-							+ "DirtyCrystalFluidBucket")
-					.setRegistryName(RandomHelper
-							.capatilizeString(ModFluids.crystalFluidNames()[i])
-							+ "DirtyCrystalFluidBucket")
-					.setContainerItem(Items.BUCKET)
-					.setCreativeTab(ModCreativeTabs.tabAlchemy)));
-		}
-
+				"alchemicalInfusionStone", "AlchemicalInfusionStone"));		
 	}
 
 	private static Item registerItem(Item item, String name)

@@ -10,6 +10,7 @@ import com.bartz24.skyresources.waila.WailaPlugin;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -53,14 +54,14 @@ public class SkyResources
 				SkyResourcesSaveData worldData = (SkyResourcesSaveData) world
 						.loadItemData(SkyResourcesSaveData.class,
 								SkyResourcesSaveData.dataName);
-				
+
 				if (worldData == null)
 				{
 					worldData = new SkyResourcesSaveData(
 							SkyResourcesSaveData.dataName);
 					world.setItemData(SkyResourcesSaveData.dataName, worldData);
 				}
-				
+
 				SkyResourcesSaveData.setInstance(world.provider.getDimension(),
 						worldData);
 			}
@@ -88,5 +89,10 @@ public class SkyResources
 	public void postInit(FMLPostInitializationEvent event)
 	{
 		proxy.postInit(event);
+	}
+
+	public SkyResources()
+	{
+		FluidRegistry.enableUniversalBucket();
 	}
 }

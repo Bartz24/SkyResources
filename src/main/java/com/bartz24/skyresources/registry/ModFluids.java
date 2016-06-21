@@ -8,6 +8,7 @@ import com.bartz24.skyresources.References;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import scala.collection.concurrent.Debug;
 
 public class ModFluids
 {
@@ -31,7 +32,7 @@ public class ModFluids
 				}
 			};
 			crystalFluids.add(fluid);
-			FluidRegistry.registerFluid(fluid);
+			System.out.println(fluid.getName() + ": " + FluidRegistry.addBucketForFluid(crystalFluids.get(i)));
 		}
 	}
 	
@@ -52,7 +53,8 @@ public class ModFluids
 				}
 			};
 			dirtyCrystalFluids.add(fluid);
-			FluidRegistry.registerFluid(fluid);
+			FluidRegistry.addBucketForFluid(dirtyCrystalFluids.get(i));
+			
 		}
 	}
 

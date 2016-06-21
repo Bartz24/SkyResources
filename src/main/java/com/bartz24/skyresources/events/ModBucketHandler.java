@@ -1,76 +1,60 @@
 package com.bartz24.skyresources.events;
 
-import com.bartz24.skyresources.registry.ModBlocks;
-import com.bartz24.skyresources.registry.ModFluids;
-import com.bartz24.skyresources.registry.ModItems;
+import java.util.HashMap;
+import java.util.Map;
 
 import net.minecraft.block.Block;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.RayTraceResult.Type;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
+import net.minecraftforge.fluids.BlockFluidBase;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ModBucketHandler
 {
+	public Map<Fluid, Item> buckets = new HashMap<Fluid, Item>();
+
 	public static void registerBuckets()
 	{
-		for (int i = 0; i < ModFluids.crystalFluidNames().length; i++)
-		{
-			FluidContainerRegistry.registerFluidContainer(
-					ModFluids.crystalFluids.get(i),
-					new ItemStack(ModItems.crystalFluidBuckets.get(i)),
-					new ItemStack(Items.BUCKET));
-			FluidContainerRegistry
-					.registerFluidContainer(ModFluids.dirtyCrystalFluids.get(i),
-							new ItemStack(
-									ModItems.dirtyCrystalFluidBuckets.get(i)),
-							new ItemStack(Items.BUCKET));
-		}
 	}
 
 	@SubscribeEvent
 	public void onBucketFill(FillBucketEvent event)
 	{
-		if (event.getTarget() == null || event.getTarget().getBlockPos() == null
-				|| event.getWorld()
-						.getBlockState(event.getTarget().getBlockPos()) == null)
-			return;
-		Block block = event.getWorld()
-				.getBlockState(event.getTarget().getBlockPos()).getBlock();
-		if (block == null || event.getEntityPlayer()
-				.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND) == null)
+		ItemStack result = fillCustomBucket(event.getWorld(),
+				event.getTarget());
+
+		if (result == null)
 			return;
 
-		if (event.getEntityPlayer()
-				.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND)
-				.getItem() == Items.BUCKET
-				&& event.getTarget().typeOfHit == Type.BLOCK)
+		event.setFilledBucket(result);
+		event.setResult(Event.Result.ALLOW);
+	}
+
+	private ItemStack fillCustomBucket(World world, RayTraceResult pos)
+	{
+		if (pos != null && pos.getBlockPos() != null
+				&& world.getBlockState(pos.getBlockPos()) != null)
 		{
-
-			for (int i = 0; i < ModFluids.crystalFluidNames().length; i++)
+			Block block = world.getBlockState(pos.getBlockPos()).getBlock();
+			if (block instanceof BlockFluidBase)
 			{
-				if (block == ModBlocks.crystalFluidBlocks.get(i))
+				Fluid fluid = ((BlockFluidBase) block).getFluid();
+				if (buckets.containsKey(fluid))
 				{
-					event.setResult(Result.ALLOW);
-					event.setFilledBucket(
-							new ItemStack(ModItems.crystalFluidBuckets.get(i)));
-					event.getWorld()
-							.setBlockToAir(event.getTarget().getBlockPos());
-					return;
-				} else if (block == ModBlocks.dirtyCrystalFluidBlocks.get(i))
-				{
-					event.setResult(Result.ALLOW);
-					event.setFilledBucket(new ItemStack(
-							ModItems.dirtyCrystalFluidBuckets.get(i)));
-					event.getWorld()
-							.setBlockToAir(event.getTarget().getBlockPos());
-					return;
+					Item bucket = buckets.get(fluid);
+					if (bucket != null)
+					{
+						world.setBlockToAir(pos.getBlockPos());
+						return new ItemStack(bucket, 1);
+					}
 				}
 			}
 		}
+		return null;
 	}
 }
