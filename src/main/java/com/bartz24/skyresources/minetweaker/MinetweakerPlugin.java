@@ -33,11 +33,11 @@ public class MinetweakerPlugin
 	{
 		return getItemStack(iStack);
 	}
-	
+
 	public static ItemStack[] toStacks(IItemStack[] iStacks)
 	{
 		List<ItemStack> stacks = new ArrayList<ItemStack>();
-		for(IItemStack is: iStacks)
+		for (IItemStack is : iStacks)
 		{
 			stacks.add(toStack(is));
 		}
@@ -64,11 +64,11 @@ public class MinetweakerPlugin
 				return null;
 		}
 	}
-	
+
 	public static Object[] toObjects(IIngredient[] iStacks)
 	{
 		List<Object> stacks = new ArrayList<Object>();
-		for(IIngredient is: iStacks)
+		for (IIngredient is : iStacks)
 		{
 			stacks.add(toObject(is));
 		}

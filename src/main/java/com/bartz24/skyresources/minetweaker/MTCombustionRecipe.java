@@ -101,8 +101,8 @@ public class MTCombustionRecipe
 		@Override
 		public void apply()
 		{
-			removedRecipes.addAll(CombustionRecipes.removeRecipe(
-					new CombustionRecipe(output, 0)));
+			removedRecipes.addAll(CombustionRecipes
+					.removeRecipe(new CombustionRecipe(output, 0)));
 		}
 
 		@Override
