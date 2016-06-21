@@ -187,7 +187,6 @@ public class PlatformCommand extends CommandBase implements ICommand
 						- ConfigOptions.islandDistance / 2; z < pos.getY() * ConfigOptions.islandDistance
 								+ ConfigOptions.islandDistance / 2 + 1; z++)
 				{
-					System.out.println(x + ", " + z);
 					for (int y = 0; y < 256; y++)
 					{
 						world.setBlockState(new BlockPos(x, y, z),
