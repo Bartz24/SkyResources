@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.bartz24.skyresources.IslandPos;
 import com.bartz24.skyresources.References;
+import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.events.EventHandler;
 import com.bartz24.skyresources.world.WorldTypeSky;
@@ -14,6 +15,7 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.math.BlockPos;
@@ -21,6 +23,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.border.WorldBorder;
+import scala.collection.concurrent.Debug;
 
 public class PlatformCommand extends CommandBase implements ICommand
 {
@@ -118,15 +121,15 @@ public class PlatformCommand extends CommandBase implements ICommand
 				reset(player, args, world);
 			} else if (subCommand.equals("onechunk"))
 			{
-				
-				if(!ConfigOptions.oneChunkCommandAllowed)
+
+				if (!ConfigOptions.oneChunkCommandAllowed)
 				{
 					player.addChatMessage(new TextComponentString(
 							"This command is not allowed!"));
 					return;
-					
+
 				}
-				
+
 				if (References.worldOneChunk)
 				{
 					player.addChatMessage(new TextComponentString(
@@ -176,30 +179,32 @@ public class PlatformCommand extends CommandBase implements ICommand
 				player.addChatMessage(
 						new TextComponentString("Lag incoming for reset!"));
 			}
-			for (int x = pos.getX()
-					- ConfigOptions.islandDistance / 2; x < pos.getX()
+			for (int x = pos.getX() * ConfigOptions.islandDistance
+					- ConfigOptions.islandDistance / 2; x < pos.getX() * ConfigOptions.islandDistance
 							+ ConfigOptions.islandDistance / 2 + 1; x++)
 			{
-				for (int z = pos.getY()
-						- ConfigOptions.islandDistance / 2; z < pos.getY()
+				for (int z = pos.getY() * ConfigOptions.islandDistance
+						- ConfigOptions.islandDistance / 2; z < pos.getY() * ConfigOptions.islandDistance
 								+ ConfigOptions.islandDistance / 2 + 1; z++)
 				{
+					System.out.println(x + ", " + z);
 					for (int y = 0; y < 256; y++)
 					{
-						world.destroyBlock(new BlockPos(x, y, z), false);
+						world.setBlockState(new BlockPos(x, y, z),
+								Blocks.AIR.getDefaultState(), 2);
 					}
 				}
 			}
 			EventHandler.createSpawn(world,
-					new BlockPos(pos.getX() * 1000, 86, pos.getY() * 1000));
+					new BlockPos(pos.getX() * ConfigOptions.islandDistance, 86, pos.getY() * ConfigOptions.islandDistance));
 			for (EntityPlayerMP p : players.getPlayerList())
 			{
 				if (pos.getPlayerNames().contains(p.getName()))
 				{
 					p.inventory.clear();
 
-					EventHandler.spawnPlayer(p, new BlockPos(pos.getX() * 1000,
-							86, pos.getY() * 1000), false);
+					EventHandler.spawnPlayer(p, new BlockPos(pos.getX() * ConfigOptions.islandDistance,
+							86, pos.getY() * ConfigOptions.islandDistance), false);
 					p.addChatMessage(new TextComponentString("Island Reset!"));
 				}
 			}
@@ -218,7 +223,8 @@ public class PlatformCommand extends CommandBase implements ICommand
 				{
 					for (int y = 0; y < 256; y++)
 					{
-						world.destroyBlock(new BlockPos(x, y, z), false);
+						world.setBlockState(new BlockPos(x, y, z),
+								Blocks.AIR.getDefaultState(), 2);
 					}
 				}
 			}

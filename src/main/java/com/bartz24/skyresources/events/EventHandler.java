@@ -154,9 +154,9 @@ public class EventHandler
 				BlockPos pos = new BlockPos(spawn.getX() + x, spawn.getY(),
 						spawn.getZ() + z);
 				world.setBlockState(pos.down(3),
-						Blocks.BEDROCK.getDefaultState());
+						Blocks.BEDROCK.getDefaultState(), 2);
 				world.setBlockState(pos.down(4),
-						Blocks.BEDROCK.getDefaultState());
+						Blocks.BEDROCK.getDefaultState(), 2);
 			}
 		}
 	}
@@ -174,16 +174,16 @@ public class EventHandler
 				BlockPos pos = new BlockPos(spawn.getX() + x, spawn.getY(),
 						spawn.getZ() + z);
 				world.setBlockState(pos.down(3),
-						Blocks.SAND.getStateFromMeta(1));
+						Blocks.SAND.getStateFromMeta(1), 2);
 				world.setBlockState(pos.down(4),
-						Blocks.BEDROCK.getDefaultState());
+						Blocks.BEDROCK.getDefaultState(), 2);
 			}
 		}
 		BlockPos pos = new BlockPos(spawn.getX() + -1, spawn.getY(),
 				spawn.getZ() + 1);
-		world.setBlockState(pos.down(2), Blocks.CACTUS.getDefaultState());
-		world.setBlockState(pos.down(1), Blocks.CACTUS.getDefaultState());
-		world.setBlockState(pos, Blocks.CACTUS.getDefaultState());
+		world.setBlockState(pos.down(2), Blocks.CACTUS.getDefaultState(), 2);
+		world.setBlockState(pos.down(1), Blocks.CACTUS.getDefaultState(), 2);
+		world.setBlockState(pos, Blocks.CACTUS.getDefaultState(), 2);
 	}
 
 	private static void dirtSpawn(World world, BlockPos spawn)
@@ -199,15 +199,15 @@ public class EventHandler
 				BlockPos pos = new BlockPos(spawn.getX() + x, spawn.getY(),
 						spawn.getZ() + z);
 				world.setBlockState(pos.down(3),
-						Blocks.DIRT.getStateFromMeta(1));
+						Blocks.DIRT.getStateFromMeta(1), 2);
 				world.setBlockState(pos.down(4),
-						Blocks.BEDROCK.getDefaultState());
+						Blocks.BEDROCK.getDefaultState(), 2);
 			}
 		}
 		BlockPos pos = new BlockPos(spawn.getX() + -1, spawn.getY(),
 				spawn.getZ() + 1);
 		world.setBlockState(pos.down(2),
-				Blocks.YELLOW_FLOWER.getDefaultState());
+				Blocks.YELLOW_FLOWER.getDefaultState(), 2);
 	}
 
 	private static void snowSpawn(World world, BlockPos spawn)
@@ -222,16 +222,16 @@ public class EventHandler
 			{
 				BlockPos pos = new BlockPos(spawn.getX() + x, spawn.getY(),
 						spawn.getZ() + z);
-				world.setBlockState(pos.down(3), Blocks.SNOW.getDefaultState());
+				world.setBlockState(pos.down(3), Blocks.SNOW.getDefaultState(), 2);
 				world.setBlockState(pos.down(4),
-						Blocks.BEDROCK.getDefaultState());
+						Blocks.BEDROCK.getDefaultState(), 2);
 
 				if ((x == -1 && z == 1) || (x == 1 && z == 1))
 					world.setBlockState(pos.down(2),
-							Blocks.PUMPKIN.getDefaultState());
+							Blocks.PUMPKIN.getDefaultState(), 2);
 				else
 					world.setBlockState(pos.down(2),
-							Blocks.SNOW_LAYER.getDefaultState());
+							Blocks.SNOW_LAYER.getDefaultState(), 2);
 			}
 		}
 	}
