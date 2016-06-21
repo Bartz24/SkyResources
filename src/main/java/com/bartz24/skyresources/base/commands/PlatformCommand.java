@@ -410,7 +410,7 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 		player.inventory.clear();
 
-		tpSpawn(player, args);
+		EventHandler.spawnPlayer(player, new BlockPos(0, 86, 0), false);
 	}
 
 	void tpHome(EntityPlayerMP player, String[] args) throws CommandException
