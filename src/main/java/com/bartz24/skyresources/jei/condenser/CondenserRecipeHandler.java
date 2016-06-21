@@ -33,4 +33,10 @@ public class CondenserRecipeHandler
 		return recipe.getInputs().size() > 0 && recipe.getOutputs().size() > 0;
 	}
 
+	@Override
+	public String getRecipeCategoryUid(CondenserRecipeJEI arg0)
+	{
+		return References.ModID + ":condenser";
+	}
+
 }

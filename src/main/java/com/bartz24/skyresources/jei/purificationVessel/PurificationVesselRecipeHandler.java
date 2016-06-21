@@ -33,4 +33,10 @@ public class PurificationVesselRecipeHandler implements IRecipeHandler<Purificat
 				&& recipe.getFluidOutputs().size() > 0;
 	}
 
+	@Override
+	public String getRecipeCategoryUid(PurificationVesselRecipeJEI arg0)
+	{
+		return References.ModID + ":purificationVessel";
+	}
+
 }

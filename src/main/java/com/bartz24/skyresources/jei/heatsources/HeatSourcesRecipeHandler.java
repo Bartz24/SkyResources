@@ -33,4 +33,10 @@ public class HeatSourcesRecipeHandler
 		return true;
 	}
 
+	@Override
+	public String getRecipeCategoryUid(HeatSourcesRecipeJEI arg0)
+	{
+		return References.ModID + ":heatsources";
+	}
+
 }

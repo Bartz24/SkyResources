@@ -33,4 +33,10 @@ public class ConcentratorRecipeHandler
 		return recipe.getInputs().size() > 0 && recipe.getOutputs().size() > 0;
 	}
 
+	@Override
+	public String getRecipeCategoryUid(ConcentratorRecipeJEI arg0)
+	{
+		return References.ModID + ":concentrator";
+	}
+
 }

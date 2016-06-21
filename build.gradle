@@ -25,7 +25,7 @@ group= "com.bartz24.skyresources" // http://maven.apache.org/guides/mini/guide-n
 archivesBaseName = "skyresources"
 
 minecraft {
-    version = "1.9.4-12.17.0.1932-1.9.4"
+    version = "1.9.4-12.17.0.1968"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.
@@ -43,8 +43,8 @@ dependencies {
     //compile "some.group:artifact:version:classifier"
     //compile "some.group:artifact:version"
       
-	compile files("lib/jei_1.9.4-3.4.0.204.jar")
-	//compile files("lib/CraftTweaker-Customized-1.9-3.0.8.jar")
+	compile files("lib/jei_1.9.4-3.6.7.216.jar")
+	compile files("lib/CraftTweaker-Customized-1.9-3.0.9.jar")
 	compile files("lib/Waila-1.7.0-B3_1.9.4.jar")
 	  
     // real examples

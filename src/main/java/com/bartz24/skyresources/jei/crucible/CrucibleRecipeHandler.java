@@ -33,4 +33,10 @@ public class CrucibleRecipeHandler implements IRecipeHandler<CrucibleRecipeJEI>
 				&& recipe.getFluidOutputs().size() > 0;
 	}
 
+	@Override
+	public String getRecipeCategoryUid(CrucibleRecipeJEI arg0)
+	{
+		return References.ModID + ":crucible";
+	}
+
 }

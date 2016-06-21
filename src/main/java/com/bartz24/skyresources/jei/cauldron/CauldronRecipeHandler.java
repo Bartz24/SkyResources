@@ -10,12 +10,6 @@ public class CauldronRecipeHandler
 {
 
 	@Override
-	public String getRecipeCategoryUid()
-	{
-		return References.ModID + ":cauldron";
-	}
-
-	@Override
 	public Class<CauldronRecipeJEI> getRecipeClass()
 	{
 		return CauldronRecipeJEI.class;
@@ -31,6 +25,18 @@ public class CauldronRecipeHandler
 	public boolean isRecipeValid(CauldronRecipeJEI recipe)
 	{
 		return recipe.getInputs().size() > 0 && recipe.getOutputs().size() > 0;
+	}
+
+	@Override
+	public String getRecipeCategoryUid(CauldronRecipeJEI arg0)
+	{
+		return References.ModID + ":cauldron";
+	}
+
+	@Override
+	public String getRecipeCategoryUid()
+	{
+		return References.ModID + ":cauldron";
 	}
 
 }

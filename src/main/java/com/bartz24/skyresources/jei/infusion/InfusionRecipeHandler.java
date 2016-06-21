@@ -32,4 +32,10 @@ public class InfusionRecipeHandler implements IRecipeHandler<InfusionRecipeJEI>
 		return recipe.getInputs().size() > 0 && recipe.getOutputs().size() > 0;
 	}
 
+	@Override
+	public String getRecipeCategoryUid(InfusionRecipeJEI arg0)
+	{
+		return References.ModID + ":infusion";
+	}
+
 }

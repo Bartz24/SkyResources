@@ -33,4 +33,10 @@ public class RockGrinderRecipeHandler
 		return recipe.getInputs().size() > 0 && recipe.getOutputs().size() > 0;
 	}
 
+	@Override
+	public String getRecipeCategoryUid(RockGrinderRecipeJEI arg0)
+	{
+		return References.ModID + ":rockgrinder";
+	}
+
 }

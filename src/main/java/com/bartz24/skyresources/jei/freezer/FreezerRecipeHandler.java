@@ -33,4 +33,10 @@ public class FreezerRecipeHandler
 		return recipe.getInputs().size() > 0 && recipe.getOutputs().size() > 0;
 	}
 
+	@Override
+	public String getRecipeCategoryUid(FreezerRecipeJEI arg0)
+	{
+		return References.ModID + ":freezer";
+	}
+
 }

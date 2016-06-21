@@ -33,4 +33,10 @@ public class CombustionRecipeHandler
 		return recipe.getInputs().size() > 0 && recipe.getOutputs().size() > 0;
 	}
 
+	@Override
+	public String getRecipeCategoryUid(CombustionRecipeJEI arg0)
+	{
+		return References.ModID + ":combustion";
+	}
+
 }

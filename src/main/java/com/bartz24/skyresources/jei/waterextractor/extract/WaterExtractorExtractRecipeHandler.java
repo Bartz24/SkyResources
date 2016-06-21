@@ -33,4 +33,10 @@ public class WaterExtractorExtractRecipeHandler
 		return recipe.getInputs().size() > 0 && recipe.getFluidOutputs().size() > 0;
 	}
 
+	@Override
+	public String getRecipeCategoryUid(WaterExtractorExtractRecipeJEI arg0)
+	{
+		return References.ModID + ":waterextractor";
+	}
+
 }
