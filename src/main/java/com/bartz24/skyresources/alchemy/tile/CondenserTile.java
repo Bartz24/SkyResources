@@ -81,7 +81,7 @@ public class CondenserTile extends TileEntity implements ITickable
 	{
 		if (!clean)
 			return ModFluids.crystalFluidRarity()[ModBlocks.dirtyCrystalFluidBlocks
-					.indexOf(block)] * ConfigOptions.condenserProcessTimeBase * 2;
+					.indexOf(block)] * ConfigOptions.condenserProcessTimeBase * 10;
 
 		return ModFluids.crystalFluidRarity()[ModBlocks.crystalFluidBlocks
 				.indexOf(block)] * ConfigOptions.condenserProcessTimeBase;

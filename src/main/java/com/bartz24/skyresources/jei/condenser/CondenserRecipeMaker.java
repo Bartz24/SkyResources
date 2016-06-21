@@ -37,7 +37,7 @@ public class CondenserRecipeMaker
 												.crystalFluidNames()[i]))
 								.get(0),
 						ModBlocks.dirtyCrystalFluidBlocks.get(i).getDefaultState(),
-						ModFluids.crystalFluidRarity()[i] * ConfigOptions.condenserProcessTimeBase * 2);
+						ModFluids.crystalFluidRarity()[i] * ConfigOptions.condenserProcessTimeBase * 10);
 				recipes.add(addDirtyRecipe);
 			}
 		}
