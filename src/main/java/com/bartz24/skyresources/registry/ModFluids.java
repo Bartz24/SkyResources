@@ -32,7 +32,7 @@ public class ModFluids
 				}
 			};
 			crystalFluids.add(fluid);
-			System.out.println(fluid.getName() + ": " + FluidRegistry.addBucketForFluid(crystalFluids.get(i)));
+			FluidRegistry.addBucketForFluid(crystalFluids.get(i));
 		}
 	}
 	

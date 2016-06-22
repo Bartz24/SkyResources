@@ -199,8 +199,8 @@ public class PlatformCommand extends CommandBase implements ICommand
 			for (EntityPlayerMP p : players.getPlayerList())
 			{
 				if (pos.getPlayerNames().contains(p.getName()))
-				{
-					p.inventory.clear();
+				{					
+					References.setStartingInv(p);
 
 					EventHandler.spawnPlayer(p, new BlockPos(pos.getX() * ConfigOptions.islandDistance,
 							86, pos.getY() * ConfigOptions.islandDistance), false);

@@ -12,15 +12,18 @@ import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModItems;
 import com.bartz24.skyresources.world.WorldTypeSky;
+import com.google.common.base.Strings;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCauldron;
+import net.minecraft.command.CommandGive;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
@@ -112,6 +115,8 @@ public class EventHandler
 			pmp.setPositionAndUpdate(pos.getX() + 0.5, pos.getY() + 1.6,
 					pos.getZ() + 0.5);
 			pmp.setSpawnPoint(pos, true);
+			
+			References.setStartingInv(pmp);
 		}
 	}
 
@@ -206,8 +211,8 @@ public class EventHandler
 		}
 		BlockPos pos = new BlockPos(spawn.getX() + -1, spawn.getY(),
 				spawn.getZ() + 1);
-		world.setBlockState(pos.down(2),
-				Blocks.YELLOW_FLOWER.getDefaultState(), 2);
+		world.setBlockState(pos.down(2), Blocks.YELLOW_FLOWER.getDefaultState(),
+				2);
 	}
 
 	private static void snowSpawn(World world, BlockPos spawn)
@@ -222,7 +227,8 @@ public class EventHandler
 			{
 				BlockPos pos = new BlockPos(spawn.getX() + x, spawn.getY(),
 						spawn.getZ() + z);
-				world.setBlockState(pos.down(3), Blocks.SNOW.getDefaultState(), 2);
+				world.setBlockState(pos.down(3), Blocks.SNOW.getDefaultState(),
+						2);
 				world.setBlockState(pos.down(4),
 						Blocks.BEDROCK.getDefaultState(), 2);
 
@@ -388,7 +394,8 @@ public class EventHandler
 				"https://github.com/Bartz24/SkyResources/wiki");
 		Style clickableChatStyle = new Style().setClickEvent(openUrl);
 		TextComponentString text = new TextComponentString(
-				"Need help or a guide? Click here to go to wiki.\n" + TextFormatting.BLUE.toString()
+				"Need help or a guide? Click here to go to wiki.\n"
+						+ TextFormatting.BLUE.toString()
 						+ "https://github.com/Bartz24/SkyResources/wiki");
 		player.addChatMessage(text.setStyle(clickableChatStyle));
 	}

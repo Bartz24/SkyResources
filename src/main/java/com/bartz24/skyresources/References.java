@@ -1,9 +1,16 @@
 package com.bartz24.skyresources;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import com.bartz24.skyresources.config.ConfigOptions;
+import com.google.common.base.Strings;
+
+import net.minecraft.command.CommandGive;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 
 public class References
 {
@@ -90,6 +97,40 @@ public class References
 	public static boolean hasPlayerSpawned(String playerName)
 	{
 		return spawnedPlayers.contains(playerName);
+	}
+	
+	public static void setStartingInv(EntityPlayerMP player)
+	{
+		player.inventory.clear();
+
+		try
+		{
+			for (int i = 0; i < ConfigOptions.startingItems.size(); i++)
+			{
+				String s = ConfigOptions.startingItems.get(i);
+				if (!Strings.isNullOrEmpty(s) && s.contains(":")
+						&& s.contains("*"))
+				{
+					String trimmed = s.replaceAll(" ", "");
+					String itemName = trimmed.split(":")[0]+":"+trimmed.split(":")[1];
+					int meta = Integer
+							.parseInt(trimmed.split(":")[2].split("\\*")[0]);
+					int amt = Integer
+							.parseInt(trimmed.split(":")[2].split("\\*")[1]);
+
+					Item item = CommandGive.getItemByText(player, itemName);
+
+					ItemStack stack = new ItemStack(item, amt, meta);
+
+					player.inventory.setInventorySlotContents(i, stack);
+				}
+			}
+		} catch (Exception e)
+		{
+			player.inventory.clear();
+			player.addChatMessage(new TextComponentString(TextFormatting.RED
+					+ "Error getting starting inventory.\n"+e.toString()));
+		}
 	}
 	
 
