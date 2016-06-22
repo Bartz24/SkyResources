@@ -184,11 +184,18 @@ public class EventHandler
 						Blocks.BEDROCK.getDefaultState(), 2);
 			}
 		}
-		BlockPos pos = new BlockPos(spawn.getX() + -1, spawn.getY(),
+		BlockPos pos = new BlockPos(spawn.getX() - 1, spawn.getY(),
 				spawn.getZ() + 1);
 		world.setBlockState(pos.down(2), Blocks.CACTUS.getDefaultState(), 2);
 		world.setBlockState(pos.down(1), Blocks.CACTUS.getDefaultState(), 2);
 		world.setBlockState(pos, Blocks.CACTUS.getDefaultState(), 2);
+		if(ConfigOptions.spawnChest)
+		{
+			System.out.println("HERE");
+			pos = new BlockPos(spawn.getX(), spawn.getY() - 2,
+					spawn.getZ() - 1);
+			world.setBlockState(pos, Blocks.CHEST.getDefaultState());
+		}
 	}
 
 	private static void dirtSpawn(World world, BlockPos spawn)
@@ -209,10 +216,17 @@ public class EventHandler
 						Blocks.BEDROCK.getDefaultState(), 2);
 			}
 		}
-		BlockPos pos = new BlockPos(spawn.getX() + -1, spawn.getY(),
+		BlockPos pos = new BlockPos(spawn.getX() + -1, spawn.getY() - 2,
 				spawn.getZ() + 1);
 		world.setBlockState(pos.down(2), Blocks.YELLOW_FLOWER.getDefaultState(),
 				2);
+		if(ConfigOptions.spawnChest)
+		{
+			System.out.println("HERE");
+			pos = new BlockPos(spawn.getX(), spawn.getY(),
+					spawn.getZ() - 1);
+			world.setBlockState(pos, Blocks.CHEST.getDefaultState());
+		}
 	}
 
 	private static void snowSpawn(World world, BlockPos spawn)
@@ -239,6 +253,13 @@ public class EventHandler
 					world.setBlockState(pos.down(2),
 							Blocks.SNOW_LAYER.getDefaultState(), 2);
 			}
+		}
+		if(ConfigOptions.spawnChest)
+		{
+			System.out.println("HERE");
+			BlockPos pos = new BlockPos(spawn.getX(), spawn.getY() - 2,
+					spawn.getZ() - 1);
+			world.setBlockState(pos, Blocks.CHEST.getDefaultState());
 		}
 	}
 

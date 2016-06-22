@@ -39,6 +39,7 @@ public class ConfigOptions
 
 	public static int islandDistance;
 	public static int islandSize;
+	public static boolean spawnChest;
 
 	public static String commandName;
 
@@ -96,6 +97,8 @@ public class ConfigOptions
 				.getInt(1000);
 
 		islandSize = config.get("islands", "Island Width/Length", 3).getInt(3);
+		
+		spawnChest = config.get("islands", "Spawn Chest", false).getBoolean(false);
 
 		commandName = config.get("islands",
 				"Name For Command (Default: platform)", "platform").getString();
