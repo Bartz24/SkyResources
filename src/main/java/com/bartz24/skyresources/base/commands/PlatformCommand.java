@@ -9,6 +9,7 @@ import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.events.EventHandler;
 import com.bartz24.skyresources.world.WorldTypeSky;
+import com.google.common.base.Strings;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -180,11 +181,13 @@ public class PlatformCommand extends CommandBase implements ICommand
 						new TextComponentString("Lag incoming for reset!"));
 			}
 			for (int x = pos.getX() * ConfigOptions.islandDistance
-					- ConfigOptions.islandDistance / 2; x < pos.getX() * ConfigOptions.islandDistance
+					- ConfigOptions.islandDistance / 2; x < pos.getX()
+							* ConfigOptions.islandDistance
 							+ ConfigOptions.islandDistance / 2 + 1; x++)
 			{
 				for (int z = pos.getY() * ConfigOptions.islandDistance
-						- ConfigOptions.islandDistance / 2; z < pos.getY() * ConfigOptions.islandDistance
+						- ConfigOptions.islandDistance / 2; z < pos.getY()
+								* ConfigOptions.islandDistance
 								+ ConfigOptions.islandDistance / 2 + 1; z++)
 				{
 					for (int y = 0; y < 256; y++)
@@ -194,16 +197,43 @@ public class PlatformCommand extends CommandBase implements ICommand
 					}
 				}
 			}
-			EventHandler.createSpawn(world,
-					new BlockPos(pos.getX() * ConfigOptions.islandDistance, 86, pos.getY() * ConfigOptions.islandDistance));
+
+			if (args.length > 1)
+			{
+				Integer i = -1;
+
+				try
+				{
+					i = Integer.parseInt(args[1]);
+				} catch (Exception e)
+				{
+					if (args[1].equals("sand"))
+						i = 0;
+					else if (args[1].equals("snow"))
+						i = 1;
+				}
+
+				if (i > -1 && i < 2)
+				{
+					EventHandler.spawnPlayer(player, new BlockPos(
+							pos.getX() * ConfigOptions.islandDistance, 86,
+							pos.getY() * ConfigOptions.islandDistance), i);
+				}
+			} else
+			{
+				EventHandler.createSpawn(world,
+						new BlockPos(pos.getX() * ConfigOptions.islandDistance,
+								86, pos.getY() * ConfigOptions.islandDistance));
+			}
 			for (EntityPlayerMP p : players.getPlayerList())
 			{
 				if (pos.getPlayerNames().contains(p.getName()))
-				{					
+				{
 					References.setStartingInv(p);
 
-					EventHandler.spawnPlayer(p, new BlockPos(pos.getX() * ConfigOptions.islandDistance,
-							86, pos.getY() * ConfigOptions.islandDistance), false);
+					EventHandler.spawnPlayer(p, new BlockPos(
+							pos.getX() * ConfigOptions.islandDistance, 86,
+							pos.getY() * ConfigOptions.islandDistance), false);
 					p.addChatMessage(new TextComponentString("Island Reset!"));
 				}
 			}
@@ -227,7 +257,29 @@ public class PlatformCommand extends CommandBase implements ICommand
 					}
 				}
 			}
-			EventHandler.createSpawn(world, new BlockPos(0, 86, 0));
+			if (args.length > 1)
+			{
+				Integer i = -1;
+
+				try
+				{
+					i = Integer.parseInt(args[1]);
+				} catch (Exception e)
+				{
+					if (args[1].equals("sand"))
+						i = 0;
+					else if (args[1].equals("snow"))
+						i = 1;
+				}
+
+				if (i > -1 && i < 2)
+				{
+					EventHandler.spawnPlayer(player, new BlockPos(0, 86, 0), i);
+				}
+			} else
+			{
+				EventHandler.createSpawn(world, new BlockPos(0, 86, 0));
+			}
 			for (EntityPlayerMP p : players.getPlayerList())
 			{
 				p.inventory.clear();
@@ -242,7 +294,7 @@ public class PlatformCommand extends CommandBase implements ICommand
 	{
 
 		player.addChatMessage(new TextComponentString(
-				"create : Spawn a new platform. Must not already be on an island."));
+				"create (optional int/string)<type> : Spawn a new platform. Must not already be on an island."));
 
 		player.addChatMessage(new TextComponentString(
 				"invite <player> : Have another player join your island. Player must not already be on an island."));
@@ -258,7 +310,7 @@ public class PlatformCommand extends CommandBase implements ICommand
 				"spawn : Teleport back to spawn (0, 0)."));
 
 		player.addChatMessage(new TextComponentString(
-				"reset : Resets the platform and clears the players' inventory.\n      (If it doesn't clear everything, be nice and toss the rest? Maybe?\nNot recommended unless all players for that island are online)"));
+				"reset (optional int/string)<type> : Resets the platform and clears the players' inventory.\n      (If it doesn't clear everything, be nice and toss the rest? Maybe?\nNot recommended unless all players for that island are online)"));
 
 		player.addChatMessage(new TextComponentString(
 				"onechunk : Play in one chunk, on one island. Also resets the spawn chunk."
@@ -270,10 +322,10 @@ public class PlatformCommand extends CommandBase implements ICommand
 	void newPlatform(EntityPlayerMP player, String[] args)
 			throws CommandException
 	{
-		if (args.length > 1)
+		if (args.length > 2)
 		{
 			player.addChatMessage(
-					new TextComponentString("Must have no arguments"));
+					new TextComponentString("Must have 0 or 1 argument"));
 			return;
 		}
 		if (References.worldOneChunk)
@@ -298,11 +350,34 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 		IslandPos position = References.getNextIsland();
 
-		EventHandler.spawnPlayer(player,
-				new BlockPos(position.getX() * ConfigOptions.islandDistance, 86,
-						position.getY() * ConfigOptions.islandDistance),
-				true);
+		if (args.length > 1)
+		{
+			Integer i = -1;
 
+			try
+			{
+				i = Integer.parseInt(args[1]);
+			} catch (Exception e)
+			{
+				if (args[1].equals("sand"))
+					i = 0;
+				else if (args[1].equals("snow"))
+					i = 1;
+			}
+
+			if (i > -1 && i < 2)
+			{
+				EventHandler.spawnPlayer(player, new BlockPos(
+						position.getX() * ConfigOptions.islandDistance, 86,
+						position.getY() * ConfigOptions.islandDistance), i);
+			}
+		} else
+		{
+			EventHandler.spawnPlayer(player,
+					new BlockPos(position.getX() * ConfigOptions.islandDistance,
+							86, position.getY() * ConfigOptions.islandDistance),
+					true);
+		}
 		References.CurrentIslandsList.add(new IslandPos(position.getX(),
 				position.getY(), player.getName()));
 	}

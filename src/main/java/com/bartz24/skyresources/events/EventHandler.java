@@ -115,9 +115,17 @@ public class EventHandler
 			pmp.setPositionAndUpdate(pos.getX() + 0.5, pos.getY() + 1.6,
 					pos.getZ() + 0.5);
 			pmp.setSpawnPoint(pos, true);
-			
+
 			References.setStartingInv(pmp);
 		}
+	}
+
+	public static void spawnPlayer(EntityPlayer player, BlockPos pos,
+			int forceType)
+	{
+		spawnPlayer(player, pos, false);
+
+		spawnPlat(player.worldObj, pos, forceType);
 	}
 
 	public static void createSpawn(World world, BlockPos spawn)
@@ -131,6 +139,12 @@ public class EventHandler
 		Random random = world.rand;
 		int type = ConfigOptions.worldSpawnType == 0 ? random.nextInt(2)
 				: ConfigOptions.worldSpawnType - 1;
+
+		spawnPlat(world, spawn, type);
+	}
+
+	private static void spawnPlat(World world, BlockPos spawn, int type)
+	{
 		switch (type)
 		{
 		case 0:
@@ -143,7 +157,6 @@ public class EventHandler
 		 * case 2: dirtSpawn(world, spawn); break;
 		 */
 		}
-
 	}
 
 	private static void mainSpawn(World world, BlockPos spawn)
@@ -189,7 +202,7 @@ public class EventHandler
 		world.setBlockState(pos.down(2), Blocks.CACTUS.getDefaultState(), 2);
 		world.setBlockState(pos.down(1), Blocks.CACTUS.getDefaultState(), 2);
 		world.setBlockState(pos, Blocks.CACTUS.getDefaultState(), 2);
-		if(ConfigOptions.spawnChest)
+		if (ConfigOptions.spawnChest)
 		{
 			System.out.println("HERE");
 			pos = new BlockPos(spawn.getX(), spawn.getY() - 2,
@@ -220,11 +233,10 @@ public class EventHandler
 				spawn.getZ() + 1);
 		world.setBlockState(pos.down(2), Blocks.YELLOW_FLOWER.getDefaultState(),
 				2);
-		if(ConfigOptions.spawnChest)
+		if (ConfigOptions.spawnChest)
 		{
 			System.out.println("HERE");
-			pos = new BlockPos(spawn.getX(), spawn.getY(),
-					spawn.getZ() - 1);
+			pos = new BlockPos(spawn.getX(), spawn.getY(), spawn.getZ() - 1);
 			world.setBlockState(pos, Blocks.CHEST.getDefaultState());
 		}
 	}
@@ -254,7 +266,7 @@ public class EventHandler
 							Blocks.SNOW_LAYER.getDefaultState(), 2);
 			}
 		}
-		if(ConfigOptions.spawnChest)
+		if (ConfigOptions.spawnChest)
 		{
 			System.out.println("HERE");
 			BlockPos pos = new BlockPos(spawn.getX(), spawn.getY() - 2,
