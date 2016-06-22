@@ -181,14 +181,14 @@ public class PlatformCommand extends CommandBase implements ICommand
 						new TextComponentString("Lag incoming for reset!"));
 			}
 			for (int x = pos.getX() * ConfigOptions.islandDistance
-					- ConfigOptions.islandDistance / 2; x < pos.getX()
+					- ConfigOptions.islandResetDistance; x < pos.getX()
 							* ConfigOptions.islandDistance
-							+ ConfigOptions.islandDistance / 2 + 1; x++)
+							+ ConfigOptions.islandResetDistance + 1; x++)
 			{
 				for (int z = pos.getY() * ConfigOptions.islandDistance
-						- ConfigOptions.islandDistance / 2; z < pos.getY()
+						- ConfigOptions.islandResetDistance; z < pos.getY()
 								* ConfigOptions.islandDistance
-								+ ConfigOptions.islandDistance / 2 + 1; z++)
+								+ ConfigOptions.islandResetDistance + 1; z++)
 				{
 					for (int y = 0; y < 256; y++)
 					{

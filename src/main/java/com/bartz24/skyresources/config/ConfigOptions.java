@@ -39,6 +39,7 @@ public class ConfigOptions
 
 	public static int islandDistance;
 	public static int islandSize;
+	public static int islandResetDistance;
 	public static boolean spawnChest;
 
 	public static String commandName;
@@ -96,9 +97,15 @@ public class ConfigOptions
 		islandDistance = config.get("islands", "Island Gap Distance", 1000)
 				.getInt(1000);
 
+		islandResetDistance = Math.min(config
+				.get("islands",
+						"Island Reset Radius (Max 1/2 of Island Distance)", 500)
+				.getInt(500), islandDistance / 2);
+
 		islandSize = config.get("islands", "Island Width/Length", 3).getInt(3);
-		
-		spawnChest = config.get("islands", "Spawn Chest", false).getBoolean(false);
+
+		spawnChest = config.get("islands", "Spawn Chest", false)
+				.getBoolean(false);
 
 		commandName = config.get("islands",
 				"Name For Command (Default: platform)", "platform").getString();
@@ -148,7 +155,8 @@ public class ConfigOptions
 			array[i] = "";
 
 		startingItems = Arrays.asList(config.getStringList("Starting Inventory",
-				"startingInv", array, "The starting inventory Format: modid:itemid:meta*amt"));
+				"startingInv", array,
+				"The starting inventory Format: modid:itemid:meta*amt"));
 
 		config.save();
 	}
