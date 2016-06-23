@@ -1,6 +1,7 @@
 package com.bartz24.skyresources.config;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.google.common.base.Strings;
@@ -10,7 +11,6 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.client.config.IConfigElement;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import scala.actors.threadpool.Arrays;
 
 public class ConfigOptions
 {
