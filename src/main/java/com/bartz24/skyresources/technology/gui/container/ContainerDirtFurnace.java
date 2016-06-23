@@ -2,7 +2,7 @@ package com.bartz24.skyresources.technology.gui.container;
 
 import javax.annotation.Nullable;
 
-import com.bartz24.skyresources.technology.tile.FreezerTile;
+import com.bartz24.skyresources.technology.tile.DirtFurnaceTile;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -14,7 +14,6 @@ import net.minecraft.inventory.SlotFurnaceFuel;
 import net.minecraft.inventory.SlotFurnaceOutput;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -45,12 +44,6 @@ public class ContainerDirtFurnace extends Container
         {
             this.addSlotToContainer(new Slot(playerInventory, k, 8 + k * 18, 142));
         }
-    }
-
-    public void addListener(IContainerListener listener)
-    {
-        super.addListener(listener);
-        listener.sendAllWindowProperties(this, this.tileFurnace);
     }
 
     /**
@@ -134,7 +127,7 @@ public class ContainerDirtFurnace extends Container
                         return null;
                     }
                 }
-                else if (TileEntityFurnace.isItemFuel(itemstack1))
+                else if (DirtFurnaceTile.isItemFuel(itemstack1))
                 {
                     if (!this.mergeItemStack(itemstack1, 1, 2, false))
                     {

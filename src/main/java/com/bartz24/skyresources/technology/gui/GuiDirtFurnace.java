@@ -1,11 +1,12 @@
 package com.bartz24.skyresources.technology.gui;
 
+import com.bartz24.skyresources.technology.gui.container.ContainerDirtFurnace;
+import com.bartz24.skyresources.technology.tile.DirtFurnaceTile;
+
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ContainerFurnace;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -20,7 +21,7 @@ public class GuiDirtFurnace extends GuiContainer
 
     public GuiDirtFurnace(InventoryPlayer playerInv, IInventory furnaceInv)
     {
-        super(new ContainerFurnace(playerInv, furnaceInv));
+        super(new ContainerDirtFurnace(playerInv, furnaceInv));
         this.playerInventory = playerInv;
         this.tileFurnace = furnaceInv;
     }
@@ -46,7 +47,7 @@ public class GuiDirtFurnace extends GuiContainer
         int j = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);
 
-        if (TileEntityFurnace.isBurning(this.tileFurnace))
+        if (DirtFurnaceTile.isBurning(this.tileFurnace))
         {
             int k = this.getBurnLeftScaled(13);
             this.drawTexturedModalRect(i + 56, j + 36 + 12 - k, 176, 12 - k, 14, k + 1);
