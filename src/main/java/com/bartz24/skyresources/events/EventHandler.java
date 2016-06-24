@@ -204,7 +204,6 @@ public class EventHandler
 		world.setBlockState(pos, Blocks.CACTUS.getDefaultState(), 2);
 		if (ConfigOptions.spawnChest)
 		{
-			System.out.println("HERE");
 			pos = new BlockPos(spawn.getX(), spawn.getY() - 2,
 					spawn.getZ() - 1);
 			world.setBlockState(pos, Blocks.CHEST.getDefaultState());
@@ -235,7 +234,6 @@ public class EventHandler
 				2);
 		if (ConfigOptions.spawnChest)
 		{
-			System.out.println("HERE");
 			pos = new BlockPos(spawn.getX(), spawn.getY(), spawn.getZ() - 1);
 			world.setBlockState(pos, Blocks.CHEST.getDefaultState());
 		}
@@ -243,21 +241,46 @@ public class EventHandler
 
 	private static void snowSpawn(World world, BlockPos spawn)
 	{
-		for (int x = -(int) Math
-				.floor((float) ConfigOptions.islandSize / 2F); x <= (int) Math
-						.floor((float) ConfigOptions.islandSize / 2F); x++)
+		for (int x = -(int) Math.floor((float) ConfigOptions.islandSize / 2F)
+				- 1; x <= (int) Math
+						.floor((float) ConfigOptions.islandSize / 2F) + 1; x++)
 		{
-			for (int z = -(int) Math.floor(
-					(float) ConfigOptions.islandSize / 2F); z <= (int) Math
-							.floor((float) ConfigOptions.islandSize / 2F); z++)
+			for (int z = -(int) Math
+					.floor((float) ConfigOptions.islandSize / 2F)
+					- 1; z <= (int) Math
+							.floor((float) ConfigOptions.islandSize / 2F)
+							+ 1; z++)
 			{
 				BlockPos pos = new BlockPos(spawn.getX() + x, spawn.getY(),
 						spawn.getZ() + z);
-				world.setBlockState(pos.down(3), Blocks.SNOW.getDefaultState(),
-						2);
-				world.setBlockState(pos.down(4),
-						Blocks.BEDROCK.getDefaultState(), 2);
 
+				if (x == -(int) Math
+						.floor((float) ConfigOptions.islandSize / 2F) - 1
+						|| x == (int) Math
+								.floor((float) ConfigOptions.islandSize / 2F)
+								+ 1
+						|| z == -(int) Math
+								.floor((float) ConfigOptions.islandSize / 2F)
+								- 1
+						|| z == (int) Math
+								.floor((float) ConfigOptions.islandSize / 2F)
+								+ 1)
+				{
+					world.setBlockState(pos.down(3),
+							Blocks.PACKED_ICE.getDefaultState(), 2);
+
+					world.setBlockState(pos.down(1),
+							Blocks.PACKED_ICE.getDefaultState(), 2);
+				} else
+				{
+					if (!(x == 0 && z == 0))
+						world.setBlockState(pos,
+								Blocks.PACKED_ICE.getDefaultState(), 2);
+					world.setBlockState(pos.down(3),
+							Blocks.SNOW.getDefaultState(), 2);
+					world.setBlockState(pos.down(4),
+							Blocks.BEDROCK.getDefaultState(), 2);
+				}
 				if ((x == -1 && z == 1) || (x == 1 && z == 1))
 					world.setBlockState(pos.down(2),
 							Blocks.PUMPKIN.getDefaultState(), 2);
@@ -268,7 +291,6 @@ public class EventHandler
 		}
 		if (ConfigOptions.spawnChest)
 		{
-			System.out.println("HERE");
 			BlockPos pos = new BlockPos(spawn.getX(), spawn.getY() - 2,
 					spawn.getZ() - 1);
 			world.setBlockState(pos, Blocks.CHEST.getDefaultState());
