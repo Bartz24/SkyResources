@@ -45,7 +45,6 @@ public class FluidDropperTile extends RedstoneCompatibleTile
 			return tank.drain(resource.amount, doDrain);
 		}
 
-		
 		return null;
 	}
 
@@ -122,7 +121,8 @@ public class FluidDropperTile extends RedstoneCompatibleTile
 		{
 			pullFromAround();
 
-			if (tank.getFluidAmount() >= 1000 && worldObj.isAirBlock(pos.down()))
+			if (tank.getFluidAmount() >= 1000
+					&& worldObj.isAirBlock(pos.down()))
 			{
 				worldObj.setBlockState(pos.down(), tank.getFluid().getFluid()
 						.getBlock().getDefaultState());
@@ -151,13 +151,27 @@ public class FluidDropperTile extends RedstoneCompatibleTile
 					if (fluidHand.canDrain(
 							EnumFacing.VALUES[Arrays.asList(checkPoses)
 									.indexOf(pos) + 1].getOpposite(),
-							tank.getFluid() == null ? null : tank.getFluid().getFluid()))
+							tank.getFluid() == null ? null
+									: tank.getFluid().getFluid()))
 					{
-						this.fill(null, fluidHand.drain(
-								EnumFacing.VALUES[Arrays.asList(checkPoses)
-										.indexOf(pos) + 1].getOpposite(),
-								fluidHand.getTankInfo(EnumFacing.VALUES[Arrays.asList(checkPoses)
-										.indexOf(pos) + 1].getOpposite())[0].fluid, true), true);
+
+						FluidStack tankFluid = fluidHand
+								.getTankInfo(EnumFacing.VALUES[Arrays
+										.asList(checkPoses).indexOf(pos) + 1]
+												.getOpposite())[0].fluid;
+
+						System.out.println(this
+								.fill(null, fluidHand.drain(
+										EnumFacing.VALUES[Arrays
+												.asList(checkPoses).indexOf(pos)
+												+ 1].getOpposite(),
+										new FluidStack(tankFluid.getFluid(),
+												Math.min(
+														ConfigOptions.fluidDropperCapacity
+																- tank.getFluidAmount(),
+														tankFluid.amount)),
+										true), true)
+								+ " Filled");
 						return;
 					}
 				}
