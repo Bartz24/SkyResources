@@ -159,7 +159,9 @@ public class FluidDropperTile extends RedstoneCompatibleTile
 								.getTankInfo(EnumFacing.VALUES[Arrays
 										.asList(checkPoses).indexOf(pos) + 1]
 												.getOpposite())[0].fluid;
-
+						
+						if(tankFluid == null) continue;
+						
 						this.fill(null, fluidHand.drain(
 								EnumFacing.VALUES[Arrays.asList(checkPoses)
 										.indexOf(pos) + 1].getOpposite(),
