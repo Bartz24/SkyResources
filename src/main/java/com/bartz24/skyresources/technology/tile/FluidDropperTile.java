@@ -160,18 +160,15 @@ public class FluidDropperTile extends RedstoneCompatibleTile
 										.asList(checkPoses).indexOf(pos) + 1]
 												.getOpposite())[0].fluid;
 
-						System.out.println(this
-								.fill(null, fluidHand.drain(
-										EnumFacing.VALUES[Arrays
-												.asList(checkPoses).indexOf(pos)
-												+ 1].getOpposite(),
-										new FluidStack(tankFluid.getFluid(),
-												Math.min(
-														ConfigOptions.fluidDropperCapacity
-																- tank.getFluidAmount(),
-														tankFluid.amount)),
-										true), true)
-								+ " Filled");
+						this.fill(null, fluidHand.drain(
+								EnumFacing.VALUES[Arrays.asList(checkPoses)
+										.indexOf(pos) + 1].getOpposite(),
+								new FluidStack(tankFluid.getFluid(),
+										Math.min(
+												ConfigOptions.fluidDropperCapacity
+														- tank.getFluidAmount(),
+												tankFluid.amount)),
+								true), true);
 						return;
 					}
 				}
