@@ -145,7 +145,6 @@ public class PurificationVesselTile extends TileEntity
 
 			if (type >= 0)
 			{
-				System.out.println("Here");
 				if (HeatSources
 						.isValidHeatSource(worldObj.getBlockState(pos.down())))
 				{

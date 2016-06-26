@@ -12,6 +12,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
@@ -22,6 +23,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.ItemFluidContainer;
 
 public class CrucibleBlock extends BlockContainer
 {
@@ -115,36 +118,23 @@ public class CrucibleBlock extends BlockContainer
 
 			if (item != null && crucible != null)
 			{
-				if (FluidContainerRegistry.isEmptyContainer(item))
+				if (item.getItem() == Items.BUCKET)
 				{
-					ItemStack full = FluidContainerRegistry.fillFluidContainer(
-							crucible.getTank().getFluid(), item);
-
-					if (full != null)
+					ItemStack newStack = FluidUtil.tryFillContainer(item,
+							crucible.getTank(), 1000, player, true);
+					if (newStack != null)
 					{
-						if (player != null)
+						if (item.stackSize > 1)
 						{
-							if (!player.capabilities.isCreativeMode)
-							{
-								if (item.stackSize > 1)
-								{
-									item.stackSize--;
-									RandomHelper.spawnItemInWorld(world, full,
-											player.getPosition());
-								} else
-								{
-									player.setHeldItem(hand, full);
-								}
-							}
+							item.stackSize--;
+							RandomHelper.spawnItemInWorld(world, newStack,
+									player.getPosition());
+						} else
+						{
+							player.setHeldItem(hand, newStack);
 						}
-
-						crucible.drain(EnumFacing.DOWN, 1000, true);
-						return true;
 					}
 				}
-
-				ItemStack contents = item.copy();
-				contents.stackSize = 1;
 			}
 			return true;
 		}
