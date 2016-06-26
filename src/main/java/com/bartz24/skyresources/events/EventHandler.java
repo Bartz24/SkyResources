@@ -12,18 +12,15 @@ import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModItems;
 import com.bartz24.skyresources.world.WorldTypeSky;
-import com.google.common.base.Strings;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCauldron;
-import net.minecraft.command.CommandGive;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
@@ -43,6 +40,7 @@ import net.minecraftforge.event.world.WorldEvent.Save;
 import net.minecraftforge.event.world.WorldEvent.Unload;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -453,6 +451,37 @@ public class EventHandler
 						+ TextFormatting.BLUE.toString()
 						+ "https://github.com/Bartz24/SkyResources/wiki");
 		player.addChatMessage(text.setStyle(clickableChatStyle));
+	}
+
+	@SubscribeEvent
+	public void onPlayerRespawn(PlayerRespawnEvent event)
+	{
+		EntityPlayer player = event.player;
+		
+		if(player.getBedLocation() == null || player.getBedSpawnLocation(
+				player.worldObj, player.getBedLocation(), true) == null)
+		{
+			System.out.println("HERE");
+
+			IslandPos iPos = References.getPlayerIsland(player.getName());
+			
+			BlockPos pos = new BlockPos(iPos.getX() * ConfigOptions.islandDistance, 86, iPos.getY() * ConfigOptions.islandDistance);
+			
+			if(!player.worldObj.isAirBlock(pos) && !player.worldObj.isAirBlock(pos.up()))
+			{
+				pos = player.worldObj.getTopSolidOrLiquidBlock(pos);
+				
+				player.setPositionAndUpdate(pos.getX(),pos.getY(),pos.getZ());
+				
+				player.addChatComponentMessage(new TextComponentString("Failed to respawn. Sent to top block of platform spawn."));
+				return;
+			}
+			
+				
+			player.setPositionAndUpdate(pos.getX() + 0.5, pos.getY() + 1.6,
+					pos.getZ() + 0.5);
+			player.setSpawnPoint(pos, true);
+		}
 	}
 
 	@SubscribeEvent
