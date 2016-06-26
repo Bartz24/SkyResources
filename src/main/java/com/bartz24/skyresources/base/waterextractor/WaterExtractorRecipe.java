@@ -85,7 +85,7 @@ public class WaterExtractorRecipe
 
 	boolean validFluidAmt(WaterExtractorRecipe recipe)
 	{
-		return extract ? true : getFluidAmt() > recipe.getFluidAmt();
+		return extract ? true : getFluidAmt() >= recipe.getFluidAmt();
 	}
 
 	public IBlockState getOutput()
