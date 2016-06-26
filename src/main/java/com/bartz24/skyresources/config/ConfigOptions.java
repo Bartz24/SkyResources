@@ -41,6 +41,7 @@ public class ConfigOptions
 	public static int islandSize;
 	public static int islandResetDistance;
 	public static boolean spawnChest;
+	public static boolean spawnIgloo;
 
 	public static String commandName;
 
@@ -105,6 +106,8 @@ public class ConfigOptions
 		islandSize = config.get("islands", "Island Width/Length", 3).getInt(3);
 
 		spawnChest = config.get("islands", "Spawn Chest", false)
+				.getBoolean(false);
+		spawnIgloo = config.get("islands", "Spawn Igloo on Snow Island", false)
 				.getBoolean(false);
 
 		commandName = config.get("islands",

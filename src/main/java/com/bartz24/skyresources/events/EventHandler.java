@@ -264,27 +264,33 @@ public class EventHandler
 								.floor((float) ConfigOptions.islandSize / 2F)
 								+ 1)
 				{
+					if(ConfigOptions.spawnIgloo)
+					{
 					world.setBlockState(pos.down(3),
+							Blocks.PACKED_ICE.getDefaultState(), 2);
+					
+					world.setBlockState(pos.down(2),
 							Blocks.PACKED_ICE.getDefaultState(), 2);
 
 					world.setBlockState(pos.down(1),
 							Blocks.PACKED_ICE.getDefaultState(), 2);
+					}
 				} else
 				{
-					if (!(x == 0 && z == 0))
+					if (!(x == 0 && z == 0) && ConfigOptions.spawnIgloo)
 						world.setBlockState(pos,
 								Blocks.PACKED_ICE.getDefaultState(), 2);
 					world.setBlockState(pos.down(3),
 							Blocks.SNOW.getDefaultState(), 2);
 					world.setBlockState(pos.down(4),
 							Blocks.BEDROCK.getDefaultState(), 2);
+					if ((x == -1 && z == 1) || (x == 1 && z == 1))
+						world.setBlockState(pos.down(2),
+								Blocks.PUMPKIN.getDefaultState(), 2);
+					else
+						world.setBlockState(pos.down(2),
+								Blocks.SNOW_LAYER.getDefaultState(), 2);
 				}
-				if ((x == -1 && z == 1) || (x == 1 && z == 1))
-					world.setBlockState(pos.down(2),
-							Blocks.PUMPKIN.getDefaultState(), 2);
-				else
-					world.setBlockState(pos.down(2),
-							Blocks.SNOW_LAYER.getDefaultState(), 2);
 			}
 		}
 		if (ConfigOptions.spawnChest)
