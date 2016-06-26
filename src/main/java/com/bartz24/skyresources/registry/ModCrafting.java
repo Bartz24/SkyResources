@@ -138,7 +138,7 @@ public class ModCrafting
 				{ "XXX", "XZX", "XXX", 'X', new ItemStack(Items.IRON_INGOT), 'Z', new ItemStack(ModBlocks.miniFreezer) }));
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModBlocks.dirtFurnace), new Object[]
-				{ "XXX", "X X", "XYX", 'X', "dirt", 'Y', new ItemStack(ModItems.baseComponent, 1, 0) }));
+				{ "X", "Y", 'X', "dirt", 'Y', new ItemStack(ModItems.baseComponent, 1, 0) }));
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModItems.waterExtractor), new Object[]
