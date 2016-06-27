@@ -69,22 +69,20 @@ public class ItemRockGrinder extends ItemPickaxe
 		IBlockState state = world.getBlockState(pos);
 		item.attemptDamageItem(1, this.itemRand);
 
-		if (!world.isRemote)
-		{
-			List<RockGrinderRecipe> recipes = RockGrinderRecipes
-					.getRecipes(state);
-			boolean worked = false;
-			for (RockGrinderRecipe r : recipes)
+		List<RockGrinderRecipe> recipes = RockGrinderRecipes.getRecipes(state);
+		boolean worked = false;
+		for (RockGrinderRecipe r : recipes)
 
+		{
+			if (r != null && r.getOutput() != null)
 			{
-				if (r != null && r.getOutput() != null)
+				worked = true;
+				if (!world.isRemote)
 				{
-					worked = true;
 					int level = EnchantmentHelper
 							.getEnchantmentLevel(Enchantments.FORTUNE, item);
 					float chance = r.getOutputChance()
-							* (((float) level + 3F)/3F);
-					System.out.println(chance);
+							* (((float) level + 3F) / 3F);
 					while (chance >= 1)
 					{
 						RandomHelper.spawnItemInWorld(world,
@@ -96,11 +94,11 @@ public class ItemRockGrinder extends ItemPickaxe
 								r.getOutput().copy(), pos);
 				}
 			}
-			world.destroyBlock(pos, !worked);
-			return worked;
 		}
+		if (!world.isRemote)
+			world.destroyBlock(pos, !worked);
+		return worked;
 
-		return false;
 	}
 
 	@Override

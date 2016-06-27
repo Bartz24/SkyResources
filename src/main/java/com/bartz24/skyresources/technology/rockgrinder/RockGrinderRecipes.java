@@ -32,11 +32,7 @@ public class RockGrinderRecipes
 				recs.add(recipe);
 			}
 		}
-
-		if (recs.size() == 0)
-			return null;
-		else
-			return recs;
+		return recs;
 	}
 
 	public static List<RockGrinderRecipe> getRecipes()
