@@ -106,37 +106,34 @@ public class CrucibleBlock extends BlockContainer
 			ItemStack heldItem, EnumFacing side, float hitX, float hitY,
 			float hitZ)
 	{
-		if (!world.isRemote)
+		if (player == null)
 		{
-			if (player == null)
-			{
-				return false;
-			}
+			return false;
+		}
 
-			CrucibleTile crucible = (CrucibleTile) world.getTileEntity(pos);
-			ItemStack item = player.getHeldItem(hand);
+		CrucibleTile crucible = (CrucibleTile) world.getTileEntity(pos);
+		ItemStack item = player.getHeldItem(hand);
 
-			if (item != null && crucible != null)
+		if (item != null && crucible != null)
+		{
+			if (item.getItem() == Items.BUCKET)
 			{
-				if (item.getItem() == Items.BUCKET)
+				ItemStack newStack = FluidUtil.tryFillContainer(item,
+						crucible.getTank(), 1000, player, true);
+				if (newStack != null)
 				{
-					ItemStack newStack = FluidUtil.tryFillContainer(item,
-							crucible.getTank(), 1000, player, true);
-					if (newStack != null)
+					if (item.stackSize > 1)
 					{
-						if (item.stackSize > 1)
-						{
-							item.stackSize--;
-							RandomHelper.spawnItemInWorld(world, newStack,
-									player.getPosition());
-						} else
-						{
-							player.setHeldItem(hand, newStack);
-						}
+						item.stackSize--;
+						RandomHelper.spawnItemInWorld(world, newStack,
+								player.getPosition());
+					} else
+					{
+						player.setHeldItem(hand, newStack);
+						return true;
 					}
 				}
 			}
-			return true;
 		}
 		return false;
 	}

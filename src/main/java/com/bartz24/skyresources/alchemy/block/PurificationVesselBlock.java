@@ -104,76 +104,73 @@ public class PurificationVesselBlock extends BlockContainer
 			ItemStack heldItem, EnumFacing side, float hitX, float hitY,
 			float hitZ)
 	{
-		if (!world.isRemote)
+		if (player == null)
 		{
-			if (player == null)
+			return false;
+		}
+
+		PurificationVesselTile tile = (PurificationVesselTile) world
+				.getTileEntity(pos);
+		ItemStack item = player.getHeldItem(hand);
+
+		if (item != null && tile != null)
+		{
+			if (item.getItem() == Items.BUCKET)
 			{
-				return false;
-			}
-
-			PurificationVesselTile tile = (PurificationVesselTile) world
-					.getTileEntity(pos);
-			ItemStack item = player.getHeldItem(hand);
-
-			if (item != null && tile != null)
-			{
-				if (item.getItem() == Items.BUCKET)
+				ItemStack newStack = FluidUtil.tryFillContainer(item,
+						tile.getUpperTank(), 1000, player, true);
+				if (newStack != null)
 				{
-					ItemStack newStack = FluidUtil.tryFillContainer(item,
-							tile.getUpperTank(), 1000, player, true);
-					if (newStack != null)
+					if (item.stackSize > 1)
 					{
-						if (item.stackSize > 1)
-						{
-							item.stackSize--;
-							RandomHelper.spawnItemInWorld(world, newStack,
-									player.getPosition());
-						} else
-						{
-							player.setHeldItem(hand, newStack);
-						}
-						return true;
-					}
-					// Drain lower tank
-					newStack = FluidUtil.tryFillContainer(item,
-							tile.getLowerTank(), 1000, player, true);
-					if (newStack != null)
+						item.stackSize--;
+						RandomHelper.spawnItemInWorld(world, newStack,
+								player.getPosition());
+					} else
 					{
-						if (item.stackSize > 1)
-						{
-							item.stackSize--;
-							RandomHelper.spawnItemInWorld(world, newStack,
-									player.getPosition());
-						} else
-						{
-							player.setHeldItem(hand, newStack);
-						}
-						return true;
+						player.setHeldItem(hand, newStack);
 					}
-					
-				} else if (FluidUtil.getFluidContained(item) != null)
+					return true;
+				}
+				// Drain lower tank
+				newStack = FluidUtil.tryFillContainer(item, tile.getLowerTank(),
+						1000, player, true);
+				if (newStack != null)
 				{
-
-					ItemStack newStack = FluidUtil.tryEmptyContainer(item, tile.getLowerTank(), 1000, player, true);
-					if (newStack != null)
+					if (item.stackSize > 1)
 					{
-						if (item.stackSize > 1)
-						{
-							item.stackSize--;
-							RandomHelper.spawnItemInWorld(world, newStack,
-									player.getPosition());
-						} else
-						{
-							player.setHeldItem(hand, newStack);
-						}
-						return true;
+						item.stackSize--;
+						RandomHelper.spawnItemInWorld(world, newStack,
+								player.getPosition());
+					} else
+					{
+						player.setHeldItem(hand, newStack);
 					}
+					return true;
 				}
 
-				ItemStack contents = item.copy();
-				contents.stackSize = 1;
+			} else if (FluidUtil.getFluidContained(item) != null)
+			{
+
+				ItemStack newStack = FluidUtil.tryEmptyContainer(item,
+						tile.getLowerTank(), 1000, player, true);
+				if (newStack != null)
+				{
+					if (item.stackSize > 1)
+					{
+						item.stackSize--;
+						RandomHelper.spawnItemInWorld(world, newStack,
+								player.getPosition());
+					} else
+					{
+						player.setHeldItem(hand, newStack);
+					}
+					return true;
+				}
 			}
-			return true;
+
+			ItemStack contents = item.copy();
+			contents.stackSize = 1;
 		}
 		return true;
 	}

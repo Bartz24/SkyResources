@@ -1,20 +1,20 @@
 package com.bartz24.skyresources.alchemy.render;
 
+import java.awt.Color;
+
 import org.lwjgl.opengl.GL11;
 
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.alchemy.tile.CrucibleTile;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.fluids.FluidTank;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 
 public class CrucibleTESR extends TileEntitySpecialRenderer<CrucibleTile>
 {
@@ -23,60 +23,54 @@ public class CrucibleTESR extends TileEntitySpecialRenderer<CrucibleTile>
 	public void renderTileEntityAt(CrucibleTile te, double x, double y,
 			double z, float partialTicks, int destroyStage)
 	{
-		GlStateManager.pushAttrib();
-		GlStateManager.pushMatrix();
+		GL11.glPushMatrix();
+        GL11.glTranslatef((float) x + 0.5f, (float) y + 1.50f, (float) z + 0.5f);
+        GL11.glRotatef(180f, 1, 0, 0);
+        GL11.glPopMatrix();
+        if (te.getTank().getFluid() != null && te.getTank().getFluidAmount() > 0) {
+            GL11.glPushMatrix();
 
-		GlStateManager.translate(x, y, z);
-		GlStateManager.disableRescaleNormal();
+            GL11.glTranslatef((float) x, (float) y + 1f, (float) z + 1);
+            GL11.glRotatef(180f, 1f, 0f, 0f);
+            renderFluidContents(te, x, y, z);
+            GL11.glPopMatrix();
 
-		renderFluidContents(te);
-
-		GlStateManager.popMatrix();
-		GlStateManager.popAttrib();
-
+        }
 	}
 
-	private void renderFluidContents(CrucibleTile crucible)
+	private void renderFluidContents(CrucibleTile crucible, double x, double y,
+			double z)
 	{
-		FluidTank tank = crucible.getTank();
+		GL11.glEnable(GL11.GL_LIGHTING);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glColor4f(1, 1, 1, 1);
+		FluidStack fluidStack = crucible.getTank().getFluid();
+		final Fluid fluid = fluidStack.getFluid();
 
-		if (tank.getFluid() != null && tank.getFluid().getFluid() != null)
+		ResourceLocation textureRL = fluid.getStill();
+		TextureAtlasSprite texture = Minecraft.getMinecraft().getRenderItem()
+				.getItemModelMesher().getModelManager().getTextureMap()
+				.getAtlasSprite(textureRL.getResourceDomain() + ":"
+						+ textureRL.getResourcePath());
+
+		final int color;
+
+		Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+		if (texture != null)
 		{
-			float height = MathHelper.clamp_float(
-					(float) tank.getFluidAmount() * 0.65F / (float) tank.getCapacity() + 0.3F,
-					0.3F, 0.95F);
-			if (tank.getFluidAmount() == 0)
-				height = 0;
-
-			GlStateManager.pushMatrix();
-
-			TextureAtlasSprite texture = Minecraft.getMinecraft()
-					.getTextureMapBlocks().getAtlasSprite(
-							tank.getFluid().getFluid().getStill().toString());
-
-			double minU = texture.getMinU();
-			double maxU = texture.getMaxU();
-			double minV = texture.getMinV();
-			double maxV = texture.getMaxV();
-
-			Tessellator tessellator = Tessellator.getInstance();
-			VertexBuffer renderer = tessellator.getBuffer();
-
-			int color;
-			color = tank.getFluid().getFluid().getColor(tank.getFluid());
-			
-			GL11.glEnable(GL11.GL_BLEND);
-			RandomHelper.setGLColorFromIntPlusAlpha(color);
-
-			renderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-			renderer.pos(1.0d, height, 1.0d).tex(maxU, maxV).endVertex();
-			renderer.pos(1.0d, height, 0).tex(maxU, minV).endVertex();
-			renderer.pos(0, height, 0).tex(minU, minV).endVertex();
-			renderer.pos(0, height, 1.0d).tex(minU, maxV).endVertex();
-			tessellator.draw();
-			GL11.glDisable(GL11.GL_BLEND);
-
-			GlStateManager.popMatrix();
+			color = fluid.getColor(fluidStack);
+		} else
+		{
+			color = 0xFFFFFFFF;
 		}
+
+		double liquid = crucible.getTank().getFluidAmount();
+		double maxLiquid = crucible.getTank().getCapacity();
+		double height = (liquid / maxLiquid) * 0.7;
+		GL11.glRotated(180f, 1, 0, 0);
+		RandomHelper.renderFluidCuboid(fluidStack, crucible.getPos(), 0, -0.85, -1, 0.1, 0,
+				0.1, 1-0.1, 0.1+height, 1-0.1);
+		GL11.glDisable(GL11.GL_LIGHTING);
+		GL11.glDisable(GL11.GL_BLEND);
 	}
 }

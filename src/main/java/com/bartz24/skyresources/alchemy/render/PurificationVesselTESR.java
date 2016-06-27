@@ -10,9 +10,13 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 
 public class PurificationVesselTESR
@@ -23,196 +27,102 @@ public class PurificationVesselTESR
 	public void renderTileEntityAt(PurificationVesselTile te, double x,
 			double y, double z, float partialTicks, int destroyStage)
 	{
-		GlStateManager.pushAttrib();
-		GlStateManager.pushMatrix();
+		GL11.glPushMatrix();
+        GL11.glTranslatef((float) x + 0.5f, (float) y + 1.50f, (float) z + 0.5f);
+        GL11.glRotatef(180f, 1, 0, 0);
+        GL11.glPopMatrix();
+        if (te.getLowerTank().getFluid() != null && te.getLowerTank().getFluidAmount() > 0) {
+            GL11.glPushMatrix();
 
-		GlStateManager.translate(x, y, z);
-		GlStateManager.disableRescaleNormal();
+            GL11.glTranslatef((float) x, (float) y + 1f, (float) z + 1);
+            GL11.glRotatef(180f, 1f, 0f, 0f);
+            renderLowerFluidContents(te, x, y, z);
+            GL11.glPopMatrix();
 
-		renderFluidContents(te);
-		renderUpperFluidContents(te);
+        }
+        if (te.getUpperTank().getFluid() != null && te.getUpperTank().getFluidAmount() > 0) {
+            GL11.glPushMatrix();
 
-		GlStateManager.popMatrix();
-		GlStateManager.popAttrib();
+            GL11.glTranslatef((float) x, (float) y + 1f, (float) z + 1);
+            GL11.glRotatef(180f, 1f, 0f, 0f);
+            renderUpperFluidContents(te, x, y, z);
+            GL11.glPopMatrix();
 
+        }
 	}
 
-	private void renderFluidContents(PurificationVesselTile tile)
+	private void renderLowerFluidContents(PurificationVesselTile tile, double x, double y,
+			double z)
 	{
-		FluidTank tank = tile.getLowerTank();
+		GL11.glEnable(GL11.GL_LIGHTING);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glColor4f(1, 1, 1, 1);
+		FluidStack fluidStack = tile.getLowerTank().getFluid();
+		final Fluid fluid = fluidStack.getFluid();
 
-		if (tank.getFluid() != null && tank.getFluid().getFluid() != null && tank.getFluidAmount() > 0)
+		ResourceLocation textureRL = fluid.getStill();
+		TextureAtlasSprite texture = Minecraft.getMinecraft().getRenderItem()
+				.getItemModelMesher().getModelManager().getTextureMap()
+				.getAtlasSprite(textureRL.getResourceDomain() + ":"
+						+ textureRL.getResourcePath());
+
+		final int color;
+
+		Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+		if (texture != null)
 		{
-			float height = MathHelper.clamp_float(
-					(float) tank.getFluidAmount() * 9F / 16F
-							/ (float) tank.getCapacity() + 1F / 16F,
-					1F / 16F, 10F / 16F);
-			if (tank.getFluidAmount() == 0)
-				height = 0;
-
-			GlStateManager.pushMatrix();
-
-			TextureAtlasSprite texture = Minecraft.getMinecraft()
-					.getTextureMapBlocks().getAtlasSprite(
-							tank.getFluid().getFluid().getStill().toString());
-
-			double minU = texture.getMinU();
-			double maxU = texture.getMaxU();
-			double minV = texture.getMinV();
-			double maxV = texture.getMaxV();
-
-			Tessellator tessellator = Tessellator.getInstance();
-			VertexBuffer renderer = tessellator.getBuffer();
-
-			int color;
-			color = tank.getFluid().getFluid().getColor(tank.getFluid());
-
-			GL11.glEnable(GL11.GL_BLEND);
-			RandomHelper.setGLColorFromIntPlusAlpha(color);
-
-			renderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-			renderer.pos(13d / 16d, height, 13d / 16d).tex(maxU, maxV)
-					.endVertex();
-			renderer.pos(13d / 16d, height, 3d / 16d).tex(maxU, minV)
-					.endVertex();
-			renderer.pos(3d / 16d, height, 3d / 16d).tex(minU, minV)
-					.endVertex();
-			renderer.pos(3d / 16d, height, 13d / 16d).tex(minU, maxV)
-					.endVertex();
-
-			renderer.pos(13d / 16d, 1F / 16F, 13d / 16d).tex(minU, maxV)
-					.endVertex();
-			renderer.pos(13d / 16d, 1F / 16F, 3d / 16d).tex(minU, minV)
-					.endVertex();
-			renderer.pos(13d / 16d, height, 3d / 16d).tex(maxU, minV)
-					.endVertex();
-			renderer.pos(13d / 16d, height, 13d / 16d).tex(maxU, maxV)
-					.endVertex();
-
-			renderer.pos(3d / 16d, 1F / 16F, 13d / 16d).tex(minU, maxV)
-					.endVertex();
-			renderer.pos(13d / 16d, 1F / 16F, 13d / 16d).tex(minU, minV)
-					.endVertex();
-			renderer.pos(13d / 16d, height, 13d / 16d).tex(maxU, minV)
-					.endVertex();
-			renderer.pos(3d / 16d, height, 13d / 16d).tex(maxU, maxV)
-					.endVertex();
-
-			renderer.pos(3d / 16d, height, 3d / 16d).tex(maxU, maxV)
-					.endVertex();
-			renderer.pos(13d / 16d, height, 3d / 16d).tex(maxU, minV)
-					.endVertex();
-			renderer.pos(13d / 16d, 1F / 16F, 3d / 16d).tex(minU, minV)
-					.endVertex();
-			renderer.pos(3d / 16d, 1F / 16F, 3d / 16d).tex(minU, maxV)
-					.endVertex();
-
-			renderer.pos(3d / 16d, 1F / 16F, 3d / 16d).tex(minU, maxV)
-					.endVertex();
-			renderer.pos(3d / 16d, 1F / 16F, 13d / 16d).tex(minU, minV)
-					.endVertex();
-			renderer.pos(3d / 16d, height, 13d / 16d).tex(maxU, minV)
-					.endVertex();
-			renderer.pos(3d / 16d, height, 3d / 16d).tex(maxU, maxV)
-					.endVertex();
-
-			renderer.pos(3d / 16d, 1F / 16F, 13d / 16d).tex(minU, maxV)
-					.endVertex();
-			renderer.pos(3d / 16d, 1F / 16F, 3d / 16d).tex(minU, minV)
-					.endVertex();
-			renderer.pos(13d / 16d, 1F / 16F, 3d / 16d).tex(maxU, minV)
-					.endVertex();
-			renderer.pos(13d / 16d, 1F / 16F, 13d / 16d).tex(maxU, maxV)
-					.endVertex();
-			tessellator.draw();
-			GL11.glDisable(GL11.GL_BLEND);
-
-			GlStateManager.popMatrix();
+			color = fluid.getColor(fluidStack);
+		} else
+		{
+			color = 0xFFFFFFFF;
 		}
+
+		double liquid = tile.getLowerTank().getFluidAmount();
+		double maxLiquid = tile.getLowerTank().getCapacity();
+		double height = (liquid / maxLiquid) * 9d/16d;
+		double offset = 3d/16d;
+		GL11.glRotated(180f, 1, 0, 0);
+		RandomHelper.renderFluidCuboid(fluidStack, tile.getPos(), 0, -1, -1, offset, 1d/16d,
+				offset, 1-offset, 1d/16d+height, 1-offset);
+		GL11.glDisable(GL11.GL_LIGHTING);
+		GL11.glDisable(GL11.GL_BLEND);		
 	}
 
-	private void renderUpperFluidContents(PurificationVesselTile tile)
+	private void renderUpperFluidContents(PurificationVesselTile tile, double x, double y,
+			double z)
 	{
-		FluidTank tank = tile.getUpperTank();
+		GL11.glEnable(GL11.GL_LIGHTING);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glColor4f(1, 1, 1, 1);
+		FluidStack fluidStack = tile.getUpperTank().getFluid();
+		final Fluid fluid = fluidStack.getFluid();
 
-		if (tank.getFluid() != null && tank.getFluid().getFluid() != null && tank.getFluidAmount() > 0)
+		ResourceLocation textureRL = fluid.getStill();
+		TextureAtlasSprite texture = Minecraft.getMinecraft().getRenderItem()
+				.getItemModelMesher().getModelManager().getTextureMap()
+				.getAtlasSprite(textureRL.getResourceDomain() + ":"
+						+ textureRL.getResourcePath());
+
+		final int color;
+
+		Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+		if (texture != null)
 		{
-			float height = MathHelper.clamp_float(
-					(float) tank.getFluidAmount() * 4F / 16F
-							/ (float) tank.getCapacity() + 11F / 16F,
-					11F / 16F, 15F / 16F);
-			if (tank.getFluidAmount() == 0)
-				height = 0;
-
-			GlStateManager.pushMatrix();
-
-			TextureAtlasSprite texture = Minecraft.getMinecraft()
-					.getTextureMapBlocks().getAtlasSprite(
-							tank.getFluid().getFluid().getStill().toString());
-
-			double minU = texture.getMinU();
-			double maxU = texture.getMaxU();
-			double minV = texture.getMinV();
-			double maxV = texture.getMaxV();
-
-			Tessellator tessellator = Tessellator.getInstance();
-			VertexBuffer renderer = tessellator.getBuffer();
-
-			int color;
-			color = tank.getFluid().getFluid().getColor(tank.getFluid());
-
-			GL11.glEnable(GL11.GL_BLEND);
-			RandomHelper.setGLColorFromIntPlusAlpha(color);
-
-			renderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-			renderer.pos(13d / 16d, height, 13d / 16d).tex(maxU, maxV)
-					.endVertex();
-			renderer.pos(13d / 16d, height, 3d / 16d).tex(maxU, minV)
-					.endVertex();
-			renderer.pos(3d / 16d, height, 3d / 16d).tex(minU, minV)
-					.endVertex();
-			renderer.pos(3d / 16d, height, 13d / 16d).tex(minU, maxV)
-					.endVertex();
-
-			renderer.pos(13d / 16d, 11F / 16F, 13d / 16d).tex(minU, maxV)
-					.endVertex();
-			renderer.pos(13d / 16d, 11F / 16F, 3d / 16d).tex(minU, minV)
-					.endVertex();
-			renderer.pos(13d / 16d, height, 3d / 16d).tex(maxU, minV)
-					.endVertex();
-			renderer.pos(13d / 16d, height, 13d / 16d).tex(maxU, maxV)
-					.endVertex();
-
-			renderer.pos(3d / 16d, 11F / 16F, 13d / 16d).tex(minU, maxV)
-					.endVertex();
-			renderer.pos(13d / 16d, 11F / 16F, 13d / 16d).tex(minU, minV)
-					.endVertex();
-			renderer.pos(13d / 16d, height, 13d / 16d).tex(maxU, minV)
-					.endVertex();
-			renderer.pos(3d / 16d, height, 13d / 16d).tex(maxU, maxV)
-					.endVertex();
-
-			renderer.pos(3d / 16d, height, 3d / 16d).tex(maxU, maxV)
-					.endVertex();
-			renderer.pos(13d / 16d, height, 3d / 16d).tex(maxU, minV)
-					.endVertex();
-			renderer.pos(13d / 16d, 11F / 16F, 3d / 16d).tex(minU, minV)
-					.endVertex();
-			renderer.pos(3d / 16d, 11F / 16F, 3d / 16d).tex(minU, maxV)
-					.endVertex();
-
-			renderer.pos(3d / 16d, 11F / 16F, 3d / 16d).tex(minU, maxV)
-					.endVertex();
-			renderer.pos(3d / 16d, 11F / 16F, 13d / 16d).tex(minU, minV)
-					.endVertex();
-			renderer.pos(3d / 16d, height, 13d / 16d).tex(maxU, minV)
-					.endVertex();
-			renderer.pos(3d / 16d, height, 3d / 16d).tex(maxU, maxV)
-					.endVertex();
-			tessellator.draw();
-
-			GL11.glDisable(GL11.GL_BLEND);
-			GlStateManager.popMatrix();
+			color = fluid.getColor(fluidStack);
+		} else
+		{
+			color = 0xFFFFFFFF;
 		}
+
+
+		double liquid = tile.getUpperTank().getFluidAmount();
+		double maxLiquid = tile.getUpperTank().getCapacity();
+		double height = (liquid / maxLiquid) * 4d/16d;
+		double offset = 3d/16d;
+		GL11.glRotated(180f, 1, 0, 0);
+		RandomHelper.renderFluidCuboid(fluidStack, tile.getPos(), 0, -1, -1, offset, 11d/16d,
+				offset, 1-offset, 11d/16d+height, 1-offset);
+		GL11.glDisable(GL11.GL_LIGHTING);
+		GL11.glDisable(GL11.GL_BLEND);			
 	}
 }
