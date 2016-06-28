@@ -15,6 +15,7 @@ import com.bartz24.skyresources.base.guide.SkyResourcesGuide;
 import joptsimple.internal.Strings;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Blocks;
@@ -34,6 +35,8 @@ public class GuideGUI extends GuiScreen
 	GuidePage currentPage;
 
 	List<List<Object>> currentPageInfo;
+
+	GuiTextField searchBox;
 
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
@@ -57,8 +60,13 @@ public class GuideGUI extends GuiScreen
 			String catDisplay = Strings.isNullOrEmpty(currentCategory) ? "All"
 					: I18n.format(currentCategory);
 			this.fontRendererObj.drawString(catDisplay,
-					60 - fontRendererObj.getStringWidth(catDisplay) / 2, 24,
+					60 - fontRendererObj.getStringWidth(catDisplay) / 2, 18,
 					16777215);
+			this.fontRendererObj.drawString("Category",
+					60 - fontRendererObj.getStringWidth("Category") / 2, 6,
+					16777215);
+
+			this.searchBox.drawTextBox();
 
 			renderRichText(x, 80);
 		}
@@ -108,7 +116,6 @@ public class GuideGUI extends GuiScreen
 	@Override
 	public void initGui()
 	{
-		buttonList.clear();
 		new GuideRecipeButton(new ItemStack(Blocks.DIRT));
 		new GuideLinkPageButton(null, null, null);
 		new GuideImageButton("", null, null);
@@ -116,15 +123,23 @@ public class GuideGUI extends GuiScreen
 			currentPage = SkyResourcesGuide.getPage("basics");
 		if (currentLinkButtons == null)
 			currentLinkButtons = new ArrayList<GuiButton>();
+		buttonList.clear();
 		currentLinkButtons.clear();
-		this.buttonList.add(this.cycleCatLeftButton = new GuiButton(8, 5, 4, 55,
-				20, "Cycle <"));
-		this.buttonList.add(this.cycleCatRightButton = new GuiButton(9, 60, 4,
-				55, 20, "> Cycle"));
+
+		if (this.searchBox == null)
+		{
+			this.searchBox = new GuiTextField(55, this.fontRendererObj, 120, 5,
+					100, 20);
+			searchBox.setMaxStringLength(23);
+			this.searchBox.setFocused(true);
+		}
+		this.buttonList.add(
+				this.cycleCatLeftButton = new GuiButton(8, 5, 4, 10, 20, "<"));
+		this.buttonList.add(this.cycleCatRightButton = new GuiButton(9, 105, 4,
+				10, 20, ">"));
 		this.buttonList.add(this.closeButton = new GuiButton(0, 0,
 				this.height - 20, 40, 20, "Close"));
 		this.addLinkButtons();
-		buttonList.addAll(buttonList.size(), currentLinkButtons);
 
 		currentPageInfo = setupPage(currentPage.pageInfo,
 				this.width - Math.max(this.width / 2 - 100, 150) - 50, 600);
@@ -136,6 +151,21 @@ public class GuideGUI extends GuiScreen
 				if (b != this.closeButton)
 					b.enabled = false;
 			}
+		}
+	}
+
+	public void removeLinkButtons()
+	{
+		currentLinkButtons.clear();
+		List<GuiButton> buttonsToRemove = new ArrayList<GuiButton>();
+		for (GuiButton b : buttonList)
+		{
+			if (b.id >= 2000 && b.id < 3000)
+				buttonsToRemove.add(b);
+		}
+		for (GuiButton b : buttonsToRemove)
+		{
+			buttonList.remove(b);
 		}
 	}
 
@@ -151,8 +181,13 @@ public class GuideGUI extends GuiScreen
 	{
 		for (GuidePage p : SkyResourcesGuide.getPages(currentCategory))
 		{
-			addLinkButton(p.pageId, p.pageDisplay, p.pageItemDisplay);
+			if (this.searchBox == null
+					|| Strings.isNullOrEmpty(this.searchBox.getText().trim())
+					|| p.pageDisplay.toLowerCase().contains(
+							this.searchBox.getText().trim().toLowerCase()))
+				addLinkButton(p.pageId, p.pageDisplay, p.pageItemDisplay);
 		}
+		buttonList.addAll(buttonList.size(), currentLinkButtons);
 	}
 
 	@Override
@@ -180,7 +215,8 @@ public class GuideGUI extends GuiScreen
 					curIndex = categories.size() - 1;
 				currentCategory = (curIndex == -1) ? ""
 						: categories.get(curIndex);
-				initGui();
+				removeLinkButtons();
+				addLinkButtons();
 			}
 			if (button == this.cycleCatRightButton)
 			{
@@ -191,7 +227,8 @@ public class GuideGUI extends GuiScreen
 					curIndex = -1;
 				currentCategory = (curIndex == -1) ? ""
 						: categories.get(curIndex);
-				initGui();
+				removeLinkButtons();
+				addLinkButtons();
 			}
 
 			for (GuiButton b : buttonList)
@@ -201,6 +238,21 @@ public class GuideGUI extends GuiScreen
 						break;
 			}
 		}
+	}
+
+	protected void keyTyped(char typedChar, int keyCode) throws IOException
+	{
+		this.searchBox.textboxKeyTyped(typedChar, keyCode);
+		removeLinkButtons();
+		addLinkButtons();
+		super.keyTyped(typedChar, keyCode);
+	}
+
+	protected void mouseClicked(int mouseX, int mouseY, int mouseButton)
+			throws IOException
+	{
+		super.mouseClicked(mouseX, mouseY, mouseButton);
+		this.searchBox.mouseClicked(mouseX, mouseY, mouseButton);
 	}
 
 	void drawItem(ItemStack stack, int x, int y)
