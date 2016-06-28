@@ -514,8 +514,9 @@ public class EventHandler
 
 	@SubscribeEvent
 	public void onKeyInput(KeyInputEvent event)
-	{
-		if (ModKeyBindings.guideKey.isPressed())
+	{		
+		// Sorry, not finished yet :)
+	/*	if (ModKeyBindings.guideKey.isPressed())
 		{
 			EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
 
@@ -526,7 +527,7 @@ public class EventHandler
 						player.getPosition().getY(),
 						player.getPosition().getZ());
 			}
-		}
+		}*/
 	}
 
 }
