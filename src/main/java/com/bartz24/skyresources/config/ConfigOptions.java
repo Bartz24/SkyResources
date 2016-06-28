@@ -47,6 +47,8 @@ public class ConfigOptions
 
 	public static boolean oneChunk;
 	public static boolean oneChunkCommandAllowed;
+	
+	public static boolean scaleGuideGui;
 
 	public static List<String> startingItems;
 
@@ -92,6 +94,9 @@ public class ConfigOptions
 
 		worldTypeProperty.setComment(
 				"0=random, 1=sand, 2=snow, 3=dirt (DIRT NOT IMPLEMENTED)");
+		
+		scaleGuideGui = config.get(Configuration.CATEGORY_GENERAL, "Rescale Guide Gui Down", true)
+				.getBoolean(true);
 
 		worldSpawnType = worldTypeProperty.getInt();
 

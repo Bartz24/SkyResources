@@ -11,11 +11,14 @@ import com.bartz24.skyresources.base.guide.GuidePage;
 import com.bartz24.skyresources.base.guide.GuidePageButton;
 import com.bartz24.skyresources.base.guide.GuideRecipeButton;
 import com.bartz24.skyresources.base.guide.SkyResourcesGuide;
+import com.bartz24.skyresources.config.ConfigOptions;
 
 import joptsimple.internal.Strings;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Blocks;
@@ -24,7 +27,7 @@ import net.minecraft.item.ItemStack;
 public class GuideGUI extends GuiScreen
 {
 
-	GuiButton closeButton, cycleCatLeftButton, cycleCatRightButton;
+	GuiButton closeButton, cycleCatLeftButton, cycleCatRightButton, backButton;
 
 	List<GuiButton> currentLinkButtons;
 
@@ -38,6 +41,10 @@ public class GuideGUI extends GuiScreen
 
 	GuiTextField searchBox;
 
+	List<String> pageHistory;
+
+	int prevScale = -1;
+
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
@@ -49,7 +56,7 @@ public class GuideGUI extends GuiScreen
 
 			ItemStack stack = currentPage.pageItemDisplay;
 
-			int x = Math.max(this.width / 2 - 100, 150);
+			int x = Math.max(this.width / 2 - 50, 225);
 
 			if (stack != null)
 				drawItem(stack, x, 20);
@@ -89,8 +96,12 @@ public class GuideGUI extends GuiScreen
 
 	public void openPage(GuidePage page)
 	{
-		currentPage = page;
-		initGui();
+		if (page != null)
+		{
+			pageHistory.add(currentPage.pageId);
+			currentPage = page;
+			initGui();
+		}
 	}
 
 	public void closeImage()
@@ -114,8 +125,25 @@ public class GuideGUI extends GuiScreen
 	}
 
 	@Override
+	public void onGuiClosed()
+	{
+		super.onGuiClosed();
+		if (prevScale != -1)
+			Minecraft.getMinecraft().gameSettings.guiScale = prevScale;
+	}
+
+	@Override
 	public void initGui()
 	{
+		if (prevScale == -1 && ConfigOptions.scaleGuideGui)
+		{
+			prevScale = Minecraft.getMinecraft().gameSettings.guiScale;
+			Minecraft.getMinecraft().gameSettings.guiScale = 1;
+			ScaledResolution res = new ScaledResolution(this.mc);
+			this.width = res.getScaledWidth();
+			this.height = res.getScaledHeight();
+		}
+
 		new GuideRecipeButton(new ItemStack(Blocks.DIRT));
 		new GuideLinkPageButton(null, null, null);
 		new GuideImageButton("", null, null);
@@ -123,6 +151,8 @@ public class GuideGUI extends GuiScreen
 			currentPage = SkyResourcesGuide.getPage("basics");
 		if (currentLinkButtons == null)
 			currentLinkButtons = new ArrayList<GuiButton>();
+		if (pageHistory == null)
+			pageHistory = new ArrayList<String>();
 		buttonList.clear();
 		currentLinkButtons.clear();
 
@@ -139,10 +169,13 @@ public class GuideGUI extends GuiScreen
 				10, 20, ">"));
 		this.buttonList.add(this.closeButton = new GuiButton(0, 0,
 				this.height - 20, 40, 20, "Close"));
+		this.buttonList.add(this.backButton = new GuiButton(10,
+				this.width - Math.max(this.width / 2 - 100, 225), 18, 40, 20,
+				"Back"));
 		this.addLinkButtons();
 
 		currentPageInfo = setupPage(currentPage.pageInfo,
-				this.width - Math.max(this.width / 2 - 100, 150) - 50, 600);
+				this.width - Math.max(this.width / 2 - 100, 225) - 50, 600);
 
 		if (currentImage != null)
 		{
@@ -229,6 +262,17 @@ public class GuideGUI extends GuiScreen
 						: categories.get(curIndex);
 				removeLinkButtons();
 				addLinkButtons();
+			}
+			if (button == this.backButton)
+			{
+				if (pageHistory.size() > 0)
+				{
+					String prevPage = pageHistory.get(pageHistory.size() - 1);
+					pageHistory.remove(pageHistory.size() - 1);
+					currentPage = SkyResourcesGuide.getPage(prevPage);
+					initGui();
+
+				}
 			}
 
 			for (GuiButton b : buttonList)
