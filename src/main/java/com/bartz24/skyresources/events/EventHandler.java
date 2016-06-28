@@ -6,15 +6,20 @@ import java.util.Random;
 import com.bartz24.skyresources.IslandPos;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
+import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.SkyResourcesSaveData;
 import com.bartz24.skyresources.alchemy.effects.IHealthBoostItem;
 import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
+import com.bartz24.skyresources.base.ModKeyBindings;
 import com.bartz24.skyresources.config.ConfigOptions;
+import com.bartz24.skyresources.registry.ModGuiHandler;
 import com.bartz24.skyresources.registry.ModItems;
 import com.bartz24.skyresources.world.WorldTypeSky;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCauldron;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -39,6 +44,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBloc
 import net.minecraftforge.event.world.WorldEvent.Save;
 import net.minecraftforge.event.world.WorldEvent.Unload;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
@@ -264,16 +270,16 @@ public class EventHandler
 								.floor((float) ConfigOptions.islandSize / 2F)
 								+ 1)
 				{
-					if(ConfigOptions.spawnIgloo)
+					if (ConfigOptions.spawnIgloo)
 					{
-					world.setBlockState(pos.down(3),
-							Blocks.PACKED_ICE.getDefaultState(), 2);
-					
-					world.setBlockState(pos.down(2),
-							Blocks.PACKED_ICE.getDefaultState(), 2);
+						world.setBlockState(pos.down(3),
+								Blocks.PACKED_ICE.getDefaultState(), 2);
 
-					world.setBlockState(pos.down(1),
-							Blocks.PACKED_ICE.getDefaultState(), 2);
+						world.setBlockState(pos.down(2),
+								Blocks.PACKED_ICE.getDefaultState(), 2);
+
+						world.setBlockState(pos.down(1),
+								Blocks.PACKED_ICE.getDefaultState(), 2);
 					}
 				} else
 				{
@@ -463,27 +469,31 @@ public class EventHandler
 	public void onPlayerRespawn(PlayerRespawnEvent event)
 	{
 		EntityPlayer player = event.player;
-		
-		if(player.getBedLocation() == null || player.getBedSpawnLocation(
-				player.worldObj, player.getBedLocation(), true) == null)
+
+		if (player.getBedLocation() == null
+				|| player.getBedSpawnLocation(player.worldObj,
+						player.getBedLocation(), true) == null)
 		{
 			System.out.println("HERE");
 
 			IslandPos iPos = References.getPlayerIsland(player.getName());
-			
-			BlockPos pos = new BlockPos(iPos.getX() * ConfigOptions.islandDistance, 86, iPos.getY() * ConfigOptions.islandDistance);
-			
-			if(!player.worldObj.isAirBlock(pos) && !player.worldObj.isAirBlock(pos.up()))
+
+			BlockPos pos = new BlockPos(
+					iPos.getX() * ConfigOptions.islandDistance, 86,
+					iPos.getY() * ConfigOptions.islandDistance);
+
+			if (!player.worldObj.isAirBlock(pos)
+					&& !player.worldObj.isAirBlock(pos.up()))
 			{
 				pos = player.worldObj.getTopSolidOrLiquidBlock(pos);
-				
-				player.setPositionAndUpdate(pos.getX(),pos.getY(),pos.getZ());
-				
-				player.addChatComponentMessage(new TextComponentString("Failed to respawn. Sent to top block of platform spawn."));
+
+				player.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
+
+				player.addChatComponentMessage(new TextComponentString(
+						"Failed to respawn. Sent to top block of platform spawn."));
 				return;
 			}
-			
-				
+
 			player.setPositionAndUpdate(pos.getX() + 0.5, pos.getY() + 1.6,
 					pos.getZ() + 0.5);
 			player.setSpawnPoint(pos, true);
@@ -500,6 +510,23 @@ public class EventHandler
 	public void onUnload(Unload event)
 	{
 		SkyResourcesSaveData.setDirty(0);
+	}
+
+	@SubscribeEvent
+	public void onKeyInput(KeyInputEvent event)
+	{
+		if (ModKeyBindings.guideKey.isPressed())
+		{
+			EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
+
+			if (player.worldObj.isRemote)
+			{
+				player.openGui(SkyResources.instance, ModGuiHandler.GuideGUI,
+						player.worldObj, player.getPosition().getX(),
+						player.getPosition().getY(),
+						player.getPosition().getZ());
+			}
+		}
 	}
 
 }

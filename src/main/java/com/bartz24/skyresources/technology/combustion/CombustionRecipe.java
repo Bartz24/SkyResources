@@ -47,27 +47,23 @@ public class CombustionRecipe
 
 	boolean stacksAreValid(CombustionRecipe recipe)
 	{		
-		if (inputs.size() == 0)
+		if (inputs.size() == 0 || inputs.size() != recipe.inputs.size())
 			return false;
 		
-		int falseChecks = 0;
+		int itemsChecked = 0;
 		for (ItemStack i : inputs)
 		{
 			boolean valid = false;
 			for (ItemStack i2 : recipe.inputs)
 			{
-				if (i.isItemEqual(i2) && i.stackSize < i2.stackSize)
-				{
-					valid = false;
-				} else if (i.isItemEqual(i2) && i.stackSize == i2.stackSize)
-					valid = true;
-				
+				if (i.isItemEqual(i2) && i.stackSize == i2.stackSize)
+					valid = true;				
 			}
-			if(!valid)
-			falseChecks++;
+			if(!valid)return false;
+			itemsChecked++;
 		}
 
-		return falseChecks == 0;
+		return itemsChecked == inputs.size();
 	}
 
 	boolean heatHighEnough(CombustionRecipe recipe)

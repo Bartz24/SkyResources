@@ -1,5 +1,6 @@
 package com.bartz24.skyresources.registry;
 
+import com.bartz24.skyresources.base.guide.gui.GuideGUI;
 import com.bartz24.skyresources.technology.gui.GuiCombustionHeater;
 import com.bartz24.skyresources.technology.gui.GuiConcentrator;
 import com.bartz24.skyresources.technology.gui.GuiDirtFurnace;
@@ -24,6 +25,7 @@ public class ModGuiHandler implements IGuiHandler
 	public static final int ConcentratorGUI = 1;
 	public static final int FreezerGUI = 2;
 	public static final int FurnaceGUI = 3;
+	public static final int GuideGUI = 25;
 
 	@Override
 	public Object getServerGuiElement(int id, EntityPlayer player, World world,
@@ -68,6 +70,8 @@ public class ModGuiHandler implements IGuiHandler
 			return new GuiDirtFurnace(player.inventory,
 					 (DirtFurnaceTile) world
 							.getTileEntity(new BlockPos(x, y, z)));
+		else if (id == GuideGUI)
+	        return new GuideGUI();
 
 		return null;
 	}

@@ -2,14 +2,10 @@ package com.bartz24.skyresources.base.item;
 
 import java.util.List;
 
-import org.apache.logging.log4j.Level;
-
 import com.bartz24.skyresources.References;
-import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.base.waterextractor.WaterExtractorRecipe;
 import com.bartz24.skyresources.base.waterextractor.WaterExtractorRecipes;
 import com.bartz24.skyresources.registry.ModAchievements;
-import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 
 import net.minecraft.block.Block;
@@ -30,6 +26,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -87,16 +85,20 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 	public void onPlayerStoppedUsing(ItemStack stack, World world,
 			EntityLivingBase entity, int timeLeft)
 	{
-		SkyResources.logger.debug("HERE");
 		if (entity instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) entity;
 			if (!world.isRemote
 					&& timeLeft <= getMaxItemUseDuration(stack) - 25)
 			{
-				if ((player.rayTrace(200, 1.0F) != null))
+		        Vec3d vec3d = player.getPositionVector().addVector(0, player.eyeHeight, 0);
+		        Vec3d vec3d1 = player.getLookVec();
+		        Vec3d vec3d2 = vec3d.addVector(vec3d1.xCoord * 5, vec3d1.yCoord * 5, vec3d1.zCoord * 5);
+		        RayTraceResult rayTrace =  world.rayTraceBlocks(vec3d, vec3d2, false, false, true);
+				
+				if ((rayTrace != null))
 				{
-					BlockPos pos = player.rayTrace(5, 1.0F).getBlockPos();
+					BlockPos pos = rayTrace.getBlockPos();
 
 					EnumFacing blockHitSide = player.rayTrace(200,
 							1.0F).sideHit;

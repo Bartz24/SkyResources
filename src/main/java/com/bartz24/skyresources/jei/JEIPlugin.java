@@ -44,6 +44,7 @@ import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
+import mezz.jei.gui.RecipesGui;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
@@ -151,4 +152,9 @@ public class JEIPlugin implements IModPlugin
 				"jei.skyresources.desc.blazePowderBlock");
 	}
 
+	public static void openRecipesGui(ItemStack stack)
+	{
+		RecipesGui recGui = new RecipesGui();
+		recGui.showRecipes(stack);
+	}
 }
