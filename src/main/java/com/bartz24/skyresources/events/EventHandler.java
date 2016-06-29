@@ -456,13 +456,13 @@ public class EventHandler
 							+ ConfigOptions.commandName + " create"
 							+ TextFormatting.WHITE.toString()
 							+ " to create your starting island"));
-
-		ClickEvent openUrl = new ClickEvent(Action.OPEN_URL,
-				"https://github.com/Bartz24/SkyResources/wiki");
-		Style clickableChatStyle = new Style().setClickEvent(openUrl);
+		
 		TextComponentString text = new TextComponentString(
-				"Need help or a guide? \nPress " + TextFormatting.AQUA + Keyboard.getKeyName(ModKeyBindings.guideKey.getKeyCode()) + TextFormatting.WHITE + " to open the Sky Resources in-game guide!");
-		player.addChatMessage(text.setStyle(clickableChatStyle));
+				"Need help or a guide? \nPress your " + TextFormatting.AQUA
+						+ "Open Guide Key"
+						+ TextFormatting.WHITE
+						+ " to open the Sky Resources in-game guide!");
+		player.addChatMessage(text);
 	}
 
 	@SubscribeEvent
