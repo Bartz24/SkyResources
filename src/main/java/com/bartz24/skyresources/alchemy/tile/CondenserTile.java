@@ -68,6 +68,7 @@ public class CondenserTile extends TileEntity implements ITickable
 				worldObj.setBlockToAir(pos.add(0, 1, 0));
 				ItemStack stack = OreDictionary.getOres(oreDictCheck).get(0)
 						.copy();
+				stack.stackSize = 1;
 				Entity entity = new EntityItem(worldObj, pos.getX() + 0.5F,
 						pos.getY() + 1.5F, pos.getZ() + 0.5F, stack);
 				worldObj.spawnEntityInWorld(entity);

@@ -8,6 +8,7 @@ import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModFluids;
 
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class CondenserRecipeMaker
@@ -21,23 +22,22 @@ public class CondenserRecipeMaker
 			if (OreDictionary.doesOreNameExist("ingot" + RandomHelper
 					.capatilizeString(ModFluids.crystalFluidNames()[i])))
 			{
-				CondenserRecipeJEI addRecipe = new CondenserRecipeJEI(
-						OreDictionary
-								.getOres("ingot" + RandomHelper
-										.capatilizeString(ModFluids
-												.crystalFluidNames()[i]))
-								.get(0),
+				ItemStack ingot = OreDictionary
+						.getOres("ingot" + RandomHelper.capatilizeString(
+								ModFluids.crystalFluidNames()[i]))
+						.get(0).copy();
+				ingot.stackSize = 1;
+				CondenserRecipeJEI addRecipe = new CondenserRecipeJEI(ingot,
 						ModBlocks.crystalFluidBlocks.get(i).getDefaultState(),
-						ModFluids.crystalFluidRarity()[i] * ConfigOptions.condenserProcessTimeBase);
+						ModFluids.crystalFluidRarity()[i]
+								* ConfigOptions.condenserProcessTimeBase);
 				recipes.add(addRecipe);
 				CondenserRecipeJEI addDirtyRecipe = new CondenserRecipeJEI(
-						OreDictionary
-								.getOres("ingot" + RandomHelper
-										.capatilizeString(ModFluids
-												.crystalFluidNames()[i]))
-								.get(0),
-						ModBlocks.dirtyCrystalFluidBlocks.get(i).getDefaultState(),
-						ModFluids.crystalFluidRarity()[i] * ConfigOptions.condenserProcessTimeBase * 10);
+						ingot,
+						ModBlocks.dirtyCrystalFluidBlocks.get(i)
+								.getDefaultState(),
+						ModFluids.crystalFluidRarity()[i]
+								* ConfigOptions.condenserProcessTimeBase * 10);
 				recipes.add(addDirtyRecipe);
 			}
 		}
