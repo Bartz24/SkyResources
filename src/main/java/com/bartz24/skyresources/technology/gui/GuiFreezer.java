@@ -8,6 +8,7 @@ import org.lwjgl.opengl.GL11;
 import com.bartz24.skyresources.GuiHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.technology.block.BlockMiniFreezer;
+import com.bartz24.skyresources.technology.freezer.FreezerRecipe;
 import com.bartz24.skyresources.technology.freezer.FreezerRecipes;
 import com.bartz24.skyresources.technology.gui.container.ContainerFreezer;
 import com.bartz24.skyresources.technology.tile.FreezerTile;
@@ -113,14 +114,14 @@ public class GuiFreezer extends GuiContainer
 			for (int x = 0; x < Math.min(5,
 					tile.getSizeInventory() - y * 5); ++x)
 			{
-				if (tile.getField(y * 5 + x) <= 0 || FreezerRecipes
-						.getRecipe(tile.getStackInSlot(y * 5 + x)) == null)
+				FreezerRecipe recipe = FreezerRecipes
+						.getRecipe(tile.getStackInSlot(y * 5 + x));
+				if (tile.getField(y * 5 + x) <= 0 || recipe == null)
 					continue;
 
 				int height = (int) ((float) tile.getField(y * 5 + x) * 16F
-						/ (float) FreezerRecipes
-								.getRecipe(tile.getStackInSlot(y * 5 + x))
-								.getTimeReq());
+						/ (float) tile
+								.getTimeReq(recipe, tile.getStackInSlot(y * 5 + x)));
 				this.drawTexturedModalRect(53 + x * 18,
 						+22 + y * 18 + 16 - height, 0, 16 - height, 16, height);
 			}

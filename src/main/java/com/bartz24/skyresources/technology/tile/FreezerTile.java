@@ -1,5 +1,6 @@
 package com.bartz24.skyresources.technology.tile;
 
+import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.technology.block.BlockFreezer;
 import com.bartz24.skyresources.technology.block.BlockMiniFreezer;
@@ -14,7 +15,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 
@@ -103,14 +106,75 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 
 			if (recipe != null)
 			{
-				if (timeFreeze[i] >= recipe.getTimeReq())
+				if (timeFreeze[i] >= getTimeReq(recipe, this.inventory[i]))
 				{
-					this.inventory[i] = recipe.getOutput().copy();
+					for (int amt = 0; amt < getGroupsFreezing(recipe,
+							this.inventory[i]); amt++)
+					{
+						ejectResultSlot(recipe.getOutput().copy());
+					}
+					this.inventory[i].stackSize -= recipe.getInput().stackSize
+							* getGroupsFreezing(recipe, this.inventory[i]);
+					if (this.inventory[i].stackSize <= 0)
+						this.inventory[i] = null;
+					timeFreeze[i] = 0;
 				} else
 					timeFreeze[i] += getFreezerSpeed();
 			} else
 				timeFreeze[i] = 0;
 
+		}
+	}
+
+	int getGroupsFreezing(FreezerRecipe recipe, ItemStack input)
+	{
+		return (int) Math.floor(
+				(float) input.stackSize / (float) recipe.getInput().stackSize);
+	}
+
+	public int getTimeReq(FreezerRecipe recipe, ItemStack input)
+	{
+		return recipe.getTimeReq() * getGroupsFreezing(recipe, input);
+	}
+
+	void ejectResultSlot(ItemStack output)
+	{
+		if (!worldObj.isRemote)
+		{
+			BlockPos[] checkPoses = new BlockPos[]
+			{ getPos().north(), getPos().south(), getPos().west(),
+					getPos().east(), getPos().up(), getPos().down() };
+
+			EnumFacing facing = worldObj.getBlockState(pos)
+					.getValue(BlockFreezer.FACING);
+
+			BlockPos facingPos = getPos().add(facing.getDirectionVec());
+
+			TileEntity tile = worldObj.getTileEntity(facingPos);
+			if (tile instanceof IInventory)
+			{
+				output = RandomHelper.fillInventory((IInventory) tile, output);
+			}
+
+			for (BlockPos pos : checkPoses)
+			{
+				if (pos.equals(facingPos))
+					continue;
+				if (pos.equals(this.getPos().up()) && worldObj
+						.getBlockState(pos).getBlock() instanceof BlockFreezer)
+					continue;
+
+				TileEntity tile2 = worldObj.getTileEntity(pos);
+				if (tile2 instanceof IInventory)
+				{
+					output = RandomHelper.fillInventory((IInventory) tile2,
+							output);
+				}
+
+			}
+
+			if (output != null && output.stackSize > 0)
+				RandomHelper.spawnItemInWorld(worldObj, output, facingPos);
 		}
 	}
 
@@ -138,14 +202,14 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 			}
 		}
 	}
-	
+
 	public boolean hasValidMulti()
 	{
 		IBlockState state = this.worldObj.getBlockState(pos);
-		
-		if(state.getBlock() instanceof BlockMiniFreezer)
+
+		if (state.getBlock() instanceof BlockMiniFreezer)
 			return true;
-		else if(state.getBlock() instanceof BlockFreezer)
+		else if (state.getBlock() instanceof BlockFreezer)
 			return validMulti2x1();
 		return false;
 	}
@@ -186,13 +250,14 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 		IBlockState state = this.worldObj.getBlockState(pos);
 
 		FreezerTile tile = this;
-		
+
 		if (worldObj.getBlockState(pos).getBlock() instanceof BlockFreezer
 				&& state.getProperties().get(
-						BlockFreezer.PART) == BlockFreezer.EnumPartType.TOP)		
-		tile = (FreezerTile) worldObj.getTileEntity(pos.down());
-		
-		if (tile.getInv() == null || index < 0 || index >= this.getSizeInventory())
+						BlockFreezer.PART) == BlockFreezer.EnumPartType.TOP)
+			tile = (FreezerTile) worldObj.getTileEntity(pos.down());
+
+		if (tile.getInv() == null || index < 0
+				|| index >= this.getSizeInventory())
 			return null;
 		return tile.getInv()[index];
 	}
@@ -268,23 +333,27 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 		IBlockState state = this.worldObj.getBlockState(pos);
 
 		FreezerTile tile = this;
-		
-		if (worldObj.getBlockState(pos).getBlock() instanceof BlockFreezer
-				&& state.getProperties().get(
-						BlockFreezer.PART) == BlockFreezer.EnumPartType.TOP)		
-		tile = (FreezerTile) worldObj.getTileEntity(pos.down());
-		
-		if (index < 0 || index >= this.getSizeInventory())
-			return;
+		if (tile.inventory != null)
+		{
 
-		if (stack != null && stack.stackSize > this.getInventoryStackLimit())
-			stack.stackSize = this.getInventoryStackLimit();
+			if (worldObj.getBlockState(pos).getBlock() instanceof BlockFreezer
+					&& state.getProperties().get(
+							BlockFreezer.PART) == BlockFreezer.EnumPartType.TOP)
+				tile = (FreezerTile) worldObj.getTileEntity(pos.down());
 
-		if (stack != null && stack.stackSize == 0)
-			stack = null;
+			if (index < 0 || index >= this.getSizeInventory())
+				return;
 
-		tile.inventory[index] = stack;
-		tile.markDirty();
+			if (stack != null
+					&& stack.stackSize > this.getInventoryStackLimit())
+				stack.stackSize = this.getInventoryStackLimit();
+
+			if (stack != null && stack.stackSize == 0)
+				stack = null;
+
+			tile.inventory[index] = stack;
+			tile.markDirty();
+		}
 
 	}
 

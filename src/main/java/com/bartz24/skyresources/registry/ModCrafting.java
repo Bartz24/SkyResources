@@ -27,8 +27,8 @@ public class ModCrafting
 	public static void init()
 	{
 		GameRegistry.addRecipe(new ShapelessOreRecipe(
-				new ItemStack(ModItems.cactusFruit, 1), new Object[]
-				{ new ItemStack(Blocks.CACTUS, 1), "toolCuttingKnife" }));
+				new ItemStack(ModItems.cactusFruit, 2), new Object[]
+				{ new ItemStack(Blocks.CACTUS), "toolCuttingKnife" }));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(
 				new ItemStack(Items.MELON, 9), new Object[]
 				{ new ItemStack(Blocks.MELON_BLOCK, 1), "toolCuttingKnife" }));

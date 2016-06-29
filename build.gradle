@@ -20,12 +20,12 @@ plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
 */
-version = "0.6.15 Alpha"
+version = "0.7.1 Beta"
 group= "com.bartz24.skyresources" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "skyresources"
 
 minecraft {
-    version = "1.9.4-12.17.0.1976"
+    version = "1.10-12.18.0.2000"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.
@@ -43,7 +43,7 @@ dependencies {
     //compile "some.group:artifact:version:classifier"
     //compile "some.group:artifact:version"
       
-	compile files("lib/jei_1.9.4-3.6.7.216.jar")
+	compile files("lib/jei_1.10-3.7.1.219.jar")
 	compile files("lib/CraftTweaker-1.9-3.0.9.jar")
 	compile files("lib/Waila-1.7.0-B3_1.9.4.jar")
 	  

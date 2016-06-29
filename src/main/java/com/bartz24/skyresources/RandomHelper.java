@@ -14,6 +14,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -32,7 +33,7 @@ public class RandomHelper
 			BlockPos pos)
 	{
 		Entity entity = new EntityItem(world, pos.getX() + 0.5F,
-				pos.getY() + 1.5F, pos.getZ() + 0.5F, stack);
+				pos.getY() + 0.5F, pos.getZ() + 0.5F, stack);
 		world.spawnEntityInWorld(entity);
 	}
 
@@ -63,35 +64,54 @@ public class RandomHelper
 	{
 		return (float) Math.hypot(x1 - x2, y1 - y2);
 	}
-	
-	public static void renderFluidCuboid(FluidStack fluid, BlockPos pos, double x, double y, double z, double x1, double y1, double z1, double x2, double y2, double z2) {
+
+	public static void renderFluidCuboid(FluidStack fluid, BlockPos pos,
+			double x, double y, double z, double x1, double y1, double z1,
+			double x2, double y2, double z2)
+	{
 		Tessellator tessellator = Tessellator.getInstance();
 		VertexBuffer renderer = tessellator.getBuffer();
 		renderer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
-		Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+		Minecraft.getMinecraft().renderEngine
+				.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 		int color = fluid.getFluid().getColor(fluid);
 		// RenderUtil.setColorRGBA(color);
-		int brightness = Minecraft.getMinecraft().theWorld.getCombinedLight(pos, fluid.getFluid().getLuminosity());
+		int brightness = Minecraft.getMinecraft().theWorld.getCombinedLight(pos,
+				fluid.getFluid().getLuminosity());
 
 		pre(x, y, z);
 
-		TextureAtlasSprite still = Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry(fluid.getFluid().getStill(fluid).toString());
-		TextureAtlasSprite flowing = Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry(fluid.getFluid().getFlowing(fluid).toString());
+		TextureAtlasSprite still = Minecraft.getMinecraft()
+				.getTextureMapBlocks()
+				.getTextureExtry(fluid.getFluid().getStill(fluid).toString());
+		TextureAtlasSprite flowing = Minecraft.getMinecraft()
+				.getTextureMapBlocks()
+				.getTextureExtry(fluid.getFluid().getFlowing(fluid).toString());
 
 		// x/y/z2 - x/y/z1 is because we need the width/height/depth
-		putTexturedQuad(renderer, still, x1, y1, z1, x2 - x1, y2 - y1, z2 - z1, EnumFacing.DOWN, color, brightness, false);
-		putTexturedQuad(renderer, flowing, x1, y1, z1, x2 - x1, y2 - y1, z2 - z1, EnumFacing.NORTH, color, brightness, true);
-		putTexturedQuad(renderer, flowing, x1, y1, z1, x2 - x1, y2 - y1, z2 - z1, EnumFacing.EAST, color, brightness, true);
-		putTexturedQuad(renderer, flowing, x1, y1, z1, x2 - x1, y2 - y1, z2 - z1, EnumFacing.SOUTH, color, brightness, true);
-		putTexturedQuad(renderer, flowing, x1, y1, z1, x2 - x1, y2 - y1, z2 - z1, EnumFacing.WEST, color, brightness, true);
-		putTexturedQuad(renderer, still, x1, y1, z1, x2 - x1, y2 - y1, z2 - z1, EnumFacing.UP, color, brightness, false);
+		putTexturedQuad(renderer, still, x1, y1, z1, x2 - x1, y2 - y1, z2 - z1,
+				EnumFacing.DOWN, color, brightness, false);
+		putTexturedQuad(renderer, flowing, x1, y1, z1, x2 - x1, y2 - y1,
+				z2 - z1, EnumFacing.NORTH, color, brightness, true);
+		putTexturedQuad(renderer, flowing, x1, y1, z1, x2 - x1, y2 - y1,
+				z2 - z1, EnumFacing.EAST, color, brightness, true);
+		putTexturedQuad(renderer, flowing, x1, y1, z1, x2 - x1, y2 - y1,
+				z2 - z1, EnumFacing.SOUTH, color, brightness, true);
+		putTexturedQuad(renderer, flowing, x1, y1, z1, x2 - x1, y2 - y1,
+				z2 - z1, EnumFacing.WEST, color, brightness, true);
+		putTexturedQuad(renderer, still, x1, y1, z1, x2 - x1, y2 - y1, z2 - z1,
+				EnumFacing.UP, color, brightness, false);
 
 		tessellator.draw();
 
 		post();
 	}
 
-	public static void putTexturedQuad(VertexBuffer renderer, TextureAtlasSprite sprite, double x, double y, double z, double w, double h, double d, EnumFacing face, int color, int brightness, boolean flowing) {
+	public static void putTexturedQuad(VertexBuffer renderer,
+			TextureAtlasSprite sprite, double x, double y, double z, double w,
+			double h, double d, EnumFacing face, int color, int brightness,
+			boolean flowing)
+	{
 		int l1 = brightness >> 0x10 & 0xFFFF;
 		int l2 = brightness & 0xFFFF;
 
@@ -100,11 +120,16 @@ public class RandomHelper
 		int g = color >> 8 & 0xFF;
 		int b = color & 0xFF;
 
-		putTexturedQuad(renderer, sprite, x, y, z, w, h, d, face, r, g, b, a, l1, l2, flowing);
+		putTexturedQuad(renderer, sprite, x, y, z, w, h, d, face, r, g, b, a,
+				l1, l2, flowing);
 	}
 
 	// x and x+w has to be within [0,1], same for y/h and z/d
-	public static void putTexturedQuad(VertexBuffer renderer, TextureAtlasSprite sprite, double x, double y, double z, double w, double h, double d, EnumFacing face, int r, int g, int b, int a, int light1, int light2, boolean flowing) {
+	public static void putTexturedQuad(VertexBuffer renderer,
+			TextureAtlasSprite sprite, double x, double y, double z, double w,
+			double h, double d, EnumFacing face, int r, int g, int b, int a,
+			int light1, int light2, boolean flowing)
+	{
 		double minU;
 		double maxU;
 		double minV;
@@ -135,13 +160,15 @@ public class RandomHelper
 			zt2 -= 1f;
 
 		// flowing stuff should start from the bottom, not from the start
-		if (flowing) {
+		if (flowing)
+		{
 			double tmp = 1d - yt1;
 			yt1 = 1d - yt2;
 			yt2 = tmp;
 		}
 
-		switch (face) {
+		switch (face)
+		{
 		case DOWN:
 		case UP:
 			minU = sprite.getInterpolatedU(xt1 * size);
@@ -170,65 +197,158 @@ public class RandomHelper
 			maxV = sprite.getMaxV();
 		}
 
-		switch (face) {
+		switch (face)
+		{
 		case DOWN:
-			renderer.pos(x1, y1, z1).color(r, g, b, a).tex(minU, minV).lightmap(light1, light2).endVertex();
-			renderer.pos(x2, y1, z1).color(r, g, b, a).tex(maxU, minV).lightmap(light1, light2).endVertex();
-			renderer.pos(x2, y1, z2).color(r, g, b, a).tex(maxU, maxV).lightmap(light1, light2).endVertex();
-			renderer.pos(x1, y1, z2).color(r, g, b, a).tex(minU, maxV).lightmap(light1, light2).endVertex();
+			renderer.pos(x1, y1, z1).color(r, g, b, a).tex(minU, minV)
+					.lightmap(light1, light2).endVertex();
+			renderer.pos(x2, y1, z1).color(r, g, b, a).tex(maxU, minV)
+					.lightmap(light1, light2).endVertex();
+			renderer.pos(x2, y1, z2).color(r, g, b, a).tex(maxU, maxV)
+					.lightmap(light1, light2).endVertex();
+			renderer.pos(x1, y1, z2).color(r, g, b, a).tex(minU, maxV)
+					.lightmap(light1, light2).endVertex();
 			break;
 		case UP:
-			renderer.pos(x1, y2, z1).color(r, g, b, a).tex(minU, minV).lightmap(light1, light2).endVertex();
-			renderer.pos(x1, y2, z2).color(r, g, b, a).tex(minU, maxV).lightmap(light1, light2).endVertex();
-			renderer.pos(x2, y2, z2).color(r, g, b, a).tex(maxU, maxV).lightmap(light1, light2).endVertex();
-			renderer.pos(x2, y2, z1).color(r, g, b, a).tex(maxU, minV).lightmap(light1, light2).endVertex();
+			renderer.pos(x1, y2, z1).color(r, g, b, a).tex(minU, minV)
+					.lightmap(light1, light2).endVertex();
+			renderer.pos(x1, y2, z2).color(r, g, b, a).tex(minU, maxV)
+					.lightmap(light1, light2).endVertex();
+			renderer.pos(x2, y2, z2).color(r, g, b, a).tex(maxU, maxV)
+					.lightmap(light1, light2).endVertex();
+			renderer.pos(x2, y2, z1).color(r, g, b, a).tex(maxU, minV)
+					.lightmap(light1, light2).endVertex();
 			break;
 		case NORTH:
-			renderer.pos(x1, y1, z1).color(r, g, b, a).tex(minU, maxV).lightmap(light1, light2).endVertex();
-			renderer.pos(x1, y2, z1).color(r, g, b, a).tex(minU, minV).lightmap(light1, light2).endVertex();
-			renderer.pos(x2, y2, z1).color(r, g, b, a).tex(maxU, minV).lightmap(light1, light2).endVertex();
-			renderer.pos(x2, y1, z1).color(r, g, b, a).tex(maxU, maxV).lightmap(light1, light2).endVertex();
+			renderer.pos(x1, y1, z1).color(r, g, b, a).tex(minU, maxV)
+					.lightmap(light1, light2).endVertex();
+			renderer.pos(x1, y2, z1).color(r, g, b, a).tex(minU, minV)
+					.lightmap(light1, light2).endVertex();
+			renderer.pos(x2, y2, z1).color(r, g, b, a).tex(maxU, minV)
+					.lightmap(light1, light2).endVertex();
+			renderer.pos(x2, y1, z1).color(r, g, b, a).tex(maxU, maxV)
+					.lightmap(light1, light2).endVertex();
 			break;
 		case SOUTH:
-			renderer.pos(x1, y1, z2).color(r, g, b, a).tex(maxU, maxV).lightmap(light1, light2).endVertex();
-			renderer.pos(x2, y1, z2).color(r, g, b, a).tex(minU, maxV).lightmap(light1, light2).endVertex();
-			renderer.pos(x2, y2, z2).color(r, g, b, a).tex(minU, minV).lightmap(light1, light2).endVertex();
-			renderer.pos(x1, y2, z2).color(r, g, b, a).tex(maxU, minV).lightmap(light1, light2).endVertex();
+			renderer.pos(x1, y1, z2).color(r, g, b, a).tex(maxU, maxV)
+					.lightmap(light1, light2).endVertex();
+			renderer.pos(x2, y1, z2).color(r, g, b, a).tex(minU, maxV)
+					.lightmap(light1, light2).endVertex();
+			renderer.pos(x2, y2, z2).color(r, g, b, a).tex(minU, minV)
+					.lightmap(light1, light2).endVertex();
+			renderer.pos(x1, y2, z2).color(r, g, b, a).tex(maxU, minV)
+					.lightmap(light1, light2).endVertex();
 			break;
 		case WEST:
-			renderer.pos(x1, y1, z1).color(r, g, b, a).tex(maxU, maxV).lightmap(light1, light2).endVertex();
-			renderer.pos(x1, y1, z2).color(r, g, b, a).tex(minU, maxV).lightmap(light1, light2).endVertex();
-			renderer.pos(x1, y2, z2).color(r, g, b, a).tex(minU, minV).lightmap(light1, light2).endVertex();
-			renderer.pos(x1, y2, z1).color(r, g, b, a).tex(maxU, minV).lightmap(light1, light2).endVertex();
+			renderer.pos(x1, y1, z1).color(r, g, b, a).tex(maxU, maxV)
+					.lightmap(light1, light2).endVertex();
+			renderer.pos(x1, y1, z2).color(r, g, b, a).tex(minU, maxV)
+					.lightmap(light1, light2).endVertex();
+			renderer.pos(x1, y2, z2).color(r, g, b, a).tex(minU, minV)
+					.lightmap(light1, light2).endVertex();
+			renderer.pos(x1, y2, z1).color(r, g, b, a).tex(maxU, minV)
+					.lightmap(light1, light2).endVertex();
 			break;
 		case EAST:
-			renderer.pos(x2, y1, z1).color(r, g, b, a).tex(minU, maxV).lightmap(light1, light2).endVertex();
-			renderer.pos(x2, y2, z1).color(r, g, b, a).tex(minU, minV).lightmap(light1, light2).endVertex();
-			renderer.pos(x2, y2, z2).color(r, g, b, a).tex(maxU, minV).lightmap(light1, light2).endVertex();
-			renderer.pos(x2, y1, z2).color(r, g, b, a).tex(maxU, maxV).lightmap(light1, light2).endVertex();
+			renderer.pos(x2, y1, z1).color(r, g, b, a).tex(minU, maxV)
+					.lightmap(light1, light2).endVertex();
+			renderer.pos(x2, y2, z1).color(r, g, b, a).tex(minU, minV)
+					.lightmap(light1, light2).endVertex();
+			renderer.pos(x2, y2, z2).color(r, g, b, a).tex(maxU, minV)
+					.lightmap(light1, light2).endVertex();
+			renderer.pos(x2, y1, z2).color(r, g, b, a).tex(maxU, maxV)
+					.lightmap(light1, light2).endVertex();
 			break;
 		}
 	}
 
-	public static void pre(double x, double y, double z) {
+	public static void pre(double x, double y, double z)
+	{
 		GlStateManager.pushMatrix();
 
 		GlStateManager.disableLighting();
 		GlStateManager.enableBlend();
-		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA,
+				GL11.GL_ONE_MINUS_SRC_ALPHA);
 
-		if (Minecraft.isAmbientOcclusionEnabled()) {
+		if (Minecraft.isAmbientOcclusionEnabled())
+		{
 			GL11.glShadeModel(GL11.GL_SMOOTH);
-		} else {
+		} else
+		{
 			GL11.glShadeModel(GL11.GL_FLAT);
 		}
 
 		GlStateManager.translate(x, y, z);
 	}
 
-	public static void post() {
+	public static void post()
+	{
 		GlStateManager.disableBlend();
 		GlStateManager.enableLighting();
 		GlStateManager.popMatrix();
+	}
+
+	public static boolean canStacksMerge(ItemStack stack1, ItemStack stack2)
+	{
+		if (stack1 == null || stack2 == null)
+		{
+			return false;
+		}
+		if (!stack1.isItemEqual(stack2))
+		{
+			return false;
+		}
+		if (!ItemStack.areItemStackTagsEqual(stack1, stack2))
+		{
+			return false;
+		}
+		return true;
+
+	}
+
+	public static int mergeStacks(ItemStack mergeSource, ItemStack mergeTarget,
+			boolean doMerge)
+	{
+		if (!canStacksMerge(mergeSource, mergeTarget))
+		{
+			return 0;
+		}
+		int mergeCount = Math.min(
+				mergeTarget.getMaxStackSize() - mergeTarget.stackSize,
+				mergeSource.stackSize);
+		if (mergeCount < 1)
+		{
+			return 0;
+		}
+		if (doMerge)
+		{
+			mergeTarget.stackSize += mergeCount;
+		}
+		return mergeCount;
+	}
+
+	public static ItemStack fillInventory(IInventory inv, ItemStack stack)
+	{
+		if (inv != null)
+		{
+			for (int i = 0; i < inv.getSizeInventory(); i++)
+			{
+				if (stack == null || stack.stackSize <= 0)
+					return null;
+				ItemStack inside = inv.getStackInSlot(i);
+				if (inside == null || inside.stackSize <= 0)
+				{
+					inv.setInventorySlotContents(i, stack);
+					return null;
+				} else if (RandomHelper.canStacksMerge(inside, stack))
+				{
+					stack.stackSize -= RandomHelper.mergeStacks(stack, inside,
+							true);
+				}
+			}
+		}
+		return stack;
+
 	}
 }

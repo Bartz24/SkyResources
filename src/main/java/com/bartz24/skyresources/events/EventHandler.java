@@ -3,6 +3,8 @@ package com.bartz24.skyresources.events;
 import java.util.List;
 import java.util.Random;
 
+import org.lwjgl.input.Keyboard;
+
 import com.bartz24.skyresources.IslandPos;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
@@ -459,9 +461,7 @@ public class EventHandler
 				"https://github.com/Bartz24/SkyResources/wiki");
 		Style clickableChatStyle = new Style().setClickEvent(openUrl);
 		TextComponentString text = new TextComponentString(
-				"Need help or a guide? Click here to go to wiki.\n"
-						+ TextFormatting.BLUE.toString()
-						+ "https://github.com/Bartz24/SkyResources/wiki");
+				"Need help or a guide? \nPress " + TextFormatting.AQUA + Keyboard.getKeyName(ModKeyBindings.guideKey.getKeyCode()) + TextFormatting.WHITE + " to open the Sky Resources in-game guide!");
 		player.addChatMessage(text.setStyle(clickableChatStyle));
 	}
 
@@ -514,9 +514,8 @@ public class EventHandler
 
 	@SubscribeEvent
 	public void onKeyInput(KeyInputEvent event)
-	{		
-		// Sorry, not finished yet :)
-	/*	if (ModKeyBindings.guideKey.isPressed())
+	{
+		if (ModKeyBindings.guideKey.isPressed())
 		{
 			EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
 
@@ -527,7 +526,7 @@ public class EventHandler
 						player.getPosition().getY(),
 						player.getPosition().getZ());
 			}
-		}*/
+		}
 	}
 
 }

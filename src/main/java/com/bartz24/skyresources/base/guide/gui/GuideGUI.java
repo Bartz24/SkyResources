@@ -27,7 +27,8 @@ import net.minecraft.item.ItemStack;
 public class GuideGUI extends GuiScreen
 {
 
-	GuiButton closeButton, cycleCatLeftButton, cycleCatRightButton, backButton;
+	GuiButton closeButton, cycleCatLeftButton, cycleCatRightButton, backButton,
+			upButton, downButton;
 
 	List<GuiButton> currentLinkButtons;
 
@@ -45,6 +46,8 @@ public class GuideGUI extends GuiScreen
 
 	int prevScale = -1;
 
+	int curIndex = 0;
+
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
@@ -56,7 +59,7 @@ public class GuideGUI extends GuiScreen
 
 			ItemStack stack = currentPage.pageItemDisplay;
 
-			int x = Math.max(this.width / 2 - 50, 225);
+			int x = Math.max(this.width / 2 - 100, 225);
 
 			if (stack != null)
 				drawItem(stack, x, 20);
@@ -98,7 +101,9 @@ public class GuideGUI extends GuiScreen
 	{
 		if (page != null)
 		{
-			pageHistory.add(currentPage.pageId);
+			if (pageHistory.size() == 0 || !pageHistory
+					.get(pageHistory.size() - 1).equals(currentPage.pageId))
+				pageHistory.add(currentPage.pageId);
 			currentPage = page;
 			initGui();
 		}
@@ -135,13 +140,30 @@ public class GuideGUI extends GuiScreen
 	@Override
 	public void initGui()
 	{
-		if (prevScale == -1 && ConfigOptions.scaleGuideGui)
+		if (ConfigOptions.scaleGuideGui)
 		{
-			prevScale = Minecraft.getMinecraft().gameSettings.guiScale;
-			Minecraft.getMinecraft().gameSettings.guiScale = 1;
-			ScaledResolution res = new ScaledResolution(this.mc);
-			this.width = res.getScaledWidth();
-			this.height = res.getScaledHeight();
+			ScaledResolution curRes = new ScaledResolution(this.mc);
+			if (prevScale == -1
+					&& (curRes.getScaledWidth() < 700
+							|| curRes.getScaledHeight() < 300)
+					&& Minecraft.getMinecraft().gameSettings.guiScale != 1)
+			{
+				prevScale = Minecraft.getMinecraft().gameSettings.guiScale;
+				while (Minecraft.getMinecraft().gameSettings.guiScale != 1)
+				{
+					Minecraft.getMinecraft().gameSettings.guiScale = Minecraft
+							.getMinecraft().gameSettings.guiScale == 0
+									? 3
+									: Minecraft
+											.getMinecraft().gameSettings.guiScale
+											- 1;
+					ScaledResolution res = new ScaledResolution(this.mc);
+					this.width = res.getScaledWidth();
+					this.height = res.getScaledHeight();
+					if (!(width < 700 || height < 300))
+						break;
+				}
+			}
 		}
 
 		new GuideRecipeButton(new ItemStack(Blocks.DIRT));
@@ -170,8 +192,12 @@ public class GuideGUI extends GuiScreen
 		this.buttonList.add(this.closeButton = new GuiButton(0, 0,
 				this.height - 20, 40, 20, "Close"));
 		this.buttonList.add(this.backButton = new GuiButton(10,
-				this.width - Math.max(this.width / 2 - 100, 225), 18, 40, 20,
+				this.width - Math.max(this.width / 2 + 75, 225), 2, 40, 20,
 				"Back"));
+		this.buttonList
+				.add(this.upButton = new GuiButton(11, 0, 40, 10, 20, "^"));
+		this.buttonList
+				.add(this.downButton = new GuiButton(12, 0, 60, 10, 20, "v"));
 		this.addLinkButtons();
 
 		currentPageInfo = setupPage(currentPage.pageInfo,
@@ -210,15 +236,23 @@ public class GuideGUI extends GuiScreen
 						new GuideLinkPageButton(pageLink, display, stack)));
 	}
 
+	public int getMaxLinkButtons()
+	{
+		int heightAllowed = this.height - 40 - 20;
+		return (int) Math.floor((float) heightAllowed / 20f);
+	}
+
 	public void addLinkButtons()
 	{
-		for (GuidePage p : SkyResourcesGuide.getPages(currentCategory))
+		int curAddIndex = 0;
+		for (GuidePage p : SkyResourcesGuide.getPages(currentCategory,
+				(this.searchBox == null) ? "" : this.searchBox.getText()))
 		{
-			if (this.searchBox == null
-					|| Strings.isNullOrEmpty(this.searchBox.getText().trim())
-					|| p.pageDisplay.toLowerCase().contains(
-							this.searchBox.getText().trim().toLowerCase()))
-				addLinkButton(p.pageId, p.pageDisplay, p.pageItemDisplay);
+			curAddIndex++;
+			if (curAddIndex - 1 < curIndex
+					|| curAddIndex - 1 >= curIndex + getMaxLinkButtons())
+				continue;
+			addLinkButton(p.pageId, p.pageDisplay, p.pageItemDisplay);
 		}
 		buttonList.addAll(buttonList.size(), currentLinkButtons);
 	}
@@ -248,6 +282,7 @@ public class GuideGUI extends GuiScreen
 					curIndex = categories.size() - 1;
 				currentCategory = (curIndex == -1) ? ""
 						: categories.get(curIndex);
+				curIndex = 0;
 				removeLinkButtons();
 				addLinkButtons();
 			}
@@ -260,6 +295,7 @@ public class GuideGUI extends GuiScreen
 					curIndex = -1;
 				currentCategory = (curIndex == -1) ? ""
 						: categories.get(curIndex);
+				curIndex = 0;
 				removeLinkButtons();
 				addLinkButtons();
 			}
@@ -274,6 +310,36 @@ public class GuideGUI extends GuiScreen
 
 				}
 			}
+			if (button == this.upButton)
+			{
+				if (SkyResourcesGuide.getPages(currentCategory, (this.searchBox == null) ? "" : this.searchBox.getText())
+						.size() > getMaxLinkButtons())
+				{
+					curIndex--;
+					if (curIndex < 0)
+						curIndex = SkyResourcesGuide.getPages(currentCategory, (this.searchBox == null) ? "" : this.searchBox.getText())
+								.size() - getMaxLinkButtons();
+
+					removeLinkButtons();
+					addLinkButtons();
+				} else
+					curIndex = 0;
+			}
+			if (button == this.downButton)
+			{
+				if (SkyResourcesGuide.getPages(currentCategory, (this.searchBox == null) ? "" : this.searchBox.getText())
+						.size() > getMaxLinkButtons())
+				{
+					curIndex++;
+					if (curIndex + getMaxLinkButtons() > SkyResourcesGuide
+							.getPages(currentCategory, (this.searchBox == null) ? "" : this.searchBox.getText()).size())
+						curIndex = 0;
+
+					removeLinkButtons();
+					addLinkButtons();
+				} else
+					curIndex = 0;
+			}
 
 			for (GuiButton b : buttonList)
 			{
@@ -287,6 +353,7 @@ public class GuideGUI extends GuiScreen
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		this.searchBox.textboxKeyTyped(typedChar, keyCode);
+		curIndex = 0;
 		removeLinkButtons();
 		addLinkButtons();
 		super.keyTyped(typedChar, keyCode);

@@ -36,7 +36,7 @@ public class FreezerRecipe
 			return false;
 
 		return input.isItemEqual(recipe.input)
-				&& input.stackSize == recipe.input.stackSize;
+				&& input.stackSize >= recipe.input.stackSize;
 	}
 
 	public ItemStack getOutput()
