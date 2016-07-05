@@ -100,8 +100,7 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 				{
 					BlockPos pos = rayTrace.getBlockPos();
 
-					EnumFacing blockHitSide = player.rayTrace(200,
-							1.0F).sideHit;
+					EnumFacing blockHitSide = rayTrace.sideHit;
 
 					Block block = world.getBlockState(pos).getBlock();
 
