@@ -20,7 +20,7 @@ plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
 */
-version = "0.7.2 Beta"
+version = "0.7.3 Beta"
 group= "com.bartz24.skyresources" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "skyresources"
 
