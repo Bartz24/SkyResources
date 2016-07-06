@@ -1,17 +1,9 @@
 package com.bartz24.skyresources;
 
-import java.util.Map;
-import java.util.Map.Entry;
-
 import com.bartz24.skyresources.config.ConfigOptions;
-import com.bartz24.skyresources.events.EventHandler;
-import com.sun.corba.se.pept.transport.Connection;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.nbt.NBTTagString;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldSavedData;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -34,29 +26,30 @@ public class SkyResourcesSaveData extends WorldSavedData
 		References.spawnedPlayers.clear();
 		References.worldOneChunk = false;
 		References.initialIslandDistance = ConfigOptions.islandDistance;
-		NBTTagList list = nbt.getTagList("Positions", Constants.NBT.TAG_COMPOUND);
+		NBTTagList list = nbt.getTagList("Positions",
+				Constants.NBT.TAG_COMPOUND);
 		for (int i = 0; i < list.tagCount(); ++i)
 		{
 			NBTTagCompound stackTag = list.getCompoundTagAt(i);
-			
-			IslandPos pos = new IslandPos(0,0);
+
+			IslandPos pos = new IslandPos(0, 0);
 			pos.readFromNBT(stackTag);
 			References.CurrentIslandsList.add(pos);
 		}
-		
+
 		list = nbt.getTagList("SpawnedPlayers", Constants.NBT.TAG_COMPOUND);
 		for (int i = 0; i < list.tagCount(); ++i)
 		{
 			NBTTagCompound stackTag = list.getCompoundTagAt(i);
 
 			String name = stackTag.getString("name");
-			
+
 			References.spawnedPlayers.add(name);
 		}
-		if(nbt.hasKey("oneChunkWorld"))
-		References.worldOneChunk = nbt.getBoolean("oneChunkWorld");
-		if(nbt.hasKey("initialDist"))
-		References.initialIslandDistance = nbt.getInteger("initialDist");
+		if (nbt.hasKey("oneChunkWorld"))
+			References.worldOneChunk = nbt.getBoolean("oneChunkWorld");
+		if (nbt.hasKey("initialDist"))
+			References.initialIslandDistance = nbt.getInteger("initialDist");
 	}
 
 	@Override
@@ -68,7 +61,7 @@ public class SkyResourcesSaveData extends WorldSavedData
 			NBTTagCompound stackTag = new NBTTagCompound();
 
 			References.CurrentIslandsList.get(i).writeToNBT(stackTag);
-			
+
 			list.appendTag(stackTag);
 		}
 		nbt.setTag("Positions", list);
@@ -78,16 +71,16 @@ public class SkyResourcesSaveData extends WorldSavedData
 			NBTTagCompound stackTag = new NBTTagCompound();
 
 			stackTag.setString("name", References.spawnedPlayers.get(i));
-			
+
 			list2.appendTag(stackTag);
 		}
 		nbt.setTag("SpawnedPlayers", list2);
-		
-		if(References.worldOneChunk)
-		nbt.setBoolean("oneChunkWorld", true);
-		
+
+		if (References.worldOneChunk)
+			nbt.setBoolean("oneChunkWorld", true);
+
 		nbt.setInteger("initialDist", References.initialIslandDistance);
-		
+
 		return nbt;
 	}
 
