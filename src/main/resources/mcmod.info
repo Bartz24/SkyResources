@@ -3,7 +3,7 @@
   "modid": "skyresources",
   "name": "Sky Resources",
   "description": "Everything is in the air.",
-  "version": "0.7.3 Beta",
+  "version": "0.7.4 Beta",
   "mcversion": "${mcversion}",
   "url": "https://github.com/Bartz24/SkyResources",
   "updateUrl": "",

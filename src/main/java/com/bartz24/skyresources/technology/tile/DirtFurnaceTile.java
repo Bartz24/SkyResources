@@ -234,7 +234,7 @@ public class DirtFurnaceTile extends TileEntity
 	 */
 	public void update()
 	{
-		
+		if(!(worldObj.getBlockState(this.getPos()).getBlock() instanceof BlockDirtFurnace)) return;
 		boolean flag = this.isBurning();
 		boolean flag1 = false;
 
