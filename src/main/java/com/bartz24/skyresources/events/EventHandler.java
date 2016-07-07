@@ -29,6 +29,7 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
@@ -113,7 +114,8 @@ public class EventHandler
 		if (player instanceof EntityPlayerMP)
 		{
 			EntityPlayerMP pmp = (EntityPlayerMP) player;
-			pmp.setPositionAndUpdate(pos.getX() + 0.5, pos.getY() + 1.6,
+			pmp.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 60, 20, false, false));
+			pmp.setPositionAndUpdate(pos.getX() + 0.5, pos.getY() + 3.6,
 					pos.getZ() + 0.5);
 			pmp.setSpawnPoint(pos, true);
 
@@ -176,6 +178,14 @@ public class EventHandler
 						Blocks.BEDROCK.getDefaultState(), 2);
 				world.setBlockState(pos.down(4),
 						Blocks.BEDROCK.getDefaultState(), 2);
+				if (x == 0 && z == 1)
+				{
+					world.setBlockState(pos.down(2),
+							Blocks.STANDING_SIGN.getStateFromMeta(8));
+					TileEntitySign sign = (TileEntitySign) world.getTileEntity(pos.down(2));
+					sign.signText[0] = new TextComponentString("Press G (default)");
+					sign.signText[1] = new TextComponentString("to open the guide");
+				}
 			}
 		}
 	}
@@ -451,11 +461,10 @@ public class EventHandler
 							+ ConfigOptions.commandName + " create"
 							+ TextFormatting.WHITE.toString()
 							+ " to create your starting island"));
-		
+
 		TextComponentString text = new TextComponentString(
 				"Need help or a guide? \nPress your " + TextFormatting.AQUA
-						+ "Open Guide Key (Default: G)"
-						+ TextFormatting.WHITE
+						+ "Open Guide Key (Default: G)" + TextFormatting.WHITE
 						+ " to open the Sky Resources in-game guide!");
 		player.addChatMessage(text);
 	}
