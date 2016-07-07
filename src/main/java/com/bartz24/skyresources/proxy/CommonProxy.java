@@ -9,6 +9,7 @@ import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.events.EventHandler;
 import com.bartz24.skyresources.events.ModBucketHandler;
 import com.bartz24.skyresources.forestry.ForestryPlugin;
+import com.bartz24.skyresources.ic2.IC2Plugin;
 import com.bartz24.skyresources.minetweaker.MinetweakerPlugin;
 import com.bartz24.skyresources.registry.ModAchievements;
 import com.bartz24.skyresources.registry.ModBlocks;
@@ -48,6 +49,10 @@ public class CommonProxy
 		{
 			ForestryPlugin.preInit();
 		}
+		if(Loader.isModLoaded("IC2"))
+		{
+			IC2Plugin.preInit();
+		}
 
 		new HeatSources();
 		new InfusionRecipes();
@@ -75,6 +80,10 @@ public class CommonProxy
 		if(Loader.isModLoaded("forestry"))
 		{
 			ForestryPlugin.init();
+		}
+		if(Loader.isModLoaded("IC2"))
+		{
+			IC2Plugin.init();
 		}
 
 		AchievementPage.registerAchievementPage(ModAchievements.modAchievePage);
