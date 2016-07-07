@@ -37,28 +37,6 @@ public class RandomHelper
 		world.spawnEntityInWorld(entity);
 	}
 
-	public static void dispatchTEToNearbyPlayers(TileEntity tile)
-	{
-		World world = tile.getWorld();
-		List players = world.playerEntities;
-		for (Object player : players)
-			if (player instanceof EntityPlayerMP)
-			{
-				EntityPlayerMP mp = (EntityPlayerMP) player;
-				if (Math.hypot(mp.posX - tile.getPos().getX() - 0.5,
-						mp.posZ - tile.getPos().getZ() - 0.5) < 64)
-					((EntityPlayerMP) player).connection
-							.sendPacket(tile.getUpdatePacket());
-			}
-	}
-
-	public static void dispatchTEToNearbyPlayers(World world, BlockPos pos)
-	{
-		TileEntity tile = world.getTileEntity(pos);
-		if (tile != null)
-			dispatchTEToNearbyPlayers(tile);
-	}
-
 	public static float pointDistancePlane(double x1, double y1, double x2,
 			double y2)
 	{

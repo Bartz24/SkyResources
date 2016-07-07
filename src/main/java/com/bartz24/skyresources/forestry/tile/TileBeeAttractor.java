@@ -85,6 +85,7 @@ public class TileBeeAttractor extends TileEntity
 					ticks--;
 			}
 		}
+		markDirty();
 		worldObj.notifyBlockUpdate(getPos(), worldObj.getBlockState(getPos()),
 				worldObj.getBlockState(getPos()), 3);
 	}

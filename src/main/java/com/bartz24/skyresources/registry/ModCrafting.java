@@ -264,6 +264,8 @@ public class ModCrafting
 				new ItemStack(Items.FLINT, 2));
 		CombustionRecipes.addRecipe(new ItemStack(Blocks.DIRT), 100,
 				new ItemStack(ModItems.baseComponent, 8, 2));
+		CombustionRecipes.addRecipe(new ItemStack(Items.SLIME_BALL), 200,
+				new ItemStack(Items.SNOWBALL, 4), new ItemStack(ModItems.baseComponent, 4, 2));
 
 		RockGrinderRecipes.addRecipe(new ItemStack(Blocks.SAND), false,
 				Blocks.COBBLESTONE.getDefaultState());

@@ -136,32 +136,35 @@ public class PurificationVesselTile extends TileEntity
 	{
 		if (!worldObj.isRemote)
 		{
-			if (lowerTank.getFluid() == null
-					|| lowerTank.getFluid().getFluid() == null)
-				return;
-			int type = -1;
-			if (ModFluids.dirtyCrystalFluids
-					.contains(lowerTank.getFluid().getFluid()))
-				type = ModFluids.dirtyCrystalFluids
-						.indexOf(lowerTank.getFluid().getFluid());			
-
-			if (type >= 0)
+			if (lowerTank.getFluid() != null
+					&& lowerTank.getFluid().getFluid() != null)
 			{
-				if (HeatSources
-						.isValidHeatSource(worldObj.getBlockState(pos.down())))
-				{
-					int rate = Math.min(
-							HeatSources.getHeatSourceValue(
-									(worldObj.getBlockState(pos.down()))) / 5,
-							lowerTank.getFluidAmount());
+				int type = -1;
+				if (ModFluids.dirtyCrystalFluids
+						.contains(lowerTank.getFluid().getFluid()))
+					type = ModFluids.dirtyCrystalFluids
+							.indexOf(lowerTank.getFluid().getFluid());
 
-					int transferAmount = upperTank.fill(new FluidStack(
-							ModFluids.crystalFluids.get(type), rate), true);
-					lowerTank.drain(transferAmount, true);
+				if (type >= 0)
+				{
+					if (HeatSources.isValidHeatSource(
+							worldObj.getBlockState(pos.down())))
+					{
+						int rate = Math
+								.min(HeatSources
+										.getHeatSourceValue((worldObj
+												.getBlockState(pos.down())))
+										/ 5, lowerTank.getFluidAmount());
+
+						int transferAmount = upperTank.fill(new FluidStack(
+								ModFluids.crystalFluids.get(type), rate), true);
+						lowerTank.drain(transferAmount, true);
+					}
 				}
 			}
 		}
 
+		markDirty();
 		worldObj.notifyBlockUpdate(getPos(), worldObj.getBlockState(getPos()),
 				worldObj.getBlockState(getPos()), 3);
 
@@ -177,10 +180,10 @@ public class PurificationVesselTile extends TileEntity
 		{
 			NBTTagCompound stackTag = new NBTTagCompound();
 			stackTag.setInteger("Slot", i);
-			if(i == 0)
-			lowerTank.writeToNBT(stackTag);
-			else if(i == 1)
-			upperTank.writeToNBT(stackTag);
+			if (i == 0)
+				lowerTank.writeToNBT(stackTag);
+			else if (i == 1)
+				upperTank.writeToNBT(stackTag);
 			list.appendTag(stackTag);
 		}
 		compound.setTag("Tanks", list);
