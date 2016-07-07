@@ -18,6 +18,7 @@ public class TechItemComponent extends Item
 	private static ArrayList<String> names = new ArrayList<String>();
 
 	public static final String stoneCrushed = "stoneCrushed";
+	public static final String radioactiveMix = "radioactiveMix";
 
 	public TechItemComponent()
 	{
@@ -34,6 +35,7 @@ public class TechItemComponent extends Item
 	private void itemList()
 	{
 		names.add(0, stoneCrushed);
+		names.add(1, radioactiveMix);
 	}
 
 	@Override

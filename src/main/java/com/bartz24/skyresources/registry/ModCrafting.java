@@ -181,7 +181,8 @@ public class ModCrafting
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.SAPLING, 1, 2),
 				new ItemStack(Items.DYE, 10, 15), "treeSapling", 0, 20);
 		InfusionRecipes.addRecipe(new ItemStack(Items.REEDS),
-				new ItemStack(Items.SPECKLED_MELON, 3), Blocks.PUMPKIN, OreDictionary.WILDCARD_VALUE, 20);
+				new ItemStack(Items.SPECKLED_MELON, 3), Blocks.PUMPKIN,
+				OreDictionary.WILDCARD_VALUE, 20);
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.COAL, 1), 50,
 				new ItemStack(Items.COAL, 2, 1));
@@ -265,7 +266,13 @@ public class ModCrafting
 		CombustionRecipes.addRecipe(new ItemStack(Blocks.DIRT), 100,
 				new ItemStack(ModItems.baseComponent, 8, 2));
 		CombustionRecipes.addRecipe(new ItemStack(Items.SLIME_BALL), 200,
-				new ItemStack(Items.SNOWBALL, 4), new ItemStack(ModItems.baseComponent, 4, 2));
+				new ItemStack(Items.SNOWBALL, 4),
+				new ItemStack(ModItems.baseComponent, 4, 2));
+		CombustionRecipes.addRecipe(new ItemStack(ModItems.techComponent, 1, 1),
+				1400, new ItemStack(Items.POISONOUS_POTATO, 3),
+				new ItemStack(Items.FERMENTED_SPIDER_EYE, 2),
+				new ItemStack(Items.SLIME_BALL, 1),
+				new ItemStack(Items.GUNPOWDER, 2));
 
 		RockGrinderRecipes.addRecipe(new ItemStack(Blocks.SAND), false,
 				Blocks.COBBLESTONE.getDefaultState());
@@ -288,18 +295,16 @@ public class ModCrafting
 				ModBlocks.dryCactus.getDefaultState());
 
 		WaterExtractorRecipes.addExtractRecipe(50, true,
-				Blocks.SNOW.getDefaultState(),
-				null);
+				Blocks.SNOW.getDefaultState(), null);
 
 		WaterExtractorRecipes.addExtractRecipe(20, true,
-				Blocks.LEAVES.getDefaultState(),
-				null);
+				Blocks.LEAVES.getDefaultState(), null);
 
 		WaterExtractorRecipes.addExtractRecipe(20, true,
-				Blocks.LEAVES2.getDefaultState(),
-				null);
-		
-		WaterExtractorRecipes.addInsertRecipe(Blocks.CLAY.getDefaultState(), false, Blocks.DIRT.getDefaultState(), 1000);
+				Blocks.LEAVES2.getDefaultState(), null);
+
+		WaterExtractorRecipes.addInsertRecipe(Blocks.CLAY.getDefaultState(),
+				false, Blocks.DIRT.getDefaultState(), 1000);
 
 		FreezerRecipes.addRecipe(new ItemStack(ModItems.heavySnowball), 100,
 				new ItemStack(Items.SNOWBALL, 4));
@@ -357,6 +362,16 @@ public class ModCrafting
 		ConcentratorRecipes.addRecipe(Blocks.LAPIS_ORE.getDefaultState(), 400,
 				new ItemStack(ModItems.alchemyComponent, 1, 5),
 				ModBlocks.compressedStone.getDefaultState());
+		
+		if (OreDictionary.getOres("oreUranium").size() > 0)
+		{
+		ConcentratorRecipes.addRecipe(Block.getBlockFromItem(
+				OreDictionary.getOres("oreUranium").get(0).getItem())
+				.getStateFromMeta(OreDictionary.getOres("oreUranium")
+						.get(0).getMetadata()), 1500,
+				new ItemStack(ModItems.techComponent, 4, 1),
+				ModBlocks.compressedStone.getDefaultState());
+		}
 	}
 
 	public static void initOreDict()

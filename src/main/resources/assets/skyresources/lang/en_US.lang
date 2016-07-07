@@ -9,6 +9,7 @@ item.skyresources.baseItemComponent.woodHeatComponent.name=Wooden Heat Component
 item.skyresources.baseItemComponent.ironHeatComponent.name=Iron Heat Component
 item.skyresources.baseItemComponent.plantMatter.name=Plant Matter
 item.skyresources.techItemComponent.stoneCrushed.name=Crushed Stone
+item.skyresources.techItemComponent.radioactiveMix.name=Radioactive Powder Mixture
 item.skyresources.cactusFruit.name=Cactus Fruit
 item.skyresources.cactusCuttingKnife.name=Cactus Cutting Knife
 item.skyresources.ironCuttingKnife.name=Iron Cutting Knife
