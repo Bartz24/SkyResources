@@ -8,9 +8,11 @@ import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.events.EventHandler;
+import com.bartz24.skyresources.registry.ModGuiHandler;
 import com.bartz24.skyresources.world.WorldTypeSky;
 import com.google.common.base.Strings;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
@@ -120,6 +122,9 @@ public class PlatformCommand extends CommandBase implements ICommand
 			} else if (subCommand.equals("reset"))
 			{
 				reset(player, args, world);
+			} else if (subCommand.equals("guide"))
+			{
+				guide(player, args, world);
 			} else if (subCommand.equals("onechunk"))
 			{
 
@@ -152,6 +157,18 @@ public class PlatformCommand extends CommandBase implements ICommand
 			}
 		}
 
+	}
+
+	void guide(EntityPlayerMP player, String[] args, World world)
+			throws CommandException
+	{
+		if (Minecraft.getMinecraft().thePlayer.worldObj.isRemote)
+		{
+			Minecraft.getMinecraft().thePlayer.openGui(SkyResources.instance, ModGuiHandler.GuideGUI,
+					player.worldObj, player.getPosition().getX(),
+					player.getPosition().getY(),
+					player.getPosition().getZ());
+		}
 	}
 
 	void reset(EntityPlayerMP player, String[] args, World world)
@@ -317,6 +334,9 @@ public class PlatformCommand extends CommandBase implements ICommand
 						+ (ConfigOptions.oneChunkCommandAllowed ? ""
 								: TextFormatting.RED
 										+ "\n THE COMMAND IS NOT ALLOWED TO BE USED. SET THE CONFIG OPTION TO TRUE.")));
+
+		player.addChatMessage(new TextComponentString(
+				"guide : Opens the guide."));
 	}
 
 	void newPlatform(EntityPlayerMP player, String[] args)

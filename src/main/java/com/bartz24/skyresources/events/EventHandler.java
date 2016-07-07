@@ -465,7 +465,9 @@ public class EventHandler
 		TextComponentString text = new TextComponentString(
 				"Need help or a guide? \nPress your " + TextFormatting.AQUA
 						+ "Open Guide Key (Default: G)" + TextFormatting.WHITE
-						+ " to open the Sky Resources in-game guide!");
+						+ " to open the Sky Resources in-game guide! "
+						+ "\n " + TextFormatting.AQUA + "/"+ConfigOptions.commandName +" guide "+ TextFormatting.WHITE
+						+"works too!");
 		player.addChatMessage(text);
 	}
 
