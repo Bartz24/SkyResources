@@ -67,21 +67,6 @@ public class ModRenderers
 							return fluidModelLocation;
 						}
 					});
-
-			/*ModelLoader.setCustomMeshDefinition(
-					ModItems.crystalFluidBuckets.get(i),
-					new ItemMeshDefinition()
-					{
-						@Override
-						public ModelResourceLocation getModelLocation(
-								ItemStack stack)
-						{
-							return ModelDynBucket.LOCATION;
-						}
-					});
-			ModelBakery.registerItemVariants(
-					ModItems.crystalFluidBuckets.get(i),
-					ModelDynBucket.LOCATION);*/
 			
 
 			final ModelResourceLocation dirtyFluidModelLocation = new ModelResourceLocation(
@@ -114,20 +99,6 @@ public class ModRenderers
 						}
 					});
 
-			/*ModelLoader.setCustomMeshDefinition(
-					ModItems.dirtyCrystalFluidBuckets.get(i),
-					new ItemMeshDefinition()
-					{
-						@Override
-						public ModelResourceLocation getModelLocation(
-								ItemStack stack)
-						{
-							return ModelDynBucket.LOCATION;
-						}
-					});
-			ModelBakery.registerItemVariants(
-					ModItems.dirtyCrystalFluidBuckets.get(i),
-					ModelDynBucket.LOCATION);*/
 		}
 
 		for (int i = 0; i < AlchemyItemComponent.getNames().size(); i++)

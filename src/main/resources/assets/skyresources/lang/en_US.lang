@@ -44,6 +44,7 @@ tile.skyresources.ironFreezer.name=Iron Freezer
 tile.skyresources.heavySnow.name=Heavy Snow
 tile.skyresources.heavySnow2.name=Very Heavy Snow
 tile.skyresources.dirtFurnace.name=Dirt Furnace
+tile.skyresources.beeAttractor.name=Bee Attractor
 
 
 tile.skyresources.ironCrystalFluidBlock.name=Iron Crystal Liquid
@@ -93,6 +94,7 @@ jei.skyresources.recipe.waterextractor=Water Extractor
 container.skyresources.combustionHeater=Combustion Heater
 container.skyresources.concentrator=Concentrator
 container.skyresources.freezer=Freezer
+container.skyresources.beeAttractor=Bee Attractor
 
 name.skyresources.metal.iron=Iron
 name.skyresources.metal.gold=Gold

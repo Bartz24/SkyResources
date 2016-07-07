@@ -8,6 +8,7 @@ import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModFluids;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,6 +19,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
@@ -114,7 +117,7 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 	{
 		NBTTagCompound nbtTag = new NBTTagCompound();
 		this.writeToNBT(nbtTag);
-		return new SPacketUpdateTileEntity(getPos(), 200, nbtTag);
+		return new SPacketUpdateTileEntity(getPos(), 1, nbtTag);
 	}
 
 	@Override
@@ -178,8 +181,9 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 					currentType = -1;
 
 			}
-			RandomHelper.dispatchTEToNearbyPlayers(worldObj, pos);
 		}
+		worldObj.notifyBlockUpdate(getPos(), worldObj.getBlockState(getPos()),
+				worldObj.getBlockState(getPos()), 3);
 	}
 
 	@Override
@@ -214,5 +218,11 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 					.getHeatSourceValue(worldObj.getBlockState(pos.down())) / 5;
 		}
 		return 0;
+	}
+
+	public boolean shouldRefresh(World world, BlockPos pos,
+			IBlockState oldState, IBlockState newState)
+	{
+		return oldState.getBlock() != newState.getBlock();
 	}
 }

@@ -3,6 +3,7 @@ package com.bartz24.skyresources.registry;
 import com.bartz24.skyresources.alchemy.tile.CondenserTile;
 import com.bartz24.skyresources.alchemy.tile.CrucibleTile;
 import com.bartz24.skyresources.alchemy.tile.PurificationVesselTile;
+import com.bartz24.skyresources.forestry.tile.TileBeeAttractor;
 import com.bartz24.skyresources.technology.tile.CombustionHeaterTile;
 import com.bartz24.skyresources.technology.tile.ConcentratorTile;
 import com.bartz24.skyresources.technology.tile.DirtFurnaceTile;
@@ -24,6 +25,7 @@ public final class ModEntities
 		GameRegistry.registerTileEntity(PurificationVesselTile.class, "purificationVesselTile");
 		GameRegistry.registerTileEntity(FreezerTile.class, "freezerTile");
 		GameRegistry.registerTileEntity(DirtFurnaceTile.class, "furnaceTile");
+		GameRegistry.registerTileEntity(TileBeeAttractor.class, "beeAttractorTile");
 		
 	}
 }

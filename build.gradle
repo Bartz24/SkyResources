@@ -48,7 +48,6 @@ dependencies {
 	compile files("lib/Waila-1.7.0-B3_1.9.4.jar")
 	compile files("lib/forestry_1.10.2-5.1.10.192.jar")
 	compile files("lib/industrialcraft-2-2.6.1-ex110.jar")
-	compile files("lib/Tesla-1.9.4-1.1.0.24.jar")
 	  
     // real examples
     //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env

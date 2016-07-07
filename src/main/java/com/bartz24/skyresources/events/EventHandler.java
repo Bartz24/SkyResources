@@ -469,7 +469,6 @@ public class EventHandler
 				|| player.getBedSpawnLocation(player.worldObj,
 						player.getBedLocation(), true) == null)
 		{
-			System.out.println("HERE");
 
 			IslandPos iPos = References.getPlayerIsland(player.getName());
 

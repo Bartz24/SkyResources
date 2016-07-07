@@ -5,6 +5,7 @@ import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModFluids;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -14,6 +15,8 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
@@ -118,7 +121,7 @@ public class PurificationVesselTile extends TileEntity
 	{
 		NBTTagCompound nbtTag = new NBTTagCompound();
 		this.writeToNBT(nbtTag);
-		return new SPacketUpdateTileEntity(getPos(), 201, nbtTag);
+		return new SPacketUpdateTileEntity(getPos(), 1, nbtTag);
 	}
 
 	@Override
@@ -133,7 +136,6 @@ public class PurificationVesselTile extends TileEntity
 	{
 		if (!worldObj.isRemote)
 		{
-			RandomHelper.dispatchTEToNearbyPlayers(worldObj, pos);
 			if (lowerTank.getFluid() == null
 					|| lowerTank.getFluid().getFluid() == null)
 				return;
@@ -159,6 +161,9 @@ public class PurificationVesselTile extends TileEntity
 				}
 			}
 		}
+
+		worldObj.notifyBlockUpdate(getPos(), worldObj.getBlockState(getPos()),
+				worldObj.getBlockState(getPos()), 3);
 
 	}
 
@@ -198,5 +203,11 @@ public class PurificationVesselTile extends TileEntity
 			else if (slot == 1)
 				upperTank.readFromNBT(stackTag);
 		}
+	}
+
+	public boolean shouldRefresh(World world, BlockPos pos,
+			IBlockState oldState, IBlockState newState)
+	{
+		return oldState.getBlock() != newState.getBlock();
 	}
 }

@@ -8,6 +8,7 @@ import com.bartz24.skyresources.base.waterextractor.WaterExtractorRecipes;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.events.EventHandler;
 import com.bartz24.skyresources.events.ModBucketHandler;
+import com.bartz24.skyresources.forestry.ForestryPlugin;
 import com.bartz24.skyresources.minetweaker.MinetweakerPlugin;
 import com.bartz24.skyresources.registry.ModAchievements;
 import com.bartz24.skyresources.registry.ModBlocks;
@@ -42,6 +43,11 @@ public class CommonProxy
 		ModFluids.registerDirtyCrystalFluid();
 		ModBlocks.init();
 		ModItems.init();
+		
+		if(Loader.isModLoaded("forestry"))
+		{
+			ForestryPlugin.preInit();
+		}
 
 		new HeatSources();
 		new InfusionRecipes();
@@ -65,6 +71,11 @@ public class CommonProxy
 				new ModGuiHandler());
 		ModEntities.init();
 		ModCrafting.initOreDict();
+		
+		if(Loader.isModLoaded("forestry"))
+		{
+			ForestryPlugin.init();
+		}
 
 		AchievementPage.registerAchievementPage(ModAchievements.modAchievePage);
 	}

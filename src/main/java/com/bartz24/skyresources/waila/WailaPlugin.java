@@ -7,6 +7,8 @@ import com.bartz24.skyresources.alchemy.block.PurificationVesselBlock;
 import com.bartz24.skyresources.alchemy.tile.CrucibleTile;
 import com.bartz24.skyresources.alchemy.tile.PurificationVesselTile;
 import com.bartz24.skyresources.base.HeatSources;
+import com.bartz24.skyresources.forestry.block.BlockBeeAttractor;
+import com.bartz24.skyresources.forestry.tile.TileBeeAttractor;
 
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
@@ -35,6 +37,8 @@ public class WailaPlugin implements IWailaDataProvider
 				PurificationVesselTile.class);
 		registrar.registerBodyProvider(instance,
 				CrucibleTile.class);
+		registrar.registerBodyProvider(instance,
+				TileBeeAttractor.class);
 	}
 
 	@Override
@@ -59,6 +63,12 @@ public class WailaPlugin implements IWailaDataProvider
 			CrucibleTile tile = (CrucibleTile) accessor
 					.getTileEntity();
 			addBodyCrucible(tile, currentTip);
+		}
+		else if (accessor.getBlock() instanceof BlockBeeAttractor)
+		{
+			TileBeeAttractor tile = (TileBeeAttractor) accessor
+					.getTileEntity();
+			addBeeAttractor(tile, currentTip);
 		}
 
 		return currentTip;
@@ -124,5 +134,16 @@ public class WailaPlugin implements IWailaDataProvider
 				: " " + tile.getTank().getFluidAmount();
 		tip.add("Tank Fluid:");
 		tip.add(lowerTankName + lowerTankAmount);
+	}
+
+	public void addBeeAttractor(TileBeeAttractor tile,
+			List<String> tip)
+	{
+		String tankName = tile.getTank().getFluid() == null ? "Empty"
+				: tile.getTank().getFluid().getLocalizedName();
+		String tankAmt = tile.getTank().getFluid() == null ? ""
+				: " " + tile.getTank().getFluidAmount();
+		tip.add("Tank Fluid:");
+		tip.add(tankName + tankAmt);
 	}
 }

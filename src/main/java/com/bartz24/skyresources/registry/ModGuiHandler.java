@@ -1,6 +1,9 @@
 package com.bartz24.skyresources.registry;
 
 import com.bartz24.skyresources.base.guide.gui.GuideGUI;
+import com.bartz24.skyresources.forestry.gui.GuiBeeAttractor;
+import com.bartz24.skyresources.forestry.gui.container.ContainerBeeAttractor;
+import com.bartz24.skyresources.forestry.tile.TileBeeAttractor;
 import com.bartz24.skyresources.technology.gui.GuiCombustionHeater;
 import com.bartz24.skyresources.technology.gui.GuiConcentrator;
 import com.bartz24.skyresources.technology.gui.GuiDirtFurnace;
@@ -25,6 +28,7 @@ public class ModGuiHandler implements IGuiHandler
 	public static final int ConcentratorGUI = 1;
 	public static final int FreezerGUI = 2;
 	public static final int FurnaceGUI = 3;
+	public static final int BeeAttractorGUI = 10;
 	public static final int GuideGUI = 25;
 
 	@Override
@@ -46,6 +50,10 @@ public class ModGuiHandler implements IGuiHandler
 		else if (id == FurnaceGUI)
 			return new ContainerDirtFurnace(player.inventory,
 					 (DirtFurnaceTile) world
+							.getTileEntity(new BlockPos(x, y, z)));
+		else if (id == BeeAttractorGUI)
+			return new ContainerBeeAttractor(player.inventory,
+					 (TileBeeAttractor) world
 							.getTileEntity(new BlockPos(x, y, z)));
 		return null;
 	}
@@ -69,6 +77,10 @@ public class ModGuiHandler implements IGuiHandler
 		else if (id == FurnaceGUI)
 			return new GuiDirtFurnace(player.inventory,
 					 (DirtFurnaceTile) world
+							.getTileEntity(new BlockPos(x, y, z)));
+		else if (id == BeeAttractorGUI)
+			 return new GuiBeeAttractor(player.inventory,
+					 (TileBeeAttractor) world
 							.getTileEntity(new BlockPos(x, y, z)));
 		else if (id == GuideGUI)
 	        return new GuideGUI();

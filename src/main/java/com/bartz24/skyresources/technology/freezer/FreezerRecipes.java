@@ -111,7 +111,6 @@ public class FreezerRecipes
 		List<FreezerRecipe> recipesToRemove = new ArrayList<FreezerRecipe>();
 		for (int i = 0; i < Recipes.size(); i++)
 		{
-			System.out.println("Here");
 			if (Recipes.get(i).isInputRecipeEqualTo(recipe) && Recipes.get(i)
 					.getOutput().isItemEqual(recipe.getOutput()))
 				recipesToRemoveAt.add(i);
