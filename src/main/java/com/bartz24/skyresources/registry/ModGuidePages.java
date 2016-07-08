@@ -234,7 +234,8 @@ public class ModGuidePages
 						+ "reset (optional int/string)<type> : Resets the platform and clears the players' inventory. \n      "
 						+ "(If it doesn't clear everything, be nice and toss the rest? Maybe? Not recommended unless all players for that island are online) \n "
 						+ "onechunk : Play in one chunk, on one island. Also resets the spawn chunk. \n "
-						+ "guide : Opens the Sky Resources guide.");
+						+ "guide : Opens the Sky Resources guide. \n "
+						+ "visit <player> : Visit another player's island in spectator mode.");
 
 		SkyResourcesGuide.addPage("minetweaker", "guide.skyresources.misc",
 				"Minetweaker/CraftTweaker",

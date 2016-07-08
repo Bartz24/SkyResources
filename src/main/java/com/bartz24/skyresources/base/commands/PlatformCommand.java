@@ -389,6 +389,9 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 		player.addChatMessage(new TextComponentString(
 				"guide : Opens the guide."));
+		
+		player.addChatMessage(new TextComponentString(
+				"visit <player> : Visit another player's island in spectator mode."));
 	}
 
 	void newPlatform(EntityPlayerMP player, String[] args)
