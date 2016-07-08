@@ -105,7 +105,7 @@ public class ModCrafting
 				{ "XXX", "XXX", "XXX", 'X', new ItemStack(ModItems.alchemyComponent, 1, 2) }));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(
 				new ItemStack(ModBlocks.heavySnow2), new Object[]
-				{ new ItemStack(ModBlocks.heavySnow), new ItemStack(ModBlocks.heavySnow), new ItemStack(Items.ROTTEN_FLESH), new ItemStack(Items.ROTTEN_FLESH) }));
+				{ new ItemStack(ModBlocks.heavySnow), new ItemStack(ModBlocks.heavySnow), new ItemStack(Items.ROTTEN_FLESH) }));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(
 				new ItemStack(Blocks.SAPLING, 1, 1), new Object[]
 				{ new ItemStack(Blocks.DIRT, 1, OreDictionary.WILDCARD_VALUE), new ItemStack(Items.PUMPKIN_SEEDS), new ItemStack(Items.PUMPKIN_SEEDS), new ItemStack(Items.DYE, 1, 15) }));
@@ -309,7 +309,7 @@ public class ModCrafting
 		FreezerRecipes.addRecipe(new ItemStack(ModItems.heavySnowball), 100,
 				new ItemStack(Items.SNOWBALL, 4));
 		FreezerRecipes.addRecipe(new ItemStack(Blocks.DIRT, 1, 1), 800,
-				new ItemStack(ModBlocks.heavySnow2, 4));
+				new ItemStack(ModBlocks.heavySnow2, 2));
 		FreezerRecipes.addRecipe(new ItemStack(Items.SLIME_BALL), 1200,
 				new ItemStack(Items.MAGMA_CREAM));
 		FreezerRecipes.addRecipe(new ItemStack(Blocks.ICE), 2000,
