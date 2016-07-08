@@ -22,7 +22,6 @@ public class ForestryPlugin
 	{
 		beeAttractor = ModBlocks.registerBlock(
 				new BlockBeeAttractor("beeAttractor", "BeeAttractor", 2F, 12F));
-		ModRenderers.registerItemRenderer(Item.getItemFromBlock(beeAttractor));
 	}
 
 	public static void init()
