@@ -172,7 +172,7 @@ public class ModGuidePages
 				new ItemStack(ModBlocks.crystalFluidBlocks.get(0)),
 				"Clean Crystal Fluid is used for obtaining more crystal shards, "
 						+ "and can be condensed into ingots with the <link,Alchemical_Condenser,skyresources:AlchemicalCondenser:0,alchemicalCondenser> . "
-						+ "\n For it to work, the fluid has to be still and flowing, and cannot have an <link,Alchemical_Condenser,skyresources:AlchemicalCondenser:0,alchemicalCondenser> "
+						+ "\n For it to work, the fluid has to be still and not flowing, and cannot have an <link,Alchemical_Condenser,skyresources:AlchemicalCondenser:0,alchemicalCondenser> "
 						+ "underneath it. "
 						+ "\n As long as that is true, crystal shards will randomly pop and that will cause the fluid to have a chance to run out and disappear. "
 						+ "Rarer fluids pop less crystals slower, and have a higher chance to run out and disappear. "

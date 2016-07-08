@@ -23,6 +23,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -67,8 +68,11 @@ public class ItemRockGrinder extends ItemPickaxe
 	{
 		World world = player.worldObj;
 		IBlockState state = world.getBlockState(pos);
-		item.attemptDamageItem(1, this.itemRand);
-
+		if(item.attemptDamageItem(1, this.itemRand))
+		{
+			player.setHeldItem(EnumHand.MAIN_HAND, null);
+		}
+		
 		List<RockGrinderRecipe> recipes = RockGrinderRecipes.getRecipes(state);
 		boolean worked = false;
 		for (RockGrinderRecipe r : recipes)
