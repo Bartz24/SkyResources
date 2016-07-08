@@ -24,6 +24,7 @@ import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.GameType;
 import net.minecraft.world.World;
 import net.minecraft.world.border.WorldBorder;
 import scala.collection.concurrent.Debug;
@@ -125,6 +126,9 @@ public class PlatformCommand extends CommandBase implements ICommand
 			} else if (subCommand.equals("guide"))
 			{
 				guide(player, args, world);
+			} else if (subCommand.equals("visit"))
+			{
+				visit(player, args);
 			} else if (subCommand.equals("onechunk"))
 			{
 
@@ -156,6 +160,54 @@ public class PlatformCommand extends CommandBase implements ICommand
 				reset(player, args, world);
 			}
 		}
+
+	}
+	
+	void visit(EntityPlayerMP player, String[] args) throws CommandException
+	{
+		if (args.length > 2)
+		{
+			player.addChatMessage(
+					new TextComponentString("Must have 1 argument."));
+			return;
+		}
+		if (References.worldOneChunk)
+		{
+			player.addChatMessage(new TextComponentString(
+					"Can't use this command in this mode."));
+			return;
+		}
+		if (References.initialIslandDistance != ConfigOptions.islandDistance)
+		{
+			player.addChatMessage(new TextComponentString(
+					"This isn't going to work. The island distance has changed!"));
+			return;
+		}
+
+		IslandPos isPos = References.getPlayerIsland(args[1]);
+		
+		if(args[1].equals(player.getName()))
+		{
+			player.addChatMessage(
+					new TextComponentString("Can't visit your own island."));
+			return;			
+		}
+
+		if (isPos == null)
+		{
+			player.addChatMessage(
+					new TextComponentString("Player doesn't exist or player doesn't have an island."));
+			return;
+		}
+
+		BlockPos visitPos = new BlockPos(
+				isPos.getX() * ConfigOptions.islandDistance, 88,
+				isPos.getY() * ConfigOptions.islandDistance);
+		
+		player.setGameType(GameType.SPECTATOR);
+
+		player.connection.setPlayerLocation(visitPos.getX() + 0.5, visitPos.getY(),
+				visitPos.getZ() + 0.5, player.rotationYaw, player.rotationPitch);
 
 	}
 
@@ -233,14 +285,14 @@ public class PlatformCommand extends CommandBase implements ICommand
 				if (i > -1 && i < 2)
 				{
 					EventHandler.spawnPlayer(player, new BlockPos(
-							pos.getX() * ConfigOptions.islandDistance, 86,
+							pos.getX() * ConfigOptions.islandDistance, 88,
 							pos.getY() * ConfigOptions.islandDistance), i);
 				}
 			} else
 			{
 				EventHandler.createSpawn(world,
 						new BlockPos(pos.getX() * ConfigOptions.islandDistance,
-								86, pos.getY() * ConfigOptions.islandDistance));
+								88, pos.getY() * ConfigOptions.islandDistance));
 			}
 			for (EntityPlayerMP p : players.getPlayerList())
 			{
@@ -249,7 +301,7 @@ public class PlatformCommand extends CommandBase implements ICommand
 					References.setStartingInv(p);
 
 					EventHandler.spawnPlayer(p, new BlockPos(
-							pos.getX() * ConfigOptions.islandDistance, 86,
+							pos.getX() * ConfigOptions.islandDistance, 88,
 							pos.getY() * ConfigOptions.islandDistance), false);
 					p.addChatMessage(new TextComponentString("Island Reset!"));
 				}
@@ -291,17 +343,17 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 				if (i > -1 && i < 2)
 				{
-					EventHandler.spawnPlayer(player, new BlockPos(0, 86, 0), i);
+					EventHandler.spawnPlayer(player, new BlockPos(0, 88, 0), i);
 				}
 			} else
 			{
-				EventHandler.createSpawn(world, new BlockPos(0, 86, 0));
+				EventHandler.createSpawn(world, new BlockPos(0, 88, 0));
 			}
 			for (EntityPlayerMP p : players.getPlayerList())
 			{
 				p.inventory.clear();
 
-				EventHandler.spawnPlayer(p, new BlockPos(0, 86, 0), false);
+				EventHandler.spawnPlayer(p, new BlockPos(0, 88, 0), false);
 				p.addChatMessage(new TextComponentString("Chunk Reset!"));
 			}
 		}
@@ -388,14 +440,14 @@ public class PlatformCommand extends CommandBase implements ICommand
 			if (i > -1 && i < 2)
 			{
 				EventHandler.spawnPlayer(player, new BlockPos(
-						position.getX() * ConfigOptions.islandDistance, 86,
+						position.getX() * ConfigOptions.islandDistance, 88,
 						position.getY() * ConfigOptions.islandDistance), i);
 			}
 		} else
 		{
 			EventHandler.spawnPlayer(player,
 					new BlockPos(position.getX() * ConfigOptions.islandDistance,
-							86, position.getY() * ConfigOptions.islandDistance),
+							88, position.getY() * ConfigOptions.islandDistance),
 					true);
 		}
 		References.CurrentIslandsList.add(new IslandPos(position.getX(),
@@ -470,7 +522,7 @@ public class PlatformCommand extends CommandBase implements ICommand
 		}
 
 		EventHandler.spawnPlayer(player2,
-				new BlockPos(position.getX() * ConfigOptions.islandDistance, 86,
+				new BlockPos(position.getX() * ConfigOptions.islandDistance, 88,
 						position.getY() * ConfigOptions.islandDistance),
 				false);
 	}
@@ -510,7 +562,7 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 		player.inventory.clear();
 
-		EventHandler.spawnPlayer(player, new BlockPos(0, 86, 0), false);
+		EventHandler.spawnPlayer(player, new BlockPos(0, 88, 0), false);
 	}
 
 	void tpHome(EntityPlayerMP player, String[] args) throws CommandException
@@ -544,7 +596,7 @@ public class PlatformCommand extends CommandBase implements ICommand
 		}
 
 		BlockPos home = new BlockPos(
-				isPos.getX() * ConfigOptions.islandDistance, 86,
+				isPos.getX() * ConfigOptions.islandDistance, 88,
 				isPos.getY() * ConfigOptions.islandDistance);
 
 		if (Math.hypot(player.posX - home.getX() - 0.5,
@@ -556,6 +608,11 @@ public class PlatformCommand extends CommandBase implements ICommand
 							+ (ConfigOptions.islandDistance / 2)
 							+ " blocks away!"));
 			return;
+		}
+		
+		if(player.isSpectator())
+		{
+			player.setGameType(GameType.SURVIVAL);
 		}
 
 		player.connection.setPlayerLocation(home.getX() + 0.5, home.getY(),
@@ -571,7 +628,13 @@ public class PlatformCommand extends CommandBase implements ICommand
 					"Can't use this command in this mode."));
 			return;
 		}
-		player.connection.setPlayerLocation(0 + 0.5, 86, 0 + 0.5,
+		
+		if(player.isSpectator())
+		{
+			player.setGameType(GameType.SURVIVAL);
+		}
+		
+		player.connection.setPlayerLocation(0 + 0.5, 88, 0 + 0.5,
 				player.rotationYaw, player.rotationPitch);
 	}
 }

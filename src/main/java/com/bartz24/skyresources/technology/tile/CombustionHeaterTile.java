@@ -25,6 +25,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 
@@ -96,7 +97,8 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile
 		int fuelTime = TileEntityFurnace.getItemBurnTime(stack);
 		if (fuelTime > 0)
 		{
-			return (int) Math.cbrt((float) fuelTime * ConfigOptions.combustionHeatMultiplier);
+			return (int) Math.cbrt(
+					(float) fuelTime * ConfigOptions.combustionHeatMultiplier);
 		}
 
 		return 0;
@@ -230,24 +232,21 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile
 	public boolean hasValidMultiblock()
 	{
 		List<Material> materials = ValidMaterialsForCrafting();
-		if (!materials.contains(
-				worldObj.getBlockState(pos.add(-1, 1, 0)).getMaterial())
-				|| !worldObj.isBlockFullCube(pos.add(-1, 1, 0))
-				|| !materials.contains(
-						worldObj.getBlockState(pos.add(1, 1, 0)).getMaterial())
-				|| !worldObj.isBlockFullCube(pos.add(1, 1, 0))
-				|| !materials.contains(
-						worldObj.getBlockState(pos.add(0, 2, 0)).getMaterial())
-				|| !worldObj.isBlockFullCube(pos.add(0, 2, 0))
-				|| !materials.contains(
-						worldObj.getBlockState(pos.add(0, 1, -1)).getMaterial())
-				|| !worldObj.isBlockFullCube(pos.add(0, 1, -1))
-				|| !materials.contains(
-						worldObj.getBlockState(pos.add(0, 1, 1)).getMaterial())
-				|| !worldObj.isBlockFullCube(pos.add(0, 1, 1))
+		if (!isBlockValid(pos.add(-1, 1, 0)) || !isBlockValid(pos.add(1, 1, 0))
+				|| !isBlockValid(pos.add(0, 2, 0))
+				|| !isBlockValid(pos.add(0, 1, -1))
+				|| !isBlockValid(pos.add(0, 1, 1))
 				|| !worldObj.isAirBlock(pos.add(0, 1, 0)))
 			return false;
 		return true;
+	}
+
+	boolean isBlockValid(BlockPos pos)
+	{
+		return ValidMaterialsForCrafting()
+				.contains(worldObj.getBlockState(pos).getMaterial())
+				&& worldObj.isBlockFullCube(pos)
+				&& worldObj.getBlockState(pos).isOpaqueCube();
 	}
 
 	void craftItem()

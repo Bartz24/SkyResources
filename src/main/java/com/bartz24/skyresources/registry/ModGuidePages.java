@@ -49,6 +49,7 @@ public class ModGuidePages
 						+ "\n Make a snow golem and make sure it doesn't fall off the edge or die. Get more snow from the snow golem. "
 						+ "\n Next, you need to make a <link,Mini_Freezer,skyresources:MiniFreezer:0,miniFreezer> , "
 						+ "which is used to make <link,heavy_snowballs,skyresources:HeavySnowball:0,heavySnowball> . "
+						+ "\n The <link,heavy_snowballs,skyresources:HeavySnowball:0,heavySnowball> can be used as a projectile weapon as it deals damage. "
 						+ "\n Make a mob farm using the snow, or <recipe,,skyresources:HeavySnow:0> blocks for rotten flesh and bones. "
 						+ "This will be used to make <recipe,,skyresources:HeavySnow2:0> , which can then be froze into <recipe,,minecraft:dirt:1> . "
 						+ "\n Another block of <recipe,,minecraft:dirt:1> is needed for a <recipe,,minecraft:sapling:1> . "
