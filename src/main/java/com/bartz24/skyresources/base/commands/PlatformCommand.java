@@ -634,7 +634,7 @@ public class PlatformCommand extends CommandBase implements ICommand
 			player.setGameType(GameType.SURVIVAL);
 		}
 		
-		player.connection.setPlayerLocation(0 + 0.5, 88, 0 + 0.5,
+		player.connection.setPlayerLocation(0 + 0.5, 88, 0 + 0.5f,
 				player.rotationYaw, player.rotationPitch);
 	}
 }
