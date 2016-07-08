@@ -104,7 +104,7 @@ public class GuiFreezer extends GuiContainer
 	void drawProgress()
 	{
 		GL11.glEnable(GL11.GL_BLEND);
-		GlStateManager.color(1.0f, 1.0f, 1.0f, 0.5f);
+		GlStateManager.color(1.0f, 1.0f, 1.0f, 0.9f);
 		this.mc.getTextureManager().bindTexture(
 				new ResourceLocation("textures/blocks/ice_packed.png"));
 
