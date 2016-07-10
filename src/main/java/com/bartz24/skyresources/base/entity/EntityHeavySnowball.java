@@ -18,6 +18,7 @@ public class EntityHeavySnowball extends EntitySnowball
     public EntityHeavySnowball(World worldIn, EntityLivingBase throwerIn)
     {
         super(worldIn, throwerIn);
+        this.moveRelative(1, .5f, 1);
     }
 
     public EntityHeavySnowball(World worldIn, double x, double y, double z)
