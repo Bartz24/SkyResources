@@ -21,14 +21,6 @@ public class ClientProxy extends CommonProxy
 		OBJLoader.INSTANCE.addDomain(References.ModID);
 
 		ModRenderers.preInit();
-	}
-
-	@Override
-	public void init(FMLInitializationEvent e)
-	{
-		new ModKeyBindings();
-		super.init(e);
-		ModRenderers.init();
 
 		
 		if(Loader.isModLoaded("forestry"))
@@ -39,5 +31,13 @@ public class ClientProxy extends CommonProxy
 		{
 			IC2Plugin.initRenderers();
 		}
+	}
+
+	@Override
+	public void init(FMLInitializationEvent e)
+	{
+		new ModKeyBindings();
+		super.init(e);
+		ModRenderers.init();
 	}
 }
