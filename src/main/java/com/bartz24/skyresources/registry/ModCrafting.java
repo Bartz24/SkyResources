@@ -2,6 +2,7 @@ package com.bartz24.skyresources.registry;
 
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
+import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.alchemy.infusion.InfusionRecipes;
 import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.base.ModFuelHandler;
@@ -155,6 +156,23 @@ public class ModCrafting
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.purificationVessel), new Object[]
 				{ "XXX", "XYX", "XXX", 'X', "blockGlass", 'Y', Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE }));
+		
+		if(OreDictionary.doesOreNameExist("ingotSteel") && OreDictionary.doesOreNameExist("dustCoal"))
+		{
+			GameRegistry.addRecipe(
+					new ShapedOreRecipe(new ItemStack(ModItems.baseComponent, 1, 3), new Object[]
+					{ "XZX", "XYX", "XZX", 'X', "ingotSteel", 'Y', Blocks.REDSTONE_BLOCK, 'Z', "dustCoal" }));			
+			GameRegistry.addRecipe(
+					new ShapedOreRecipe(new ItemStack(ModBlocks.combustionHeater, 1, 2), new Object[]
+					{ "XZX", "XYX", "XYX", 'X', "ingotSteel", 'Y', new ItemStack(ModItems.baseComponent, 1, 3), 'Z', new ItemStack(ModItems.baseComponent, 1, 1) }));			
+			GameRegistry.addRecipe(
+					new ShapedOreRecipe(new ItemStack(ModBlocks.poweredHeater), new Object[]
+					{ "XZX", "XYX", "XXX", 'X', "ingotSteel", 'Y', new ItemStack(ModItems.baseComponent, 1, 3), 'Z', new ItemStack(ModItems.baseComponent, 1, 1) }));				
+		}
+		else
+		{
+			SkyResources.logger.warn("Recipes for steel powered machines have not been added as they require steel and coal dust.");
+		}
 
 		GameRegistry.addSmelting(ModBlocks.dryCactus, new ItemStack(Items.DYE, 1, 7), 0.2F);
 

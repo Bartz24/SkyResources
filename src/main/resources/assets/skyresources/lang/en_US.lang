@@ -8,6 +8,7 @@ item.skyresources.alchemyItemComponent.goldNeedleAlchemical.name=Alchemical Gold
 item.skyresources.baseItemComponent.woodHeatComponent.name=Wooden Heat Component
 item.skyresources.baseItemComponent.ironHeatComponent.name=Iron Heat Component
 item.skyresources.baseItemComponent.plantMatter.name=Plant Matter
+item.skyresources.baseItemComponent.steelPowerComponent.name=Steel Power Component
 item.skyresources.techItemComponent.stoneCrushed.name=Crushed Stone
 item.skyresources.techItemComponent.radioactiveMix.name=Radioactive Powder Mixture
 item.skyresources.cactusFruit.name=Cactus Fruit
