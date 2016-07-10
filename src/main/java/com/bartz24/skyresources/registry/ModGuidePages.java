@@ -60,7 +60,8 @@ public class ModGuidePages
 				"The <recipe,,skyresources:MiniFreezer:0> is the first tier of freezers. The <link,Iron_Freezer,skyresources:IronFreezer:0,ironFreezer> is the next tier. "
 						+ "\n This freezer runs at 0.25x the speed of the <link,Iron_Freezer,skyresources:IronFreezer:0,ironFreezer> . 1x is the normal speed shown in JEI."
 						+ " This freezer can also only freeze 1 stack of items at a time. "
-						+ "\n Items will pop out the front or into an adjecent inventory.");
+						+ "\n Items will pop out the front or into an adjecent inventory. "
+						+ "\n Freezers will not output to adjecent freezers unless the other freezer in front of it.");
 
 		SkyResourcesGuide.addPage("combustionHeater",
 				"guide.skyresources.stage2", "Combustion Heater",
