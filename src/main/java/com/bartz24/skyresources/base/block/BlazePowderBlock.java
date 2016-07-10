@@ -18,24 +18,20 @@ import net.minecraft.world.World;
 public class BlazePowderBlock extends BaseBlock
 {
 
-	public BlazePowderBlock(Material material, String unlocalizedName,
-			String registryName, float hardness, float resistance,
-			SoundType stepSound)
+	public BlazePowderBlock(Material material, String unlocalizedName, String registryName,
+			float hardness, float resistance, SoundType stepSound)
 	{
-		super(material, registryName, registryName, resistance, resistance,
-				stepSound);
+		super(material, registryName, registryName, resistance, resistance, stepSound);
 	}
 
 	@Override
-	public void updateTick(World world, BlockPos pos, IBlockState state,
-			Random rand)
+	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
 	{
 		super.updateTick(world, pos, state, rand);
 		if (!world.isRemote)
 		{
-			if (HeatSources.isValidHeatSource(world.getBlockState(pos.down()))
-					&& rand.nextInt(50) <= HeatSources.getHeatSourceValue(
-							world.getBlockState(pos.down())))
+			if (HeatSources.isValidHeatSource(pos.down(), world)
+					&& rand.nextInt(20000) <= HeatSources.getHeatSourceValue(pos.down(), world))
 			{
 				world.setBlockState(pos, Blocks.LAVA.getDefaultState());
 			} else
@@ -50,9 +46,8 @@ public class BlazePowderBlock extends BaseBlock
 	}
 
 	@Override
-	public IBlockState onBlockPlaced(World worldIn, BlockPos pos,
-			EnumFacing facing, float hitX, float hitY, float hitZ, int meta,
-			EntityLivingBase placer)
+	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX,
+			float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		if (placer instanceof EntityPlayer)
 			((EntityPlayer) placer).addStat(ModAchievements.lavaMelting, 1);

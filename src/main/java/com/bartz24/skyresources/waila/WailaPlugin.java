@@ -9,6 +9,7 @@ import com.bartz24.skyresources.alchemy.tile.PurificationVesselTile;
 import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.forestry.block.BlockBeeAttractor;
 import com.bartz24.skyresources.forestry.tile.TileBeeAttractor;
+import com.bartz24.skyresources.technology.tile.TilePoweredHeater;
 
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
@@ -39,6 +40,8 @@ public class WailaPlugin implements IWailaDataProvider
 				CrucibleTile.class);
 		registrar.registerBodyProvider(instance,
 				TileBeeAttractor.class);
+		registrar.registerBodyProvider(instance,
+				TilePoweredHeater.class);
 	}
 
 	@Override
@@ -99,7 +102,7 @@ public class WailaPlugin implements IWailaDataProvider
 			List<String> tip)
 	{
 		if (HeatSources.isValidHeatSource(
-				tile.getWorld().getBlockState(tile.getPos().down())))
+				tile.getPos().down(), tile.getWorld()))
 			tip.add("Valid Heat Source");
 		else
 			tip.add("Invalid Heat Source");
@@ -123,7 +126,7 @@ public class WailaPlugin implements IWailaDataProvider
 			List<String> tip)
 	{
 		if (HeatSources.isValidHeatSource(
-				tile.getWorld().getBlockState(tile.getPos().down())))
+				tile.getPos().down(), tile.getWorld()))
 			tip.add("Valid Heat Source");
 		else
 			tip.add("Invalid Heat Source");
@@ -145,5 +148,15 @@ public class WailaPlugin implements IWailaDataProvider
 				: " " + tile.getTank().getFluidAmount();
 		tip.add("Tank Fluid:");
 		tip.add(tankName + tankAmt);
+		
+		String rf = "RF: " + tile.getEnergyStored(null) + " / " + tile.getMaxEnergyStored(null);
+		tip.add(rf);
+	}
+
+	public void addHeater(TilePoweredHeater tile,
+			List<String> tip)
+	{		
+		String rf = "RF: " + tile.getEnergyStored(null) + " / " + tile.getMaxEnergyStored(null);
+		tip.add(rf);
 	}
 }

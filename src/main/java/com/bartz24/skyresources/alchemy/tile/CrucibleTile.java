@@ -213,10 +213,10 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 
 	int getHeatSourceVal()
 	{
-		if (HeatSources.isValidHeatSource(worldObj.getBlockState(pos.down())))
+		if (HeatSources.isValidHeatSource(pos.down(), worldObj))
 		{
-			return HeatSources
-					.getHeatSourceValue(worldObj.getBlockState(pos.down())) / 5;
+			return Math.max(HeatSources
+					.getHeatSourceValue(pos.down(), worldObj) / 5, 1);
 		}
 		return 0;
 	}

@@ -52,14 +52,14 @@ public class CondenserTile extends TileEntity implements ITickable
 							worldObj.getBlockState(pos.add(0, 1, 0)))
 					&& OreDictionary.doesOreNameExist(oreDictCheck)
 					&& HeatSources.isValidHeatSource(
-							worldObj.getBlockState(pos.down())))
+							pos.down(), worldObj))
 			{
 				this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL,
 						pos.getX() + rand.nextFloat(), pos.getY() + 1.5D,
 						pos.getZ() + rand.nextFloat(), 0.0D, 0.0D, 0.0D);
 				if (!worldObj.isRemote)
 					timeCondense += HeatSources.getHeatSourceValue(
-							worldObj.getBlockState(pos.down()));
+							pos.down(), worldObj);
 			} else if (!worldObj.isRemote)
 				timeCondense = 0;
 

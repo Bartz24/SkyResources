@@ -23,8 +23,7 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
-public class PurificationVesselTile extends TileEntity
-		implements ITickable, IFluidHandler
+public class PurificationVesselTile extends TileEntity implements ITickable, IFluidHandler
 {
 	FluidTank lowerTank;
 	FluidTank upperTank;
@@ -43,8 +42,7 @@ public class PurificationVesselTile extends TileEntity
 	}
 
 	@Override
-	public FluidStack drain(EnumFacing from, FluidStack resource,
-			boolean doDrain)
+	public FluidStack drain(EnumFacing from, FluidStack resource, boolean doDrain)
 	{
 		if (resource != null && canDrain(from, resource.getFluid()))
 		{
@@ -71,8 +69,7 @@ public class PurificationVesselTile extends TileEntity
 		if (from == EnumFacing.UP)
 			return false;
 
-		return lowerTank.getFluid() == null
-				|| lowerTank.getFluid().getFluid() == fluid;
+		return lowerTank.getFluid() == null || lowerTank.getFluid().getFluid() == fluid;
 	}
 
 	@Override
@@ -82,8 +79,8 @@ public class PurificationVesselTile extends TileEntity
 		{
 			if (upperTank != null)
 			{
-				if (fluid == null || upperTank.getFluid() != null
-						&& upperTank.getFluid().getFluid() == fluid)
+				if (fluid == null
+						|| upperTank.getFluid() != null && upperTank.getFluid().getFluid() == fluid)
 				{
 					return true;
 				}
@@ -136,28 +133,22 @@ public class PurificationVesselTile extends TileEntity
 	{
 		if (!worldObj.isRemote)
 		{
-			if (lowerTank.getFluid() != null
-					&& lowerTank.getFluid().getFluid() != null)
+			if (lowerTank.getFluid() != null && lowerTank.getFluid().getFluid() != null)
 			{
 				int type = -1;
-				if (ModFluids.dirtyCrystalFluids
-						.contains(lowerTank.getFluid().getFluid()))
-					type = ModFluids.dirtyCrystalFluids
-							.indexOf(lowerTank.getFluid().getFluid());
+				if (ModFluids.dirtyCrystalFluids.contains(lowerTank.getFluid().getFluid()))
+					type = ModFluids.dirtyCrystalFluids.indexOf(lowerTank.getFluid().getFluid());
 
 				if (type >= 0)
 				{
-					if (HeatSources.isValidHeatSource(
-							worldObj.getBlockState(pos.down())))
+					if (HeatSources.isValidHeatSource(pos.down(), worldObj))
 					{
-						int rate = Math
-								.min(HeatSources
-										.getHeatSourceValue((worldObj
-												.getBlockState(pos.down())))
-										/ 5, lowerTank.getFluidAmount());
+						int rate = Math.min(Math
+								.max(HeatSources.getHeatSourceValue(pos.down(), worldObj) / 5, 1),
+								lowerTank.getFluidAmount());
 
-						int transferAmount = upperTank.fill(new FluidStack(
-								ModFluids.crystalFluids.get(type), rate), true);
+						int transferAmount = upperTank.fill(
+								new FluidStack(ModFluids.crystalFluids.get(type), rate), true);
 						lowerTank.drain(transferAmount, true);
 					}
 				}
@@ -208,8 +199,8 @@ public class PurificationVesselTile extends TileEntity
 		}
 	}
 
-	public boolean shouldRefresh(World world, BlockPos pos,
-			IBlockState oldState, IBlockState newState)
+	public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState,
+			IBlockState newState)
 	{
 		return oldState.getBlock() != newState.getBlock();
 	}
