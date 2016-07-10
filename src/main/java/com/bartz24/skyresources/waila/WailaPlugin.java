@@ -9,6 +9,7 @@ import com.bartz24.skyresources.alchemy.tile.PurificationVesselTile;
 import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.forestry.block.BlockBeeAttractor;
 import com.bartz24.skyresources.forestry.tile.TileBeeAttractor;
+import com.bartz24.skyresources.technology.block.BlockPoweredHeater;
 import com.bartz24.skyresources.technology.tile.TilePoweredHeater;
 
 import mcp.mobius.waila.api.IWailaConfigHandler;
@@ -72,6 +73,12 @@ public class WailaPlugin implements IWailaDataProvider
 			TileBeeAttractor tile = (TileBeeAttractor) accessor
 					.getTileEntity();
 			addBeeAttractor(tile, currentTip);
+		}
+		else if (accessor.getBlock() instanceof BlockPoweredHeater)
+		{
+			TilePoweredHeater tile = (TilePoweredHeater) accessor
+					.getTileEntity();
+			addHeater(tile, currentTip);
 		}
 
 		return currentTip;

@@ -1,0 +1,19 @@
+{
+  "parent":"block/cube_all",
+  "textures": {
+       "down": "skyresources:blocks/steelMachine",
+         "up": "skyresources:blocks/combustionHeaterSteel",
+      "north": "skyresources:blocks/steelMachine",
+      "south": "skyresources:blocks/steelMachine",
+       "west": "skyresources:blocks/steelMachine",
+       "east": "skyresources:blocks/steelMachine",
+   "particle": "skyresources:blocks/combustionHeaterSteel"
+  },
+  "display": {
+        "thirdperson": {
+            "rotation": [ 10, -45, 170 ],
+            "translation": [ 0, 1.5, -2.75 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        }
+    }
+}

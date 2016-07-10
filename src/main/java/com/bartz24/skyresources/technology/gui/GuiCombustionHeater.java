@@ -64,8 +64,8 @@ public class GuiCombustionHeater extends GuiContainer
 		this.mc.getTextureManager().bindTexture(new ResourceLocation(
 				References.ModID, "textures/gui/combustionHeater.png"));
 
-		int height = (int) (tile.getField(2) * 69F / 2000F);
-		int maxHeatHeight = Math.round((tile.getMaxHeat() * 69F / 2000F));
+		int height = (int) (tile.getField(2) * 69F / 3000F);
+		int maxHeatHeight = Math.round((tile.getMaxHeat() * 69F / 3000F));
 		this.drawTexturedModalRect(157, 75 - height, 176, 83 - height, 8,
 				height);
 

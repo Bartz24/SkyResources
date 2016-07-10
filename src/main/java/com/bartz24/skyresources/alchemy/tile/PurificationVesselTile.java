@@ -128,6 +128,19 @@ public class PurificationVesselTile extends TileEntity implements ITickable, IFl
 		this.readFromNBT(packet.getNbtCompound());
 	}
 
+
+	int getHeatSourceVal()
+	{
+		if (HeatSources.isValidHeatSource(pos.down(), worldObj))
+		{
+			if(HeatSources
+					.getHeatSourceValue(pos.down(), worldObj) > 0)
+			return Math.max(HeatSources
+					.getHeatSourceValue(pos.down(), worldObj) / 5, 1);
+		}
+		return 0;
+	}
+
 	@Override
 	public void update()
 	{
@@ -143,8 +156,7 @@ public class PurificationVesselTile extends TileEntity implements ITickable, IFl
 				{
 					if (HeatSources.isValidHeatSource(pos.down(), worldObj))
 					{
-						int rate = Math.min(Math
-								.max(HeatSources.getHeatSourceValue(pos.down(), worldObj) / 5, 1),
+						int rate = Math.min(getHeatSourceVal(),
 								lowerTank.getFluidAmount());
 
 						int transferAmount = upperTank.fill(

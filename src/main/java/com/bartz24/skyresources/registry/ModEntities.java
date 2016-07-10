@@ -9,6 +9,8 @@ import com.bartz24.skyresources.technology.tile.ConcentratorTile;
 import com.bartz24.skyresources.technology.tile.DirtFurnaceTile;
 import com.bartz24.skyresources.technology.tile.FluidDropperTile;
 import com.bartz24.skyresources.technology.tile.FreezerTile;
+import com.bartz24.skyresources.technology.tile.TilePoweredCombustionHeater;
+import com.bartz24.skyresources.technology.tile.TilePoweredHeater;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -16,8 +18,7 @@ public final class ModEntities
 {
 	public static void init()
 	{
-		GameRegistry.registerTileEntity(CombustionHeaterTile.class,
-				"combustionHeaterTile");
+		GameRegistry.registerTileEntity(CombustionHeaterTile.class, "combustionHeaterTile");
 		GameRegistry.registerTileEntity(FluidDropperTile.class, "fluidDropperTile");
 		GameRegistry.registerTileEntity(CondenserTile.class, "condenserTile");
 		GameRegistry.registerTileEntity(CrucibleTile.class, "crucibleTile");
@@ -26,6 +27,9 @@ public final class ModEntities
 		GameRegistry.registerTileEntity(FreezerTile.class, "freezerTile");
 		GameRegistry.registerTileEntity(DirtFurnaceTile.class, "furnaceTile");
 		GameRegistry.registerTileEntity(TileBeeAttractor.class, "beeAttractorTile");
-		
+		GameRegistry.registerTileEntity(TilePoweredHeater.class, "poweredHeaterTile");
+		GameRegistry.registerTileEntity(TilePoweredCombustionHeater.class,
+				"poweredCombustionHeaterTile");
+
 	}
 }

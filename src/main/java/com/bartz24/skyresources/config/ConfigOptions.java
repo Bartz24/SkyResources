@@ -132,7 +132,7 @@ public class ConfigOptions
 				.get("healthRing", "Health Ring Boost Percentage", 0.05)
 				.getDouble(0.05);
 		condenserProcessTimeBase = config
-				.get("condenser", "Condenser Base Process Time", 2000)
+				.get("condenser", "Condenser Base Process Time", 750)
 				.getInt(2000);
 		crucibleCapacity = config.get("crucible", "Crucible Capacity", 4000)
 				.getInt(4000);

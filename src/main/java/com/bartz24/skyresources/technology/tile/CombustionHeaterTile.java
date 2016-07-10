@@ -290,7 +290,7 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile
 					}
 				}
 
-				currentHeatValue *= 0.8F;
+				currentHeatValue *= 0.4F;
 
 				ItemStack stack = recipe.getOutput().copy();
 

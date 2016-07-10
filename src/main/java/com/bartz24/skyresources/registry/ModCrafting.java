@@ -189,10 +189,10 @@ public class ModCrafting
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.COAL, 1), 50,
 				new ItemStack(Items.COAL, 2, 1));
-		CombustionRecipes.addRecipe(new ItemStack(Items.BLAZE_POWDER, 2), 75,
-				new ItemStack(Items.GUNPOWDER, 1));
+		CombustionRecipes.addRecipe(new ItemStack(Items.BLAZE_POWDER, 1), 75,
+				new ItemStack(Items.GUNPOWDER, 2));
 		CombustionRecipes.addRecipe(new ItemStack(Items.DIAMOND, 1, 0), 1000,
-				new ItemStack(ModBlocks.compressedCoalBlock2, 2));
+				new ItemStack(ModBlocks.compressedCoalBlock, 2));
 		CombustionRecipes.addRecipe(new ItemStack(Blocks.SANDSTONE, 8, 1), 200,
 				new ItemStack(Blocks.SAND, 12), new ItemStack(Items.DYE, 1, 1));
 		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 0), 90,
