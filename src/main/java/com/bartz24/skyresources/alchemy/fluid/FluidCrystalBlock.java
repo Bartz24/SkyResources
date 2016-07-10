@@ -32,13 +32,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class FluidCrystalBlock extends BlockFluidClassic
 {
 
-	public FluidCrystalBlock(Fluid fluid, Material material,
-			String unlocalizedName, String registryName)
+	public FluidCrystalBlock(Fluid fluid, Material material, String unlocalizedName,
+			String registryName)
 	{
 		super(fluid, material);
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
 		this.setRegistryName(registryName);
-        this.setTickRandomly(true);
+		this.setTickRandomly(true);
 	}
 
 	@Override
@@ -49,37 +49,33 @@ public class FluidCrystalBlock extends BlockFluidClassic
 	}
 
 	@Override
-	public void updateTick(World world, BlockPos pos, IBlockState state,
-			Random rand)
+	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
 	{
 		super.updateTick(world, pos, state, rand);
 		if (!world.isRemote)
 		{
-			if (!ModFluids.crystalFluids.contains(this.getFluid()))
-				return;
-			if (this.isSourceBlock(world, pos)
-					&& isNotFlowing(world, pos, state))
+			if (ModFluids.crystalFluids.contains(this.getFluid()))
 			{
-				if (rand.nextInt(ModFluids
-						.crystalFluidRarity()[ModBlocks.crystalFluidBlocks
-								.indexOf(this)]) == 0
-						&& !(world.getBlockState(pos.down())
-								.getBlock() instanceof CondenserBlock))
+				if (this.isSourceBlock(world, pos) && isNotFlowing(world, pos, state))
 				{
-					ItemStack stack = new ItemStack(ModItems.metalCrystal, 1,
-							ModBlocks.crystalFluidBlocks.indexOf(this));
-					Entity entity = new EntityItem(world, pos.getX() + 0.5F,
-							pos.getY() + 0.5F, pos.getZ() + 0.5F, stack);
-					world.spawnEntityInWorld(entity);
-					world.playSound((EntityPlayer) null, pos,
-							SoundEvents.ENTITY_ARROW_HIT_PLAYER,
-							SoundCategory.BLOCKS, 1.0F,
-							2.2F / (rand.nextFloat() * 0.2F + 0.9F));
-					if (rand.nextInt(8 + ModFluids
-							.crystalFluidRarity()[ModBlocks.crystalFluidBlocks
-									.indexOf(this)]
-							/ 2) >= 8)
-						world.setBlockToAir(pos);
+					if (rand.nextInt(ModFluids.crystalFluidRarity()[ModBlocks.crystalFluidBlocks
+							.indexOf(this)]) == 0
+							&& !(world.getBlockState(pos.down())
+									.getBlock() instanceof CondenserBlock))
+					{
+						ItemStack stack = new ItemStack(ModItems.metalCrystal, 1,
+								ModBlocks.crystalFluidBlocks.indexOf(this));
+						Entity entity = new EntityItem(world, pos.getX() + 0.5F, pos.getY() + 0.5F,
+								pos.getZ() + 0.5F, stack);
+						world.spawnEntityInWorld(entity);
+						world.playSound((EntityPlayer) null, pos,
+								SoundEvents.ENTITY_ARROW_HIT_PLAYER, SoundCategory.BLOCKS, 1.0F,
+								2.2F / (rand.nextFloat() * 0.2F + 0.9F));
+						if (rand.nextInt(
+								8 + ModFluids.crystalFluidRarity()[ModBlocks.crystalFluidBlocks
+										.indexOf(this)] / 2) >= 8)
+							world.setBlockToAir(pos);
+					}
 				}
 			}
 		}
@@ -88,8 +84,7 @@ public class FluidCrystalBlock extends BlockFluidClassic
 	public boolean isNotFlowing(World world, BlockPos pos, IBlockState state)
 	{
 		BlockPos[] checkPos = new BlockPos[]
-		{ pos.add(1, 0, 0), pos.add(-1, 0, 0), pos.add(0, 0, 1),
-				pos.add(0, 0, -1) };
+		{ pos.add(1, 0, 0), pos.add(-1, 0, 0), pos.add(0, 0, 1), pos.add(0, 0, -1) };
 		for (BlockPos pos2 : checkPos)
 		{
 			if (world.getBlockState(pos2).getBlock() == this)
@@ -112,15 +107,14 @@ public class FluidCrystalBlock extends BlockFluidClassic
 	}
 
 	@Override
-	public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState,
-			World worldIn, BlockPos pos)
+	public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
 	{
 		return NULL_AABB;
 	}
 
 	@Nullable
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState,
-			World worldIn, BlockPos pos)
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn,
+			BlockPos pos)
 	{
 		return NULL_AABB;
 	}

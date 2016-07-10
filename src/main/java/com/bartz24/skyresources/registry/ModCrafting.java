@@ -156,22 +156,23 @@ public class ModCrafting
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.purificationVessel), new Object[]
 				{ "XXX", "XYX", "XXX", 'X', "blockGlass", 'Y', Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE }));
-		
-		if(OreDictionary.doesOreNameExist("ingotSteel") && OreDictionary.doesOreNameExist("dustCoal"))
+
+		if (OreDictionary.doesOreNameExist("ingotSteel")
+				&& OreDictionary.doesOreNameExist("dustCoal"))
 		{
 			GameRegistry.addRecipe(
 					new ShapedOreRecipe(new ItemStack(ModItems.baseComponent, 1, 3), new Object[]
-					{ "XZX", "XYX", "XZX", 'X', "ingotSteel", 'Y', Blocks.REDSTONE_BLOCK, 'Z', "dustCoal" }));			
-			GameRegistry.addRecipe(
-					new ShapedOreRecipe(new ItemStack(ModBlocks.combustionHeater, 1, 2), new Object[]
-					{ "XZX", "XYX", "XYX", 'X', "ingotSteel", 'Y', new ItemStack(ModItems.baseComponent, 1, 3), 'Z', new ItemStack(ModItems.baseComponent, 1, 1) }));			
+					{ "XZX", "XYX", "XZX", 'X', "ingotSteel", 'Y', Blocks.REDSTONE_BLOCK, 'Z', "dustCoal" }));
+			GameRegistry.addRecipe(new ShapedOreRecipe(
+					new ItemStack(ModBlocks.combustionHeater, 1, 2), new Object[]
+					{ "XZX", "XYX", "XYX", 'X', "ingotSteel", 'Y', new ItemStack(ModItems.baseComponent, 1, 3), 'Z', new ItemStack(ModItems.baseComponent, 1, 1) }));
 			GameRegistry.addRecipe(
 					new ShapedOreRecipe(new ItemStack(ModBlocks.poweredHeater), new Object[]
-					{ "XZX", "XYX", "XXX", 'X', "ingotSteel", 'Y', new ItemStack(ModItems.baseComponent, 1, 3), 'Z', new ItemStack(ModItems.baseComponent, 1, 1) }));				
-		}
-		else
+					{ "XZX", "XYX", "XXX", 'X', "ingotSteel", 'Y', new ItemStack(ModItems.baseComponent, 1, 3), 'Z', new ItemStack(ModItems.baseComponent, 1, 1) }));
+		} else
 		{
-			SkyResources.logger.warn("Recipes for steel powered machines have not been added as they require steel and coal dust.");
+			SkyResources.logger.warn(
+					"Recipes for steel powered machines have not been added as they require steel and coal dust.");
 		}
 
 		GameRegistry.addSmelting(ModBlocks.dryCactus, new ItemStack(Items.DYE, 1, 7), 0.2F);
@@ -204,6 +205,9 @@ public class ModCrafting
 		InfusionRecipes.addRecipe(new ItemStack(Items.REEDS),
 				new ItemStack(Items.SPECKLED_MELON, 3), Blocks.PUMPKIN,
 				OreDictionary.WILDCARD_VALUE, 20);
+		InfusionRecipes.addRecipe(new ItemStack(Blocks.CACTUS),
+				new ItemStack(Items.FERMENTED_SPIDER_EYE, 3), Blocks.SAPLING,
+				0, 20);
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.COAL, 1), 50,
 				new ItemStack(Items.COAL, 2, 1));
@@ -271,6 +275,9 @@ public class ModCrafting
 				new ItemStack(Items.POISONOUS_POTATO, 3),
 				new ItemStack(Items.FERMENTED_SPIDER_EYE, 2), new ItemStack(Items.SLIME_BALL, 1),
 				new ItemStack(Items.GUNPOWDER, 2));
+		CombustionRecipes.addRecipe(new ItemStack(Items.SNOWBALL), 1234,
+				new ItemStack(Items.POTIONITEM, 1, 0), new ItemStack(Items.POTIONITEM, 1, 0),
+				new ItemStack(Items.POTIONITEM, 1, 0), new ItemStack(Items.QUARTZ, 8));
 
 		RockGrinderRecipes.addRecipe(new ItemStack(Blocks.SAND), false,
 				Blocks.COBBLESTONE.getDefaultState());
