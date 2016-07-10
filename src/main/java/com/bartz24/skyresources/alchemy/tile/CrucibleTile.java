@@ -226,4 +226,9 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 	{
 		return oldState.getBlock() != newState.getBlock();
 	}
+	
+	public int getItemAmount()
+	{
+		return itemAmount;
+	}
 }

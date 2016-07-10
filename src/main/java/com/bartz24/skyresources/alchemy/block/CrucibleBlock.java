@@ -5,6 +5,7 @@ import java.util.List;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.alchemy.tile.CrucibleTile;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 
 import net.minecraft.block.BlockContainer;
@@ -22,9 +23,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.capability.ItemFluidContainer;
 
 public class CrucibleBlock extends BlockContainer
 {
@@ -136,5 +135,24 @@ public class CrucibleBlock extends BlockContainer
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public boolean hasComparatorInputOverride(IBlockState state)
+	{
+		return true;
+	}
+
+	@Override
+	public int getComparatorInputOverride(IBlockState state, World world,
+			BlockPos pos)
+	{
+		CrucibleTile tile = (CrucibleTile) world.getTileEntity(pos);
+		int val = (int) ((float) tile.getItemAmount() * 15f
+				/ ConfigOptions.crucibleCapacity);
+		if (tile.getItemAmount() > 0)
+			val = Math.max(val, 1);
+
+		return val;
 	}
 }
