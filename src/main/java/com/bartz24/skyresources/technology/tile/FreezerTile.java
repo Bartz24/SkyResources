@@ -158,13 +158,9 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 
 			for (BlockPos pos : checkPoses)
 			{
-				if (pos.equals(facingPos))
-					continue;
-				if (pos.equals(this.getPos().up()) && worldObj
-						.getBlockState(pos).getBlock() instanceof BlockFreezer)
-					continue;
-
 				TileEntity tile2 = worldObj.getTileEntity(pos);
+				if (pos.equals(facingPos) || tile2 instanceof FreezerTile)
+					continue;
 				if (tile2 instanceof IInventory)
 				{
 					output = RandomHelper.fillInventory((IInventory) tile2,
