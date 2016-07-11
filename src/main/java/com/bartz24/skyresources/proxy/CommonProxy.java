@@ -40,6 +40,7 @@ public class CommonProxy
 	public void preInit(FMLPreInitializationEvent e)
 	{
 		ConfigOptions.loadConfigThenSave(e);
+		ModFluids.init();
 		ModFluids.registerCrystalFluid();
 		ModFluids.registerDirtyCrystalFluid();
 		ModBlocks.init();

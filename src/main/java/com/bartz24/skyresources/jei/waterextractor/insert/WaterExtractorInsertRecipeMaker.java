@@ -19,7 +19,6 @@ public class WaterExtractorInsertRecipeMaker
 		{
 			if (!recipe.isExtractRecipe())
 			{
-				System.out.println(recipe.getFluidAmt());
 				WaterExtractorInsertRecipeJEI addRecipe = new WaterExtractorInsertRecipeJEI(
 						recipe.getOutput(), recipe.getFuzzyInput(),
 						recipe.getInputBlock(), recipe.getFluidAmt());

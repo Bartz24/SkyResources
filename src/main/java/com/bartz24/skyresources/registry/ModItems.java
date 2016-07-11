@@ -36,6 +36,7 @@ public class ModItems
 	public static Item healthRing;
 
 	public static Item cactusFruit;
+	public static Item fleshySnowNugget;
 
 	public static Item waterExtractor;
 	
@@ -57,18 +58,12 @@ public class ModItems
 
 	public static void init()
 	{
-		References.gemList.add("emerald");
-		References.gemColorList.add(0xFF12DB3A);
-		References.gemList.add("ruby");
-		References.gemColorList.add(0xFFFA1E1E);
-		References.gemList.add("sapphire");
-		References.gemColorList.add(0xFF1E46FA);
-		References.gemList.add("peridot");
-		References.gemColorList.add(0xFF1CB800);
-		References.gemList.add("redGarnet");
-		References.gemColorList.add(0xFFC90014);
-		References.gemList.add("yellowGarnet");
-		References.gemColorList.add(0xFFF7FF0F);
+		ModItems.addGem("emerald", 0xFF12DB3A);
+		ModItems.addGem("ruby", 0xFFFA1E1E);
+		ModItems.addGem("sapphire", 0xFF1E46FA);
+		ModItems.addGem("peridot", 0xFF1CB800);
+		ModItems.addGem("redGarnet", 0xFFC90014);
+		ModItems.addGem("yellowGarnet", 0xFFF7FF0F);
 		
 		alchemyComponent = registerItem(new AlchemyItemComponent());
 		metalCrystal = registerItem(new MetalCrystalItem());
@@ -80,6 +75,8 @@ public class ModItems
 		heavySnowball = registerItem(new ItemHeavySnowball("heavySnowball", "HeavySnowball"));
 		cactusFruit = registerItem(
 				new ModItemFood(3, 2F, false, "cactusFruit", "CactusFruit"));
+		fleshySnowNugget = registerItem(
+				new ModItemFood(4, 1.5F, false, "fleshySnowNugget", "FleshySnowNugget"));
 		cactusKnife = registerItem(
 				new ItemKnife(SkyResources.materialCactusNeedle,
 						"cactusCuttingKnife", "CactusCuttingKnife"));
@@ -122,5 +119,11 @@ public class ModItems
 		GameRegistry.registerItem(item);
 
 		return item;
+	}
+	
+	public static void addGem(String name, int color)
+	{
+		References.gemList.add(name);
+		References.gemColorList.add(color);		
 	}
 }

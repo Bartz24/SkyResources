@@ -156,6 +156,8 @@ public class ModCrafting
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.purificationVessel), new Object[]
 				{ "XXX", "XYX", "XXX", 'X', "blockGlass", 'Y', Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE }));
+		GameRegistry.addRecipe(	new ShapedOreRecipe(new ItemStack(ModItems.fleshySnowNugget, 3), new Object[]
+				{ "XX", "XY", 'X', new ItemStack(Items.SNOWBALL), 'Y', new ItemStack(Items.ROTTEN_FLESH) }));
 
 		if (OreDictionary.doesOreNameExist("ingotSteel")
 				&& OreDictionary.doesOreNameExist("dustCoal"))
@@ -210,7 +212,7 @@ public class ModCrafting
 				0, 20);
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.COAL, 1), 50,
-				new ItemStack(Items.COAL, 2, 1));
+				new ItemStack(Items.COAL, 1, 1));
 		CombustionRecipes.addRecipe(new ItemStack(Items.BLAZE_POWDER, 1), 75,
 				new ItemStack(Items.GUNPOWDER, 2));
 		CombustionRecipes.addRecipe(new ItemStack(Items.DIAMOND, 1, 0), 1000,

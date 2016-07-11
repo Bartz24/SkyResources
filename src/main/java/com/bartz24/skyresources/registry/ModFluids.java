@@ -14,6 +14,35 @@ public class ModFluids
 {
 	public static List<Fluid> crystalFluids;
 	public static List<Fluid> dirtyCrystalFluids;
+	
+	static List<String> crystalFluidNames;
+	static List<Integer> crystalFluidColors;
+	static List<Integer> crystalFluidRarities;
+	
+	public static void init()
+	{
+		crystalFluidNames = new ArrayList<String>();
+		crystalFluidColors = new ArrayList<Integer>();
+		crystalFluidRarities = new ArrayList<Integer>();
+		
+		ModFluids.addCrystalFluid("iron", 0xFFCC0000, 4);
+		ModFluids.addCrystalFluid("gold", 0xFFCCCC00, 6);
+		ModFluids.addCrystalFluid("copper", 0xFFFF6600, 2);
+		ModFluids.addCrystalFluid("tin", 0xFFBFBFBF, 4);
+		ModFluids.addCrystalFluid("silver", 0xFFD1F4FF, 5);
+		ModFluids.addCrystalFluid("zinc", 0xFFFFF7C2, 3);
+		ModFluids.addCrystalFluid("nickel", 0xFFFAF191, 6);
+		ModFluids.addCrystalFluid("platinum", 0xFF44EAFC, 8);
+		ModFluids.addCrystalFluid("aluminum", 0xFFF5FFFD, 4);
+		ModFluids.addCrystalFluid("lead", 0xFF5B2EFF , 5);
+	}
+	
+	public static void addCrystalFluid(String name, int color, int rarity)
+	{
+		crystalFluidNames.add(name);
+		crystalFluidColors.add(color);
+		crystalFluidRarities.add(rarity);
+	}
 
 	public static void registerCrystalFluid()
 	{
@@ -70,21 +99,16 @@ public class ModFluids
 
 	public static String[] crystalFluidNames()
 	{
-		return new String[]
-		{ "iron", "gold", "copper", "tin", "silver", "zinc", "nickel",
-				"platinum", "aluminum", "lead" };
+		return crystalFluidNames.toArray(new String[crystalFluidNames.size()]);
 	}
 
-	public static int[] crystalFluidColors()
+	public static Integer[] crystalFluidColors()
 	{
-		return new int[]
-		{ 0xFFCC0000, 0xFFCCCC00, 0xFFFF6600, 0xFFBFBFBF, 0xFFD1F4FF,
-				0xFFFFF7C2, 0xFFFAF191, 0xFF44EAFC, 0xFFF5FFFD, 0xFF5B2EFF };
+		return crystalFluidColors.toArray(new Integer[crystalFluidColors.size()]);
 	}
 
-	public static int[] crystalFluidRarity()
+	public static Integer[] crystalFluidRarity()
 	{
-		return new int[]
-		{ 4, 6, 2, 4, 5, 3, 6, 8, 4, 5 };
+		return crystalFluidRarities.toArray(new Integer[crystalFluidColors.size()]);
 	}
 }
