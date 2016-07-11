@@ -40,7 +40,8 @@ public class ModGuidePages
 						+ "\n First, you need an infusion stone. There are 3 by default. "
 						+ "\n <recipe,,skyresources:RedSandstoneInfusionStone:0> <recipe,,skyresources:SandstoneInfusionStone:0> <recipe,,skyresources:AlchemicalInfusionStone:0> "
 						+ "\n Next, look in JEI for a recipe and put the items in the off-hand slot (the slot with the shield icon) in your off-hand slot. "
-						+ "\n Hold the infusion stone in your main hand and right click the block shown in JEI to get your result.");
+						+ "\n Hold the infusion stone in your main hand and right click the block shown in JEI to get your result. "
+						+ "\n <recipe,,minecraft:cactus:0> can be made if you didn't start on the sand platform. ");
 
 		SkyResourcesGuide.addPage("snowPlatform", "guide.skyresources.stage1",
 				"Snow Platform", new ItemStack(Blocks.SNOW),
@@ -51,7 +52,8 @@ public class ModGuidePages
 						+ "which is used to make <link,heavy_snowballs,skyresources:HeavySnowball:0,heavySnowball> . "
 						+ "\n The <link,heavy_snowballs,skyresources:HeavySnowball:0,heavySnowball> can be used as a projectile weapon as it deals damage. "
 						+ "\n Make a mob farm using the snow, or <recipe,,skyresources:HeavySnow:0> blocks for rotten flesh and bones. "
-						+ "This will be used to make <recipe,,skyresources:HeavySnow2:0> , which can then be froze into <recipe,,minecraft:dirt:1> . "
+						+ "\n <recipe,,skyresources:FleshySnowNugget:0> can be made for food. "
+						+ "\n The mob farm will be used to make <recipe,,skyresources:HeavySnow2:0> , which can then be froze into <recipe,,minecraft:dirt:1> . "
 						+ "\n Another block of <recipe,,minecraft:dirt:1> is needed for a <recipe,,minecraft:sapling:1> . "
 						+ "\n \n <image,Snow_Platform_Flowchart_Guide,skyresources:HeavySnow:0,skyresources:textures/guide/snowFlowchart.png>");
 
@@ -79,7 +81,9 @@ public class ModGuidePages
 						+ "\n \n The crafting process is as follows: "
 						+ "\n Drop a set of items into the center for crafting (NOTE: ONLY 1 SET). "
 						+ "\n Provide the heater with fuel to get a high enough temperature. "
-						+ "\n Give the heater a redstone signal (Ex: button). If there was an explosion, it worked!");
+						+ "\n Give the heater a redstone signal (Ex: button). If there was an explosion, it worked! "
+						+ "\n \n <recipe,,minecraft:snowball:0> can be made in the <recipe,,skyresources:CombustionHeater:1> if you didn't start on the snow platform. "
+						+ "\n The <link,Powered_Combustion_Heater,skyresources:CombustionHeater:2,poweredCombustion> is a late game version.");
 
 		SkyResourcesGuide.addPage("waterExtractor", "guide.skyresources.stage2",
 				"Water Extractor", new ItemStack(ModItems.waterExtractor),
@@ -116,7 +120,17 @@ public class ModGuidePages
 						+ "\n <link,Blaze_Powder_Block,skyresources:BlazePowderBlock:0,lavaBlaze> "
 						+ "\n \n Heat Sources are shown in JEI, but in order to get to them, you have to cycle through the categories at "
 						+ "the top by clicking the current category shown and clicking left or right. "
-						+ "\n Better heat sources make the blocks mentioned earlier run faster.");
+						+ "\n Better heat sources make the blocks mentioned earlier run faster."
+						+ "\n \n <link,Default_List_of_Heat_Sources,minecraft:torch:0,listHeatSources>");
+		
+		SkyResourcesGuide.addPage("listHeatSources", "guide.skyresources.stage2",
+				"List of Heat Sources", new ItemStack(Blocks.TORCH),
+						"Default Heat Sources: "
+						+ "\n <recipe,,minecraft:torch:0> "
+						+ "\n <recipe,,minecraft:obsidian:0> "
+						+ "\n <recipe,,minecraft:magma:0> "
+						+ "\n Fire "
+						+ "\n Still and flowing lava ");
 
 		SkyResourcesGuide.addPage("rockGrinder", "guide.skyresources.stage2",
 				"Rock Grinder", new ItemStack(ModItems.stoneGrinder),
@@ -145,7 +159,8 @@ public class ModGuidePages
 						+ "\n Drop the crystal shards in and it will turn into dirty crystal fluid. "
 						+ "\n Dirty crystal fluid can be condensed using the <link,Alchemical_Condenser,skyresources:AlchemicalCondenser:0,alchemicalCondenser> , "
 						+ "but takes 10x as long as clean fluid. Place dirty crystal fluid in the <link,Purification_Vessel,skyresources:PurificationVessel:0,purificationVessel> to get "
-						+ "<link,clean_crystal_fluid,skyresources:IronCrystalFluidBlock:0,cleanCrystal> .");
+						+ "<link,clean_crystal_fluid,skyresources:IronCrystalFluidBlock:0,cleanCrystal> . "
+						+ "\n The <recipe,,skyresources:Crucible:0> outputs a comparator value based on the current amount of solid items left.");
 
 		SkyResourcesGuide.addPage("fluidDropper", "guide.skyresources.stage2",
 				"Fluid Dropper", new ItemStack(ModBlocks.fluidDropper),
@@ -222,6 +237,20 @@ public class ModGuidePages
 						+ "\n This freezer runs at 1x speed."
 						+ " This freezer can freeze 3 stacks of items at a time. "
 						+ "\n Items will pop out the front of the bottom block or into an adjecent inventory the bottom block.");
+
+		SkyResourcesGuide.addPage("poweredCombustion", "guide.skyresources.stage3",
+				"Powered Combustion Heater", new ItemStack(ModBlocks.combustionHeater, 1, 2),
+				"The <recipe,,skyresources:CombustionHeater:2> is the third tier of combustion heaters. "
+						+ "\n This heater requires RF to run at 800 RF/tick when heating up."
+						+ " This heater has a maximum heat of 2750. "
+						+ "\n Right-click to see current RF and heat.");
+
+		SkyResourcesGuide.addPage("poweredHeater", "guide.skyresources.stage3",
+				"Powered Heater", new ItemStack(ModBlocks.poweredHeater),
+				"The <recipe,,skyresources:PoweredHeater:0> is a <link,heat_source,minecraft:torch:0,heatSources> . "
+						+ "\n Requires RF to run at 120 RF/tick and a redstone signal. "
+						+ "\n Provides a heat value of 30. "
+						+ "\n Right-click to see current RF.");
 
 		SkyResourcesGuide.addPage("commands", "guide.skyresources.misc",
 				"Commands", new ItemStack(Blocks.COMMAND_BLOCK),
