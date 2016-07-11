@@ -35,6 +35,7 @@ public class ModFluids
 		ModFluids.addCrystalFluid("platinum", 0xFF44EAFC, 8);
 		ModFluids.addCrystalFluid("aluminum", 0xFFF5FFFD, 4);
 		ModFluids.addCrystalFluid("lead", 0xFF5B2EFF , 5);
+		ModFluids.addCrystalFluid("mercury", 0xFFD1DCDE , 6);
 	}
 	
 	public static void addCrystalFluid(String name, int color, int rarity)

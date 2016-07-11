@@ -61,7 +61,7 @@ tile.skyresources.zincCrystalFluidBlock.name=Zinc Crystal Liquid
 tile.skyresources.nickelCrystalFluidBlock.name=Nickel Crystal Liquid
 tile.skyresources.platinumCrystalFluidBlock.name=Platinum Crystal Liquid
 tile.skyresources.aluminumCrystalFluidBlock.name=Aluminum Crystal Liquid
-tile.skyresources.leadCrystalFluidBlock.name=Lead Crystal Liquid
+tile.skyresources.mercuryCrystalFluidBlock.name=Mercury Crystal Liquid
 
 tile.skyresources.ironDirtyCrystalFluidBlock.name=Dirty Iron Crystal Liquid
 tile.skyresources.goldDirtyCrystalFluidBlock.name=Dirty Gold Crystal Liquid
@@ -73,6 +73,7 @@ tile.skyresources.nickelDirtyCrystalFluidBlock.name=Dirty Nickel Crystal Liquid
 tile.skyresources.platinumDirtyCrystalFluidBlock.name=Dirty Platinum Crystal Liquid
 tile.skyresources.aluminumDirtyCrystalFluidBlock.name=Dirty Aluminum Crystal Liquid
 tile.skyresources.leadDirtyCrystalFluidBlock.name=Dirty Lead Crystal Liquid
+tile.skyresources.mercuryDirtyCrystalFluidBlock.name=Dirty Mercury Crystal Liquid
 
 
 jei.skyresources.desc.cactusNeedle=Obtained by shift right-clicking on a cactus block.\n\nNOTE: You will take damage.
@@ -111,6 +112,7 @@ name.skyresources.metal.nickel=Nickel
 name.skyresources.metal.platinum=Platinum
 name.skyresources.metal.aluminum=Aluminum
 name.skyresources.metal.lead=Lead
+name.skyresources.metal.mercury=Mercury
 
 name.skyresources.gem.emerald=Emerald
 name.skyresources.gem.ruby=Ruby
