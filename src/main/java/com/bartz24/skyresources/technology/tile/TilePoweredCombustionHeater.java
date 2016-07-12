@@ -130,6 +130,7 @@ public class TilePoweredCombustionHeater extends RedstoneCompatibleTile
 		case 2: // STEEL
 			mats.add(Material.ROCK);
 			mats.add(Material.IRON);
+			mats.add(Material.GLASS);
 			break;
 		}
 		return mats;

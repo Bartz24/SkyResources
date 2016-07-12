@@ -57,6 +57,7 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile
 		case 1: // IRON
 			mats.add(Material.IRON);
 			mats.add(Material.ROCK);
+			mats.add(Material.GLASS);
 			break;
 		}
 		return mats;

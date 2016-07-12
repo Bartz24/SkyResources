@@ -76,7 +76,7 @@ public class ModGuidePages
 						+ "\n The wood version requires blocks made of wood material for the other blocks. It has a maximum temperature of 100 C. "
 						+ "\n Fuels with relatively high burn times will not work in the wooden heater. "
 						+ "\n \n <image,Iron_Heater_Setup,skyresources:CombustionHeater:1,skyresources:textures/guide/combustionIron.png> "
-						+ "\n The iron version requires blocks made of stone or iron material for the other blocks. It has a maximum temperature of 1538 C. "
+						+ "\n The iron version requires blocks made of stone, glass, or iron material for the other blocks. It has a maximum temperature of 1538 C. "
 						+ "\n Fuels with extremely high burn times will not work in the iron heater. "
 						+ "\n \n The crafting process is as follows: "
 						+ "\n Drop a set of items into the center for crafting (NOTE: ONLY 1 SET). "
@@ -241,14 +241,14 @@ public class ModGuidePages
 		SkyResourcesGuide.addPage("poweredCombustion", "guide.skyresources.stage3",
 				"Powered Combustion Heater", new ItemStack(ModBlocks.combustionHeater, 1, 2),
 				"The <recipe,,skyresources:CombustionHeater:2> is the third tier of combustion heaters. "
-						+ "\n This heater requires RF to run at 800 RF/tick when heating up."
+						+ "\n This heater requires 800 RF/tick when heating up."
 						+ " This heater has a maximum heat of 2750. "
 						+ "\n Right-click to see current RF and heat.");
 
 		SkyResourcesGuide.addPage("poweredHeater", "guide.skyresources.stage3",
 				"Powered Heater", new ItemStack(ModBlocks.poweredHeater),
 				"The <recipe,,skyresources:PoweredHeater:0> is a <link,heat_source,minecraft:torch:0,heatSources> . "
-						+ "\n Requires RF to run at 120 RF/tick and a redstone signal. "
+						+ "\n Requires 120 RF/tick and a redstone signal. "
 						+ "\n Provides a heat value of 30. "
 						+ "\n Right-click to see current RF.");
 
