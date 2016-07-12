@@ -52,8 +52,7 @@ public class PlatformCommand extends CommandBase implements ICommand
 	}
 
 	@Override
-	public boolean checkPermission(MinecraftServer server,
-			ICommandSender sender)
+	public boolean checkPermission(MinecraftServer server, ICommandSender sender)
 	{
 		return true;
 	}
@@ -77,24 +76,23 @@ public class PlatformCommand extends CommandBase implements ICommand
 	}
 
 	@Override
-	public List getTabCompletionOptions(MinecraftServer server,
-			ICommandSender sender, String[] args, BlockPos pos)
+	public List getTabCompletionOptions(MinecraftServer server, ICommandSender sender,
+			String[] args, BlockPos pos)
 	{
 		return null;
 	}
 
 	@Override
-	public void execute(MinecraftServer server, ICommandSender sender,
-			String[] args) throws CommandException
+	public void execute(MinecraftServer server, ICommandSender sender, String[] args)
+			throws CommandException
 	{
 		World world = sender.getEntityWorld();
-		EntityPlayerMP player = (EntityPlayerMP) world.getPlayerEntityByName(
-				sender.getCommandSenderEntity().getName());
+		EntityPlayerMP player = (EntityPlayerMP) world
+				.getPlayerEntityByName(sender.getCommandSenderEntity().getName());
 
 		if (!(world.getWorldInfo().getTerrainType() instanceof WorldTypeSky))
 		{
-			player.addChatMessage(new TextComponentString(
-					"You are not in a sky world type."));
+			player.addChatMessage(new TextComponentString("You are not in a sky world type."));
 			return;
 		}
 
@@ -134,23 +132,20 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 				if (!ConfigOptions.oneChunkCommandAllowed)
 				{
-					player.addChatMessage(new TextComponentString(
-							"This command is not allowed!"));
+					player.addChatMessage(new TextComponentString("This command is not allowed!"));
 					return;
 
 				}
 
 				if (References.worldOneChunk)
 				{
-					player.addChatMessage(new TextComponentString(
-							"Already in one chunk mode!"));
+					player.addChatMessage(new TextComponentString("Already in one chunk mode!"));
 					return;
 				}
 				References.CurrentIslandsList.clear();
 
 				References.CurrentIslandsList.add(new IslandPos(0, 0));
-				WorldBorder border = world.getMinecraftServer().worldServers[0]
-						.getWorldBorder();
+				WorldBorder border = world.getMinecraftServer().worldServers[0].getWorldBorder();
 
 				border.setCenter(0, 0);
 				border.setTransition(16);
@@ -162,19 +157,17 @@ public class PlatformCommand extends CommandBase implements ICommand
 		}
 
 	}
-	
+
 	void visit(EntityPlayerMP player, String[] args) throws CommandException
 	{
 		if (args.length > 2)
 		{
-			player.addChatMessage(
-					new TextComponentString("Must have 1 argument."));
+			player.addChatMessage(new TextComponentString("Must have 1 argument."));
 			return;
 		}
 		if (References.worldOneChunk)
 		{
-			player.addChatMessage(new TextComponentString(
-					"Can't use this command in this mode."));
+			player.addChatMessage(new TextComponentString("Can't use this command in this mode."));
 			return;
 		}
 		if (References.initialIslandDistance != ConfigOptions.islandDistance)
@@ -185,46 +178,44 @@ public class PlatformCommand extends CommandBase implements ICommand
 		}
 
 		IslandPos isPos = References.getPlayerIsland(args[1]);
-		
-		if(args[1].equals(player.getName()))
+
+		if (args[1].equals(player.getName()))
 		{
-			player.addChatMessage(
-					new TextComponentString("Can't visit your own island."));
-			return;			
+			player.addChatMessage(new TextComponentString("Can't visit your own island."));
+			return;
 		}
 
 		if (isPos == null)
 		{
-			player.addChatMessage(
-					new TextComponentString("Player doesn't exist or player doesn't have an island."));
+			player.addChatMessage(new TextComponentString(
+					"Player doesn't exist or player doesn't have an island."));
 			return;
 		}
 
-		BlockPos visitPos = new BlockPos(
-				isPos.getX() * ConfigOptions.islandDistance, 88,
+		BlockPos visitPos = new BlockPos(isPos.getX() * ConfigOptions.islandDistance, 88,
 				isPos.getY() * ConfigOptions.islandDistance);
-		
+
 		player.setGameType(GameType.SPECTATOR);
 
+		
+		if(player.connection.playerEntity.dimension != 0)
+			player.connection.playerEntity.changeDimension(0);
 		player.connection.setPlayerLocation(visitPos.getX() + 0.5, visitPos.getY(),
 				visitPos.getZ() + 0.5, player.rotationYaw, player.rotationPitch);
 
 	}
 
-	void guide(EntityPlayerMP player, String[] args, World world)
-			throws CommandException
+	void guide(EntityPlayerMP player, String[] args, World world) throws CommandException
 	{
 		if (Minecraft.getMinecraft().thePlayer.worldObj.isRemote)
 		{
-			Minecraft.getMinecraft().thePlayer.openGui(SkyResources.instance, ModGuiHandler.GuideGUI,
-					player.worldObj, player.getPosition().getX(),
-					player.getPosition().getY(),
-					player.getPosition().getZ());
+			Minecraft.getMinecraft().thePlayer.openGui(SkyResources.instance,
+					ModGuiHandler.GuideGUI, player.worldObj, player.getPosition().getX(),
+					player.getPosition().getY(), player.getPosition().getZ());
 		}
 	}
 
-	void reset(EntityPlayerMP player, String[] args, World world)
-			throws CommandException
+	void reset(EntityPlayerMP player, String[] args, World world) throws CommandException
 	{
 		if (!References.worldOneChunk)
 		{
@@ -237,8 +228,7 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 			if (!References.playerHasIsland(player.getName()))
 			{
-				player.addChatMessage(
-						new TextComponentString("You don't have an island!"));
+				player.addChatMessage(new TextComponentString("You don't have an island!"));
 				return;
 			}
 			IslandPos pos = References.getPlayerIsland(player.getName());
@@ -246,23 +236,21 @@ public class PlatformCommand extends CommandBase implements ICommand
 			PlayerList players = world.getMinecraftServer().getPlayerList();
 			for (EntityPlayerMP p : players.getPlayerList())
 			{
-				player.addChatMessage(
-						new TextComponentString("Lag incoming for reset!"));
+				player.addChatMessage(new TextComponentString("Lag incoming for reset!"));
 			}
 			for (int x = pos.getX() * ConfigOptions.islandDistance
 					- ConfigOptions.islandResetDistance; x < pos.getX()
-							* ConfigOptions.islandDistance
-							+ ConfigOptions.islandResetDistance + 1; x++)
+							* ConfigOptions.islandDistance + ConfigOptions.islandResetDistance
+							+ 1; x++)
 			{
 				for (int z = pos.getY() * ConfigOptions.islandDistance
 						- ConfigOptions.islandResetDistance; z < pos.getY()
-								* ConfigOptions.islandDistance
-								+ ConfigOptions.islandResetDistance + 1; z++)
+								* ConfigOptions.islandDistance + ConfigOptions.islandResetDistance
+								+ 1; z++)
 				{
 					for (int y = 0; y < 256; y++)
 					{
-						world.setBlockState(new BlockPos(x, y, z),
-								Blocks.AIR.getDefaultState(), 2);
+						world.setBlockState(new BlockPos(x, y, z), Blocks.AIR.getDefaultState(), 2);
 					}
 				}
 			}
@@ -284,15 +272,19 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 				if (i > -1 && i < 2)
 				{
-					EventHandler.spawnPlayer(player, new BlockPos(
-							pos.getX() * ConfigOptions.islandDistance, 88,
-							pos.getY() * ConfigOptions.islandDistance), i);
+					
+					if(player.connection.playerEntity.dimension != 0)
+						player.connection.playerEntity.changeDimension(0);
+					EventHandler.spawnPlayer(player,
+							new BlockPos(pos.getX() * ConfigOptions.islandDistance, 88,
+									pos.getY() * ConfigOptions.islandDistance),
+							i);
 				}
 			} else
 			{
 				EventHandler.createSpawn(world,
-						new BlockPos(pos.getX() * ConfigOptions.islandDistance,
-								88, pos.getY() * ConfigOptions.islandDistance));
+						new BlockPos(pos.getX() * ConfigOptions.islandDistance, 88,
+								pos.getY() * ConfigOptions.islandDistance));
 			}
 			for (EntityPlayerMP p : players.getPlayerList())
 			{
@@ -300,9 +292,13 @@ public class PlatformCommand extends CommandBase implements ICommand
 				{
 					References.setStartingInv(p);
 
-					EventHandler.spawnPlayer(p, new BlockPos(
-							pos.getX() * ConfigOptions.islandDistance, 88,
-							pos.getY() * ConfigOptions.islandDistance), false);
+					
+					if(player.connection.playerEntity.dimension != 0)
+						player.connection.playerEntity.changeDimension(0);
+					EventHandler.spawnPlayer(p,
+							new BlockPos(pos.getX() * ConfigOptions.islandDistance, 88,
+									pos.getY() * ConfigOptions.islandDistance),
+							false);
 					p.addChatMessage(new TextComponentString("Island Reset!"));
 				}
 			}
@@ -312,8 +308,7 @@ public class PlatformCommand extends CommandBase implements ICommand
 			PlayerList players = world.getMinecraftServer().getPlayerList();
 			for (EntityPlayerMP p : players.getPlayerList())
 			{
-				player.addChatMessage(
-						new TextComponentString("Lag incoming for reset!"));
+				player.addChatMessage(new TextComponentString("Lag incoming for reset!"));
 			}
 			for (int x = -8; x < 9; x++)
 			{
@@ -321,8 +316,7 @@ public class PlatformCommand extends CommandBase implements ICommand
 				{
 					for (int y = 0; y < 256; y++)
 					{
-						world.setBlockState(new BlockPos(x, y, z),
-								Blocks.AIR.getDefaultState(), 2);
+						world.setBlockState(new BlockPos(x, y, z), Blocks.AIR.getDefaultState(), 2);
 					}
 				}
 			}
@@ -343,6 +337,9 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 				if (i > -1 && i < 2)
 				{
+
+					if (player.connection.playerEntity.dimension != 0)
+						player.connection.playerEntity.changeDimension(0);
 					EventHandler.spawnPlayer(player, new BlockPos(0, 88, 0), i);
 				}
 			} else
@@ -353,6 +350,8 @@ public class PlatformCommand extends CommandBase implements ICommand
 			{
 				p.inventory.clear();
 
+				if (player.connection.playerEntity.dimension != 0)
+					player.connection.playerEntity.changeDimension(0);
 				EventHandler.spawnPlayer(p, new BlockPos(0, 88, 0), false);
 				p.addChatMessage(new TextComponentString("Chunk Reset!"));
 			}
@@ -375,8 +374,7 @@ public class PlatformCommand extends CommandBase implements ICommand
 				"home : Teleport back to your home island. Must be at least "
 						+ ConfigOptions.islandDistance / 2 + " blocks away."));
 
-		player.addChatMessage(new TextComponentString(
-				"spawn : Teleport back to spawn (0, 0)."));
+		player.addChatMessage(new TextComponentString("spawn : Teleport back to spawn (0, 0)."));
 
 		player.addChatMessage(new TextComponentString(
 				"reset (optional int/string)<type> : Resets the platform and clears the players' inventory.\n      (If it doesn't clear everything, be nice and toss the rest? Maybe?\nNot recommended unless all players for that island are online)"));
@@ -387,26 +385,22 @@ public class PlatformCommand extends CommandBase implements ICommand
 								: TextFormatting.RED
 										+ "\n THE COMMAND IS NOT ALLOWED TO BE USED. SET THE CONFIG OPTION TO TRUE.")));
 
-		player.addChatMessage(new TextComponentString(
-				"guide : Opens the guide."));
-		
+		player.addChatMessage(new TextComponentString("guide : Opens the guide."));
+
 		player.addChatMessage(new TextComponentString(
 				"visit <player> : Visit another player's island in spectator mode."));
 	}
 
-	void newPlatform(EntityPlayerMP player, String[] args)
-			throws CommandException
+	void newPlatform(EntityPlayerMP player, String[] args) throws CommandException
 	{
 		if (args.length > 2)
 		{
-			player.addChatMessage(
-					new TextComponentString("Must have 0 or 1 argument"));
+			player.addChatMessage(new TextComponentString("Must have 0 or 1 argument"));
 			return;
 		}
 		if (References.worldOneChunk)
 		{
-			player.addChatMessage(new TextComponentString(
-					"Can't use this command in this mode."));
+			player.addChatMessage(new TextComponentString("Can't use this command in this mode."));
 			return;
 		}
 		if (References.initialIslandDistance != ConfigOptions.islandDistance)
@@ -418,8 +412,7 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 		if (References.playerHasIsland(player.getName()))
 		{
-			player.addChatMessage(
-					new TextComponentString("You already have an island!"));
+			player.addChatMessage(new TextComponentString("You already have an island!"));
 			return;
 		}
 
@@ -442,34 +435,38 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 			if (i > -1 && i < 2)
 			{
-				EventHandler.spawnPlayer(player, new BlockPos(
-						position.getX() * ConfigOptions.islandDistance, 88,
-						position.getY() * ConfigOptions.islandDistance), i);
+
+				if (player.connection.playerEntity.dimension != 0)
+					player.connection.playerEntity.changeDimension(0);
+				EventHandler.spawnPlayer(player,
+						new BlockPos(position.getX() * ConfigOptions.islandDistance, 88,
+								position.getY() * ConfigOptions.islandDistance),
+						i);
 			}
 		} else
 		{
+
+			if (player.connection.playerEntity.dimension != 0)
+				player.connection.playerEntity.changeDimension(0);
 			EventHandler.spawnPlayer(player,
-					new BlockPos(position.getX() * ConfigOptions.islandDistance,
-							88, position.getY() * ConfigOptions.islandDistance),
+					new BlockPos(position.getX() * ConfigOptions.islandDistance, 88,
+							position.getY() * ConfigOptions.islandDistance),
 					true);
 		}
-		References.CurrentIslandsList.add(new IslandPos(position.getX(),
-				position.getY(), player.getName()));
+		References.CurrentIslandsList
+				.add(new IslandPos(position.getX(), position.getY(), player.getName()));
 	}
 
-	void inviteOther(EntityPlayerMP player, String[] args, World world)
-			throws CommandException
+	void inviteOther(EntityPlayerMP player, String[] args, World world) throws CommandException
 	{
 		if (args.length != 2)
 		{
-			player.addChatMessage(
-					new TextComponentString("Must have 1 argument"));
+			player.addChatMessage(new TextComponentString("Must have 1 argument"));
 			return;
 		}
 		if (References.worldOneChunk)
 		{
-			player.addChatMessage(new TextComponentString(
-					"Can't use this command in this mode."));
+			player.addChatMessage(new TextComponentString("Can't use this command in this mode."));
 			return;
 		}
 		if (References.initialIslandDistance != ConfigOptions.islandDistance)
@@ -481,31 +478,26 @@ public class PlatformCommand extends CommandBase implements ICommand
 		String player2Name = args[1];
 		if (player2Name.equals(player.getName()))
 		{
-			player.addChatMessage(
-					new TextComponentString(player2Name + " is yourself."));
+			player.addChatMessage(new TextComponentString(player2Name + " is yourself."));
 			return;
 		}
 
 		if (!References.playerHasIsland(player.getName()))
 		{
-			player.addChatMessage(
-					new TextComponentString("You don't have an island."));
+			player.addChatMessage(new TextComponentString("You don't have an island."));
 			return;
 		}
 
 		if (References.playerHasIsland(player2Name))
 		{
-			player.addChatMessage(new TextComponentString(
-					player2Name + " already has an island!"));
+			player.addChatMessage(new TextComponentString(player2Name + " already has an island!"));
 			return;
 		}
 
-		EntityPlayerMP player2 = (EntityPlayerMP) world
-				.getPlayerEntityByName(player2Name);
+		EntityPlayerMP player2 = (EntityPlayerMP) world.getPlayerEntityByName(player2Name);
 		if (player2 == null)
 		{
-			player.addChatMessage(
-					new TextComponentString(player2Name + " doesn't exist."));
+			player.addChatMessage(new TextComponentString(player2Name + " doesn't exist."));
 			return;
 		}
 
@@ -517,12 +509,13 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 		for (String name : position.getPlayerNames())
 		{
-			EntityPlayerMP p = (EntityPlayerMP) world
-					.getPlayerEntityByName(name);
+			EntityPlayerMP p = (EntityPlayerMP) world.getPlayerEntityByName(name);
 			if (p != null)
-				p.addChatMessage(new TextComponentString(
-						player2Name + " joined your island!"));
+				p.addChatMessage(new TextComponentString(player2Name + " joined your island!"));
 		}
+
+		if (player.connection.playerEntity.dimension != 0)
+			player.connection.playerEntity.changeDimension(0);
 
 		EventHandler.spawnPlayer(player2,
 				new BlockPos(position.getX() * ConfigOptions.islandDistance, 88,
@@ -530,19 +523,16 @@ public class PlatformCommand extends CommandBase implements ICommand
 				false);
 	}
 
-	void leavePlatform(EntityPlayerMP player, String[] args)
-			throws CommandException
+	void leavePlatform(EntityPlayerMP player, String[] args) throws CommandException
 	{
 		if (args.length > 1)
 		{
-			player.addChatMessage(
-					new TextComponentString("Must have no arguments"));
+			player.addChatMessage(new TextComponentString("Must have no arguments"));
 			return;
 		}
 		if (References.worldOneChunk)
 		{
-			player.addChatMessage(new TextComponentString(
-					"Can't use this command in this mode."));
+			player.addChatMessage(new TextComponentString("Can't use this command in this mode."));
 			return;
 		}
 		if (References.initialIslandDistance != ConfigOptions.islandDistance)
@@ -554,16 +544,17 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 		if (!References.playerHasIsland(player.getName()))
 		{
-			player.addChatMessage(
-					new TextComponentString("You don't have an island!"));
+			player.addChatMessage(new TextComponentString("You don't have an island!"));
 			return;
 		}
 
 		References.removePlayer(player.getName());
-		player.addChatMessage(new TextComponentString(
-				"You are now free to join another island!"));
+		player.addChatMessage(new TextComponentString("You are now free to join another island!"));
 
 		player.inventory.clear();
+
+		if (player.connection.playerEntity.dimension != 0)
+			player.connection.playerEntity.changeDimension(0);
 
 		EventHandler.spawnPlayer(player, new BlockPos(0, 88, 0), false);
 	}
@@ -572,14 +563,12 @@ public class PlatformCommand extends CommandBase implements ICommand
 	{
 		if (args.length > 1)
 		{
-			player.addChatMessage(
-					new TextComponentString("Must have no arguments"));
+			player.addChatMessage(new TextComponentString("Must have no arguments"));
 			return;
 		}
 		if (References.worldOneChunk)
 		{
-			player.addChatMessage(new TextComponentString(
-					"Can't use this command in this mode."));
+			player.addChatMessage(new TextComponentString("Can't use this command in this mode."));
 			return;
 		}
 		if (References.initialIslandDistance != ConfigOptions.islandDistance)
@@ -593,33 +582,32 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 		if (isPos == null)
 		{
-			player.addChatMessage(
-					new TextComponentString("You don't have an island yet."));
+			player.addChatMessage(new TextComponentString("You don't have an island yet."));
 			return;
 		}
 
-		BlockPos home = new BlockPos(
-				isPos.getX() * ConfigOptions.islandDistance, 88,
+		BlockPos home = new BlockPos(isPos.getX() * ConfigOptions.islandDistance, 88,
 				isPos.getY() * ConfigOptions.islandDistance);
 
 		if (Math.hypot(player.posX - home.getX() - 0.5,
-				player.posZ - home.getZ() - 0.5) < ConfigOptions.islandDistance
-						/ 2)
+				player.posZ - home.getZ() - 0.5) < ConfigOptions.islandDistance / 2)
 		{
-			player.addChatMessage(new TextComponentString(
-					"You are too close to home!\nYou must be at least "
-							+ (ConfigOptions.islandDistance / 2)
-							+ " blocks away!"));
+			player.addChatMessage(
+					new TextComponentString("You are too close to home!\nYou must be at least "
+							+ (ConfigOptions.islandDistance / 2) + " blocks away!"));
 			return;
 		}
-		
-		if(player.isSpectator())
+
+		if (player.isSpectator())
 		{
 			player.setGameType(GameType.SURVIVAL);
 		}
 
-		player.connection.setPlayerLocation(home.getX() + 0.5, home.getY(),
-				home.getZ() + 0.5, player.rotationYaw, player.rotationPitch);
+		if (player.connection.playerEntity.dimension != 0)
+			player.connection.playerEntity.changeDimension(0);
+
+		player.connection.setPlayerLocation(home.getX() + 0.5, home.getY(), home.getZ() + 0.5,
+				player.rotationYaw, player.rotationPitch);
 
 	}
 
@@ -627,17 +615,18 @@ public class PlatformCommand extends CommandBase implements ICommand
 	{
 		if (References.worldOneChunk)
 		{
-			player.addChatMessage(new TextComponentString(
-					"Can't use this command in this mode."));
+			player.addChatMessage(new TextComponentString("Can't use this command in this mode."));
 			return;
 		}
-		
-		if(player.isSpectator())
+
+		if (player.isSpectator())
 		{
 			player.setGameType(GameType.SURVIVAL);
 		}
-		
-		player.connection.setPlayerLocation(0 + 0.5, 88, 0 + 0.5f,
-				player.rotationYaw, player.rotationPitch);
+
+		if (player.connection.playerEntity.dimension != 0)
+			player.connection.playerEntity.changeDimension(0);
+		player.connection.setPlayerLocation(0 + 0.5, 88, 0 + 0.5f, player.rotationYaw,
+				player.rotationPitch);
 	}
 }
