@@ -174,7 +174,7 @@ public class TilePoweredCombustionHeater extends RedstoneCompatibleTile
 					}
 				}
 
-				currentHeatValue *= 0.6F;
+				currentHeatValue *= 0.4F;
 
 				ItemStack stack = recipe.getOutput().copy();
 
