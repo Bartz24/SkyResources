@@ -23,6 +23,7 @@ import com.bartz24.skyresources.technology.combustion.CombustionRecipes;
 import com.bartz24.skyresources.technology.concentrator.ConcentratorRecipes;
 import com.bartz24.skyresources.technology.freezer.FreezerRecipes;
 import com.bartz24.skyresources.technology.rockgrinder.RockGrinderRecipes;
+import com.bartz24.skyresources.techreborn.TechRebornPlugin;
 import com.bartz24.skyresources.world.WorldTypeSky;
 
 import net.minecraftforge.common.AchievementPage;
@@ -53,6 +54,10 @@ public class CommonProxy
 		if(Loader.isModLoaded("IC2"))
 		{
 			IC2Plugin.preInit();
+		}
+		if(Loader.isModLoaded("techreborn"))
+		{
+			TechRebornPlugin.preInit();
 		}
 
 		new HeatSources();
@@ -85,6 +90,10 @@ public class CommonProxy
 		if(Loader.isModLoaded("IC2"))
 		{
 			IC2Plugin.init();
+		}
+		if(Loader.isModLoaded("techreborn"))
+		{
+			TechRebornPlugin.init();
 		}
 
 		AchievementPage.registerAchievementPage(ModAchievements.modAchievePage);

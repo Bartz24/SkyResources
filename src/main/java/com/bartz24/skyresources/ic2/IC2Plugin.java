@@ -35,12 +35,14 @@ public class IC2Plugin
 				.getObject(new ResourceLocation("IC2", "nuclear"));
 		Item laser = Item.REGISTRY
 				.getObject(new ResourceLocation("IC2", "mining_laser"));
+		Item crafting = Item.REGISTRY
+				.getObject(new ResourceLocation("IC2", "crafting"));
 		NBTTagCompound centrifugeTag = new NBTTagCompound();
 		
 
 		
 		CombustionRecipes.addRecipe(new ItemStack(misc, 1, 4), 350,
-				new ItemStack(Items.SLIME_BALL, 2), new ItemStack(ModItems.baseComponent, 4, 2));
+				new ItemStack(Items.SLIME_BALL, 2), new ItemStack(crafting, 4, 20));
 		InfusionRecipes.addRecipe(new ItemStack(sapling, 1), new ItemStack(misc, 4, 4), Blocks.SAPLING, 1, 18);
 		Recipes.macerator.addRecipe(
 				new RecipeInputItemStack(
