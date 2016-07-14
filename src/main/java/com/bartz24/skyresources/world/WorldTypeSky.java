@@ -50,6 +50,8 @@ public class WorldTypeSky extends WorldType
 	public IChunkGenerator getChunkGenerator(World world,
 			String generatorOptions)
 	{
-		return new ChunkProviderFlat(world, world.getSeed(), false, "2;1x0;");
+		ChunkProviderFlat provider = new ChunkProviderFlat(world, world.getSeed(), false, "2;1x0;");
+		world.setSeaLevel(63);
+		return provider;
 	}
 }

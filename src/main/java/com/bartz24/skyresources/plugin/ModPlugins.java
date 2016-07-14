@@ -6,6 +6,7 @@ import java.util.List;
 import com.bartz24.skyresources.plugin.armorplus.ArmorPlusPlugin;
 import com.bartz24.skyresources.plugin.forestry.ForestryPlugin;
 import com.bartz24.skyresources.plugin.ic2.IC2Plugin;
+import com.bartz24.skyresources.plugin.randomthings.RandomThingsPlugin;
 import com.bartz24.skyresources.plugin.techreborn.TechRebornPlugin;
 
 import net.minecraftforge.fml.common.Loader;
@@ -20,6 +21,7 @@ public class ModPlugins
 		plugins.add(new IC2Plugin());
 		plugins.add(new TechRebornPlugin());
 		plugins.add(new ArmorPlusPlugin());
+		plugins.add(new RandomThingsPlugin());
 		
 		for (IModPlugin plugin : plugins)
 		{

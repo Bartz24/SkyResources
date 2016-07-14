@@ -41,6 +41,7 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.event.world.WorldEvent.Save;
 import net.minecraftforge.event.world.WorldEvent.Unload;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
@@ -266,8 +267,9 @@ public class EventHandler
 	@SubscribeEvent
 	public void onPlayerRightClick(RightClickBlock event)
 	{
-		if (!event.getWorld().isRemote)
+		if (!event.getWorld().isRemote && event.getHand() == EnumHand.MAIN_HAND)
 		{
+			System.out.println(event.getWorld().getSeaLevel());
 			ItemStack equip = event.getEntityPlayer().getHeldItem(event.getHand());
 			if (event.getPos() == null)
 				return;
@@ -294,11 +296,11 @@ public class EventHandler
 					int meta = Blocks.SNOW_LAYER
 							.getMetaFromState(event.getWorld().getBlockState(event.getPos()));
 
-					if (meta <= 1)
+					if (meta < 1)
 						event.getWorld().setBlockToAir(event.getPos());
 					else
 						event.getWorld().setBlockState(event.getPos(),
-								Blocks.SNOW_LAYER.getStateFromMeta(meta - 2));
+								Blocks.SNOW_LAYER.getStateFromMeta(meta -1));
 				} else if (block == Blocks.SNOW)
 				{
 					RandomHelper.spawnItemInWorld(event.getWorld(), new ItemStack(Items.SNOWBALL),
@@ -309,7 +311,7 @@ public class EventHandler
 									event.getWorld().rand.nextInt(4)));
 
 					event.getWorld().setBlockState(event.getPos(),
-							Blocks.SNOW_LAYER.getStateFromMeta(5));
+							Blocks.SNOW_LAYER.getStateFromMeta(6));
 				}
 			} else if (block != null && equip == null)
 			{
