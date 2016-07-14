@@ -31,7 +31,7 @@ public class ArmorPlusPlugin implements IModPlugin
 
 		SkyResourcesGuide.addPage("armorplus", "guide.skyresources.misc", "Armor Plus Support",
 				new ItemStack(crystal),
-				"Sky Resources provides for ways to get the <recipe,,armorplus:lava_crystal:0>");		
+				"Sky Resources provides for ways to get the <recipe,,armorplus:lava_crystal:0> .");		
 	}
 
 	@Override
