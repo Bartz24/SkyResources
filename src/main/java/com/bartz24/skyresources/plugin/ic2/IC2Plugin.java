@@ -2,7 +2,6 @@ package com.bartz24.skyresources.plugin.ic2;
 
 import com.bartz24.skyresources.alchemy.infusion.InfusionRecipes;
 import com.bartz24.skyresources.base.guide.SkyResourcesGuide;
-import com.bartz24.skyresources.plugin.IModPlugin;
 import com.bartz24.skyresources.registry.ModItems;
 import com.bartz24.skyresources.technology.combustion.CombustionRecipes;
 
@@ -15,14 +14,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
-public class IC2Plugin implements IModPlugin
+public class IC2Plugin
 {
-	public void preInit()
+	public static void preInit()
 	{
 
 	}
 
-	public void init()
+	public static void init()
 	{
 		Item misc = Item.REGISTRY
 				.getObject(new ResourceLocation("IC2", "misc_resource"));
@@ -64,20 +63,13 @@ public class IC2Plugin implements IModPlugin
 				+ "\n \n <recipe,,skyresources:TechItemComponent:1> can be used to get <recipe,,ic2:nuclear:5> and <recipe,,ic2:nuclear:2> .");
 	}
 
-	public void initRenderers()
+	public static void initRenderers()
 	{
 
 	}
 
-	@Override
-	public void postInit()
+	public static void postInit()
 	{
 		
-	}
-
-	@Override
-	public String getModID()
-	{
-		return "IC2";
 	}
 }

@@ -1,8 +1,6 @@
 package com.bartz24.skyresources.plugin.armorplus;
 
-import com.bartz24.skyresources.alchemy.infusion.InfusionRecipes;
 import com.bartz24.skyresources.base.guide.SkyResourcesGuide;
-import com.bartz24.skyresources.plugin.IModPlugin;
 import com.bartz24.skyresources.registry.ModItems;
 import com.bartz24.skyresources.technology.combustion.CombustionRecipes;
 
@@ -12,17 +10,17 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class ArmorPlusPlugin implements IModPlugin
+public class ArmorPlusPlugin
 {
 
-	@Override
-	public void preInit()
+	
+	public static void preInit()
 	{
 		
 	}
 
-	@Override
-	public void init()
+	
+	public static void init()
 	{
 		Item crystal = Item.REGISTRY.getObject(new ResourceLocation("armorplus", "lava_crystal"));
 
@@ -34,22 +32,16 @@ public class ArmorPlusPlugin implements IModPlugin
 				"Sky Resources provides for ways to get the <recipe,,armorplus:lava_crystal:0> .");		
 	}
 
-	@Override
-	public void postInit()
+	
+	public static void postInit()
 	{
 		
 	}
 
-	@Override
-	public void initRenderers()
+	
+	public static void initRenderers()
 	{
 		
-	}
-
-	@Override
-	public String getModID()
-	{
-		return "armorplus";
 	}
 
 }

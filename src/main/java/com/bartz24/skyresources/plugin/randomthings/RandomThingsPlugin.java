@@ -1,26 +1,20 @@
 package com.bartz24.skyresources.plugin.randomthings;
 
-import com.bartz24.skyresources.alchemy.infusion.InfusionRecipes;
 import com.bartz24.skyresources.base.guide.SkyResourcesGuide;
-import com.bartz24.skyresources.plugin.IModPlugin;
-import com.bartz24.skyresources.registry.ModItems;
 import com.bartz24.skyresources.technology.combustion.CombustionRecipes;
 
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 
-public class RandomThingsPlugin implements IModPlugin
+public class RandomThingsPlugin
 {
 
-	public void preInit()
+	public static void preInit()
 	{
 
 	}
 
-	public void init()
+	public static void init()
 	{
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.CHORUS_FRUIT), 2350,
@@ -32,20 +26,13 @@ public class RandomThingsPlugin implements IModPlugin
 				+ "\n NOTE: This is temporary until Sky Resources adds in other resources and processes.");
 	}
 
-	public void initRenderers()
+	public static void initRenderers()
 	{
 
 	}
 
-	@Override
-	public void postInit()
+	public static void postInit()
 	{
 		
-	}
-
-	@Override
-	public String getModID()
-	{
-		return "randomthings";
 	}
 }
