@@ -76,7 +76,7 @@ public class ModGuidePages
 						+ "\n The wood version requires blocks made of wood material for the other blocks. It has a maximum temperature of 100 C. "
 						+ "\n Fuels with relatively high burn times will not work in the wooden heater. "
 						+ "\n \n <image,Iron_Heater_Setup,skyresources:CombustionHeater:1,skyresources:textures/guide/combustionIron.png> "
-						+ "\n The iron version requires blocks made of stone, glass, or iron material for the other blocks. It has a maximum temperature of 1538 C. "
+						+ "\n The iron version requires blocks made of stone, or iron material for the other blocks. It has a maximum temperature of 1538 C. "
 						+ "\n Fuels with extremely high burn times will not work in the iron heater. "
 						+ "\n \n The crafting process is as follows: "
 						+ "\n Drop a set of items into the center for crafting (NOTE: ONLY 1 SET). "

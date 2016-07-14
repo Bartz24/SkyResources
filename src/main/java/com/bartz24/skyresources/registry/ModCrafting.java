@@ -139,7 +139,7 @@ public class ModCrafting
 				{ "X", 'X', new ItemStack(ModBlocks.coalInfusedBlock) }));
 		GameRegistry
 				.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.ironFreezer), new Object[]
-		{ "XXX", "XZX", "XXX", 'X', new ItemStack(Items.IRON_INGOT), 'Z',
+		{ "XXX", "XZX", "XXX", 'X', new ItemStack(ModItems.techComponent, 1, 2), 'Z',
 				new ItemStack(ModBlocks.miniFreezer) }));
 		GameRegistry
 				.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.dirtFurnace), new Object[]
@@ -319,6 +319,8 @@ public class ModCrafting
 				new ItemStack(Items.MAGMA_CREAM));
 		FreezerRecipes.addRecipe(new ItemStack(Blocks.ICE), 2000,
 				new ItemStack(Items.POTIONITEM, 1, 0));
+		FreezerRecipes.addRecipe(new ItemStack(ModItems.techComponent, 1, 2), 3000,
+				new ItemStack(Items.IRON_INGOT));
 
 		MinecraftForge.addGrassSeed(new ItemStack(Items.BEETROOT_SEEDS), 10);
 		MinecraftForge.addGrassSeed(new ItemStack(Items.MELON_SEEDS), 8);
@@ -389,6 +391,8 @@ public class ModCrafting
 				new ItemStack(ModItems.ironKnife, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("toolCuttingKnife",
 				new ItemStack(ModItems.diamondKnife, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("ingotFrozenIron",
+				new ItemStack(ModItems.techComponent, 1, 2));
 
 	}
 }

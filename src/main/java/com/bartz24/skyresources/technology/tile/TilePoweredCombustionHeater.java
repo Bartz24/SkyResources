@@ -130,7 +130,6 @@ public class TilePoweredCombustionHeater extends RedstoneCompatibleTile
 		case 2: // STEEL
 			mats.add(Material.ROCK);
 			mats.add(Material.IRON);
-			mats.add(Material.GLASS);
 			break;
 		}
 		return mats;
@@ -160,20 +159,12 @@ public class TilePoweredCombustionHeater extends RedstoneCompatibleTile
 						new AxisAlignedBB(pos.getX(), pos.getY() + 1, pos.getZ(), pos.getX() + 1,
 								pos.getY() + 1.5F, pos.getZ() + 1));
 
-				List<String> itemIgnores = new ArrayList<String>();
 				for (EntityItem i : list)
 				{
 					ItemStack stack = i.getEntityItem();
-
-					for (ItemStack s : recipe.getInputStacks())
-					{
-						if (stack.isItemEqual(s) && !itemIgnores.contains(s.getUnlocalizedName()))
-						{
-							stack.stackSize -= s.stackSize;
-							itemIgnores.add(s.getUnlocalizedName());
-						}
-					}
+					stack.stackSize = 0;
 				}
+
 
 				currentHeatValue *= 0.4F;
 

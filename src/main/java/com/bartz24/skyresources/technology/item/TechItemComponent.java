@@ -19,6 +19,7 @@ public class TechItemComponent extends Item
 
 	public static final String stoneCrushed = "stoneCrushed";
 	public static final String radioactiveMix = "radioactiveMix";
+	public static final String frozenIronIngot = "frozenIronIngot";
 
 	public TechItemComponent()
 	{
@@ -36,6 +37,7 @@ public class TechItemComponent extends Item
 	{
 		names.add(0, stoneCrushed);
 		names.add(1, radioactiveMix);
+		names.add(2, frozenIronIngot);
 	}
 
 	@Override

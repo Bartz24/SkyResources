@@ -46,7 +46,7 @@ public class CombustionRecipe
 	}
 
 	boolean stacksAreValid(CombustionRecipe recipe)
-	{		
+	{			
 		if (inputs.size() == 0 || inputs.size() != recipe.inputs.size())
 			return false;
 		

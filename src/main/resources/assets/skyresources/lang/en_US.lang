@@ -11,6 +11,7 @@ item.skyresources.baseItemComponent.plantMatter.name=Plant Matter
 item.skyresources.baseItemComponent.steelPowerComponent.name=Steel Power Component
 item.skyresources.techItemComponent.stoneCrushed.name=Crushed Stone
 item.skyresources.techItemComponent.radioactiveMix.name=Radioactive Powder Mixture
+item.skyresources.techItemComponent.frozenIronIngot.name=Frozen Iron Ingot
 item.skyresources.cactusFruit.name=Cactus Fruit
 item.skyresources.fleshySnowNugget.name=Fleshy Snow Nugget
 item.skyresources.cactusCuttingKnife.name=Cactus Cutting Knife
