@@ -8,9 +8,12 @@ import com.bartz24.skyresources.base.waterextractor.WaterExtractorRecipes;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.events.EventHandler;
 import com.bartz24.skyresources.events.ModBucketHandler;
-import com.bartz24.skyresources.forestry.ForestryPlugin;
-import com.bartz24.skyresources.ic2.IC2Plugin;
 import com.bartz24.skyresources.minetweaker.MinetweakerPlugin;
+import com.bartz24.skyresources.plugin.ModPlugins;
+import com.bartz24.skyresources.plugin.armorplus.ArmorPlusPlugin;
+import com.bartz24.skyresources.plugin.forestry.ForestryPlugin;
+import com.bartz24.skyresources.plugin.ic2.IC2Plugin;
+import com.bartz24.skyresources.plugin.techreborn.TechRebornPlugin;
 import com.bartz24.skyresources.registry.ModAchievements;
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModCrafting;
@@ -23,7 +26,6 @@ import com.bartz24.skyresources.technology.combustion.CombustionRecipes;
 import com.bartz24.skyresources.technology.concentrator.ConcentratorRecipes;
 import com.bartz24.skyresources.technology.freezer.FreezerRecipes;
 import com.bartz24.skyresources.technology.rockgrinder.RockGrinderRecipes;
-import com.bartz24.skyresources.techreborn.TechRebornPlugin;
 import com.bartz24.skyresources.world.WorldTypeSky;
 
 import net.minecraftforge.common.AchievementPage;
@@ -47,18 +49,7 @@ public class CommonProxy
 		ModBlocks.init();
 		ModItems.init();
 		
-		if(Loader.isModLoaded("forestry"))
-		{
-			ForestryPlugin.preInit();
-		}
-		if(Loader.isModLoaded("IC2"))
-		{
-			IC2Plugin.preInit();
-		}
-		if(Loader.isModLoaded("techreborn"))
-		{
-			TechRebornPlugin.preInit();
-		}
+		ModPlugins.preInit();
 
 		new HeatSources();
 		new InfusionRecipes();
@@ -83,18 +74,7 @@ public class CommonProxy
 		ModEntities.init();
 		ModCrafting.initOreDict();
 		
-		if(Loader.isModLoaded("forestry"))
-		{
-			ForestryPlugin.init();
-		}
-		if(Loader.isModLoaded("IC2"))
-		{
-			IC2Plugin.init();
-		}
-		if(Loader.isModLoaded("techreborn"))
-		{
-			TechRebornPlugin.init();
-		}
+		ModPlugins.init();
 
 		AchievementPage.registerAchievementPage(ModAchievements.modAchievePage);
 	}
@@ -102,6 +82,8 @@ public class CommonProxy
 	public void postInit(FMLPostInitializationEvent e)
 	{
 		ModCrafting.init();
+		
+		ModPlugins.postInit();
 		if (Loader.isModLoaded("MineTweaker3"))
 			MinetweakerPlugin.postInit(e);
 	}

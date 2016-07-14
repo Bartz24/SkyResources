@@ -1,9 +1,9 @@
 package com.bartz24.skyresources.registry;
 
 import com.bartz24.skyresources.base.guide.gui.GuideGUI;
-import com.bartz24.skyresources.forestry.gui.GuiBeeAttractor;
-import com.bartz24.skyresources.forestry.gui.container.ContainerBeeAttractor;
-import com.bartz24.skyresources.forestry.tile.TileBeeAttractor;
+import com.bartz24.skyresources.plugin.forestry.gui.GuiBeeAttractor;
+import com.bartz24.skyresources.plugin.forestry.gui.container.ContainerBeeAttractor;
+import com.bartz24.skyresources.plugin.forestry.tile.TileBeeAttractor;
 import com.bartz24.skyresources.technology.gui.GuiCombustionHeater;
 import com.bartz24.skyresources.technology.gui.GuiConcentrator;
 import com.bartz24.skyresources.technology.gui.GuiDirtFurnace;

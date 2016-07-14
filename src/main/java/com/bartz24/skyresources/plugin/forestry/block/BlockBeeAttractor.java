@@ -1,8 +1,8 @@
-package com.bartz24.skyresources.forestry.block;
+package com.bartz24.skyresources.plugin.forestry.block;
 
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
-import com.bartz24.skyresources.forestry.tile.TileBeeAttractor;
+import com.bartz24.skyresources.plugin.forestry.tile.TileBeeAttractor;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModGuiHandler;
 

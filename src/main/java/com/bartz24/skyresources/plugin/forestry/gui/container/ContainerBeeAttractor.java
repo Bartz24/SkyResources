@@ -1,6 +1,6 @@
-package com.bartz24.skyresources.forestry.gui.container;
+package com.bartz24.skyresources.plugin.forestry.gui.container;
 
-import com.bartz24.skyresources.forestry.tile.TileBeeAttractor;
+import com.bartz24.skyresources.plugin.forestry.tile.TileBeeAttractor;
 
 import forestry.core.gui.slots.SlotOutput;
 import net.minecraft.entity.player.EntityPlayer;

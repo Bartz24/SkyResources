@@ -1,7 +1,8 @@
-package com.bartz24.skyresources.forestry;
+package com.bartz24.skyresources.plugin.forestry;
 
 import com.bartz24.skyresources.base.guide.SkyResourcesGuide;
-import com.bartz24.skyresources.forestry.block.BlockBeeAttractor;
+import com.bartz24.skyresources.plugin.IModPlugin;
+import com.bartz24.skyresources.plugin.forestry.block.BlockBeeAttractor;
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModRenderers;
 
@@ -13,18 +14,18 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 
-public class ForestryPlugin
+public class ForestryPlugin implements IModPlugin
 {
 
 	public static Block beeAttractor;
 
-	public static void preInit()
+	public void preInit()
 	{
 		beeAttractor = ModBlocks.registerBlock(
 				new BlockBeeAttractor("beeAttractor", "BeeAttractor", 2F, 12F));
 	}
 
-	public static void init()
+	public void init()
 	{
 		RecipeManagers.carpenterManager.addRecipe(25,
 				FluidRegistry.getFluidStack("seed.oil", 500), null,
@@ -43,8 +44,20 @@ public class ForestryPlugin
 				+ "\n Note that a <recipe,,forestry:beePrincessGE:0> is rarer than a <recipe,,forestry:beeDroneGE:0> .");
 	}
 
-	public static void initRenderers()
+	public void initRenderers()
 	{
 		ModRenderers.registerItemRenderer(Item.getItemFromBlock(beeAttractor));
+	}
+
+	@Override
+	public void postInit()
+	{
+		
+	}
+
+	@Override
+	public String getModID()
+	{
+		return "forestry";
 	}
 }

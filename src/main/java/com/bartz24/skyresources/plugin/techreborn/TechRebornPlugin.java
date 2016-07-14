@@ -1,28 +1,26 @@
-package com.bartz24.skyresources.techreborn;
+package com.bartz24.skyresources.plugin.techreborn;
 
 import com.bartz24.skyresources.alchemy.infusion.InfusionRecipes;
 import com.bartz24.skyresources.base.guide.SkyResourcesGuide;
+import com.bartz24.skyresources.plugin.IModPlugin;
 import com.bartz24.skyresources.registry.ModItems;
 import com.bartz24.skyresources.technology.combustion.CombustionRecipes;
 
-import ic2.api.recipe.RecipeInputItemStack;
-import ic2.api.recipe.Recipes;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
-public class TechRebornPlugin
+public class TechRebornPlugin implements IModPlugin
 {
 
-	public static void preInit()
+	public void preInit()
 	{
 
 	}
 
-	public static void init()
+	public void init()
 	{
 		Item part = Item.REGISTRY.getObject(new ResourceLocation("techreborn", "part"));
 		Item sapling = Item.REGISTRY.getObject(new ResourceLocation("techreborn", "rubberSapling"));
@@ -38,8 +36,20 @@ public class TechRebornPlugin
 						+ "\n \n <recipe,,techreborn:part:31> is obtainable as well as the <recipe,,techreborn:rubberSapling:0> . ");
 	}
 
-	public static void initRenderers()
+	public void initRenderers()
 	{
 
+	}
+
+	@Override
+	public void postInit()
+	{
+		
+	}
+
+	@Override
+	public String getModID()
+	{
+		return "techreborn";
 	}
 }

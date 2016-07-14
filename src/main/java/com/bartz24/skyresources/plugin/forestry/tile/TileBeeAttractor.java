@@ -1,4 +1,4 @@
-package com.bartz24.skyresources.forestry.tile;
+package com.bartz24.skyresources.plugin.forestry.tile;
 
 import java.util.ArrayList;
 import java.util.Collections;

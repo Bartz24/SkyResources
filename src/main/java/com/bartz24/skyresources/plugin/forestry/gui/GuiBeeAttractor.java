@@ -1,4 +1,4 @@
-package com.bartz24.skyresources.forestry.gui;
+package com.bartz24.skyresources.plugin.forestry.gui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import com.bartz24.skyresources.GuiHelper;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
-import com.bartz24.skyresources.forestry.gui.container.ContainerBeeAttractor;
-import com.bartz24.skyresources.forestry.tile.TileBeeAttractor;
+import com.bartz24.skyresources.plugin.forestry.gui.container.ContainerBeeAttractor;
+import com.bartz24.skyresources.plugin.forestry.tile.TileBeeAttractor;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;

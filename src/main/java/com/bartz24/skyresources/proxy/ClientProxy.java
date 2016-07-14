@@ -2,10 +2,11 @@ package com.bartz24.skyresources.proxy;
 
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.base.ModKeyBindings;
-import com.bartz24.skyresources.forestry.ForestryPlugin;
-import com.bartz24.skyresources.ic2.IC2Plugin;
+import com.bartz24.skyresources.plugin.ModPlugins;
+import com.bartz24.skyresources.plugin.forestry.ForestryPlugin;
+import com.bartz24.skyresources.plugin.ic2.IC2Plugin;
+import com.bartz24.skyresources.plugin.techreborn.TechRebornPlugin;
 import com.bartz24.skyresources.registry.ModRenderers;
-import com.bartz24.skyresources.techreborn.TechRebornPlugin;
 
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.common.Loader;
@@ -24,18 +25,7 @@ public class ClientProxy extends CommonProxy
 		ModRenderers.preInit();
 
 		
-		if(Loader.isModLoaded("forestry"))
-		{
-			ForestryPlugin.initRenderers();
-		}
-		if(Loader.isModLoaded("IC2"))
-		{
-			IC2Plugin.initRenderers();
-		}
-		if(Loader.isModLoaded("techreborn"))
-		{
-			TechRebornPlugin.initRenderers();
-		}
+		ModPlugins.initRenderers();
 	}
 
 	@Override

@@ -7,8 +7,8 @@ import com.bartz24.skyresources.alchemy.block.PurificationVesselBlock;
 import com.bartz24.skyresources.alchemy.tile.CrucibleTile;
 import com.bartz24.skyresources.alchemy.tile.PurificationVesselTile;
 import com.bartz24.skyresources.base.HeatSources;
-import com.bartz24.skyresources.forestry.block.BlockBeeAttractor;
-import com.bartz24.skyresources.forestry.tile.TileBeeAttractor;
+import com.bartz24.skyresources.plugin.forestry.block.BlockBeeAttractor;
+import com.bartz24.skyresources.plugin.forestry.tile.TileBeeAttractor;
 import com.bartz24.skyresources.technology.block.BlockPoweredHeater;
 import com.bartz24.skyresources.technology.tile.TilePoweredHeater;
 
