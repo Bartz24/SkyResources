@@ -150,6 +150,7 @@ fluid.nickelcrystalfluid=Nickel Crystal Fluid
 fluid.platinumcrystalfluid=Platinum Crystal Fluid
 fluid.aluminumcrystalfluid=Aluminum Crystal Fluid
 fluid.leadcrystalfluid=Lead Crystal Fluid
+fluid.mercurycrystalfluid=Mercury Crystal Fluid
 
 fluid.irondirtycrystalfluid=Dirty Iron Crystal Fluid
 fluid.golddirtycrystalfluid=Dirty Gold Crystal Fluid
@@ -161,6 +162,7 @@ fluid.nickeldirtycrystalfluid=Dirty Nickel Crystal Fluid
 fluid.platinumdirtycrystalfluid=Dirty Platinum Crystal Fluid
 fluid.aluminumdirtycrystalfluid=Dirty Aluminum Crystal Fluid
 fluid.leaddirtycrystalfluid=Dirty Lead Crystal Fluid
+fluid.mercurydirtycrystalfluid=Dirty Mercury Crystal Fluid
 
 key.skyresources.guide=Open Guide
 
