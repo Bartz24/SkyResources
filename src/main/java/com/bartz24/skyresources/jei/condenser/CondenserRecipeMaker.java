@@ -17,26 +17,26 @@ public class CondenserRecipeMaker
 	{
 		ArrayList<CondenserRecipeJEI> recipes = new ArrayList<CondenserRecipeJEI>();
 
-		for (int i = 0; i < ModFluids.crystalFluidNames().length; i++)
+		for (int i = 0; i < ModFluids.crystalFluids.size(); i++)
 		{
 			if (OreDictionary.doesOreNameExist("ingot" + RandomHelper
-					.capatilizeString(ModFluids.crystalFluidNames()[i])))
+					.capatilizeString(ModFluids.crystalFluidInfos()[i].name)))
 			{
 				ItemStack ingot = OreDictionary
 						.getOres("ingot" + RandomHelper.capatilizeString(
-								ModFluids.crystalFluidNames()[i]))
+								ModFluids.crystalFluidInfos()[i].name))
 						.get(0).copy();
 				ingot.stackSize = 1;
 				CondenserRecipeJEI addRecipe = new CondenserRecipeJEI(ingot,
 						ModBlocks.crystalFluidBlocks.get(i).getDefaultState(),
-						ModFluids.crystalFluidRarity()[i]
+						ModFluids.crystalFluidInfos()[i].rarity
 								* ConfigOptions.condenserProcessTimeBase);
 				recipes.add(addRecipe);
 				CondenserRecipeJEI addDirtyRecipe = new CondenserRecipeJEI(
 						ingot,
 						ModBlocks.dirtyCrystalFluidBlocks.get(i)
 								.getDefaultState(),
-						ModFluids.crystalFluidRarity()[i]
+						ModFluids.crystalFluidInfos()[i].rarity
 								* ConfigOptions.condenserProcessTimeBase * 10);
 				recipes.add(addDirtyRecipe);
 			}

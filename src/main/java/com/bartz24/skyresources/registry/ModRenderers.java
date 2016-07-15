@@ -36,42 +36,36 @@ public class ModRenderers
 	public static void preInit()
 	{
 
-		for (int i = 0; i < ModFluids.crystalFluidNames().length; i++)
+		for (int i = 0; i < ModFluids.crystalFluidInfos().length; i++)
 		{
 			final ModelResourceLocation fluidModelLocation = new ModelResourceLocation(
-					ModBlocks.crystalFluidBlocks.get(i).getRegistryName(),
-					"fluid");
+					ModBlocks.crystalFluidBlocks.get(i).getRegistryName(), "fluid");
 
 			ModelBakery.registerItemVariants(
-					Item.getItemFromBlock(ModBlocks.crystalFluidBlocks.get(i)),
-					fluidModelLocation);
+					Item.getItemFromBlock(ModBlocks.crystalFluidBlocks.get(i)), fluidModelLocation);
 
 			ModelLoader.setCustomMeshDefinition(
 					Item.getItemFromBlock(ModBlocks.crystalFluidBlocks.get(i)),
 					new ItemMeshDefinition()
 					{
 						@Override
-						public ModelResourceLocation getModelLocation(
-								ItemStack stack)
+						public ModelResourceLocation getModelLocation(ItemStack stack)
 						{
 							return fluidModelLocation;
 						}
 					});
-			ModelLoader.setCustomStateMapper(
-					ModBlocks.crystalFluidBlocks.get(i), new StateMapperBase()
+			ModelLoader.setCustomStateMapper(ModBlocks.crystalFluidBlocks.get(i),
+					new StateMapperBase()
 					{
 						@Override
-						protected ModelResourceLocation getModelResourceLocation(
-								IBlockState state)
+						protected ModelResourceLocation getModelResourceLocation(IBlockState state)
 						{
 							return fluidModelLocation;
 						}
 					});
-			
 
 			final ModelResourceLocation dirtyFluidModelLocation = new ModelResourceLocation(
-					ModBlocks.dirtyCrystalFluidBlocks.get(i).getRegistryName(),
-					"fluid");
+					ModBlocks.dirtyCrystalFluidBlocks.get(i).getRegistryName(), "fluid");
 
 			ModelBakery.registerItemVariants(
 					Item.getItemFromBlock(ModBlocks.dirtyCrystalFluidBlocks.get(i)),
@@ -82,20 +76,49 @@ public class ModRenderers
 					new ItemMeshDefinition()
 					{
 						@Override
-						public ModelResourceLocation getModelLocation(
-								ItemStack stack)
+						public ModelResourceLocation getModelLocation(ItemStack stack)
 						{
 							return dirtyFluidModelLocation;
 						}
 					});
-			ModelLoader.setCustomStateMapper(
-					ModBlocks.dirtyCrystalFluidBlocks.get(i), new StateMapperBase()
+			ModelLoader.setCustomStateMapper(ModBlocks.dirtyCrystalFluidBlocks.get(i),
+					new StateMapperBase()
 					{
 						@Override
-						protected ModelResourceLocation getModelResourceLocation(
-								IBlockState state)
+						protected ModelResourceLocation getModelResourceLocation(IBlockState state)
 						{
 							return dirtyFluidModelLocation;
+						}
+					});
+
+		}
+
+		for (int i = 0; i < ModFluids.moltenCrystalFluidInfos().length; i++)
+		{
+			final ModelResourceLocation fluidModelLocation = new ModelResourceLocation(
+					ModBlocks.moltenCrystalFluidBlocks.get(i).getRegistryName(), "fluid");
+
+			ModelBakery.registerItemVariants(
+					Item.getItemFromBlock(ModBlocks.moltenCrystalFluidBlocks.get(i)),
+					fluidModelLocation);
+
+			ModelLoader.setCustomMeshDefinition(
+					Item.getItemFromBlock(ModBlocks.moltenCrystalFluidBlocks.get(i)),
+					new ItemMeshDefinition()
+					{
+						@Override
+						public ModelResourceLocation getModelLocation(ItemStack stack)
+						{
+							return fluidModelLocation;
+						}
+					});
+			ModelLoader.setCustomStateMapper(ModBlocks.moltenCrystalFluidBlocks.get(i),
+					new StateMapperBase()
+					{
+						@Override
+						protected ModelResourceLocation getModelResourceLocation(IBlockState state)
+						{
+							return fluidModelLocation;
 						}
 					});
 
@@ -134,23 +157,16 @@ public class ModRenderers
 		registerItemRenderer(ModItems.diamondGrinder);
 		registerItemRenderer(ModItems.alchemicalInfusionStone);
 		registerItemRenderer(ModItems.healthRing);
-		registerItemRenderer(
-				Item.getItemFromBlock(ModBlocks.cactusFruitNeedle));
-		registerItemRenderer(
-				Item.getItemFromBlock(ModBlocks.compressedCoalBlock));
-		registerItemRenderer(
-				Item.getItemFromBlock(ModBlocks.compressedCoalBlock2));
-		registerItemRenderer(
-				Item.getItemFromBlock(ModBlocks.coalInfusedBlock));
-		registerItemRenderer(
-				Item.getItemFromBlock(ModBlocks.compressedStone));
-		registerItemRenderer(
-				Item.getItemFromBlock(ModBlocks.heavySnow));
-		registerItemRenderer(
-				Item.getItemFromBlock(ModBlocks.heavySnow2));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.cactusFruitNeedle));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.compressedCoalBlock));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.compressedCoalBlock2));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.coalInfusedBlock));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.compressedStone));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.compressedNetherrack));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.heavySnow));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.heavySnow2));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.dryCactus));
-		registerItemRenderer(
-				Item.getItemFromBlock(ModBlocks.alchemicalCondenser));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.alchemicalCondenser));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.purificationVessel));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.miniFreezer));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.ironFreezer));
@@ -165,104 +181,86 @@ public class ModRenderers
 		registerItemRenderer(ModItems.redSandstoneInfusionStone);
 
 		ModelBakery.registerItemVariants(ModItems.waterExtractor,
-				new ModelResourceLocation("skyresources:WaterExtractor.empty",
-						"inventory"),
-				new ModelResourceLocation("skyresources:WaterExtractor.full1",
-						"inventory"),
-				new ModelResourceLocation("skyresources:WaterExtractor.full2",
-						"inventory"),
+				new ModelResourceLocation("skyresources:WaterExtractor.empty", "inventory"),
+				new ModelResourceLocation("skyresources:WaterExtractor.full1", "inventory"),
+				new ModelResourceLocation("skyresources:WaterExtractor.full2", "inventory"),
 
-				new ModelResourceLocation("skyresources:WaterExtractor.full3",
-						"inventory"),
-				new ModelResourceLocation("skyresources:WaterExtractor.full4",
-						"inventory"),
-				new ModelResourceLocation("skyresources:WaterExtractor.full5",
-						"inventory"),
-				new ModelResourceLocation("skyresources:WaterExtractor.full6",
-						"inventory"));
+				new ModelResourceLocation("skyresources:WaterExtractor.full3", "inventory"),
+				new ModelResourceLocation("skyresources:WaterExtractor.full4", "inventory"),
+				new ModelResourceLocation("skyresources:WaterExtractor.full5", "inventory"),
+				new ModelResourceLocation("skyresources:WaterExtractor.full6", "inventory"));
 
-		registerVariantsDefaulted(ModBlocks.combustionHeater,
-				CombustionHeaterVariants.class, "variant");
+		registerVariantsDefaulted(ModBlocks.combustionHeater, CombustionHeaterVariants.class,
+				"variant");
 
-		ModelLoader.setCustomMeshDefinition(ModItems.waterExtractor,
-				new ItemMeshDefinition()
+		ModelLoader.setCustomMeshDefinition(ModItems.waterExtractor, new ItemMeshDefinition()
+		{
+			@Override
+			public ModelResourceLocation getModelLocation(ItemStack stack)
+			{
+				NBTTagCompound tagCompound = stack.getTagCompound();
+				int amount = 0;
+				if (tagCompound != null)
 				{
-					@Override
-					public ModelResourceLocation getModelLocation(
-							ItemStack stack)
-					{
-						NBTTagCompound tagCompound = stack.getTagCompound();
-						int amount = 0;
-						if (tagCompound != null)
-						{
-							amount = tagCompound.getInteger("amount");
-						}
+					amount = tagCompound.getInteger("amount");
+				}
 
-						int level = (int) (amount * 6F
-								/ ((ItemWaterExtractor) stack.getItem())
-										.getMaxAmount());
-						if (level < 0)
-							level = 0;
-						else if (level > 6)
-							level = 6;
+				int level = (int) (amount * 6F
+						/ ((ItemWaterExtractor) stack.getItem()).getMaxAmount());
+				if (level < 0)
+					level = 0;
+				else if (level > 6)
+					level = 6;
 
-						return new ModelResourceLocation(
-								stack.getItem().getRegistryName() + "."
-										+ ItemWaterExtractor.extractorIcons[level],
-								"inventory");
-					}
-				});
+				return new ModelResourceLocation(stack.getItem().getRegistryName() + "."
+						+ ItemWaterExtractor.extractorIcons[level], "inventory");
+			}
+		});
 	}
 
 	public static void init()
 	{
-		Minecraft.getMinecraft().getItemColors()
-				.registerItemColorHandler(new IItemColor()
-				{
-
-					@Override
-					public int getColorFromItemstack(ItemStack stack,
-							int tintIndex)
-					{
-						if (stack.getMetadata() < 0
-								|| stack.getMetadata() >= ModFluids
-										.crystalFluidColors().length)
-							return -1;
-						
-
-						return ModFluids.crystalFluidColors()[stack
-								.getMetadata()];
-					}
-
-				}, ModItems.metalCrystal);
-		
-		Minecraft.getMinecraft().getItemColors()
-		.registerItemColorHandler(new IItemColor()
+		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor()
 		{
 
 			@Override
-			public int getColorFromItemstack(ItemStack stack,
-					int tintIndex)
+			public int getColorFromItemstack(ItemStack stack, int tintIndex)
+			{
+				boolean getMolten = false;
+				if (stack.getMetadata() < 0
+						|| stack.getMetadata() >= MetalCrystalItem.getNames().size())
+					return -1;
+
+				getMolten = stack.getMetadata() >= ModFluids.crystalFluidInfos().length;
+
+				return !getMolten ? ModFluids.crystalFluidInfos()[stack.getMetadata()].color
+						: ModFluids.moltenCrystalFluidInfos()[stack.getMetadata()
+								- ModFluids.crystalFluidInfos().length].color;
+			}
+
+		}, ModItems.metalCrystal);
+
+		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor()
+		{
+
+			@Override
+			public int getColorFromItemstack(ItemStack stack, int tintIndex)
 			{
 				if (stack.getMetadata() < 0
-						|| stack.getMetadata() >= ModFluids
-								.crystalFluidColors().length)
+						|| stack.getMetadata() >= References.gemColorList.size())
 					return -1;
-				
 
 				return References.gemColorList.get(stack.getMetadata());
 			}
 
 		}, ModItems.dirtyGem);
 
-		ClientRegistry.bindTileEntitySpecialRenderer(CrucibleTile.class,
-				new CrucibleTESR());
+		ClientRegistry.bindTileEntitySpecialRenderer(CrucibleTile.class, new CrucibleTESR());
 		ClientRegistry.bindTileEntitySpecialRenderer(PurificationVesselTile.class,
 				new PurificationVesselTESR());
 	}
 
-	public static void registerItemRenderer(Item item, int meta,
-			ResourceLocation name)
+	public static void registerItemRenderer(Item item, int meta, ResourceLocation name)
 	{
 		ModelBakery.registerItemVariants(item, name);
 		ModelLoader.setCustomModelResourceLocation(item, meta,
@@ -272,7 +270,7 @@ public class ModRenderers
 	public static void registerItemRenderer(Item item, int meta)
 	{
 		registerItemRenderer(item, meta,
-				new ResourceLocation(item.getRegistryName().toString()+meta));
+				new ResourceLocation(item.getRegistryName().toString() + meta));
 	}
 
 	public static void registerItemRenderer(Item item, int meta, boolean global)
@@ -293,25 +291,21 @@ public class ModRenderers
 		registerItemRenderer(item, 0, name);
 	}
 
-	public static void registerBlockRenderer(Block block, IStateMapper mapper,
-			int... metadata)
+	public static void registerBlockRenderer(Block block, IStateMapper mapper, int... metadata)
 	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
-				.getModelManager().getBlockModelShapes()
-				.registerBlockWithStateMapper(block, mapper);
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getModelManager()
+				.getBlockModelShapes().registerBlockWithStateMapper(block, mapper);
 	}
 
-	private static <T extends Enum<T> & IStringSerializable> void registerVariantsDefaulted(
-			Block b, Class<T> enumclazz, String variantHeader)
+	private static <T extends Enum<T> & IStringSerializable> void registerVariantsDefaulted(Block b,
+			Class<T> enumclazz, String variantHeader)
 	{
 		Item item = Item.getItemFromBlock(b);
 		for (T e : enumclazz.getEnumConstants())
 		{
-			String variantName = variantHeader + "="
-					+ e.getName().toLowerCase();
+			String variantName = variantHeader + "=" + e.getName().toLowerCase();
 			ModelLoader.setCustomModelResourceLocation(item, e.ordinal(),
-					new ModelResourceLocation(b.getRegistryName(),
-							variantName));
+					new ModelResourceLocation(b.getRegistryName(), variantName));
 		}
 	}
 }

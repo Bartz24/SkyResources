@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.bartz24.skyresources.References;
+import com.bartz24.skyresources.alchemy.fluid.FluidRegisterInfo;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModFluids;
 import com.bartz24.skyresources.registry.ModItems;
@@ -34,20 +35,21 @@ public class MetalCrystalItem extends Item
 
 	private void itemList()
 	{
-		names.addAll(Arrays.asList(ModFluids.crystalFluidNames()));
+		for (FluidRegisterInfo f : ModFluids.crystalFluidInfos())
+			names.add(f.name);
+		for (FluidRegisterInfo f : ModFluids.moltenCrystalFluidInfos())
+			names.add(f.name);
 	}
 
 	@Override
 	public String getUnlocalizedName(ItemStack stack)
 	{
-		return super.getUnlocalizedName(stack)
-				+ names.get(stack.getItemDamage());
+		return super.getUnlocalizedName(stack) + names.get(stack.getItemDamage());
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item id, CreativeTabs creativeTab,
-			List<ItemStack> list)
+	public void getSubItems(Item id, CreativeTabs creativeTab, List<ItemStack> list)
 	{
 		for (int i = 0; i < names.size(); i++)
 			list.add(new ItemStack(id, 1, i));
@@ -66,12 +68,11 @@ public class MetalCrystalItem extends Item
 	@Override
 	public String getItemStackDisplayName(ItemStack stack)
 	{
-		String base = ("" + I18n.translateToLocal("name.skyresources.metal."
-				+ ModFluids.crystalFluidNames()[stack.getMetadata()])).trim();
-
-		String type = (""
-				+ I18n.translateToLocal("item.skyresources.metalCrystal.name"))
+		String base = ("" + I18n.translateToLocal(
+				"name.skyresources.metal." + getNames().get(stack.getMetadata())))
 						.trim();
+
+		String type = ("" + I18n.translateToLocal("item.skyresources.metalCrystal.name")).trim();
 
 		return base + " " + type;
 	}

@@ -58,8 +58,8 @@ public class FluidCrystalBlock extends BlockFluidClassic
 			{
 				if (this.isSourceBlock(world, pos) && isNotFlowing(world, pos, state))
 				{
-					if (rand.nextInt(ModFluids.crystalFluidRarity()[ModBlocks.crystalFluidBlocks
-							.indexOf(this)]) == 0
+					if (rand.nextInt(ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks
+							.indexOf(this)].rarity) == 0
 							&& !(world.getBlockState(pos.down())
 									.getBlock() instanceof CondenserBlock))
 					{
@@ -72,8 +72,8 @@ public class FluidCrystalBlock extends BlockFluidClassic
 								SoundEvents.ENTITY_ARROW_HIT_PLAYER, SoundCategory.BLOCKS, 1.0F,
 								2.2F / (rand.nextFloat() * 0.2F + 0.9F));
 						if (rand.nextInt(
-								8 + ModFluids.crystalFluidRarity()[ModBlocks.crystalFluidBlocks
-										.indexOf(this)] / 2) >= 8)
+								8 + ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks
+										.indexOf(this)].rarity / 2) >= 8)
 							world.setBlockToAir(pos);
 					}
 				}

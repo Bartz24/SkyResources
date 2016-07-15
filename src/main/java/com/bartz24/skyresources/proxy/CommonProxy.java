@@ -42,8 +42,6 @@ public class CommonProxy
 	{
 		ConfigOptions.loadConfigThenSave(e);
 		ModFluids.init();
-		ModFluids.registerCrystalFluid();
-		ModFluids.registerDirtyCrystalFluid();
 		ModBlocks.init();
 		ModItems.init();
 		

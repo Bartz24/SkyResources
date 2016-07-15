@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bartz24.skyresources.config.ConfigOptions;
+import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModFluids;
 import com.bartz24.skyresources.registry.ModItems;
 
@@ -16,7 +17,7 @@ public class PurificationVesselRecipeMaker
 	{
 		ArrayList<PurificationVesselRecipeJEI> recipes = new ArrayList<PurificationVesselRecipeJEI>();
 
-		for (int i = 0; i < ModFluids.crystalFluidColors().length; i++)
+		for (int i = 0; i < ModFluids.crystalFluids.size(); i++)
 		{
 			PurificationVesselRecipeJEI addRecipe = new PurificationVesselRecipeJEI(
 					new FluidStack(ModFluids.dirtyCrystalFluids.get(i), 1000),

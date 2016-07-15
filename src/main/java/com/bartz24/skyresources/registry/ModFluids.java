@@ -4,88 +4,116 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bartz24.skyresources.References;
+import com.bartz24.skyresources.alchemy.fluid.FluidRegisterInfo;
+import com.bartz24.skyresources.alchemy.fluid.FluidRegisterInfo.CrystalFluidType;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-import scala.collection.concurrent.Debug;
 
 public class ModFluids
 {
 	public static List<Fluid> crystalFluids;
 	public static List<Fluid> dirtyCrystalFluids;
-	
-	static List<String> crystalFluidNames;
-	static List<Integer> crystalFluidColors;
-	static List<Integer> crystalFluidRarities;
-	
+	public static List<Fluid> moltenCrystalFluids;
+
+	private static List<FluidRegisterInfo> crystalFluidInfos;
+	private static List<FluidRegisterInfo> moltenCrystalFluidInfos;
+
 	public static void init()
 	{
-		crystalFluidNames = new ArrayList<String>();
-		crystalFluidColors = new ArrayList<Integer>();
-		crystalFluidRarities = new ArrayList<Integer>();
-		
-		ModFluids.addCrystalFluid("iron", 0xFFCC0000, 4);
-		ModFluids.addCrystalFluid("gold", 0xFFCCCC00, 6);
-		ModFluids.addCrystalFluid("copper", 0xFFFF6600, 2);
-		ModFluids.addCrystalFluid("tin", 0xFFBFBFBF, 4);
-		ModFluids.addCrystalFluid("silver", 0xFFD1F4FF, 5);
-		ModFluids.addCrystalFluid("zinc", 0xFFFFF7C2, 3);
-		ModFluids.addCrystalFluid("nickel", 0xFFFAF191, 6);
-		ModFluids.addCrystalFluid("platinum", 0xFF44EAFC, 8);
-		ModFluids.addCrystalFluid("aluminum", 0xFFF5FFFD, 4);
-		ModFluids.addCrystalFluid("lead", 0xFF5B2EFF , 5);
-		ModFluids.addCrystalFluid("mercury", 0xFFD1DCDE , 6);
-	}
-	
-	public static void addCrystalFluid(String name, int color, int rarity)
-	{
-		crystalFluidNames.add(name);
-		crystalFluidColors.add(color);
-		crystalFluidRarities.add(rarity);
+		crystalFluidInfos = new ArrayList();
+		moltenCrystalFluidInfos = new ArrayList();
+
+		ModFluids.addCrystalFluid("iron", 0xFFCC0000, 4, CrystalFluidType.NORMAL);
+		ModFluids.addCrystalFluid("gold", 0xFFCCCC00, 6, CrystalFluidType.NORMAL);
+		ModFluids.addCrystalFluid("copper", 0xFFFF6600, 2, CrystalFluidType.NORMAL);
+		ModFluids.addCrystalFluid("tin", 0xFFBFBFBF, 4, CrystalFluidType.NORMAL);
+		ModFluids.addCrystalFluid("silver", 0xFFD1F4FF, 5, CrystalFluidType.NORMAL);
+		ModFluids.addCrystalFluid("zinc", 0xFFFFF7C2, 3, CrystalFluidType.NORMAL);
+		ModFluids.addCrystalFluid("nickel", 0xFFFAF191, 6, CrystalFluidType.NORMAL);
+		ModFluids.addCrystalFluid("platinum", 0xFF44EAFC, 8, CrystalFluidType.NORMAL);
+		ModFluids.addCrystalFluid("aluminum", 0xFFF5FFFD, 4, CrystalFluidType.NORMAL);
+		ModFluids.addCrystalFluid("lead", 0xFF5B2EFF, 5, CrystalFluidType.NORMAL);
+		ModFluids.addCrystalFluid("mercury", 0xFFD1DCDE, 6, CrystalFluidType.NORMAL);
+		ModFluids.addCrystalFluid("quartz", 0xFFFFFFFF, 4, CrystalFluidType.MOLTEN);
+		ModFluids.addCrystalFluid("cobalt", 0xFF0045D9, 7, CrystalFluidType.MOLTEN);
+		ModFluids.addCrystalFluid("ardite", 0xFFDE9000, 7, CrystalFluidType.MOLTEN);
+
+		registerCrystalFluid();
+		registerDirtyCrystalFluid();
+		registerMoltenCrystalFluid();
 	}
 
-	public static void registerCrystalFluid()
+	public static void addCrystalFluid(String name, int color, int rarity, CrystalFluidType type)
+	{
+		if (type == CrystalFluidType.NORMAL)
+			crystalFluidInfos.add(new FluidRegisterInfo(name, color, rarity));
+		else if (type == CrystalFluidType.MOLTEN)
+			moltenCrystalFluidInfos.add(new FluidRegisterInfo(name, color, rarity));
+	}
+
+	private static void registerCrystalFluid()
 	{
 		crystalFluids = new ArrayList<Fluid>();
-		for (int i = 0; i < crystalFluidNames().length; i++)
+		for (int i = 0; i < crystalFluidInfos().length; i++)
 		{
-			final int val = i;
-			Fluid fluid = new Fluid(crystalFluidNames()[i] + "crystalfluid",
-					getStill("blocks/crystalfluid_still"),
-					getFlowing("blocks/crystalfluid_flow"))
-			{
-				@Override
-				public int getColor()
+				final int val = i;
+				Fluid fluid = new Fluid(crystalFluidInfos()[i].name + "crystalfluid",
+						getStill("blocks/crystalfluid_still"),
+						getFlowing("blocks/crystalfluid_flow"))
 				{
-					return crystalFluidColors()[val];
-				}
-			};
-			crystalFluids.add(fluid);
-			FluidRegistry.addBucketForFluid(crystalFluids.get(i));
-		}
+					@Override
+					public int getColor()
+					{
+						return crystalFluidInfos()[val].color;
+					}
+				};
+				crystalFluids.add(fluid);
+				FluidRegistry.addBucketForFluid(crystalFluids.get(i));
+			}
 	}
-	
-	public static void registerDirtyCrystalFluid()
+
+	private static void registerDirtyCrystalFluid()
 	{
 		dirtyCrystalFluids = new ArrayList<Fluid>();
-		for (int i = 0; i < crystalFluidNames().length; i++)
+		for (int i = 0; i < crystalFluidInfos().length; i++)
 		{
-			final int val = i;
-			Fluid fluid = new Fluid(crystalFluidNames()[i] + "dirtycrystalfluid",
-					getStill("blocks/dirtycrystalfluid_still"),
-					getFlowing("blocks/dirtycrystalfluid_flow"))
-			{
-				@Override
-				public int getColor()
+				final int val = i;
+				Fluid fluid = new Fluid(crystalFluidInfos()[i].name + "dirtycrystalfluid",
+						getStill("blocks/dirtycrystalfluid_still"),
+						getFlowing("blocks/dirtycrystalfluid_flow"))
 				{
-					return crystalFluidColors()[val];
-				}
-			};
-			dirtyCrystalFluids.add(fluid);
-			FluidRegistry.addBucketForFluid(dirtyCrystalFluids.get(i));
-			
-		}
+					@Override
+					public int getColor()
+					{
+						return crystalFluidInfos()[val].color;
+					}
+				};
+				dirtyCrystalFluids.add(fluid);
+				FluidRegistry.addBucketForFluid(dirtyCrystalFluids.get(i));
+			}
+	}
+
+	private static void registerMoltenCrystalFluid()
+	{
+		moltenCrystalFluids = new ArrayList<Fluid>();
+		for (int i = 0; i < moltenCrystalFluidInfos().length; i++)
+		{
+				final int val = i;
+				Fluid fluid = new Fluid(moltenCrystalFluidInfos()[i].name + "moltencrystalfluid",
+						getStill("blocks/moltencrystalfluid_still"),
+						getFlowing("blocks/moltencrystalfluid_flow"))
+				{
+					@Override
+					public int getColor()
+					{
+						return moltenCrystalFluidInfos()[val].color;
+					}
+				};
+				moltenCrystalFluids.add(fluid);
+				FluidRegistry.addBucketForFluid(moltenCrystalFluids.get(i));
+			}
 	}
 
 	public static ResourceLocation getStill(String name)
@@ -98,18 +126,13 @@ public class ModFluids
 		return new ResourceLocation(References.ModID, name);
 	}
 
-	public static String[] crystalFluidNames()
+	public static FluidRegisterInfo[] crystalFluidInfos()
 	{
-		return crystalFluidNames.toArray(new String[crystalFluidNames.size()]);
+		return crystalFluidInfos.toArray(new FluidRegisterInfo[crystalFluidInfos.size()]);
 	}
 
-	public static Integer[] crystalFluidColors()
+	public static FluidRegisterInfo[] moltenCrystalFluidInfos()
 	{
-		return crystalFluidColors.toArray(new Integer[crystalFluidColors.size()]);
-	}
-
-	public static Integer[] crystalFluidRarity()
-	{
-		return crystalFluidRarities.toArray(new Integer[crystalFluidColors.size()]);
+		return moltenCrystalFluidInfos.toArray(new FluidRegisterInfo[moltenCrystalFluidInfos.size()]);
 	}
 }

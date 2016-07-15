@@ -32,6 +32,7 @@ item.skyresources.heavySnowball.name=Heavy Snowball
 tile.skyresources.cactusFruitNeedle.name=Cactus Fruit On A Needle
 tile.skyresources.compressedCoalBlock.name=Hardened Coal Block
 tile.skyresources.compressedCoalBlock2.name=Adamant Coal Block
+tile.skyresources.compressedNetherrack.name=Hardened Netherrack
 tile.skyresources.coalInfusedBlock.name=Alchemical Coal Block
 tile.skyresources.dryCactus.name=Dehydrated Cactus
 tile.skyresources.combustionHeater.wood.name=Wooden Combustion Heater
@@ -76,6 +77,10 @@ tile.skyresources.aluminumDirtyCrystalFluidBlock.name=Dirty Aluminum Crystal Liq
 tile.skyresources.leadDirtyCrystalFluidBlock.name=Dirty Lead Crystal Liquid
 tile.skyresources.mercuryDirtyCrystalFluidBlock.name=Dirty Mercury Crystal Liquid
 
+tile.skyresources.quartzMoltenCrystalFluidBlock.name=Molten Quartz Crystal Liquid
+tile.skyresources.cobaltMoltenCrystalFluidBlock.name=Molten Cobalt Crystal Liquid
+tile.skyresources.arditeMoltenCrystalFluidBlock.name=Molten Ardite Crystal Liquid
+
 
 jei.skyresources.desc.cactusNeedle=Obtained by shift right-clicking on a cactus block.\n\nNOTE: You will take damage.
 jei.skyresources.desc.cactusNeedleBloody=Obtained by shift right-clicking with a Cactus Needle.\n\nNOTE: You will take damage.
@@ -114,6 +119,9 @@ name.skyresources.metal.platinum=Platinum
 name.skyresources.metal.aluminum=Aluminum
 name.skyresources.metal.lead=Lead
 name.skyresources.metal.mercury=Mercury
+name.skyresources.metal.quartz=Quartz
+name.skyresources.metal.cobalt=Cobalt
+name.skyresources.metal.ardite=Ardite
 
 name.skyresources.gem.emerald=Emerald
 name.skyresources.gem.ruby=Ruby
@@ -163,6 +171,10 @@ fluid.platinumdirtycrystalfluid=Dirty Platinum Crystal Fluid
 fluid.aluminumdirtycrystalfluid=Dirty Aluminum Crystal Fluid
 fluid.leaddirtycrystalfluid=Dirty Lead Crystal Fluid
 fluid.mercurydirtycrystalfluid=Dirty Mercury Crystal Fluid
+
+fluid.quartzmoltencrystalfluid=Molten Quartz Crystal Fluid
+fluid.cobaltmoltencrystalfluid=Molten Cobalt Crystal Fluid
+fluid.arditemoltencrystalfluid=Molten Ardite Crystal Fluid
 
 key.skyresources.guide=Open Guide
 

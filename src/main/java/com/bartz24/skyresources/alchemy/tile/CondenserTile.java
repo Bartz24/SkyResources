@@ -37,13 +37,13 @@ public class CondenserTile extends TileEntity implements ITickable
 			if (ModBlocks.crystalFluidBlocks.contains(block))
 			{
 				type = ModFluids
-						.crystalFluidNames()[ModBlocks.crystalFluidBlocks
-								.indexOf(crystalBlock)];
+						.crystalFluidInfos()[ModBlocks.crystalFluidBlocks
+								.indexOf(crystalBlock)].name;
 				clean = true;
 			} else if (ModBlocks.dirtyCrystalFluidBlocks.contains(block))
 				type = ModFluids
-						.crystalFluidNames()[ModBlocks.dirtyCrystalFluidBlocks
-								.indexOf(crystalBlock)];
+						.crystalFluidInfos()[ModBlocks.dirtyCrystalFluidBlocks
+								.indexOf(crystalBlock)].name;
 
 			String oreDictCheck = "ingot" + RandomHelper.capatilizeString(type);
 
@@ -81,11 +81,11 @@ public class CondenserTile extends TileEntity implements ITickable
 	public int getTimeToCondense(FluidCrystalBlock block, boolean clean)
 	{
 		if (!clean)
-			return ModFluids.crystalFluidRarity()[ModBlocks.dirtyCrystalFluidBlocks
-					.indexOf(block)] * ConfigOptions.condenserProcessTimeBase * 10;
+			return ModFluids.crystalFluidInfos()[ModBlocks.dirtyCrystalFluidBlocks
+					.indexOf(block)].rarity * ConfigOptions.condenserProcessTimeBase * 10;
 
-		return ModFluids.crystalFluidRarity()[ModBlocks.crystalFluidBlocks
-				.indexOf(block)] * ConfigOptions.condenserProcessTimeBase;
+		return ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks
+				.indexOf(block)].rarity * ConfigOptions.condenserProcessTimeBase;
 	}
 
 	public Block getBlockAbove()

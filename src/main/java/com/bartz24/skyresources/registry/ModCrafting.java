@@ -4,8 +4,8 @@ import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.alchemy.crucible.CrucibleRecipes;
+import com.bartz24.skyresources.alchemy.fluid.FluidRegisterInfo.CrystalFluidType;
 import com.bartz24.skyresources.alchemy.infusion.InfusionRecipes;
-import com.bartz24.skyresources.alchemy.item.MetalCrystalItem;
 import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.base.ModFuelHandler;
 import com.bartz24.skyresources.base.waterextractor.WaterExtractorRecipes;
@@ -162,7 +162,8 @@ public class ModCrafting
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.purificationVessel), new Object[]
 				{ "XXX", "XYX", "XXX", 'X', "blockGlass", 'Y', Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE }));
-		GameRegistry.addRecipe(	new ShapedOreRecipe(new ItemStack(ModItems.fleshySnowNugget, 3), new Object[]
+		GameRegistry.addRecipe(
+				new ShapedOreRecipe(new ItemStack(ModItems.fleshySnowNugget, 3), new Object[]
 				{ "XX", "XY", 'X', new ItemStack(Items.SNOWBALL), 'Y', new ItemStack(Items.ROTTEN_FLESH) }));
 
 		if (OreDictionary.doesOreNameExist("ingotSteel")
@@ -214,8 +215,7 @@ public class ModCrafting
 				new ItemStack(Items.SPECKLED_MELON, 3), Blocks.PUMPKIN,
 				OreDictionary.WILDCARD_VALUE, 20);
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.CACTUS),
-				new ItemStack(Items.FERMENTED_SPIDER_EYE, 3), Blocks.SAPLING,
-				0, 20);
+				new ItemStack(Items.FERMENTED_SPIDER_EYE, 3), Blocks.SAPLING, 0, 20);
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.COAL, 1), 50,
 				new ItemStack(Items.COAL, 1, 1));
@@ -258,7 +258,7 @@ public class ModCrafting
 		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 10), 700,
 				new ItemStack(ModItems.metalCrystal, 4, 1), new ItemStack(Items.GOLD_INGOT, 2),
 				new ItemStack(ModItems.techComponent, 3, 1));
-		
+
 		CombustionRecipes.addRecipe(new ItemStack(Items.REDSTONE, 3), 400,
 				new ItemStack(Items.GUNPOWDER, 2), new ItemStack(Items.BLAZE_POWDER, 2));
 
@@ -290,7 +290,8 @@ public class ModCrafting
 				new ItemStack(Items.POTIONITEM, 1, 0), new ItemStack(Items.POTIONITEM, 1, 0),
 				new ItemStack(Items.POTIONITEM, 1, 0), new ItemStack(Items.QUARTZ, 8));
 		CombustionRecipes.addRecipe(new ItemStack(Blocks.NETHERRACK, 16), 700,
-				new ItemStack(Blocks.COBBLESTONE, 32), new ItemStack(Items.REDSTONE, 4), new ItemStack(Items.BLAZE_POWDER, 8));
+				new ItemStack(Blocks.COBBLESTONE, 32), new ItemStack(Items.REDSTONE, 4),
+				new ItemStack(Items.BLAZE_POWDER, 8));
 
 		RockGrinderRecipes.addRecipe(new ItemStack(Blocks.SAND), false,
 				Blocks.COBBLESTONE.getDefaultState());
@@ -306,10 +307,16 @@ public class ModCrafting
 			RockGrinderRecipes.addRecipe(new ItemStack(ModItems.dirtyGem, 1, i), false,
 					Blocks.STONE.getDefaultState(), 0.005F);
 		}
-		
-		for (int i = 0; i < ModFluids.crystalFluidNames.size(); i++)
+
+		for (int i = 0; i < ModFluids.crystalFluidInfos().length; i++)
 		{
-			CrucibleRecipes.addRecipe(new FluidStack(ModFluids.dirtyCrystalFluids.get(i), 1000), new ItemStack(ModItems.metalCrystal, 1, i));
+				CrucibleRecipes.addRecipe(new FluidStack(ModFluids.dirtyCrystalFluids.get(i), 1000),
+						new ItemStack(ModItems.metalCrystal, 1, i));
+		}
+		for (int i = 0; i < ModFluids.moltenCrystalFluidInfos().length; i++)
+		{
+				CrucibleRecipes.addRecipe(new FluidStack(ModFluids.moltenCrystalFluids.get(i), 1000),
+						new ItemStack(ModItems.metalCrystal, 1, i+ModFluids.crystalFluidInfos().length));
 		}
 
 		WaterExtractorRecipes.addExtractRecipe(50, true, Blocks.CACTUS.getDefaultState(),
@@ -350,10 +357,10 @@ public class ModCrafting
 
 		GameRegistry.registerFuelHandler(new ModFuelHandler());
 
-		for (int i = 0; i < ModFluids.crystalFluidNames().length; i++)
+		for (int i = 0; i < ModFluids.crystalFluidInfos().length; i++)
 		{
 			String oreName = "ore"
-					+ RandomHelper.capatilizeString(ModFluids.crystalFluidNames()[i]);
+					+ RandomHelper.capatilizeString(ModFluids.crystalFluidInfos()[i].name);
 
 			if (OreDictionary.getOres(oreName).size() > 0)
 			{
@@ -361,10 +368,28 @@ public class ModCrafting
 						Block.getBlockFromItem(OreDictionary.getOres(oreName).get(0).getItem())
 								.getStateFromMeta(
 										OreDictionary.getOres(oreName).get(0).getMetadata()),
-						ModFluids.crystalFluidRarity()[i] * 100,
+						ModFluids.crystalFluidInfos()[i].rarity * 100,
 						new ItemStack(ModItems.metalCrystal,
 								ConfigOptions.crystalConcentratorAmount, i),
 						ModBlocks.compressedStone.getDefaultState());
+			}
+		}
+		
+		for (int i = 0; i < ModFluids.moltenCrystalFluidInfos().length; i++)
+		{
+			String oreName = "ore"
+					+ RandomHelper.capatilizeString(ModFluids.moltenCrystalFluidInfos()[i].name);
+
+			if (OreDictionary.getOres(oreName).size() > 0)
+			{
+				ConcentratorRecipes.addRecipe(
+						Block.getBlockFromItem(OreDictionary.getOres(oreName).get(0).getItem())
+								.getStateFromMeta(
+										OreDictionary.getOres(oreName).get(0).getMetadata()),
+						ModFluids.moltenCrystalFluidInfos()[i].rarity * 100,
+						new ItemStack(ModItems.metalCrystal,
+								ConfigOptions.crystalConcentratorAmount, i+ModFluids.crystalFluidInfos().length),
+						ModBlocks.compressedNetherrack.getDefaultState());
 			}
 		}
 
@@ -404,8 +429,7 @@ public class ModCrafting
 				new ItemStack(ModItems.ironKnife, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("toolCuttingKnife",
 				new ItemStack(ModItems.diamondKnife, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("ingotFrozenIron",
-				new ItemStack(ModItems.techComponent, 1, 2));
+		OreDictionary.registerOre("ingotFrozenIron", new ItemStack(ModItems.techComponent, 1, 2));
 
 	}
 }
