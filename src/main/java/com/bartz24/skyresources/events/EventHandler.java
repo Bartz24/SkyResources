@@ -63,7 +63,7 @@ public class EventHandler
 
 			NBTTagCompound persist = data.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
 
-			if (player.worldObj.getWorldInfo().getTerrainType() instanceof WorldTypeSky)
+			if (player.worldObj.getWorldInfo().getTerrainType() instanceof WorldTypeSky && player.dimension == 0)
 			{
 				if (!References.hasPlayerSpawned(player.getName()))
 				{
@@ -269,7 +269,6 @@ public class EventHandler
 	{
 		if (!event.getWorld().isRemote && event.getHand() == EnumHand.MAIN_HAND)
 		{
-			System.out.println(event.getWorld().getSeaLevel());
 			ItemStack equip = event.getEntityPlayer().getHeldItem(event.getHand());
 			if (event.getPos() == null)
 				return;

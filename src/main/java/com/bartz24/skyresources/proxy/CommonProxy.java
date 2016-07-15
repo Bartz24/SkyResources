@@ -1,6 +1,7 @@
 package com.bartz24.skyresources.proxy;
 
 import com.bartz24.skyresources.SkyResources;
+import com.bartz24.skyresources.alchemy.crucible.CrucibleRecipes;
 import com.bartz24.skyresources.alchemy.infusion.InfusionRecipes;
 import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.base.guide.SkyResourcesGuide;
@@ -10,10 +11,6 @@ import com.bartz24.skyresources.events.EventHandler;
 import com.bartz24.skyresources.events.ModBucketHandler;
 import com.bartz24.skyresources.minetweaker.MinetweakerPlugin;
 import com.bartz24.skyresources.plugin.ModPlugins;
-import com.bartz24.skyresources.plugin.armorplus.ArmorPlusPlugin;
-import com.bartz24.skyresources.plugin.forestry.ForestryPlugin;
-import com.bartz24.skyresources.plugin.ic2.IC2Plugin;
-import com.bartz24.skyresources.plugin.techreborn.TechRebornPlugin;
 import com.bartz24.skyresources.registry.ModAchievements;
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModCrafting;
@@ -26,6 +23,7 @@ import com.bartz24.skyresources.technology.combustion.CombustionRecipes;
 import com.bartz24.skyresources.technology.concentrator.ConcentratorRecipes;
 import com.bartz24.skyresources.technology.freezer.FreezerRecipes;
 import com.bartz24.skyresources.technology.rockgrinder.RockGrinderRecipes;
+import com.bartz24.skyresources.world.WorldOverride;
 import com.bartz24.skyresources.world.WorldTypeSky;
 
 import net.minecraftforge.common.AchievementPage;
@@ -58,6 +56,7 @@ public class CommonProxy
 		new RockGrinderRecipes();
 		new FreezerRecipes();
 		new WaterExtractorRecipes();
+		new CrucibleRecipes();
 		new WorldTypeSky();
 		new SkyResourcesGuide();
 
@@ -75,6 +74,8 @@ public class CommonProxy
 		ModCrafting.initOreDict();
 		
 		ModPlugins.init();
+		
+		WorldOverride.registerWorldProviders();
 
 		AchievementPage.registerAchievementPage(ModAchievements.modAchievePage);
 	}

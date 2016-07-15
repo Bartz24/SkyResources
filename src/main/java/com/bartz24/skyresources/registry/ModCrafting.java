@@ -3,7 +3,9 @@ package com.bartz24.skyresources.registry;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
+import com.bartz24.skyresources.alchemy.crucible.CrucibleRecipes;
 import com.bartz24.skyresources.alchemy.infusion.InfusionRecipes;
+import com.bartz24.skyresources.alchemy.item.MetalCrystalItem;
 import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.base.ModFuelHandler;
 import com.bartz24.skyresources.base.waterextractor.WaterExtractorRecipes;
@@ -19,6 +21,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -101,6 +104,9 @@ public class ModCrafting
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.compressedStone), new Object[]
 				{ "XXX", "XXX", "XXX", 'X', new ItemStack(Blocks.STONE) }));
+		GameRegistry.addRecipe(
+				new ShapedOreRecipe(new ItemStack(ModBlocks.compressedNetherrack), new Object[]
+				{ "XXX", "XXX", "XXX", 'X', new ItemStack(Blocks.NETHERRACK) }));
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.coalInfusedBlock), new Object[]
 				{ "XXX", "XXX", "XXX", 'X', new ItemStack(ModItems.alchemyComponent, 1, 2) }));
@@ -283,6 +289,8 @@ public class ModCrafting
 		CombustionRecipes.addRecipe(new ItemStack(Items.SNOWBALL), 1234,
 				new ItemStack(Items.POTIONITEM, 1, 0), new ItemStack(Items.POTIONITEM, 1, 0),
 				new ItemStack(Items.POTIONITEM, 1, 0), new ItemStack(Items.QUARTZ, 8));
+		CombustionRecipes.addRecipe(new ItemStack(Blocks.NETHERRACK, 16), 700,
+				new ItemStack(Blocks.COBBLESTONE, 32), new ItemStack(Items.REDSTONE, 4), new ItemStack(Items.BLAZE_POWDER, 8));
 
 		RockGrinderRecipes.addRecipe(new ItemStack(Blocks.SAND), false,
 				Blocks.COBBLESTONE.getDefaultState());
@@ -297,6 +305,11 @@ public class ModCrafting
 		{
 			RockGrinderRecipes.addRecipe(new ItemStack(ModItems.dirtyGem, 1, i), false,
 					Blocks.STONE.getDefaultState(), 0.005F);
+		}
+		
+		for (int i = 0; i < ModFluids.crystalFluidNames.size(); i++)
+		{
+			CrucibleRecipes.addRecipe(new FluidStack(ModFluids.dirtyCrystalFluids.get(i), 1000), new ItemStack(ModItems.metalCrystal, 1, i));
 		}
 
 		WaterExtractorRecipes.addExtractRecipe(50, true, Blocks.CACTUS.getDefaultState(),

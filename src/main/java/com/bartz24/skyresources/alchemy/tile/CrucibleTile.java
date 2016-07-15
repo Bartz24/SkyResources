@@ -2,18 +2,19 @@ package com.bartz24.skyresources.alchemy.tile;
 
 import java.util.List;
 
-import com.bartz24.skyresources.RandomHelper;
+import com.bartz24.skyresources.alchemy.crucible.CrucibleRecipe;
+import com.bartz24.skyresources.alchemy.crucible.CrucibleRecipes;
 import com.bartz24.skyresources.alchemy.item.MetalCrystalItem;
 import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModFluids;
 
+import mezz.jei.gui.ingredients.ItemStackHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -33,9 +34,9 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 
 	public static int tankCapacity = ConfigOptions.crucibleCapacity;
 
+	ItemStack itemIn;
 	int itemAmount;
 	int maxItemAmount = ConfigOptions.crucibleCapacity;
-	int currentType;
 
 	@Override
 	public int fill(EnumFacing from, FluidStack resource, boolean doFill)
@@ -52,8 +53,7 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 	}
 
 	@Override
-	public FluidStack drain(EnumFacing from, FluidStack resource,
-			boolean doDrain)
+	public FluidStack drain(EnumFacing from, FluidStack resource, boolean doDrain)
 	{
 		if (resource != null && canDrain(from, resource.getFluid()))
 		{
@@ -85,8 +85,7 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 	{
 		if (tank != null)
 		{
-			if (fluid == null || tank.getFluid() != null
-					&& tank.getFluid().getFluid() == fluid)
+			if (fluid == null || tank.getFluid() != null && tank.getFluid().getFluid() == fluid)
 			{
 				return true;
 			}
@@ -132,53 +131,46 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 	{
 		if (!worldObj.isRemote)
 		{
-			if (itemAmount <= maxItemAmount - ConfigOptions.crucibleCrystalAmount)
+			List<EntityItem> list = worldObj.getEntitiesWithinAABB(EntityItem.class,
+					new AxisAlignedBB(pos.getX(), pos.getY() + 0.2, pos.getZ(), pos.getX() + 1,
+							pos.getY() + 1, pos.getZ() + 1));
+
+			for (EntityItem entity : list)
 			{
-				List<EntityItem> list = worldObj.getEntitiesWithinAABB(
-						EntityItem.class,
-						new AxisAlignedBB(pos.getX(), pos.getY() + 0.2,
-								pos.getZ(), pos.getX() + 1, pos.getY() + 1,
-								pos.getZ() + 1));
+				ItemStack stack = entity.getEntityItem();
 
-				for (EntityItem entity : list)
+				CrucibleRecipe recipe = CrucibleRecipes.getRecipe(stack);
+
+				int amount = recipe == null ? 0 : recipe.getOutput().amount;
+
+				if (itemAmount + amount <= maxItemAmount && recipe != null)
 				{
-					ItemStack stack = entity.getEntityItem();
+					ItemStack input = recipe.getInput();
 
-					if (itemAmount + ConfigOptions.crucibleCrystalAmount <= maxItemAmount
-							&& stack.getItem() instanceof MetalCrystalItem)
+					if (tank.getFluid() == null || tank.getFluid().getFluid() == null)
 					{
-						int itemType = stack.getItem().getMetadata(stack);
+						this.itemIn = input;
+					}
 
-						if (tank.getFluid() == null
-								|| tank.getFluid().getFluid() == null)
-						{
-							currentType = itemType;
-						}
-
-						if (currentType == itemType)
-						{
-							itemAmount += ConfigOptions.crucibleCrystalAmount;
-							stack.stackSize--;
-						}
+					if (itemIn == input)
+					{
+						itemAmount += amount;
+						stack.stackSize--;
 					}
 				}
 			}
 			if (itemAmount > 0)
-			{
+			{				
 				int val = Math.min(getHeatSourceVal(), itemAmount);
-				if (currentType >= 0 && val > 0
-						&& tank.getFluidAmount() + val <= tank.getCapacity())
+				if (itemIn != null && val > 0 && tank.getFluidAmount() + val <= tank.getCapacity())
 				{
-					this.fill(null,
-							new FluidStack(
-									ModFluids.dirtyCrystalFluids.get(currentType),
-									val),
-							true);
+					CrucibleRecipe recipe = CrucibleRecipes.getRecipe(itemIn);
+					this.fill(null, new FluidStack(recipe.getOutput(), val), true);
 					itemAmount -= val;
 				}
 
 				if (tank.getFluidAmount() == 0 && itemAmount == 0)
-					currentType = -1;
+					itemIn = null;
 
 			}
 		}
@@ -193,10 +185,13 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 		super.writeToNBT(compound);
 
 		tank.writeToNBT(compound);
-		
 
 		compound.setInteger("amount", itemAmount);
-		compound.setInteger("type", currentType);
+		NBTTagCompound stackTag = new NBTTagCompound();
+		if (itemIn != null)
+			itemIn.writeToNBT(stackTag);
+		compound.setTag("Item", stackTag);
+
 		return compound;
 	}
 
@@ -208,27 +203,27 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 		tank.readFromNBT(compound);
 
 		itemAmount = compound.getInteger("amount");
-		currentType = compound.getInteger("type");
+		NBTTagCompound stackTag = compound.getCompoundTag("Item");
+		if(stackTag!=null)
+		itemIn = ItemStack.loadItemStackFromNBT(stackTag);
 	}
 
 	int getHeatSourceVal()
 	{
 		if (HeatSources.isValidHeatSource(pos.down(), worldObj))
 		{
-			if(HeatSources
-					.getHeatSourceValue(pos.down(), worldObj) > 0)
-			return Math.max(HeatSources
-					.getHeatSourceValue(pos.down(), worldObj) / 5, 1);
+			if (HeatSources.getHeatSourceValue(pos.down(), worldObj) > 0)
+				return Math.max(HeatSources.getHeatSourceValue(pos.down(), worldObj) / 5, 1);
 		}
 		return 0;
 	}
 
-	public boolean shouldRefresh(World world, BlockPos pos,
-			IBlockState oldState, IBlockState newState)
+	public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState,
+			IBlockState newState)
 	{
 		return oldState.getBlock() != newState.getBlock();
 	}
-	
+
 	public int getItemAmount()
 	{
 		return itemAmount;

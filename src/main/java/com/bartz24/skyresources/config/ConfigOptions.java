@@ -23,7 +23,6 @@ public class ConfigOptions
 	public static int condenserProcessTimeBase;
 
 	public static int crucibleCapacity;
-	public static int crucibleCrystalAmount;
 
 	public static float knifeBaseDamage;
 	public static float knifeBaseDurability;
@@ -42,6 +41,7 @@ public class ConfigOptions
 	public static int islandResetDistance;
 	public static boolean spawnChest;
 	public static boolean spawnIgloo;
+	public static boolean netherVoid;
 
 	public static String commandName;
 
@@ -115,6 +115,10 @@ public class ConfigOptions
 		spawnIgloo = config.get("islands", "Spawn Igloo on Snow Island", false)
 				.getBoolean(false);
 
+		netherVoid = config
+				.get("islands", "Nether Void World", true)
+				.getBoolean(true);
+
 		commandName = config.get("islands",
 				"Name For Command (Default: platform)", "platform").getString();
 
@@ -136,8 +140,6 @@ public class ConfigOptions
 				.getInt(2000);
 		crucibleCapacity = config.get("crucible", "Crucible Capacity", 4000)
 				.getInt(4000);
-		crucibleCrystalAmount = config
-				.get("crucible", "Crucible Crystal Value", 1000).getInt(1000);
 		knifeBaseDamage = (float) config.get("knife", "Knife Base Damage", 1.5)
 				.getDouble(1.5);
 		knifeBaseDurability = (float) config

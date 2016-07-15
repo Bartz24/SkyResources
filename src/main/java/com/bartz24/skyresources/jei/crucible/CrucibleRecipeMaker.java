@@ -3,24 +3,23 @@ package com.bartz24.skyresources.jei.crucible;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bartz24.skyresources.config.ConfigOptions;
-import com.bartz24.skyresources.registry.ModFluids;
-import com.bartz24.skyresources.registry.ModItems;
-
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
+import com.bartz24.skyresources.alchemy.crucible.CrucibleRecipe;
+import com.bartz24.skyresources.alchemy.crucible.CrucibleRecipes;
+import com.bartz24.skyresources.jei.freezer.FreezerRecipeJEI;
 
 public class CrucibleRecipeMaker
 {
 	public static List<CrucibleRecipeJEI> getRecipes()
 	{
+		List<CrucibleRecipe> grinderRecipes = CrucibleRecipes
+				.getRecipes();
+
 		ArrayList<CrucibleRecipeJEI> recipes = new ArrayList<CrucibleRecipeJEI>();
 
-		for (int i = 0; i < ModFluids.crystalFluidColors().length; i++)
+		for (CrucibleRecipe recipe : grinderRecipes)
 		{
 			CrucibleRecipeJEI addRecipe = new CrucibleRecipeJEI(
-					new ItemStack(ModItems.metalCrystal, 1, i),
-					new FluidStack(ModFluids.dirtyCrystalFluids.get(i), ConfigOptions.crucibleCrystalAmount));
+					recipe.getInput(), recipe.getOutput());
 			recipes.add(addRecipe);
 		}
 
