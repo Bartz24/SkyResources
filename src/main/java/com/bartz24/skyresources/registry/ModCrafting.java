@@ -145,7 +145,7 @@ public class ModCrafting
 				{ "X", 'X', new ItemStack(ModBlocks.coalInfusedBlock) }));
 		GameRegistry
 				.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.ironFreezer), new Object[]
-		{ "XXX", "XZX", "XXX", 'X', new ItemStack(ModItems.techComponent, 1, 2), 'Z',
+		{ "XXX", "XZX", "XXX", 'X', "ingotFrozenIron", 'Z',
 				new ItemStack(ModBlocks.miniFreezer) }));
 		GameRegistry
 				.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.dirtFurnace), new Object[]
@@ -165,6 +165,12 @@ public class ModCrafting
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModItems.fleshySnowNugget, 3), new Object[]
 				{ "XX", "XY", 'X', new ItemStack(Items.SNOWBALL), 'Y', new ItemStack(Items.ROTTEN_FLESH) }));
+		GameRegistry.addRecipe(
+				new ShapedOreRecipe(new ItemStack(ModItems.baseComponent, 1, 4), new Object[]
+				{ "XXX", "XYX", "XXX", 'X', "ingotFrozenIron", 'Y', new ItemStack(Items.GLOWSTONE_DUST) }));
+		GameRegistry.addRecipe(
+				new ShapedOreRecipe(new ItemStack(ModBlocks.advancedCoolingCondenser), new Object[]
+				{ "XXX", "X X", "XYX", 'X', "ingotIron", 'Y', new ItemStack(ModItems.baseComponent, 1, 4) }));
 
 		if (OreDictionary.doesOreNameExist("ingotSteel")
 				&& OreDictionary.doesOreNameExist("dustCoal"))
