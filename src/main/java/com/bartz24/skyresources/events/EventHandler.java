@@ -41,7 +41,6 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.event.world.WorldEvent.Save;
 import net.minecraftforge.event.world.WorldEvent.Unload;
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
@@ -63,7 +62,8 @@ public class EventHandler
 
 			NBTTagCompound persist = data.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
 
-			if (player.worldObj.getWorldInfo().getTerrainType() instanceof WorldTypeSky && player.dimension == 0)
+			if (player.worldObj.getWorldInfo().getTerrainType() instanceof WorldTypeSky
+					&& player.dimension == 0)
 			{
 				if (!References.hasPlayerSpawned(player.getName()))
 				{
@@ -299,7 +299,7 @@ public class EventHandler
 						event.getWorld().setBlockToAir(event.getPos());
 					else
 						event.getWorld().setBlockState(event.getPos(),
-								Blocks.SNOW_LAYER.getStateFromMeta(meta -1));
+								Blocks.SNOW_LAYER.getStateFromMeta(meta - 1));
 				} else if (block == Blocks.SNOW)
 				{
 					RandomHelper.spawnItemInWorld(event.getWorld(), new ItemStack(Items.SNOWBALL),
@@ -323,7 +323,7 @@ public class EventHandler
 					if (i > 0 && item != null && item.getItem() == ModItems.dirtyGem)
 					{
 						List<ItemStack> items = OreDictionary.getOres("gem" + RandomHelper
-								.capatilizeString(References.gemList.get(item.getMetadata())));
+								.capatilizeString(ModItems.gemList.get(item.getMetadata()).name));
 
 						if (items.size() > 0)
 						{
@@ -465,5 +465,4 @@ public class EventHandler
 			}
 		}
 	}
-
 }

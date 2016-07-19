@@ -19,10 +19,10 @@ public class CauldronRecipeMaker
 	{
 		ArrayList<CauldronRecipeJEI> recipes = new ArrayList<CauldronRecipeJEI>();
 
-		for (int i = 0; i < References.gemList.size(); i++)
+		for (int i = 0; i < ModItems.gemList.size(); i++)
 		{
 			List<ItemStack> items = OreDictionary.getOres("gem"
-					+ RandomHelper.capatilizeString(References.gemList.get(i)));
+					+ RandomHelper.capatilizeString(ModItems.gemList.get(i).name));
 			if (items.size() > 0)
 			{
 				CauldronRecipeJEI addRecipe = new CauldronRecipeJEI(

@@ -1,13 +1,12 @@
 package com.bartz24.skyresources.alchemy.item;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
-import com.bartz24.skyresources.registry.ModFluids;
 import com.bartz24.skyresources.registry.ModItems;
+import com.bartz24.skyresources.technology.item.GemRegisterInfo;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -34,20 +33,19 @@ public class DirtyGemItem extends Item
 
 	private void itemList()
 	{
-		names.addAll(References.gemList);
+		for (GemRegisterInfo g : ModItems.gemList)
+			names.add(g.name);
 	}
 
 	@Override
 	public String getUnlocalizedName(ItemStack stack)
 	{
-		return super.getUnlocalizedName(stack)
-				+ names.get(stack.getItemDamage());
+		return super.getUnlocalizedName(stack) + names.get(stack.getItemDamage());
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item id, CreativeTabs creativeTab,
-			List<ItemStack> list)
+	public void getSubItems(Item id, CreativeTabs creativeTab, List<ItemStack> list)
 	{
 		for (int i = 0; i < names.size(); i++)
 			list.add(new ItemStack(id, 1, i));
@@ -66,12 +64,10 @@ public class DirtyGemItem extends Item
 	@Override
 	public String getItemStackDisplayName(ItemStack stack)
 	{
-		String base = ("" + I18n.translateToLocal("name.skyresources.gem."
-				+ References.gemList.get(stack.getMetadata()))).trim();
+		String base = ("" + I18n.translateToLocal(
+				"name.skyresources.gem." + ModItems.gemList.get(stack.getMetadata()).name)).trim();
 
-		String type = (""
-				+ I18n.translateToLocal("name.skyresources.dirty"))
-						.trim();
+		String type = ("" + I18n.translateToLocal("name.skyresources.dirty")).trim();
 
 		return type + " " + base;
 	}

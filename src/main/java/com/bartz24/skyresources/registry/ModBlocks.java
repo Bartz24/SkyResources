@@ -10,7 +10,6 @@ import com.bartz24.skyresources.alchemy.block.CrucibleBlock;
 import com.bartz24.skyresources.alchemy.block.PurificationVesselBlock;
 import com.bartz24.skyresources.alchemy.fluid.FluidCrystalBlock;
 import com.bartz24.skyresources.alchemy.fluid.FluidMoltenCrystalBlock;
-import com.bartz24.skyresources.alchemy.fluid.FluidRegisterInfo.CrystalFluidType;
 import com.bartz24.skyresources.base.block.BaseBlock;
 import com.bartz24.skyresources.base.block.BlazePowderBlock;
 import com.bartz24.skyresources.base.block.BlockDryCactus;
@@ -39,6 +38,7 @@ public class ModBlocks
 	public static Block crucible;
 	public static Block fluidDropper;
 	public static Block alchemicalCondenser;
+	public static Block advancedCoolingCondenser;
 	public static Block purificationVessel;
 	public static Block miniFreezer;
 	public static Block ironFreezer;
@@ -94,6 +94,8 @@ public class ModBlocks
 
 		alchemicalCondenser = registerBlock(
 				new CondenserBlock("alchemicalCondenser", "AlchemicalCondenser", 2F, 12F));
+		advancedCoolingCondenser = registerBlock(
+				new CondenserBlock("advancedCoolingCondenser", "AdvancedCoolingCondenser", 6F, 12F));
 
 		poweredHeater = registerBlock(
 				new BlockPoweredHeater("poweredHeater", "PoweredHeater", 4F, 12F));
@@ -135,7 +137,7 @@ public class ModBlocks
 		for (int i = 0; i < ModFluids.moltenCrystalFluidInfos().length; i++)
 		{
 				moltenCrystalFluidBlocks.add(registerBlock(
-						new FluidCrystalBlock(ModFluids.moltenCrystalFluids.get(i), Material.LAVA,
+						new FluidMoltenCrystalBlock(ModFluids.moltenCrystalFluids.get(i), Material.LAVA,
 								ModFluids.moltenCrystalFluidInfos()[i].name + "MoltenCrystalFluidBlock",
 								RandomHelper.capatilizeString(ModFluids.moltenCrystalFluidInfos()[i].name)
 										+ "MoltenCrystalFluidBlock")));

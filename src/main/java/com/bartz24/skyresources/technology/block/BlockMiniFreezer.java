@@ -97,7 +97,8 @@ public class BlockMiniFreezer extends BlockContainer
 	public void breakBlock(World world, BlockPos pos, IBlockState state)
 	{
 		FreezerTile te = (FreezerTile) world.getTileEntity(pos);
-		if (te.getInv() != null)
+		
+		if (te!=null && te.getInv() != null)
 		{
 			for (int i = 0; i < te.getInv().length; i++)
 			{

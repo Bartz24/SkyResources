@@ -41,6 +41,25 @@ public class CondenserRecipeMaker
 				recipes.add(addDirtyRecipe);
 			}
 		}
+		
+
+		for (int i = 0; i < ModFluids.moltenCrystalFluids.size(); i++)
+		{
+			if (OreDictionary.doesOreNameExist("ingot" + RandomHelper
+					.capatilizeString(ModFluids.moltenCrystalFluidInfos()[i].name)))
+			{
+				ItemStack ingot = OreDictionary
+						.getOres("ingot" + RandomHelper.capatilizeString(
+								ModFluids.moltenCrystalFluidInfos()[i].name))
+						.get(0).copy();
+				ingot.stackSize = 1;
+				CondenserRecipeJEI addRecipe = new CondenserRecipeJEI(ingot,
+						ModBlocks.moltenCrystalFluidBlocks.get(i).getDefaultState(),
+						ModFluids.moltenCrystalFluidInfos()[i].rarity
+								* ConfigOptions.condenserProcessTimeBase * 20);
+				recipes.add(addRecipe);
+			}
+		}
 
 		return recipes;
 	}

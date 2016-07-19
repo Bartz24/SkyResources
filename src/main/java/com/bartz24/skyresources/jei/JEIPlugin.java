@@ -104,6 +104,9 @@ public class JEIPlugin implements IModPlugin
 				new ItemStack(ModBlocks.combustionHeater, 1, 1),
 				References.ModID + ":combustion");
 		registry.addRecipeCategoryCraftingItem(
+				new ItemStack(ModBlocks.combustionHeater, 1, 2),
+				References.ModID + ":combustion");
+		registry.addRecipeCategoryCraftingItem(
 				new ItemStack(Items.CAULDRON, 1, 0),
 				References.ModID + ":cauldron");
 		registry.addRecipeCategoryCraftingItem(

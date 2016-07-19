@@ -302,10 +302,10 @@ public class ModCrafting
 		RockGrinderRecipes.addRecipe(new ItemStack(ModItems.techComponent, 1, 0), false,
 				Blocks.STONE.getDefaultState());
 
-		for (int i = 0; i < References.gemList.size(); i++)
+		for (int i = 0; i < ModItems.gemList.size(); i++)
 		{
 			RockGrinderRecipes.addRecipe(new ItemStack(ModItems.dirtyGem, 1, i), false,
-					Blocks.STONE.getDefaultState(), 0.005F);
+					Blocks.STONE.getDefaultState(), ModItems.gemList.get(i).rarity);
 		}
 
 		for (int i = 0; i < ModFluids.crystalFluidInfos().length; i++)
@@ -347,13 +347,13 @@ public class ModCrafting
 		MinecraftForge.addGrassSeed(new ItemStack(Items.PUMPKIN_SEEDS), 8);
 		MinecraftForge.addGrassSeed(new ItemStack(Items.DYE, 1, 3), 1);
 
-		HeatSources.addHeatSource(Blocks.FIRE.getDefaultState(), 12);
+		HeatSources.addHeatSource(Blocks.FIRE.getDefaultState(), 7);
 		HeatSources.addHeatSource(Blocks.LAVA.getDefaultState(), 5);
 		HeatSources.addHeatSource(Blocks.FLOWING_LAVA.getDefaultState(), 3);
 		HeatSources.addHeatSource(Blocks.TORCH.getDefaultState(), 1);
 		HeatSources.addHeatSource(Blocks.OBSIDIAN.getDefaultState(), 4);
 		Block magmaBlock = Block.REGISTRY.getObject(new ResourceLocation("minecraft", "magma"));
-		HeatSources.addHeatSource(magmaBlock.getDefaultState(), 16);
+		HeatSources.addHeatSource(magmaBlock.getDefaultState(), 8);
 
 		GameRegistry.registerFuelHandler(new ModFuelHandler());
 

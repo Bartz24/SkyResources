@@ -167,6 +167,7 @@ public class ModRenderers
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.heavySnow2));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.dryCactus));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.alchemicalCondenser));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.advancedCoolingCondenser));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.purificationVessel));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.miniFreezer));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.ironFreezer));
@@ -247,10 +248,10 @@ public class ModRenderers
 			public int getColorFromItemstack(ItemStack stack, int tintIndex)
 			{
 				if (stack.getMetadata() < 0
-						|| stack.getMetadata() >= References.gemColorList.size())
+						|| stack.getMetadata() >= ModItems.gemList.size())
 					return -1;
 
-				return References.gemColorList.get(stack.getMetadata());
+				return ModItems.gemList.get(stack.getMetadata()).color;
 			}
 
 		}, ModItems.dirtyGem);

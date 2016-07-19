@@ -1,15 +1,15 @@
 package com.bartz24.skyresources.jei.condenser;
 
-import com.bartz24.skyresources.ItemHelper;
 import com.bartz24.skyresources.References;
+import com.bartz24.skyresources.alchemy.fluid.FluidMoltenCrystalBlock;
 import com.bartz24.skyresources.registry.ModBlocks;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
-import mezz.jei.api.gui.IDrawableStatic;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -77,8 +77,12 @@ public class CondenserRecipeCategory extends BlankRecipeCategory
 			layout.getItemStacks().set(slotInputBlock,
 					(ItemStack) infusionRecipe.getInputs().get(0));
 			layout.getItemStacks().set(slotOutput, infusionRecipe.getOutputs());
+			if(Block.getBlockFromItem(((ItemStack) infusionRecipe.getInputs().get(0)).getItem()) instanceof FluidMoltenCrystalBlock)
 			layout.getItemStacks().set(slotCondenser,
-					new ItemStack(ModBlocks.alchemicalCondenser));
+					new ItemStack(ModBlocks.advancedCoolingCondenser));
+			else
+				layout.getItemStacks().set(slotCondenser,
+						new ItemStack(ModBlocks.alchemicalCondenser));
 		}
 	}
 

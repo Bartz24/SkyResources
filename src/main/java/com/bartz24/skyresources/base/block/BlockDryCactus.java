@@ -35,7 +35,7 @@ public class BlockDryCactus extends BaseBlock
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState worldIn, World pos,
 			BlockPos state)
 	{
-		return CACTUS_COLLISION_AABB.offset(state);
+		return CACTUS_COLLISION_AABB;
 	}
 
 	@Override

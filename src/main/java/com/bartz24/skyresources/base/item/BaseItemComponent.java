@@ -29,6 +29,7 @@ public class BaseItemComponent extends Item
 	public static final String ironHeatComp = "ironHeatComponent";
 	public static final String plantMatter = "plantMatter";
 	public static final String steelPowerComp = "steelPowerComponent";
+	public static final String frozenIronComp = "frozenIronCoolingComponent";
 
 	public BaseItemComponent()
 	{
@@ -48,6 +49,7 @@ public class BaseItemComponent extends Item
 		names.add(1, ironHeatComp);
 		names.add(2, plantMatter);
 		names.add(3, steelPowerComp);
+		names.add(4, frozenIronComp);
 	}
 
 	@Override

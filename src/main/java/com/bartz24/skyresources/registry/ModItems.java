@@ -1,10 +1,7 @@
 package com.bartz24.skyresources.registry;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import com.bartz24.skyresources.RandomHelper;
-import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
 import com.bartz24.skyresources.alchemy.item.DirtyGemItem;
@@ -16,15 +13,12 @@ import com.bartz24.skyresources.base.item.ItemHeavySnowball;
 import com.bartz24.skyresources.base.item.ItemKnife;
 import com.bartz24.skyresources.base.item.ItemWaterExtractor;
 import com.bartz24.skyresources.base.item.ModItemFood;
+import com.bartz24.skyresources.technology.item.GemRegisterInfo;
 import com.bartz24.skyresources.technology.item.ItemRockGrinder;
 import com.bartz24.skyresources.technology.item.TechItemComponent;
 
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
-import net.minecraft.item.ItemBucket;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModItems
@@ -39,7 +33,7 @@ public class ModItems
 	public static Item fleshySnowNugget;
 
 	public static Item waterExtractor;
-	
+
 	public static Item heavySnowball;
 
 	public static Item dirtyGem;
@@ -56,15 +50,18 @@ public class ModItems
 	public static Item redSandstoneInfusionStone;
 	public static Item alchemicalInfusionStone;
 
+	public static ArrayList<GemRegisterInfo> gemList = new ArrayList<GemRegisterInfo>();
+
 	public static void init()
 	{
-		ModItems.addGem("emerald", 0xFF12DB3A);
-		ModItems.addGem("ruby", 0xFFFA1E1E);
-		ModItems.addGem("sapphire", 0xFF1E46FA);
-		ModItems.addGem("peridot", 0xFF1CB800);
-		ModItems.addGem("redGarnet", 0xFFC90014);
-		ModItems.addGem("yellowGarnet", 0xFFF7FF0F);
-		
+		ModItems.addGem("emerald", 0xFF12DB3A, 0.005F);
+		ModItems.addGem("ruby", 0xFFFA1E1E, 0.005F);
+		ModItems.addGem("sapphire", 0xFF1E46FA, 0.005F);
+		ModItems.addGem("peridot", 0xFF1CB800, 0.005F);
+		ModItems.addGem("redGarnet", 0xFFC90014, 0.005F);
+		ModItems.addGem("yellowGarnet", 0xFFF7FF0F, 0.005F);
+		ModItems.addGem("apatite", 0xFF2B95FF, 0.200F);
+
 		alchemyComponent = registerItem(new AlchemyItemComponent());
 		metalCrystal = registerItem(new MetalCrystalItem());
 		dirtyGem = registerItem(new DirtyGemItem());
@@ -73,31 +70,29 @@ public class ModItems
 		healthRing = registerItem(new ItemHealthRing());
 		waterExtractor = registerItem(new ItemWaterExtractor());
 		heavySnowball = registerItem(new ItemHeavySnowball("heavySnowball", "HeavySnowball"));
-		cactusFruit = registerItem(
-				new ModItemFood(3, 2F, false, "cactusFruit", "CactusFruit"));
+		cactusFruit = registerItem(new ModItemFood(3, 2F, false, "cactusFruit", "CactusFruit"));
 		fleshySnowNugget = registerItem(
 				new ModItemFood(4, 1.5F, false, "fleshySnowNugget", "FleshySnowNugget"));
-		cactusKnife = registerItem(
-				new ItemKnife(SkyResources.materialCactusNeedle,
-						"cactusCuttingKnife", "CactusCuttingKnife"));
-		ironKnife = registerItem(new ItemKnife(ToolMaterial.IRON,
-				"ironCuttingKnife", "IronCuttingKnife"));
-		diamondKnife = registerItem(new ItemKnife(ToolMaterial.DIAMOND,
-				"diamondCuttingKnife", "DiamondCuttingKnife"));
+		cactusKnife = registerItem(new ItemKnife(SkyResources.materialCactusNeedle,
+				"cactusCuttingKnife", "CactusCuttingKnife"));
+		ironKnife = registerItem(
+				new ItemKnife(ToolMaterial.IRON, "ironCuttingKnife", "IronCuttingKnife"));
+		diamondKnife = registerItem(
+				new ItemKnife(ToolMaterial.DIAMOND, "diamondCuttingKnife", "DiamondCuttingKnife"));
 
-		stoneGrinder = registerItem(new ItemRockGrinder(ToolMaterial.STONE,
-				"stoneGrinder", "StoneGrinder"));
-		ironGrinder = registerItem(new ItemRockGrinder(ToolMaterial.IRON,
-				"ironGrinder", "IronGrinder"));
-		diamondGrinder = registerItem(new ItemRockGrinder(ToolMaterial.DIAMOND,
-				"diamondGrinder", "DiamondGrinder"));
+		stoneGrinder = registerItem(
+				new ItemRockGrinder(ToolMaterial.STONE, "stoneGrinder", "StoneGrinder"));
+		ironGrinder = registerItem(
+				new ItemRockGrinder(ToolMaterial.IRON, "ironGrinder", "IronGrinder"));
+		diamondGrinder = registerItem(
+				new ItemRockGrinder(ToolMaterial.DIAMOND, "diamondGrinder", "DiamondGrinder"));
 
-		sandstoneInfusionStone = registerItem(new ItemInfusionStone(100,
-				"sandstoneInfusionStone", "SandstoneInfusionStone"));
+		sandstoneInfusionStone = registerItem(
+				new ItemInfusionStone(100, "sandstoneInfusionStone", "SandstoneInfusionStone"));
 		redSandstoneInfusionStone = registerItem(new ItemInfusionStone(80,
 				"redSandstoneInfusionStone", "RedSandstoneInfusionStone"));
-		alchemicalInfusionStone = registerItem(new ItemInfusionStone(1500,
-				"alchemicalInfusionStone", "AlchemicalInfusionStone"));		
+		alchemicalInfusionStone = registerItem(
+				new ItemInfusionStone(1500, "alchemicalInfusionStone", "AlchemicalInfusionStone"));
 	}
 
 	private static Item registerItem(Item item, String name)
@@ -120,10 +115,9 @@ public class ModItems
 
 		return item;
 	}
-	
-	public static void addGem(String name, int color)
+
+	public static void addGem(String name, int color, float rarity)
 	{
-		References.gemList.add(name);
-		References.gemColorList.add(color);		
+		gemList.add(new GemRegisterInfo(name, color, rarity));
 	}
 }

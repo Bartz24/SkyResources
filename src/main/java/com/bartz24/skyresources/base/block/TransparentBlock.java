@@ -7,12 +7,13 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TransparentBlock extends BaseBlock
 {
-	protected static AxisAlignedBB BoundingBox = new AxisAlignedBB(0.0D, 0.5D,
+	protected static AxisAlignedBB BoundingBox = new AxisAlignedBB(0.0D, 0.0D,
 			0.0D, 1.0D, 1.0D, 1.0D);
 
 	public TransparentBlock(Material material, String unlocalizedName,
@@ -49,4 +50,10 @@ public class TransparentBlock extends BaseBlock
 	{
 		return BlockRenderLayer.CUTOUT;
 	}
+
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+    {
+        return BoundingBox;
+    }
 }

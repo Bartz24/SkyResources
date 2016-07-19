@@ -132,8 +132,4 @@ public class References
 					+ "Error getting starting inventory.\n"+e.toString()));
 		}
 	}
-	
-
-	public static ArrayList<String> gemList = new ArrayList<String>();
-	public static ArrayList<Integer> gemColorList = new ArrayList<Integer>();
 }

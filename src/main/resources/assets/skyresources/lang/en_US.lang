@@ -9,6 +9,7 @@ item.skyresources.baseItemComponent.woodHeatComponent.name=Wooden Heat Component
 item.skyresources.baseItemComponent.ironHeatComponent.name=Iron Heat Component
 item.skyresources.baseItemComponent.plantMatter.name=Plant Matter
 item.skyresources.baseItemComponent.steelPowerComponent.name=Steel Power Component
+item.skyresources.baseItemComponent.frozenIronCoolingComponent.name=Frozen Iron Cooling Component
 item.skyresources.techItemComponent.stoneCrushed.name=Crushed Stone
 item.skyresources.techItemComponent.radioactiveMix.name=Radioactive Powder Mixture
 item.skyresources.techItemComponent.frozenIronIngot.name=Frozen Iron Ingot
@@ -129,6 +130,7 @@ name.skyresources.gem.peridot=Peridot
 name.skyresources.gem.sapphire=Sapphire
 name.skyresources.gem.redGarnet=Red Garnet
 name.skyresources.gem.yellowGarnet=Yellow Garnet
+name.skyresources.gem.apatite=Apatite
 
 name.skyresources.dirty=Dirty
 
