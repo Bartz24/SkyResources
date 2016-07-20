@@ -252,6 +252,43 @@ public class ModGuidePages
 						+ "\n Provides a heat value of 30. "
 						+ "\n Right-click to see current RF.");
 
+		SkyResourcesGuide.addPage("nether", "guide.skyresources.stage3",
+				"The Nether Void", new ItemStack(Blocks.NETHERRACK),
+				"The nether is now a void. Nether portals link to the same position as in the overworld. The nether is not 1/8 the size anymore. "
+						+ "\n All materials normally found in the nether are now obtainanble in other ways. "
+						+ "\n Nether ores are obtained through the <link,nether_metal_creation,skyresources:AdvancedCoolingCondenser:0,netherMetalCreation> process. "
+						+ "\n Nether mobs can be found either through naturally spawning them "
+						+ "or using the <link,Dark_Matter_Warper,skyresources:DarkMatterWarper:0,dmWarper> . ");
+
+		SkyResourcesGuide.addPage("netherMetalCreation", "guide.skyresources.stage3",
+				"Nether Metal Creation", new ItemStack(ModBlocks.advancedCoolingCondenser),
+				"To get started in nether metal creation you're going to need to get the crystal shard for the metal you want "
+						+ "through <link,combustion,skyresources:CombustionHeater:1,combustionHeater> . "
+						+ "\n The rest of the process is done using the following blocks: "
+						+ "\n <link,Crucible,skyresources:Crucible:0,crucible> "
+						+ "\n <recipe,,skyresources:AdvancedCoolingCondenser:0> , "
+						+ "which acts like the <link,Alchemical_Condenser,skyresources:AlchemicalCondenser:0,alchemicalCondenser> for nether metals. "
+						+ "\n <recipe,,skyresources:CoolingCrystallizer:0> , which takes the molten crystal and gives more crystal shards "
+						+ "(puts them under the crystallizer or into the inventory under it) . ");
+
+		SkyResourcesGuide.addPage("dmWarper", "guide.skyresources.stage3",
+				"Dark Matter Warper", new ItemStack(ModBlocks.darkMatterWarper),
+				"The <recipe,,skyresources:DarkMatterWarper:0> is used for getting rare mobs. "
+				+ " \n It consumes <recipe,,skyresources:BaseItemComponent:5> to run (needed every 3 min)  and affects a 8x8x8 cube around the <recipe,,skyresources:DarkMatterWarper:0> . "
+				+ "\n It turns skeletons into wither skeletons, squid into blazes, spiders into cave spiders, and hurts players and animals.");
+
+		SkyResourcesGuide.addPage("end", "guide.skyresources.stage3",
+				"The End", new ItemStack(Items.ENDER_EYE),
+				"The end portal requires a multiblock structure. The following are needed: "
+						+ "\n 1 <recipe,,skyresources:EndPortalCore:0> "
+						+ "\n 4 <recipe,,minecraft:diamond_block:0> "
+						+ "\n 16 <recipe,,skyresources:DarkMatterBlock:0> "
+						+ "\n 8 <recipe,,minecraft:end_bricks:0> "
+						+ "\n 4 <recipe,,minecraft:glowstone:0> "
+						+ "\n \n <image,Multiblock_Setup,skyresources:EndPortalCore:0,skyresources:textures/guide/endPortalSetup.png> "
+						+ "\n To use the portal, give the <recipe,,skyresources:EndPortalCore:0> at least 16 <recipe,,minecraft:ender_eye:0> and a redstone pulse (button). "
+						+ "\n \n A ilfsiesrvh waenrsp si itaecv nda reyv edsroanug ehwn eht urturscte is valdi!");
+
 		SkyResourcesGuide.addPage("commands", "guide.skyresources.misc",
 				"Commands", new ItemStack(Blocks.COMMAND_BLOCK),
 				"The /platform command has several subcommands. \n "
