@@ -106,7 +106,6 @@ public class CondenserTile extends TileEntity implements ITickable
 				if (!worldObj.isRemote)
 				{
 					timeCondense += HeatSources.getHeatSourceValue(pos.down(), worldObj);
-					System.out.println(timeCondense + "/" + getMoltenTimeToCondense(crystalBlock));
 				}
 			} else if (!worldObj.isRemote)
 				timeCondense = 0;

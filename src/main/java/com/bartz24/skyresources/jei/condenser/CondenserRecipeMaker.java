@@ -23,8 +23,6 @@ public class CondenserRecipeMaker
 					.getOres("ingot" + RandomHelper
 							.capatilizeString(ModFluids.crystalFluidInfos()[i].name)).size() > 0)
 			{
-				System.out.println(ModFluids.crystalFluidInfos().length);
-				System.out.println(ModFluids.crystalFluidInfos()[i].name);
 				ItemStack ingot = OreDictionary
 						.getOres("ingot" + RandomHelper
 								.capatilizeString(ModFluids.crystalFluidInfos()[i].name))
