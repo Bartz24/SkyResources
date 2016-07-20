@@ -6,6 +6,7 @@ import java.util.List;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.alchemy.block.CondenserBlock;
+import com.bartz24.skyresources.alchemy.block.CoolingCrystallizerBlock;
 import com.bartz24.skyresources.alchemy.block.CrucibleBlock;
 import com.bartz24.skyresources.alchemy.block.PurificationVesselBlock;
 import com.bartz24.skyresources.alchemy.fluid.FluidCrystalBlock;
@@ -39,6 +40,7 @@ public class ModBlocks
 	public static Block fluidDropper;
 	public static Block alchemicalCondenser;
 	public static Block advancedCoolingCondenser;
+	public static Block crystallizer;
 	public static Block purificationVessel;
 	public static Block miniFreezer;
 	public static Block ironFreezer;
@@ -96,6 +98,8 @@ public class ModBlocks
 				new CondenserBlock("alchemicalCondenser", "AlchemicalCondenser", 2F, 12F));
 		advancedCoolingCondenser = registerBlock(
 				new CondenserBlock("advancedCoolingCondenser", "AdvancedCoolingCondenser", 6F, 12F));
+		crystallizer = registerBlock(
+				new CoolingCrystallizerBlock("coolingCrystallizer", "CoolingCrystallizer", 6F, 12F));
 
 		poweredHeater = registerBlock(
 				new BlockPoweredHeater("poweredHeater", "PoweredHeater", 4F, 12F));

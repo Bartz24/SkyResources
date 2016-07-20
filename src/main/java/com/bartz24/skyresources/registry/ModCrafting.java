@@ -171,6 +171,10 @@ public class ModCrafting
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.advancedCoolingCondenser), new Object[]
 				{ "XXX", "X X", "XYX", 'X', "ingotIron", 'Y', new ItemStack(ModItems.baseComponent, 1, 4) }));
+		
+		GameRegistry.addRecipe(
+				new ShapedOreRecipe(new ItemStack(ModBlocks.crystallizer), new Object[]
+				{ "XYX", "X X", "XZX", 'X', "ingotIron", 'Y', new ItemStack(ModItems.baseComponent, 1, 4), 'Z', new ItemStack(Blocks.HOPPER) }));
 
 		if (OreDictionary.doesOreNameExist("ingotSteel")
 				&& OreDictionary.doesOreNameExist("dustCoal"))

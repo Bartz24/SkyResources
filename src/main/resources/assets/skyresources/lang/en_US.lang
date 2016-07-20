@@ -41,6 +41,7 @@ tile.skyresources.combustionHeater.iron.name=Iron Combustion Heater
 tile.skyresources.combustionHeater.steel.name=Steel Combustion Heater
 tile.skyresources.alchemicalCondenser.name=Alchemical Condenser
 tile.skyresources.advancedCoolingCondenser.name=Advanced Cooling Condenser
+tile.skyresources.coolingCrystallizer.name=Cooling Crystallizer
 tile.skyresources.BlazePowderBlock.name=Blaze Powder Block
 tile.skyresources.crucible.name=Crucible
 tile.skyresources.fluidDropper.name=Fluid Dropper

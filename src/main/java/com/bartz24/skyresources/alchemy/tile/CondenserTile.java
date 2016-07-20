@@ -14,6 +14,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
@@ -137,6 +138,23 @@ public class CondenserTile extends TileEntity implements ITickable
 	{
 		return ModFluids.moltenCrystalFluidInfos()[ModBlocks.moltenCrystalFluidBlocks
 				.indexOf(block)].rarity * ConfigOptions.condenserProcessTimeBase * 20;
+	}
+	
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound compound)
+	{
+		super.writeToNBT(compound);
+
+		compound.setInteger("time", timeCondense);
+		return compound;
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound compound)
+	{
+		super.readFromNBT(compound);
+
+		timeCondense = compound.getInteger("time");
 	}
 
 	public Block getBlockAbove()

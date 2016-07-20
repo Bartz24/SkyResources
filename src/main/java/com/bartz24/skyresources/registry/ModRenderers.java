@@ -168,6 +168,7 @@ public class ModRenderers
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.dryCactus));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.alchemicalCondenser));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.advancedCoolingCondenser));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.crystallizer));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.purificationVessel));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.miniFreezer));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.ironFreezer));
