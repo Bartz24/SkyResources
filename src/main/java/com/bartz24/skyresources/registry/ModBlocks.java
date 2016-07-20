@@ -18,6 +18,7 @@ import com.bartz24.skyresources.base.block.ItemBlockMeta;
 import com.bartz24.skyresources.base.block.TransparentBlock;
 import com.bartz24.skyresources.technology.block.BlockDarkMatterWarper;
 import com.bartz24.skyresources.technology.block.BlockDirtFurnace;
+import com.bartz24.skyresources.technology.block.BlockEndPortalCore;
 import com.bartz24.skyresources.technology.block.BlockFreezer;
 import com.bartz24.skyresources.technology.block.BlockMiniFreezer;
 import com.bartz24.skyresources.technology.block.BlockPoweredHeater;
@@ -47,12 +48,14 @@ public class ModBlocks
 	public static Block ironFreezer;
 	public static Block poweredHeater;
 	public static Block darkMatterWarper;
+	public static Block endPortalCore;
 
 	public static Block compressedCoalBlock;
 	public static Block compressedCoalBlock2;
 	public static Block coalInfusedBlock;
 	public static Block compressedStone;
 	public static Block compressedNetherrack;
+	public static Block darkMatterBlock;
 	public static Block heavySnow;
 	public static Block heavySnow2;
 
@@ -88,6 +91,8 @@ public class ModBlocks
 
 		coalInfusedBlock = registerBlock(new BaseBlock(Material.ROCK, "coalInfusedBlock",
 				"CoalInfusedBlock", 6F, 6F, SoundType.STONE));
+		darkMatterBlock = registerBlock(new BaseBlock(Material.ROCK, "darkMatterBlock",
+				"DarkMatterBlock", 10F, 12F, SoundType.STONE));
 
 		blazePowderBlock = registerBlock(new BlazePowderBlock(Material.CLAY, "blazePowderBlock",
 				"BlazePowderBlock", 0.5F, 0.5F, SoundType.GROUND));
@@ -107,6 +112,8 @@ public class ModBlocks
 				new BlockPoweredHeater("poweredHeater", "PoweredHeater", 4F, 12F));
 		darkMatterWarper = registerBlock(
 				new BlockDarkMatterWarper("darkMatterWarper", "DarkMatterWarper", 8F, 12F));
+		endPortalCore = registerBlock(
+				new BlockEndPortalCore("endPortalCore", "EndPortalCore", 6F, 12F));
 
 		purificationVessel = registerBlock(
 				new PurificationVesselBlock("purificationVessel", "PurificationVessel", 2F, 12F));

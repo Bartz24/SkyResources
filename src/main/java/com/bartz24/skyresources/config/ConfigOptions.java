@@ -49,6 +49,7 @@ public class ConfigOptions
 	public static boolean oneChunkCommandAllowed;
 	
 	public static boolean scaleGuideGui;
+	public static boolean endPussyMode;
 
 	public static List<String> startingItems;
 
@@ -97,6 +98,8 @@ public class ConfigOptions
 		
 		scaleGuideGui = config.get(Configuration.CATEGORY_GENERAL, "Rescale Guide Gui Down", true)
 				.getBoolean(true);
+		endPussyMode = config.get(Configuration.CATEGORY_GENERAL, "End Portal Pussy Mode", false)
+				.getBoolean(false);
 
 		worldSpawnType = worldTypeProperty.getInt();
 

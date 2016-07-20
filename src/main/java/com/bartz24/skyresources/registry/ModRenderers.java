@@ -163,6 +163,7 @@ public class ModRenderers
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.coalInfusedBlock));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.compressedStone));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.compressedNetherrack));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.darkMatterBlock));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.heavySnow));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.heavySnow2));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.dryCactus));
@@ -179,6 +180,7 @@ public class ModRenderers
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.dirtFurnace));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.poweredHeater));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.darkMatterWarper));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.endPortalCore));
 
 		registerItemRenderer(ModItems.sandstoneInfusionStone);
 		registerItemRenderer(ModItems.redSandstoneInfusionStone);
