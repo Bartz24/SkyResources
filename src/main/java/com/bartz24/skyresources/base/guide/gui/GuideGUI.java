@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.lwjgl.input.Keyboard;
+
 import com.bartz24.skyresources.base.guide.GuideImage;
 import com.bartz24.skyresources.base.guide.GuideImageButton;
 import com.bartz24.skyresources.base.guide.GuideLinkPageButton;
@@ -356,7 +358,15 @@ public class GuideGUI extends GuiScreen
 		curIndex = 0;
 		removeLinkButtons();
 		addLinkButtons();
-		super.keyTyped(typedChar, keyCode);
+		if(keyCode ==Keyboard.KEY_ESCAPE)
+		{
+			if (currentImage == null)
+			{
+				super.keyTyped(typedChar, keyCode);
+			} else
+				closeImage();
+		}
+		
 	}
 
 	protected void mouseClicked(int mouseX, int mouseY, int mouseButton)
