@@ -294,7 +294,7 @@ public class ModCrafting
 				new ItemStack(ModItems.metalCrystal, 6, 2), new ItemStack(Items.SUGAR, 8),
 				new ItemStack(Items.FLINT, 6), new ItemStack(Items.GOLD_INGOT, 4));
 		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 12), 1200,
-				new ItemStack(ModItems.metalCrystal, 5, 11), new ItemStack(Items.DYE, 9, 11),
+				new ItemStack(ModItems.metalCrystal, 5, 11), new ItemStack(Items.DYE, 9, 4),
 				new ItemStack(Items.QUARTZ, 3), new ItemStack(Items.GOLD_INGOT, 6));
 		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 13), 1200,
 				new ItemStack(ModItems.metalCrystal, 5, 11), new ItemStack(Items.MAGMA_CREAM, 5),
