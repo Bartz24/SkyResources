@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.bartz24.skyresources.IslandPos;
+import com.bartz24.skyresources.PortalTeleporterNether;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
@@ -20,7 +21,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockCauldron;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.item.EntityMinecartContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -37,6 +40,8 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.border.WorldBorder;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.event.world.WorldEvent.Save;
@@ -463,6 +468,25 @@ public class EventHandler
 						player.getPosition().getX(), player.getPosition().getY(),
 						player.getPosition().getZ());
 			}
+		}
+	}
+
+	@SubscribeEvent
+	public void onTravelToDimensionEvent(EntityTravelToDimensionEvent event)
+	{
+		Entity entity = event.getEntity();
+		int dim = event.getDimension();
+
+		if ((dim != 0 && dim != -1) || (entity.dimension != 0 && entity.dimension != -1))
+		{
+			return;
+		}
+		PortalTeleporterNether tp = new PortalTeleporterNether();
+		entity = tp.travelToDimension(entity, entity.dimension == 0 ? -1 : 0, entity.getPosition(),
+				16, false);
+		if (entity.dimension != dim)
+		{
+			event.setCanceled(true);
 		}
 	}
 }
