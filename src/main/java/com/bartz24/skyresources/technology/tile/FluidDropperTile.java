@@ -1,5 +1,7 @@
 package com.bartz24.skyresources.technology.tile;
 
+import java.util.Arrays;
+
 import com.bartz24.skyresources.api.RedstoneCompatibleTile;
 import com.bartz24.skyresources.config.ConfigOptions;
 
@@ -15,7 +17,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
-import java.util.Arrays;
 
 public class FluidDropperTile extends RedstoneCompatibleTile implements ITickable, IFluidHandler
 {
@@ -142,25 +143,15 @@ public class FluidDropperTile extends RedstoneCompatibleTile implements ITickabl
 				{
 					IFluidHandler fluidHand = (IFluidHandler) tile;
 
-					for (FluidTankInfo f : fluidHand.getTankInfo(
-							EnumFacing.VALUES[Arrays.asList(checkPoses).indexOf(pos) + 1]
-									.getOpposite()))
-					{
-						FluidStack tankFluid = f.fluid;
-
-						if (tankFluid == null)
-							continue;
-
-						int amt = this.fill(null, fluidHand.drain(
-								EnumFacing.VALUES[Arrays.asList(checkPoses).indexOf(pos) + 1]
-										.getOpposite(),
-								new FluidStack(tankFluid.getFluid(),
-										Math.min(ConfigOptions.fluidDropperCapacity
-												- tank.getFluidAmount(), tankFluid.amount)),
-								true), true);
-						if (amt > 0)
-							return;
-					}
+					int amt = this.fill(null,
+							fluidHand.drain(
+									EnumFacing.VALUES[Arrays.asList(checkPoses).indexOf(pos) + 1]
+											.getOpposite(),
+									ConfigOptions.fluidDropperCapacity - tank.getFluidAmount(),
+									true),
+							true);
+					if (amt > 0)
+						return;
 				}
 			}
 		}
