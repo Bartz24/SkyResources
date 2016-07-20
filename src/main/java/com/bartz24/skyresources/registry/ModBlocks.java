@@ -16,6 +16,7 @@ import com.bartz24.skyresources.base.block.BlazePowderBlock;
 import com.bartz24.skyresources.base.block.BlockDryCactus;
 import com.bartz24.skyresources.base.block.ItemBlockMeta;
 import com.bartz24.skyresources.base.block.TransparentBlock;
+import com.bartz24.skyresources.technology.block.BlockDarkMatterWarper;
 import com.bartz24.skyresources.technology.block.BlockDirtFurnace;
 import com.bartz24.skyresources.technology.block.BlockFreezer;
 import com.bartz24.skyresources.technology.block.BlockMiniFreezer;
@@ -45,6 +46,7 @@ public class ModBlocks
 	public static Block miniFreezer;
 	public static Block ironFreezer;
 	public static Block poweredHeater;
+	public static Block darkMatterWarper;
 
 	public static Block compressedCoalBlock;
 	public static Block compressedCoalBlock2;
@@ -103,6 +105,8 @@ public class ModBlocks
 
 		poweredHeater = registerBlock(
 				new BlockPoweredHeater("poweredHeater", "PoweredHeater", 4F, 12F));
+		darkMatterWarper = registerBlock(
+				new BlockDarkMatterWarper("darkMatterWarper", "DarkMatterWarper", 8F, 12F));
 
 		purificationVessel = registerBlock(
 				new PurificationVesselBlock("purificationVessel", "PurificationVessel", 2F, 12F));

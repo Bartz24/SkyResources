@@ -116,6 +116,9 @@ public class JEIPlugin implements IModPlugin
 				new ItemStack(ModBlocks.alchemicalCondenser, 1, 0),
 				References.ModID + ":condenser");
 		registry.addRecipeCategoryCraftingItem(
+				new ItemStack(ModBlocks.advancedCoolingCondenser, 1, 0),
+				References.ModID + ":condenser");
+		registry.addRecipeCategoryCraftingItem(
 				new ItemStack(ModBlocks.crucible, 1, 0),
 				References.ModID + ":crucible");
 		registry.addRecipeCategoryCraftingItem(

@@ -10,6 +10,7 @@ import com.bartz24.skyresources.technology.tile.ConcentratorTile;
 import com.bartz24.skyresources.technology.tile.DirtFurnaceTile;
 import com.bartz24.skyresources.technology.tile.FluidDropperTile;
 import com.bartz24.skyresources.technology.tile.FreezerTile;
+import com.bartz24.skyresources.technology.tile.TileDarkMatterWarper;
 import com.bartz24.skyresources.technology.tile.TilePoweredCombustionHeater;
 import com.bartz24.skyresources.technology.tile.TilePoweredHeater;
 
@@ -33,6 +34,8 @@ public final class ModEntities
 				"poweredCombustionHeaterTile");
 		GameRegistry.registerTileEntity(CrystallizerTile.class,
 				"crystallizerTile");
+		GameRegistry.registerTileEntity(TileDarkMatterWarper.class,
+				"darkMatterWarperTile");
 
 	}
 }

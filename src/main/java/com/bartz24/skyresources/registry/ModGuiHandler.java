@@ -6,16 +6,19 @@ import com.bartz24.skyresources.plugin.forestry.gui.container.ContainerBeeAttrac
 import com.bartz24.skyresources.plugin.forestry.tile.TileBeeAttractor;
 import com.bartz24.skyresources.technology.gui.GuiCombustionHeater;
 import com.bartz24.skyresources.technology.gui.GuiConcentrator;
+import com.bartz24.skyresources.technology.gui.GuiDarkMatterWarper;
 import com.bartz24.skyresources.technology.gui.GuiDirtFurnace;
 import com.bartz24.skyresources.technology.gui.GuiFreezer;
 import com.bartz24.skyresources.technology.gui.container.ContainerCombustionHeater;
 import com.bartz24.skyresources.technology.gui.container.ContainerConcentrator;
+import com.bartz24.skyresources.technology.gui.container.ContainerDarkMatterWarper;
 import com.bartz24.skyresources.technology.gui.container.ContainerDirtFurnace;
 import com.bartz24.skyresources.technology.gui.container.ContainerFreezer;
 import com.bartz24.skyresources.technology.tile.CombustionHeaterTile;
 import com.bartz24.skyresources.technology.tile.ConcentratorTile;
 import com.bartz24.skyresources.technology.tile.DirtFurnaceTile;
 import com.bartz24.skyresources.technology.tile.FreezerTile;
+import com.bartz24.skyresources.technology.tile.TileDarkMatterWarper;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -28,6 +31,7 @@ public class ModGuiHandler implements IGuiHandler
 	public static final int ConcentratorGUI = 1;
 	public static final int FreezerGUI = 2;
 	public static final int FurnaceGUI = 3;
+	public static final int DarkMatterWarperGUI = 4;
 	public static final int BeeAttractorGUI = 10;
 	public static final int GuideGUI = 25;
 
@@ -50,6 +54,10 @@ public class ModGuiHandler implements IGuiHandler
 		else if (id == FurnaceGUI)
 			return new ContainerDirtFurnace(player.inventory,
 					 (DirtFurnaceTile) world
+							.getTileEntity(new BlockPos(x, y, z)));
+		else if (id == DarkMatterWarperGUI)
+			return new ContainerDarkMatterWarper(player.inventory,
+					 (TileDarkMatterWarper) world
 							.getTileEntity(new BlockPos(x, y, z)));
 		else if (id == BeeAttractorGUI)
 			return new ContainerBeeAttractor(player.inventory,
@@ -77,6 +85,10 @@ public class ModGuiHandler implements IGuiHandler
 		else if (id == FurnaceGUI)
 			return new GuiDirtFurnace(player.inventory,
 					 (DirtFurnaceTile) world
+							.getTileEntity(new BlockPos(x, y, z)));
+		else if (id == DarkMatterWarperGUI)
+			return new GuiDarkMatterWarper(player.inventory,
+					 (TileDarkMatterWarper) world
 							.getTileEntity(new BlockPos(x, y, z)));
 		else if (id == BeeAttractorGUI)
 			 return new GuiBeeAttractor(player.inventory,

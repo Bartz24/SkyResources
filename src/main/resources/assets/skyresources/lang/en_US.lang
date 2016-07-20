@@ -10,6 +10,7 @@ item.skyresources.baseItemComponent.ironHeatComponent.name=Iron Heat Component
 item.skyresources.baseItemComponent.plantMatter.name=Plant Matter
 item.skyresources.baseItemComponent.steelPowerComponent.name=Steel Power Component
 item.skyresources.baseItemComponent.frozenIronCoolingComponent.name=Frozen Iron Cooling Component
+item.skyresources.baseItemComponent.darkMatter.name=Dark Matter
 item.skyresources.techItemComponent.stoneCrushed.name=Crushed Stone
 item.skyresources.techItemComponent.radioactiveMix.name=Radioactive Powder Mixture
 item.skyresources.techItemComponent.frozenIronIngot.name=Frozen Iron Ingot
@@ -55,6 +56,7 @@ tile.skyresources.heavySnow2.name=Very Heavy Snow
 tile.skyresources.dirtFurnace.name=Dirt Furnace
 tile.skyresources.beeAttractor.name=Bee Attractor
 tile.skyresources.poweredHeater.name=Powered Heater
+tile.skyresources.darkMatterWarper.name=Dark Matter Warper
 
 
 tile.skyresources.ironCrystalFluidBlock.name=Iron Crystal Liquid
