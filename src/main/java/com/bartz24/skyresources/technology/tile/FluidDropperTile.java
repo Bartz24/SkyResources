@@ -1,7 +1,5 @@
 package com.bartz24.skyresources.technology.tile;
 
-import java.util.Arrays;
-
 import com.bartz24.skyresources.api.RedstoneCompatibleTile;
 import com.bartz24.skyresources.config.ConfigOptions;
 
@@ -12,37 +10,81 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidTankProperties;
+import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.IFluidHandler;
+import java.util.Arrays;
 
-public class FluidDropperTile extends RedstoneCompatibleTile implements ITickable, IFluidHandler
+public class FluidDropperTile extends RedstoneCompatibleTile
+		implements ITickable, IFluidHandler
 {
 	FluidTank tank;
 
 	@Override
-	public IFluidTankProperties[] getTankProperties()
+	public int fill(EnumFacing from, FluidStack resource, boolean doFill)
 	{
-		return tank.getTankProperties();
+
+		if (resource != null && canFill(from, resource.getFluid()))
+		{
+			int filled = tank.fill(resource, doFill);
+
+			return filled;
+		}
+
+		return 0;
 	}
 
 	@Override
-	public int fill(FluidStack resource, boolean doFill)
+	public FluidStack drain(EnumFacing from, FluidStack resource,
+			boolean doDrain)
 	{
-		return tank.fill(resource, doFill);
+		if (resource != null && canDrain(from, resource.getFluid()))
+		{
+			return tank.drain(resource.amount, doDrain);
+		}
+
+		return null;
 	}
 
 	@Override
-	public FluidStack drain(FluidStack resource, boolean doDrain)
+	public FluidStack drain(EnumFacing from, int maxDrain, boolean doDrain)
 	{
-		return tank.drain(resource, doDrain);
+		if (canDrain(from, null))
+		{
+			return tank.drain(maxDrain, doDrain);
+		}
+
+		return null;
 	}
 
 	@Override
-	public FluidStack drain(int maxDrain, boolean doDrain)
+	public boolean canFill(EnumFacing from, Fluid fluid)
 	{
-		return tank.drain(maxDrain, doDrain);
+		return tank.getFluid() == null || tank.getFluid().getFluid() == fluid;
+	}
+
+	@Override
+	public boolean canDrain(EnumFacing from, Fluid fluid)
+	{
+		if (tank != null)
+		{
+			if (fluid == null || tank.getFluid() != null
+					&& tank.getFluid().getFluid() == fluid)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	@Override
+	public FluidTankInfo[] getTankInfo(EnumFacing from)
+	{
+		return new FluidTankInfo[]
+		{ tank.getInfo() };
 	}
 
 	public FluidTank getTank()
@@ -79,13 +121,15 @@ public class FluidDropperTile extends RedstoneCompatibleTile implements ITickabl
 		{
 			pullFromAround();
 
-			if (tank.getFluidAmount() >= 1000 && worldObj.isAirBlock(pos.down()))
+			if (tank.getFluidAmount() >= 1000
+					&& worldObj.isAirBlock(pos.down()))
 			{
-				worldObj.setBlockState(pos.down(),
-						tank.getFluid().getFluid().getBlock().getDefaultState());
+				worldObj.setBlockState(pos.down(), tank.getFluid().getFluid()
+						.getBlock().getDefaultState());
 				tank.setFluid(null);
 				worldObj.playSound(pos.getX(), pos.getY(), pos.getZ(),
-						SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 0.5F, 1, true);
+						SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS,
+						0.5F, 1, true);
 			}
 		}
 	}
@@ -93,7 +137,8 @@ public class FluidDropperTile extends RedstoneCompatibleTile implements ITickabl
 	void pullFromAround()
 	{
 		BlockPos[] checkPoses = new BlockPos[]
-		{ getPos().up(), getPos().north(), getPos().south(), getPos().west(), getPos().east() };
+		{ getPos().up(), getPos().north(), getPos().south(), getPos().west(),
+				getPos().east() };
 		if (this.getRedstoneSignal() == 0)
 		{
 			for (BlockPos pos : checkPoses)
@@ -102,19 +147,30 @@ public class FluidDropperTile extends RedstoneCompatibleTile implements ITickabl
 				if (tile != null && tile instanceof IFluidHandler)
 				{
 					IFluidHandler fluidHand = (IFluidHandler) tile;
-					for (IFluidTankProperties tankProp : fluidHand.getTankProperties())
+
+					if (fluidHand.canDrain(
+							EnumFacing.VALUES[Arrays.asList(checkPoses)
+									.indexOf(pos) + 1].getOpposite(),
+							tank.getFluid() == null ? null
+									: tank.getFluid().getFluid()))
 					{
-						FluidStack tankFluid = tankProp.getContents();
 
-						if (tankFluid == null)
-							continue;
-
-						this.fill(
-								fluidHand.drain(new FluidStack(tankFluid.getFluid(),
-										Math.min(ConfigOptions.fluidDropperCapacity
-												- tank.getFluidAmount(), tankFluid.amount)),
-										true),
-								true);
+						FluidStack tankFluid = fluidHand
+								.getTankInfo(EnumFacing.VALUES[Arrays
+										.asList(checkPoses).indexOf(pos) + 1]
+												.getOpposite())[0].fluid;
+						
+						if(tankFluid == null) continue;
+						
+						this.fill(null, fluidHand.drain(
+								EnumFacing.VALUES[Arrays.asList(checkPoses)
+										.indexOf(pos) + 1].getOpposite(),
+								new FluidStack(tankFluid.getFluid(),
+										Math.min(
+												ConfigOptions.fluidDropperCapacity
+														- tank.getFluidAmount(),
+												tankFluid.amount)),
+								true), true);
 						return;
 					}
 				}

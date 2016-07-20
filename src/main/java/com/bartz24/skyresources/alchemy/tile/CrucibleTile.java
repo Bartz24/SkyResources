@@ -4,9 +4,12 @@ import java.util.List;
 
 import com.bartz24.skyresources.alchemy.crucible.CrucibleRecipe;
 import com.bartz24.skyresources.alchemy.crucible.CrucibleRecipes;
+import com.bartz24.skyresources.alchemy.item.MetalCrystalItem;
 import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.config.ConfigOptions;
+import com.bartz24.skyresources.registry.ModFluids;
 
+import mezz.jei.gui.ingredients.ItemStackHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
@@ -14,15 +17,16 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidTankProperties;
+import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.IFluidHandler;
 
 public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 {
@@ -35,27 +39,66 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 	int maxItemAmount = ConfigOptions.crucibleCapacity;
 
 	@Override
-	public IFluidTankProperties[] getTankProperties()
+	public int fill(EnumFacing from, FluidStack resource, boolean doFill)
 	{
-		return tank.getTankProperties();
+
+		if (resource != null && canFill(from, resource.getFluid()))
+		{
+			int filled = tank.fill(resource, doFill);
+
+			return filled;
+		}
+
+		return 0;
 	}
 
 	@Override
-	public int fill(FluidStack resource, boolean doFill)
+	public FluidStack drain(EnumFacing from, FluidStack resource, boolean doDrain)
 	{
-			return tank.fill(resource, doFill);
+		if (resource != null && canDrain(from, resource.getFluid()))
+		{
+			return tank.drain(resource.amount, doDrain);
+		}
+
+		return null;
 	}
 
 	@Override
-	public FluidStack drain(FluidStack resource, boolean doDrain)
+	public FluidStack drain(EnumFacing from, int maxDrain, boolean doDrain)
 	{
-		return tank.drain(resource, doDrain);
+		if (canDrain(from, null))
+		{
+			return tank.drain(maxDrain, doDrain);
+		}
+
+		return null;
 	}
 
 	@Override
-	public FluidStack drain(int maxDrain, boolean doDrain)
+	public boolean canFill(EnumFacing from, Fluid fluid)
 	{
-		return tank.drain(maxDrain, doDrain);
+		return tank.getFluid() == null || tank.getFluid().getFluid() == fluid;
+	}
+
+	@Override
+	public boolean canDrain(EnumFacing from, Fluid fluid)
+	{
+		if (tank != null)
+		{
+			if (fluid == null || tank.getFluid() != null && tank.getFluid().getFluid() == fluid)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	@Override
+	public FluidTankInfo[] getTankInfo(EnumFacing from)
+	{
+		return new FluidTankInfo[]
+		{ tank.getInfo() };
 	}
 
 	public FluidTank getTank()
@@ -117,12 +160,12 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 				}
 			}
 			if (itemAmount > 0)
-			{
+			{				
 				int val = Math.min(getHeatSourceVal(), itemAmount);
 				if (itemIn != null && val > 0 && tank.getFluidAmount() + val <= tank.getCapacity())
 				{
 					CrucibleRecipe recipe = CrucibleRecipes.getRecipe(itemIn);
-					this.fill(new FluidStack(recipe.getOutput(), val), true);
+					this.fill(null, new FluidStack(recipe.getOutput(), val), true);
 					itemAmount -= val;
 				}
 
@@ -161,8 +204,8 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 
 		itemAmount = compound.getInteger("amount");
 		NBTTagCompound stackTag = compound.getCompoundTag("Item");
-		if (stackTag != null)
-			itemIn = ItemStack.loadItemStackFromNBT(stackTag);
+		if(stackTag!=null)
+		itemIn = ItemStack.loadItemStackFromNBT(stackTag);
 	}
 
 	int getHeatSourceVal()
@@ -185,17 +228,4 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 	{
 		return itemAmount;
 	}
-
-	public <T> T getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, net.minecraft.util.EnumFacing facing)
-    {
-        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-            return (T) this;
-        return super.getCapability(capability, facing);
-    }
-
-    @Override
-    public boolean hasCapability(net.minecraftforge.common.capabilities.Capability<?> capability, net.minecraft.util.EnumFacing facing)
-    {
-        return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY;
-    }
 }
