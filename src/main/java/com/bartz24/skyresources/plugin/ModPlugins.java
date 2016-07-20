@@ -3,7 +3,6 @@ package com.bartz24.skyresources.plugin;
 import com.bartz24.skyresources.plugin.armorplus.ArmorPlusPlugin;
 import com.bartz24.skyresources.plugin.forestry.ForestryPlugin;
 import com.bartz24.skyresources.plugin.ic2.IC2Plugin;
-import com.bartz24.skyresources.plugin.randomthings.RandomThingsPlugin;
 import com.bartz24.skyresources.plugin.techreborn.TechRebornPlugin;
 
 import net.minecraftforge.fml.common.Loader;
@@ -21,8 +20,6 @@ public class ModPlugins
 				ArmorPlusPlugin.preInit();
 			if (Loader.isModLoaded("techreborn"))
 				TechRebornPlugin.preInit();
-			if (Loader.isModLoaded("randomthings"))
-				RandomThingsPlugin.preInit();
 	}
 
 	public static void init()
@@ -35,8 +32,6 @@ public class ModPlugins
 			ArmorPlusPlugin.init();
 		if (Loader.isModLoaded("techreborn"))
 			TechRebornPlugin.init();
-		if (Loader.isModLoaded("randomthings"))
-			RandomThingsPlugin.init();
 	}
 
 	public static void postInit()
@@ -49,8 +44,6 @@ public class ModPlugins
 			ArmorPlusPlugin.postInit();
 		if (Loader.isModLoaded("techreborn"))
 			TechRebornPlugin.postInit();
-		if (Loader.isModLoaded("randomthings"))
-			RandomThingsPlugin.postInit();
 	}
 
 	public static void initRenderers()
@@ -63,7 +56,5 @@ public class ModPlugins
 			ArmorPlusPlugin.initRenderers();
 		if (Loader.isModLoaded("techreborn"))
 			TechRebornPlugin.initRenderers();
-		if (Loader.isModLoaded("randomthings"))
-			RandomThingsPlugin.initRenderers();
 	}
 }
