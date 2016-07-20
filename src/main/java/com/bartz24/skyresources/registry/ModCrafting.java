@@ -290,6 +290,21 @@ public class ModCrafting
 		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 10), 700,
 				new ItemStack(ModItems.metalCrystal, 4, 1), new ItemStack(Items.GOLD_INGOT, 2),
 				new ItemStack(ModItems.techComponent, 3, 1));
+		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 11), 600,
+				new ItemStack(ModItems.metalCrystal, 6, 2), new ItemStack(Items.SUGAR, 8),
+				new ItemStack(Items.FLINT, 6), new ItemStack(Items.GOLD_INGOT, 4));
+		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 12), 1200,
+				new ItemStack(ModItems.metalCrystal, 5, 11), new ItemStack(Items.DYE, 9, 11),
+				new ItemStack(Items.QUARTZ, 3), new ItemStack(Items.GOLD_INGOT, 6));
+		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 13), 1200,
+				new ItemStack(ModItems.metalCrystal, 5, 11), new ItemStack(Items.MAGMA_CREAM, 5),
+				new ItemStack(Items.QUARTZ, 2), new ItemStack(Items.GOLD_INGOT, 6), new ItemStack(Blocks.NETHER_BRICK));
+		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 14), 1400,
+				new ItemStack(ModItems.metalCrystal, 7, 11), new ItemStack(Items.MAGMA_CREAM, 5),
+				new ItemStack(Items.DYE, 4, 0), new ItemStack(ModItems.baseComponent, 2, 5), new ItemStack(Items.GOLD_INGOT, 4));
+		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 15), 1100,
+				new ItemStack(ModItems.metalCrystal, 3, 11), new ItemStack(Blocks.ICE, 5),
+				new ItemStack(ModItems.techComponent, 4, 2), new ItemStack(Items.SNOWBALL, 6));
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.REDSTONE, 3), 400,
 				new ItemStack(Items.GUNPOWDER, 2), new ItemStack(Items.BLAZE_POWDER, 2));
