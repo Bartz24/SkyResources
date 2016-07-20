@@ -17,8 +17,7 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 import java.util.Arrays;
 
-public class FluidDropperTile extends RedstoneCompatibleTile
-		implements ITickable, IFluidHandler
+public class FluidDropperTile extends RedstoneCompatibleTile implements ITickable, IFluidHandler
 {
 	FluidTank tank;
 
@@ -37,8 +36,7 @@ public class FluidDropperTile extends RedstoneCompatibleTile
 	}
 
 	@Override
-	public FluidStack drain(EnumFacing from, FluidStack resource,
-			boolean doDrain)
+	public FluidStack drain(EnumFacing from, FluidStack resource, boolean doDrain)
 	{
 		if (resource != null && canDrain(from, resource.getFluid()))
 		{
@@ -70,8 +68,7 @@ public class FluidDropperTile extends RedstoneCompatibleTile
 	{
 		if (tank != null)
 		{
-			if (fluid == null || tank.getFluid() != null
-					&& tank.getFluid().getFluid() == fluid)
+			if (fluid == null || tank.getFluid() != null && tank.getFluid().getFluid() == fluid)
 			{
 				return true;
 			}
@@ -121,15 +118,13 @@ public class FluidDropperTile extends RedstoneCompatibleTile
 		{
 			pullFromAround();
 
-			if (tank.getFluidAmount() >= 1000
-					&& worldObj.isAirBlock(pos.down()))
+			if (tank.getFluidAmount() >= 1000 && worldObj.isAirBlock(pos.down()))
 			{
-				worldObj.setBlockState(pos.down(), tank.getFluid().getFluid()
-						.getBlock().getDefaultState());
+				worldObj.setBlockState(pos.down(),
+						tank.getFluid().getFluid().getBlock().getDefaultState());
 				tank.setFluid(null);
 				worldObj.playSound(pos.getX(), pos.getY(), pos.getZ(),
-						SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS,
-						0.5F, 1, true);
+						SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 0.5F, 1, true);
 			}
 		}
 	}
@@ -137,8 +132,7 @@ public class FluidDropperTile extends RedstoneCompatibleTile
 	void pullFromAround()
 	{
 		BlockPos[] checkPoses = new BlockPos[]
-		{ getPos().up(), getPos().north(), getPos().south(), getPos().west(),
-				getPos().east() };
+		{ getPos().up(), getPos().north(), getPos().south(), getPos().west(), getPos().east() };
 		if (this.getRedstoneSignal() == 0)
 		{
 			for (BlockPos pos : checkPoses)
@@ -148,28 +142,21 @@ public class FluidDropperTile extends RedstoneCompatibleTile
 				{
 					IFluidHandler fluidHand = (IFluidHandler) tile;
 
-					if (fluidHand.canDrain(
-							EnumFacing.VALUES[Arrays.asList(checkPoses)
-									.indexOf(pos) + 1].getOpposite(),
-							tank.getFluid() == null ? null
-									: tank.getFluid().getFluid()))
+					for (FluidTankInfo f : fluidHand.getTankInfo(
+							EnumFacing.VALUES[Arrays.asList(checkPoses).indexOf(pos) + 1]
+									.getOpposite()))
 					{
+						FluidStack tankFluid = f.fluid;
 
-						FluidStack tankFluid = fluidHand
-								.getTankInfo(EnumFacing.VALUES[Arrays
-										.asList(checkPoses).indexOf(pos) + 1]
-												.getOpposite())[0].fluid;
-						
-						if(tankFluid == null) continue;
-						
+						if (tankFluid == null)
+							continue;
+
 						this.fill(null, fluidHand.drain(
-								EnumFacing.VALUES[Arrays.asList(checkPoses)
-										.indexOf(pos) + 1].getOpposite(),
+								EnumFacing.VALUES[Arrays.asList(checkPoses).indexOf(pos) + 1]
+										.getOpposite(),
 								new FluidStack(tankFluid.getFluid(),
-										Math.min(
-												ConfigOptions.fluidDropperCapacity
-														- tank.getFluidAmount(),
-												tankFluid.amount)),
+										Math.min(ConfigOptions.fluidDropperCapacity
+												- tank.getFluidAmount(), tankFluid.amount)),
 								true), true);
 						return;
 					}
