@@ -83,6 +83,8 @@ tile.skyresources.mercuryDirtyCrystalFluidBlock.name=Dirty Mercury Crystal Liqui
 tile.skyresources.quartzMoltenCrystalFluidBlock.name=Molten Quartz Crystal Liquid
 tile.skyresources.cobaltMoltenCrystalFluidBlock.name=Molten Cobalt Crystal Liquid
 tile.skyresources.arditeMoltenCrystalFluidBlock.name=Molten Ardite Crystal Liquid
+tile.skyresources.adamantineMoltenCrystalFluidBlock.name=Molten Adamantine Crystal Liquid
+tile.skyresources.coldironMoltenCrystalFluidBlock.name=Molten Cold Iron Crystal Liquid
 
 
 jei.skyresources.desc.cactusNeedle=Obtained by shift right-clicking on a cactus block.\n\nNOTE: You will take damage.
@@ -125,6 +127,8 @@ name.skyresources.metal.mercury=Mercury
 name.skyresources.metal.quartz=Quartz
 name.skyresources.metal.cobalt=Cobalt
 name.skyresources.metal.ardite=Ardite
+name.skyresources.metal.adamantine=Adamantine
+name.skyresources.metal.coldiron=Cold Iron
 
 name.skyresources.gem.emerald=Emerald
 name.skyresources.gem.ruby=Ruby
@@ -179,6 +183,8 @@ fluid.mercurydirtycrystalfluid=Dirty Mercury Crystal Fluid
 fluid.quartzmoltencrystalfluid=Molten Quartz Crystal Fluid
 fluid.cobaltmoltencrystalfluid=Molten Cobalt Crystal Fluid
 fluid.arditemoltencrystalfluid=Molten Ardite Crystal Fluid
+fluid.adamantinemoltencrystalfluid=Molten Adamantine Crystal Fluid
+fluid.coldironmoltencrystalfluid=Molten Cold Iron Crystal Fluid
 
 key.skyresources.guide=Open Guide
 

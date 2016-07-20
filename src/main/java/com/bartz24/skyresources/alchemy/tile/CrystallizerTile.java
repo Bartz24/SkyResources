@@ -10,16 +10,21 @@ import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModFluids;
 import com.bartz24.skyresources.registry.ModItems;
+import com.bartz24.skyresources.technology.block.BlockFreezer;
+import com.bartz24.skyresources.technology.tile.FreezerTile;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -63,9 +68,7 @@ public class CrystallizerTile extends TileEntity implements ITickable
 
 						ItemStack stack = new ItemStack(ModItems.metalCrystal, 1,
 								ModBlocks.moltenCrystalFluidBlocks.indexOf(crystalBlock) + ModBlocks.crystalFluidBlocks.size());
-						Entity entity = new EntityItem(worldObj, pos.getX() + 0.5F,
-								pos.getY() - 0.5F, pos.getZ() + 0.5F, stack);
-						worldObj.spawnEntityInWorld(entity);
+						ejectResultSlot(stack);
 					}
 					timeCondense = 0;
 					randInterval = rand.nextInt(240) + 20;
@@ -105,4 +108,21 @@ public class CrystallizerTile extends TileEntity implements ITickable
 		return this.worldObj.getBlockState(pos.add(0, 1, 0)).getBlock();
 	}
 
+	void ejectResultSlot(ItemStack output)
+	{
+		if (!worldObj.isRemote)
+		{
+
+			BlockPos facingPos = getPos().down();
+
+			TileEntity tile = worldObj.getTileEntity(facingPos);
+			if (tile instanceof IInventory)
+			{
+				output = RandomHelper.fillInventory((IInventory) tile, output);
+			}
+
+			if (output != null && output.stackSize > 0)
+				RandomHelper.spawnItemInWorld(worldObj, output, facingPos);
+		}
+	}
 }

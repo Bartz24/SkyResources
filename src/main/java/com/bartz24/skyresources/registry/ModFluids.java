@@ -39,6 +39,8 @@ public class ModFluids
 		ModFluids.addCrystalFluid("quartz", 0xFFFFFFFF, 4, CrystalFluidType.MOLTEN);
 		ModFluids.addCrystalFluid("cobalt", 0xFF0045D9, 7, CrystalFluidType.MOLTEN);
 		ModFluids.addCrystalFluid("ardite", 0xFFDE9000, 7, CrystalFluidType.MOLTEN);
+		ModFluids.addCrystalFluid("adamantine", 0xFF363636, 8, CrystalFluidType.MOLTEN);
+		ModFluids.addCrystalFluid("coldiron", 0xFF84EAF0, 6, CrystalFluidType.MOLTEN);
 
 		registerCrystalFluid();
 		registerDirtyCrystalFluid();
