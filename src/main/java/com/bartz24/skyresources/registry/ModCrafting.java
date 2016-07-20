@@ -110,6 +110,15 @@ public class ModCrafting
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.coalInfusedBlock), new Object[]
 				{ "XXX", "XXX", "XXX", 'X', new ItemStack(ModItems.alchemyComponent, 1, 2) }));
+		GameRegistry.addRecipe(
+				new ShapedOreRecipe(new ItemStack(ModItems.alchemyComponent, 9, 2), new Object[]
+				{ "X", 'X', new ItemStack(ModBlocks.coalInfusedBlock) }));
+		GameRegistry.addRecipe(
+				new ShapedOreRecipe(new ItemStack(ModBlocks.darkMatterBlock), new Object[]
+				{ "XXX", "XXX", "XXX", 'X', new ItemStack(ModItems.baseComponent, 1, 5) }));
+		GameRegistry.addRecipe(
+				new ShapedOreRecipe(new ItemStack(ModItems.baseComponent, 9, 5), new Object[]
+				{ "X", 'X', new ItemStack(ModBlocks.darkMatterBlock) }));
 		GameRegistry
 				.addRecipe(new ShapelessOreRecipe(new ItemStack(ModBlocks.heavySnow2), new Object[]
 		{ new ItemStack(ModBlocks.heavySnow), new ItemStack(ModBlocks.heavySnow),
@@ -180,6 +189,11 @@ public class ModCrafting
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.darkMatterWarper), new Object[]
 				{ "XXX", "XYX", "XXX", 'X', new ItemStack(Blocks.OBSIDIAN), 'Y', new ItemStack(ModItems.baseComponent, 1, 5) }));
+		GameRegistry
+				.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.endPortalCore), new Object[]
+		{ "XZX", "AYA", "XZX", 'X', new ItemStack(ModItems.baseComponent, 1, 5), 'Y',
+				new ItemStack(Items.NETHER_STAR), 'Z', new ItemStack(ModItems.techComponent, 1, 2),
+				'A', new ItemStack(ModItems.alchemyComponent, 1, 5) }));
 
 		if (OreDictionary.doesOreNameExist("ingotSteel")
 				&& OreDictionary.doesOreNameExist("dustCoal"))
@@ -232,7 +246,8 @@ public class ModCrafting
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.CACTUS),
 				new ItemStack(Items.FERMENTED_SPIDER_EYE, 3), Blocks.SAPLING, 0, 20);
 		InfusionRecipes.addRecipe(new ItemStack(Items.NETHER_WART),
-				new ItemStack(Items.SPIDER_EYE, 8), Blocks.RED_MUSHROOM, OreDictionary.WILDCARD_VALUE, 20);
+				new ItemStack(Items.SPIDER_EYE, 8), Blocks.RED_MUSHROOM,
+				OreDictionary.WILDCARD_VALUE, 20);
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.COAL, 1), 50,
 				new ItemStack(Items.COAL, 1, 1));
@@ -315,6 +330,13 @@ public class ModCrafting
 		CombustionRecipes.addRecipe(new ItemStack(Items.GLOWSTONE_DUST, 4), 900,
 				new ItemStack(Items.REDSTONE, 4), new ItemStack(Items.BLAZE_POWDER, 2),
 				new ItemStack(Items.FIRE_CHARGE));
+
+		Block boneBlock = Block.REGISTRY.getObject(new ResourceLocation("minecraft", "bone_block"));
+
+		CombustionRecipes.addRecipe(new ItemStack(Blocks.END_STONE, 1), 1369,
+				new ItemStack(Blocks.STONE, 6, 3), new ItemStack(Items.SUGAR, 2),
+				new ItemStack(Items.ENDER_PEARL, 4), new ItemStack(Items.QUARTZ, 2),
+				new ItemStack(boneBlock, 4));
 
 		RockGrinderRecipes.addRecipe(new ItemStack(Blocks.SAND), false,
 				Blocks.COBBLESTONE.getDefaultState());
