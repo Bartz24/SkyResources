@@ -1,27 +1,22 @@
 package com.bartz24.skyresources.alchemy.tile;
 
-import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.base.HeatSources;
-import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModFluids;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidHandler;
+import net.minecraftforge.fluids.capability.FluidTankPropertiesWrapper;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
 public class PurificationVesselTile extends TileEntity implements ITickable, IFluidHandler
 {
@@ -29,72 +24,28 @@ public class PurificationVesselTile extends TileEntity implements ITickable, IFl
 	FluidTank upperTank;
 
 	@Override
-	public int fill(EnumFacing from, FluidStack resource, boolean doFill)
+	public IFluidTankProperties[] getTankProperties()
 	{
-		if (resource != null && canFill(from, resource.getFluid()))
-		{
-			int filled = lowerTank.fill(resource, doFill);
-
-			return filled;
-		}
-
-		return 0;
+		return new IFluidTankProperties[]
+		{ new FluidTankPropertiesWrapper(lowerTank), new FluidTankPropertiesWrapper(upperTank) };
 	}
 
 	@Override
-	public FluidStack drain(EnumFacing from, FluidStack resource, boolean doDrain)
+	public int fill(FluidStack resource, boolean doFill)
 	{
-		if (resource != null && canDrain(from, resource.getFluid()))
-		{
-			return upperTank.drain(resource.amount, doDrain);
-		}
-
-		return null;
+		return lowerTank.fill(resource, doFill);
 	}
 
 	@Override
-	public FluidStack drain(EnumFacing from, int maxDrain, boolean doDrain)
+	public FluidStack drain(FluidStack resource, boolean doDrain)
 	{
-		if (canDrain(from, null))
-		{
-			return upperTank.drain(maxDrain, doDrain);
-		}
-
-		return null;
+		return upperTank.drain(resource, doDrain);
 	}
 
 	@Override
-	public boolean canFill(EnumFacing from, Fluid fluid)
+	public FluidStack drain(int maxDrain, boolean doDrain)
 	{
-		if (from == EnumFacing.UP)
-			return false;
-
-		return lowerTank.getFluid() == null || lowerTank.getFluid().getFluid() == fluid;
-	}
-
-	@Override
-	public boolean canDrain(EnumFacing from, Fluid fluid)
-	{
-		if (from == EnumFacing.UP)
-		{
-			if (upperTank != null)
-			{
-				if (fluid == null
-						|| upperTank.getFluid() != null && upperTank.getFluid().getFluid() == fluid)
-				{
-					return true;
-				}
-			}
-		}
-
-		return false;
-	}
-
-	@Override
-	public FluidTankInfo[] getTankInfo(EnumFacing from)
-	{
-		return new FluidTankInfo[]
-		{ lowerTank.getInfo(), upperTank.getInfo() };
+		return upperTank.drain(maxDrain, doDrain);
 	}
 
 	public FluidTank getLowerTank()
@@ -128,15 +79,12 @@ public class PurificationVesselTile extends TileEntity implements ITickable, IFl
 		this.readFromNBT(packet.getNbtCompound());
 	}
 
-
 	int getHeatSourceVal()
 	{
 		if (HeatSources.isValidHeatSource(pos.down(), worldObj))
 		{
-			if(HeatSources
-					.getHeatSourceValue(pos.down(), worldObj) > 0)
-			return Math.max(HeatSources
-					.getHeatSourceValue(pos.down(), worldObj) / 5, 1);
+			if (HeatSources.getHeatSourceValue(pos.down(), worldObj) > 0)
+				return Math.max(HeatSources.getHeatSourceValue(pos.down(), worldObj) / 5, 1);
 		}
 		return 0;
 	}
@@ -156,8 +104,7 @@ public class PurificationVesselTile extends TileEntity implements ITickable, IFl
 				{
 					if (HeatSources.isValidHeatSource(pos.down(), worldObj))
 					{
-						int rate = Math.min(getHeatSourceVal(),
-								lowerTank.getFluidAmount());
+						int rate = Math.min(getHeatSourceVal(), lowerTank.getFluidAmount());
 
 						int transferAmount = upperTank.fill(
 								new FluidStack(ModFluids.crystalFluids.get(type), rate), true);
