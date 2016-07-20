@@ -19,12 +19,15 @@ public class CondenserRecipeMaker
 
 		for (int i = 0; i < ModFluids.crystalFluids.size(); i++)
 		{
-			if (OreDictionary.doesOreNameExist("ingot" + RandomHelper
-					.capatilizeString(ModFluids.crystalFluidInfos()[i].name)))
+			if (OreDictionary
+					.getOres("ingot" + RandomHelper
+							.capatilizeString(ModFluids.crystalFluidInfos()[i].name)).size() > 0)
 			{
+				System.out.println(ModFluids.crystalFluidInfos().length);
+				System.out.println(ModFluids.crystalFluidInfos()[i].name);
 				ItemStack ingot = OreDictionary
-						.getOres("ingot" + RandomHelper.capatilizeString(
-								ModFluids.crystalFluidInfos()[i].name))
+						.getOres("ingot" + RandomHelper
+								.capatilizeString(ModFluids.crystalFluidInfos()[i].name))
 						.get(0).copy();
 				ingot.stackSize = 1;
 				CondenserRecipeJEI addRecipe = new CondenserRecipeJEI(ingot,
@@ -32,25 +35,23 @@ public class CondenserRecipeMaker
 						ModFluids.crystalFluidInfos()[i].rarity
 								* ConfigOptions.condenserProcessTimeBase);
 				recipes.add(addRecipe);
-				CondenserRecipeJEI addDirtyRecipe = new CondenserRecipeJEI(
-						ingot,
-						ModBlocks.dirtyCrystalFluidBlocks.get(i)
-								.getDefaultState(),
+				CondenserRecipeJEI addDirtyRecipe = new CondenserRecipeJEI(ingot,
+						ModBlocks.dirtyCrystalFluidBlocks.get(i).getDefaultState(),
 						ModFluids.crystalFluidInfos()[i].rarity
 								* ConfigOptions.condenserProcessTimeBase * 10);
 				recipes.add(addDirtyRecipe);
 			}
 		}
-		
 
 		for (int i = 0; i < ModFluids.moltenCrystalFluids.size(); i++)
 		{
-			if (OreDictionary.doesOreNameExist("ingot" + RandomHelper
-					.capatilizeString(ModFluids.moltenCrystalFluidInfos()[i].name)))
+			if (OreDictionary
+					.getOres("ingot" + RandomHelper
+							.capatilizeString(ModFluids.moltenCrystalFluidInfos()[i].name)).size() > 0)
 			{
 				ItemStack ingot = OreDictionary
-						.getOres("ingot" + RandomHelper.capatilizeString(
-								ModFluids.moltenCrystalFluidInfos()[i].name))
+						.getOres("ingot" + RandomHelper
+								.capatilizeString(ModFluids.moltenCrystalFluidInfos()[i].name))
 						.get(0).copy();
 				ingot.stackSize = 1;
 				CondenserRecipeJEI addRecipe = new CondenserRecipeJEI(ingot,
