@@ -171,10 +171,15 @@ public class ModCrafting
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.advancedCoolingCondenser), new Object[]
 				{ "XXX", "X X", "XYX", 'X', "ingotIron", 'Y', new ItemStack(ModItems.baseComponent, 1, 4) }));
-		
+
+		GameRegistry
+				.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.crystallizer), new Object[]
+		{ "XYX", "X X", "XZX", 'X', "ingotIron", 'Y', new ItemStack(ModItems.baseComponent, 1, 4),
+				'Z', new ItemStack(Blocks.HOPPER) }));
+
 		GameRegistry.addRecipe(
-				new ShapedOreRecipe(new ItemStack(ModBlocks.crystallizer), new Object[]
-				{ "XYX", "X X", "XZX", 'X', "ingotIron", 'Y', new ItemStack(ModItems.baseComponent, 1, 4), 'Z', new ItemStack(Blocks.HOPPER) }));
+				new ShapedOreRecipe(new ItemStack(ModBlocks.darkMatterWarper), new Object[]
+				{ "XXX", "XYX", "XXX", 'X', new ItemStack(Blocks.OBSIDIAN), 'Y', new ItemStack(ModItems.baseComponent, 1, 5) }));
 
 		if (OreDictionary.doesOreNameExist("ingotSteel")
 				&& OreDictionary.doesOreNameExist("dustCoal"))
@@ -226,6 +231,8 @@ public class ModCrafting
 				OreDictionary.WILDCARD_VALUE, 20);
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.CACTUS),
 				new ItemStack(Items.FERMENTED_SPIDER_EYE, 3), Blocks.SAPLING, 0, 20);
+		InfusionRecipes.addRecipe(new ItemStack(Items.NETHER_WART),
+				new ItemStack(Items.SPIDER_EYE, 8), Blocks.RED_MUSHROOM, OreDictionary.WILDCARD_VALUE, 20);
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.COAL, 1), 50,
 				new ItemStack(Items.COAL, 1, 1));
@@ -299,9 +306,15 @@ public class ModCrafting
 		CombustionRecipes.addRecipe(new ItemStack(Items.SNOWBALL), 1234,
 				new ItemStack(Items.POTIONITEM, 1, 0), new ItemStack(Items.POTIONITEM, 1, 0),
 				new ItemStack(Items.POTIONITEM, 1, 0), new ItemStack(Items.QUARTZ, 8));
-		CombustionRecipes.addRecipe(new ItemStack(Blocks.NETHERRACK, 16), 700,
-				new ItemStack(Blocks.COBBLESTONE, 32), new ItemStack(Items.REDSTONE, 4),
-				new ItemStack(Items.BLAZE_POWDER, 8));
+		CombustionRecipes.addRecipe(new ItemStack(Blocks.NETHERRACK, 4), 700,
+				new ItemStack(Blocks.COBBLESTONE, 8), new ItemStack(Items.REDSTONE, 1),
+				new ItemStack(Items.BLAZE_POWDER, 2));
+		CombustionRecipes.addRecipe(new ItemStack(ModItems.baseComponent, 1, 5), 1500,
+				new ItemStack(Blocks.OBSIDIAN, 3), new ItemStack(Items.FIRE_CHARGE, 3),
+				new ItemStack(Items.NETHERBRICK, 6), new ItemStack(Items.IRON_INGOT, 2));
+		CombustionRecipes.addRecipe(new ItemStack(Items.GLOWSTONE_DUST, 4), 900,
+				new ItemStack(Items.REDSTONE, 4), new ItemStack(Items.BLAZE_POWDER, 2),
+				new ItemStack(Items.FIRE_CHARGE));
 
 		RockGrinderRecipes.addRecipe(new ItemStack(Blocks.SAND), false,
 				Blocks.COBBLESTONE.getDefaultState());
@@ -320,13 +333,14 @@ public class ModCrafting
 
 		for (int i = 0; i < ModFluids.crystalFluidInfos().length; i++)
 		{
-				CrucibleRecipes.addRecipe(new FluidStack(ModFluids.dirtyCrystalFluids.get(i), 1000),
-						new ItemStack(ModItems.metalCrystal, 1, i));
+			CrucibleRecipes.addRecipe(new FluidStack(ModFluids.dirtyCrystalFluids.get(i), 1000),
+					new ItemStack(ModItems.metalCrystal, 1, i));
 		}
 		for (int i = 0; i < ModFluids.moltenCrystalFluidInfos().length; i++)
 		{
-				CrucibleRecipes.addRecipe(new FluidStack(ModFluids.moltenCrystalFluids.get(i), 1000),
-						new ItemStack(ModItems.metalCrystal, 1, i+ModFluids.crystalFluidInfos().length));
+			CrucibleRecipes.addRecipe(new FluidStack(ModFluids.moltenCrystalFluids.get(i), 1000),
+					new ItemStack(ModItems.metalCrystal, 1,
+							i + ModFluids.crystalFluidInfos().length));
 		}
 
 		WaterExtractorRecipes.addExtractRecipe(50, true, Blocks.CACTUS.getDefaultState(),
@@ -384,7 +398,7 @@ public class ModCrafting
 						ModBlocks.compressedStone.getDefaultState());
 			}
 		}
-		
+
 		for (int i = 0; i < ModFluids.moltenCrystalFluidInfos().length; i++)
 		{
 			String oreName = "ore"
@@ -398,7 +412,8 @@ public class ModCrafting
 										OreDictionary.getOres(oreName).get(0).getMetadata()),
 						ModFluids.moltenCrystalFluidInfos()[i].rarity * 100,
 						new ItemStack(ModItems.metalCrystal,
-								ConfigOptions.crystalConcentratorAmount, i+ModFluids.crystalFluidInfos().length),
+								ConfigOptions.crystalConcentratorAmount,
+								i + ModFluids.crystalFluidInfos().length),
 						ModBlocks.compressedNetherrack.getDefaultState());
 			}
 		}

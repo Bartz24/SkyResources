@@ -151,14 +151,15 @@ public class FluidDropperTile extends RedstoneCompatibleTile implements ITickabl
 						if (tankFluid == null)
 							continue;
 
-						this.fill(null, fluidHand.drain(
+						int amt = this.fill(null, fluidHand.drain(
 								EnumFacing.VALUES[Arrays.asList(checkPoses).indexOf(pos) + 1]
 										.getOpposite(),
 								new FluidStack(tankFluid.getFluid(),
 										Math.min(ConfigOptions.fluidDropperCapacity
 												- tank.getFluidAmount(), tankFluid.amount)),
 								true), true);
-						return;
+						if (amt > 0)
+							return;
 					}
 				}
 			}

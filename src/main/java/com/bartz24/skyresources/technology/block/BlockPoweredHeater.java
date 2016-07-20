@@ -80,7 +80,12 @@ public class BlockPoweredHeater extends BlockContainer
 				TilePoweredHeater tile = (TilePoweredHeater) world.getTileEntity(pos);
 				toSend.add(new TextComponentString(TextFormatting.RED + "RF Stored: "
 						+ tile.getEnergyStored(null) + " / " + tile.getMaxEnergyStored(null)));
-				ChatHelper.sendNoSpamMessages(toSend.toArray(new ITextComponent[toSend.size()]));
+
+
+				for(ITextComponent text:toSend)
+				{
+					player.addChatComponentMessage(text);
+				}
 			}
 		}
 		return true;

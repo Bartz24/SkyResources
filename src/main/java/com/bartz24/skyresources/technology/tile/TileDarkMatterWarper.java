@@ -95,12 +95,12 @@ public class TileDarkMatterWarper extends TileEntity implements ITickable, IInve
 					} else if (!entity.isDead
 							&& (entity instanceof EntityPlayer || entity instanceof EntityAnimal))
 					{
-						entity.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 360, 1));
-						entity.addPotionEffect(new PotionEffect(MobEffects.WITHER, 360, 1));
-						entity.addPotionEffect(new PotionEffect(MobEffects.HUNGER, 360, 1));
-						entity.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE, 360, 1));
-						entity.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 360, 1));
-						entity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 360, 1));
+						entity.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 360,0));
+						entity.addPotionEffect(new PotionEffect(MobEffects.WITHER, 360, 0));
+						entity.addPotionEffect(new PotionEffect(MobEffects.HUNGER, 360,0));
+						entity.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE, 360, 0));
+						entity.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 360, 0));
+						entity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 360, 0));
 					}
 				}
 			} else

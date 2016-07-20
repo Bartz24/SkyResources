@@ -114,6 +114,7 @@ container.skyresources.combustionHeater=Combustion Heater
 container.skyresources.concentrator=Concentrator
 container.skyresources.freezer=Freezer
 container.skyresources.beeAttractor=Bee Attractor
+container.skyresources.darkMatterWarper=Dark Matter Warper
 
 name.skyresources.metal.iron=Iron
 name.skyresources.metal.gold=Gold

@@ -209,8 +209,10 @@ public class CombustionHeaterBlock extends BlockContainer implements IMetaBlockN
 						toSend.add(new TextComponentString(
 								TextFormatting.RED + "Invalid Multiblock."));
 
-					ChatHelper
-							.sendNoSpamMessages(toSend.toArray(new ITextComponent[toSend.size()]));
+					for(ITextComponent text:toSend)
+					{
+						player.addChatComponentMessage(text);
+					}
 
 				}
 			}
