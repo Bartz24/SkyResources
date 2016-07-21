@@ -42,12 +42,6 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 	{
 		super.writeToNBT(compound);
 
-		if (timeFreeze != null)
-		{
-			for (float i : timeFreeze)
-				compound.setFloat("time" + i, i);
-		}
-
 		NBTTagList list = new NBTTagList();
 		if (inventory != null)
 		{
@@ -59,9 +53,20 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 					stackTag.setByte("Slot", (byte) i);
 					this.getStackInSlot(i).writeToNBT(stackTag);
 					list.appendTag(stackTag);
+				} else
+				{
+					NBTTagCompound stackTag = new NBTTagCompound();
+					stackTag.setByte("Slot", (byte) i);
+					list.appendTag(stackTag);
 				}
 			}
 			compound.setTag("Items", list);
+		}
+
+		if (timeFreeze != null)
+		{
+			for (int i = 0; i<timeFreeze.length;i++)
+				compound.setFloat("time" + i, timeFreeze[i]);
 		}
 		return compound;
 	}
@@ -72,16 +77,21 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 		super.readFromNBT(compound);
 
 		NBTTagList list = compound.getTagList("Items", 10);
+		if(list.tagCount() > 0)
+		inventory = new ItemStack[list.tagCount()];
 		for (int i = 0; i < list.tagCount(); ++i)
 		{
 			NBTTagCompound stackTag = list.getCompoundTagAt(i);
 			int slot = stackTag.getByte("Slot") & 255;
-			this.setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(stackTag));
+			System.out.println(stackTag.hasKey("id"));
+			if (stackTag.hasKey("id"))
+				this.setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(stackTag));
 		}
 
 		if (inventory != null)
 		{
-			for (int i = 0; i < this.getSizeInventory(); i++)
+			timeFreeze = new float[inventory.length];
+			for (int i = 0; i < this.inventory.length; i++)
 			{
 				timeFreeze[i] = compound.getFloat("time" + i);
 			}
@@ -94,6 +104,10 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 		if (inventory == null)
 		{
 			inventory = new ItemStack[this.getSizeInventory()];
+			return;
+		}
+		else  if(timeFreeze == null)
+		{
 			timeFreeze = new float[this.getSizeInventory()];
 			return;
 		}
@@ -229,6 +243,8 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 
 	public FreezerRecipe recipeToCraft(int slot)
 	{
+		if (slot >= inventory.length)
+			return null;
 		FreezerRecipe recipe = FreezerRecipes.getRecipe(inventory[slot]);
 
 		return recipe;
@@ -316,17 +332,19 @@ public class FreezerTile extends TileEntity implements IInventory, ITickable
 	@Override
 	public void setInventorySlotContents(int index, ItemStack stack)
 	{
-		IBlockState state = this.worldObj.getBlockState(pos);
+		IBlockState state = null;
+		if (this.worldObj != null && this.pos != null)
+			state = this.worldObj.getBlockState(pos);
 
 		FreezerTile tile = this;
 		if (tile.inventory != null)
 		{
 
-			if (worldObj.getBlockState(pos).getBlock() instanceof BlockFreezer && state
-					.getProperties().get(BlockFreezer.PART) == BlockFreezer.EnumPartType.TOP)
+			if (state != null && state.getBlock() instanceof BlockFreezer && state.getProperties()
+					.get(BlockFreezer.PART) == BlockFreezer.EnumPartType.TOP)
 				tile = (FreezerTile) worldObj.getTileEntity(pos.down());
 
-			if (index < 0 || index >= this.getSizeInventory())
+			if (index < 0 || index >= tile.inventory.length)
 				return;
 
 			if (stack != null && stack.stackSize > this.getInventoryStackLimit())
