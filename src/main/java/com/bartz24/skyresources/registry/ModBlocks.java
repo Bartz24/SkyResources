@@ -55,6 +55,7 @@ public class ModBlocks
 	public static Block coalInfusedBlock;
 	public static Block compressedStone;
 	public static Block compressedNetherrack;
+	public static Block sandyNetherrack;
 	public static Block darkMatterBlock;
 	public static Block heavySnow;
 	public static Block heavySnow2;
@@ -88,6 +89,9 @@ public class ModBlocks
 
 		compressedCoalBlock2 = registerBlock(new BaseBlock(Material.ROCK, "compressedCoalBlock2",
 				"CompressedCoalBlock2", 9F, 9F, SoundType.STONE));
+
+		sandyNetherrack = registerBlock(new BaseBlock(Material.ROCK, "sandyNetherrack",
+				"SandyNetherrack", 2F, 2F, SoundType.STONE));
 
 		coalInfusedBlock = registerBlock(new BaseBlock(Material.ROCK, "coalInfusedBlock",
 				"CoalInfusedBlock", 6F, 6F, SoundType.STONE));

@@ -163,6 +163,7 @@ public class ModRenderers
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.coalInfusedBlock));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.compressedStone));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.compressedNetherrack));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.sandyNetherrack));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.darkMatterBlock));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.heavySnow));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.heavySnow2));

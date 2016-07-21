@@ -82,7 +82,7 @@ public class ModCrafting
 				{ "XYX", "X X", "XXX", 'X', "ingotIron", 'Y', new ItemStack(ModItems.baseComponent, 1, 1) }));
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.compressedCoalBlock), new Object[]
-				{ "XXX", "XXX", "XXX", 'X', new ItemStack(Blocks.COAL_BLOCK) }));
+				{ "XXX", "XYX", "XXX", 'X', new ItemStack(Blocks.COAL_BLOCK) , 'Y', new ItemStack(Items.COAL)}));
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.blazePowderBlock), new Object[]
 				{ "XXX", "XXX", "XXX", 'X', new ItemStack(Items.BLAZE_POWDER) }));
@@ -103,10 +103,10 @@ public class ModCrafting
 				{ "XXX", "XXX", "XXX", 'X', new ItemStack(ModBlocks.compressedCoalBlock) }));
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.compressedStone), new Object[]
-				{ "XXX", "XXX", "XXX", 'X', new ItemStack(Blocks.STONE) }));
+				{ "XXX", "XYX", "XXX", 'X', new ItemStack(Blocks.STONE), 'Y', new ItemStack(Blocks.COBBLESTONE)  }));
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.compressedNetherrack), new Object[]
-				{ "XXX", "XXX", "XXX", 'X', new ItemStack(Blocks.NETHERRACK) }));
+				{ "XXX", "XYX", "XXX", 'X', new ItemStack(Blocks.NETHERRACK), 'Y', new ItemStack(Blocks.NETHER_BRICK)  }));
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.coalInfusedBlock), new Object[]
 				{ "XXX", "XXX", "XXX", 'X', new ItemStack(ModItems.alchemyComponent, 1, 2) }));
@@ -194,6 +194,10 @@ public class ModCrafting
 		{ "XZX", "AYA", "XZX", 'X', new ItemStack(ModItems.baseComponent, 1, 5), 'Y',
 				new ItemStack(Items.NETHER_STAR), 'Z', new ItemStack(ModItems.techComponent, 1, 2),
 				'A', new ItemStack(ModItems.alchemyComponent, 1, 5) }));
+		GameRegistry
+		.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.sandyNetherrack, 2), new Object[]
+{ "XY", "ZX", 'X', new ItemStack(Blocks.SAND), 'Y',
+		new ItemStack(Items.NETHER_WART), 'Z', new ItemStack(Blocks.NETHERRACK) }));
 
 		if (OreDictionary.doesOreNameExist("ingotSteel")
 				&& OreDictionary.doesOreNameExist("dustCoal"))
@@ -402,6 +406,8 @@ public class ModCrafting
 				new ItemStack(Items.POTIONITEM, 1, 0));
 		FreezerRecipes.addRecipe(new ItemStack(ModItems.techComponent, 1, 2), 3000,
 				new ItemStack(Items.IRON_INGOT));
+		FreezerRecipes.addRecipe(new ItemStack(Blocks.SOUL_SAND), 1500,
+				new ItemStack(ModBlocks.sandyNetherrack));
 
 		MinecraftForge.addGrassSeed(new ItemStack(Items.BEETROOT_SEEDS), 10);
 		MinecraftForge.addGrassSeed(new ItemStack(Items.MELON_SEEDS), 8);
