@@ -282,12 +282,13 @@ public class ModGuidePages
 				"The end portal requires a multiblock structure. The following are needed: "
 						+ "\n 1 <recipe,,skyresources:EndPortalCore:0> "
 						+ "\n 4 <recipe,,minecraft:diamond_block:0> "
+						+ "\n 4 <recipe,,minecraft:gold_block:0> "
 						+ "\n 16 <recipe,,skyresources:DarkMatterBlock:0> "
 						+ "\n 8 <recipe,,minecraft:end_bricks:0> "
 						+ "\n 4 <recipe,,minecraft:glowstone:0> "
 						+ "\n \n <image,Multiblock_Setup,skyresources:EndPortalCore:0,skyresources:textures/guide/endPortalSetup.png> "
-						+ "\n To use the portal, give the <recipe,,skyresources:EndPortalCore:0> at least 16 <recipe,,minecraft:ender_eye:0> and a redstone pulse (button). "
-						+ "\n \n A ilfsiesrvh waenrsp si itaecv nda reyv edsroanug ehwn eht urturscte is valdi!");
+						+ "\n To use the portal, stand on the core, and give the <recipe,,skyresources:EndPortalCore:0> at least 16 <recipe,,minecraft:ender_eye:0> and a redstone pulse (button). "
+						+ "\n \n *gl A ilfsiesrvh waenrsp si itaecv nda reyv edsroanug ehwn eht urturscte is valdi! *nl");
 
 		SkyResourcesGuide.addPage("commands", "guide.skyresources.misc",
 				"Commands", new ItemStack(Blocks.COMMAND_BLOCK),
