@@ -106,7 +106,7 @@ public class ModCrafting
 				{ "XXX", "XYX", "XXX", 'X', new ItemStack(Blocks.STONE), 'Y', new ItemStack(Blocks.COBBLESTONE)  }));
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.compressedNetherrack), new Object[]
-				{ "XXX", "XYX", "XXX", 'X', new ItemStack(Blocks.NETHERRACK), 'Y', new ItemStack(Blocks.NETHER_BRICK)  }));
+				{ "XXX", "XYX", "XXX", 'X', new ItemStack(Blocks.NETHERRACK), 'Y', new ItemStack(Items.NETHERBRICK)  }));
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.coalInfusedBlock), new Object[]
 				{ "XXX", "XXX", "XXX", 'X', new ItemStack(ModItems.alchemyComponent, 1, 2) }));
@@ -310,7 +310,7 @@ public class ModCrafting
 				new ItemStack(ModItems.metalCrystal, 3, 11), new ItemStack(Blocks.ICE, 5),
 				new ItemStack(ModItems.techComponent, 4, 2), new ItemStack(Items.SNOWBALL, 6));
 
-		CombustionRecipes.addRecipe(new ItemStack(Items.REDSTONE, 3), 400,
+		CombustionRecipes.addRecipe(new ItemStack(Items.REDSTONE, 4), 400,
 				new ItemStack(Items.GUNPOWDER, 2), new ItemStack(Items.BLAZE_POWDER, 2));
 
 		CombustionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 2, 2), 400,
@@ -346,8 +346,11 @@ public class ModCrafting
 		CombustionRecipes.addRecipe(new ItemStack(ModItems.baseComponent, 1, 5), 1500,
 				new ItemStack(Blocks.OBSIDIAN, 3), new ItemStack(Items.FIRE_CHARGE, 3),
 				new ItemStack(Items.NETHERBRICK, 6), new ItemStack(Items.IRON_INGOT, 2));
-		CombustionRecipes.addRecipe(new ItemStack(Items.GLOWSTONE_DUST, 4), 900,
+		CombustionRecipes.addRecipe(new ItemStack(Items.GLOWSTONE_DUST, 5), 900,
 				new ItemStack(Items.REDSTONE, 4), new ItemStack(Items.BLAZE_POWDER, 2),
+				new ItemStack(Items.FIRE_CHARGE));
+		CombustionRecipes.addRecipe(new ItemStack(Items.QUARTZ, 4), 750,
+				new ItemStack(ModItems.metalCrystal, 1, 11), new ItemStack(Items.BLAZE_POWDER, 2),
 				new ItemStack(Items.FIRE_CHARGE));
 
 		Block boneBlock = Block.REGISTRY.getObject(new ResourceLocation("minecraft", "bone_block"));
@@ -412,7 +415,7 @@ public class ModCrafting
 		MinecraftForge.addGrassSeed(new ItemStack(Items.BEETROOT_SEEDS), 10);
 		MinecraftForge.addGrassSeed(new ItemStack(Items.MELON_SEEDS), 8);
 		MinecraftForge.addGrassSeed(new ItemStack(Items.PUMPKIN_SEEDS), 8);
-		MinecraftForge.addGrassSeed(new ItemStack(Items.DYE, 1, 3), 1);
+		MinecraftForge.addGrassSeed(new ItemStack(Items.DYE, 1, 3), 4);
 
 		HeatSources.addHeatSource(Blocks.FIRE.getDefaultState(), 7);
 		HeatSources.addHeatSource(Blocks.LAVA.getDefaultState(), 5);
