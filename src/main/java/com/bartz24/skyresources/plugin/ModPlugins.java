@@ -1,6 +1,7 @@
 package com.bartz24.skyresources.plugin;
 
 import com.bartz24.skyresources.plugin.armorplus.ArmorPlusPlugin;
+import com.bartz24.skyresources.plugin.enderio.EnderIOPlugin;
 import com.bartz24.skyresources.plugin.environmentaltech.EnvTechPlugin;
 import com.bartz24.skyresources.plugin.forestry.ForestryPlugin;
 import com.bartz24.skyresources.plugin.ic2.IC2Plugin;
@@ -26,6 +27,8 @@ public class ModPlugins
 				TConPlugin.preInit();
 			if (Loader.isModLoaded("EnvironmentalTech"))
 				EnvTechPlugin.preInit();
+			if (Loader.isModLoaded("EnderIO"))
+				EnderIOPlugin.preInit();
 	}
 
 	public static void init()
@@ -42,6 +45,8 @@ public class ModPlugins
 			TConPlugin.init();
 		if (Loader.isModLoaded("EnvironmentalTech"))
 			EnvTechPlugin.init();
+		if (Loader.isModLoaded("EnderIO"))
+			EnderIOPlugin.init();
 	}
 
 	public static void postInit()
@@ -58,6 +63,8 @@ public class ModPlugins
 			TConPlugin.postInit();
 		if (Loader.isModLoaded("EnvironmentalTech"))
 			EnvTechPlugin.postInit();
+		if (Loader.isModLoaded("EnderIO"))
+			EnderIOPlugin.postInit();
 	}
 
 	public static void initRenderers()
@@ -74,5 +81,7 @@ public class ModPlugins
 			TConPlugin.initRenderers();
 		if (Loader.isModLoaded("EnvironmentalTech"))
 			EnvTechPlugin.initRenderers();
+		if (Loader.isModLoaded("EnderIO"))
+			EnderIOPlugin.initRenderers();
 	}
 }
