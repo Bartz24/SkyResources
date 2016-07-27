@@ -20,6 +20,7 @@ public class ModFluids
 	private static List<FluidRegisterInfo> crystalFluidInfos;
 	private static List<FluidRegisterInfo> moltenCrystalFluidInfos;
 
+	private static int curIndex = 0;
 	public static void init()
 	{
 		crystalFluidInfos = new ArrayList();
@@ -41,18 +42,41 @@ public class ModFluids
 		ModFluids.addCrystalFluid("ardite", 0xFFDE9000, 7, CrystalFluidType.MOLTEN);
 		ModFluids.addCrystalFluid("adamantine", 0xFF363636, 8, CrystalFluidType.MOLTEN);
 		ModFluids.addCrystalFluid("coldiron", 0xFF84EAF0, 6, CrystalFluidType.MOLTEN);
+		ModFluids.addCrystalFluid("osmium", 0xFF7F13C2, 5, CrystalFluidType.NORMAL);
 
 		registerCrystalFluid();
 		registerDirtyCrystalFluid();
 		registerMoltenCrystalFluid();
 	}
+	
+	public static FluidRegisterInfo getFluidInfo(int index)
+	{
+		for (FluidRegisterInfo f : ModFluids.crystalFluidInfos())
+		{
+			if (f.crystalIndex == index)
+			{
+				return f;
+			}
+		}
+		for (FluidRegisterInfo f : ModFluids.moltenCrystalFluidInfos())
+		{
+			if (f.crystalIndex == index)
+			{
+				return f;
+			}
+		}
+		return null;
+	}
 
 	public static void addCrystalFluid(String name, int color, int rarity, CrystalFluidType type)
 	{
 		if (type == CrystalFluidType.NORMAL)
-			crystalFluidInfos.add(new FluidRegisterInfo(name, color, rarity));
+			crystalFluidInfos.add(new FluidRegisterInfo(name, color, rarity, curIndex));
 		else if (type == CrystalFluidType.MOLTEN)
-			moltenCrystalFluidInfos.add(new FluidRegisterInfo(name, color, rarity));
+			moltenCrystalFluidInfos.add(new FluidRegisterInfo(name, color, rarity, curIndex));
+		else
+			return;
+		curIndex++;
 	}
 
 	private static void registerCrystalFluid()

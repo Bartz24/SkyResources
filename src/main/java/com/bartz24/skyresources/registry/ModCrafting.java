@@ -378,13 +378,13 @@ public class ModCrafting
 		for (int i = 0; i < ModFluids.crystalFluidInfos().length; i++)
 		{
 			CrucibleRecipes.addRecipe(new FluidStack(ModFluids.dirtyCrystalFluids.get(i), 1000),
-					new ItemStack(ModItems.metalCrystal, 1, i));
+					new ItemStack(ModItems.metalCrystal, 1, ModFluids.crystalFluidInfos()[i].crystalIndex));
 		}
 		for (int i = 0; i < ModFluids.moltenCrystalFluidInfos().length; i++)
 		{
 			CrucibleRecipes.addRecipe(new FluidStack(ModFluids.moltenCrystalFluids.get(i), 1000),
 					new ItemStack(ModItems.metalCrystal, 1,
-							i + ModFluids.crystalFluidInfos().length));
+							ModFluids.moltenCrystalFluidInfos()[i].crystalIndex));
 		}
 
 		WaterExtractorRecipes.addExtractRecipe(50, true, Blocks.CACTUS.getDefaultState(),
@@ -440,7 +440,7 @@ public class ModCrafting
 										OreDictionary.getOres(oreName).get(0).getMetadata()),
 						ModFluids.crystalFluidInfos()[i].rarity * 100,
 						new ItemStack(ModItems.metalCrystal,
-								ConfigOptions.crystalConcentratorAmount, i),
+								ConfigOptions.crystalConcentratorAmount, ModFluids.crystalFluidInfos()[i].crystalIndex),
 						ModBlocks.compressedStone.getDefaultState());
 			}
 		}
@@ -459,7 +459,7 @@ public class ModCrafting
 						ModFluids.moltenCrystalFluidInfos()[i].rarity * 100,
 						new ItemStack(ModItems.metalCrystal,
 								ConfigOptions.crystalConcentratorAmount,
-								i + ModFluids.crystalFluidInfos().length),
+								ModFluids.moltenCrystalFluidInfos()[i].crystalIndex),
 						ModBlocks.compressedNetherrack.getDefaultState());
 			}
 		}

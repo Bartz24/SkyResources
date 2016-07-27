@@ -35,10 +35,11 @@ public class MetalCrystalItem extends Item
 
 	private void itemList()
 	{
-		for (FluidRegisterInfo f : ModFluids.crystalFluidInfos())
-			names.add(f.name);
-		for (FluidRegisterInfo f : ModFluids.moltenCrystalFluidInfos())
-			names.add(f.name);
+		for (int i = 0; i < ModFluids.crystalFluidInfos().length
+				+ ModFluids.moltenCrystalFluidInfos().length; i++)
+		{
+			names.add(ModFluids.getFluidInfo(i).name);
+		}
 	}
 
 	@Override
@@ -68,8 +69,8 @@ public class MetalCrystalItem extends Item
 	@Override
 	public String getItemStackDisplayName(ItemStack stack)
 	{
-		String base = ("" + I18n.translateToLocal(
-				"name.skyresources.metal." + getNames().get(stack.getMetadata())))
+		String base = ("" + I18n
+				.translateToLocal("name.skyresources.metal." + getNames().get(stack.getMetadata())))
 						.trim();
 
 		String type = ("" + I18n.translateToLocal("item.skyresources.metalCrystal.name")).trim();
