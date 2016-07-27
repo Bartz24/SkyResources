@@ -1,6 +1,7 @@
 package com.bartz24.skyresources.minetweaker;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.bartz24.skyresources.technology.combustion.CombustionRecipe;
@@ -11,7 +12,6 @@ import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
 import net.minecraft.item.ItemStack;
-import scala.actors.threadpool.Arrays;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
@@ -25,7 +25,7 @@ public class MTCombustionRecipe
 	{
 		addRecipe(new CombustionRecipe(MinetweakerPlugin.toStack(output),
 				heatRequired,
-				Arrays.asList(MinetweakerPlugin.toObjects(input))));
+				Arrays.asList(MinetweakerPlugin.toObjects(input)).toArray(new ItemStack[input.length])));
 	}
 
 	public static void addRecipe(CombustionRecipe recipe)
