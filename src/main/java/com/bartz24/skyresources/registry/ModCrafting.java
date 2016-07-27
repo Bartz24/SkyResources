@@ -309,6 +309,9 @@ public class ModCrafting
 		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 15), 1100,
 				new ItemStack(ModItems.metalCrystal, 3, 11), new ItemStack(Blocks.ICE, 5),
 				new ItemStack(ModItems.techComponent, 4, 2), new ItemStack(Items.SNOWBALL, 6));
+		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 16), 800,
+				new ItemStack(ModItems.metalCrystal, 6, 1), new ItemStack(Items.GOLD_INGOT, 5),
+				new ItemStack(Items.REDSTONE, 7), new ItemStack(Items.IRON_INGOT, 3));
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.REDSTONE, 4), 400,
 				new ItemStack(Items.GUNPOWDER, 2), new ItemStack(Items.BLAZE_POWDER, 2));
