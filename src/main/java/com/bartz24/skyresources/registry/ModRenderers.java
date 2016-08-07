@@ -232,16 +232,11 @@ public class ModRenderers
 			@Override
 			public int getColorFromItemstack(ItemStack stack, int tintIndex)
 			{
-				boolean getMolten = false;
 				if (stack.getMetadata() < 0
 						|| stack.getMetadata() >= MetalCrystalItem.getNames().size())
 					return -1;
 
-				getMolten = stack.getMetadata() >= ModFluids.crystalFluidInfos().length;
-
-				return !getMolten ? ModFluids.crystalFluidInfos()[stack.getMetadata()].color
-						: ModFluids.moltenCrystalFluidInfos()[stack.getMetadata()
-								- ModFluids.crystalFluidInfos().length].color;
+				return ModFluids.getFluidInfo(stack.getMetadata()).color;
 			}
 
 		}, ModItems.metalCrystal);

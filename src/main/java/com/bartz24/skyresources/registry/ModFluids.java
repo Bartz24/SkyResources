@@ -43,6 +43,7 @@ public class ModFluids
 		ModFluids.addCrystalFluid("adamantine", 0xFF363636, 8, CrystalFluidType.MOLTEN);
 		ModFluids.addCrystalFluid("coldiron", 0xFF84EAF0, 6, CrystalFluidType.MOLTEN);
 		ModFluids.addCrystalFluid("osmium", 0xFF7F13C2, 5, CrystalFluidType.NORMAL);
+		ModFluids.addCrystalFluid("lapis", 0xFF075BBA, 6, CrystalFluidType.NORMAL);
 
 		registerCrystalFluid();
 		registerDirtyCrystalFluid();

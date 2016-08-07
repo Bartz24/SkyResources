@@ -31,6 +31,8 @@ public class ModCrafting
 {
 	public static void init()
 	{
+
+		Block boneBlock = Block.REGISTRY.getObject(new ResourceLocation("minecraft", "bone_block"));
 		GameRegistry.addRecipe(
 				new ShapelessOreRecipe(new ItemStack(ModItems.cactusFruit, 2), new Object[]
 				{ new ItemStack(Blocks.CACTUS), "toolCuttingKnife" }));
@@ -247,8 +249,6 @@ public class ModCrafting
 		InfusionRecipes.addRecipe(new ItemStack(Items.REEDS),
 				new ItemStack(Items.SPECKLED_MELON, 3), Blocks.PUMPKIN,
 				OreDictionary.WILDCARD_VALUE, 20);
-		InfusionRecipes.addRecipe(new ItemStack(Blocks.CACTUS),
-				new ItemStack(Items.FERMENTED_SPIDER_EYE, 3), Blocks.SAPLING, 0, 20);
 		InfusionRecipes.addRecipe(new ItemStack(Items.NETHER_WART),
 				new ItemStack(Items.SPIDER_EYE, 8), Blocks.RED_MUSHROOM,
 				OreDictionary.WILDCARD_VALUE, 20);
@@ -312,6 +312,13 @@ public class ModCrafting
 		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 16), 800,
 				new ItemStack(ModItems.metalCrystal, 6, 1), new ItemStack(Items.GOLD_INGOT, 5),
 				new ItemStack(Items.REDSTONE, 7), new ItemStack(Items.IRON_INGOT, 3));
+		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 17), 1200,
+				new ItemStack(ModItems.metalCrystal, 9, 0), new ItemStack(Items.GOLD_INGOT, 2),
+				new ItemStack(Items.GOLD_NUGGET, 7), new ItemStack(Items.DIAMOND, 1));
+		CombustionRecipes.addRecipe(new ItemStack(ModBlocks.dryCactus),
+				1300, new ItemStack(boneBlock), new ItemStack(Items.DYE, 8, 7), new ItemStack(Blocks.LEAVES, 8, 1));
+		CombustionRecipes.addRecipe(new ItemStack(Blocks.CACTUS),
+				900, new ItemStack(Items.FERMENTED_SPIDER_EYE, 3), new ItemStack(Items.SNOWBALL, 16), new ItemStack(ModBlocks.dryCactus, 4));
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.REDSTONE, 4), 400,
 				new ItemStack(Items.GUNPOWDER, 2), new ItemStack(Items.BLAZE_POWDER, 2));
@@ -326,9 +333,6 @@ public class ModCrafting
 		CombustionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 4, 3), 700,
 				new ItemStack(Items.REDSTONE, 1), new ItemStack(Items.DYE, 1, 4),
 				new ItemStack(Items.GLOWSTONE_DUST, 1), new ItemStack(Items.BLAZE_POWDER, 1));
-
-		CombustionRecipes.addRecipe(new ItemStack(Items.DYE, 32, 4), 600,
-				new ItemStack(Items.DIAMOND, 1), new ItemStack(Items.FLINT, 8));
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.WHEAT_SEEDS, 1), 50,
 				new ItemStack(Blocks.DEADBUSH, 1), new ItemStack(Items.FLINT, 2));
@@ -353,10 +357,11 @@ public class ModCrafting
 				new ItemStack(Items.REDSTONE, 4), new ItemStack(Items.BLAZE_POWDER, 2),
 				new ItemStack(Items.FIRE_CHARGE));
 		CombustionRecipes.addRecipe(new ItemStack(Items.QUARTZ, 4), 750,
-				new ItemStack(ModItems.metalCrystal, 1, 11), new ItemStack(Items.BLAZE_POWDER, 2),
+				new ItemStack(ModItems.metalCrystal, 1, 11), new ItemStack(Items.FLINT, 6),
 				new ItemStack(Items.FIRE_CHARGE));
-
-		Block boneBlock = Block.REGISTRY.getObject(new ResourceLocation("minecraft", "bone_block"));
+		CombustionRecipes.addRecipe(new ItemStack(Items.DYE, 8, 4), 988,
+				new ItemStack(ModItems.metalCrystal, 1, 17), new ItemStack(Items.FLINT, 6),
+				new ItemStack(Blocks.STONE, 3));
 
 		CombustionRecipes.addRecipe(new ItemStack(Blocks.END_STONE, 1), 1369,
 				new ItemStack(Blocks.STONE, 6, 3), new ItemStack(Items.SUGAR, 2),
@@ -477,10 +482,6 @@ public class ModCrafting
 
 		ConcentratorRecipes.addRecipe(Blocks.REDSTONE_ORE.getDefaultState(), 700,
 				new ItemStack(ModItems.alchemyComponent, 12, 3),
-				ModBlocks.compressedStone.getDefaultState());
-
-		ConcentratorRecipes.addRecipe(Blocks.LAPIS_ORE.getDefaultState(), 400,
-				new ItemStack(ModItems.alchemyComponent, 1, 5),
 				ModBlocks.compressedStone.getDefaultState());
 
 		if (OreDictionary.getOres("oreUranium").size() > 0)

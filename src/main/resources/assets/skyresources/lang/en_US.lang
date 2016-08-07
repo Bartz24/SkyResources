@@ -74,6 +74,7 @@ tile.skyresources.aluminumCrystalFluidBlock.name=Aluminum Crystal Liquid
 tile.skyresources.leadCrystalFluidBlock.name=Lead Crystal Liquid
 tile.skyresources.mercuryCrystalFluidBlock.name=Mercury Crystal Liquid
 tile.skyresources.osmiumCrystalFluidBlock.name=Osmium Crystal Liquid
+tile.skyresources.lapisCrystalFluidBlock.name=Lapis Lazuli Crystal Liquid
 
 tile.skyresources.ironDirtyCrystalFluidBlock.name=Dirty Iron Crystal Liquid
 tile.skyresources.goldDirtyCrystalFluidBlock.name=Dirty Gold Crystal Liquid
@@ -87,6 +88,7 @@ tile.skyresources.aluminumDirtyCrystalFluidBlock.name=Dirty Aluminum Crystal Liq
 tile.skyresources.leadDirtyCrystalFluidBlock.name=Dirty Lead Crystal Liquid
 tile.skyresources.mercuryDirtyCrystalFluidBlock.name=Dirty Mercury Crystal Liquid
 tile.skyresources.osmiumDirtyCrystalFluidBlock.name=Dirty Osmium Crystal Liquid
+tile.skyresources.lapisDirtyCrystalFluidBlock.name=Dirty Lapis Lazuli Crystal Liquid
 
 tile.skyresources.quartzMoltenCrystalFluidBlock.name=Molten Quartz Crystal Liquid
 tile.skyresources.cobaltMoltenCrystalFluidBlock.name=Molten Cobalt Crystal Liquid
@@ -140,6 +142,7 @@ name.skyresources.metal.ardite=Ardite
 name.skyresources.metal.adamantine=Adamantine
 name.skyresources.metal.coldiron=Cold Iron
 name.skyresources.metal.osmium=Osmium
+name.skyresources.metal.lapis=Lapis Lazuli
 
 name.skyresources.gem.emerald=Emerald
 name.skyresources.gem.ruby=Ruby
@@ -210,6 +213,7 @@ fluid.aluminumcrystalfluid=Aluminum Crystal Fluid
 fluid.leadcrystalfluid=Lead Crystal Fluid
 fluid.mercurycrystalfluid=Mercury Crystal Fluid
 fluid.osmiumcrystalfluid=Osmium Crystal Fluid
+fluid.lapiscrystalfluid=Lapis Lazuli Crystal Fluid
 
 fluid.irondirtycrystalfluid=Dirty Iron Crystal Fluid
 fluid.golddirtycrystalfluid=Dirty Gold Crystal Fluid
@@ -223,6 +227,7 @@ fluid.aluminumdirtycrystalfluid=Dirty Aluminum Crystal Fluid
 fluid.leaddirtycrystalfluid=Dirty Lead Crystal Fluid
 fluid.mercurydirtycrystalfluid=Dirty Mercury Crystal Fluid
 fluid.osmiumdirtycrystalfluid=Dirty Osmium Crystal Fluid
+fluid.lapisdirtycrystalfluid=Dirty Lapis Lazuli Crystal Fluid
 
 fluid.quartzmoltencrystalfluid=Molten Quartz Crystal Fluid
 fluid.cobaltmoltencrystalfluid=Molten Cobalt Crystal Fluid
