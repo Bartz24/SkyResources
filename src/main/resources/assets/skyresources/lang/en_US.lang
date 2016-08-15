@@ -75,6 +75,7 @@ tile.skyresources.leadCrystalFluidBlock.name=Lead Crystal Liquid
 tile.skyresources.mercuryCrystalFluidBlock.name=Mercury Crystal Liquid
 tile.skyresources.osmiumCrystalFluidBlock.name=Osmium Crystal Liquid
 tile.skyresources.lapisCrystalFluidBlock.name=Lapis Lazuli Crystal Liquid
+tile.skyresources.draconiumCrystalFluidBlock.name=Draconium Crystal Liquid
 
 tile.skyresources.ironDirtyCrystalFluidBlock.name=Dirty Iron Crystal Liquid
 tile.skyresources.goldDirtyCrystalFluidBlock.name=Dirty Gold Crystal Liquid
@@ -89,12 +90,14 @@ tile.skyresources.leadDirtyCrystalFluidBlock.name=Dirty Lead Crystal Liquid
 tile.skyresources.mercuryDirtyCrystalFluidBlock.name=Dirty Mercury Crystal Liquid
 tile.skyresources.osmiumDirtyCrystalFluidBlock.name=Dirty Osmium Crystal Liquid
 tile.skyresources.lapisDirtyCrystalFluidBlock.name=Dirty Lapis Lazuli Crystal Liquid
+tile.skyresources.draconiumDirtyCrystalFluidBlock.name=Dirty Draconium Crystal Liquid
 
 tile.skyresources.quartzMoltenCrystalFluidBlock.name=Molten Quartz Crystal Liquid
 tile.skyresources.cobaltMoltenCrystalFluidBlock.name=Molten Cobalt Crystal Liquid
 tile.skyresources.arditeMoltenCrystalFluidBlock.name=Molten Ardite Crystal Liquid
 tile.skyresources.adamantineMoltenCrystalFluidBlock.name=Molten Adamantine Crystal Liquid
 tile.skyresources.coldironMoltenCrystalFluidBlock.name=Molten Cold Iron Crystal Liquid
+tile.skyresources.draconiumMoltenCrystalFluidBlock.name=Molten Draconium Crystal Liquid
 
 
 jei.skyresources.desc.cactusNeedle=Obtained by shift right-clicking on a cactus block.\n\nNOTE: You will take damage.
@@ -143,6 +146,7 @@ name.skyresources.metal.adamantine=Adamantine
 name.skyresources.metal.coldiron=Cold Iron
 name.skyresources.metal.osmium=Osmium
 name.skyresources.metal.lapis=Lapis Lazuli
+name.skyresources.metal.draconium=Draconium
 
 name.skyresources.gem.emerald=Emerald
 name.skyresources.gem.ruby=Ruby
@@ -214,6 +218,7 @@ fluid.leadcrystalfluid=Lead Crystal Fluid
 fluid.mercurycrystalfluid=Mercury Crystal Fluid
 fluid.osmiumcrystalfluid=Osmium Crystal Fluid
 fluid.lapiscrystalfluid=Lapis Lazuli Crystal Fluid
+fluid.draconiumcrystalfluid=Draconium Crystal Fluid
 
 fluid.irondirtycrystalfluid=Dirty Iron Crystal Fluid
 fluid.golddirtycrystalfluid=Dirty Gold Crystal Fluid
@@ -228,12 +233,14 @@ fluid.leaddirtycrystalfluid=Dirty Lead Crystal Fluid
 fluid.mercurydirtycrystalfluid=Dirty Mercury Crystal Fluid
 fluid.osmiumdirtycrystalfluid=Dirty Osmium Crystal Fluid
 fluid.lapisdirtycrystalfluid=Dirty Lapis Lazuli Crystal Fluid
+fluid.draconiumdirtycrystalfluid=Dirty Draconium Crystal Fluid
 
 fluid.quartzmoltencrystalfluid=Molten Quartz Crystal Fluid
 fluid.cobaltmoltencrystalfluid=Molten Cobalt Crystal Fluid
 fluid.arditemoltencrystalfluid=Molten Ardite Crystal Fluid
 fluid.adamantinemoltencrystalfluid=Molten Adamantine Crystal Fluid
 fluid.coldironmoltencrystalfluid=Molten Cold Iron Crystal Fluid
+fluid.draconiummoltencrystalfluid=Molten Draconium Crystal Fluid
 
 key.skyresources.guide=Open Guide
 

@@ -69,7 +69,6 @@ public class TileEndPortalCore extends RedstoneCompatibleTile implements ITickab
 		List<EntitySilverfish> list = worldObj.getEntitiesWithinAABB(EntitySilverfish.class,
 				new AxisAlignedBB(pos.getX()-4, pos.getY(), pos.getZ()-4,
 						pos.getX() + 4, pos.getY() + 5F, pos.getZ() + 4));
-		System.out.println(list.size());
 		if (!ConfigOptions.endPussyMode && worldObj.rand.nextInt(90) == 0 && list.size() < 16)
 		{
 			EntitySilverfish fish = new EntitySilverfish(worldObj);

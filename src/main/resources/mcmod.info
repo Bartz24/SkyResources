@@ -2,13 +2,13 @@
 {
   "modid": "skyresources",
   "name": "Sky Resources",
-  "description": "Everything is in the air.",
-  "version": "0.9.7 Beta",
+  "description": "The skyblock companion mod. Everything comes from nearly nothing.",
+  "version": "1.0.0",
   "mcversion": "${mcversion}",
   "url": "https://github.com/Bartz24/SkyResources",
   "updateUrl": "",
   "authorList": ["Bartz24"],
-  "credits": "The Forge and FML people for 1.9+, masa_ for the better nether portal, other mod authors for examples of world spawn, JEI compat, etc",
+  "credits": "The Forge and FML people for 1.10.2, masa_ for the help with the better nether portal, other mod authors for examples of world spawn, JEI compat, etc",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

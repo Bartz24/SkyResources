@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.lwjgl.input.Keyboard;
+
 import com.bartz24.skyresources.References;
 
 import net.minecraft.client.Minecraft;
@@ -35,8 +37,7 @@ public class ConfigGuiFactory implements IModGuiFactory
 	}
 
 	@Override
-	public RuntimeOptionGuiHandler getHandlerFor(
-			RuntimeOptionCategoryElement element)
+	public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element)
 	{
 		return null;
 	}
@@ -47,13 +48,16 @@ public class ConfigGuiFactory implements IModGuiFactory
 		public ConfigGui(GuiScreen parentScreen)
 		{
 
-			super(parentScreen,
-					ConfigOptions.getConfigElements(),
-					References.ModID, false, false,
-					GuiConfig.getAbridgedConfigPath(
-							ConfigOptions.config.toString()));
+			super(parentScreen, ConfigOptions.getConfigElements(), References.ModID, false, false,
+					GuiConfig.getAbridgedConfigPath(ConfigOptions.config.toString()));
 		}
 
+		@Override
+		public void onGuiClosed()
+		{
+			super.onGuiClosed();
+			ConfigOptions.config.save();
+		}
 	}
 
 }
