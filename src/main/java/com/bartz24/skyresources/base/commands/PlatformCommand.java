@@ -197,8 +197,7 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 		player.setGameType(GameType.SPECTATOR);
 
-		
-		if(player.connection.playerEntity.dimension != 0)
+		if (player.connection.playerEntity.dimension != 0)
 			player.connection.playerEntity.changeDimension(0);
 		player.connection.setPlayerLocation(visitPos.getX() + 0.5, visitPos.getY(),
 				visitPos.getZ() + 0.5, player.rotationYaw, player.rotationPitch);
@@ -219,7 +218,8 @@ public class PlatformCommand extends CommandBase implements ICommand
 	{
 		if (!References.worldOneChunk)
 		{
-			leavePlatform(player, new String[]{""});
+			leavePlatform(player, new String[]
+			{ "" });
 			newPlatform(player, args);
 		} else
 		{
@@ -252,9 +252,11 @@ public class PlatformCommand extends CommandBase implements ICommand
 						i = 0;
 					else if (args[1].equals("snow"))
 						i = 1;
+					else if (args[1].equals("grass"))
+						i = 2;
 				}
 
-				if (i > -1 && i < 2)
+				if (i > -1 && i < 3)
 				{
 
 					if (player.connection.playerEntity.dimension != 0)
@@ -337,7 +339,7 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 		IslandPos position = References.getNextIsland();
 
-		if (args.length > 1)
+		if (args.length > 1 && ConfigOptions.worldSpawnType != 0)
 		{
 			Integer i = -1;
 
@@ -350,9 +352,11 @@ public class PlatformCommand extends CommandBase implements ICommand
 					i = 0;
 				else if (args[1].equals("snow"))
 					i = 1;
+				else if (args[1].equals("grass"))
+					i = 2;
 			}
 
-			if (i > -1 && i < 2)
+			if (i > -1 && i < 3)
 			{
 
 				if (player.connection.playerEntity.dimension != 0)
@@ -364,6 +368,11 @@ public class PlatformCommand extends CommandBase implements ICommand
 			}
 		} else
 		{
+			if (args.length > 1)
+			{
+				player.addChatMessage(new TextComponentString(
+						"You can't pick your island as the config overrides it!"));
+			}
 
 			if (player.connection.playerEntity.dimension != 0)
 				player.connection.playerEntity.changeDimension(0);

@@ -19,6 +19,7 @@ public class ModGuidePages
 						+ "\n Depending on the platform you spawn on, choose one of the platforms to get started. "
 						+ "\n <link,Sand_Platform,minecraft:sand:1,sandPlatform> "
 						+ "\n <link,Snow_Platform,minecraft:snow:0,snowPlatform> "
+						+ "\n <link,Grass_Platform,minecraft:grass:0,grassPlatform> "
 						+ "\n If you don't have JEI, I don't know how you're going to get through modded MC. I'm not giving info on crafting if it's in JEI at all in this guide. "
 						+ "\n Note that some recipes may be inaccurate or non-existant due to MineTweaker/CraftTweaker.");
 
@@ -40,8 +41,7 @@ public class ModGuidePages
 						+ "\n First, you need an infusion stone. There are 3 by default. "
 						+ "\n <recipe,,skyresources:RedSandstoneInfusionStone:0> <recipe,,skyresources:SandstoneInfusionStone:0> <recipe,,skyresources:AlchemicalInfusionStone:0> "
 						+ "\n Next, look in JEI for a recipe and put the items in the off-hand slot (the slot with the shield icon) in your off-hand slot. "
-						+ "\n Hold the infusion stone in your main hand and right click the block shown in JEI to get your result. "
-						+ "\n <recipe,,minecraft:cactus:0> can be made if you didn't start on the sand platform. ");
+						+ "\n Hold the infusion stone in your main hand and right click the block shown in JEI to get your result.");
 
 		SkyResourcesGuide.addPage("snowPlatform", "guide.skyresources.stage1",
 				"Snow Platform", new ItemStack(Blocks.SNOW),
@@ -65,6 +65,13 @@ public class ModGuidePages
 						+ "\n Items will pop out the front or into an adjecent inventory. "
 						+ "\n Freezers will not output to adjecent freezers unless the other freezer in front of it.");
 
+		SkyResourcesGuide.addPage("grassPlatform", "guide.skyresources.stage1",
+				"Grass Platform", new ItemStack(Blocks.GRASS),
+				"The grass platform skips over stage 1, so start with stage 2. "
+				+ "\n This is due to having dirt and a tree on this platform. "
+				+ "\n Since it skips over stage 1, it is not able to be a starting random platform. To get this platform set the type as grass when creating or reseting your platform.");
+		
+
 		SkyResourcesGuide.addPage("combustionHeater",
 				"guide.skyresources.stage2", "Combustion Heater",
 				new ItemStack(ModBlocks.combustionHeater),
@@ -83,6 +90,7 @@ public class ModGuidePages
 						+ "\n Provide the heater with fuel to get a high enough temperature. "
 						+ "\n Give the heater a redstone signal (Ex: button). If there was an explosion, it worked! "
 						+ "\n \n <recipe,,minecraft:snowball:0> can be made in the <recipe,,skyresources:CombustionHeater:1> if you didn't start on the snow platform. "
+						+ "\n \n <recipe,,minecraft:cactus:0> can be made in the <recipe,,skyresources:CombustionHeater:1> if you didn't start on the snow platform. "
 						+ "\n The <link,Powered_Combustion_Heater,skyresources:CombustionHeater:2,poweredCombustion> is a late game version.");
 
 		SkyResourcesGuide.addPage("waterExtractor", "guide.skyresources.stage2",
@@ -120,7 +128,7 @@ public class ModGuidePages
 						+ "\n <link,Blaze_Powder_Block,skyresources:BlazePowderBlock:0,lavaBlaze> "
 						+ "\n \n Heat Sources are shown in JEI, but in order to get to them, you have to cycle through the categories at "
 						+ "the top by clicking the current category shown and clicking left or right. "
-						+ "\n Better heat sources make the blocks mentioned earlier run faster."
+						+ "\n Better heat sources make the blocks mentioned earlier run faster. "
 						+ "\n \n <link,Default_List_of_Heat_Sources,minecraft:torch:0,listHeatSources>");
 		
 		SkyResourcesGuide.addPage("listHeatSources", "guide.skyresources.stage2",
@@ -142,7 +150,7 @@ public class ModGuidePages
 		SkyResourcesGuide.addPage("metalCreation", "guide.skyresources.stage2",
 				"Metal Creation", new ItemStack(ModItems.metalCrystal),
 				"To get started in metal creation you're going to need to get <recipe,,skyresources:MetalCrystal:0> for iron "
-						+ "through <link,combustion,skyresources:CombustionHeater:1,combustionHeater> . "
+						+ "through <link,combustion,skyresources:CombustionHeater:0,combustionHeater> . "
 						+ "\n The rest of the process is done using the following blocks (Pre-Bucket): "
 						+ "\n <link,Crucible,skyresources:Crucible:0,crucible> "
 						+ "\n <link,Fluid_Dropper,skyresources:FluidDropper:0,fluidDropper> "

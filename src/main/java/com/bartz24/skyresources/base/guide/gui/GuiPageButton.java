@@ -28,6 +28,7 @@ public class GuiPageButton extends GuiButton
 				&& mouseX < this.xPosition + this.width
 				&& mouseY < this.yPosition + this.height;
 
+		GlStateManager.enableDepth();
 		mc.getRenderItem().renderItemAndEffectIntoGUI(
 				buttonInfo.getItemDisplay(), this.xPosition, this.yPosition);
 
@@ -44,18 +45,22 @@ public class GuiPageButton extends GuiButton
 					2138733178);
 			GlStateManager.color(1, 1, 1, 1);
 			GlStateManager.enableDepth();
-
-			GuiUtils.drawHoveringText(buttonInfo.getHoverDisplay(),
-					Minecraft.getMinecraft().currentScreen.width
-							- mc.fontRendererObj.getStringWidth(
-									buttonInfo.getHoverDisplay().get(0)) -16,
-					16, Minecraft.getMinecraft().displayWidth,
-					Minecraft.getMinecraft().displayHeight, 100,
-					Minecraft.getMinecraft().getRenderManager()
-							.getFontRenderer());
 		}
 
 		RenderHelper.disableStandardItemLighting();
+	}
+	
+	public void drawScrollButton(Minecraft mc, int x, int y, boolean highlighted)
+	{
+		RenderHelper.enableGUIStandardItemLighting();
+
+		mc.getRenderItem().renderItemAndEffectIntoGUI(
+				buttonInfo.getItemDisplay(), x, y);
+
+		mc.fontRendererObj.drawString(buttonInfo.getDisplay(),
+				x + 20, y + 4, 16777215);
+
+		RenderHelper.disableStandardItemLighting();		
 	}
 
 	public void resetWidth()

@@ -152,9 +152,10 @@ public class EventHandler
 		case 1:
 			snowSpawn(world, spawn);
 			break;
-		/*
-		 * case 2: dirtSpawn(world, spawn); break;
-		 */
+
+		case 2:
+			grassSpawn(world, spawn);
+			break;
 		}
 	}
 
@@ -204,7 +205,7 @@ public class EventHandler
 		}
 	}
 
-	private static void dirtSpawn(World world, BlockPos spawn)
+	private static void grassSpawn(World world, BlockPos spawn)
 	{
 		for (int x = -(int) Math.floor((float) ConfigOptions.islandSize / 2F); x <= (int) Math
 				.floor((float) ConfigOptions.islandSize / 2F); x++)
@@ -213,15 +214,42 @@ public class EventHandler
 					.floor((float) ConfigOptions.islandSize / 2F); z++)
 			{
 				BlockPos pos = new BlockPos(spawn.getX() + x, spawn.getY(), spawn.getZ() + z);
-				world.setBlockState(pos.down(3), Blocks.DIRT.getStateFromMeta(1), 2);
+				world.setBlockState(pos.down(3), Blocks.GRASS.getDefaultState(), 2);
 				world.setBlockState(pos.down(4), Blocks.BEDROCK.getDefaultState(), 2);
 			}
 		}
-		BlockPos pos = new BlockPos(spawn.getX() + -1, spawn.getY() - 2, spawn.getZ() + 1);
-		world.setBlockState(pos.down(2), Blocks.YELLOW_FLOWER.getDefaultState(), 2);
+
+		for (int y = 0; y < 5; y++)
+		{
+			for (int x = -2; x < 3; x++)
+			{
+				for (int z = -2; z < 3; z++)
+				{
+					BlockPos pos = new BlockPos(spawn.getX() + x, spawn.getY() - 2 + y, spawn.getZ() + z);
+					if (x == 0 && z == 0)
+					{
+						if (y < 3)
+							world.setBlockState(pos, Blocks.LOG.getDefaultState(), 2);
+						else
+							world.setBlockState(pos, Blocks.LEAVES.getDefaultState(),
+									2);
+					}
+					else if (y == 2 || y == 3)
+					{
+						world.setBlockState(pos, Blocks.LEAVES.getDefaultState(),
+								2);						
+					}
+					else if (y ==4 && x >= -1 && x <= 1 && z >= -1 && z <= 1)
+					{
+						world.setBlockState(pos, Blocks.LEAVES.getDefaultState(),
+								2);			
+					}
+				}
+			}
+		}
 		if (ConfigOptions.spawnChest)
 		{
-			pos = new BlockPos(spawn.getX(), spawn.getY(), spawn.getZ() - 1);
+			BlockPos pos = new BlockPos(spawn.getX(), spawn.getY() - 2, spawn.getZ() - 1);
 			world.setBlockState(pos, Blocks.CHEST.getDefaultState());
 		}
 	}

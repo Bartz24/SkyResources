@@ -48,10 +48,15 @@ public class ConfigOptions
 	public static boolean oneChunk;
 	public static boolean oneChunkCommandAllowed;
 	
-	public static boolean scaleGuideGui;
 	public static boolean endPussyMode;
 
 	public static List<String> startingItems;
+	
+	public static boolean rememberGuide;
+	
+	public static String lastGuidePage;
+	public static String lastGuideCat;
+	public static String lastGuideSearch;
 
 	public static List<IConfigElement> getConfigElements()
 	{
@@ -78,6 +83,8 @@ public class ConfigOptions
 				.getChildElements());
 		list.addAll(new ConfigElement(config.getCategory("concentrator"))
 				.getChildElements());
+		list.addAll(new ConfigElement(config.getCategory("guide"))
+				.getChildElements());
 
 		return list;
 	}
@@ -94,10 +101,8 @@ public class ConfigOptions
 				"WorldSpawnType", 0);
 
 		worldTypeProperty.setComment(
-				"0=random, 1=sand, 2=snow, 3=dirt (DIRT NOT IMPLEMENTED)");
+				"0=random, 1=sand, 2=snow, 3=grass (Not in random choices)");
 		
-		scaleGuideGui = config.get(Configuration.CATEGORY_GENERAL, "Rescale Guide Gui Down", true)
-				.getBoolean(true);
 		endPussyMode = config.get(Configuration.CATEGORY_GENERAL, "End Portal Pussy Mode", false)
 				.getBoolean(false);
 
@@ -162,6 +167,11 @@ public class ConfigOptions
 		crystalConcentratorAmount = config
 				.get("concentrator", "Crystal Concentrator Amount", 1)
 				.getInt(1);
+		
+
+		rememberGuide = config
+				.get("guide", "Remember Current Guide On Closing", true)
+				.getBoolean(true);
 
 		String[] array = new String[36];
 		for (int i = 0; i < 36; i++)
