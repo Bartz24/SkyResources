@@ -339,7 +339,7 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 		IslandPos position = References.getNextIsland();
 
-		if (args.length > 1 && ConfigOptions.worldSpawnType != 0)
+		if (args.length > 1 && ConfigOptions.worldSpawnType == 0)
 		{
 			Integer i = -1;
 
@@ -361,6 +361,7 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 				if (player.connection.playerEntity.dimension != 0)
 					player.connection.playerEntity.changeDimension(0);
+
 				EventHandler.spawnPlayer(player,
 						new BlockPos(position.getX() * ConfigOptions.islandDistance, 88,
 								position.getY() * ConfigOptions.islandDistance),
@@ -444,11 +445,8 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 		if (player.connection.playerEntity.dimension != 0)
 			player.connection.playerEntity.changeDimension(0);
-
-		EventHandler.spawnPlayer(player2,
-				new BlockPos(position.getX() * ConfigOptions.islandDistance, 88,
-						position.getY() * ConfigOptions.islandDistance),
-				false);
+		References.tpPlayerToPosSpawn(player2, new BlockPos(position.getX() * ConfigOptions.islandDistance, 88,
+				position.getY() * ConfigOptions.islandDistance));
 	}
 
 	void leavePlatform(EntityPlayerMP player, String[] args) throws CommandException
@@ -483,8 +481,7 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 		if (player.connection.playerEntity.dimension != 0)
 			player.connection.playerEntity.changeDimension(0);
-
-		EventHandler.spawnPlayer(player, new BlockPos(0, 88, 0), false);
+		References.tpPlayerToPosSpawn(player, new BlockPos(0, 88, 0));
 	}
 
 	void tpHome(EntityPlayerMP player, String[] args) throws CommandException
@@ -533,9 +530,7 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 		if (player.connection.playerEntity.dimension != 0)
 			player.connection.playerEntity.changeDimension(0);
-
-		player.connection.setPlayerLocation(home.getX() + 0.5, home.getY(), home.getZ() + 0.5,
-				player.rotationYaw, player.rotationPitch);
+		References.tpPlayerToPos(player, home);
 
 	}
 
@@ -554,7 +549,6 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 		if (player.connection.playerEntity.dimension != 0)
 			player.connection.playerEntity.changeDimension(0);
-		player.connection.setPlayerLocation(0 + 0.5, 88, 0 + 0.5f, player.rotationYaw,
-				player.rotationPitch);
+		References.tpPlayerToPos(player, new BlockPos(0, 88, 0));
 	}
 }

@@ -23,7 +23,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.item.EntityMinecartContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -40,7 +39,6 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.border.WorldBorder;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
@@ -113,7 +111,7 @@ public class EventHandler
 		{
 			EntityPlayerMP pmp = (EntityPlayerMP) player;
 			pmp.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 60, 20, false, false));
-			pmp.setPositionAndUpdate(pos.getX() + 0.5, pos.getY() + 3.6, pos.getZ() + 0.5);
+			References.tpPlayerToPosSpawn(player, pos.up(4));
 			pmp.setSpawnPoint(pos, true);
 
 			References.setStartingInv(pmp);
@@ -451,22 +449,10 @@ public class EventHandler
 
 				IslandPos iPos = References.getPlayerIsland(player.getName());
 
-				BlockPos pos = new BlockPos(iPos.getX() * ConfigOptions.islandDistance, 86,
+				BlockPos pos = new BlockPos(iPos.getX() * ConfigOptions.islandDistance, 88,
 						iPos.getY() * ConfigOptions.islandDistance);
 
-				if (!player.worldObj.isAirBlock(pos) && !player.worldObj.isAirBlock(pos.up()))
-				{
-					pos = player.worldObj.getTopSolidOrLiquidBlock(pos);
-
-					player.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
-
-					player.addChatComponentMessage(new TextComponentString(
-							"Failed to respawn. Sent to top block of platform spawn."));
-					return;
-				}
-
-				player.setPositionAndUpdate(pos.getX() + 0.5, pos.getY() + 1.6, pos.getZ() + 0.5);
-				player.setSpawnPoint(pos, true);
+				References.tpPlayerToPos(player, pos);
 			}
 		}
 	}
