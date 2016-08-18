@@ -223,24 +223,20 @@ public class EventHandler
 			{
 				for (int z = -2; z < 3; z++)
 				{
-					BlockPos pos = new BlockPos(spawn.getX() + x, spawn.getY() - 2 + y, spawn.getZ() + z);
+					BlockPos pos = new BlockPos(spawn.getX() + x, spawn.getY() - 2 + y,
+							spawn.getZ() + z);
 					if (x == 0 && z == 0)
 					{
 						if (y < 3)
 							world.setBlockState(pos, Blocks.LOG.getDefaultState(), 2);
 						else
-							world.setBlockState(pos, Blocks.LEAVES.getDefaultState(),
-									2);
-					}
-					else if (y == 2 || y == 3)
+							world.setBlockState(pos, Blocks.LEAVES.getDefaultState(), 2);
+					} else if (y == 2 || y == 3)
 					{
-						world.setBlockState(pos, Blocks.LEAVES.getDefaultState(),
-								2);						
-					}
-					else if (y ==4 && x >= -1 && x <= 1 && z >= -1 && z <= 1)
+						world.setBlockState(pos, Blocks.LEAVES.getDefaultState(), 2);
+					} else if (y == 4 && x >= -1 && x <= 1 && z >= -1 && z <= 1)
 					{
-						world.setBlockState(pos, Blocks.LEAVES.getDefaultState(),
-								2);			
+						world.setBlockState(pos, Blocks.LEAVES.getDefaultState(), 2);
 					}
 				}
 			}
@@ -343,7 +339,7 @@ public class EventHandler
 					event.getWorld().setBlockState(event.getPos(),
 							Blocks.SNOW_LAYER.getStateFromMeta(6));
 				}
-			} else if (block != null && equip == null)
+			} else if (block != null && equip != null)
 			{
 				if (block == Blocks.CAULDRON)
 				{
