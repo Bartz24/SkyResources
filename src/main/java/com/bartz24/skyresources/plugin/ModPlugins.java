@@ -5,6 +5,7 @@ import com.bartz24.skyresources.plugin.enderio.EnderIOPlugin;
 import com.bartz24.skyresources.plugin.environmentaltech.EnvTechPlugin;
 import com.bartz24.skyresources.plugin.forestry.ForestryPlugin;
 import com.bartz24.skyresources.plugin.ic2.IC2Plugin;
+import com.bartz24.skyresources.plugin.quantumflux.QFluxPlugin;
 import com.bartz24.skyresources.plugin.tconstruct.TConPlugin;
 import com.bartz24.skyresources.plugin.techreborn.TechRebornPlugin;
 
@@ -29,6 +30,8 @@ public class ModPlugins
 				EnvTechPlugin.preInit();
 			if (Loader.isModLoaded("EnderIO"))
 				EnderIOPlugin.preInit();
+			if (Loader.isModLoaded("quantumflux"))
+				QFluxPlugin.preInit();
 	}
 
 	public static void init()
@@ -47,6 +50,8 @@ public class ModPlugins
 			EnvTechPlugin.init();
 		if (Loader.isModLoaded("EnderIO"))
 			EnderIOPlugin.init();
+		if (Loader.isModLoaded("quantumflux"))
+			QFluxPlugin.init();
 	}
 
 	public static void postInit()
@@ -65,6 +70,8 @@ public class ModPlugins
 			EnvTechPlugin.postInit();
 		if (Loader.isModLoaded("EnderIO"))
 			EnderIOPlugin.postInit();
+		if (Loader.isModLoaded("quantumflux"))
+			QFluxPlugin.postInit();
 	}
 
 	public static void initRenderers()
@@ -83,5 +90,7 @@ public class ModPlugins
 			EnvTechPlugin.initRenderers();
 		if (Loader.isModLoaded("EnderIO"))
 			EnderIOPlugin.initRenderers();
+		if (Loader.isModLoaded("quantumflux"))
+			QFluxPlugin.initRenderers();
 	}
 }
