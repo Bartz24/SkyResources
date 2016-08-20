@@ -125,7 +125,7 @@ public class ConfigOptions
 
 		healthGemMaxHealth = config.get("health", "Health Gem Max Health Infusion", 100).getInt(100);
 		healthGemPercentage = (float) config
-				.get("health", "Health Gem Boost Percentage", 0.05).getDouble(0.05);
+				.get("health", "Health Gem Boost Percentage", 0.02).getDouble(0.02);
 		condenserProcessTimeBase = config.get("condenser", "Condenser Base Process Time", 750)
 				.getInt(2000);
 		crucibleCapacity = config.get("crucible", "Crucible Capacity", 4000).getInt(4000);
