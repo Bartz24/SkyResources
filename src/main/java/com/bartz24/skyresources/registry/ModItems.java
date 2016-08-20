@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
 import com.bartz24.skyresources.alchemy.item.DirtyGemItem;
-import com.bartz24.skyresources.alchemy.item.ItemHealthRing;
+import com.bartz24.skyresources.alchemy.item.ItemHealthGem;
 import com.bartz24.skyresources.alchemy.item.ItemInfusionStone;
 import com.bartz24.skyresources.alchemy.item.MetalCrystalItem;
 import com.bartz24.skyresources.base.item.BaseItemComponent;
@@ -27,7 +27,7 @@ public class ModItems
 	public static Item metalCrystal;
 	public static Item baseComponent;
 	public static Item techComponent;
-	public static Item healthRing;
+	public static Item healthGem;
 
 	public static Item cactusFruit;
 	public static Item fleshySnowNugget;
@@ -98,7 +98,7 @@ public class ModItems
 		dirtyGem = registerItem(new DirtyGemItem());
 		baseComponent = registerItem(new BaseItemComponent());
 		techComponent = registerItem(new TechItemComponent());
-		healthRing = registerItem(new ItemHealthRing());
+		healthGem = registerItem(new ItemHealthGem());
 		waterExtractor = registerItem(new ItemWaterExtractor());
 		heavySnowball = registerItem(new ItemHeavySnowball("heavySnowball", "HeavySnowball"));
 		cactusFruit = registerItem(new ModItemFood(3, 2F, false, "cactusFruit", "CactusFruit"));

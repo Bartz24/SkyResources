@@ -252,6 +252,9 @@ public class ModCrafting
 		InfusionRecipes.addRecipe(new ItemStack(Items.NETHER_WART),
 				new ItemStack(Items.SPIDER_EYE, 8), Blocks.RED_MUSHROOM,
 				OreDictionary.WILDCARD_VALUE, 20);
+		InfusionRecipes.addRecipe(new ItemStack(ModItems.healthGem),
+				new ItemStack(ModItems.alchemyComponent, 1, 4), Blocks.CHORUS_FLOWER,
+				OreDictionary.WILDCARD_VALUE, 19);
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.COAL, 1), 50,
 				new ItemStack(Items.COAL, 1, 1));

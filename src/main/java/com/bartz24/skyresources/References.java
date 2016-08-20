@@ -8,8 +8,10 @@ import com.google.common.base.Strings;
 import net.minecraft.command.CommandGive;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
@@ -82,7 +84,7 @@ public class References
 	{
 		for (IslandPos pos : CurrentIslandsList)
 		{
-			if (pos.getX() == posAdd.getX() && pos.getY() == pos.getY())
+			if (pos.getX() == posAdd.getX() && pos.getY() == posAdd.getY())
 			{
 				pos.addNewPlayer(playerName);
 				return;
@@ -141,10 +143,11 @@ public class References
 			player.addChatComponentMessage(new TextComponentString(
 					"Failed to spawn. Sent to top block of platform spawn."));
 		}
+		player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 60, 20, false, false));
 
 		player.setPositionAndUpdate(pos.getX() + 0.5, pos.getY() + 2.6, pos.getZ() + 0.5);
 	}
-	
+
 	public static void tpPlayerToPosSpawn(EntityPlayer player, BlockPos pos)
 	{
 		tpPlayerToPos(player, pos);

@@ -110,7 +110,6 @@ public class EventHandler
 		if (player instanceof EntityPlayerMP)
 		{
 			EntityPlayerMP pmp = (EntityPlayerMP) player;
-			pmp.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 60, 20, false, false));
 			References.tpPlayerToPosSpawn(player, pos.up(4));
 			pmp.setSpawnPoint(pos, true);
 
@@ -393,7 +392,7 @@ public class EventHandler
 					healthToAdd += ((IHealthBoostItem) stack.getItem()).getHealthBoost(stack);
 				}
 
-				if (stack.isItemEqual(new ItemStack(ModItems.healthRing, 1)))
+				if (stack.isItemEqual(new ItemStack(ModItems.healthGem, 1)))
 				{
 					if (stack.getTagCompound().getInteger("cooldown") > 0)
 					{

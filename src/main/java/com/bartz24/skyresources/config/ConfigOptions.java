@@ -17,8 +17,8 @@ public class ConfigOptions
 	public static Configuration config;
 
 	public static int worldSpawnType;
-	public static int healthRingMaxHealth;
-	public static float healthRingPercentage;
+	public static int healthGemMaxHealth;
+	public static float healthGemPercentage;
 
 	public static int condenserProcessTimeBase;
 
@@ -123,9 +123,9 @@ public class ConfigOptions
 		oneChunkCommandAllowed = config
 				.get("islands", "Allow One Chunk Mode to be activated", false).getBoolean(false);
 
-		healthRingMaxHealth = config.get("healthRing", "Health Ring Max Health", 100).getInt(100);
-		healthRingPercentage = (float) config
-				.get("healthRing", "Health Ring Boost Percentage", 0.05).getDouble(0.05);
+		healthGemMaxHealth = config.get("health", "Health Gem Max Health Infusion", 100).getInt(100);
+		healthGemPercentage = (float) config
+				.get("health", "Health Gem Boost Percentage", 0.05).getDouble(0.05);
 		condenserProcessTimeBase = config.get("condenser", "Condenser Base Process Time", 750)
 				.getInt(2000);
 		crucibleCapacity = config.get("crucible", "Crucible Capacity", 4000).getInt(4000);

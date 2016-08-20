@@ -160,7 +160,7 @@ public class PlatformCommand extends CommandBase implements ICommand
 
 	void visit(EntityPlayerMP player, String[] args) throws CommandException
 	{
-		if (args.length > 2)
+		if (args.length != 2)
 		{
 			player.addChatMessage(new TextComponentString("Must have 1 argument."));
 			return;

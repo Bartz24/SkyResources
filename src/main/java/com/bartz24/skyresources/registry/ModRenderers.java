@@ -156,7 +156,7 @@ public class ModRenderers
 		registerItemRenderer(ModItems.ironGrinder);
 		registerItemRenderer(ModItems.diamondGrinder);
 		registerItemRenderer(ModItems.alchemicalInfusionStone);
-		registerItemRenderer(ModItems.healthRing);
+		registerItemRenderer(ModItems.healthGem);
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.cactusFruitNeedle));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.compressedCoalBlock));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.compressedCoalBlock2));
