@@ -57,7 +57,7 @@ public class CondenserTile extends TileEntity implements ITickable
 			if (crystalBlock.isSourceBlock(worldObj, pos.add(0, 1, 0))
 					&& crystalBlock.isNotFlowing(worldObj, pos.add(0, 1, 0),
 							worldObj.getBlockState(pos.add(0, 1, 0)))
-					&& OreDictionary.doesOreNameExist(oreDictCheck)
+					&& OreDictionary.getOres(oreDictCheck).size() > 0
 					&& HeatSources.isValidHeatSource(pos.down(), worldObj))
 			{
 				this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL,
@@ -98,7 +98,7 @@ public class CondenserTile extends TileEntity implements ITickable
 			if (crystalBlock.isSourceBlock(worldObj, pos.add(0, 1, 0))
 					&& crystalBlock.isNotFlowing(worldObj, pos.add(0, 1, 0),
 							worldObj.getBlockState(pos.add(0, 1, 0)))
-					&& OreDictionary.doesOreNameExist(oreDictCheck)
+					&& OreDictionary.getOres(oreDictCheck).size() > 0
 					&& HeatSources.isValidHeatSource(pos.down(), worldObj))
 			{
 				this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL,

@@ -64,7 +64,7 @@ public class FluidCrystalBlock extends BlockFluidClassic
 									.getBlock() instanceof CondenserBlock))
 					{
 						ItemStack stack = new ItemStack(ModItems.metalCrystal, 1,
-								ModBlocks.crystalFluidBlocks.indexOf(this));
+								ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks.indexOf(this)].crystalIndex);
 						Entity entity = new EntityItem(world, pos.getX() + 0.5F, pos.getY() + 0.5F,
 								pos.getZ() + 0.5F, stack);
 						world.spawnEntityInWorld(entity);
