@@ -4,6 +4,7 @@ import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.alchemy.crucible.CrucibleRecipes;
+import com.bartz24.skyresources.alchemy.fluid.FluidRegisterInfo;
 import com.bartz24.skyresources.alchemy.fluid.FluidRegisterInfo.CrystalFluidType;
 import com.bartz24.skyresources.alchemy.infusion.InfusionRecipes;
 import com.bartz24.skyresources.base.HeatSources;
@@ -20,8 +21,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelFluid.FluidLoader;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -400,6 +404,8 @@ public class ModCrafting
 					new ItemStack(ModItems.metalCrystal, 1,
 							ModFluids.moltenCrystalFluidInfos()[i].crystalIndex));
 		}
+		CrucibleRecipes.addRecipe(new FluidStack(FluidRegistry.LAVA, 200),
+				new ItemStack(ModBlocks.compressedNetherrack));
 
 		WaterExtractorRecipes.addExtractRecipe(50, true, Blocks.CACTUS.getDefaultState(),
 				ModBlocks.dryCactus.getDefaultState());

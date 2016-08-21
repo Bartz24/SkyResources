@@ -27,6 +27,9 @@ public class MinetweakerPlugin
 		MineTweakerAPI.registerClass(MTInfusionRecipe.class);
 		MineTweakerAPI.registerClass(MTFreezerRecipe.class);
 		MineTweakerAPI.registerClass(MTHeatSources.class);
+		MineTweakerAPI.registerClass(MTCrucibleRecipe.class);
+		MineTweakerAPI.registerClass(MTWaterExtractorRecipeInsert.class);
+		MineTweakerAPI.registerClass(MTWaterExtractorRecipeExtract.class);
 	}
 
 	public static ItemStack toStack(IItemStack iStack)
