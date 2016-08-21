@@ -267,6 +267,10 @@ public class ModGuidePages
 						+ "\n Nether ores are obtained through the <link,nether_metal_creation,skyresources:AdvancedCoolingCondenser:0,netherMetalCreation> process. "
 						+ "\n Nether mobs can be found either through naturally spawning them "
 						+ "or using the <link,Dark_Matter_Warper,skyresources:DarkMatterWarper:0,dmWarper> . ");
+		
+		SkyResourcesGuide.addPage("betterLava", "guide.skyresources.stage3",
+				"Better Lava Production", new ItemStack(ModBlocks.compressedNetherrack),
+				"<recipe,,skyresources:CompressedNetherrack:0> can be used to make lava by putting it into the <link,crucible,skyresources:Crucible:0,crucible> .");
 
 		SkyResourcesGuide.addPage("netherMetalCreation", "guide.skyresources.stage3",
 				"Nether Metal Creation", new ItemStack(ModBlocks.advancedCoolingCondenser),
@@ -297,6 +301,11 @@ public class ModGuidePages
 						+ "\n \n <image,Multiblock_Setup,skyresources:EndPortalCore:0,skyresources:textures/guide/endPortalSetup.png> "
 						+ "\n To use the portal, stand on the core, and give the <recipe,,skyresources:EndPortalCore:0> at least 16 <recipe,,minecraft:ender_eye:0> and a redstone pulse (button). "
 						+ "\n \n *gl A ilfsiesrvh waenrsp si itaecv nda reyv edsroanug ehwn eht urturscte is valdi! *nl");
+
+		SkyResourcesGuide.addPage("healthGem", "guide.skyresources.stage3",
+				"Health Gem", new ItemStack(ModItems.healthGem),
+				"The <recipe,,skyresources:ItemHealthGem:0> is used to boost maximum health and stores health for use in automation (COMING SOON) "
+						+ "\n Shift right-click to infuse 2 health (or 1 heart). You will gain 1 health for every 50 health infused (by default). ");
 
 		SkyResourcesGuide.addPage("commands", "guide.skyresources.misc",
 				"Commands", new ItemStack(Blocks.COMMAND_BLOCK),
