@@ -75,8 +75,6 @@ public class TileBeeAttractor extends TileEntity
 				if (ticks == 0)
 				{
 					ItemStack bee = getRandomBee();
-					System.out.println(
-							bee == null ? "Null Bee" : bee.getDisplayName());
 
 					RandomHelper.fillInventory(this, bee);
 
@@ -135,7 +133,7 @@ public class TileBeeAttractor extends TileEntity
 					beeStack = stack;
 				tries++;
 			}
-			return beeStack.copy();
+			return beeStack == null ? null : beeStack.copy();
 		}
 		return null;
 	}
