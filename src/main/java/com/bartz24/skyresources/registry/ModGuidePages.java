@@ -11,8 +11,8 @@ public class ModGuidePages
 {
 	public static void init()
 	{
-		SkyResourcesGuide.addPage("basics", "guide.skyresources.stage1",
-				"The Basics", new ItemStack(Blocks.BEDROCK),
+		SkyResourcesGuide.addPage("basics", "guide.skyresources.stage1", "The Basics",
+				new ItemStack(Blocks.BEDROCK),
 				"Welcome to Sky Resources! "
 						+ "\n To get started, type /platform create (optional type) for your own island. "
 						+ "<link,Additional_Commands,minecraft:command_block:0,commands> "
@@ -23,8 +23,8 @@ public class ModGuidePages
 						+ "\n If you don't have JEI, I don't know how you're going to get through modded MC. I'm not giving info on crafting if it's in JEI at all in this guide. "
 						+ "\n Note that some recipes may be inaccurate or non-existant due to MineTweaker/CraftTweaker.");
 
-		SkyResourcesGuide.addPage("sandPlatform", "guide.skyresources.stage1",
-				"Sand Platform", new ItemStack(Blocks.SAND, 1, 1),
+		SkyResourcesGuide.addPage("sandPlatform", "guide.skyresources.stage1", "Sand Platform",
+				new ItemStack(Blocks.SAND, 1, 1),
 				"To get started on the sand platform, you're going to need some <recipe,,skyresources:AlchemyItemComponent:0> . "
 						+ "\n Now, you need <recipe,,skyresources:AlchemyItemComponent:1> . I would recommend keeping 1 cactus at all times if you want to progress. "
 						+ "Using a <recipe,,skyresources:CactusCuttingKnife:0> , make some <recipe,,skyresources:CactusFruit:0> , which has high saturation for regenerating. "
@@ -34,8 +34,7 @@ public class ModGuidePages
 						+ "Also, use <link,Life_Infusion,skyresources:AlchemicalInfusionStone:0,lifeInfusion> to get <recipe,,minecraft:dirt:1> . "
 						+ "\n \n <image,Sand_Platform_Flowchart_Guide,minecraft:cactus:0,skyresources:textures/guide/sandFlowchart.png>");
 
-		SkyResourcesGuide.addPage("lifeInfusion", "guide.skyresources.stage1",
-				"Life Infusion",
+		SkyResourcesGuide.addPage("lifeInfusion", "guide.skyresources.stage1", "Life Infusion",
 				new ItemStack(ModItems.alchemicalInfusionStone),
 				"In order to do life infusion, you need a few things to do it. "
 						+ "\n First, you need an infusion stone. There are 3 by default. "
@@ -43,8 +42,8 @@ public class ModGuidePages
 						+ "\n Next, look in JEI for a recipe and put the items in the off-hand slot (the slot with the shield icon) in your off-hand slot. "
 						+ "\n Hold the infusion stone in your main hand and right click the block shown in JEI to get your result.");
 
-		SkyResourcesGuide.addPage("snowPlatform", "guide.skyresources.stage1",
-				"Snow Platform", new ItemStack(Blocks.SNOW),
+		SkyResourcesGuide.addPage("snowPlatform", "guide.skyresources.stage1", "Snow Platform",
+				new ItemStack(Blocks.SNOW),
 				"To get started on the sand platform, you're going to need some <recipe,,minecraft:snowball:0> and a <recipe,,minecraft:pumpkin:0> . "
 						+ "\n In order to get <recipe,,minecraft:snowball:0> , shift right-click the snow to get them, and don't use the second pumpkin as it is needed for later. "
 						+ "\n Make a snow golem and make sure it doesn't fall off the edge or die. Get more snow from the snow golem. "
@@ -57,25 +56,24 @@ public class ModGuidePages
 						+ "\n Another block of <recipe,,minecraft:dirt:1> is needed for a <recipe,,minecraft:sapling:1> . "
 						+ "\n \n <image,Snow_Platform_Flowchart_Guide,skyresources:HeavySnow:0,skyresources:textures/guide/snowFlowchart.png>");
 
-		SkyResourcesGuide.addPage("miniFreezer", "guide.skyresources.stage1",
-				"Mini Freezer", new ItemStack(ModBlocks.miniFreezer),
+		SkyResourcesGuide.addPage("miniFreezer", "guide.skyresources.stage1", "Mini Freezer",
+				new ItemStack(ModBlocks.miniFreezer),
 				"The <recipe,,skyresources:MiniFreezer:0> is the first tier of freezers. The <link,Iron_Freezer,skyresources:IronFreezer:0,ironFreezer> is the next tier. "
 						+ "\n This freezer runs at 0.25x the speed of the <link,Iron_Freezer,skyresources:IronFreezer:0,ironFreezer> . 1x is the normal speed shown in JEI."
 						+ " This freezer can also only freeze 1 stack of items at a time. "
 						+ "\n Items will pop out the front or into an adjecent inventory. "
 						+ "\n Freezers will not output to adjecent freezers unless the other freezer in front of it.");
 
-		SkyResourcesGuide.addPage("grassPlatform", "guide.skyresources.stage1",
-				"Grass Platform", new ItemStack(Blocks.GRASS),
+		SkyResourcesGuide.addPage("grassPlatform", "guide.skyresources.stage1", "Grass Platform",
+				new ItemStack(Blocks.GRASS),
 				"The grass platform skips over stage 1, so start with stage 2. "
-				+ "\n This is due to having dirt and a tree on this platform. "
-				+ "\n Since it skips over stage 1, it is not able to be a starting random platform. To get this platform set the type as grass when creating or reseting your platform.");
-		
+						+ "\n This is due to having dirt and a tree on this platform. "
+						+ "\n Since it skips over stage 1, it is not able to be a starting random platform. To get this platform set the type as grass when creating or reseting your platform.");
 
-		SkyResourcesGuide.addPage("combustionHeater",
-				"guide.skyresources.stage2", "Combustion Heater",
-				new ItemStack(ModBlocks.combustionHeater),
-				"There are 2 types by default. The <recipe,,skyresources:CombustionHeater:0> and <recipe,,skyresources:CombustionHeater:1> "
+		SkyResourcesGuide.addPage("combustionHeater", "guide.skyresources.stage2",
+				"Combustion Heater", new ItemStack(ModBlocks.combustionHeater),
+				"There are 3 types by default. The <recipe,,skyresources:CombustionHeater:0> ,"
+						+ " the <recipe,,skyresources:CombustionHeater:1> , and the <link,Powered_Combustion_Heater,skyresources:CombustionHeater:2,poweredCombustion> ."
 						+ "are part of the combustion multiblock structures. "
 						+ "\n To setup the multiblock, place down the heater, have an empty space above, "
 						+ "and surround the empty space with valid blocks for that type of heater. "
@@ -93,33 +91,32 @@ public class ModGuidePages
 						+ "\n \n <recipe,,minecraft:cactus:0> can be made in the <recipe,,skyresources:CombustionHeater:1> if you didn't start on the snow platform. "
 						+ "\n The <link,Powered_Combustion_Heater,skyresources:CombustionHeater:2,poweredCombustion> is a late game version.");
 
-		SkyResourcesGuide.addPage("waterExtractor", "guide.skyresources.stage2",
-				"Water Extractor", new ItemStack(ModItems.waterExtractor),
+		SkyResourcesGuide.addPage("waterExtractor", "guide.skyresources.stage2", "Water Extractor",
+				new ItemStack(ModItems.waterExtractor),
 				"The <recipe,,skyresources:WaterExtractor:0> is used for storing, extracting, and placing, and inserting water. It can hold 4000mB of water. "
 						+ "\n To extract water from blocks, hold right-click for a little bit and let go. It can also pick up water source blocks. "
 						+ "\n To place water, you must have 1000mB of water and shift-right click to place it in the world. "
 						+ "\n To insert water into blocks, you must have the required water amount and right click the block. "
 						+ "\n All recipes for extracting and inserting are in JEI. Check the uses of the <recipe,,skyresources:WaterExtractor:0> .");
 
-		SkyResourcesGuide.addPage("plantMatter", "guide.skyresources.stage2",
-				"Plant Matter", new ItemStack(ModItems.baseComponent, 1, 2),
+		SkyResourcesGuide.addPage("plantMatter", "guide.skyresources.stage2", "Plant Matter",
+				new ItemStack(ModItems.baseComponent, 1, 2),
 				"<recipe,,skyresources:BaseItemComponent:2> is mainly used for crafting <recipe,,minecraft:dirt:0> . "
 						+ "\n It also acts like bonemeal.");
 
-		SkyResourcesGuide.addPage("dirtFurnace", "guide.skyresources.stage2",
-				"Dirt Furnace", new ItemStack(ModBlocks.dirtFurnace),
+		SkyResourcesGuide.addPage("dirtFurnace", "guide.skyresources.stage2", "Dirt Furnace",
+				new ItemStack(ModBlocks.dirtFurnace),
 				"Use the <recipe,,skyresources:DirtFurnace:0> to get access to torches, "
 						+ "and other smeltable items without a cobblestone generator.");
 
 		SkyResourcesGuide.addPage("lavaBlaze", "guide.skyresources.stage2",
-				"Lava/Blaze Powder Block",
-				new ItemStack(ModBlocks.blazePowderBlock),
+				"Lava/Blaze Powder Block", new ItemStack(ModBlocks.blazePowderBlock),
 				"The <recipe,,skyresources:BlazePowderBlock:0> is used for creating lava. "
 						+ "\n To get lava, place the blaze powder block above a <link,heat_source,minecraft:torch:0,heatSources> . "
 						+ "\n Note that you will want to be able to setup your first lava for a cobblestone generator.");
 
-		SkyResourcesGuide.addPage("heatSources", "guide.skyresources.stage2",
-				"Heat Sources", new ItemStack(Blocks.TORCH),
+		SkyResourcesGuide.addPage("heatSources", "guide.skyresources.stage2", "Heat Sources",
+				new ItemStack(Blocks.TORCH),
 				"Heat Sources are used for heating many functional blocks. "
 						+ "\n Heat Sources go under these blocks: "
 						+ "\n <link,Crucible,skyresources:Crucible:0,crucible> "
@@ -130,25 +127,22 @@ public class ModGuidePages
 						+ "the top by clicking the current category shown and clicking left or right. "
 						+ "\n Better heat sources make the blocks mentioned earlier run faster. "
 						+ "\n \n <link,Default_List_of_Heat_Sources,minecraft:torch:0,listHeatSources>");
-		
+
 		SkyResourcesGuide.addPage("listHeatSources", "guide.skyresources.stage2",
 				"List of Heat Sources", new ItemStack(Blocks.TORCH),
-						"Default Heat Sources: "
-						+ "\n <recipe,,minecraft:torch:0> "
-						+ "\n <recipe,,minecraft:obsidian:0> "
-						+ "\n <recipe,,minecraft:magma:0> "
-						+ "\n Fire "
-						+ "\n Still and flowing lava ");
+				"Default Heat Sources: " + "\n <recipe,,minecraft:torch:0> "
+						+ "\n <recipe,,minecraft:obsidian:0> " + "\n <recipe,,minecraft:magma:0> "
+						+ "\n Fire " + "\n Still and flowing lava ");
 
-		SkyResourcesGuide.addPage("rockGrinder", "guide.skyresources.stage2",
-				"Rock Grinder", new ItemStack(ModItems.stoneGrinder),
+		SkyResourcesGuide.addPage("rockGrinder", "guide.skyresources.stage2", "Rock Grinder",
+				new ItemStack(ModItems.stoneGrinder),
 				"The rock grinder allows for the player to break cobblestone down into sand, and sandstone down into gravel, by default. "
 						+ "\n There are 3 by default, which are the <recipe,,skyresources:StoneGrinder:0> , <recipe,,skyresources:IronGrinder:0> ,"
 						+ " and <recipe,,skyresources:DiamondGrinder:0> . "
 						+ "\n \n The rock grinder is also used for getting dirty gems for <link,gem_production,minecraft:emerald:0,gemProduction> .");
 
-		SkyResourcesGuide.addPage("metalCreation", "guide.skyresources.stage2",
-				"Metal Creation", new ItemStack(ModItems.metalCrystal),
+		SkyResourcesGuide.addPage("metalCreation", "guide.skyresources.stage2", "Metal Creation",
+				new ItemStack(ModItems.metalCrystal),
 				"To get started in metal creation you're going to need to get <recipe,,skyresources:MetalCrystal:0> for iron "
 						+ "through <link,combustion,skyresources:CombustionHeater:0,combustionHeater> . "
 						+ "\n The rest of the process is done using the following blocks (Pre-Bucket): "
@@ -160,8 +154,8 @@ public class ModGuidePages
 						+ "\n <link,Clean_Crystal_Fluid,skyresources:IronCrystalFluidBlock:0,cleanCrystal> "
 						+ "\n \n For stage 3 metal creation, you need a <link,Concentrator,skyresources:Concentrator:0,concentrator> .");
 
-		SkyResourcesGuide.addPage("crucible", "guide.skyresources.stage2",
-				"Crucible", new ItemStack(ModBlocks.crucible),
+		SkyResourcesGuide.addPage("crucible", "guide.skyresources.stage2", "Crucible",
+				new ItemStack(ModBlocks.crucible),
 				"The <recipe,,skyresources:Crucible:0> is used for creating dirty crystal fluid from crystal shards. "
 						+ "\n This requires a <link,heat_source,minecraft:torch:0,heatSources> underneath to function. "
 						+ "\n Drop the crystal shards in and it will turn into dirty crystal fluid. "
@@ -170,31 +164,28 @@ public class ModGuidePages
 						+ "<link,clean_crystal_fluid,skyresources:IronCrystalFluidBlock:0,cleanCrystal> . "
 						+ "\n The <recipe,,skyresources:Crucible:0> outputs a comparator value based on the current amount of solid items left.");
 
-		SkyResourcesGuide.addPage("fluidDropper", "guide.skyresources.stage2",
-				"Fluid Dropper", new ItemStack(ModBlocks.fluidDropper),
+		SkyResourcesGuide.addPage("fluidDropper", "guide.skyresources.stage2", "Fluid Dropper",
+				new ItemStack(ModBlocks.fluidDropper),
 				"The <recipe,,skyresources:FluidDropper:0> will pull fluids from tanks next to it and place the source below it when it has 1 bucket. "
 						+ "\n This is useful for pulling out of the <link,Crucible,skyresources:Crucible:0,crucible> before getting a bucket.");
 
-		SkyResourcesGuide.addPage("alchemicalCondenser",
-				"guide.skyresources.stage2", "Alchemical Condenser",
-				new ItemStack(ModBlocks.alchemicalCondenser),
+		SkyResourcesGuide.addPage("alchemicalCondenser", "guide.skyresources.stage2",
+				"Alchemical Condenser", new ItemStack(ModBlocks.alchemicalCondenser),
 				"The <recipe,,skyresources:AlchemicalCondenser:0> is used for turning crystal fluid (dirty or clean) into ingots. "
 						+ "\n Dirty crystal fluid takes 10x as long as <link,clean_crystal_fluid,skyresources:IronCrystalFluidBlock:0,cleanCrystal> . "
 						+ "\n This requires a <link,heat_source,minecraft:torch:0,heatSources> underneath to function. "
 						+ "\n Also, the fluid can't be flowing and must not move. "
 						+ "\n Fluids will not condense into their ingot form if it isn't in ore dictionary.");
 
-		SkyResourcesGuide.addPage("purificationVessel",
-				"guide.skyresources.stage2", "Purification Vessel",
-				new ItemStack(ModBlocks.purificationVessel),
+		SkyResourcesGuide.addPage("purificationVessel", "guide.skyresources.stage2",
+				"Purification Vessel", new ItemStack(ModBlocks.purificationVessel),
 				"The <recipe,,skyresources:PurificationVessel:0> is used for turning dirty crystal fluid into "
 						+ "<link,clean_crystal_fluid,skyresources:IronCrystalFluidBlock:0,cleanCrystal> . "
 						+ "\n This requires a <link,heat_source,minecraft:torch:0,heatSources> underneath to function. "
 						+ "\n And then place the fluid in for it to convert.");
 
 		SkyResourcesGuide.addPage("cleanCrystal", "guide.skyresources.stage2",
-				"Clean Crystal Fluid",
-				new ItemStack(ModBlocks.crystalFluidBlocks.get(0)),
+				"Clean Crystal Fluid", new ItemStack(ModBlocks.crystalFluidBlocks.get(0)),
 				"Clean Crystal Fluid is used for obtaining more crystal shards, "
 						+ "and can be condensed into ingots with the <link,Alchemical_Condenser,skyresources:AlchemicalCondenser:0,alchemicalCondenser> . "
 						+ "\n For it to work, the fluid has to be still and not flowing, and cannot have an <link,Alchemical_Condenser,skyresources:AlchemicalCondenser:0,alchemicalCondenser> "
@@ -203,26 +194,23 @@ public class ModGuidePages
 						+ "Rarer fluids pop less crystals slower, and have a higher chance to run out and disappear. "
 						+ "\n Use this to setup a crystal shard farm.");
 
-		SkyResourcesGuide.addPage("earlyMetalSetup",
-				"guide.skyresources.stage2",
-				"Pre-Bucket Early Metal Setup (SPOILERS)",
-				new ItemStack(ModItems.metalCrystal),
+		SkyResourcesGuide.addPage("earlyMetalSetup", "guide.skyresources.stage2",
+				"Pre-Bucket Early Metal Setup (SPOILERS)", new ItemStack(ModItems.metalCrystal),
 				"This shows a setup that is semi-automated."
 						+ " \n A <link,crucible,skyresources:Crucible:0,crucible> attached to 2 <link,fluid_droppers,skyresources:FluidDropper:0,fluidDropper> , "
 						+ "which drop the dirty fluid on top of an <link,alchemical_condenser,skyresources:AlchemicalCondenser:0,alchemicalCondenser> ."
 						+ " \n <image,View_Setup,skyresources:MetalCrystal:0,skyresources:textures/guide/earlyMetalSetup.png>");
 
-		SkyResourcesGuide.addPage("gemProduction", "guide.skyresources.stage2",
-				"Gem Production", new ItemStack(Items.EMERALD),
+		SkyResourcesGuide.addPage("gemProduction", "guide.skyresources.stage2", "Gem Production",
+				new ItemStack(Items.EMERALD),
 				"Gems like emeralds, rubies, sapphires, peridots, and red and yellow garnets are obtained through this process. "
 						+ "\n First, use the <link,rock_grinder,skyresources:StoneGrinder:0,rockGrinder> on stone to get dirty gems like the "
 						+ "<recipe,,skyresources:DirtyGem:0> . These have a chance to drop. "
 						+ "\n Next, right-click the dirty gems on to a <recipe,,minecraft:cauldron:0> filled with water to get the clean, and usable gems. "
 						+ "This will not work if the clean gems do not exist in ore dictionary.");
 
-		SkyResourcesGuide.addPage("alchemicalItems",
-				"guide.skyresources.stage3", "Alchemical Items",
-				new ItemStack(ModItems.alchemyComponent, 1, 4),
+		SkyResourcesGuide.addPage("alchemicalItems", "guide.skyresources.stage3",
+				"Alchemical Items", new ItemStack(ModItems.alchemyComponent, 1, 4),
 				"There are 4 alchemical items used for advanced crafting currently. "
 						+ "\n <recipe,,skyresources:AlchemyItemComponent:3> "
 						+ "\n <recipe,,skyresources:AlchemyItemComponent:2> "
@@ -231,15 +219,15 @@ public class ModGuidePages
 						+ "\n \n These are used for the <link,Concentrator,skyresources:Concentrator:0,concentrator> "
 						+ "and the <link,Alchemical_Infusion_Stone,skyresources:AlchemicalInfusionStone:0,lifeInfusion> .");
 
-		SkyResourcesGuide.addPage("concentrator", "guide.skyresources.stage3",
-				"Concentrator", new ItemStack(ModBlocks.concentrator),
+		SkyResourcesGuide.addPage("concentrator", "guide.skyresources.stage3", "Concentrator",
+				new ItemStack(ModBlocks.concentrator),
 				"The <recipe,,skyresources:Concentrator:0> uses an advanced metal creation process that turns items tossed above it into an ore block . "
 						+ "\n It has a maximum temperature of 1538 C and fuels with extremely high burn times will not work in the iron heater. "
 						+ "\n To make an ore, toss the items required on top, and place down <recipe,,skyresources:CompressedStone:0> (usually) "
 						+ "under it to turn it into an ore in 500 ticks.");
 
-		SkyResourcesGuide.addPage("ironFreezer", "guide.skyresources.stage3",
-				"Iron Freezer", new ItemStack(ModBlocks.ironFreezer),
+		SkyResourcesGuide.addPage("ironFreezer", "guide.skyresources.stage3", "Iron Freezer",
+				new ItemStack(ModBlocks.ironFreezer),
 				"The <recipe,,skyresources:IronFreezer:0> is the second tier of freezers. "
 						+ "\n To setup the <recipe,,skyresources:IronFreezer:0> , place 2 of these blocks vertically to form the multiblock. "
 						+ "\n This freezer runs at 1x speed."
@@ -253,21 +241,20 @@ public class ModGuidePages
 						+ " This heater has a maximum heat of 2750. "
 						+ "\n Right-click to see current RF and heat.");
 
-		SkyResourcesGuide.addPage("poweredHeater", "guide.skyresources.stage3",
-				"Powered Heater", new ItemStack(ModBlocks.poweredHeater),
+		SkyResourcesGuide.addPage("poweredHeater", "guide.skyresources.stage3", "Powered Heater",
+				new ItemStack(ModBlocks.poweredHeater),
 				"The <recipe,,skyresources:PoweredHeater:0> is a <link,heat_source,minecraft:torch:0,heatSources> . "
 						+ "\n Requires 120 RF/tick and a redstone signal. "
-						+ "\n Provides a heat value of 30. "
-						+ "\n Right-click to see current RF.");
+						+ "\n Provides a heat value of 30. " + "\n Right-click to see current RF.");
 
-		SkyResourcesGuide.addPage("nether", "guide.skyresources.stage3",
-				"The Nether Void", new ItemStack(Blocks.NETHERRACK),
+		SkyResourcesGuide.addPage("nether", "guide.skyresources.stage3", "The Nether Void",
+				new ItemStack(Blocks.NETHERRACK),
 				"The nether is now a void. Nether portals link to the same position as in the overworld. The nether is not 1/8 the size anymore. "
 						+ "\n All materials normally found in the nether are now obtainanble in other ways. "
 						+ "\n Nether ores are obtained through the <link,nether_metal_creation,skyresources:AdvancedCoolingCondenser:0,netherMetalCreation> process. "
 						+ "\n Nether mobs can be found either through naturally spawning them "
 						+ "or using the <link,Dark_Matter_Warper,skyresources:DarkMatterWarper:0,dmWarper> . ");
-		
+
 		SkyResourcesGuide.addPage("betterLava", "guide.skyresources.stage3",
 				"Better Lava Production", new ItemStack(ModBlocks.compressedNetherrack),
 				"<recipe,,skyresources:CompressedNetherrack:0> can be used to make lava by putting it into the <link,crucible,skyresources:Crucible:0,crucible> .");
@@ -283,14 +270,14 @@ public class ModGuidePages
 						+ "\n <recipe,,skyresources:CoolingCrystallizer:0> , which takes the molten crystal and gives more crystal shards "
 						+ "(puts them under the crystallizer or into the inventory under it) . ");
 
-		SkyResourcesGuide.addPage("dmWarper", "guide.skyresources.stage3",
-				"Dark Matter Warper", new ItemStack(ModBlocks.darkMatterWarper),
+		SkyResourcesGuide.addPage("dmWarper", "guide.skyresources.stage3", "Dark Matter Warper",
+				new ItemStack(ModBlocks.darkMatterWarper),
 				"The <recipe,,skyresources:DarkMatterWarper:0> is used for getting rare mobs. "
-				+ " \n It consumes <recipe,,skyresources:BaseItemComponent:5> to run (needed every 3 min)  and affects a 8x8x8 cube around the <recipe,,skyresources:DarkMatterWarper:0> . "
-				+ "\n It turns skeletons into wither skeletons, squid into blazes, spiders into cave spiders, and hurts players and animals.");
+						+ " \n It consumes <recipe,,skyresources:BaseItemComponent:5> to run (needed every 3 min)  and affects a 8x8x8 cube around the <recipe,,skyresources:DarkMatterWarper:0> . "
+						+ "\n It turns skeletons into wither skeletons, squid into blazes, spiders into cave spiders, and hurts players and animals.");
 
-		SkyResourcesGuide.addPage("end", "guide.skyresources.stage3",
-				"The End", new ItemStack(Items.ENDER_EYE),
+		SkyResourcesGuide.addPage("end", "guide.skyresources.stage3", "The End",
+				new ItemStack(Items.ENDER_EYE),
 				"The end portal requires a multiblock structure. The following are needed: "
 						+ "\n 1 <recipe,,skyresources:EndPortalCore:0> "
 						+ "\n 4 <recipe,,minecraft:diamond_block:0> "
@@ -302,13 +289,13 @@ public class ModGuidePages
 						+ "\n To use the portal, stand on the core, and give the <recipe,,skyresources:EndPortalCore:0> at least 16 <recipe,,minecraft:ender_eye:0> and a redstone pulse (button). "
 						+ "\n \n *gl A ilfsiesrvh waenrsp si itaecv nda reyv edsroanug ehwn eht urturscte is valdi! *nl");
 
-		SkyResourcesGuide.addPage("healthGem", "guide.skyresources.stage3",
-				"Health Gem", new ItemStack(ModItems.healthGem),
+		SkyResourcesGuide.addPage("healthGem", "guide.skyresources.stage3", "Health Gem",
+				new ItemStack(ModItems.healthGem),
 				"The <recipe,,skyresources:ItemHealthGem:0> is used to boost maximum health and stores health for use in automation (COMING SOON) "
 						+ "\n Shift right-click to infuse 2 health (or 1 heart). You will gain 1 health for every 50 health infused (by default). ");
 
-		SkyResourcesGuide.addPage("commands", "guide.skyresources.misc",
-				"Commands", new ItemStack(Blocks.COMMAND_BLOCK),
+		SkyResourcesGuide.addPage("commands", "guide.skyresources.misc", "Commands",
+				new ItemStack(Blocks.COMMAND_BLOCK),
 				"The /platform command has several subcommands. \n "
 						+ "create (optional int/string)<type> : Spawn a new platform. Must not already be on an island. \n "
 						+ "invite <player> : Have another player join your island. Player must not already be on an island. \n "
@@ -323,8 +310,7 @@ public class ModGuidePages
 						+ "visit <player> : Visit another player's island in spectator mode.");
 
 		SkyResourcesGuide.addPage("minetweaker", "guide.skyresources.misc",
-				"Minetweaker/CraftTweaker",
-				new ItemStack(Blocks.CRAFTING_TABLE),
+				"Minetweaker/CraftTweaker", new ItemStack(Blocks.CRAFTING_TABLE),
 				"For Minetweaker/CraftTweaker support, go to "
 						+ "\n https://github.com/Bartz24/SkyResources/wiki/Minetweaker-Support");
 
