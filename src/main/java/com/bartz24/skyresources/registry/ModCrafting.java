@@ -204,6 +204,9 @@ public class ModCrafting
 		.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.sandyNetherrack, 2), new Object[]
 { "XY", "ZX", 'X', new ItemStack(Blocks.SAND), 'Y',
 		new ItemStack(Items.NETHER_WART), 'Z', new ItemStack(Blocks.NETHERRACK) }));
+		GameRegistry.addRecipe(
+				new ShapedOreRecipe(new ItemStack(ModBlocks.lifeInfuser), new Object[]
+				{ "XXX", "X X", "XYX", 'X', "logWood", 'Y', new ItemStack(ModItems.healthGem) }));
 
 		if (OreDictionary.doesOreNameExist("ingotSteel")
 				&& OreDictionary.doesOreNameExist("dustCoal"))
