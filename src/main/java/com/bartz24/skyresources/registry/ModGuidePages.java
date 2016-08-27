@@ -291,8 +291,22 @@ public class ModGuidePages
 
 		SkyResourcesGuide.addPage("healthGem", "guide.skyresources.stage3", "Health Gem",
 				new ItemStack(ModItems.healthGem),
-				"The <recipe,,skyresources:ItemHealthGem:0> is used to boost maximum health and stores health for use in automation (COMING SOON) "
+				"The <recipe,,skyresources:ItemHealthGem:0> is used to boost maximum health and stores health for use in the <link,Life_Infuser,skyresources:LifeInfuser:0,lifeInfuser> ."
 						+ "\n Shift right-click to infuse 2 health (or 1 heart). You will gain 1 health for every 50 health infused (by default). ");
+
+		SkyResourcesGuide.addPage("lifeInfuser", "guide.skyresources.stage3", "Life Infuser",
+				new ItemStack(ModBlocks.lifeInfuser),
+				"The <recipe,,skyresources:LifeInfuser:0> is used to automate  <link,Life_Infusion,skyresources:AlchemicalInfusionStone:0,lifeInfusion> . "
+				+ "\n The life infuser requires a multiblock structure. The following are needed: "
+				+ "\n 1 <recipe,,skyresources:LifeInfuser:0> "
+				+ "\n 4 <recipe,,minecraft:log:0> (any type of wood) "
+				+ "\n 9 <recipe,,minecraft:leaves:0> (any type of leaves) "
+				+ "\n 8 <recipe,,minecraft:dirt:0> "
+				+ "\n \n <image,Multiblock_Setup,skyresources:LifeInfuser:0,skyresources:textures/guide/lifeInfuser.png> "
+				+ "\n Note that the block 2 blocks below the core dosn't matter and the core is in the center. "
+				+ "\n To use the portal, put in the health gem on the right, infusion stone in the middle, off-hand item on the left, "
+				+ "place the block getting infused below the core, and give the core a redstone pulse (button). "
+				+ "\n Make sure the <link,Health_Gem,skyresources:ItemHealthGem:0,healthGem> has enough health to infuse.");
 
 		SkyResourcesGuide.addPage("commands", "guide.skyresources.misc", "Commands",
 				new ItemStack(Blocks.COMMAND_BLOCK),

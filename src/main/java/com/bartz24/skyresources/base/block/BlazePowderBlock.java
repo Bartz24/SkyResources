@@ -3,13 +3,11 @@ package com.bartz24.skyresources.base.block;
 import java.util.Random;
 
 import com.bartz24.skyresources.base.HeatSources;
-import com.bartz24.skyresources.registry.ModAchievements;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -52,8 +50,6 @@ public class BlazePowderBlock extends BaseBlock
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX,
 			float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
-		if (placer instanceof EntityPlayer)
-			((EntityPlayer) placer).addStat(ModAchievements.lavaMelting, 1);
 		return this.getStateFromMeta(meta);
 	}
 }

@@ -60,6 +60,7 @@ tile.skyresources.beeAttractor.name=Bee Attractor
 tile.skyresources.poweredHeater.name=Powered Heater
 tile.skyresources.darkMatterWarper.name=Dark Matter Warper
 tile.skyresources.endPortalCore.name=End Portal Core
+tile.skyresources.lifeInfuser.name=Life Infuser Core
 
 
 tile.skyresources.ironCrystalFluidBlock.name=Iron Crystal Liquid
@@ -127,6 +128,7 @@ container.skyresources.freezer=Freezer
 container.skyresources.beeAttractor=Bee Attractor
 container.skyresources.darkMatterWarper=Dark Matter Warper
 container.skyresources.endPortalCore=End Portal Core
+container.skyresources.lifeInfuser=Life Infuser
 
 name.skyresources.metal.iron=Iron
 name.skyresources.metal.gold=Gold
@@ -189,21 +191,12 @@ name.skyresources.gem.enderEssence=Ender Essence
 
 name.skyresources.dirty=Dirty
 
-itemGroup.skyresources.tabMain=Sky Mod:Main
-itemGroup.skyresources.tabAlchemy=Sky Mod:Alchemy
-itemGroup.skyresources.tabTech=Sky Mod:Technology
+itemGroup.skyresources.tabMain=Sky Resources:Main
+itemGroup.skyresources.tabAlchemy=Sky Resources:Alchemy
+itemGroup.skyresources.tabTech=Sky Resources:Technology
 
 generator.skyworld=Sky World
 generator.skyworld.info=Creates a platform in the sky. NOTE:Based on config option.
-
-achievement.CactusNeedle=Ouch!
-achievement.CactusNeedle.desc=Poke yourself with a cactus needle.
-achievement.FirstSapling=Tiny Tree From A Cactus
-achievement.FirstSapling.desc=Infuse a cactus fruit into a sapling.
-achievement.FirstWater=Water Syringe
-achievement.FirstWater.desc=Use a water extractor to place down water.
-achievement.LavaMelting=Dangerous Heating
-achievement.LavaMelting.desc=Melt a blaze powder block down into lava.
 
 fluid.ironcrystalfluid=Iron Crystal Fluid
 fluid.goldcrystalfluid=Gold Crystal Fluid

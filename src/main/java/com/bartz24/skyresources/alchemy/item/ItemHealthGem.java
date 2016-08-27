@@ -41,6 +41,11 @@ public class ItemHealthGem extends Item implements IHealthBoostItem
 		return (int) (getCompound(stack).getInteger("health") * ConfigOptions.healthGemPercentage);
 	}
 
+	public int getHealthInjected(ItemStack stack)
+	{
+		return getCompound(stack).getInteger("health");
+	}
+
 	@Override
 	public void onCreated(ItemStack itemStack, World world, EntityPlayer player)
 	{

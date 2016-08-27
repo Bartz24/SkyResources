@@ -149,6 +149,8 @@ public class JEIPlugin implements IModPlugin
 			registry.addRecipeCategoryCraftingItem(i,
 					References.ModID + ":infusion");
 		}
+		registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.lifeInfuser),
+				References.ModID + ":infusion");
 
 		registry.addDescription(new ItemStack(ModItems.alchemyComponent, 1, 0),
 				"jei.skyresources.desc.cactusNeedle");

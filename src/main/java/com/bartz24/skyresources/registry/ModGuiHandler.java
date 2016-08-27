@@ -1,5 +1,8 @@
 package com.bartz24.skyresources.registry;
 
+import com.bartz24.skyresources.alchemy.gui.GuiLifeInfuser;
+import com.bartz24.skyresources.alchemy.gui.container.ContainerLifeInfuser;
+import com.bartz24.skyresources.alchemy.tile.LifeInfuserTile;
 import com.bartz24.skyresources.base.guide.gui.GuideGUI;
 import com.bartz24.skyresources.plugin.forestry.gui.GuiBeeAttractor;
 import com.bartz24.skyresources.plugin.forestry.gui.container.ContainerBeeAttractor;
@@ -36,6 +39,7 @@ public class ModGuiHandler implements IGuiHandler
 	public static final int FurnaceGUI = 3;
 	public static final int DarkMatterWarperGUI = 4;
 	public static final int EndPortalCoreGUI = 5;
+	public static final int LifeInfuserGUI = 6;
 	public static final int BeeAttractorGUI = 10;
 	public static final int GuideGUI = 25;
 
@@ -66,6 +70,10 @@ public class ModGuiHandler implements IGuiHandler
 		else if (id == EndPortalCoreGUI)
 			return new ContainerEndPortalCore(player.inventory,
 					 (TileEndPortalCore) world
+							.getTileEntity(new BlockPos(x, y, z)));
+		else if (id == LifeInfuserGUI)
+			return new ContainerLifeInfuser(player.inventory,
+					 (LifeInfuserTile) world
 							.getTileEntity(new BlockPos(x, y, z)));
 		else if (id == BeeAttractorGUI)
 			return new ContainerBeeAttractor(player.inventory,
@@ -101,6 +109,10 @@ public class ModGuiHandler implements IGuiHandler
 		else if (id == EndPortalCoreGUI)
 			return new GuiEndPortalCore(player.inventory,
 					 (TileEndPortalCore) world
+							.getTileEntity(new BlockPos(x, y, z)));
+		else if (id == LifeInfuserGUI)
+			return new GuiLifeInfuser(player.inventory,
+					 (LifeInfuserTile) world
 							.getTileEntity(new BlockPos(x, y, z)));
 		else if (id == BeeAttractorGUI)
 			 return new GuiBeeAttractor(player.inventory,

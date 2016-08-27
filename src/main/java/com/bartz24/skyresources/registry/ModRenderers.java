@@ -182,6 +182,7 @@ public class ModRenderers
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.poweredHeater));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.darkMatterWarper));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.endPortalCore));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.lifeInfuser));
 
 		registerItemRenderer(ModItems.sandstoneInfusionStone);
 		registerItemRenderer(ModItems.redSandstoneInfusionStone);

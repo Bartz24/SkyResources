@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bartz24.skyresources.References;
-import com.bartz24.skyresources.registry.ModAchievements;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModItems;
 
@@ -12,7 +11,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
@@ -94,7 +92,6 @@ public class AlchemyItemComponent extends Item
 			{
 				stack.stackSize--;
 
-				player.addStat(ModAchievements.cactusNeedle, 1);
 				if (!player.inventory.addItemStackToInventory(
 						new ItemStack(ModItems.alchemyComponent, 1,
 								names.indexOf(cactusNeedleBloody))))

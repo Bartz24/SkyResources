@@ -11,7 +11,6 @@ import com.bartz24.skyresources.events.EventHandler;
 import com.bartz24.skyresources.events.ModBucketHandler;
 import com.bartz24.skyresources.minetweaker.MinetweakerPlugin;
 import com.bartz24.skyresources.plugin.ModPlugins;
-import com.bartz24.skyresources.registry.ModAchievements;
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModCrafting;
 import com.bartz24.skyresources.registry.ModEntities;
@@ -26,7 +25,6 @@ import com.bartz24.skyresources.technology.rockgrinder.RockGrinderRecipes;
 import com.bartz24.skyresources.world.WorldOverride;
 import com.bartz24.skyresources.world.WorldTypeSky;
 
-import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -74,8 +72,6 @@ public class CommonProxy
 		ModPlugins.init();
 		
 		WorldOverride.registerWorldProviders();
-
-		AchievementPage.registerAchievementPage(ModAchievements.modAchievePage);
 	}
 
 	public void postInit(FMLPostInitializationEvent e)

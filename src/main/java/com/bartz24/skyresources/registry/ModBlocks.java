@@ -8,6 +8,7 @@ import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.alchemy.block.CondenserBlock;
 import com.bartz24.skyresources.alchemy.block.CoolingCrystallizerBlock;
 import com.bartz24.skyresources.alchemy.block.CrucibleBlock;
+import com.bartz24.skyresources.alchemy.block.LifeInfuserBlock;
 import com.bartz24.skyresources.alchemy.block.PurificationVesselBlock;
 import com.bartz24.skyresources.alchemy.fluid.FluidCrystalBlock;
 import com.bartz24.skyresources.alchemy.fluid.FluidMoltenCrystalBlock;
@@ -49,6 +50,8 @@ public class ModBlocks
 	public static Block poweredHeater;
 	public static Block darkMatterWarper;
 	public static Block endPortalCore;
+	public static Block lifeInfuser;
+
 
 	public static Block compressedCoalBlock;
 	public static Block compressedCoalBlock2;
@@ -118,6 +121,8 @@ public class ModBlocks
 				new BlockDarkMatterWarper("darkMatterWarper", "DarkMatterWarper", 8F, 12F));
 		endPortalCore = registerBlock(
 				new BlockEndPortalCore("endPortalCore", "EndPortalCore", 6F, 12F));
+		lifeInfuser = registerBlock(
+				new LifeInfuserBlock("lifeInfuser", "LifeInfuser", 6F, 12F));
 
 		purificationVessel = registerBlock(
 				new PurificationVesselBlock("purificationVessel", "PurificationVessel", 2F, 12F));

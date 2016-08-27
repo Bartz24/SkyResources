@@ -4,12 +4,10 @@ import com.bartz24.skyresources.ItemHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.alchemy.infusion.InfusionRecipe;
 import com.bartz24.skyresources.alchemy.infusion.InfusionRecipes;
-import com.bartz24.skyresources.registry.ModAchievements;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -62,10 +60,6 @@ public class ItemInfusionStone extends Item
 			{
 				if (!world.isRemote)
 				{
-					if (recipe.getOutput().getItem() == Item
-							.getItemFromBlock(Blocks.SAPLING))
-						player.addStat(ModAchievements.firstSapling, 1);
-
 					player.attackEntityFrom(DamageSource.magic,
 							recipe.getHealthReq());
 					world.setBlockToAir(pos);

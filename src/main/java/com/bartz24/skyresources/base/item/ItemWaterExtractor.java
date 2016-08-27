@@ -5,7 +5,6 @@ import java.util.List;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.base.waterextractor.WaterExtractorRecipe;
 import com.bartz24.skyresources.base.waterextractor.WaterExtractorRecipes;
-import com.bartz24.skyresources.registry.ModAchievements;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 
 import net.minecraft.block.Block;
@@ -219,7 +218,6 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 							SoundEvents.ENTITY_PLAYER_SPLASH,
 							SoundCategory.NEUTRAL, 1.0F,
 							1.0F / (itemRand.nextFloat() * 0.4F + 1.2F));
-					playerIn.addStat(ModAchievements.firstWater, 1);
 					return EnumActionResult.SUCCESS;
 				}
 
