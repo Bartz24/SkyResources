@@ -35,9 +35,8 @@ public class EnderIOPlugin
 				new ItemStack(darkBars, 32), new ItemStack(Items.SKULL, 4, 2),
 				new ItemStack(Items.DRAGON_BREATH, 4), new ItemStack(ModBlocks.darkMatterBlock));
 
-		SkyResourcesGuide.addPage("enderio", "guide.skyresources.misc", "Ender IO Support",
-				zombieSpawner,
-				"Sky Resources provides for ways to get the <recipe,,enderio:itemBrokenSpawner:0> .");
+		SkyResourcesGuide.addPage("enderio", "guide.skyresources.misc",
+				zombieSpawner);
 	}
 
 	public static void postInit()

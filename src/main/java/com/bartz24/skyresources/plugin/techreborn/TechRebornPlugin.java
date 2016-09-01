@@ -29,10 +29,8 @@ public class TechRebornPlugin
 		InfusionRecipes.addRecipe(new ItemStack(sapling, 1), new ItemStack(part, 4, 31),
 				Blocks.SAPLING, 1, 18);
 
-		SkyResourcesGuide.addPage("techreborn", "guide.skyresources.misc", "Tech Reborn Support",
-				new ItemStack(part, 1, 31),
-				"Sky Resources provides for ways to get basic TechReborn items. "
-						+ "\n \n <recipe,,techreborn:part:31> is obtainable as well as the <recipe,,techreborn:rubberSapling:0> . ");
+		SkyResourcesGuide.addPage("techreborn", "guide.skyresources.misc",
+				new ItemStack(part, 1, 31));
 	}
 
 	public static void initRenderers()
@@ -40,9 +38,8 @@ public class TechRebornPlugin
 
 	}
 
-	
 	public static void postInit()
 	{
-		
+
 	}
 }

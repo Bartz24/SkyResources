@@ -21,15 +21,14 @@ public class QFluxPlugin
 
 	public static void init()
 	{
-		Item graphite = Item.REGISTRY.getObject(new ResourceLocation("quantumflux", "graphiteDust"));
+		Item graphite = Item.REGISTRY
+				.getObject(new ResourceLocation("quantumflux", "graphiteDust"));
 
 		CombustionRecipes.addRecipe(new ItemStack(graphite, 2), 700,
 				new ItemStack(Items.GUNPOWDER, 4), new ItemStack(ModBlocks.compressedCoalBlock));
 
-		SkyResourcesGuide.addPage("quantumflux", "guide.skyresources.misc", "Quantum Flux Support",
-				new ItemStack(graphite),
-				"Sky Resources provides for ways to get Quantum Flux items. "
-						+ "\n \n <recipe,,quantumflux:graphiteDust:0> is obtainable. ");
+		SkyResourcesGuide.addPage("quantumflux", "guide.skyresources.misc",
+				new ItemStack(graphite));
 	}
 
 	public static void initRenderers()
@@ -37,9 +36,8 @@ public class QFluxPlugin
 
 	}
 
-	
 	public static void postInit()
 	{
-		
+
 	}
 }

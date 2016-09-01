@@ -45,11 +45,8 @@ public class TConPlugin
 		InfusionRecipes.addRecipe(new ItemStack(dirt, 1, 3), new ItemStack(edible, 8, 4),
 				Blocks.DIRT, 0, 8);
 
-		SkyResourcesGuide.addPage("tinkers", "guide.skyresources.misc", "Tinkers Construct Support",
-				new ItemStack(edible, 1, 2),
-				"Sky Resources provides for ways to get Tinker's Construct slimy items. "
-						+ "\n \n All variants of the <recipe,,tconstruct:edible:1> ,"
-						+ " <recipe,,tconstruct:slime_sapling:0> , and the <recipe,,tconstruct:slime_dirt:0> are obtainable. ");
+		SkyResourcesGuide.addPage("tinkers", "guide.skyresources.misc",
+				new ItemStack(edible, 1, 2));
 	}
 
 	public static void initRenderers()
@@ -57,9 +54,8 @@ public class TConPlugin
 
 	}
 
-	
 	public static void postInit()
 	{
-		
+
 	}
 }

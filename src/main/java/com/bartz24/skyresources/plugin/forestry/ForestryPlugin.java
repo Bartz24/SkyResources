@@ -33,14 +33,7 @@ public class ForestryPlugin
 		
 		
 		
-		SkyResourcesGuide.addPage("forestry", "guide.skyresources.misc",
-				"Forestry Support", new ItemStack(PluginApiculture.items.beeQueenGE),
-				"Sky Resources provides a way to get <recipe,,forestry:beePrincessGE:0> and <recipe,,forestry:beeDroneGE:0> . "
-				+ "\n This is done by making a <recipe,,skyresources:BeeAttractor:0> . "
-				+ "\n The <recipe,,skyresources:BeeAttractor:0> requires RF and <recipe,,forestry:fluid.seed.oil:0> . "
-				+ "\n Every 10 seconds, there is a chance for a <recipe,,forestry:beePrincessGE:0> or <recipe,,forestry:beeDroneGE:0> to be in the <recipe,,skyresources:BeeAttractor:0> . "
-				+ "\n The species depends on the biome, just like hives. "
-				+ "\n Note that a <recipe,,forestry:beePrincessGE:0> is rarer than a <recipe,,forestry:beeDroneGE:0> .");
+		SkyResourcesGuide.addPage("forestry", "guide.skyresources.misc", new ItemStack(PluginApiculture.items.beeQueenGE));
 	}
 
 	public static void initRenderers()

@@ -32,11 +32,8 @@ public class EnvTechPlugin
 		CombustionRecipes.addRecipe(new ItemStack(basalt, 4), 800,
 				new ItemStack(Blocks.OBSIDIAN), new ItemStack(Blocks.STONE, 2, 0));
 
-		SkyResourcesGuide.addPage("envtech", "guide.skyresources.misc", "Environmental Tech Support",
-				new ItemStack(alabaster),
-				"Sky Resources provides for ways to get Environmental Tech stone types. "
-						+ "\n \n <recipe,,environmentaltech:alabaster:0> , <recipe,,environmentaltech:hardened_stone:0> , and <recipe,,environmentaltech:basalt:0>"
-						+ "  are obtainable. ");
+		SkyResourcesGuide.addPage("envtech", "guide.skyresources.misc",
+				new ItemStack(alabaster));
 	}
 
 	public static void initRenderers()

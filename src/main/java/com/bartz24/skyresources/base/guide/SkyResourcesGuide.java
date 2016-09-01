@@ -5,6 +5,7 @@ import java.util.List;
 
 import joptsimple.internal.Strings;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.translation.I18n;
 
 public class SkyResourcesGuide
 {
@@ -17,7 +18,7 @@ public class SkyResourcesGuide
 		guidePages = new ArrayList<GuidePage>();
 		blankButtonTypes = new ArrayList<GuidePageButton>();
 	}
-	
+
 	public static List<String> getCategories()
 	{
 		List<String> cats = new ArrayList<String>();
@@ -39,22 +40,25 @@ public class SkyResourcesGuide
 		}
 		return null;
 	}
+
 	public static List<GuidePage> getPages(String category, String filter)
 	{
-		if(Strings.isNullOrEmpty(category) && Strings.isNullOrEmpty(filter.trim()))
+		if (Strings.isNullOrEmpty(category) && Strings.isNullOrEmpty(filter.trim()))
 			return guidePages;
 		List<GuidePage> pages = new ArrayList<GuidePage>();
 		for (GuidePage p : guidePages)
 		{
-			if ((category == null || p.pageCategory.equals(category)) && (Strings.isNullOrEmpty(filter.trim()) || p.pageDisplay.toLowerCase().contains(
-					filter.trim().toLowerCase())))
+			if ((category == null || p.pageCategory.equals(category))
+					&& (Strings.isNullOrEmpty(filter.trim())
+							|| p.pageDisplay.toLowerCase().contains(filter.trim().toLowerCase())))
 				pages.add(p);
 		}
 		return pages;
 	}
+
 	public static List<GuidePage> getPages(String category)
 	{
-		if(Strings.isNullOrEmpty(category))
+		if (Strings.isNullOrEmpty(category))
 			return guidePages;
 		List<GuidePage> pages = new ArrayList<GuidePage>();
 		for (GuidePage p : guidePages)
@@ -64,10 +68,22 @@ public class SkyResourcesGuide
 		}
 		return pages;
 	}
-	
-	public static void addPage(String id, String category, String display, ItemStack displayStack, String pageInfo)
+
+	public static void addPage(String id, String category, ItemStack displayStack)
 	{
-		guidePages.add(new GuidePage(id, category, display, displayStack, pageInfo));
+		String base = category + "." + id;
+
+		guidePages.add(new GuidePage(id, category,
+				I18n.translateToLocal(base + ".title").replace("\\n", "\n"), displayStack,
+				I18n.translateToLocal(base + ".text").replace("\\n", "\n")));
+	}
+
+	public static void addPage(String id, String category, ItemStack displayStack, String info)
+	{
+		String base = category + "." + id;
+
+		guidePages.add(new GuidePage(id, category,
+				I18n.translateToLocal(base + ".title").replace("\\n", "\n"), displayStack, info));
 	}
 
 	public static void addButtonType(GuidePageButton button)
