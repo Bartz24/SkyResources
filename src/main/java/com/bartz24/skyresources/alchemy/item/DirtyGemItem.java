@@ -60,15 +60,4 @@ public class DirtyGemItem extends Item
 	{
 		return names;
 	}
-
-	@Override
-	public String getItemStackDisplayName(ItemStack stack)
-	{
-		String base = ("" + I18n.translateToLocal(
-				"name.skyresources.gem." + ModItems.gemList.get(stack.getMetadata()).name)).trim();
-
-		String type = ("" + I18n.translateToLocal("name.skyresources.dirty")).trim();
-
-		return type + " " + base;
-	}
 }
