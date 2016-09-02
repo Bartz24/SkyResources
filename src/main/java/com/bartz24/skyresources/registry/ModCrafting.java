@@ -392,6 +392,8 @@ public class ModCrafting
 
 		for (int i = 0; i < ModItems.gemList.size(); i++)
 		{
+			if(ConfigOptions.allowAllGemTypes || OreDictionary.getOres("gem" + RandomHelper
+					.capatilizeString(ModItems.gemList.get(i).name)).size() > 0)
 			RockGrinderRecipes.addRecipe(new ItemStack(ModItems.dirtyGem, 1, i), false,
 					Blocks.STONE.getDefaultState(), ModItems.gemList.get(i).rarity);
 		}
