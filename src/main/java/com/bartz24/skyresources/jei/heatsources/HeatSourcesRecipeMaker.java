@@ -21,7 +21,7 @@ public class HeatSourcesRecipeMaker
 			IBlockState block = key;
 			int val = (Integer) HeatSources.getHeatSources().get(key);
 			HeatSourcesRecipeJEI addRecipe = new HeatSourcesRecipeJEI(
-					block.getBlock().getLocalizedName(), val);
+					block, val);
 			recipes.add(addRecipe);
 		}
 
