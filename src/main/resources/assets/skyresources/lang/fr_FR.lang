@@ -25,7 +25,6 @@ item.skyresources.sandstoneInfusionStone.name=Pierre d'infusion en grès
 item.skyresources.redSandstoneInfusionStone.name=Pierre d'infusion en grès rouge
 item.skyresources.alchemicalInfusionStone.name=Pierre d'infusion alchimique
 item.skyresources.crystalFluidBucket.name=Seau de cristal liquide
-item.skyresources.metalCrystal.name=Éclat de cristal
 item.skyresources.stoneGrinder.name=Concasseur en pierre
 item.skyresources.ironGrinder.name=Concasseur en fer
 item.skyresources.diamondGrinder.name=Concasseur en diamant
@@ -130,66 +129,64 @@ container.skyresources.darkMatterWarper=Déformeur de matière noire
 container.skyresources.endPortalCore=Noyau de portail de l'End
 container.skyresources.lifeInfuser=Infuseur de vie
 
-name.skyresources.metal.iron=Fer
-name.skyresources.metal.gold=Or
-name.skyresources.metal.copper=Cuivre
-name.skyresources.metal.tin=Étain
-name.skyresources.metal.silver=Argent
-name.skyresources.metal.zinc=Zinc
-name.skyresources.metal.nickel=Nickel
-name.skyresources.metal.platinum=Platine
-name.skyresources.metal.aluminum=Aluminium
-name.skyresources.metal.lead=Plomb
-name.skyresources.metal.mercury=Mercure
-name.skyresources.metal.quartz=Quartz
-name.skyresources.metal.cobalt=Cobalt
-name.skyresources.metal.ardite=Ardite
-name.skyresources.metal.adamantine=Adamantine
-name.skyresources.metal.coldiron=Fer froid
-name.skyresources.metal.osmium=Osmium
-name.skyresources.metal.lapis=Lapis-lazuli
-name.skyresources.metal.draconium=Draconium
+item.skyresources.metalCrystal.iron.name=Éclat de cristal de fer
+item.skyresources.metalCrystal.gold.name=Éclat de cristal d'or
+item.skyresources.metalCrystal.copper.name=Éclat de cristal de cuivre
+item.skyresources.metalCrystal.tin.name=Éclat de cristal d'étain
+item.skyresources.metalCrystal.silver.name=Éclat de cristal d'argent
+item.skyresources.metalCrystal.zinc.name=Éclat de cristal de zinc
+item.skyresources.metalCrystal.nickel.name=Éclat de cristal de nickel
+item.skyresources.metalCrystal.platinum.name=Éclat de cristal de platine
+item.skyresources.metalCrystal.aluminum.name=Éclat de cristal d'aluminium
+item.skyresources.metalCrystal.lead.name=Éclat de cristal de plomb
+item.skyresources.metalCrystal.mercury.name=Éclat de cristal de mercure
+item.skyresources.metalCrystal.quartz.name=Éclat de cristal de quartz
+item.skyresources.metalCrystal.cobalt.name=Éclat de cristal de cobalt
+item.skyresources.metalCrystal.ardite.name=Éclat de cristal d'ardite
+item.skyresources.metalCrystal.adamantine.name=Éclat de cristal d'adamantine
+item.skyresources.metalCrystal.coldiron.name=Éclat de cristal de fer froid
+item.skyresources.metalCrystal.osmium.name=Éclat de cristal d'osmium
+item.skyresources.metalCrystal.lapis.name=Éclat de cristal de lapis-lazuli
+item.skyresources.metalCrystal.draconium.name=Éclat de cristal de draconium
 
-name.skyresources.gem.emerald=Émeraude
-name.skyresources.gem.ruby=Rubis
-name.skyresources.gem.peridot=Péridot
-name.skyresources.gem.sapphire=Saphir
-name.skyresources.gem.redGarnet=Grenat rouge
-name.skyresources.gem.yellowGarnet=Grenat jaune
-name.skyresources.gem.apatite=Apatite
-name.skyresources.gem.amber=Ambre
-name.skyresources.gem.lepidolite=Lépidolite
-name.skyresources.gem.malachite=Malachite
-name.skyresources.gem.onyx=Onyx
-name.skyresources.gem.moldavite=Moldavite
-name.skyresources.gem.agate=Agate
-name.skyresources.gem.opal=Opale
-name.skyresources.gem.amethyst=Améthyste
-name.skyresources.gem.jasper=Jaspe
-name.skyresources.gem.aquamarine=Aigue-marine
-name.skyresources.gem.heliodor=Héliodore
-name.skyresources.gem.turquoise=Turquoise
-name.skyresources.gem.moonstone=Pierre de lune
-name.skyresources.gem.morganite=Morganite
-name.skyresources.gem.carnelian=Cornaline
-name.skyresources.gem.beryl=Béryl
-name.skyresources.gem.goldenBeryl=Béryl doré
-name.skyresources.gem.citrine=Citrine
-name.skyresources.gem.indicolite=Indigolite
-name.skyresources.gem.garnet=Grenat
-name.skyresources.gem.topaz=Topaze
-name.skyresources.gem.ametrine=Amétrine
-name.skyresources.gem.tanzanite=Tanzanite
-name.skyresources.gem.violetSapphire=Saphir violet
-name.skyresources.gem.alexandrite=Alexandrite
-name.skyresources.gem.blueTopaz=Topaze bleue
-name.skyresources.gem.spinel=Spinelle
-name.skyresources.gem.iolite=Iolite
-name.skyresources.gem.blackDiamond=Diamant noir
-name.skyresources.gem.chaos=Chaos
-name.skyresources.gem.enderEssence=Essence de l'Ender
-
-name.skyresources.dirty=Impur
+item.skyresources.dirtyGem.emerald.name=Émeraude impure
+item.skyresources.dirtyGem.ruby.name=Rubis impur
+item.skyresources.dirtyGem.peridot.name=Péridot impur
+item.skyresources.dirtyGem.sapphire.name=Saphir impur
+item.skyresources.dirtyGem.redGarnet.name=Grenat rouge impur
+item.skyresources.dirtyGem.yellowGarnet.name=Grenat jaune impur
+item.skyresources.dirtyGem.apatite.name=Apatite impure
+item.skyresources.dirtyGem.amber.name=Ambre impur
+item.skyresources.dirtyGem.lepidolite.name=Lépidolite impure
+item.skyresources.dirtyGem.malachite.name=Malachite impure
+item.skyresources.dirtyGem.onyx.name=Onyx impur
+item.skyresources.dirtyGem.moldavite.name=Moldavite
+item.skyresources.dirtyGem.agate.name=Agate impure
+item.skyresources.dirtyGem.opal.name=Opale impure
+item.skyresources.dirtyGem.amethyst.name=Améthyste impure
+item.skyresources.dirtyGem.jasper.name=Jaspe impur
+item.skyresources.dirtyGem.aquamarine.name=Aigue-marine impure
+item.skyresources.dirtyGem.heliodor.name=Héliodore impur
+item.skyresources.dirtyGem.turquoise.name=Turquoise impure
+item.skyresources.dirtyGem.moonstone.name=Pierre de lune impure
+item.skyresources.dirtyGem.morganite.name=Morganite impure
+item.skyresources.dirtyGem.carnelian.name=Cornaline impure
+item.skyresources.dirtyGem.beryl.name=Béryl impur
+item.skyresources.dirtyGem.goldenBeryl.name=Béryl doré impur
+item.skyresources.dirtyGem.citrine.name=Citrine impure
+item.skyresources.dirtyGem.indicolite.name=Indigolite impure
+item.skyresources.dirtyGem.garnet.name=Grenat impur
+item.skyresources.dirtyGem.topaz.name=Topaze impure
+item.skyresources.dirtyGem.ametrine.name=Amétrine impure
+item.skyresources.dirtyGem.tanzanite.name=Tanzanite impure
+item.skyresources.dirtyGem.violetSapphire.name=Saphir violet impur
+item.skyresources.dirtyGem.alexandrite.name=Alexandrite impure
+item.skyresources.dirtyGem.blueTopaz.name=Topaze bleue impure
+item.skyresources.dirtyGem.spinel.name=Spinelle impure
+item.skyresources.dirtyGem.iolite.name=Iolite impure
+item.skyresources.dirtyGem.blackDiamond.name=Diamant noir impur
+item.skyresources.dirtyGem.chaos.name=Chaos impur
+item.skyresources.dirtyGem.enderEssence.name=Essence de l'Ender impure
 
 itemGroup.skyresources.tabMain=Sky Resources:Principal
 itemGroup.skyresources.tabAlchemy=Sky Resources:Alchimie
@@ -243,74 +240,133 @@ guide.skyresources.stage3=Étape 3
 guide.skyresources.misc=Divers
 
 guide.skyresources.stage1.basics.title=Les bases
-guide.skyresources.stage1.basics.text=Bienvenue dans Sky Resources ! \n\n Pour commencer, tapez /platform create (type optionnel) pour votre propre île. <link,Commandes_supplémentaires,minecraft:command_block:0,commands> \n Selon la plateforme où vous apparaîtrez, choisissez l'une des plateformes pour commencer. \n <link,Plateforme_de_sable,minecraft:sand:1,sandPlatform> \n <link,Plateforme_de_neige,minecraft:snow:0,snowPlatform> \n <link,Plateforme_d'herbe,minecraft:grass:0,grassPlatform> \n Si vous n'avez pas JEI, je ne sais pas comment vous vous sortirez de MC moddé. Je ne donne pas d'information sur l'artisanat dans ce guide, si c'est déjà dans JEI. \n Notez que certaines recettes peuvent être inexactes ou inexistantes à cause de MineTweaker/CraftTweaker.
+guide.skyresources.stage1.basics.text=Bienvenue dans Sky Resources ! \n \n Pour commencer, tapez /platform create (type optionnel) pour votre propre île. <link,Commandes_supplémentaires,minecraft:command_block:0,commands> \n Selon la plateforme où vous apparaîtrez, choisissez l'une des plateformes pour commencer. \n <link,Plateforme_de_sable,minecraft:sand:1,sandPlatform> \n <link,Plateforme_de_neige,minecraft:snow:0,snowPlatform> \n <link,Plateforme_d'herbe,minecraft:grass:0,grassPlatform> \n Si vous n'avez pas JEI, je ne sais pas comment vous vous sortirez de MC moddé. Je ne donne pas d'information sur l'artisanat dans ce guide, si c'est déjà dans JEI. \n Notez que certaines recettes peuvent être inexactes ou inexistantes à cause de MineTweaker/CraftTweaker.
+
 guide.skyresources.stage1.sandPlatform.title=Plateforme de sable
 guide.skyresources.stage1.sandPlatform.text=Pour commencer sur la plateforme de sable, vous aurez besoin de quelques <recipe,,skyresources:AlchemyItemComponent:0> . \n Puis il vous faudra une <recipe,,skyresources:AlchemyItemComponent:1> . Je vous recommande de toujours garder 1 cactus si vous voulez progresser. En utilisant un <recipe,,skyresources:CactusCuttingKnife:0> , faites quelques <recipe,,skyresources:CactusFruit:0> , qui ont une haute saturation pour se régénérer. \n Il faut une <recipe,,skyresources:RedSandstoneInfusionStone:0> pour faire de <link,l'Infusion_vitale,skyresources:AlchemicalInfusionStone:0,lifeInfusion> . \n En utilisant <link,l'Infusion_vitale,skyresources:AlchemicalInfusionStone:0,lifeInfusion> , vous pouvez dupliquer les <recipe,,minecraft:cactus:0> . Vous pouvez aussi l'utiliser sur un <recipe,,skyresources:CactusFruitNeedle:0> pour obtenir une <recipe,,minecraft:sapling:4> . Utilisez également <link,l'Infusion_vitale,skyresources:AlchemicalInfusionStone:0,lifeInfusion> pour obtenir de la <recipe,,minecraft:dirt:1> . \n \n <image,Guide_organigramme_de_la_plateforme_de_sable,minecraft:cactus:0,skyresources:textures/guide/sandFlowchart.png>
+
 guide.skyresources.stage1.lifeInfusion.title=Infusion vitale
 guide.skyresources.stage1.lifeInfusion.text=Pour faire de l'infusion vitale, vous avez besoin de quelques éléments. \n D'abord, il vous faut une pierre d'infusion. Il en existe 3 par défaut. \n <recipe,,skyresources:RedSandstoneInfusionStone:0> <recipe,,skyresources:SandstoneInfusionStone:0> <recipe,,skyresources:AlchemicalInfusionStone:0> \n Ensuite, cherchez une recette dans JEI, et mettez les objets dans votre autre main (la case avec une icône de bouclier). Tenez la pierre d'infusion dans votre main principale et faites un clic droit sur le bloc indiqué dans JEI pour obtenir votre résultat.
+
 guide.skyresources.stage1.snowPlatform.title=Plateforme de neige
 guide.skyresources.stage1.snowPlatform.text=Pour commencer sur la plateforme de neige, vous aurez besoin de quelques <recipe,,minecraft:snowball:0> et d'une <recipe,,minecraft:pumpkin:0> . \n Afin d'obtenir des <recipe,,minecraft:snowball:0> , faites shift clic droit sur la neige, et n'utilisez pas la deuxième citrouille, car elle est nécessaire pour plus tard. \n Faites un golem de neige et assurez-vous qu'il ne tombe pas du bord ou qu'il meure. Obtenez davantage de neige du golem. \n Ensuite, vous devez fabriquer un <link,Mini_congélateur,skyresources:MiniFreezer:0,miniFreezer> , qui est utilisé pour faire des  <recipe,,skyresources:HeavySnowball:0> . \n Les <recipe,,skyresources:HeavySnowball:0> peuvent être utilisées comme projectiles, car elles font des dégâts. \n Faites une usine à monstres en utilisant de la neige, ou des blocs de <recipe,,skyresources:HeavySnow:0> , pour obtenir de la chair putréfiée et des os. \n Des <recipe,,skyresources:FleshySnowNugget:0> peuvent être faites en tant que source de nourriture. \n L'usine à monstres est aussi utilisée pour faire de la <recipe,,skyresources:HeavySnow2:0> , qui peut ensuite être congelée en <recipe,,minecraft:dirt:1> . \n Il faut un autre bloc de <recipe,,minecraft:dirt:1> pour faire une <recipe,,minecraft:sapling:1> . \n \n <image,Guide_organigramme_de_la_plateforme_de_neige,skyresources:HeavySnow:0,skyresources:textures/guide/snowFlowchart.png>
+
 guide.skyresources.stage1.miniFreezer.title=Mini congélateur
 guide.skyresources.stage1.miniFreezer.text=Le <recipe,,skyresources:MiniFreezer:0> est le premier niveau des congélateurs. Le <link,Congélateur_en_fer,skyresources:IronFreezer:0,ironFreezer> est le niveau suivant. \n Ce congélateur tourne à 0.25x la vitesse du <link,Congélateur_en_fer,skyresources:IronFreezer:0,ironFreezer> . 1x est la vitesse normale, affichée dans JEI. Ce congélateur ne peut aussi congeler qu'une pile d'objets à la fois. \n Les objets sont éjectés par le devant, ou dans un inventaire adjacent. \n Un congélateur n'éjecte pas dans des congélateurs adjacents, à moins que l'autre congélateur ne soit devant lui.
+
 guide.skyresources.stage1.grassPlatform.title=Plateforme d'herbe
-guide.skyresources.stage2.combustionHeater.title=Chaudière à combustion
 guide.skyresources.stage1.grassPlatform.text=La plateforme d'herbe saute l'étape 1, alors commencez à l'étape 2. \n Cela vient du fait que cette plateforme fournit directement de la terre et un arbre. \n Puisqu'elle saute l'étape 1, elle n'est pas utilisable en tant que plateforme de départ aléatoire. Pour l'obtenir, vous devez définir le type à "herbe" en créant ou réinitialisant votre plateforme.
-guide.skyresources.stage2.combustionHeater.text=Il existe 3 types par défaut. La <recipe,,skyresources:CombustionHeater:0> , la <recipe,,skyresources:CombustionHeater:1> , et la <link,Chaudière_à_combustion_à_moteur,skyresources:CombustionHeater:2,poweredCombustion> font partie des structures de combustion multibloc. \n Pour mettre en place la structure, placez la chaudière, gardez un espace vide au-dessus, et entourez cet espace vide avec des blocs valides pour ce type de chaudière. \n \n <image,Mise_en_place_de_la_chaudière_en_bois,skyresources:CombustionHeater:0,skyresources:textures/guide/combustionWood.png> \n La version en bois nécessite que les autres blocs soient faits de matériaux en bois. Elle a une température maximum de 100°C. \n Les carburants avec des temps de combustion relativement grands ne fonctionnent pas dans la chaudière en bois. \n \n <image,Mise_en_place_de_la_chaudière_en_fer,skyresources:CombustionHeater:1,skyresources:textures/guide/combustionIron.png> \n La version en fer nécessite que les autres blocs soient faits de matériaux en pierre ou en fer. Elle a une température maximum de 1538°C. \n Les carburants avec des temps de combustion extrêmement élevés ne fonctionnent pas dans la chaudière en fer. \n \n La procédure d'utilisation est la suivante : \n jetez un lot d'objets dans le centre (NOTE : SEULEMENT 1 LOT). \n Fournissez du carburant à la chaudière pour atteindre une température suffisante. \n Donnez à la chaudière un signal de redstone (ex : bouton). Si une explosion se produit, ça a fonctionné ! \n \n Les <recipe,,minecraft:snowball:0> peuvent être faites dans la <recipe,,skyresources:CombustionHeater:1> si vous n'avez pas commencé sur la plateforme de neige. \n \n Les <recipe,,minecraft:cactus:0> peuvent être faits dans la <recipe,,skyresources:CombustionHeater:1> si vous n'avez pas commencé sur la plateforme de sable. \n La <link,Chaudière_à_combustion_à_moteur,skyresources:CombustionHeater:2,poweredCombustion> est une version plus tard dans le jeu.
+
+guide.skyresources.stage2.combustionHeater.title=Chaudière à combustion
+guide.skyresources.stage2.combustionHeater.text=Il existe 3 types par défaut. La <recipe,,skyresources:CombustionHeater:0> , la <recipe,,skyresources:CombustionHeater:1> , et la <link,Chaudière_à_combustion_à_moteur,skyresources:CombustionHeater:2,poweredCombustion> font partie des structures de combustion multibloc. \n Pour mettre en place la structure, placez la chaudière, gardez un espace vide au-dessus, et entourez cet espace vide avec des blocs valides pour ce type de chaudière. \n \n <image,Mise_en_place_de_la_chaudière_en_bois,skyresources:CombustionHeater:0,skyresources:textures/guide/combustionWood.png> \n La version en bois nécessite que les autres blocs soient faits de matériaux en bois. Elle a une température maximum de 100°C. \n Les carburants avec des temps de combustion relativement grands ne fonctionnent pas dans la chaudière en bois. \n \n <image,Mise_en_place_de_la_chaudière_en_fer,skyresources:CombustionHeater:1,skyresources:textures/guide/combustionIron.png> \n La version en fer nécessite que les autres blocs soient faits de matériaux en pierre ou en fer. Elle a une température maximum de 1538°C. \n Les carburants avec des temps de combustion extrêmement élevés ne fonctionnent pas dans la chaudière en fer. \n \n Un <recipe,,minecraft:dropper:0> fonctionne bien pour la <recipe,,skyresources:CombustionHeater:1> . \n \n La procédure d'utilisation est la suivante : \n jetez un lot d'objets dans le centre (NOTE : SEULEMENT 1 LOT). \n Fournissez du carburant à la chaudière pour atteindre une température suffisante. \n Donnez à la chaudière un signal de redstone (ex : bouton). Si une explosion se produit, ça a fonctionné ! \n \n Les <recipe,,minecraft:snowball:0> peuvent être faites dans la <recipe,,skyresources:CombustionHeater:1> si vous n'avez pas commencé sur la plateforme de neige. \n \n Les <recipe,,minecraft:cactus:0> peuvent être faits dans la <recipe,,skyresources:CombustionHeater:1> si vous n'avez pas commencé sur la plateforme de sable. \n La <link,Chaudière_à_combustion_à_moteur,skyresources:CombustionHeater:2,poweredCombustion> est une version plus tard dans le jeu.
+
 guide.skyresources.stage2.waterExtractor.title=Extracteur d'eau
 guide.skyresources.stage2.waterExtractor.text=L' <recipe,,skyresources:WaterExtractor:0> est utilisé pour stocker, extraire, et placer et insérer de l'eau. Il peut contenir 4000mB d'eau (4 seaux). \n Pour extraire de l'eau depuis des blocs, maintenez clic droit un peu de temps et relâchez. Il peut aussi prélever des blocs de sources d'eau. \n Pour placer de l'eau, vous devez avoir 1000mB d'eau, et faites shift clic droit pour la placer dans le monde. \n Pour insérer de l'eau dans des blocs, vous devez avoir la quantité requise, et faites un clic droit sur le bloc. \n Toutes les recettes pour extraire et insérer sont dans JEI. Regardez l'utilisation de l' <recipe,,skyresources:WaterExtractor:0> .
+
 guide.skyresources.stage2.plantMatter.title=Compost
 guide.skyresources.stage2.plantMatter.text=Le <recipe,,skyresources:BaseItemComponent:2> est surtout utilisé pour fabriquer de la <recipe,,minecraft:dirt:0> . \n Il agit aussi comme de la poudre d'os.
+
 guide.skyresources.stage2.dirtFurnace.title=Fourneau en terre
 guide.skyresources.stage2.dirtFurnace.text=Utilisez le <recipe,,skyresources:DirtFurnace:0> pour avoir accès à des torches et d'autres objets à cuire, sans avoir un générateur pierres.
+
 guide.skyresources.stage2.lavaBlaze.title=Lave/bloc de poudre de Blaze
 guide.skyresources.stage2.lavaBlaze.text=Le <recipe,,skyresources:BlazePowderBlock:0> est utilisé pour créer de la lave. \n Pour obtenir de la lave, placez le bloc de poudre de Blazeau-dessus d'une <link,source_de_chaleur,minecraft:torch:0,heatSources> . \n Notez que vous aurez intérêt à placer votre première source de lave pour faire un générateur de pierres.
+
 guide.skyresources.stage2.heatSources.title=Sources de chaleur
 guide.skyresources.stage2.heatSources.text=Les sources de chaleur sont utilisées pour chauffer de nombreux blocs fonctionnels. \n Les sources de chaleur vont sous ces blocs : \n <link,Creuset,skyresources:Crucible:0,crucible> \n <link,Récipient_de_purification,skyresources:PurificationVessel:0,purificationVessel> \n <link,Condensateur_alchimique,skyresources:AlchemicalCondenser:0,alchemicalCondenser> \n <link,Bloc_de_poudre_de_Blaze,skyresources:BlazePowderBlock:0,lavaBlaze> \n \n Les sources de chaleur sont affichées dans JEI, mais pour y accéder, vous devez parcourir les catégories en haut, en cliquant sur la catégorie actuelle affichée puis en cliquant sur gauche ou sur droite. \n De meilleures sources de chaleur font fonctionner plus vite les blocs mentionnés ci-dessus. \n \n <link,Liste_des_sources_de_chaleur_par_défaut,minecraft:torch:0,listHeatSources>
+
 guide.skyresources.stage2.listHeatSources.title=Liste des sources de chaleur
-guide.skyresources.stage2.listHeatSources.text=Sources de chaleur par défaut : \n <recipe,,minecraft:torch:0> \n <recipe,,minecraft:obsidian:0> \n <recipe,,minecraft:magma:0> \n Feu \n Lave stationnaire et coulante
+guide.skyresources.stage2.listHeatSources.text=Sources de chaleur par défaut : \n <recipe,,minecraft:torch:0> - 1 \n <recipe,,minecraft:obsidian:0> - 4 \n <recipe,,minecraft:magma:0> - 8 \n Feu - 7 \n Lave stationnaire et coulante - 3
+
 guide.skyresources.stage2.rockGrinder.title=Concasseur
 guide.skyresources.stage2.rockGrinder.text=Le concasseur permet au joueur de réduire les pierres en sable, et le grès en gravier, par défaut. \n Il en existe 3 par défaut, qui sont le <recipe,,skyresources:StoneGrinder:0> , le <recipe,,skyresources:IronGrinder:0> , et le <recipe,,skyresources:DiamondGrinder:0> . \n \n Le concasseur est également utilisé pour obtenir des gemmes impures pour la <link,production_de_gemmes,minecraft:emerald:0,gemProduction> .
+
 guide.skyresources.stage2.metalCreation.title=Création de métal
 guide.skyresources.stage2.metalCreation.text=Pour débuter dans la création de métal, il vous faudra des <recipe,,skyresources:MetalCrystal:0> pour le fer, à travers  la <link,combustion,skyresources:CombustionHeater:0,combustionHeater> . \n Le reste du processus est fait en utilisant les blocs suivants (avant d'avoir un seau) : \n <link,Creuset,skyresources:Crucible:0,crucible> \n <link,Dropper_à_fluide,skyresources:FluidDropper:0,fluidDropper> \n <link,Condensateur_alchimique,skyresources:AlchemicalCondenser:0,alchemicalCondenser> \n \n Après avoir obtenu assez de fer pour faire un seau, vous pouvez améliorer le processus avec ces éléments : \n <link,Récipient_de_purification,skyresources:PurificationVessel:0,purificationVessel> \n <link,Cristal_fluide_pur,skyresources:IronCrystalFluidBlock:0,cleanCrystal> \n \n Pour la création de métal de l'étape 3, vous aurez besoin d'un <link,Concentrateur,skyresources:Concentrator:0,concentrator> .
+
 guide.skyresources.stage2.crucible.title=Creuset
 guide.skyresources.stage2.crucible.text=Le <recipe,,skyresources:Crucible:0> est utilisé pour créer du cristal fluide impur à partir d'éclats de cristal. \n Il a besoin d'une <link,source_de_chaleur,minecraft:torch:0,heatSources> en-dessous pour fonctionner. \n Jetez les éclats de cristal dedans et il les changera en cristal fluide impur. \n Le cristal fluide impur peut être condensé en utilisant le <link,Condensateur_alchimique,skyresources:AlchemicalCondenser:0,alchemicalCondenser> , mais cela prend 10x plus longtemps qu'avec du fluide pur. Placez le fluide de cristal impur dans le <link,Récipient_de_purification,skyresources:PurificationVessel:0,purificationVessel> pour obtenir du <link,Cristal_fluide_pur,skyresources:IronCrystalFluidBlock:0,cleanCrystal> . \n Le <recipe,,skyresources:Crucible:0> produit en courant de sortie, une valeur de comparateur basée sur la quantité actuelle d'objets solides restants.
+
 guide.skyresources.stage2.fluidDropper.title=Dropper à fluide
 guide.skyresources.stage2.fluidDropper.text=Le <recipe,,skyresources:FluidDropper:0> extrait des fluides à partir de réservoirs adjacents et en place une source sous lui quand il a une quantité équivalente à 1 seau. \n C'est utile pour sortir les fluides du <link,Creuset,skyresources:Crucible:0,crucible> avant d'avoir un seau.
+
 guide.skyresources.stage2.alchemicalCondenser.title=Condensateur alchimique
-guide.skyresources.stage2.alchemicalCondenser.text=Le <recipe,,skyresources:AlchemicalCondenser:0> est utilisé pour changer du cristal fluide (impur ou pur) en lingots. \n Le cristal fluide impur prend 10x plus longtemps que le <link,Cristal_fluide_pur,skyresources:IronCrystalFluidBlock:0,cleanCrystal> . \n Il a besoin d'une <link,source_de_chaleur,minecraft:torch:0,heatSources> en-dessous pour fonctionner. \n Par ailleurs, le fluide ne peut pas couler et ne doit pas bouger. \n Les fluides ne se condenseront pas en lingots s'il n'existe pas dans le dictionnaire des minerais.
+guide.skyresources.stage2.alchemicalCondenser.text=Le <recipe,,skyresources:AlchemicalCondenser:0> est utilisé pour changer du cristal fluide (impur ou pur) en lingots. \n Placez une source fluide au-dessus le condensateur pour la changer en lingo. \n Le cristal fluide impur prend 10x plus longtemps que le <link,Cristal_fluide_pur,skyresources:IronCrystalFluidBlock:0,cleanCrystal> . \n Il a aussi besoin d'une <link,source_de_chaleur,minecraft:torch:0,heatSources> en-dessous pour fonctionner. \n Le fluide ne peut pas couler et ne doit pas bouger. \n Les fluides ne se condenseront PAS en lingots s'ils n'existent pas dans le dictionnaire des minerais.
+
 guide.skyresources.stage2.purificationVessel.title=Récipient de purification
 guide.skyresources.stage2.purificationVessel.text=Le <recipe,,skyresources:PurificationVessel:0> est utilisé pour changer le cristal fluide impur en <link,Cristal_fluide_pur,skyresources:IronCrystalFluidBlock:0,cleanCrystal> . \n Il a besoin d'une <link,source_de_chaleur,minecraft:torch:0,heatSources> en-dessous pour fonctionner. \n Ensuite, placez le fluide à l'intérieur pour qu'il le convertisse.
+
 guide.skyresources.stage2.cleanCrystal.title=Cristal fluide pur
 guide.skyresources.stage2.cleanCrystal.text=Le cristal fluide pur est utilisé pour obtenir davantage d'éclats de cristal, et peut être condensé sous forme de lingots avec le <link,Condensateur_alchimique,skyresources:AlchemicalCondenser:0,alchemicalCondenser> . \n Pour qu'il fonctionne, le fluide doit être immobile et ne doit pas couler, et ne peut pas avoir un <link,Condensateur_alchimique,skyresources:AlchemicalCondenser:0,alchemicalCondenser> en-dessous. \n Tant que ces conditions sont vraies, des éclats de cristal seront produits à intervalle aléatoire, et cela provoque un risque que le fluide s'épuise et disparaisse. Des fluides plus rares produisent moins de cristaux, moins vite, et ont une plus grande chance de s'épuiser et disparaître. \n Utilisez ce dispositif pour mettre en place une usine à éclats de cristal.
+
 guide.skyresources.stage2.earlyMetalSetup.title=Dispositif de métal primitif avant les seaux (SPOILERS)
 guide.skyresources.stage2.earlyMetalSetup.text=Cela illustre un dispositif semi-automatisé. \n Un <link,Creuset,skyresources:Crucible:0,crucible> attaché à 2  <link,Droppers_à_fluide,skyresources:FluidDropper:0,fluidDropper> , qui laisse tomber le fluide impur sur un <link,Condensateur_alchimique,skyresources:AlchemicalCondenser:0,alchemicalCondenser> . \n <image,Voir_le_dispositif,skyresources:MetalCrystal:0,skyresources:textures/guide/earlyMetalSetup.png>
+
 guide.skyresources.stage2.gemProduction.title=Production de gemmes
 guide.skyresources.stage2.gemProduction.text=Les gemmes comme les émeraudes, les rubis, les saphirs, les péridots, et les grenats rouges et jaunes s'obtiennent de cette manière. \n D'abord, utilisez le <link,Concasseur,skyresources:StoneGrinder:0,rockGrinder> sur de la pierre pour obtenir des gemmes impures comme <recipe,,skyresources:DirtyGem:0> . Elles ont un certain pourcentage de chance d'apparaître. \n Ensuite, faites un clic droit avec les gemmes impures sur un <recipe,,minecraft:cauldron:0> rempli d'eau pour obtenir des gemmes pures et utilisables. Cela ne fonctionnera pas si les gemmes pures n'existent pas dans le dictionnaire des minerais.
+
 guide.skyresources.stage3.alchemicalItems.title=Objets alchimiques
 guide.skyresources.stage3.alchemicalItems.text=Il y a actuellement 4 objets alchimiques utilisés pour de l'artisanat avancé. \n <recipe,,skyresources:AlchemyItemComponent:3> \n <recipe,,skyresources:AlchemyItemComponent:2> \n <recipe,,skyresources:AlchemyItemComponent:4> \n <recipe,,skyresources:AlchemyItemComponent:5> \n \n Ils sont utilisés pour le <link,Concentrateur,skyresources:Concentrator:0,concentrator> et la <link,Pierre_d'infusion_alchimique,skyresources:AlchemicalInfusionStone:0,lifeInfusion> .
+
 guide.skyresources.stage3.concentrator.title=Concentrateur
 guide.skyresources.stage3.concentrator.text=Le <recipe,,skyresources:Concentrator:0> utilise un procédé de création de métal avancé qui change les objets jetés dessus en un bloc de minerai . \n Il a une température maximum de 1538°C et les carburants avec des temps de combustion extrêmement élevés ne fonctionnent pas dans la chaleur en fer. \n Pour fabriquer un minerai, jeter les objets requis sur le Concentrateur, et déposez une <recipe,,skyresources:CompressedStone:0> (normalement) dessous pour la changer en minerai, en 500 ticks.
+
 guide.skyresources.stage3.ironFreezer.title=Congélateur en fer
 guide.skyresources.stage3.ironFreezer.text=Le <recipe,,skyresources:IronFreezer:0> est le second niveau des congélateurs. \n Pour mettre en place le <recipe,,skyresources:IronFreezer:0> , placez deux de ces blocs verticalement afin de former le multibloc. \n Ce congélateur tourne à 1x la vitesse normale. Il peut congeler 3 piles d'objets à la fois. \n Les objets sont éjectés par le devant du bloc du bas, ou dans un inventaire adjacent au bloc du bas.
+
 guide.skyresources.stage3.poweredCombustion.title=Chaudière à combustion à moteur
 guide.skyresources.stage3.poweredCombustion.text=La <recipe,,skyresources:CombustionHeater:2> est le troisième niveau des chaudières à combustion. \n Cette chaudière a besoin de 800 RF/tick pendant qu'elle chauffe. Elle a une température maximum de 2750°C. \n Faites un clic droit dessus pour voir la consommation de RF et la température actuelles.
+
 guide.skyresources.stage3.poweredHeater.title=Chaudière à moteur
 guide.skyresources.stage3.poweredHeater.text=La <recipe,,skyresources:PoweredHeater:0> est une <link,source_de_chaleur,minecraft:torch:0,heatSources> . \n Elle a besoin de 120 RF/tick et d'un signal de redstone. \n Elle fournit une valeur de chaleur de 30. \n Faites un clic droit dessus pour voir la consommation de RF actuelle.
+
 guide.skyresources.stage3.nether.title=Le vide du Nether
 guide.skyresources.stage3.nether.text=Le Nether est maintenant un vide. Les portail du Nether sont liés à la même position qu'à la Surface. Le Nether ne fait plus 1/8 de la taille. \n Tous les matériaux normalement trouvés dans le Nether peuvent maintenant s'obtenir d'une autre manière. \n Les minerais du Nether s'obtiennent à travers la <link,Création_de_métal_du_Nether,skyresources:AdvancedCoolingCondenser:0,netherMetalCreation> . \n Les monstres du Nether peuvent être trouvés soit en les faisant apparaître normalement, soit en utilisant le <link,Déformeur_de_matière_noire,skyresources:DarkMatterWarper:0,dmWarper> .
+
 guide.skyresources.stage3.betterLava.title=Meilleure production de lave
 guide.skyresources.stage3.betterLava.text=Le <recipe,,skyresources:CompressedNetherrack:0> peut être utilisé pour faire de la lave en le plaçant dans un  <link,Creuset,skyresources:Crucible:0,crucible> .
+
 guide.skyresources.stage3.netherMetalCreation.title=Création de métal du Nether
 guide.skyresources.stage3.netherMetalCreation.text=Pour débuter dans la création de métal du Nether, vous aurez besoin d'obtenir l'éclat de cristal pour le métal que vous voulez à travers la <link,combustion,skyresources:CombustionHeater:1,combustionHeater> . \n Le reste du procédé est fait en utilisant les blocs suivants : \n <link,Creuset,skyresources:Crucible:0,crucible> \n <recipe,,skyresources:AdvancedCoolingCondenser:0> , qui agit comme le <link,Condensateur_alchimique,skyresources:AlchemicalCondenser:0,alchemicalCondenser> pour les métaux du Nether. \n <recipe,,skyresources:CoolingCrystallizer:0> , qui prend le cristal fondu et donne davantage d'éclats de cristal (placez-les sous le cristalliseur ou dans l'inventaire sous lui) .
+
 guide.skyresources.stage3.dmWarper.title=Déformeur de matière noire
 guide.skyresources.stage3.dmWarper.text=Le <recipe,,skyresources:DarkMatterWarper:0> est utilisé pour obtenir des monstres rares.  \n Il consomme <recipe,,skyresources:BaseItemComponent:5> pour fonctionner (requis toutes les 3 minutes) et affecte un cube de 8x8x8 autour du <recipe,,skyresources:DarkMatterWarper:0> . \n Il change les squelettes en wither squelettes, les pieuvres en Blazes, les araignées en araignées bleues, et cause des dégâts aux joueurs et aux animaux.
+
 guide.skyresources.stage3.end.title=L'End
 guide.skyresources.stage3.end.text=Le portail de l'End nécessite une structure multibloc. Les éléments suivants sont nécessaires : \n 1 <recipe,,skyresources:EndPortalCore:0> \n 4 <recipe,,minecraft:diamond_block:0> \n 4 <recipe,,minecraft:gold_block:0> \n 16 <recipe,,skyresources:DarkMatterBlock:0> \n 8 <recipe,,minecraft:end_bricks:0> \n 4 <recipe,,minecraft:glowstone:0> \n \n <image,Multiblock_Setup,skyresources:EndPortalCore:0,skyresources:textures/guide/endPortalSetup.png> \n Pour utiliser le portail, tenez-vous sur son noyau, et donnez au <recipe,,skyresources:EndPortalCore:0> au moins 16 <recipe,,minecraft:ender_eye:0> et une impulsion de redstone (bouton). \n \n *gl A ilfsiesrvh waenrsp si itaecv nda reyv edsroanug ehwn eht urturscte is valdi! *nl
+
 guide.skyresources.stage3.healthGem.title=Gemme de santé
-guide.skyresources.stage3.healthGem.text=La <recipe,,skyresources:ItemHealthGem:0> est utilisée pour augmenter la vie maximum et stocker de la santé pour l'utiliser dans l'<link,Infuseur_de_vie,skyresources:LifeInfuser:0,lifeInfuser> .\n Faites un shift clic droit pour infuser 2 vies (ou 1 coeur). Vous gagnerez 1 vie pour chaque 50 vies infusées (par défaut).
+guide.skyresources.stage3.healthGem.text=La <recipe,,skyresources:ItemHealthGem:0> est utilisée pour augmenter la vie maximum et stocker de la santé pour l'utiliser dans l'<link,Infuseur_de_vie,skyresources:LifeInfuser:0,lifeInfuser> . \n Faites un shift clic droit pour infuser 2 vies (ou 1 coeur). Vous gagnerez 1 vie pour chaque 50 vies infusées (par défaut).
+
 guide.skyresources.stage3.lifeInfuser.title=Infuseur de vie
 guide.skyresources.stage3.lifeInfuser.text=L' <recipe,,skyresources:LifeInfuser:0> est utilisé pour automatiser <link,L'Infusion_vitale,skyresources:AlchemicalInfusionStone:0,lifeInfusion> . \n L'Infuseur de vie a besoin d'une structure multibloc. Les éléments suivants sont nécessaires : \n 1 <recipe,,skyresources:LifeInfuser:0> \n 4 <recipe,,minecraft:log:0> (n'importe quel bois) \n 9 <recipe,,minecraft:leaves:0> (n'importe quelles feuilles) \n 8 <recipe,,minecraft:dirt:0> \n \n <image,Mise_en_place_du_multibloc,skyresources:LifeInfuser:0,skyresources:textures/guide/lifeInfuser.png> \n Notez que le bloc, deux blocs en-dessus du noyau, n'a pas d'importance, et que le noyau est au centre. \n Pour utiliser le portail, mettez une gemme de santé sur la droite, une pierre d'infusion au milieu, l'objet de l'autre main sur la gauche, placez le bloc en cours d'infusion sous le noyau, et donnez à ce dernier une impulsion de redstone (bouton). \n Vérifiez que la <link,Gemme_de_santé,skyresources:ItemHealthGem:0,healthGem> a assez de santé pour faire l'infusion.
+
 guide.skyresources.misc.commands.title=Commandes
 guide.skyresources.misc.commands.text=La commande /platform a plusieurs sous-commandes. \n create (int/string optionnel)<type> : Fait apparaître une nouvelle plateforme. Vous ne devez pas déjà être sur une île. \n invite <joueur> : Fait rejoindre votre île par un autre joueur. Le joueur ne peut pas déjà être sur une île. \n leave : Quitte votre île, vide votre inventaire, et vous ramène au point d'apparition. \n      (Si vous étiez la dernière personne de l'île, plus personne ne peut la revendiquer.) \n home : Téléporte le joueur sur son île. Il doit être au moins à {distance} blocs. \n spawn : Téléporte au point d'apparition (0, 0). \n reset (int/string optionnel)<type> : Remet la plateforme à zéro et vide l'inventaire du joueur. \n      (Si cela ne vide pas tout, soyez gentil et jetez le reste ? Peut-être ? Non recommandé à moins que tous les joueurs de cette île soient connectés) \n onechunk : Force à jouer dans un seul tronçon, sur une seule île. Remet aussi à zéro le tronçon d'apparition. \n guide : Ouvre le guide de Sky Resources. \n visit <joueur> : Permet de visiter l'île d'un autre joueur en mode spectateur.
+
 guide.skyresources.misc.minetweaker.title=Minetweaker/CraftTweaker
 guide.skyresources.misc.minetweaker.text=Pour du support sur Minetweaker/CraftTweaker, allez sur \n https://github.com/Bartz24/SkyResources/wiki/Minetweaker-Support
+
+guide.skyresources.misc.armorplus.title=Support de Armor Plus
+guide.skyresources.misc.armorplus.text=Sky Resources fournit des moyens d'obtenir des <recipe,,armorplus:lava_crystal:0> .
+
++guide.skyresources.misc.enderio.title=Support de Ender IO
+guide.skyresources.misc.enderio.text=Sky Resources fournit des moyens d'obtenir des <recipe,,enderio:itemBrokenSpawner:0> .
+
+guide.skyresources.misc.envtech.title=Support de Environmental Tech
+guide.skyresources.misc.envtech.text=Sky Resources fournit des moyens d'obtenir les types de pierre Environmental Tech. \n \n <recipe,,environmentaltech:alabaster:0> , <recipe,,environmentaltech:hardened_stone:0> , et <recipe,,environmentaltech:basalt:0> peuvent être obtenus.
+
+guide.skyresources.misc.forestry.title=Support de Forestry
+guide.skyresources.misc.forestry.text=Sky Resources fournit un moyen d'obtenir des <recipe,,forestry:beePrincessGE:0> et des <recipe,,forestry:beeDroneGE:0> . \n Cela se fait en fabriquant un <recipe,,skyresources:BeeAttractor:0> . \n L' <recipe,,skyresources:BeeAttractor:0> nécessite des RF et des <recipe,,forestry:fluid.seed.oil:0> . \n Toutes les 10 secondes, il y a une chance qu'une <recipe,,forestry:beePrincessGE:0> ou un <recipe,,forestry:beeDroneGE:0> soit dans l' <recipe,,skyresources:BeeAttractor:0> . \n L'espèce dépend du biome, tout comme pour les ruches. \n Notez qu'une <recipe,,forestry:beePrincessGE:0> est plus rare qu'un <recipe,,forestry:beeDroneGE:0> .
+
+guide.skyresources.misc.ic2.title=Support de IndustrialCraft 2
+guide.skyresources.misc.ic2.text=Sky Resources fournit des moyens d'obtenir les objets de base de IC2. \n \n Les <recipe,,ic2:misc_resource:4> peuvent s'obtenir ainsi que les <recipe,,ic2:sapling:0> . \n \n Les <recipe,,skyresources:TechItemComponent:0> peuvent être utilisés pour obtenir de la <recipe,,ic2:dust:15> . \n \n Les <recipe,,skyresources:TechItemComponent:1> peuvent être utilisés pour obtenir des <recipe,,ic2:nuclear:5> et <recipe,,ic2:nuclear:2>
+
+guide.skyresources.misc.quantumflux.title=Support de Quantum Flux
+guide.skyresources.misc.quantumflux.text=Sky Resources fournit des moyens d'obtenir les objets de Quantum Flux. \n \n La <recipe,,quantumflux:graphiteDust:0> peut être obtenue.
+
+guide.skyresources.misc.tinkers.title=Support de Tinkers Construct
+guide.skyresources.misc.tinkers.text=Sky Resources fournit des moyens d'obtenir les objets gluants de Tinker's Construct. \n \n Toutes les variantes des <recipe,,tconstruct:edible:1> , des <recipe,,tconstruct:slime_sapling:0> , et des <recipe,,tconstruct:slime_dirt:0> peuvent être obtenus.
+
+guide.skyresources.misc.techreborn.title=Support de Tech Reborn
+guide.skyresources.misc.techreborn.text=Sky Resources fournit des moyens d'obtenir les objets de base de TechReborn. \n \n Les <recipe,,techreborn:part:31> peuvent être obtenus, ainsi que les <recipe,,techreborn:rubberSapling:0> .
