@@ -1,6 +1,7 @@
 package com.bartz24.skyresources.jei.heatsources;
 
 import com.bartz24.skyresources.References;
+import com.bartz24.skyresources.jei.freezer.FreezerRecipeJEI;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
@@ -14,6 +15,7 @@ import net.minecraft.util.text.translation.I18n;
 
 public class HeatSourcesRecipeCategory extends BlankRecipeCategory
 {
+	private static final int slotInputStack = 0;
 	private final IDrawable background;
 
 	private final String localizedName = I18n
@@ -22,11 +24,9 @@ public class HeatSourcesRecipeCategory extends BlankRecipeCategory
 	public HeatSourcesRecipeCategory(IGuiHelper guiHelper)
 	{
 		super();
-		background = guiHelper
-				.createDrawable(
-						new ResourceLocation(References.ModID,
-								"textures/gui/jei/concentrator.png"),
-						20, 0, 70, 25);
+		background = guiHelper.createDrawable(
+				new ResourceLocation(References.ModID, "textures/gui/jei/concentrator.png"), 20, 0,
+				70, 25);
 	}
 
 	@Override
@@ -60,6 +60,20 @@ public class HeatSourcesRecipeCategory extends BlankRecipeCategory
 	@Override
 	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper)
 	{
+		layout.getItemStacks().init(slotInputStack, true, 1, 5);
+
+		if (wrapper instanceof HeatSourcesRecipeJEI)
+		{
+			HeatSourcesRecipeJEI recipe = (HeatSourcesRecipeJEI) wrapper;
+			if (recipe.getInputs() != null)
+			{
+				for (int i = 0; i < recipe.getInputs().size(); i++)
+				{
+					layout.getItemStacks().set(slotInputStack,
+							(ItemStack) recipe.getInputs().get(i));
+				}
+			}
+		}
 
 	}
 
