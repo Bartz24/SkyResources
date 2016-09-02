@@ -435,6 +435,11 @@ public class EventHandler
 					+ "You're playing on easy mode D: WHY!? "
 					+ "Either you are a pussy, or you don't want to spend time grinding away :P"));
 		}
+		else
+		{
+			player.addChatMessage(new TextComponentString(TextFormatting.GRAY
+					+ "If you find it to be too grindy or you want a more casual time, turn on easy mode in the config for Sky Resources."));			
+		}
 	}
 
 	@SubscribeEvent
