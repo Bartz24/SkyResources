@@ -54,6 +54,7 @@ public class ConfigOptions
 
 	public static boolean rememberGuide;
 	public static int draconiumType;
+	public static boolean allowAllGemTypes;
 
 	public static String lastGuidePage;
 	public static String lastGuideCat;
@@ -142,6 +143,9 @@ public class ConfigOptions
 				.getInt(1000);
 		crystalConcentratorAmount = config.get("concentrator", "Crystal Concentrator Amount", 1)
 				.getInt(1);
+
+		allowAllGemTypes = config.get(Configuration.CATEGORY_GENERAL, "Allow All Dirty Gem Types to be Obtained", false)
+				.getBoolean(false);
 
 		rememberGuide = config.get("guide", "Remember Current Guide On Closing", true)
 				.getBoolean(true);
