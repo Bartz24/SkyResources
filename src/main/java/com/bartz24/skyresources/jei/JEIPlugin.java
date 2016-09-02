@@ -2,6 +2,7 @@ package com.bartz24.skyresources.jei;
 
 import com.bartz24.skyresources.ItemHelper;
 import com.bartz24.skyresources.References;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.jei.cauldron.CauldronRecipeCategory;
 import com.bartz24.skyresources.jei.cauldron.CauldronRecipeHandler;
 import com.bartz24.skyresources.jei.cauldron.CauldronRecipeMaker;

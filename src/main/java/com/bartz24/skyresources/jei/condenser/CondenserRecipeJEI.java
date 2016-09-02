@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.bartz24.skyresources.config.ConfigOptions;
+
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -38,7 +40,7 @@ public class CondenserRecipeJEI extends BlankRecipeWrapper
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight,
 			int mouseX, int mouseY)
 	{
-		String s = Integer.toString(time) + " base ticks";
+		String s = ConfigOptions.easyMode ? "DISABLED" : Integer.toString(time) + " base ticks";
 		FontRenderer fontRendererObj = minecraft.fontRendererObj;
 		int stringWidth = fontRendererObj.getStringWidth(s);
 		fontRendererObj.drawString(s, 80 - stringWidth, 8,

@@ -429,6 +429,12 @@ public class EventHandler
 				+ " to open the Sky Resources in-game guide! " + "\n " + TextFormatting.AQUA + "/"
 				+ ConfigOptions.commandName + " guide " + TextFormatting.WHITE + "works too!");
 		player.addChatMessage(text);
+		if (ConfigOptions.easyMode)
+		{
+			player.addChatMessage(new TextComponentString(TextFormatting.RED
+					+ "You're playing on easy mode D: WHY!? "
+					+ "Either you are a pussy, or you don't want to spend time grinding away :P"));
+		}
 	}
 
 	@SubscribeEvent
@@ -444,8 +450,10 @@ public class EventHandler
 
 				IslandPos iPos = References.getPlayerIsland(player.getName());
 
-				BlockPos pos = new BlockPos(iPos.getX() * ConfigOptions.islandDistance, 88,
-						iPos.getY() * ConfigOptions.islandDistance);
+				BlockPos pos = new BlockPos(0, 88, 0);
+				if (iPos != null)
+					pos = new BlockPos(iPos.getX() * ConfigOptions.islandDistance, 88,
+							iPos.getY() * ConfigOptions.islandDistance);
 
 				References.tpPlayerToPos(player, pos);
 			}

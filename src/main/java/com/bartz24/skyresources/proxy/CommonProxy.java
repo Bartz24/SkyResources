@@ -13,6 +13,8 @@ import com.bartz24.skyresources.minetweaker.MinetweakerPlugin;
 import com.bartz24.skyresources.plugin.ModPlugins;
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModCrafting;
+import com.bartz24.skyresources.registry.ModEasyCrafting;
+import com.bartz24.skyresources.registry.ModEasyGuidePages;
 import com.bartz24.skyresources.registry.ModEntities;
 import com.bartz24.skyresources.registry.ModFluids;
 import com.bartz24.skyresources.registry.ModGuiHandler;
@@ -42,7 +44,7 @@ public class CommonProxy
 		ModFluids.init();
 		ModBlocks.init();
 		ModItems.init();
-		
+
 		ModPlugins.preInit();
 
 		new HeatSources();
@@ -56,7 +58,10 @@ public class CommonProxy
 		new WorldTypeSky();
 		new SkyResourcesGuide();
 
-		ModGuidePages.init();
+		if (ConfigOptions.easyMode)
+			ModEasyGuidePages.init();
+		else
+			ModGuidePages.init();
 
 	}
 
@@ -64,20 +69,22 @@ public class CommonProxy
 	{
 		MinecraftForge.EVENT_BUS.register(events);
 		MinecraftForge.EVENT_BUS.register(new ModBucketHandler());
-		NetworkRegistry.INSTANCE.registerGuiHandler(SkyResources.instance,
-				new ModGuiHandler());
+		NetworkRegistry.INSTANCE.registerGuiHandler(SkyResources.instance, new ModGuiHandler());
 		ModEntities.init();
 		ModCrafting.initOreDict();
-		
+
 		ModPlugins.init();
-		
+
 		WorldOverride.registerWorldProviders();
 	}
 
 	public void postInit(FMLPostInitializationEvent e)
 	{
-		ModCrafting.init();
-		
+		if (ConfigOptions.easyMode)
+			ModEasyCrafting.init();
+		else
+			ModCrafting.init();
+
 		ModPlugins.postInit();
 		if (Loader.isModLoaded("MineTweaker3"))
 			MinetweakerPlugin.postInit(e);

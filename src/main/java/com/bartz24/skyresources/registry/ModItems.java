@@ -9,6 +9,7 @@ import com.bartz24.skyresources.alchemy.item.ItemHealthGem;
 import com.bartz24.skyresources.alchemy.item.ItemInfusionStone;
 import com.bartz24.skyresources.alchemy.item.MetalCrystalItem;
 import com.bartz24.skyresources.base.item.BaseItemComponent;
+import com.bartz24.skyresources.base.item.ItemHeavyExplosiveSnowball;
 import com.bartz24.skyresources.base.item.ItemHeavySnowball;
 import com.bartz24.skyresources.base.item.ItemKnife;
 import com.bartz24.skyresources.base.item.ItemWaterExtractor;
@@ -35,6 +36,7 @@ public class ModItems
 	public static Item waterExtractor;
 
 	public static Item heavySnowball;
+	public static Item heavyExpSnowball;
 
 	public static Item dirtyGem;
 
@@ -101,6 +103,7 @@ public class ModItems
 		healthGem = registerItem(new ItemHealthGem());
 		waterExtractor = registerItem(new ItemWaterExtractor());
 		heavySnowball = registerItem(new ItemHeavySnowball("heavySnowball", "HeavySnowball"));
+		heavyExpSnowball = registerItem(new ItemHeavyExplosiveSnowball("heavyExplosiveSnowball", "HeavyExplosiveSnowball"));
 		cactusFruit = registerItem(new ModItemFood(3, 2F, false, "cactusFruit", "CactusFruit"));
 		fleshySnowNugget = registerItem(
 				new ModItemFood(4, 1.5F, false, "fleshySnowNugget", "FleshySnowNugget"));

@@ -63,32 +63,35 @@ public class TileEndPortalCore extends RedstoneCompatibleTile implements ITickab
 			}
 		}
 	}
-	
+
 	void spawnFish()
 	{
 		List<EntitySilverfish> list = worldObj.getEntitiesWithinAABB(EntitySilverfish.class,
-				new AxisAlignedBB(pos.getX()-4, pos.getY(), pos.getZ()-4,
-						pos.getX() + 4, pos.getY() + 5F, pos.getZ() + 4));
+				new AxisAlignedBB(pos.getX() - 4, pos.getY(), pos.getZ() - 4, pos.getX() + 4,
+						pos.getY() + 5F, pos.getZ() + 4));
 		if (!ConfigOptions.endPussyMode && worldObj.rand.nextInt(90) == 0 && list.size() < 16)
 		{
 			EntitySilverfish fish = new EntitySilverfish(worldObj);
-			fish.setDropChance(EntityEquipmentSlot.MAINHAND, 0);
-			fish.setDropChance(EntityEquipmentSlot.HEAD, 0);
-			fish.setDropChance(EntityEquipmentSlot.CHEST, 0);
-			fish.setDropChance(EntityEquipmentSlot.LEGS, 0);
-			fish.setDropChance(EntityEquipmentSlot.FEET, 0);
-			ItemStack sword = new ItemStack(Items.IRON_SWORD);
-			sword.addEnchantment(Enchantments.FIRE_ASPECT, 1);
-			sword.addEnchantment(Enchantments.SHARPNESS, 3);
-			fish.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, sword);
-			fish.setItemStackToSlot(EntityEquipmentSlot.HEAD,
-					new ItemStack(Items.DIAMOND_HELMET));
-			fish.setItemStackToSlot(EntityEquipmentSlot.CHEST,
-					new ItemStack(Items.DIAMOND_CHESTPLATE));
-			fish.setItemStackToSlot(EntityEquipmentSlot.LEGS,
-					new ItemStack(Items.DIAMOND_LEGGINGS));
-			fish.setItemStackToSlot(EntityEquipmentSlot.FEET,
-					new ItemStack(Items.DIAMOND_BOOTS));
+			if (!ConfigOptions.easyMode)
+			{
+				fish.setDropChance(EntityEquipmentSlot.MAINHAND, 0);
+				fish.setDropChance(EntityEquipmentSlot.HEAD, 0);
+				fish.setDropChance(EntityEquipmentSlot.CHEST, 0);
+				fish.setDropChance(EntityEquipmentSlot.LEGS, 0);
+				fish.setDropChance(EntityEquipmentSlot.FEET, 0);
+				ItemStack sword = new ItemStack(Items.IRON_SWORD);
+				sword.addEnchantment(Enchantments.FIRE_ASPECT, 1);
+				sword.addEnchantment(Enchantments.SHARPNESS, 3);
+				fish.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, sword);
+				fish.setItemStackToSlot(EntityEquipmentSlot.HEAD,
+						new ItemStack(Items.DIAMOND_HELMET));
+				fish.setItemStackToSlot(EntityEquipmentSlot.CHEST,
+						new ItemStack(Items.DIAMOND_CHESTPLATE));
+				fish.setItemStackToSlot(EntityEquipmentSlot.LEGS,
+						new ItemStack(Items.DIAMOND_LEGGINGS));
+				fish.setItemStackToSlot(EntityEquipmentSlot.FEET,
+						new ItemStack(Items.DIAMOND_BOOTS));
+			}
 			fish.setPosition(pos.getX() + 0.5, pos.getY() + 1.5, pos.getZ() + 0.5);
 			worldObj.spawnEntityInWorld(fish);
 		}

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bartz24.skyresources.References;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModItems;
 
@@ -111,7 +112,10 @@ public class BaseItemComponent extends Item
 		if (stack.getMetadata() == names.indexOf(plantMatter))
 		{
 			list.add(TextFormatting.DARK_GRAY + "Acts as bonemeal");
-			list.add(TextFormatting.DARK_GRAY + "2-4x as effective as normal bonemeal");
+			if (ConfigOptions.easyMode)
+				list.add(TextFormatting.DARK_GRAY + "4-6x as effective as normal bonemeal");
+			else
+				list.add(TextFormatting.DARK_GRAY + "2-4x as effective as normal bonemeal");
 		}
 	}
 
@@ -133,7 +137,8 @@ public class BaseItemComponent extends Item
 			{
 				if (!worldIn.isRemote)
 				{
-					for (int i = 0; i < worldIn.rand.nextInt(4) + 2; i++)
+					for (int i = 0; i < worldIn.rand.nextInt(4) + 2
+							+ (ConfigOptions.easyMode ? 2 : 0); i++)
 					{
 						if (igrowable.canUseBonemeal(worldIn, worldIn.rand, target, iblockstate))
 						{

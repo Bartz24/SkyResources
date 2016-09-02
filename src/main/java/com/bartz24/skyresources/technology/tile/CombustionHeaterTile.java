@@ -103,7 +103,7 @@ public class CombustionHeaterTile extends RedstoneCompatibleTile implements IInv
 		if ((float) getHeatPerTick(stack) <= 0)
 			return 0;
 
-		return (int) ((float) Math.pow(TileEntityFurnace.getItemBurnTime(stack), 0.75F)
+		return (int) ((float) Math.pow(TileEntityFurnace.getItemBurnTime(stack), ConfigOptions.easyMode ? 0.90F : 0.75F)
 				/ getHeatPerTick(stack));
 	}
 

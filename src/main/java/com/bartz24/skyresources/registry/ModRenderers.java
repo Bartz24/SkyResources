@@ -149,6 +149,7 @@ public class ModRenderers
 		registerItemRenderer(ModItems.cactusFruit);
 		registerItemRenderer(ModItems.fleshySnowNugget);
 		registerItemRenderer(ModItems.heavySnowball);
+		registerItemRenderer(ModItems.heavyExpSnowball);
 		registerItemRenderer(ModItems.cactusKnife);
 		registerItemRenderer(ModItems.ironKnife);
 		registerItemRenderer(ModItems.diamondKnife);

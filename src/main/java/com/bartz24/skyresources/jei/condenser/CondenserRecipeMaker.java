@@ -1,6 +1,7 @@
 package com.bartz24.skyresources.jei.condenser;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.bartz24.skyresources.RandomHelper;

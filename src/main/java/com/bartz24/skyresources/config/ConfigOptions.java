@@ -15,6 +15,9 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class ConfigOptions
 {
 	public static Configuration config;
+	
+	public static boolean easyMode;
+	
 
 	public static int worldSpawnType;
 	public static int healthGemMaxHealth;
@@ -93,6 +96,8 @@ public class ConfigOptions
 
 		worldTypeProperty.setComment("0=random, 1=sand, 2=snow, 3=grass (Not in random choices)");
 
+		easyMode = config.get(Configuration.CATEGORY_GENERAL, "EASY MODE (Remove some of the grind)", false)
+				.getBoolean(false);
 		endPussyMode = config.get(Configuration.CATEGORY_GENERAL, "End Portal Pussy Mode", false)
 				.getBoolean(false);
 

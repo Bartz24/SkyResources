@@ -28,8 +28,11 @@ public class CondenserTile extends TileEntity implements ITickable
 	@Override
 	public void update()
 	{
-		crystalFluidUpdate();
-		moltenCrystalFluidUpdate();
+		if (!ConfigOptions.easyMode)
+		{
+			crystalFluidUpdate();
+			moltenCrystalFluidUpdate();
+		}
 	}
 
 	void crystalFluidUpdate()
@@ -139,7 +142,7 @@ public class CondenserTile extends TileEntity implements ITickable
 		return ModFluids.moltenCrystalFluidInfos()[ModBlocks.moltenCrystalFluidBlocks
 				.indexOf(block)].rarity * ConfigOptions.condenserProcessTimeBase * 20;
 	}
-	
+
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{

@@ -88,7 +88,7 @@ public class ModCrafting
 				{ "XYX", "X X", "XXX", 'X', "ingotIron", 'Y', new ItemStack(ModItems.baseComponent, 1, 1) }));
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.compressedCoalBlock), new Object[]
-				{ "XXX", "XYX", "XXX", 'X', new ItemStack(Blocks.COAL_BLOCK) , 'Y', new ItemStack(Items.COAL)}));
+				{ "XXX", "XYX", "XXX", 'X', new ItemStack(Blocks.COAL_BLOCK), 'Y', new ItemStack(Items.COAL) }));
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.blazePowderBlock), new Object[]
 				{ "XXX", "XXX", "XXX", 'X', new ItemStack(Items.BLAZE_POWDER) }));
@@ -109,10 +109,10 @@ public class ModCrafting
 				{ "XXX", "XXX", "XXX", 'X', new ItemStack(ModBlocks.compressedCoalBlock) }));
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.compressedStone), new Object[]
-				{ "XXX", "XYX", "XXX", 'X', new ItemStack(Blocks.STONE), 'Y', new ItemStack(Blocks.COBBLESTONE)  }));
+				{ "XXX", "XYX", "XXX", 'X', new ItemStack(Blocks.STONE), 'Y', new ItemStack(Blocks.COBBLESTONE) }));
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.compressedNetherrack), new Object[]
-				{ "XXX", "XYX", "XXX", 'X', new ItemStack(Blocks.NETHERRACK), 'Y', new ItemStack(Items.NETHERBRICK)  }));
+				{ "XXX", "XYX", "XXX", 'X', new ItemStack(Blocks.NETHERRACK), 'Y', new ItemStack(Items.NETHERBRICK) }));
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModBlocks.coalInfusedBlock), new Object[]
 				{ "XXX", "XXX", "XXX", 'X', new ItemStack(ModItems.alchemyComponent, 1, 2) }));
@@ -155,9 +155,6 @@ public class ModCrafting
 		GameRegistry.addRecipe(
 				new ShapedOreRecipe(new ItemStack(ModItems.baseComponent, 1, 2), new Object[]
 				{ " X ", "XXX", " X ", 'X', "sugarcane" }));
-		GameRegistry.addRecipe(
-				new ShapedOreRecipe(new ItemStack(ModItems.alchemyComponent, 9, 2), new Object[]
-				{ "X", 'X', new ItemStack(ModBlocks.coalInfusedBlock) }));
 		GameRegistry
 				.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.ironFreezer), new Object[]
 		{ "XXX", "XZX", "XXX", 'X', "ingotFrozenIron", 'Z',
@@ -200,13 +197,16 @@ public class ModCrafting
 		{ "XZX", "AYA", "XZX", 'X', new ItemStack(ModItems.baseComponent, 1, 5), 'Y',
 				new ItemStack(Items.NETHER_STAR), 'Z', new ItemStack(ModItems.techComponent, 1, 2),
 				'A', new ItemStack(ModItems.alchemyComponent, 1, 5) }));
-		GameRegistry
-		.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.sandyNetherrack, 2), new Object[]
-{ "XY", "ZX", 'X', new ItemStack(Blocks.SAND), 'Y',
-		new ItemStack(Items.NETHER_WART), 'Z', new ItemStack(Blocks.NETHERRACK) }));
 		GameRegistry.addRecipe(
-				new ShapedOreRecipe(new ItemStack(ModBlocks.lifeInfuser), new Object[]
-				{ "XXX", "X X", "XYX", 'X', "logWood", 'Y', new ItemStack(ModItems.healthGem) }));
+				new ShapedOreRecipe(new ItemStack(ModBlocks.sandyNetherrack, 2), new Object[]
+				{ "XY", "ZX", 'X', new ItemStack(Blocks.SAND), 'Y', new ItemStack(Items.NETHER_WART), 'Z', new ItemStack(Blocks.NETHERRACK) }));
+		GameRegistry
+				.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.lifeInfuser), new Object[]
+		{ "XXX", "X X", "XYX", 'X', "logWood", 'Y', new ItemStack(ModItems.healthGem) }));
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.heavyExpSnowball, 3),
+				new ItemStack(ModItems.heavySnowball), new ItemStack(ModItems.heavySnowball),
+				new ItemStack(ModItems.heavySnowball),
+				new ItemStack(Items.GUNPOWDER)));
 
 		if (OreDictionary.doesOreNameExist("ingotSteel")
 				&& OreDictionary.doesOreNameExist("dustCoal"))
@@ -312,10 +312,12 @@ public class ModCrafting
 				new ItemStack(Items.QUARTZ, 3), new ItemStack(Items.GOLD_INGOT, 6));
 		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 13), 1200,
 				new ItemStack(ModItems.metalCrystal, 5, 11), new ItemStack(Items.MAGMA_CREAM, 5),
-				new ItemStack(Items.QUARTZ, 2), new ItemStack(Items.GOLD_INGOT, 6), new ItemStack(Blocks.NETHER_BRICK));
+				new ItemStack(Items.QUARTZ, 2), new ItemStack(Items.GOLD_INGOT, 6),
+				new ItemStack(Blocks.NETHER_BRICK));
 		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 14), 1400,
 				new ItemStack(ModItems.metalCrystal, 7, 11), new ItemStack(Items.MAGMA_CREAM, 5),
-				new ItemStack(Items.DYE, 4, 0), new ItemStack(ModItems.baseComponent, 2, 5), new ItemStack(Items.GOLD_INGOT, 4));
+				new ItemStack(Items.DYE, 4, 0), new ItemStack(ModItems.baseComponent, 2, 5),
+				new ItemStack(Items.GOLD_INGOT, 4));
 		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 15), 1100,
 				new ItemStack(ModItems.metalCrystal, 3, 11), new ItemStack(Blocks.ICE, 5),
 				new ItemStack(ModItems.techComponent, 4, 2), new ItemStack(Items.SNOWBALL, 6));
@@ -326,12 +328,14 @@ public class ModCrafting
 				new ItemStack(ModItems.metalCrystal, 9, 0), new ItemStack(Items.GOLD_INGOT, 2),
 				new ItemStack(Items.GOLD_NUGGET, 7), new ItemStack(Items.DIAMOND, 1));
 		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 18), 2000,
-				new ItemStack(ModItems.metalCrystal, 8,1), new ItemStack(Items.GOLD_INGOT, 6),
+				new ItemStack(ModItems.metalCrystal, 8, 1), new ItemStack(Items.GOLD_INGOT, 6),
 				new ItemStack(Items.ENDER_EYE, 4), new ItemStack(Items.DIAMOND));
-		CombustionRecipes.addRecipe(new ItemStack(ModBlocks.dryCactus),
-				1300, new ItemStack(boneBlock), new ItemStack(Items.DYE, 8, 7), new ItemStack(Blocks.LEAVES, 8, 1));
-		CombustionRecipes.addRecipe(new ItemStack(Blocks.CACTUS),
-				900, new ItemStack(Items.FERMENTED_SPIDER_EYE, 3), new ItemStack(Items.SNOWBALL, 16), new ItemStack(ModBlocks.dryCactus, 4));
+		CombustionRecipes.addRecipe(new ItemStack(ModBlocks.dryCactus), 1300,
+				new ItemStack(boneBlock), new ItemStack(Items.DYE, 8, 7),
+				new ItemStack(Blocks.LEAVES, 8, 1));
+		CombustionRecipes.addRecipe(new ItemStack(Blocks.CACTUS), 900,
+				new ItemStack(Items.FERMENTED_SPIDER_EYE, 3), new ItemStack(Items.SNOWBALL, 16),
+				new ItemStack(ModBlocks.dryCactus, 4));
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.REDSTONE, 4), 400,
 				new ItemStack(Items.GUNPOWDER, 2), new ItemStack(Items.BLAZE_POWDER, 2));
@@ -392,16 +396,20 @@ public class ModCrafting
 
 		for (int i = 0; i < ModItems.gemList.size(); i++)
 		{
-			if(ConfigOptions.allowAllGemTypes || OreDictionary.getOres("gem" + RandomHelper
-					.capatilizeString(ModItems.gemList.get(i).name)).size() > 0)
-			RockGrinderRecipes.addRecipe(new ItemStack(ModItems.dirtyGem, 1, i), false,
-					Blocks.STONE.getDefaultState(), ModItems.gemList.get(i).rarity);
+			if (ConfigOptions.allowAllGemTypes
+					|| OreDictionary
+							.getOres("gem"
+									+ RandomHelper.capatilizeString(ModItems.gemList.get(i).name))
+							.size() > 0)
+				RockGrinderRecipes.addRecipe(new ItemStack(ModItems.dirtyGem, 1, i), false,
+						Blocks.STONE.getDefaultState(), ModItems.gemList.get(i).rarity);
 		}
 
 		for (int i = 0; i < ModFluids.crystalFluidInfos().length; i++)
 		{
 			CrucibleRecipes.addRecipe(new FluidStack(ModFluids.dirtyCrystalFluids.get(i), 1000),
-					new ItemStack(ModItems.metalCrystal, 1, ModFluids.crystalFluidInfos()[i].crystalIndex));
+					new ItemStack(ModItems.metalCrystal, 1,
+							ModFluids.crystalFluidInfos()[i].crystalIndex));
 		}
 		for (int i = 0; i < ModFluids.moltenCrystalFluidInfos().length; i++)
 		{
@@ -411,6 +419,9 @@ public class ModCrafting
 		}
 		CrucibleRecipes.addRecipe(new FluidStack(FluidRegistry.LAVA, 200),
 				new ItemStack(ModBlocks.compressedNetherrack));
+
+		CrucibleRecipes.addRecipe(new FluidStack(FluidRegistry.LAVA, 250),
+				new ItemStack(ModBlocks.blazePowderBlock));
 
 		WaterExtractorRecipes.addExtractRecipe(50, true, Blocks.CACTUS.getDefaultState(),
 				ModBlocks.dryCactus.getDefaultState());
@@ -465,7 +476,8 @@ public class ModCrafting
 										OreDictionary.getOres(oreName).get(0).getMetadata()),
 						ModFluids.crystalFluidInfos()[i].rarity * 100,
 						new ItemStack(ModItems.metalCrystal,
-								ConfigOptions.crystalConcentratorAmount, ModFluids.crystalFluidInfos()[i].crystalIndex),
+								ConfigOptions.crystalConcentratorAmount,
+								ModFluids.crystalFluidInfos()[i].crystalIndex),
 						ModBlocks.compressedStone.getDefaultState());
 			}
 		}
