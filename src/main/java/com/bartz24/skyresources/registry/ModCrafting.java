@@ -334,7 +334,7 @@ public class ModCrafting
 				new ItemStack(boneBlock), new ItemStack(Items.DYE, 8, 7),
 				new ItemStack(Blocks.LEAVES, 8, 1));
 		CombustionRecipes.addRecipe(new ItemStack(Blocks.CACTUS), 900,
-				new ItemStack(Items.FERMENTED_SPIDER_EYE, 3), new ItemStack(Items.SNOWBALL, 16),
+				new ItemStack(Items.SPIDER_EYE, 1), new ItemStack(Items.SNOWBALL, 16),
 				new ItemStack(ModBlocks.dryCactus, 4));
 
 		CombustionRecipes.addRecipe(new ItemStack(Items.REDSTONE, 4), 400,
