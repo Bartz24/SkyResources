@@ -257,6 +257,12 @@ public class ModEasyCrafting
 		InfusionRecipes.addRecipe(new ItemStack(Items.NETHER_WART),
 				new ItemStack(Items.SPIDER_EYE, 1), Blocks.RED_MUSHROOM,
 				OreDictionary.WILDCARD_VALUE, 12);
+		InfusionRecipes.addRecipe(new ItemStack(Blocks.RED_MUSHROOM),
+				new ItemStack(Items.DYE, 8, 1), Blocks.TALLGRASS,
+				OreDictionary.WILDCARD_VALUE, 15);
+		InfusionRecipes.addRecipe(new ItemStack(Blocks.BROWN_MUSHROOM),
+				new ItemStack(Items.DYE, 8, 3), Blocks.TALLGRASS,
+				OreDictionary.WILDCARD_VALUE, 15);
 		InfusionRecipes.addRecipe(new ItemStack(ModItems.healthGem),
 				new ItemStack(ModItems.alchemyComponent, 1, 4), Blocks.CACTUS,
 				OreDictionary.WILDCARD_VALUE, 10);
