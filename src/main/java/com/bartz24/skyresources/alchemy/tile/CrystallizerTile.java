@@ -65,9 +65,10 @@ public class CrystallizerTile extends TileEntity implements ITickable
 								10 + ModFluids.crystalFluidInfos()[ModBlocks.moltenCrystalFluidBlocks
 										.indexOf(crystalBlock)].rarity / 2) >= 8)
 							worldObj.setBlockToAir(pos.up());
-
+						
 						ItemStack stack = new ItemStack(ModItems.metalCrystal, 1,
-								ModBlocks.moltenCrystalFluidBlocks.indexOf(crystalBlock) + ModBlocks.crystalFluidBlocks.size());
+								ModFluids.moltenCrystalFluidInfos()[ModBlocks.moltenCrystalFluidBlocks
+										.indexOf(crystalBlock)].crystalIndex);
 						ejectResultSlot(stack);
 					}
 					timeCondense = 0;
