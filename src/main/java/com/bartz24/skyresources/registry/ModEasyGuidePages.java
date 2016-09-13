@@ -69,6 +69,9 @@ public class ModEasyGuidePages
 		SkyResourcesGuide.addPage("cleanCrystal", "guide.skyresources.easy.stage2",
 				new ItemStack(ModBlocks.crystalFluidBlocks.get(0)));
 
+		SkyResourcesGuide.addPage("crucibleAuto", "guide.skyresources.easy.stage2",
+				new ItemStack(ModBlocks.crucibleInserter));
+
 		SkyResourcesGuide.addPage("gemProduction", "guide.skyresources.easy.stage2",
 				new ItemStack(Items.EMERALD));
 

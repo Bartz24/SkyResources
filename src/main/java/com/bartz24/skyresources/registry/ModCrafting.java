@@ -207,6 +207,9 @@ public class ModCrafting
 				new ItemStack(ModItems.heavySnowball), new ItemStack(ModItems.heavySnowball),
 				new ItemStack(ModItems.heavySnowball),
 				new ItemStack(Items.GUNPOWDER)));
+		GameRegistry.addRecipe(
+				new ShapedOreRecipe(new ItemStack(ModBlocks.crucibleInserter), new Object[]
+				{ "XXX", "XYX", "X X", 'X', "ingotIron", 'Y', new ItemStack(Blocks.DROPPER) }));
 
 		if (OreDictionary.doesOreNameExist("ingotSteel")
 				&& OreDictionary.doesOreNameExist("dustCoal"))

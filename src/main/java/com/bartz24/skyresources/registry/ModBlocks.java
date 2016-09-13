@@ -17,6 +17,7 @@ import com.bartz24.skyresources.base.block.BlazePowderBlock;
 import com.bartz24.skyresources.base.block.BlockDryCactus;
 import com.bartz24.skyresources.base.block.ItemBlockMeta;
 import com.bartz24.skyresources.base.block.TransparentBlock;
+import com.bartz24.skyresources.technology.block.BlockCrucibleInserter;
 import com.bartz24.skyresources.technology.block.BlockDarkMatterWarper;
 import com.bartz24.skyresources.technology.block.BlockDirtFurnace;
 import com.bartz24.skyresources.technology.block.BlockEndPortalCore;
@@ -51,6 +52,7 @@ public class ModBlocks
 	public static Block darkMatterWarper;
 	public static Block endPortalCore;
 	public static Block lifeInfuser;
+	public static Block crucibleInserter;
 
 
 	public static Block compressedCoalBlock;
@@ -137,6 +139,9 @@ public class ModBlocks
 
 		fluidDropper = registerBlock(
 				new FluidDropperBlock("fluidDropper", "FluidDropper", 2F, 12F));
+		
+		crucibleInserter = registerBlock(
+				new BlockCrucibleInserter("crucibleInserter", "CrucibleInserter", 2F, 12F));
 
 		registerItemBlock(combustionHeater = new CombustionHeaterBlock("combustionHeater",
 				"CombustionHeater", 2F, 12F));

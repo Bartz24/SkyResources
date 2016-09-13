@@ -75,6 +75,9 @@ public class ModGuidePages
 		SkyResourcesGuide.addPage("earlyMetalSetup", "guide.skyresources.stage2",
 				new ItemStack(ModItems.metalCrystal));
 
+		SkyResourcesGuide.addPage("crucibleAuto", "guide.skyresources.stage2",
+				new ItemStack(ModBlocks.crucibleInserter));
+
 		SkyResourcesGuide.addPage("gemProduction", "guide.skyresources.stage2",
 				new ItemStack(Items.EMERALD));
 

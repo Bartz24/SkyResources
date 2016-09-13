@@ -61,6 +61,7 @@ tile.skyresources.poweredHeater.name=Powered Heater
 tile.skyresources.darkMatterWarper.name=Dark Matter Warper
 tile.skyresources.endPortalCore.name=End Portal Core
 tile.skyresources.lifeInfuser.name=Life Infuser Core
+tile.skyresources.crucibleInserter.name=Crucible Inserter
 
 
 tile.skyresources.ironCrystalFluidBlock.name=Iron Crystal Liquid
@@ -306,6 +307,9 @@ guide.skyresources.stage2.cleanCrystal.text=Clean Crystal Fluid is used for obta
 guide.skyresources.stage2.earlyMetalSetup.title=Pre-Bucket Early Metal Setup (SPOILERS)
 guide.skyresources.stage2.earlyMetalSetup.text=This shows a setup that is semi-automated. \n A <link,crucible,skyresources:Crucible:0,crucible> attached to 2 <link,fluid_droppers,skyresources:FluidDropper:0,fluidDropper> , which drop the dirty fluid on top of an <link,alchemical_condenser,skyresources:AlchemicalCondenser:0,alchemicalCondenser> . \n <image,View_Setup,skyresources:MetalCrystal:0,skyresources:textures/guide/earlyMetalSetup.png>
 
+guide.skyresources.stage2.crucibleAuto.title=Crucible Automation (Inserter)
+guide.skyresources.stage2.crucibleAuto.text=The <recipe,,skyresources:CrucibleInserter:0> is used for automatically inserting items into the <link,crucible,skyresources:Crucible:0,crucible> . \n Items are "piped" in using hoppers, conduits, etc.
+
 guide.skyresources.stage2.gemProduction.title=Gem Production
 guide.skyresources.stage2.gemProduction.text=Gems like emeralds, rubies, sapphires, peridots, and red and yellow garnets are obtained through this process. \n First, use the <link,rock_grinder,skyresources:StoneGrinder:0,rockGrinder> on stone to get dirty gems like the <recipe,,skyresources:DirtyGem:0> . These have a chance to drop. \n Next, right-click the dirty gems on to a <recipe,,minecraft:cauldron:0> filled with water to get the clean, and usable gems. This will not work if the clean gems do not exist in ore dictionary.
 
@@ -435,6 +439,9 @@ guide.skyresources.easy.stage2.purificationVessel.text=The <recipe,,skyresources
 
 guide.skyresources.easy.stage2.cleanCrystal.title=Clean Crystal Fluid
 guide.skyresources.easy.stage2.cleanCrystal.text=Clean Crystal Fluid is used for obtaining more crystal shards. \n For it to work, the fluid has to be still and not flowing. \n As long as that is true, crystal shards will randomly pop and that will cause the fluid to have a chance to run out and disappear. Rarer fluids pop less crystals slower, and have a higher chance to run out and disappear. \n Use this to setup a crystal shard farm.
+
+guide.skyresources.easy.stage2.crucibleAuto.title=Crucible Automation (Inserter)
+guide.skyresources.easy.stage2.crucibleAuto.text=The <recipe,,skyresources:CrucibleInserter:0> is used for automatically inserting items into the <link,crucible,skyresources:Crucible:0,crucible> . \n Items are "piped" in using hoppers, conduits, etc.
 
 guide.skyresources.easy.stage2.gemProduction.title=Gem Production
 guide.skyresources.easy.stage2.gemProduction.text=Gems like emeralds, rubies, sapphires, peridots, and red and yellow garnets are obtained through this process. \n First, use the <link,rock_grinder,skyresources:StoneGrinder:0,rockGrinder> on stone to get dirty gems like the <recipe,,skyresources:DirtyGem:0> . These have a chance to drop. \n Next, right-click the dirty gems on to a <recipe,,minecraft:cauldron:0> filled with water to get the clean, and usable gems. This will not work if the clean gems do not exist in ore dictionary.

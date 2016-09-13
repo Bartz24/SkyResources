@@ -34,8 +34,8 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 
 	public static int tankCapacity = ConfigOptions.crucibleCapacity;
 
-	ItemStack itemIn;
-	int itemAmount;
+	public ItemStack itemIn;
+	public int itemAmount;
 	int maxItemAmount = ConfigOptions.crucibleCapacity;
 
 	@Override

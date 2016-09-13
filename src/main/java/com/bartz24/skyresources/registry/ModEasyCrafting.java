@@ -205,8 +205,10 @@ public class ModEasyCrafting
 		{ "XXX", "X X", "XYX", 'X', "logWood", 'Y', new ItemStack(ModItems.healthGem) }));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.heavyExpSnowball, 3),
 				new ItemStack(ModItems.heavySnowball), new ItemStack(ModItems.heavySnowball),
-				new ItemStack(ModItems.heavySnowball),
-				new ItemStack(Items.GUNPOWDER)));
+				new ItemStack(ModItems.heavySnowball), new ItemStack(Items.GUNPOWDER)));
+		GameRegistry.addRecipe(
+				new ShapedOreRecipe(new ItemStack(ModBlocks.crucibleInserter), new Object[]
+				{ "XXX", "XYX", "X X", 'X', "ingotIron", 'Y', new ItemStack(Blocks.DROPPER) }));
 
 		if (OreDictionary.doesOreNameExist("ingotSteel")
 				&& OreDictionary.doesOreNameExist("dustCoal"))
@@ -258,11 +260,9 @@ public class ModEasyCrafting
 				new ItemStack(Items.SPIDER_EYE, 1), Blocks.RED_MUSHROOM,
 				OreDictionary.WILDCARD_VALUE, 12);
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.RED_MUSHROOM),
-				new ItemStack(Items.DYE, 8, 1), Blocks.TALLGRASS,
-				OreDictionary.WILDCARD_VALUE, 15);
+				new ItemStack(Items.DYE, 8, 1), Blocks.TALLGRASS, OreDictionary.WILDCARD_VALUE, 15);
 		InfusionRecipes.addRecipe(new ItemStack(Blocks.BROWN_MUSHROOM),
-				new ItemStack(Items.DYE, 8, 3), Blocks.TALLGRASS,
-				OreDictionary.WILDCARD_VALUE, 15);
+				new ItemStack(Items.DYE, 8, 3), Blocks.TALLGRASS, OreDictionary.WILDCARD_VALUE, 15);
 		InfusionRecipes.addRecipe(new ItemStack(ModItems.healthGem),
 				new ItemStack(ModItems.alchemyComponent, 1, 4), Blocks.CACTUS,
 				OreDictionary.WILDCARD_VALUE, 10);

@@ -24,7 +24,7 @@ public class BlockEndPortalCore extends BlockContainer
 	public BlockEndPortalCore(String unlocalizedName, String registryName, float hardness,
 			float resistance)
 	{
-		super(Material.WOOD);
+		super(Material.ROCK);
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
 		this.setCreativeTab(ModCreativeTabs.tabTech);
 		this.setHardness(hardness);
