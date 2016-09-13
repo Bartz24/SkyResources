@@ -206,7 +206,7 @@ public class ConcentratorTile extends TileEntity
 						}
 					}
 
-					currentHeatValue *= 0.8F;
+					currentHeatValue *= 0.5F;
 
 					IBlockState block = recipe.getOutput();
 
@@ -214,8 +214,9 @@ public class ConcentratorTile extends TileEntity
 				}
 				else
 				{
-					timeCondense++;
-					currentHeatValue -= 4;				
+					timeCondense++;		
+					if(timeCondense % 4 == 0)
+					currentHeatValue--;
 				}
 			}
 		}
