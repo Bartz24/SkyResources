@@ -4,18 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bartz24.skyresources.ItemHelper;
-import com.bartz24.skyresources.technology.concentrator.ConcentratorRecipe;
-import com.bartz24.skyresources.technology.concentrator.ConcentratorRecipes;
 import com.bartz24.skyresources.technology.rockgrinder.RockGrinderRecipe;
 import com.bartz24.skyresources.technology.rockgrinder.RockGrinderRecipes;
 
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
+import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
@@ -33,6 +30,21 @@ public class MTRockGrinderRecipe
 		addRecipe(new RockGrinderRecipe(
 
 				MinetweakerPlugin.toStack(output),
+				oreDictionaryInput,
+				ItemHelper.getBlockStateFromStack(
+						MinetweakerPlugin.toStack(input))));
+	}
+
+	@ZenMethod
+	public static void addRecipe(IItemStack output, IItemStack input, boolean oreDictionaryInput, float chance)
+	{
+		if (!(MinetweakerPlugin.toStack(input).getItem() instanceof ItemBlock))
+			MineTweakerAPI
+					.logError("ItemStack is not block. Did not add recipe.");
+
+		addRecipe(new RockGrinderRecipe(
+
+				MinetweakerPlugin.toStack(output), chance,
 				oreDictionaryInput,
 				ItemHelper.getBlockStateFromStack(
 						MinetweakerPlugin.toStack(input))));
