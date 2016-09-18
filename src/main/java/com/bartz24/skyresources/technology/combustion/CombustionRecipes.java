@@ -70,6 +70,57 @@ public class CombustionRecipes
 
 		return null;
 	}
+	public static CombustionRecipe getMultiRecipe(List<ItemStack> input, int heatValue)
+	{
+		int checks = 0;
+		boolean merged = true;
+		while (merged && checks < 50)
+		{
+			merged = false;
+			for (int i = 0; i < input.size(); i++)
+			{
+				ItemStack stack1 = input.get(i);
+				for (int i2 = i + 1; i2 < input.size(); i2++)
+				{
+					ItemStack stack2 = input.get(i2);
+
+					int moveAmt = RandomHelper.mergeStacks(stack2, stack1, false);
+					if (moveAmt > 0)
+					{
+						stack1.stackSize += moveAmt;
+						stack2.stackSize -= moveAmt;
+						if (stack2.stackSize <= 0)
+							stack2 = null;
+						merged = true;
+						break;
+					}
+				}
+				if (merged)
+					break;
+			}
+
+			for (int i = input.size() - 1; i >= 0; i--)
+			{
+				ItemStack stack = input.get(i);
+				if (stack == null)
+					input.remove(i);
+			}
+
+			checks++;
+		}
+
+		CombustionRecipe rec = new CombustionRecipe(heatValue, input);
+
+		for (CombustionRecipe recipe : Recipes)
+		{
+			if (rec.isInputMultiRecipeEqualTo(recipe))
+			{
+				return recipe;
+			}
+		}
+
+		return null;
+	}
 
 	public static List<CombustionRecipe> getRecipes()
 	{

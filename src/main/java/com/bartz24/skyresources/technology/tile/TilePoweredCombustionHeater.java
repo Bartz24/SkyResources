@@ -36,7 +36,7 @@ public class TilePoweredCombustionHeater extends RedstoneCompatibleTile
 	private int maxReceive = 2000;
 	private int powerUsage = 800;
 	public int currentHeatValue;
-	private int heatPerTick = 20;
+	private int heatPerTick = 20;	
 
 	@Override
 	public int getEnergyStored(EnumFacing from)
@@ -98,7 +98,7 @@ public class TilePoweredCombustionHeater extends RedstoneCompatibleTile
 			if (!hasValidMultiblock())
 			{
 				if (currentHeatValue > 0)
-					currentHeatValue -= 4;
+					currentHeatValue -= 2;
 			}
 
 			if (currentHeatValue < 0)
@@ -158,21 +158,31 @@ public class TilePoweredCombustionHeater extends RedstoneCompatibleTile
 				List<EntityItem> list = worldObj.getEntitiesWithinAABB(EntityItem.class,
 						new AxisAlignedBB(pos.getX(), pos.getY() + 1, pos.getZ(), pos.getX() + 1,
 								pos.getY() + 1.5F, pos.getZ() + 1));
+				int timesToCraft = (int) Math.floor((float) list.get(0).getEntityItem().stackSize
+						/ (float) recipe.getInputStacks().get(0).stackSize);
 
-				for (EntityItem i : list)
+				for (int times = 0; times < timesToCraft; times++)
 				{
-					ItemStack stack = i.getEntityItem();
-					stack.stackSize = 0;
+					if(currentHeatValue < recipe.getHeatReq())
+						break;
+					for (int i = 0; i < list.size(); i++)
+					{
+						ItemStack stack = list.get(i).getEntityItem();
+						for (ItemStack i2 : recipe.getInputStacks())
+						{
+							if (stack.isItemEqual(i2))
+								stack.stackSize -= i2.stackSize;
+						}
+					}
+
+					currentHeatValue *= 0.95F;
+
+					ItemStack stack = recipe.getOutput().copy();
+
+					Entity entity = new EntityItem(worldObj, pos.getX() + 0.5F, pos.getY() + 0.5F,
+							pos.getZ() + 0.5F, stack);
+					worldObj.spawnEntityInWorld(entity);
 				}
-
-
-				currentHeatValue *= 0.4F;
-
-				ItemStack stack = recipe.getOutput().copy();
-
-				Entity entity = new EntityItem(worldObj, pos.getX() + 0.5F, pos.getY() + 0.5F,
-						pos.getZ() + 0.5F, stack);
-				worldObj.spawnEntityInWorld(entity);
 			}
 		}
 	}
@@ -190,7 +200,7 @@ public class TilePoweredCombustionHeater extends RedstoneCompatibleTile
 			items.add(i.getEntityItem());
 		}
 
-		CombustionRecipe recipe = CombustionRecipes.getRecipe(items, currentHeatValue);
+		CombustionRecipe recipe = CombustionRecipes.getMultiRecipe(items, currentHeatValue);
 
 		return recipe;
 	}

@@ -12,16 +12,14 @@ public class CombustionRecipe
 	private List<ItemStack> inputs;
 	private int heatRequired;
 
-	public CombustionRecipe(ItemStack output, int heatNeeded,
-			ItemStack... input)
+	public CombustionRecipe(ItemStack output, int heatNeeded, ItemStack... input)
 	{
 		this.output = output;
 		this.heatRequired = heatNeeded;
 		inputs = Arrays.asList(input);
 	}
 
-	public CombustionRecipe(ItemStack output, int heatNeeded,
-			List<ItemStack> input)
+	public CombustionRecipe(ItemStack output, int heatNeeded, List<ItemStack> input)
 	{
 		this.output = output;
 		this.heatRequired = heatNeeded;
@@ -45,11 +43,44 @@ public class CombustionRecipe
 		return stacksAreValid(recipe) && heatHighEnough(recipe);
 	}
 
-	boolean stacksAreValid(CombustionRecipe recipe)
-	{			
+	public boolean isInputMultiRecipeEqualTo(CombustionRecipe recipe)
+	{
+		return stacksAreValidMulti(recipe) && heatHighEnough(recipe);
+	}
+
+	boolean stacksAreValidMulti(CombustionRecipe recipe)
+	{
 		if (inputs.size() == 0 || inputs.size() != recipe.inputs.size())
 			return false;
-		
+
+		int itemsChecked = 0;
+		for (ItemStack i : inputs)
+		{
+			boolean valid = false;
+			float ratio = -1;
+			for (ItemStack i2 : recipe.inputs)
+			{
+				if (i.isItemEqual(i2) && i.stackSize >= i2.stackSize
+						&& (ratio == -1 || ((float) i.stackSize / (float) i2.stackSize) == ratio))
+				{
+					valid = true;
+					if (ratio == -1)
+						ratio = (float) i.stackSize / (float) i2.stackSize;
+				}
+			}
+			if (!valid)
+				return false;
+			itemsChecked++;
+		}
+
+		return itemsChecked == inputs.size();
+	}
+
+	boolean stacksAreValid(CombustionRecipe recipe)
+	{
+		if (inputs.size() == 0 || inputs.size() != recipe.inputs.size())
+			return false;
+
 		int itemsChecked = 0;
 		for (ItemStack i : inputs)
 		{
@@ -57,9 +88,10 @@ public class CombustionRecipe
 			for (ItemStack i2 : recipe.inputs)
 			{
 				if (i.isItemEqual(i2) && i.stackSize == i2.stackSize)
-					valid = true;				
+					valid = true;
 			}
-			if(!valid)return false;
+			if (!valid)
+				return false;
 			itemsChecked++;
 		}
 
