@@ -141,7 +141,7 @@ public class ConfigOptions
 		rockGrinderBaseDamage = (float) config.get("rockGrinder", "Rock Grinder Base Damage", 2.5)
 				.getDouble(2.5);
 		rockGrinderBaseDurability = (float) config
-				.get("rockGrinder", "Rock Grinder Base Durability", 0.6).getDouble(0.6);
+				.get("rockGrinder", "Rock Grinder Base Durability", 0.8).getDouble(0.8);
 		combustionHeatMultiplier = (float) config
 				.get("combustion", "Combustion Fuel Heat Multiplier", 0.5).getDouble(0.5);
 		fluidDropperCapacity = config.get("fluidDropper", "Fluid Dropper Capacity", 1000)

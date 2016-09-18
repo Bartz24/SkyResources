@@ -51,13 +51,13 @@ public class ModCrafting
 		{ "#  ", "#X ", " #X", 'X', new ItemStack(Items.STICK), '#',
 				new ItemStack(Items.DIAMOND) });
 		GameRegistry.addRecipe(new ItemStack(ModItems.stoneGrinder), new Object[]
-		{ "#  ", " X ", "  X", 'X', new ItemStack(Items.STICK), '#',
+		{ "#  ", " # ", "  X", 'X', new ItemStack(Items.STICK), '#',
 				new ItemStack(Blocks.COBBLESTONE) });
 		GameRegistry.addRecipe(new ItemStack(ModItems.ironGrinder), new Object[]
-		{ "#  ", " X ", "  X", 'X', new ItemStack(Items.STICK), '#',
+		{ "#  ", " # ", "  X", 'X', new ItemStack(Items.STICK), '#',
 				new ItemStack(Items.IRON_INGOT) });
 		GameRegistry.addRecipe(new ItemStack(ModItems.diamondGrinder), new Object[]
-		{ "#  ", " X ", "  X", 'X', new ItemStack(Items.STICK), '#',
+		{ "#  ", " # ", "  X", 'X', new ItemStack(Items.STICK), '#',
 				new ItemStack(Items.DIAMOND) });
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.cactusFruitNeedle), new Object[]
 		{ "X", "Y", 'X', new ItemStack(ModItems.cactusFruit), 'Y',
