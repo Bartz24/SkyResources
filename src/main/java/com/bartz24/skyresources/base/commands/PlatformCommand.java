@@ -6,11 +6,17 @@ import java.util.List;
 import com.bartz24.skyresources.IslandPos;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
+import com.bartz24.skyresources.api.event.IslandCreateEvent;
+import com.bartz24.skyresources.api.event.IslandHomeEvent;
+import com.bartz24.skyresources.api.event.IslandInviteEvent;
+import com.bartz24.skyresources.api.event.IslandLeaveEvent;
+import com.bartz24.skyresources.api.event.IslandResetEvent;
+import com.bartz24.skyresources.api.event.IslandSpawnEvent;
+import com.bartz24.skyresources.api.event.IslandVisitEvent;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.events.EventHandler;
 import com.bartz24.skyresources.registry.ModGuiHandler;
 import com.bartz24.skyresources.world.WorldTypeSky;
-import com.google.common.base.Strings;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandBase;
@@ -27,7 +33,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.GameType;
 import net.minecraft.world.World;
 import net.minecraft.world.border.WorldBorder;
-import scala.collection.concurrent.Debug;
+import net.minecraftforge.common.MinecraftForge;
 
 public class PlatformCommand extends CommandBase implements ICommand
 {
@@ -106,27 +112,34 @@ public class PlatformCommand extends CommandBase implements ICommand
 			if (subCommand.equals("create"))
 			{
 				newPlatform(player, args);
+				MinecraftForge.EVENT_BUS.post(new IslandCreateEvent(player, References.getPlayerIsland(player.getName())));
 			} else if (subCommand.equals("invite"))
 			{
 				inviteOther(player, args, world);
+				MinecraftForge.EVENT_BUS.post(new IslandInviteEvent(player, References.getPlayerIsland(player.getName())));
 			} else if (subCommand.equals("leave"))
 			{
 				leavePlatform(player, args);
+				MinecraftForge.EVENT_BUS.post(new IslandLeaveEvent(player, References.getPlayerIsland(player.getName())));
 			} else if (subCommand.equals("home"))
 			{
 				tpHome(player, args);
+				MinecraftForge.EVENT_BUS.post(new IslandHomeEvent(player, References.getPlayerIsland(player.getName())));
 			} else if (subCommand.equals("spawn"))
 			{
 				tpSpawn(player, args);
+				MinecraftForge.EVENT_BUS.post(new IslandSpawnEvent(player));
 			} else if (subCommand.equals("reset"))
 			{
 				reset(player, args, world);
+				MinecraftForge.EVENT_BUS.post(new IslandResetEvent(player, References.getPlayerIsland(player.getName())));
 			} else if (subCommand.equals("guide"))
 			{
 				guide(player, args, world);
 			} else if (subCommand.equals("visit"))
 			{
 				visit(player, args);
+				MinecraftForge.EVENT_BUS.post(new IslandVisitEvent(player, References.getPlayerIsland(player.getName())));
 			} else if (subCommand.equals("onechunk"))
 			{
 
