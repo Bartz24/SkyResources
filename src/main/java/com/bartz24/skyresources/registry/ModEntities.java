@@ -5,6 +5,7 @@ import com.bartz24.skyresources.alchemy.tile.CrucibleTile;
 import com.bartz24.skyresources.alchemy.tile.CrystallizerTile;
 import com.bartz24.skyresources.alchemy.tile.LifeInfuserTile;
 import com.bartz24.skyresources.alchemy.tile.PurificationVesselTile;
+import com.bartz24.skyresources.alchemy.tile.TileWaterConcentrator;
 import com.bartz24.skyresources.plugin.forestry.tile.TileBeeAttractor;
 import com.bartz24.skyresources.technology.tile.CombustionHeaterTile;
 import com.bartz24.skyresources.technology.tile.ConcentratorTile;
@@ -40,6 +41,7 @@ public final class ModEntities
 		GameRegistry.registerTileEntity(TileEndPortalCore.class, "endPortalCoreTile");
 		GameRegistry.registerTileEntity(LifeInfuserTile.class, "lifeInfuserTile");
 		GameRegistry.registerTileEntity(TileCrucibleInserter.class, "crucibleInserterTile");
+		GameRegistry.registerTileEntity(TileWaterConcentrator.class, "waterConcentratorTile");
 
 
 	}

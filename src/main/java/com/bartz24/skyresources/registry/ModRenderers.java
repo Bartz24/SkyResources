@@ -1,6 +1,6 @@
 package com.bartz24.skyresources.registry;
 
-import com.bartz24.skyresources.References;
+import com.bartz24.skyresources.alchemy.block.BlockWaterConcentrator.WaterConcentratorVariants;
 import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
 import com.bartz24.skyresources.alchemy.item.DirtyGemItem;
 import com.bartz24.skyresources.alchemy.item.MetalCrystalItem;
@@ -27,7 +27,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ModelDynBucket;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 
@@ -201,6 +200,9 @@ public class ModRenderers
 				new ModelResourceLocation("skyresources:WaterExtractor.full6", "inventory"));
 
 		registerVariantsDefaulted(ModBlocks.combustionHeater, CombustionHeaterVariants.class,
+				"variant");
+
+		registerVariantsDefaulted(ModBlocks.waterConcentrator, WaterConcentratorVariants.class,
 				"variant");
 
 		ModelLoader.setCustomMeshDefinition(ModItems.waterExtractor, new ItemMeshDefinition()

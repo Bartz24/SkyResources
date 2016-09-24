@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.SkyResources;
+import com.bartz24.skyresources.alchemy.block.BlockWaterConcentrator;
 import com.bartz24.skyresources.alchemy.block.CondenserBlock;
 import com.bartz24.skyresources.alchemy.block.CoolingCrystallizerBlock;
 import com.bartz24.skyresources.alchemy.block.CrucibleBlock;
@@ -53,7 +54,7 @@ public class ModBlocks
 	public static Block endPortalCore;
 	public static Block lifeInfuser;
 	public static Block crucibleInserter;
-
+	public static Block waterConcentrator;
 
 	public static Block compressedCoalBlock;
 	public static Block compressedCoalBlock2;
@@ -112,10 +113,10 @@ public class ModBlocks
 
 		alchemicalCondenser = registerBlock(
 				new CondenserBlock("alchemicalCondenser", "AlchemicalCondenser", 2F, 12F));
-		advancedCoolingCondenser = registerBlock(
-				new CondenserBlock("advancedCoolingCondenser", "AdvancedCoolingCondenser", 6F, 12F));
-		crystallizer = registerBlock(
-				new CoolingCrystallizerBlock("coolingCrystallizer", "CoolingCrystallizer", 6F, 12F));
+		advancedCoolingCondenser = registerBlock(new CondenserBlock("advancedCoolingCondenser",
+				"AdvancedCoolingCondenser", 6F, 12F));
+		crystallizer = registerBlock(new CoolingCrystallizerBlock("coolingCrystallizer",
+				"CoolingCrystallizer", 6F, 12F));
 
 		poweredHeater = registerBlock(
 				new BlockPoweredHeater("poweredHeater", "PoweredHeater", 4F, 12F));
@@ -123,8 +124,7 @@ public class ModBlocks
 				new BlockDarkMatterWarper("darkMatterWarper", "DarkMatterWarper", 8F, 12F));
 		endPortalCore = registerBlock(
 				new BlockEndPortalCore("endPortalCore", "EndPortalCore", 6F, 12F));
-		lifeInfuser = registerBlock(
-				new LifeInfuserBlock("lifeInfuser", "LifeInfuser", 6F, 12F));
+		lifeInfuser = registerBlock(new LifeInfuserBlock("lifeInfuser", "LifeInfuser", 6F, 12F));
 
 		purificationVessel = registerBlock(
 				new PurificationVesselBlock("purificationVessel", "PurificationVessel", 2F, 12F));
@@ -139,9 +139,12 @@ public class ModBlocks
 
 		fluidDropper = registerBlock(
 				new FluidDropperBlock("fluidDropper", "FluidDropper", 2F, 12F));
-		
+
 		crucibleInserter = registerBlock(
 				new BlockCrucibleInserter("crucibleInserter", "CrucibleInserter", 2F, 12F));
+
+		registerItemBlock(waterConcentrator = new BlockWaterConcentrator("waterConcentrator",
+				"WaterConcentrator", 2F, 12F));
 
 		registerItemBlock(combustionHeater = new CombustionHeaterBlock("combustionHeater",
 				"CombustionHeater", 2F, 12F));
@@ -151,25 +154,28 @@ public class ModBlocks
 
 		for (int i = 0; i < ModFluids.crystalFluidInfos().length; i++)
 		{
-				crystalFluidBlocks.add(registerBlock(
-						new FluidCrystalBlock(ModFluids.crystalFluids.get(i), Material.WATER,
-								ModFluids.crystalFluidInfos()[i].name + "CrystalFluidBlock",
-								RandomHelper.capatilizeString(ModFluids.crystalFluidInfos()[i].name)
-										+ "CrystalFluidBlock")));
-				dirtyCrystalFluidBlocks.add(registerBlock(
-						new FluidCrystalBlock(ModFluids.dirtyCrystalFluids.get(i), Material.WATER,
-								ModFluids.crystalFluidInfos()[i].name + "DirtyCrystalFluidBlock",
-								RandomHelper.capatilizeString(ModFluids.crystalFluidInfos()[i].name)
-										+ "DirtyCrystalFluidBlock")));
+			crystalFluidBlocks
+					.add(registerBlock(
+							new FluidCrystalBlock(ModFluids.crystalFluids.get(i), Material.WATER,
+									ModFluids.crystalFluidInfos()[i].name + "CrystalFluidBlock",
+									RandomHelper
+											.capatilizeString(ModFluids.crystalFluidInfos()[i].name)
+											+ "CrystalFluidBlock")));
+			dirtyCrystalFluidBlocks.add(registerBlock(
+					new FluidCrystalBlock(ModFluids.dirtyCrystalFluids.get(i), Material.WATER,
+							ModFluids.crystalFluidInfos()[i].name + "DirtyCrystalFluidBlock",
+							RandomHelper.capatilizeString(ModFluids.crystalFluidInfos()[i].name)
+									+ "DirtyCrystalFluidBlock")));
 		}
-		
+
 		for (int i = 0; i < ModFluids.moltenCrystalFluidInfos().length; i++)
 		{
-				moltenCrystalFluidBlocks.add(registerBlock(
-						new FluidMoltenCrystalBlock(ModFluids.moltenCrystalFluids.get(i), Material.LAVA,
-								ModFluids.moltenCrystalFluidInfos()[i].name + "MoltenCrystalFluidBlock",
-								RandomHelper.capatilizeString(ModFluids.moltenCrystalFluidInfos()[i].name)
-										+ "MoltenCrystalFluidBlock")));
+			moltenCrystalFluidBlocks.add(registerBlock(
+					new FluidMoltenCrystalBlock(ModFluids.moltenCrystalFluids.get(i), Material.LAVA,
+							ModFluids.moltenCrystalFluidInfos()[i].name + "MoltenCrystalFluidBlock",
+							RandomHelper
+									.capatilizeString(ModFluids.moltenCrystalFluidInfos()[i].name)
+									+ "MoltenCrystalFluidBlock")));
 		}
 	}
 

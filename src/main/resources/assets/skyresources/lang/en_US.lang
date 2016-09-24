@@ -62,6 +62,8 @@ tile.skyresources.darkMatterWarper.name=Dark Matter Warper
 tile.skyresources.endPortalCore.name=End Portal Core
 tile.skyresources.lifeInfuser.name=Life Infuser Core
 tile.skyresources.crucibleInserter.name=Crucible Inserter
+tile.skyresources.waterConcentrator.concentrator.name=Water Concentrator [WIP]
+tile.skyresources.waterConcentrator.deconcentrator.name=Water Deconcentrator [WIP]
 
 
 tile.skyresources.ironCrystalFluidBlock.name=Iron Crystal Liquid
