@@ -3,6 +3,7 @@ package com.bartz24.skyresources.jei.crucible;
 import java.util.Collections;
 import java.util.List;
 
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
@@ -42,5 +43,12 @@ public class CrucibleRecipeJEI extends BlankRecipeWrapper
 	public List<String> getTooltipStrings(int mouseX, int mouseY)
 	{
 		return null;
+	}
+
+	@Override
+	public void getIngredients(IIngredients ingredients)
+	{
+		ingredients.setInputs(ItemStack.class, getInputs());
+		ingredients.setOutputs(FluidStack.class, getFluidOutputs());
 	}
 }

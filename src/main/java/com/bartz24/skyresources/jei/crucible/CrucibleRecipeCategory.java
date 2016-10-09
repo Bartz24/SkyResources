@@ -1,17 +1,21 @@
 package com.bartz24.skyresources.jei.crucible;
 
+import java.util.List;
+
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.alchemy.tile.CrucibleTile;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraftforge.fluids.FluidStack;
 
 public class CrucibleRecipeCategory extends BlankRecipeCategory
 {
@@ -20,15 +24,13 @@ public class CrucibleRecipeCategory extends BlankRecipeCategory
 
 	private final IDrawable background;
 
-	private final String localizedName = I18n
-			.translateToLocalFormatted("jei.skyresources.recipe.crucible");
+	private final String localizedName = I18n.translateToLocalFormatted("jei.skyresources.recipe.crucible");
 
 	public CrucibleRecipeCategory(IGuiHelper guiHelper)
 	{
 		super();
-		background = guiHelper
-				.createDrawable(new ResourceLocation(References.ModID,
-						"textures/gui/jei/crucible.png"), 0, 0, 70, 46);
+		background = guiHelper.createDrawable(new ResourceLocation(References.ModID, "textures/gui/jei/crucible.png"),
+				0, 0, 70, 46);
 	}
 
 	@Override
@@ -60,21 +62,16 @@ public class CrucibleRecipeCategory extends BlankRecipeCategory
 	}
 
 	@Override
-	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper)
+	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper, IIngredients ingredients)
 	{
-		layout.getFluidStacks().init(slotOutputFluid, false, 54, 2, 14, 42,
-				CrucibleTile.tankCapacity, true, null);
+		layout.getFluidStacks().init(slotOutputFluid, false, 54, 2, 14, 42, CrucibleTile.tankCapacity, true, null);
 
 		layout.getItemStacks().init(slotInputStack, true, 3, 9);
 
-		if (wrapper instanceof CrucibleRecipeJEI)
-		{
-			CrucibleRecipeJEI recipe = (CrucibleRecipeJEI) wrapper;
-			layout.getItemStacks().set(slotInputStack,
-					(ItemStack) recipe.getInputs().get(0));
-			layout.getFluidStacks().set(slotOutputFluid,
-					recipe.getFluidOutputs());
-		}
+		List<List<ItemStack>> inputs = ingredients.getInputs(ItemStack.class);
+		layout.getItemStacks().set(slotInputStack, inputs.get(0));
+		List<FluidStack> outputs = ingredients.getOutputs(FluidStack.class);
+		layout.getFluidStacks().set(slotOutputFluid, outputs);
 	}
 
 }

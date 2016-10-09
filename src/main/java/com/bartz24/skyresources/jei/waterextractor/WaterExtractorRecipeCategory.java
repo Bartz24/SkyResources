@@ -1,21 +1,22 @@
 package com.bartz24.skyresources.jei.waterextractor;
 
-import com.bartz24.skyresources.ItemHelper;
+import java.util.List;
+
 import com.bartz24.skyresources.References;
-import com.bartz24.skyresources.alchemy.tile.CrucibleTile;
 import com.bartz24.skyresources.base.item.ItemWaterExtractor;
-import com.bartz24.skyresources.jei.waterextractor.extract.WaterExtractorExtractRecipeJEI;
 import com.bartz24.skyresources.registry.ModItems;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraftforge.fluids.FluidStack;
 
 public class WaterExtractorRecipeCategory extends BlankRecipeCategory
 {
@@ -69,7 +70,7 @@ public class WaterExtractorRecipeCategory extends BlankRecipeCategory
 	}
 
 	@Override
-	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper)
+	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper, IIngredients ingredients)
 	{
 		layout.getItemStacks().init(slotInputExtractor, true, 32, 1);
 		layout.getItemStacks().init(slotInputStack, true, 53, 29);
@@ -79,14 +80,17 @@ public class WaterExtractorRecipeCategory extends BlankRecipeCategory
 		layout.getFluidStacks().init(slotOutputFluid, false, 132, 4, 14, 42,
 				ItemWaterExtractor.maxAmount, false, null);
 
-		IRecipeWrapper recipe = wrapper;
+		List<List<ItemStack>> inputs = ingredients.getInputs(ItemStack.class);
+		List<List<FluidStack>> finputs = ingredients.getInputs(FluidStack.class);
 		layout.getItemStacks().set(slotInputStack,
-				(ItemStack) recipe.getInputs().get(0));
+				inputs.get(0));
 		layout.getItemStacks().set(slotInputExtractor,
 				new ItemStack(ModItems.waterExtractor));
-		layout.getItemStacks().set(slotOutput, recipe.getOutputs());
-		layout.getFluidStacks().set(slotInputFluid, recipe.getFluidInputs());
-		layout.getFluidStacks().set(slotOutputFluid, recipe.getFluidOutputs());
+		List<ItemStack> outputs = ingredients.getOutputs(ItemStack.class);
+		List<FluidStack> foutputs = ingredients.getOutputs(FluidStack.class);
+		layout.getItemStacks().set(slotOutput, outputs);
+		layout.getFluidStacks().set(slotInputFluid, finputs.get(0));
+		layout.getFluidStacks().set(slotOutputFluid, foutputs);
 	}
 
 }

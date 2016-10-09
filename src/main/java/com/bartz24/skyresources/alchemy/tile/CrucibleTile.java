@@ -4,12 +4,9 @@ import java.util.List;
 
 import com.bartz24.skyresources.alchemy.crucible.CrucibleRecipe;
 import com.bartz24.skyresources.alchemy.crucible.CrucibleRecipes;
-import com.bartz24.skyresources.alchemy.item.MetalCrystalItem;
 import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.config.ConfigOptions;
-import com.bartz24.skyresources.registry.ModFluids;
 
-import mezz.jei.gui.ingredients.ItemStackHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;

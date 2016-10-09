@@ -1,5 +1,7 @@
 package com.bartz24.skyresources.jei.condenser;
 
+import java.util.List;
+
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.alchemy.fluid.FluidMoltenCrystalBlock;
 import com.bartz24.skyresources.registry.ModBlocks;
@@ -7,6 +9,7 @@ import com.bartz24.skyresources.registry.ModBlocks;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.block.Block;
@@ -23,17 +26,13 @@ public class CondenserRecipeCategory extends BlankRecipeCategory
 
 	private final IDrawable background;
 
-	private final String localizedName = I18n
-			.translateToLocalFormatted("jei.skyresources.recipe.condenser");
+	private final String localizedName = I18n.translateToLocalFormatted("jei.skyresources.recipe.condenser");
 
 	public CondenserRecipeCategory(IGuiHelper guiHelper)
 	{
 		super();
-		background = guiHelper
-				.createDrawable(
-						new ResourceLocation(References.ModID,
-								"textures/gui/jei/condenser.png"),
-						0, 0, 86, 50);
+		background = guiHelper.createDrawable(new ResourceLocation(References.ModID, "textures/gui/jei/condenser.png"),
+				0, 0, 86, 50);
 	}
 
 	@Override
@@ -65,25 +64,20 @@ public class CondenserRecipeCategory extends BlankRecipeCategory
 	}
 
 	@Override
-	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper)
+	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper, IIngredients ingredients)
 	{
 		layout.getItemStacks().init(slotInputBlock, true, 1, 17);
 		layout.getItemStacks().init(slotOutput, false, 64, 28);
 		layout.getItemStacks().init(slotCondenser, true, 1, 35);
 
-		if (wrapper instanceof CondenserRecipeJEI)
-		{
-			CondenserRecipeJEI infusionRecipe = (CondenserRecipeJEI) wrapper;
-			layout.getItemStacks().set(slotInputBlock,
-					(ItemStack) infusionRecipe.getInputs().get(0));
-			layout.getItemStacks().set(slotOutput, infusionRecipe.getOutputs());
-			if(Block.getBlockFromItem(((ItemStack) infusionRecipe.getInputs().get(0)).getItem()) instanceof FluidMoltenCrystalBlock)
-			layout.getItemStacks().set(slotCondenser,
-					new ItemStack(ModBlocks.advancedCoolingCondenser));
-			else
-				layout.getItemStacks().set(slotCondenser,
-						new ItemStack(ModBlocks.alchemicalCondenser));
-		}
+		List<List<ItemStack>> inputs = ingredients.getInputs(ItemStack.class);
+		layout.getItemStacks().set(slotInputBlock, inputs.get(0));
+		List<ItemStack> outputs = ingredients.getOutputs(ItemStack.class);
+		layout.getItemStacks().set(slotOutput, outputs);
+		if (Block.getBlockFromItem(((ItemStack) inputs.get(0).get(0)).getItem()) instanceof FluidMoltenCrystalBlock)
+			layout.getItemStacks().set(slotCondenser, new ItemStack(ModBlocks.advancedCoolingCondenser));
+		else
+			layout.getItemStacks().set(slotCondenser, new ItemStack(ModBlocks.alchemicalCondenser));
 	}
 
 }

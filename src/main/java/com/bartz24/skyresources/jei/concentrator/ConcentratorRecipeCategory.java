@@ -1,6 +1,7 @@
 package com.bartz24.skyresources.jei.concentrator;
 
-import com.bartz24.skyresources.ItemHelper;
+import java.util.List;
+
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.registry.ModBlocks;
 
@@ -8,6 +9,7 @@ import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableStatic;
 import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
@@ -26,25 +28,17 @@ public class ConcentratorRecipeCategory extends BlankRecipeCategory
 
 	private IDrawable heatBar;
 
-	private final String localizedName = I18n
-			.translateToLocalFormatted("jei.skyresources.recipe.concentrator");
+	private final String localizedName = I18n.translateToLocalFormatted("jei.skyresources.recipe.concentrator");
 
 	public ConcentratorRecipeCategory(IGuiHelper guiHelper)
 	{
 		super();
-		background = guiHelper
-				.createDrawable(
-						new ResourceLocation(References.ModID,
-								"textures/gui/jei/concentrator.png"),
-						0, 0, 104, 72);
-		IDrawableStatic arrowDrawable = guiHelper
-				.createDrawable(
-						new ResourceLocation(References.ModID,
-								"textures/gui/combustionHeater.png"),
-						176, 14, 8, 69);
+		background = guiHelper.createDrawable(
+				new ResourceLocation(References.ModID, "textures/gui/jei/concentrator.png"), 0, 0, 104, 72);
+		IDrawableStatic arrowDrawable = guiHelper.createDrawable(
+				new ResourceLocation(References.ModID, "textures/gui/combustionHeater.png"), 176, 14, 8, 69);
 		heatBar = guiHelper.createAnimatedDrawable(arrowDrawable, 200,
-				mezz.jei.api.gui.IDrawableAnimated.StartDirection.BOTTOM,
-				false);
+				mezz.jei.api.gui.IDrawableAnimated.StartDirection.BOTTOM, false);
 	}
 
 	@Override
@@ -77,23 +71,19 @@ public class ConcentratorRecipeCategory extends BlankRecipeCategory
 	}
 
 	@Override
-	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper)
+	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper, IIngredients ingredients)
 	{
 		layout.getItemStacks().init(slotInputBlock, true, 1, 45);
 		layout.getItemStacks().init(slotInputStack, true, 1, 9);
 		layout.getItemStacks().init(slotOutput, false, 64, 45);
 		layout.getItemStacks().init(slotConcentrator, true, 1, 27);
 
-		if (wrapper instanceof ConcentratorRecipeJEI)
-		{
-			ConcentratorRecipeJEI infusionRecipe = (ConcentratorRecipeJEI) wrapper;
-			layout.getItemStacks().set(slotInputBlock,
-					(ItemStack) infusionRecipe.getInputs().get(0));
-				layout.getItemStacks().set(slotInputStack,
-						(ItemStack) infusionRecipe.getInputs().get(1));
-			layout.getItemStacks().set(slotOutput, infusionRecipe.getOutputs());
-			layout.getItemStacks().set(slotConcentrator, new ItemStack(ModBlocks.concentrator));
-		}
+	    List<List<ItemStack>> inputs = ingredients.getInputs(ItemStack.class);
+		layout.getItemStacks().set(slotInputBlock, inputs.get(0));
+		layout.getItemStacks().set(slotInputStack, inputs.get(1));
+	    List<ItemStack> outputs = ingredients.getOutputs(ItemStack.class);
+		layout.getItemStacks().set(slotOutput, outputs);
+		layout.getItemStacks().set(slotConcentrator, new ItemStack(ModBlocks.concentrator));
 	}
 
 }

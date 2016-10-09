@@ -1,25 +1,12 @@
 package com.bartz24.skyresources.alchemy.tile;
 
-import java.util.List;
-
-import com.bartz24.skyresources.alchemy.crucible.CrucibleRecipe;
-import com.bartz24.skyresources.alchemy.crucible.CrucibleRecipes;
-import com.bartz24.skyresources.alchemy.item.MetalCrystalItem;
-import com.bartz24.skyresources.base.HeatSources;
-import com.bartz24.skyresources.config.ConfigOptions;
-import com.bartz24.skyresources.registry.ModFluids;
-
-import mezz.jei.gui.ingredients.ItemStackHelper;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;

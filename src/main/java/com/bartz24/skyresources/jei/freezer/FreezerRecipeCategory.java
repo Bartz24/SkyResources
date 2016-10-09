@@ -1,11 +1,14 @@
 package com.bartz24.skyresources.jei.freezer;
 
+import java.util.List;
+
 import com.bartz24.skyresources.ItemHelper;
 import com.bartz24.skyresources.References;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
@@ -20,17 +23,13 @@ public class FreezerRecipeCategory extends BlankRecipeCategory
 
 	private final IDrawable background;
 
-	private final String localizedName = I18n
-			.translateToLocalFormatted("jei.skyresources.recipe.freezer");
+	private final String localizedName = I18n.translateToLocalFormatted("jei.skyresources.recipe.freezer");
 
 	public FreezerRecipeCategory(IGuiHelper guiHelper)
 	{
 		super();
-		background = guiHelper
-				.createDrawable(
-						new ResourceLocation(References.ModID,
-								"textures/gui/jei/concentrator.png"),
-						0, 40, 90, 40);
+		background = guiHelper.createDrawable(
+				new ResourceLocation(References.ModID, "textures/gui/jei/concentrator.png"), 0, 40, 90, 40);
 	}
 
 	@Override
@@ -62,21 +61,15 @@ public class FreezerRecipeCategory extends BlankRecipeCategory
 	}
 
 	@Override
-	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper)
+	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper, IIngredients ingredients)
 	{
 		layout.getItemStacks().init(slotInputStack, true, 1, 5);
 		layout.getItemStacks().init(slotOutput, false, 64, 5);
 
-		if (wrapper instanceof FreezerRecipeJEI)
-		{
-			FreezerRecipeJEI infusionRecipe = (FreezerRecipeJEI) wrapper;
-			for (int i = 0; i < infusionRecipe.getInputs().size(); i++)
-			{
-				layout.getItemStacks().set(slotInputStack,
-						(ItemStack) infusionRecipe.getInputs().get(i));
-			}
-			layout.getItemStacks().set(slotOutput, infusionRecipe.getOutputs());
-		}
+		List<List<ItemStack>> inputs = ingredients.getInputs(ItemStack.class);
+		layout.getItemStacks().set(slotInputStack, inputs.get(0));
+		List<ItemStack> outputs = ingredients.getOutputs(ItemStack.class);
+		layout.getItemStacks().set(slotOutput, outputs);
 	}
 
 }

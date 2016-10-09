@@ -1,17 +1,19 @@
 package com.bartz24.skyresources.jei.purificationVessel;
 
+import java.util.List;
+
 import com.bartz24.skyresources.References;
-import com.bartz24.skyresources.alchemy.tile.CrucibleTile;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraftforge.fluids.FluidStack;
 
 public class PurificationVesselRecipeCategory extends BlankRecipeCategory
 {
@@ -20,15 +22,13 @@ public class PurificationVesselRecipeCategory extends BlankRecipeCategory
 
 	private final IDrawable background;
 
-	private final String localizedName = I18n
-			.translateToLocalFormatted("jei.skyresources.recipe.purificationVessel");
+	private final String localizedName = I18n.translateToLocalFormatted("jei.skyresources.recipe.purificationVessel");
 
 	public PurificationVesselRecipeCategory(IGuiHelper guiHelper)
 	{
 		super();
-		background = guiHelper
-				.createDrawable(new ResourceLocation(References.ModID,
-						"textures/gui/jei/purificationVessel.png"), 0, 0, 70, 46);
+		background = guiHelper.createDrawable(
+				new ResourceLocation(References.ModID, "textures/gui/jei/purificationVessel.png"), 0, 0, 70, 46);
 	}
 
 	@Override
@@ -60,21 +60,15 @@ public class PurificationVesselRecipeCategory extends BlankRecipeCategory
 	}
 
 	@Override
-	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper)
+	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper, IIngredients ingredients)
 	{
-		layout.getFluidStacks().init(slotInputFluid, true, 6, 2, 14, 42,
-				3000, true, null);
-		layout.getFluidStacks().init(slotOutputFluid, false, 54, 2, 14, 42,
-				1000, true, null);
+		layout.getFluidStacks().init(slotInputFluid, true, 6, 2, 14, 42, 3000, true, null);
+		layout.getFluidStacks().init(slotOutputFluid, false, 54, 2, 14, 42, 1000, true, null);
 
-		if (wrapper instanceof PurificationVesselRecipeJEI)
-		{
-			PurificationVesselRecipeJEI recipe = (PurificationVesselRecipeJEI) wrapper;
-			layout.getFluidStacks().set(slotInputFluid,
-					recipe.getFluidInputs());
-			layout.getFluidStacks().set(slotOutputFluid,
-					recipe.getFluidOutputs());
-		}
+		List<List<FluidStack>> inputs = ingredients.getInputs(FluidStack.class);
+		layout.getFluidStacks().set(slotInputFluid, inputs.get(0));
+		List<FluidStack> outputs = ingredients.getOutputs(FluidStack.class);
+		layout.getFluidStacks().set(slotOutputFluid, outputs);
 	}
 
 }

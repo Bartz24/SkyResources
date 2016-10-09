@@ -1,18 +1,16 @@
 package com.bartz24.skyresources.jei.cauldron;
 
-import com.bartz24.skyresources.ItemHelper;
+import java.util.List;
+
 import com.bartz24.skyresources.References;
-import com.bartz24.skyresources.registry.ModBlocks;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
-import mezz.jei.api.gui.IDrawableStatic;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -26,17 +24,13 @@ public class CauldronRecipeCategory extends BlankRecipeCategory
 
 	private final IDrawable background;
 
-	private final String localizedName = I18n
-			.translateToLocalFormatted("jei.skyresources.recipe.cauldron");
+	private final String localizedName = I18n.translateToLocalFormatted("jei.skyresources.recipe.cauldron");
 
 	public CauldronRecipeCategory(IGuiHelper guiHelper)
 	{
 		super();
-		background = guiHelper
-				.createDrawable(
-						new ResourceLocation(References.ModID,
-								"textures/gui/jei/condenser.png"),
-						0, 0, 86, 50);
+		background = guiHelper.createDrawable(new ResourceLocation(References.ModID, "textures/gui/jei/condenser.png"),
+				0, 0, 86, 50);
 	}
 
 	@Override
@@ -68,20 +62,18 @@ public class CauldronRecipeCategory extends BlankRecipeCategory
 	}
 
 	@Override
-	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper)
+	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper, IIngredients ingredients)
 	{
 		layout.getItemStacks().init(slotInput, true, 1, 17);
 		layout.getItemStacks().init(slotOutput, false, 64, 28);
 		layout.getItemStacks().init(slotCauldron, true, 1, 35);
 
-		if (wrapper instanceof CauldronRecipeJEI)
-		{
-			CauldronRecipeJEI recipe = (CauldronRecipeJEI) wrapper;
-			layout.getItemStacks().set(slotInput,
-					(ItemStack) recipe.getInputs().get(0));
-			layout.getItemStacks().set(slotOutput, recipe.getOutputs());
-			layout.getItemStacks().set(slotCauldron,
-					new ItemStack(Items.CAULDRON));
-		}
+		List<List<ItemStack>> inputs = ingredients.getInputs(ItemStack.class);
+
+		layout.getItemStacks().set(slotInput, inputs.get(0));
+		List<ItemStack> outputs = ingredients.getOutputs(ItemStack.class);
+		layout.getItemStacks().set(slotOutput, outputs);
+		layout.getItemStacks().set(slotCauldron, new ItemStack(Items.CAULDRON));
+
 	}
 }

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -59,5 +60,12 @@ public class InfusionRecipeJEI extends BlankRecipeWrapper
 			return ret;
 		}
 		return null;
+	}
+
+	@Override
+	public void getIngredients(IIngredients ingredients)
+	{
+		ingredients.setInputs(ItemStack.class, getInputs());
+		ingredients.setOutputs(ItemStack.class, getOutputs());
 	}
 }

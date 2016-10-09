@@ -1,11 +1,14 @@
 package com.bartz24.skyresources.jei.infusion;
 
+import java.util.List;
+
 import com.bartz24.skyresources.ItemHelper;
 import com.bartz24.skyresources.References;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
@@ -24,19 +27,14 @@ public class InfusionRecipeCategory extends BlankRecipeCategory
 
 	private IDrawable heartIcon;
 
-	private final String localizedName = I18n
-			.translateToLocalFormatted("jei.skyresources.recipe.infusion");
+	private final String localizedName = I18n.translateToLocalFormatted("jei.skyresources.recipe.infusion");
 
 	public InfusionRecipeCategory(IGuiHelper guiHelper)
 	{
 		super();
-		background = guiHelper
-				.createDrawable(
-						new ResourceLocation(References.ModID,
-								"textures/gui/jei/infusion.png"),
-						0, 0, 130, 48);
-		heartIcon = guiHelper.createDrawable(
-				new ResourceLocation("textures/gui/icons.png"), 53, 1, 8, 8);
+		background = guiHelper.createDrawable(new ResourceLocation(References.ModID, "textures/gui/jei/infusion.png"),
+				0, 0, 130, 48);
+		heartIcon = guiHelper.createDrawable(new ResourceLocation("textures/gui/icons.png"), 53, 1, 8, 8);
 	}
 
 	@Override
@@ -70,24 +68,19 @@ public class InfusionRecipeCategory extends BlankRecipeCategory
 	}
 
 	@Override
-	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper)
+	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper, IIngredients ingredients)
 	{
 		layout.getItemStacks().init(slotInputStack, true, 0, 1);
 		layout.getItemStacks().init(slotInfusionStones, true, 32, 1);
 		layout.getItemStacks().init(slotInputBlock, true, 53, 29);
 		layout.getItemStacks().init(slotOutput, false, 106, 15);
 
-		if (wrapper instanceof InfusionRecipeJEI)
-		{
-			InfusionRecipeJEI infusionRecipe = (InfusionRecipeJEI) wrapper;
-			layout.getItemStacks().set(slotInputStack,
-					(ItemStack) infusionRecipe.getInputs().get(0));
-			layout.getItemStacks().set(slotInputBlock,
-					(ItemStack) infusionRecipe.getInputs().get(1));
-			layout.getItemStacks().set(slotOutput, infusionRecipe.getOutputs());
-			layout.getItemStacks().set(slotInfusionStones,
-					ItemHelper.getInfusionStones());
-		}
+		List<List<ItemStack>> inputs = ingredients.getInputs(ItemStack.class);
+		layout.getItemStacks().set(slotInputStack, inputs.get(0));
+		layout.getItemStacks().set(slotInputBlock, inputs.get(1));
+		List<ItemStack> outputs = ingredients.getOutputs(ItemStack.class);
+		layout.getItemStacks().set(slotOutput, outputs);
+		layout.getItemStacks().set(slotInfusionStones, ItemHelper.getInfusionStones());
 	}
 
 }
