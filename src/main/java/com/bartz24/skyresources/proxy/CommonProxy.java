@@ -20,6 +20,7 @@ import com.bartz24.skyresources.registry.ModFluids;
 import com.bartz24.skyresources.registry.ModGuiHandler;
 import com.bartz24.skyresources.registry.ModGuidePages;
 import com.bartz24.skyresources.registry.ModItems;
+import com.bartz24.skyresources.technology.cauldron.CauldronCleanRecipes;
 import com.bartz24.skyresources.technology.combustion.CombustionRecipes;
 import com.bartz24.skyresources.technology.concentrator.ConcentratorRecipes;
 import com.bartz24.skyresources.technology.freezer.FreezerRecipes;
@@ -55,6 +56,7 @@ public class CommonProxy
 		new FreezerRecipes();
 		new WaterExtractorRecipes();
 		new CrucibleRecipes();
+		new CauldronCleanRecipes();
 		new WorldTypeSky();
 		new SkyResourcesGuide();
 

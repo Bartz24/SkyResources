@@ -78,6 +78,9 @@ public class ModGuidePages
 		SkyResourcesGuide.addPage("crucibleAuto", "guide.skyresources.stage2",
 				new ItemStack(ModBlocks.crucibleInserter));
 
+		SkyResourcesGuide.addPage("crushedStone", "guide.skyresources.stage2",
+				new ItemStack(ModItems.techComponent, 1, 0));
+
 		SkyResourcesGuide.addPage("gemProduction", "guide.skyresources.stage2",
 				new ItemStack(Items.EMERALD));
 

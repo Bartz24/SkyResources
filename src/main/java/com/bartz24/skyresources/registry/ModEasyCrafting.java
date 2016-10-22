@@ -11,6 +11,7 @@ import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.base.ModFuelHandler;
 import com.bartz24.skyresources.base.waterextractor.WaterExtractorRecipes;
 import com.bartz24.skyresources.config.ConfigOptions;
+import com.bartz24.skyresources.technology.cauldron.CauldronCleanRecipes;
 import com.bartz24.skyresources.technology.combustion.CombustionRecipes;
 import com.bartz24.skyresources.technology.concentrator.ConcentratorRecipes;
 import com.bartz24.skyresources.technology.freezer.FreezerRecipes;
@@ -530,6 +531,16 @@ public class ModEasyCrafting
 									OreDictionary.getOres("oreUranium").get(0).getMetadata()),
 					1500, new ItemStack(ModItems.techComponent, 4, 1),
 					ModBlocks.compressedStone.getDefaultState());
+		}
+
+		for (FluidRegisterInfo i : ModFluids.crystalFluidInfos())
+		{
+			String dust = "dust" + RandomHelper.capatilizeString(i.name);
+			if (OreDictionary.getOres(dust).size() > 0)
+			{
+				CauldronCleanRecipes.addRecipe(OreDictionary.getOres(dust).get(0), 1F / ((float) i.rarity * 7F),
+						new ItemStack(ModItems.techComponent, 1, 0));
+			}
 		}
 	}
 }

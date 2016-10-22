@@ -15,6 +15,8 @@ import com.bartz24.skyresources.base.ModKeyBindings;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModGuiHandler;
 import com.bartz24.skyresources.registry.ModItems;
+import com.bartz24.skyresources.technology.cauldron.CauldronCleanRecipe;
+import com.bartz24.skyresources.technology.cauldron.CauldronCleanRecipes;
 import com.bartz24.skyresources.world.WorldTypeSky;
 
 import net.minecraft.block.Block;
@@ -65,8 +67,7 @@ public class EventHandler
 
 			NBTTagCompound persist = data.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
 
-			if (player.worldObj.getWorldInfo().getTerrainType() instanceof WorldTypeSky
-					&& player.dimension == 0)
+			if (player.worldObj.getWorldInfo().getTerrainType() instanceof WorldTypeSky && player.dimension == 0)
 			{
 				if (!References.hasPlayerSpawned(player.getName()))
 				{
@@ -133,8 +134,7 @@ public class EventHandler
 		}
 
 		Random random = world.rand;
-		int type = ConfigOptions.worldSpawnType == 0 ? random.nextInt(2)
-				: ConfigOptions.worldSpawnType - 1;
+		int type = ConfigOptions.worldSpawnType == 0 ? random.nextInt(2) : ConfigOptions.worldSpawnType - 1;
 
 		spawnPlat(world, spawn, type);
 	}
@@ -222,8 +222,7 @@ public class EventHandler
 			{
 				for (int z = -2; z < 3; z++)
 				{
-					BlockPos pos = new BlockPos(spawn.getX() + x, spawn.getY() - 2 + y,
-							spawn.getZ() + z);
+					BlockPos pos = new BlockPos(spawn.getX() + x, spawn.getY() - 2 + y, spawn.getZ() + z);
 					if (x == 0 && z == 0)
 					{
 						if (y < 3)
@@ -303,53 +302,42 @@ public class EventHandler
 			{
 				if (block == Blocks.CACTUS)
 				{
-					RandomHelper.spawnItemInWorld(event.getWorld(),
-							new ItemStack(ModItems.alchemyComponent, 1,
-									((AlchemyItemComponent) ModItems.alchemyComponent).getNames()
-											.indexOf("cactusNeedle")),
+					RandomHelper.spawnItemInWorld(event.getWorld(), new ItemStack(ModItems.alchemyComponent, 1,
+							((AlchemyItemComponent) ModItems.alchemyComponent).getNames().indexOf("cactusNeedle")),
 							event.getEntityPlayer().getPosition());
 					event.getEntityPlayer().attackEntityFrom(DamageSource.cactus, 4);
 				} else if (block == Blocks.SNOW_LAYER)
 				{
-					RandomHelper.spawnItemInWorld(event.getWorld(), new ItemStack(Items.SNOWBALL),
-							event.getPos());
-					event.getEntityPlayer()
-							.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE,
-									event.getWorld().rand.nextInt(750) + 750,
-									event.getWorld().rand.nextInt(4)));
+					RandomHelper.spawnItemInWorld(event.getWorld(), new ItemStack(Items.SNOWBALL), event.getPos());
+					event.getEntityPlayer().addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE,
+							event.getWorld().rand.nextInt(750) + 750, event.getWorld().rand.nextInt(4)));
 
-					int meta = Blocks.SNOW_LAYER
-							.getMetaFromState(event.getWorld().getBlockState(event.getPos()));
+					int meta = Blocks.SNOW_LAYER.getMetaFromState(event.getWorld().getBlockState(event.getPos()));
 
 					if (meta < 1)
 						event.getWorld().setBlockToAir(event.getPos());
 					else
-						event.getWorld().setBlockState(event.getPos(),
-								Blocks.SNOW_LAYER.getStateFromMeta(meta - 1));
+						event.getWorld().setBlockState(event.getPos(), Blocks.SNOW_LAYER.getStateFromMeta(meta - 1));
 				} else if (block == Blocks.SNOW)
 				{
-					RandomHelper.spawnItemInWorld(event.getWorld(), new ItemStack(Items.SNOWBALL),
-							event.getPos());
-					event.getEntityPlayer()
-							.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE,
-									event.getWorld().rand.nextInt(750) + 750,
-									event.getWorld().rand.nextInt(4)));
+					RandomHelper.spawnItemInWorld(event.getWorld(), new ItemStack(Items.SNOWBALL), event.getPos());
+					event.getEntityPlayer().addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE,
+							event.getWorld().rand.nextInt(750) + 750, event.getWorld().rand.nextInt(4)));
 
-					event.getWorld().setBlockState(event.getPos(),
-							Blocks.SNOW_LAYER.getStateFromMeta(6));
+					event.getWorld().setBlockState(event.getPos(), Blocks.SNOW_LAYER.getStateFromMeta(6));
 				}
 			} else if (block != null && equip != null)
 			{
 				if (block == Blocks.CAULDRON)
 				{
 
-					int i = ((Integer) event.getWorld().getBlockState(event.getPos())
-							.getValue(BlockCauldron.LEVEL)).intValue();
+					int i = ((Integer) event.getWorld().getBlockState(event.getPos()).getValue(BlockCauldron.LEVEL))
+							.intValue();
 					ItemStack item = event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND);
 					if (i > 0 && item != null && item.getItem() == ModItems.dirtyGem)
 					{
-						List<ItemStack> items = OreDictionary.getOres("gem" + RandomHelper
-								.capatilizeString(ModItems.gemList.get(item.getMetadata()).name));
+						List<ItemStack> items = OreDictionary.getOres(
+								"gem" + RandomHelper.capatilizeString(ModItems.gemList.get(item.getMetadata()).name));
 
 						if (items.size() > 0)
 						{
@@ -357,12 +345,34 @@ public class EventHandler
 							if (item.stackSize == 0)
 								event.getEntityPlayer().setHeldItem(EnumHand.MAIN_HAND, null);
 							RandomHelper.spawnItemInWorld(event.getWorld(),
-									new ItemStack(items.get(0).getItem(), 1,
-											items.get(0).getMetadata()),
+									new ItemStack(items.get(0).getItem(), 1, items.get(0).getMetadata()),
 									event.getPos());
 
 							new BlockCauldron().setWaterLevel(event.getWorld(), event.getPos(),
 									event.getWorld().getBlockState(event.getPos()), i - 1);
+							return;
+						}
+					}
+
+					if (i > 0)
+					{
+						List<CauldronCleanRecipe> recipes = CauldronCleanRecipes.getRecipes(item);
+						if (recipes.size() > 0)
+						{
+							item.stackSize--;
+							if (item.stackSize == 0)
+								event.getEntityPlayer().setHeldItem(EnumHand.MAIN_HAND, null);
+							for (CauldronCleanRecipe rec : recipes)
+							{
+								if (event.getWorld().rand.nextFloat() <= rec.getDropChance())
+								{
+									RandomHelper.spawnItemInWorld(event.getWorld(), rec.getOutput().copy(),
+											event.getPos());
+								}
+							}
+							if (event.getWorld().rand.nextFloat() < 0.4F)
+								new BlockCauldron().setWaterLevel(event.getWorld(), event.getPos(),
+										event.getWorld().getBlockState(event.getPos()), i - 1);
 						}
 					}
 				}
@@ -402,8 +412,7 @@ public class EventHandler
 				}
 			}
 
-			player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH)
-					.setBaseValue(20 + healthToAdd);
+			player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20 + healthToAdd);
 			if (player.getHealth() > player.getMaxHealth())
 				player.setHealth(player.getMaxHealth());
 		}
@@ -419,26 +428,23 @@ public class EventHandler
 		{
 			if (!References.playerHasIsland(player.getName()) && !References.worldOneChunk)
 				player.addChatMessage(new TextComponentString(
-						"Type " + TextFormatting.AQUA.toString() + "/" + ConfigOptions.commandName
-								+ " create" + TextFormatting.WHITE.toString()
-								+ " to create your starting island"));
+						"Type " + TextFormatting.AQUA.toString() + "/" + ConfigOptions.commandName + " create"
+								+ TextFormatting.WHITE.toString() + " to create your starting island"));
 		}
 
-		TextComponentString text = new TextComponentString("Need help or a guide? \nPress your "
-				+ TextFormatting.AQUA + "Open Guide Key (Default: G)" + TextFormatting.WHITE
-				+ " to open the Sky Resources in-game guide! " + "\n " + TextFormatting.AQUA + "/"
-				+ ConfigOptions.commandName + " guide " + TextFormatting.WHITE + "works too!");
+		TextComponentString text = new TextComponentString("Need help or a guide? \nPress your " + TextFormatting.AQUA
+				+ "Open Guide Key (Default: G)" + TextFormatting.WHITE + " to open the Sky Resources in-game guide! "
+				+ "\n " + TextFormatting.AQUA + "/" + ConfigOptions.commandName + " guide " + TextFormatting.WHITE
+				+ "works too!");
 		player.addChatMessage(text);
 		if (ConfigOptions.easyMode)
 		{
-			player.addChatMessage(new TextComponentString(TextFormatting.RED
-					+ "You're playing on easy mode D: WHY!? "
+			player.addChatMessage(new TextComponentString(TextFormatting.RED + "You're playing on easy mode D: WHY!? "
 					+ "Either you are a pussy, or you don't want to spend time grinding away :P"));
-		}
-		else
+		} else
 		{
 			player.addChatMessage(new TextComponentString(TextFormatting.GRAY
-					+ "If you find it to be too grindy or you want a more casual time, turn on easy mode in the config for Sky Resources."));			
+					+ "If you find it to be too grindy or you want a more casual time, turn on easy mode in the config for Sky Resources."));
 		}
 	}
 
@@ -449,8 +455,8 @@ public class EventHandler
 
 		if (player.worldObj.getWorldInfo().getTerrainType() instanceof WorldTypeSky)
 		{
-			if (player.getBedLocation() == null || player.getBedSpawnLocation(player.worldObj,
-					player.getBedLocation(), true) == null)
+			if (player.getBedLocation() == null
+					|| player.getBedSpawnLocation(player.worldObj, player.getBedLocation(), true) == null)
 			{
 
 				IslandPos iPos = References.getPlayerIsland(player.getName());
@@ -487,8 +493,7 @@ public class EventHandler
 			if (player.worldObj.isRemote)
 			{
 				player.openGui(SkyResources.instance, ModGuiHandler.GuideGUI, player.worldObj,
-						player.getPosition().getX(), player.getPosition().getY(),
-						player.getPosition().getZ());
+						player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ());
 			}
 		}
 	}
@@ -504,8 +509,7 @@ public class EventHandler
 			return;
 		}
 		PortalTeleporterNether tp = new PortalTeleporterNether();
-		entity = tp.travelToDimension(entity, entity.dimension == 0 ? -1 : 0, entity.getPosition(),
-				16, false);
+		entity = tp.travelToDimension(entity, entity.dimension == 0 ? -1 : 0, entity.getPosition(), 16, false);
 		if (entity.dimension != dim)
 		{
 			event.setCanceled(true);
