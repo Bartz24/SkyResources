@@ -3,9 +3,9 @@ package com.bartz24.skyresources.base.commands;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bartz24.skyresources.IslandPos;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
+import com.bartz24.skyresources.api.IslandPos;
 import com.bartz24.skyresources.api.event.IslandCreateEvent;
 import com.bartz24.skyresources.api.event.IslandHomeEvent;
 import com.bartz24.skyresources.api.event.IslandInviteEvent;

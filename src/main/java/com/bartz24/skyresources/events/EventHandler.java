@@ -3,7 +3,6 @@ package com.bartz24.skyresources.events;
 import java.util.List;
 import java.util.Random;
 
-import com.bartz24.skyresources.IslandPos;
 import com.bartz24.skyresources.PortalTeleporterNether;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
@@ -11,6 +10,7 @@ import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.SkyResourcesSaveData;
 import com.bartz24.skyresources.alchemy.effects.IHealthBoostItem;
 import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
+import com.bartz24.skyresources.api.IslandPos;
 import com.bartz24.skyresources.base.ModKeyBindings;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModGuiHandler;

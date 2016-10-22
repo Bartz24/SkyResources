@@ -2,6 +2,7 @@ package com.bartz24.skyresources;
 
 import java.util.ArrayList;
 
+import com.bartz24.skyresources.api.IslandPos;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.google.common.base.Strings;
 

@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import javax.annotation.Nonnull;
 
-import com.bartz24.skyresources.IslandPos;
+import com.bartz24.skyresources.api.IslandPos;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.eventhandler.Event;

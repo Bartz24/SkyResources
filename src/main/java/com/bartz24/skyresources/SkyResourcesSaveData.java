@@ -1,5 +1,6 @@
 package com.bartz24.skyresources;
 
+import com.bartz24.skyresources.api.IslandPos;
 import com.bartz24.skyresources.config.ConfigOptions;
 
 import net.minecraft.nbt.NBTTagCompound;
