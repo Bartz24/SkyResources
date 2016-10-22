@@ -14,12 +14,12 @@ import minetweaker.api.liquid.ILiquidStack;
 import minetweaker.api.oredict.IOreDictEntry;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 public class MinetweakerPlugin
 {
-	public static void postInit(FMLPostInitializationEvent event)
+	public static void init(FMLInitializationEvent event)
 	{
 		MineTweakerAPI.registerClass(MTCombustionRecipe.class);
 		MineTweakerAPI.registerClass(MTConcentratorRecipe.class);

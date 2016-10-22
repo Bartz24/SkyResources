@@ -76,6 +76,8 @@ public class CommonProxy
 		ModPlugins.init();
 
 		WorldOverride.registerWorldProviders();
+		if (Loader.isModLoaded("MineTweaker3"))
+			MinetweakerPlugin.init(e);
 	}
 
 	public void postInit(FMLPostInitializationEvent e)
@@ -86,7 +88,5 @@ public class CommonProxy
 			ModCrafting.init();
 
 		ModPlugins.postInit();
-		if (Loader.isModLoaded("MineTweaker3"))
-			MinetweakerPlugin.postInit(e);
 	}
 }
