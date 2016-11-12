@@ -119,8 +119,9 @@ public class PlatformCommand extends CommandBase implements ICommand
 				MinecraftForge.EVENT_BUS.post(new IslandInviteEvent(player, References.getPlayerIsland(player.getName())));
 			} else if (subCommand.equals("leave"))
 			{
+				IslandPos pos = References.getPlayerIsland(player.getName());
 				leavePlatform(player, args);
-				MinecraftForge.EVENT_BUS.post(new IslandLeaveEvent(player, References.getPlayerIsland(player.getName())));
+				MinecraftForge.EVENT_BUS.post(new IslandLeaveEvent(player, pos));
 			} else if (subCommand.equals("home"))
 			{
 				tpHome(player, args);

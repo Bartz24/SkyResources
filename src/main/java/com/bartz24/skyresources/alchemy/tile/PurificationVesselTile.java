@@ -164,6 +164,15 @@ public class PurificationVesselTile extends TileEntity implements ITickable, IFl
 						lowerTank.drain(transferAmount, true);
 					}
 				}
+				else
+				{
+					int rate = Math.min(getHeatSourceVal(),
+							lowerTank.getFluidAmount());
+
+					int transferAmount = upperTank.fill(
+							new FluidStack(lowerTank.getFluid().getFluid(), rate), true);
+					lowerTank.drain(transferAmount, true);					
+				}
 			}
 		}
 
