@@ -162,6 +162,8 @@ public class GuideGUI extends GuiScreen
 				GuidePage lastPage = SkyResourcesGuide.getPage(ConfigOptions.lastGuidePage);
 				currentPage = lastPage == null ? SkyResourcesGuide.getPage("basics") : lastPage;
 			}
+			else
+				currentPage = SkyResourcesGuide.getPage("basics");
 		}
 		if (linkButtons == null)
 			linkButtons = new ArrayList();

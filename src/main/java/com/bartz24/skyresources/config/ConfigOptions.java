@@ -58,6 +58,7 @@ public class ConfigOptions
 	public static boolean rememberGuide;
 	public static int draconiumType;
 	public static boolean allowAllGemTypes;
+	public static boolean displayFirstChatInfo;
 
 	public static String lastGuidePage;
 	public static String lastGuideCat;
@@ -151,6 +152,9 @@ public class ConfigOptions
 
 		allowAllGemTypes = config.get(Configuration.CATEGORY_GENERAL, "Allow All Dirty Gem Types to be Obtained", false)
 				.getBoolean(false);
+
+		displayFirstChatInfo = config.get(Configuration.CATEGORY_GENERAL, "Display Mod Info In Chat On Login", true)
+				.getBoolean(true);
 
 		rememberGuide = config.get("guide", "Remember Current Guide On Closing", true)
 				.getBoolean(true);

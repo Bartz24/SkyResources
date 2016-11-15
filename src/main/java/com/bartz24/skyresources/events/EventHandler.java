@@ -424,27 +424,31 @@ public class EventHandler
 	{
 		EntityPlayer player = event.player;
 
-		if (player.worldObj.getWorldInfo().getTerrainType() instanceof WorldTypeSky)
+		if (ConfigOptions.displayFirstChatInfo)
 		{
-			if (!References.playerHasIsland(player.getName()) && !References.worldOneChunk)
-				player.addChatMessage(new TextComponentString(
-						"Type " + TextFormatting.AQUA.toString() + "/" + ConfigOptions.commandName + " create"
-								+ TextFormatting.WHITE.toString() + " to create your starting island"));
-		}
+			if (player.worldObj.getWorldInfo().getTerrainType() instanceof WorldTypeSky)
+			{
+				if (!References.playerHasIsland(player.getName()) && !References.worldOneChunk)
+					player.addChatMessage(new TextComponentString(
+							"Type " + TextFormatting.AQUA.toString() + "/" + ConfigOptions.commandName + " create"
+									+ TextFormatting.WHITE.toString() + " to create your starting island"));
+			}
 
-		TextComponentString text = new TextComponentString("Need help or a guide? \nPress your " + TextFormatting.AQUA
-				+ "Open Guide Key (Default: G)" + TextFormatting.WHITE + " to open the Sky Resources in-game guide! "
-				+ "\n " + TextFormatting.AQUA + "/" + ConfigOptions.commandName + " guide " + TextFormatting.WHITE
-				+ "works too!");
-		player.addChatMessage(text);
-		if (ConfigOptions.easyMode)
-		{
-			player.addChatMessage(new TextComponentString(TextFormatting.RED + "You're playing on easy mode D: WHY!? "
-					+ "Either you are a pussy, or you don't want to spend time grinding away :P"));
-		} else
-		{
-			player.addChatMessage(new TextComponentString(TextFormatting.GRAY
-					+ "If you find it to be too grindy or you want a more casual time, turn on easy mode in the config for Sky Resources."));
+			TextComponentString text = new TextComponentString("Need help or a guide? \nPress your "
+					+ TextFormatting.AQUA + "Open Guide Key (Default: G)" + TextFormatting.WHITE
+					+ " to open the Sky Resources in-game guide! " + "\n " + TextFormatting.AQUA + "/"
+					+ ConfigOptions.commandName + " guide " + TextFormatting.WHITE + "works too!");
+			player.addChatMessage(text);
+			if (ConfigOptions.easyMode)
+			{
+				player.addChatMessage(
+						new TextComponentString(TextFormatting.RED + "You're playing on easy mode D: WHY!? "
+								+ "Either you are a pussy, or you don't want to spend time grinding away :P"));
+			} else
+			{
+				player.addChatMessage(new TextComponentString(TextFormatting.GRAY
+						+ "If you find it to be too grindy or you want a more casual time, turn on easy mode in the config for Sky Resources."));
+			}
 		}
 	}
 
