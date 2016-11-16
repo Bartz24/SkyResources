@@ -46,6 +46,7 @@ public class ModFluids
 		ModFluids.addCrystalFluid("osmium", 0xFF7F13C2, 5, CrystalFluidType.NORMAL);
 		ModFluids.addCrystalFluid("lapis", 0xFF075BBA, 6, CrystalFluidType.NORMAL);
 		ModFluids.addCrystalFluid("draconium", 0xFF9E6DCF, 10, ConfigOptions.draconiumType == 0 ? CrystalFluidType.NORMAL : CrystalFluidType.MOLTEN);
+		ModFluids.addCrystalFluid("certus", 0xFFB0F4F7, 5, CrystalFluidType.NORMAL);
 
 		registerCrystalFluid();
 		registerDirtyCrystalFluid();

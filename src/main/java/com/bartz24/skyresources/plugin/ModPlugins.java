@@ -1,5 +1,6 @@
 package com.bartz24.skyresources.plugin;
 
+import com.bartz24.skyresources.plugin.ae2.AE2Plugin;
 import com.bartz24.skyresources.plugin.armorplus.ArmorPlusPlugin;
 import com.bartz24.skyresources.plugin.enderio.EnderIOPlugin;
 import com.bartz24.skyresources.plugin.environmentaltech.EnvTechPlugin;
@@ -32,6 +33,8 @@ public class ModPlugins
 				EnderIOPlugin.preInit();
 			if (Loader.isModLoaded("quantumflux"))
 				QFluxPlugin.preInit();
+			if (Loader.isModLoaded("appliedenergistics2"))
+				AE2Plugin.preInit();
 	}
 
 	public static void init()
@@ -52,6 +55,8 @@ public class ModPlugins
 			EnderIOPlugin.init();
 		if (Loader.isModLoaded("quantumflux"))
 			QFluxPlugin.init();
+		if (Loader.isModLoaded("appliedenergistics2"))
+			AE2Plugin.init();
 	}
 
 	public static void postInit()
@@ -72,6 +77,8 @@ public class ModPlugins
 			EnderIOPlugin.postInit();
 		if (Loader.isModLoaded("quantumflux"))
 			QFluxPlugin.postInit();
+		if (Loader.isModLoaded("appliedenergistics2"))
+			AE2Plugin.postInit();
 	}
 
 	public static void initRenderers()
@@ -92,5 +99,7 @@ public class ModPlugins
 			EnderIOPlugin.initRenderers();
 		if (Loader.isModLoaded("quantumflux"))
 			QFluxPlugin.initRenderers();
+		if (Loader.isModLoaded("appliedenergistics2"))
+			AE2Plugin.initRenderers();
 	}
 }

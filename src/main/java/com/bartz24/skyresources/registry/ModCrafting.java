@@ -280,6 +280,9 @@ public class ModCrafting
 		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 18), 2000,
 				new ItemStack(ModItems.metalCrystal, 8, 1), new ItemStack(Items.GOLD_INGOT, 6),
 				new ItemStack(Items.ENDER_EYE, 4), new ItemStack(Items.DIAMOND));
+		CombustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 19), 700,
+				new ItemStack(ModItems.metalCrystal, 6, 11), new ItemStack(Items.REDSTONE, 8),
+				new ItemStack(Items.FLINT, 3), new ItemStack(Blocks.STONE, 7));
 		CombustionRecipes.addRecipe(new ItemStack(ModBlocks.dryCactus), 1300, new ItemStack(boneBlock),
 				new ItemStack(Items.DYE, 8, 7), new ItemStack(Blocks.LEAVES, 8, 1));
 		CombustionRecipes.addRecipe(new ItemStack(Blocks.CACTUS), 900, new ItemStack(Items.SPIDER_EYE, 1),

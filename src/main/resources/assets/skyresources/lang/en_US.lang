@@ -80,6 +80,7 @@ tile.skyresources.mercuryCrystalFluidBlock.name=Mercury Crystal Liquid
 tile.skyresources.osmiumCrystalFluidBlock.name=Osmium Crystal Liquid
 tile.skyresources.lapisCrystalFluidBlock.name=Lapis Lazuli Crystal Liquid
 tile.skyresources.draconiumCrystalFluidBlock.name=Draconium Crystal Liquid
+tile.skyresources.certusCrystalFluidBlock.name=Certus Quartz Crystal Liquid
 
 tile.skyresources.ironDirtyCrystalFluidBlock.name=Dirty Iron Crystal Liquid
 tile.skyresources.goldDirtyCrystalFluidBlock.name=Dirty Gold Crystal Liquid
@@ -95,6 +96,7 @@ tile.skyresources.mercuryDirtyCrystalFluidBlock.name=Dirty Mercury Crystal Liqui
 tile.skyresources.osmiumDirtyCrystalFluidBlock.name=Dirty Osmium Crystal Liquid
 tile.skyresources.lapisDirtyCrystalFluidBlock.name=Dirty Lapis Lazuli Crystal Liquid
 tile.skyresources.draconiumDirtyCrystalFluidBlock.name=Dirty Draconium Crystal Liquid
+tile.skyresources.certusDirtyCrystalFluidBlock.name=Dirty Certus Quartz Crystal Liquid
 
 tile.skyresources.quartzMoltenCrystalFluidBlock.name=Molten Quartz Crystal Liquid
 tile.skyresources.cobaltMoltenCrystalFluidBlock.name=Molten Cobalt Crystal Liquid
@@ -153,6 +155,7 @@ item.skyresources.metalCrystal.coldiron.name=Cold Iron Crystal Shard
 item.skyresources.metalCrystal.osmium.name=Osmium Crystal Shard
 item.skyresources.metalCrystal.lapis.name=Lapis Lazuli Crystal Shard
 item.skyresources.metalCrystal.draconium.name=Draconium Crystal Shard
+item.skyresources.metalCrystal.certus.name=Certus Quartz Crystal Shard
 
 item.skyresources.dirtyGem.emerald.name=Dirty Emerald
 item.skyresources.dirtyGem.ruby.name=Dirty Ruby
@@ -214,6 +217,7 @@ fluid.mercurycrystalfluid=Mercury Crystal Fluid
 fluid.osmiumcrystalfluid=Osmium Crystal Fluid
 fluid.lapiscrystalfluid=Lapis Lazuli Crystal Fluid
 fluid.draconiumcrystalfluid=Draconium Crystal Fluid
+fluid.certuscrystalfluid=Certus Quartz Crystal Fluid
 
 fluid.irondirtycrystalfluid=Dirty Iron Crystal Fluid
 fluid.golddirtycrystalfluid=Dirty Gold Crystal Fluid
@@ -229,6 +233,7 @@ fluid.mercurydirtycrystalfluid=Dirty Mercury Crystal Fluid
 fluid.osmiumdirtycrystalfluid=Dirty Osmium Crystal Fluid
 fluid.lapisdirtycrystalfluid=Dirty Lapis Lazuli Crystal Fluid
 fluid.draconiumdirtycrystalfluid=Dirty Draconium Crystal Fluid
+fluid.certusdirtycrystalfluid=Dirty Certus Quartz Crystal Fluid
 
 fluid.quartzmoltencrystalfluid=Molten Quartz Crystal Fluid
 fluid.cobaltmoltencrystalfluid=Molten Cobalt Crystal Fluid
@@ -386,6 +391,9 @@ guide.skyresources.misc.tinkers.text=Sky Resources provides for ways to get Tink
 
 guide.skyresources.misc.techreborn.title=Tech Reborn Support
 guide.skyresources.misc.techreborn.text=Sky Resources provides for ways to get basic TechReborn items. \n \n <recipe,,techreborn:part:31> is obtainable as well as the <recipe,,techreborn:rubberSapling:0> .
+
+guide.skyresources.misc.ae2.title=Applied Energistics 2 Support
+guide.skyresources.misc.ae2.text=Sky Resources provides for ways to get basic AE2 items. \n \n <recipe,,appliedenergistics2:material:0> , <recipe,,appliedenergistics2:material:1> , <recipe,,appliedenergistics2:sky_stone_block> are obtainable as well as the 4 inscriber presses.
 
 
 
