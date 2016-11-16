@@ -36,11 +36,11 @@ public class AE2Plugin
 		CombustionRecipes.addRecipe(new ItemStack(skystone), 1400, new ItemStack(Blocks.OBSIDIAN),
 				new ItemStack(ModItems.baseComponent, 1, 5));
 
-		CombustionRecipes.addRecipe(new ItemStack(material, 1, 13), 1200,
+		CombustionRecipes.addRecipe(new ItemStack(material, 1, 15), 1200,
 				new ItemStack(Blocks.IRON_BLOCK), new ItemStack(Items.GOLD_INGOT));
 		CombustionRecipes.addRecipe(new ItemStack(material, 1, 14), 1200,
 				new ItemStack(Blocks.IRON_BLOCK), new ItemStack(Items.DIAMOND));
-		CombustionRecipes.addRecipe(new ItemStack(material, 1, 15), 1200,
+		CombustionRecipes.addRecipe(new ItemStack(material, 1, 13), 1200,
 				new ItemStack(Blocks.IRON_BLOCK), new ItemStack(material, 1, 10));
 		List<ItemStack> silicons = OreDictionary.getOres("itemSilicon");
 		if(silicons.size() > 0)
