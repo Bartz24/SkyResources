@@ -20,12 +20,12 @@ plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
 */
-version = "1.2.4"
+version = "1.2.5"
 group= "com.bartz24.skyresources" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "skyresources"
 
 minecraft {
-    version = "1.10.2-12.18.2.2114"
+    version = "1.10.2-12.18.3.2185"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.
@@ -48,6 +48,8 @@ dependencies {
 	compile files("lib/Waila-1.7.0-B3_1.9.4.jar")
 	compile files("lib/forestry_1.10.2-5.2.14.263.jar")
 	compile files("lib/industrialcraft-2-2.6.69-ex110.jar")
+	compile files("lib/Draconic-Evolution-1.10.2-2.0.3.137-universal.jar")
+	compile files("lib/BrandonsCore-1.10.2-2.1.1.61-universal.jar")
 	  
     // real examples
     //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
