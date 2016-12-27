@@ -49,41 +49,6 @@ public class FluidCrystalBlock extends BlockFluidClassic
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 
-	@Override
-	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
-	{
-		super.updateTick(world, pos, state, rand);
-		if (!world.isRemote)
-		{
-			if (ModFluids.crystalFluids.contains(this.getFluid()))
-			{
-				if (this.isSourceBlock(world, pos) && isNotFlowing(world, pos, state))
-				{
-					if (rand.nextInt(ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks
-							.indexOf(this)].rarity) == 0)
-					{
-						if (ConfigOptions.easyMode || !(world.getBlockState(pos.down()).getBlock() instanceof CondenserBlock))
-						{
-							ItemStack stack = new ItemStack(ModItems.metalCrystal, 1,
-									ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks
-											.indexOf(this)].crystalIndex);
-							Entity entity = new EntityItem(world, pos.getX() + 0.5F,
-									pos.getY() + 0.5F, pos.getZ() + 0.5F, stack);
-							world.spawnEntityInWorld(entity);
-							world.playSound((EntityPlayer) null, pos,
-									SoundEvents.ENTITY_ARROW_HIT_PLAYER, SoundCategory.BLOCKS, 1.0F,
-									2.2F / (rand.nextFloat() * 0.2F + 0.9F));
-							if (rand.nextInt(
-									8 + ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks
-											.indexOf(this)].rarity / 2) >= 8)
-								world.setBlockToAir(pos);
-						}
-					}
-				}
-			}
-		}
-	}
-
 	public boolean isNotFlowing(World world, BlockPos pos, IBlockState state)
 	{
 		BlockPos[] checkPos = new BlockPos[]

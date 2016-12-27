@@ -34,7 +34,7 @@ public class RandomHelper
 	{
 		Entity entity = new EntityItem(world, pos.getX() + 0.5F,
 				pos.getY() + 0.5F, pos.getZ() + 0.5F, stack);
-		world.spawnEntityInWorld(entity);
+		world.spawnEntity(entity);
 	}
 
 	public static float pointDistancePlane(double x1, double y1, double x2,
@@ -54,7 +54,7 @@ public class RandomHelper
 				.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 		int color = fluid.getFluid().getColor(fluid);
 		// RenderUtil.setColorRGBA(color);
-		int brightness = Minecraft.getMinecraft().theWorld.getCombinedLight(pos,
+		int brightness = Minecraft.getMinecraft().world.getCombinedLight(pos,
 				fluid.getFluid().getLuminosity());
 
 		pre(x, y, z);
@@ -269,7 +269,7 @@ public class RandomHelper
 
 	public static boolean canStacksMerge(ItemStack stack1, ItemStack stack2)
 	{
-		if (stack1 == null || stack2 == null)
+		if (stack1 == ItemStack.EMPTY || stack2 == ItemStack.EMPTY)
 		{
 			return false;
 		}
@@ -293,15 +293,15 @@ public class RandomHelper
 			return 0;
 		}
 		int mergeCount = Math.min(
-				mergeTarget.getMaxStackSize() - mergeTarget.stackSize,
-				mergeSource.stackSize);
+				mergeTarget.getMaxStackSize() - mergeTarget.getCount(),
+				mergeSource.getCount());
 		if (mergeCount < 1)
 		{
 			return 0;
 		}
 		if (doMerge)
 		{
-			mergeTarget.stackSize += mergeCount;
+			mergeTarget.grow(mergeCount);
 		}
 		return mergeCount;
 	}
@@ -312,17 +312,17 @@ public class RandomHelper
 		{
 			for (int i = 0; i < inv.getSizeInventory(); i++)
 			{
-				if (stack == null || stack.stackSize <= 0)
-					return null;
+				if (stack == ItemStack.EMPTY || stack.getCount() <= 0)
+					return ItemStack.EMPTY;
 				ItemStack inside = inv.getStackInSlot(i);
-				if (inside == null || inside.stackSize <= 0)
+				if (inside == ItemStack.EMPTY || inside.getCount() <= 0)
 				{
 					inv.setInventorySlotContents(i, stack);
-					return null;
+					return ItemStack.EMPTY;
 				} else if (RandomHelper.canStacksMerge(inside, stack))
 				{
-					stack.stackSize -= RandomHelper.mergeStacks(stack, inside,
-							true);
+					stack.shrink(RandomHelper.mergeStacks(stack, inside,
+							true));
 				}
 			}
 		}

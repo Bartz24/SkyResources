@@ -1,7 +1,7 @@
 {
   "parent":"block/cross",
   "textures": {
-    "cross": "skyresources:blocks/cactusFruitNeedle"
+    "cross": "skyresources:blocks/cactusfruitneedle"
   },
   "display": {
         "thirdperson": {

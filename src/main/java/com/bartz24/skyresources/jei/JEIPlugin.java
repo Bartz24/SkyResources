@@ -11,9 +11,6 @@ import com.bartz24.skyresources.jei.cauldronclean.CauldronCleanRecipeMaker;
 import com.bartz24.skyresources.jei.combustion.CombustionRecipeCategory;
 import com.bartz24.skyresources.jei.combustion.CombustionRecipeHandler;
 import com.bartz24.skyresources.jei.combustion.CombustionRecipeMaker;
-import com.bartz24.skyresources.jei.concentrator.ConcentratorRecipeCategory;
-import com.bartz24.skyresources.jei.concentrator.ConcentratorRecipeHandler;
-import com.bartz24.skyresources.jei.concentrator.ConcentratorRecipeMaker;
 import com.bartz24.skyresources.jei.condenser.CondenserRecipeCategory;
 import com.bartz24.skyresources.jei.condenser.CondenserRecipeHandler;
 import com.bartz24.skyresources.jei.condenser.CondenserRecipeMaker;
@@ -29,9 +26,6 @@ import com.bartz24.skyresources.jei.heatsources.HeatSourcesRecipeMaker;
 import com.bartz24.skyresources.jei.infusion.InfusionRecipeCategory;
 import com.bartz24.skyresources.jei.infusion.InfusionRecipeHandler;
 import com.bartz24.skyresources.jei.infusion.InfusionRecipeMaker;
-import com.bartz24.skyresources.jei.purificationVessel.PurificationVesselRecipeCategory;
-import com.bartz24.skyresources.jei.purificationVessel.PurificationVesselRecipeHandler;
-import com.bartz24.skyresources.jei.purificationVessel.PurificationVesselRecipeMaker;
 import com.bartz24.skyresources.jei.rockgrinder.RockGrinderRecipeCategory;
 import com.bartz24.skyresources.jei.rockgrinder.RockGrinderRecipeHandler;
 import com.bartz24.skyresources.jei.rockgrinder.RockGrinderRecipeMaker;
@@ -72,34 +66,30 @@ public class JEIPlugin implements IModPlugin
 				new CombustionRecipeCategory(jeiHelpers.getGuiHelper()),
 				new RockGrinderRecipeCategory(jeiHelpers.getGuiHelper()),
 				new CrucibleRecipeCategory(jeiHelpers.getGuiHelper()),
-				new ConcentratorRecipeCategory(jeiHelpers.getGuiHelper()),
 				new CondenserRecipeCategory(jeiHelpers.getGuiHelper()),
-				new PurificationVesselRecipeCategory(jeiHelpers.getGuiHelper()),
 				new FreezerRecipeCategory(jeiHelpers.getGuiHelper()),
 				new HeatSourcesRecipeCategory(jeiHelpers.getGuiHelper()),
 				new CauldronRecipeCategory(jeiHelpers.getGuiHelper()),
 				new WaterExtractorRecipeCategory(jeiHelpers.getGuiHelper()),
 				new CauldronCleanRecipeCategory(jeiHelpers.getGuiHelper()));
 		registry.addRecipeHandlers(new InfusionRecipeHandler(), new CombustionRecipeHandler(),
-				new RockGrinderRecipeHandler(), new CrucibleRecipeHandler(), new ConcentratorRecipeHandler(),
-				new CondenserRecipeHandler(), new PurificationVesselRecipeHandler(), new FreezerRecipeHandler(),
-				new HeatSourcesRecipeHandler(), new CauldronRecipeHandler(), new WaterExtractorExtractRecipeHandler(),
-				new WaterExtractorInsertRecipeHandler(),
+				new RockGrinderRecipeHandler(), new CrucibleRecipeHandler(), new CondenserRecipeHandler(),
+				new FreezerRecipeHandler(), new HeatSourcesRecipeHandler(), new CauldronRecipeHandler(),
+				new WaterExtractorExtractRecipeHandler(), new WaterExtractorInsertRecipeHandler(),
 				new CauldronCleanRecipeHandler());
 
 		registry.addRecipes(InfusionRecipeMaker.getRecipes());
 		registry.addRecipes(CombustionRecipeMaker.getRecipes());
 		registry.addRecipes(RockGrinderRecipeMaker.getRecipes());
 		registry.addRecipes(CrucibleRecipeMaker.getRecipes());
-		registry.addRecipes(ConcentratorRecipeMaker.getRecipes());
 		registry.addRecipes(CondenserRecipeMaker.getRecipes());
-		registry.addRecipes(PurificationVesselRecipeMaker.getRecipes());
 		registry.addRecipes(FreezerRecipeMaker.getRecipes());
 		registry.addRecipes(HeatSourcesRecipeMaker.getRecipes());
 		registry.addRecipes(CauldronRecipeMaker.getRecipes());
 		registry.addRecipes(WaterExtractorExtractRecipeMaker.getRecipes());
 		registry.addRecipes(WaterExtractorInsertRecipeMaker.getRecipes());
-		registry.addRecipes(CauldronCleanRecipeMaker.getRecipes());
+		if (CauldronCleanRecipeMaker.getRecipes().size() > 0)
+			registry.addRecipes(CauldronCleanRecipeMaker.getRecipes());
 
 		registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.combustionHeater, 1, 0),
 				References.ModID + ":combustion");
@@ -108,9 +98,8 @@ public class JEIPlugin implements IModPlugin
 		registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.combustionHeater, 1, 2),
 				References.ModID + ":combustion");
 		registry.addRecipeCategoryCraftingItem(new ItemStack(Items.CAULDRON, 1, 0), References.ModID + ":cauldron");
-		registry.addRecipeCategoryCraftingItem(new ItemStack(Items.CAULDRON, 1, 0), References.ModID + ":cauldronclean");
-		registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.concentrator, 1, 0),
-				References.ModID + ":concentrator");
+		registry.addRecipeCategoryCraftingItem(new ItemStack(Items.CAULDRON, 1, 0),
+				References.ModID + ":cauldronclean");
 		registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.alchemicalCondenser, 1, 0),
 				References.ModID + ":condenser");
 		registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.advancedCoolingCondenser, 1, 0),
@@ -120,8 +109,6 @@ public class JEIPlugin implements IModPlugin
 				References.ModID + ":freezer");
 		registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.ironFreezer, 1, 0),
 				References.ModID + ":freezer");
-		registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.purificationVessel, 1, 0),
-				References.ModID + ":purificationVessel");
 		registry.addRecipeCategoryCraftingItem(new ItemStack(ModItems.waterExtractor),
 				References.ModID + ":waterextractor");
 		registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.dirtFurnace), "minecraft.smelting");

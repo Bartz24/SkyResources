@@ -55,11 +55,11 @@ public class ItemHealthGem extends Item implements IHealthBoostItem
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack stack,
-			World world, EntityPlayer player, EnumHand hand)
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
 	{
-		super.onItemRightClick(stack, world, player, hand);
+		super.onItemRightClick(world, player, hand);
 
+		ItemStack stack = player.getHeldItem(hand);
 		if (player.isSneaking())
 		{
 			if (getCompound(stack) != null)
@@ -67,7 +67,7 @@ public class ItemHealthGem extends Item implements IHealthBoostItem
 				if (stack.getTagCompound().getInteger("health") + 2 <= maxHealth
 						&& stack.getTagCompound().getInteger("cooldown") == 0)
 				{
-					player.attackEntityFrom(DamageSource.generic, 2);
+					player.attackEntityFrom(DamageSource.GENERIC, 2);
 					stack.getTagCompound().setInteger("health",
 							stack.getTagCompound().getInteger("health") + 2);
 					stack.getTagCompound().setInteger("cooldown", 20);

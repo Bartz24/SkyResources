@@ -23,7 +23,6 @@ public class CauldronRecipeJEI extends BlankRecipeWrapper
 		output = out;
 	}
 
-	@Override
 	public List getInputs()
 	{
 		return Collections.singletonList(input);
@@ -35,7 +34,6 @@ public class CauldronRecipeJEI extends BlankRecipeWrapper
 	{
 	}
 
-	@Override
 	public List getOutputs()
 	{
 		return Collections.singletonList(output);

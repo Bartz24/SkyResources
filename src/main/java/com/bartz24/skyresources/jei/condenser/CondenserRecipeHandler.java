@@ -10,12 +10,6 @@ public class CondenserRecipeHandler
 {
 
 	@Override
-	public String getRecipeCategoryUid()
-	{
-		return References.ModID + ":condenser";
-	}
-
-	@Override
 	public Class<CondenserRecipeJEI> getRecipeClass()
 	{
 		return CondenserRecipeJEI.class;

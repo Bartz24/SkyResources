@@ -1,6 +1,6 @@
 {
-  "parent":"skyresources:item/StoneGrinder",
+  "parent":"skyresources:item/stonegrinder",
   "textures": {
-    "layer0":"skyresources:items/diamondRockGrinder"
+    "layer0":"skyresources:items/diamondrockgrinder"
   }
 }

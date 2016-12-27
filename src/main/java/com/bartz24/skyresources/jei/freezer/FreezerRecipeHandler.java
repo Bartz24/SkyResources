@@ -10,12 +10,6 @@ public class FreezerRecipeHandler
 {
 
 	@Override
-	public String getRecipeCategoryUid()
-	{
-		return References.ModID + ":freezer";
-	}
-
-	@Override
 	public Class<FreezerRecipeJEI> getRecipeClass()
 	{
 		return FreezerRecipeJEI.class;

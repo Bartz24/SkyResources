@@ -1,7 +1,7 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "skyresources:DirtFurnace"
+    "model": "skyresources:dirtfurnace"
   },
   "variants": {
     "normal": [{}],
@@ -13,9 +13,9 @@
       "east": {"y": 90}
     },
     "burning": {
-      "false": {"model": "skyresources:DirtFurnace"},
+      "false": {"model": "skyresources:dirtfurnace"},
       "true": {
-              "model": "skyresources:DirtFurnaceOn"        
+              "model": "skyresources:dirtfurnaceon"        
       }
     }
   }

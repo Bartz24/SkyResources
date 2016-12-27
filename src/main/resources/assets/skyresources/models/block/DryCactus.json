@@ -1,10 +1,10 @@
 {
   "parent":"block/cactus",
   "textures": {    
-        "particle": "skyresources:blocks/dryCactusSide",
-        "bottom": "skyresources:blocks/dryCactusBottom",
-        "top": "skyresources:blocks/dryCactusTop",
-        "side": "skyresources:blocks/dryCactusSide"
+        "particle": "skyresources:blocks/drycactusside",
+        "bottom": "skyresources:blocks/drycactusbottom",
+        "top": "skyresources:blocks/drycactustop",
+        "side": "skyresources:blocks/drycactusside"
   },
   "display": {
         "thirdperson": {

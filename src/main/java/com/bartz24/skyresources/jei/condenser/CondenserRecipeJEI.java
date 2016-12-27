@@ -28,7 +28,6 @@ public class CondenserRecipeJEI extends BlankRecipeWrapper
 		time = timeCondense;
 	}
 
-	@Override
 	public List getInputs()
 	{
 		List list = new ArrayList();
@@ -48,7 +47,6 @@ public class CondenserRecipeJEI extends BlankRecipeWrapper
 				java.awt.Color.gray.getRGB());
 	}
 
-	@Override
 	public List getOutputs()
 	{
 		return Collections.singletonList(output);

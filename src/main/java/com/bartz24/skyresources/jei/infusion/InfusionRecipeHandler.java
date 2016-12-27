@@ -9,12 +9,6 @@ public class InfusionRecipeHandler implements IRecipeHandler<InfusionRecipeJEI>
 {
 
 	@Override
-	public String getRecipeCategoryUid()
-	{
-		return References.ModID + ":infusion";
-	}
-
-	@Override
 	public Class<InfusionRecipeJEI> getRecipeClass()
 	{
 		return InfusionRecipeJEI.class;

@@ -39,8 +39,7 @@ public class BlockMiniFreezer extends BlockContainer
 {
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
-	public BlockMiniFreezer(String unlocalizedName, String registryName,
-			float hardness, float resistance)
+	public BlockMiniFreezer(String unlocalizedName, String registryName, float hardness, float resistance)
 	{
 		super(Material.GROUND);
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
@@ -49,13 +48,11 @@ public class BlockMiniFreezer extends BlockContainer
 		this.setResistance(resistance);
 		this.setRegistryName(registryName);
 		this.isBlockContainer = true;
-		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING,
-				EnumFacing.NORTH));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn,
-			BlockPos pos, AxisAlignedBB p_185477_4_,
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB p_185477_4_,
 			List<AxisAlignedBB> p_185477_5_, Entity p_185477_6_)
 	{
 		addCollisionBoxToList(pos, p_185477_4_, p_185477_5_,
@@ -63,8 +60,7 @@ public class BlockMiniFreezer extends BlockContainer
 	}
 
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source,
-			BlockPos pos)
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return new AxisAlignedBB(0.125D, 0D, 0.125D, 0.875D, 1.0D, 0.875D);
 	}
@@ -97,29 +93,25 @@ public class BlockMiniFreezer extends BlockContainer
 	public void breakBlock(World world, BlockPos pos, IBlockState state)
 	{
 		FreezerTile te = (FreezerTile) world.getTileEntity(pos);
-		
-		if (te!=null && te.getInv() != null)
+
+		if (te != null && te.getInv() != null)
 		{
-			for (int i = 0; i < te.getInv().length; i++)
+			for (int i = 0; i < te.getInv().size(); i++)
 			{
-				if (te.getInv()[i] != null)
-					RandomHelper.spawnItemInWorld(world, te.getInv()[i].copy(),
-							pos);
+				if (te.getInv().get(i)!= ItemStack.EMPTY)
+					RandomHelper.spawnItemInWorld(world, te.getInv().get(i).copy(), pos);
 			}
 		}
 		super.breakBlock(world, pos, state);
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos,
-			IBlockState state, EntityPlayer player, EnumHand hand,
-			ItemStack heldItem, EnumFacing side, float hitX, float hitY,
-			float hitZ)
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
+			EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		if (!world.isRemote)
 		{
-			player.openGui(SkyResources.instance, ModGuiHandler.FreezerGUI,
-					world, pos.getX(), pos.getY(), pos.getZ());
+			player.openGui(SkyResources.instance, ModGuiHandler.FreezerGUI, world, pos.getX(), pos.getY(), pos.getZ());
 		}
 		return true;
 	}
@@ -130,8 +122,7 @@ public class BlockMiniFreezer extends BlockContainer
 		this.setDefaultFacing(worldIn, pos, state);
 	}
 
-	private void setDefaultFacing(World worldIn, BlockPos pos,
-			IBlockState state)
+	private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state)
 	{
 		if (!worldIn.isRemote)
 		{
@@ -141,39 +132,29 @@ public class BlockMiniFreezer extends BlockContainer
 			IBlockState iblockstate3 = worldIn.getBlockState(pos.east());
 			EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
 
-			if (enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock()
-					&& !iblockstate1.isFullBlock())
+			if (enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock() && !iblockstate1.isFullBlock())
 			{
 				enumfacing = EnumFacing.SOUTH;
-			} else if (enumfacing == EnumFacing.SOUTH
-					&& iblockstate1.isFullBlock() && !iblockstate.isFullBlock())
+			} else if (enumfacing == EnumFacing.SOUTH && iblockstate1.isFullBlock() && !iblockstate.isFullBlock())
 			{
 				enumfacing = EnumFacing.NORTH;
-			} else if (enumfacing == EnumFacing.WEST
-					&& iblockstate2.isFullBlock()
-					&& !iblockstate3.isFullBlock())
+			} else if (enumfacing == EnumFacing.WEST && iblockstate2.isFullBlock() && !iblockstate3.isFullBlock())
 			{
 				enumfacing = EnumFacing.EAST;
-			} else if (enumfacing == EnumFacing.EAST
-					&& iblockstate3.isFullBlock()
-					&& !iblockstate2.isFullBlock())
+			} else if (enumfacing == EnumFacing.EAST && iblockstate3.isFullBlock() && !iblockstate2.isFullBlock())
 			{
 				enumfacing = EnumFacing.WEST;
 			}
 
-			worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing),
-					2);
+			worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing), 2);
 		}
 	}
 
-	public IBlockState onBlockPlaced(World worldIn, BlockPos pos,
-			EnumFacing facing, float hitX, float hitY, float hitZ, int meta,
-			EntityLivingBase placer)
+	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
+			int meta, EntityLivingBase placer)
 	{
-		super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta,
-				placer);
-		return this.getDefaultState().withProperty(FACING,
-				placer.getHorizontalFacing().getOpposite());
+		super.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
+		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
 	}
 
 	public IBlockState getStateFromMeta(int meta)
@@ -202,8 +183,7 @@ public class BlockMiniFreezer extends BlockContainer
 	 */
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
-		return state.withProperty(FACING,
-				rot.rotate((EnumFacing) state.getValue(FACING)));
+		return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
 	}
 
 	/**
@@ -212,13 +192,11 @@ public class BlockMiniFreezer extends BlockContainer
 	 */
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
-		return state.withRotation(
-				mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
+		return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
 	}
 
 	protected BlockStateContainer createBlockState()
 	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ FACING });
+		return new BlockStateContainer(this, new IProperty[] { FACING });
 	}
 }

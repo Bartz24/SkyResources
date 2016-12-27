@@ -68,7 +68,7 @@ public class CrucibleTESR extends TileEntitySpecialRenderer<CrucibleTile>
 		double maxLiquid = crucible.getTank().getCapacity();
 		double height = (liquid / maxLiquid) * 0.7;
 		GL11.glRotated(180f, 1, 0, 0);
-		RandomHelper.renderFluidCuboid(fluidStack, crucible.getPos(), 0, -0.85, -1, 0.1, 0,
+		RandomHelper.renderFluidCuboid(fluidStack, crucible.getPos(), 0, -0.85, -1, 0.1, 0.2,
 				0.1, 1-0.1, 0.1+height, 1-0.1);
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glDisable(GL11.GL_BLEND);

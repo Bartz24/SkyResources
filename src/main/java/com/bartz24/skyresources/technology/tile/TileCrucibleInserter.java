@@ -1,13 +1,12 @@
 package com.bartz24.skyresources.technology.tile;
 
-import com.bartz24.skyresources.alchemy.crucible.CrucibleRecipe;
-import com.bartz24.skyresources.alchemy.crucible.CrucibleRecipes;
 import com.bartz24.skyresources.alchemy.tile.CrucibleTile;
 import com.bartz24.skyresources.config.ConfigOptions;
+import com.bartz24.skyresources.recipe.ProcessRecipe;
+import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.ITextComponent;
@@ -18,7 +17,7 @@ public class TileCrucibleInserter extends TileEntity implements IInventory
 	@Override
 	public ItemStack getStackInSlot(int index)
 	{
-		return null;
+		return ItemStack.EMPTY;
 	}
 
 	@Override
@@ -54,18 +53,18 @@ public class TileCrucibleInserter extends TileEntity implements IInventory
 	@Override
 	public void setInventorySlotContents(int index, ItemStack stack)
 	{
-		CrucibleRecipe recipe = CrucibleRecipes.getRecipe(stack);
+		ProcessRecipe recipe = ProcessRecipeManager.crucibleRecipes.getRecipe(stack, 0, false, false);
 
-		int amount = recipe == null ? 0 : recipe.getOutput().amount;
+		int amount = recipe == null ? 0 : recipe.getFluidOutputs().get(0).amount;
 
-		CrucibleTile tile = (CrucibleTile) this.worldObj.getTileEntity(pos.down());
+		CrucibleTile tile = (CrucibleTile) this.world.getTileEntity(pos.down());
 
 		if (tile == null)
 			return;
 
 		if (tile.getItemAmount() + amount <= ConfigOptions.crucibleCapacity && recipe != null)
 		{
-			ItemStack input = recipe.getInput();
+			ItemStack input = (ItemStack) recipe.getInputs().get(0);
 
 			if (tile.getTank().getFluid() == null || tile.getTank().getFluid().getFluid() == null)
 			{
@@ -75,7 +74,7 @@ public class TileCrucibleInserter extends TileEntity implements IInventory
 			if (tile.itemIn == input)
 			{
 				tile.itemAmount += amount;
-				stack.stackSize--;
+				stack.shrink(1);
 			}
 		}
 	}
@@ -87,9 +86,9 @@ public class TileCrucibleInserter extends TileEntity implements IInventory
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer player)
+	public boolean isUsableByPlayer(EntityPlayer player)
 	{
-		return this.worldObj.getTileEntity(this.getPos()) == this
+		return this.world.getTileEntity(this.getPos()) == this
 				&& player.getDistanceSq(this.pos.add(0.5, 0.5, 0.5)) <= 64;
 	}
 
@@ -106,18 +105,18 @@ public class TileCrucibleInserter extends TileEntity implements IInventory
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack)
 	{
-		CrucibleRecipe recipe = CrucibleRecipes.getRecipe(stack);
+		ProcessRecipe recipe = ProcessRecipeManager.crucibleRecipes.getRecipe(stack, 0, false, false);
 
-		int amount = recipe == null ? 0 : recipe.getOutput().amount;
+		int amount = recipe == null ? 0 : recipe.getFluidOutputs().get(0).amount;
 
-		CrucibleTile tile = (CrucibleTile) this.worldObj.getTileEntity(pos.down());
+		CrucibleTile tile = (CrucibleTile) this.world.getTileEntity(pos.down());
 
 		if (tile == null)
 			return false;
 
 		if (tile.getItemAmount() + amount <= ConfigOptions.crucibleCapacity && recipe != null)
 		{
-			ItemStack input = recipe.getInput();
+			ItemStack input = (ItemStack) recipe.getInputs().get(0);
 
 			if (tile.getTank().getFluid() == null || tile.getTank().getFluid().getFluid() == null)
 			{
@@ -157,6 +156,12 @@ public class TileCrucibleInserter extends TileEntity implements IInventory
 	@Override
 	public ItemStack removeStackFromSlot(int index)
 	{
-		return null;
+		return ItemStack.EMPTY;
+	}
+
+	@Override
+	public boolean isEmpty()
+	{
+		return true;
 	}
 }

@@ -9,7 +9,7 @@ public class WorldProviderNetherVoid extends WorldProviderHell
 	@Override
 	public IChunkGenerator createChunkGenerator()
 	{
-		return new ChunkGeneratorNetherVoid(worldObj, worldObj.getSeed());
+		return new ChunkGeneratorNetherVoid(world, world.getSeed());
 	}
 
 }

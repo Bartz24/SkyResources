@@ -1,13 +1,13 @@
 {
   "parent":"block/cube_all",
   "textures": {
-       "down": "skyresources:blocks/beeAttractorBottom",
+       "down": "skyresources:blocks/beeattractorbottom",
          "up": "forestry:blocks/beehouse.1",
-      "north": "skyresources:blocks/beeAttractorSide",
-      "south": "skyresources:blocks/beeAttractorSide",
-       "west": "skyresources:blocks/beeAttractorSide",
-       "east": "skyresources:blocks/beeAttractorSide",
-   "particle": "skyresources:blocks/beeAttractorSide"
+      "north": "skyresources:blocks/beeattractorside",
+      "south": "skyresources:blocks/beeattractorside",
+       "west": "skyresources:blocks/beeattractorside",
+       "east": "skyresources:blocks/beeattractorside",
+   "particle": "skyresources:blocks/beeattractorside"
   },
   "display": {
         "thirdperson": {

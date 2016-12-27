@@ -34,11 +34,6 @@ public class CrucibleRecipeCategory extends BlankRecipeCategory
 	}
 
 	@Override
-	public void drawAnimations(Minecraft minecraft)
-	{
-	}
-
-	@Override
 	public void drawExtras(Minecraft minecraft)
 	{
 	}
@@ -70,8 +65,8 @@ public class CrucibleRecipeCategory extends BlankRecipeCategory
 
 		List<List<ItemStack>> inputs = ingredients.getInputs(ItemStack.class);
 		layout.getItemStacks().set(slotInputStack, inputs.get(0));
-		List<FluidStack> outputs = ingredients.getOutputs(FluidStack.class);
-		layout.getFluidStacks().set(slotOutputFluid, outputs);
+		List<List<FluidStack>> outputs = ingredients.getOutputs(FluidStack.class);
+		layout.getFluidStacks().set(slotOutputFluid, outputs.get(0));
 	}
 
 }

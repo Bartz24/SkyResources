@@ -10,12 +10,6 @@ public class CombustionRecipeHandler
 {
 
 	@Override
-	public String getRecipeCategoryUid()
-	{
-		return References.ModID + ":combustion";
-	}
-
-	@Override
 	public Class<CombustionRecipeJEI> getRecipeClass()
 	{
 		return CombustionRecipeJEI.class;

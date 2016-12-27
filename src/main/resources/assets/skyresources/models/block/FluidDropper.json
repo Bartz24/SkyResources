@@ -1,13 +1,13 @@
 {
   "parent":"block/cube_all",
   "textures": {
-       "down": "skyresources:blocks/fluidDropper",
+       "down": "skyresources:blocks/fluiddropper",
          "up": "blocks/furnace_top",
       "north": "blocks/furnace_side",
       "south": "blocks/furnace_side",
        "west": "blocks/furnace_side",
        "east": "blocks/furnace_side",
-   "particle": "skyresources:blocks/fluidDropper"
+   "particle": "skyresources:blocks/fluiddropper"
   },
   "display": {
         "thirdperson": {

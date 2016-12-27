@@ -10,12 +10,6 @@ public class RockGrinderRecipeHandler
 {
 
 	@Override
-	public String getRecipeCategoryUid()
-	{
-		return References.ModID + ":rockgrinder";
-	}
-
-	@Override
 	public Class<RockGrinderRecipeJEI> getRecipeClass()
 	{
 		return RockGrinderRecipeJEI.class;

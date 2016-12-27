@@ -33,10 +33,4 @@ public class CauldronRecipeHandler
 		return References.ModID + ":cauldron";
 	}
 
-	@Override
-	public String getRecipeCategoryUid()
-	{
-		return References.ModID + ":cauldron";
-	}
-
 }

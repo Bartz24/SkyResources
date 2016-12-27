@@ -9,12 +9,6 @@ public class CrucibleRecipeHandler implements IRecipeHandler<CrucibleRecipeJEI>
 {
 
 	@Override
-	public String getRecipeCategoryUid()
-	{
-		return References.ModID + ":crucible";
-	}
-
-	@Override
 	public Class<CrucibleRecipeJEI> getRecipeClass()
 	{
 		return CrucibleRecipeJEI.class;

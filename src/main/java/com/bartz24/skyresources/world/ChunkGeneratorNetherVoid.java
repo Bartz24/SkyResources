@@ -2,17 +2,12 @@ package com.bartz24.skyresources.world;
 
 import java.util.List;
 
-import ic2.core.WorldData;
-import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.ChunkProviderHell;
-import net.minecraft.world.gen.structure.MapGenNetherBridge;
 
 public class ChunkGeneratorNetherVoid extends ChunkProviderHell
 {
@@ -35,7 +30,7 @@ public class ChunkGeneratorNetherVoid extends ChunkProviderHell
 
     public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
     {
-        Biome biome = world.getBiomeGenForCoords(pos);
+        Biome biome = world.getBiome(pos);
         return biome.getSpawnableList(creatureType);
     }
 

@@ -2,6 +2,7 @@ package com.bartz24.skyresources.registry;
 
 import java.util.ArrayList;
 
+import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
 import com.bartz24.skyresources.alchemy.item.DirtyGemItem;
@@ -20,6 +21,7 @@ import com.bartz24.skyresources.technology.item.TechItemComponent;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModItems
@@ -131,7 +133,7 @@ public class ModItems
 
 	private static Item registerItem(Item item, String name)
 	{
-		GameRegistry.registerItem(item, name);
+		GameRegistry.register(item, new ResourceLocation(References.ModID, name));
 
 		return item;
 	}
@@ -145,7 +147,7 @@ public class ModItems
 					item.getClass().getCanonicalName());
 			return item;
 		}
-		GameRegistry.registerItem(item);
+		GameRegistry.register(item);
 
 		return item;
 	}

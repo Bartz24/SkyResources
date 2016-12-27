@@ -15,15 +15,15 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class WaterExtractorInsertRecipeJEI extends BlankRecipeWrapper
 {
-	private final IBlockState inputBlock;
+	private final ItemStack inputBlock;
 
-	private final IBlockState output;
+	private final ItemStack output;
 
 	private final boolean fuzzyInput;
 	private final int fluidIn;
 
-	public WaterExtractorInsertRecipeJEI(IBlockState outputState, boolean fuzzy,
-			IBlockState inputState, int amtReq)
+	public WaterExtractorInsertRecipeJEI(ItemStack outputState, boolean fuzzy,
+			ItemStack inputState, int amtReq)
 	{
 		inputBlock = inputState;
 		output = outputState;
@@ -31,12 +31,9 @@ public class WaterExtractorInsertRecipeJEI extends BlankRecipeWrapper
 		fluidIn = amtReq;
 	}
 
-	@Override
 	public List getInputs()
 	{
-		return Collections.singletonList(new ItemStack(inputBlock.getBlock(), 1,
-				fuzzyInput ? OreDictionary.WILDCARD_VALUE
-						: inputBlock.getBlock().getMetaFromState(inputBlock)));
+		return Collections.singletonList(inputBlock);
 	}
 
 	@Override
@@ -47,14 +44,11 @@ public class WaterExtractorInsertRecipeJEI extends BlankRecipeWrapper
 		fontRendererObj.drawString("Inserting", 65, 0, java.awt.Color.gray.getRGB());
 	}
 
-	@Override
 	public List getOutputs()
 	{
-		return Collections.singletonList(new ItemStack(output.getBlock(), 1,
-				output.getBlock().getMetaFromState(output)));
+		return Collections.singletonList(output);
 	}
 
-	@Override
     public List getFluidInputs()
     {
         return Collections.singletonList(new FluidStack(FluidRegistry.WATER, fluidIn));

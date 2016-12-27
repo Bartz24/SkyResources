@@ -1,6 +1,6 @@
 {
-  "parent":"skyresources:item/WaterExtractor.empty",
+  "parent":"skyresources:item/waterextractor.empty",
   "textures": {
-    "layer0":"skyresources:items/waterExtractor.full2"
+    "layer0":"skyresources:items/waterextractor.full2"
   }
 }

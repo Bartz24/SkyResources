@@ -5,14 +5,12 @@ import org.apache.logging.log4j.Logger;
 import com.bartz24.skyresources.base.commands.PlatformCommand;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.proxy.CommonProxy;
-import com.bartz24.skyresources.waila.WailaPlugin;
 
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -52,14 +50,14 @@ public class SkyResources
 			if (!world.isRemote)
 			{
 				SkyResourcesSaveData worldData = (SkyResourcesSaveData) world
-						.loadItemData(SkyResourcesSaveData.class,
+						.loadData(SkyResourcesSaveData.class,
 								SkyResourcesSaveData.dataName);
 
 				if (worldData == null)
 				{
 					worldData = new SkyResourcesSaveData(
 							SkyResourcesSaveData.dataName);
-					world.setItemData(SkyResourcesSaveData.dataName, worldData);
+					world.setData(SkyResourcesSaveData.dataName, worldData);
 				}
 
 				SkyResourcesSaveData.setInstance(world.provider.getDimension(),
@@ -78,10 +76,6 @@ public class SkyResources
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		if (Loader.isModLoaded("Waila"))
-		{
-			WailaPlugin.initialize();
-		}
 		proxy.init(event);
 	}
 

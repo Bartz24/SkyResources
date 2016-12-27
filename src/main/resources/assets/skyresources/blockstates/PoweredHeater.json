@@ -1,15 +1,15 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "skyresources:PoweredHeater"
+    "model": "skyresources:poweredheater"
   },
   "variants": {
     "normal": [{}],
     "inventory": [{}],
     "running": {
-      "false": {"model": "skyresources:PoweredHeaterOff"},
+      "false": {"model": "skyresources:poweredheateroff"},
       "true": {
-              "model": "skyresources:PoweredHeater"        
+              "model": "skyresources:poweredheater"        
       }
     }
   }

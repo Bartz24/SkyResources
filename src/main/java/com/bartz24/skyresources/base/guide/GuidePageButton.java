@@ -40,19 +40,16 @@ public abstract class GuidePageButton
 		if (!Strings.isNullOrEmpty(stackInfo) && stackInfo.contains(":"))
 		{
 			String trimmed = stackInfo.replaceAll(" ", "");
-			String itemName = trimmed.split(":")[0] + ":"
-					+ trimmed.split(":")[1];
+			String itemName = trimmed.split(":")[0] + ":" + trimmed.split(":")[1];
 			int meta = Integer.parseInt(trimmed.split(":")[2].split("\\*")[0]);
 
 			ResourceLocation resourcelocation = new ResourceLocation(itemName);
 			Item item = (Item) Item.REGISTRY.getObject(resourcelocation);
 
 			if (item == null)
-				return;
-
-			ItemStack stack = new ItemStack(item, 1, meta);
-
-			stackDisplay = stack;
+				stackDisplay = ItemStack.EMPTY;
+			else
+				stackDisplay = new ItemStack(item, 1, meta);
 		}
 
 	}
@@ -66,8 +63,8 @@ public abstract class GuidePageButton
 	public abstract boolean onClicked();
 
 	public abstract String getIdentifier();
-	
+
 	public abstract GuidePageButton clone();
-	
+
 	public abstract List<String> getHoverDisplay();
 }

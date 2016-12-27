@@ -4,20 +4,20 @@ import com.bartz24.skyresources.api.RedstoneCompatibleTile;
 import com.bartz24.skyresources.base.IHeatSource;
 import com.bartz24.skyresources.technology.block.BlockPoweredHeater;
 
-import cofh.api.energy.IEnergyReceiver;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 
 public class TilePoweredHeater extends RedstoneCompatibleTile
-		implements ITickable, IEnergyReceiver, IHeatSource
+		implements ITickable, IEnergyStorage, IHeatSource
 {
 	private int energy;
 	private int maxEnergy = 100000;
@@ -25,28 +25,9 @@ public class TilePoweredHeater extends RedstoneCompatibleTile
 	private int powerUsage = 120;
 
 	@Override
-	public int getEnergyStored(EnumFacing from)
+	public int receiveEnergy(int maxReceive, boolean simulate)
 	{
-		return energy;
-	}
-
-	@Override
-	public int getMaxEnergyStored(EnumFacing from)
-	{
-		return maxEnergy;
-	}
-
-	@Override
-	public boolean canConnectEnergy(EnumFacing from)
-	{
-		return from != EnumFacing.UP;
-	}
-
-	@Override
-	public int receiveEnergy(EnumFacing from, int maxReceive, boolean simulate)
-	{
-		int energyReceived = (int) Math.min(getMaxEnergyStored(from) - energy,
-				Math.min(this.maxReceive, maxReceive));
+		int energyReceived = (int) Math.min(getMaxEnergyStored() - energy, Math.min(this.maxReceive, maxReceive));
 		if (!simulate)
 		{
 			energy += energyReceived;
@@ -55,29 +36,59 @@ public class TilePoweredHeater extends RedstoneCompatibleTile
 	}
 
 	@Override
+	public int extractEnergy(int maxExtract, boolean simulate)
+	{
+		return 0;
+	}
+
+	@Override
+	public int getEnergyStored()
+	{
+		return energy;
+	}
+
+	@Override
+	public int getMaxEnergyStored()
+	{
+		return maxEnergy;
+	}
+
+	@Override
+	public boolean canExtract()
+	{
+		return false;
+	}
+
+	@Override
+	public boolean canReceive()
+	{
+		return true;
+	}
+
+	@Override
 	public void update()
 	{
-		if (!worldObj.isRemote)
+		if (!world.isRemote)
 		{
 			if (energy >= powerUsage && this.getRedstoneSignal() > 0)
 			{
 				energy -= powerUsage;
-				worldObj.setBlockState(getPos(), worldObj.getBlockState(getPos())
+				world.setBlockState(getPos(), world.getBlockState(getPos())
 						.withProperty(BlockPoweredHeater.RUNNING, true), 3);
 			} else
-				worldObj.setBlockState(getPos(), worldObj.getBlockState(getPos())
+				world.setBlockState(getPos(), world.getBlockState(getPos())
 						.withProperty(BlockPoweredHeater.RUNNING, false), 3);
 
 		}
 		markDirty();
-		worldObj.notifyBlockUpdate(getPos(), worldObj.getBlockState(getPos()),
-				worldObj.getBlockState(getPos()), 3);
+		world.notifyBlockUpdate(getPos(), world.getBlockState(getPos()),
+				world.getBlockState(getPos()), 3);
 	}
 
 	@Override
 	public int getHeatValue()
 	{
-		if (energy >= powerUsage && this.getRedstoneSignal() > 0)
+		if (energy >= 0 && this.getRedstoneSignal() > 0)
 			return 30;
 		return 0;
 	}
@@ -120,4 +131,19 @@ public class TilePoweredHeater extends RedstoneCompatibleTile
 		this.readFromNBT(packet.getNbtCompound());
 	}
 
+	@Override
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+        if (capability == CapabilityEnergy.ENERGY) {
+            return true;
+        }
+        return super.hasCapability(capability, facing);
+    }
+
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        if (capability == CapabilityEnergy.ENERGY) {
+            return (T) this;
+        }
+        return super.getCapability(capability, facing);
+    }
 }

@@ -27,19 +27,13 @@ import net.minecraftforge.fluids.FluidUtil;
 
 public class CrucibleBlock extends BlockContainer
 {
-	protected static final AxisAlignedBB AABB_LEGS = new AxisAlignedBB(0.0D,
-			0.0D, 0.0D, 1.0D, 0.3125D, 1.0D);
-	protected static final AxisAlignedBB AABB_WALL_NORTH = new AxisAlignedBB(
-			0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.125D);
-	protected static final AxisAlignedBB AABB_WALL_SOUTH = new AxisAlignedBB(
-			0.0D, 0.0D, 0.875D, 1.0D, 1.0D, 1.0D);
-	protected static final AxisAlignedBB AABB_WALL_EAST = new AxisAlignedBB(
-			0.875D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
-	protected static final AxisAlignedBB AABB_WALL_WEST = new AxisAlignedBB(
-			0.0D, 0.0D, 0.0D, 0.125D, 1.0D, 1.0D);
+	protected static final AxisAlignedBB AABB_LEGS = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3125D, 1.0D);
+	protected static final AxisAlignedBB AABB_WALL_NORTH = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.125D);
+	protected static final AxisAlignedBB AABB_WALL_SOUTH = new AxisAlignedBB(0.0D, 0.0D, 0.875D, 1.0D, 1.0D, 1.0D);
+	protected static final AxisAlignedBB AABB_WALL_EAST = new AxisAlignedBB(0.875D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
+	protected static final AxisAlignedBB AABB_WALL_WEST = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.125D, 1.0D, 1.0D);
 
-	public CrucibleBlock(String unlocalizedName, String registryName,
-			float hardness, float resistance)
+	public CrucibleBlock(String unlocalizedName, String registryName, float hardness, float resistance)
 	{
 		super(Material.ROCK);
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
@@ -51,8 +45,7 @@ public class CrucibleBlock extends BlockContainer
 	}
 
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn,
-			BlockPos pos, AxisAlignedBB p_185477_4_,
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB p_185477_4_,
 			List<AxisAlignedBB> p_185477_5_, Entity p_185477_6_)
 	{
 		addCollisionBoxToList(pos, p_185477_4_, p_185477_5_, AABB_LEGS);
@@ -63,8 +56,7 @@ public class CrucibleBlock extends BlockContainer
 	}
 
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source,
-			BlockPos pos)
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return FULL_BLOCK_AABB;
 	}
@@ -100,10 +92,8 @@ public class CrucibleBlock extends BlockContainer
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos,
-			IBlockState state, EntityPlayer player, EnumHand hand,
-			ItemStack heldItem, EnumFacing side, float hitX, float hitY,
-			float hitZ)
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player,
+			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		if (player == null)
 		{
@@ -113,19 +103,17 @@ public class CrucibleBlock extends BlockContainer
 		CrucibleTile crucible = (CrucibleTile) world.getTileEntity(pos);
 		ItemStack item = player.getHeldItem(hand);
 
-		if (item != null && crucible != null)
+		if (item != ItemStack.EMPTY && crucible != null)
 		{
 			if (item.getItem() == Items.BUCKET)
 			{
-				ItemStack newStack = FluidUtil.tryFillContainer(item,
-						crucible.getTank(), 1000, player, true);
-				if (newStack != null)
+				ItemStack newStack = FluidUtil.tryFillContainer(item, crucible.getTank(), 1000, player, true).getResult();
+				if (newStack != ItemStack.EMPTY)
 				{
-					if (item.stackSize > 1)
+					if (item.getCount() > 1)
 					{
-						item.stackSize--;
-						RandomHelper.spawnItemInWorld(world, newStack,
-								player.getPosition());
+						item.shrink(1);
+						RandomHelper.spawnItemInWorld(world, newStack, player.getPosition());
 					} else
 					{
 						player.setHeldItem(hand, newStack);
@@ -144,12 +132,10 @@ public class CrucibleBlock extends BlockContainer
 	}
 
 	@Override
-	public int getComparatorInputOverride(IBlockState state, World world,
-			BlockPos pos)
+	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
 	{
 		CrucibleTile tile = (CrucibleTile) world.getTileEntity(pos);
-		int val = (int) ((float) tile.getItemAmount() * 15f
-				/ ConfigOptions.crucibleCapacity);
+		int val = (int) ((float) tile.getItemAmount() * 15f / ConfigOptions.crucibleCapacity);
 		if (tile.getItemAmount() > 0)
 			val = Math.max(val, 1);
 

@@ -1,7 +1,7 @@
 {
   "parent":"block/cube_all",
   "textures": {
-    "all": "skyresources:blocks/compressedCoalBlock2"
+    "all": "skyresources:blocks/compressedcoalblock2"
   },
   "display": {
         "thirdperson": {

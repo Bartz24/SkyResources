@@ -1,13 +1,10 @@
 package com.bartz24.skyresources.registry;
 
-import com.bartz24.skyresources.alchemy.block.BlockWaterConcentrator.WaterConcentratorVariants;
 import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
 import com.bartz24.skyresources.alchemy.item.DirtyGemItem;
 import com.bartz24.skyresources.alchemy.item.MetalCrystalItem;
 import com.bartz24.skyresources.alchemy.render.CrucibleTESR;
-import com.bartz24.skyresources.alchemy.render.PurificationVesselTESR;
 import com.bartz24.skyresources.alchemy.tile.CrucibleTile;
-import com.bartz24.skyresources.alchemy.tile.PurificationVesselTile;
 import com.bartz24.skyresources.base.item.BaseItemComponent;
 import com.bartz24.skyresources.base.item.ItemWaterExtractor;
 import com.bartz24.skyresources.technology.block.CombustionHeaterBlock.CombustionHeaterVariants;
@@ -54,64 +51,6 @@ public class ModRenderers
 						}
 					});
 			ModelLoader.setCustomStateMapper(ModBlocks.crystalFluidBlocks.get(i),
-					new StateMapperBase()
-					{
-						@Override
-						protected ModelResourceLocation getModelResourceLocation(IBlockState state)
-						{
-							return fluidModelLocation;
-						}
-					});
-
-			final ModelResourceLocation dirtyFluidModelLocation = new ModelResourceLocation(
-					ModBlocks.dirtyCrystalFluidBlocks.get(i).getRegistryName(), "fluid");
-
-			ModelBakery.registerItemVariants(
-					Item.getItemFromBlock(ModBlocks.dirtyCrystalFluidBlocks.get(i)),
-					dirtyFluidModelLocation);
-
-			ModelLoader.setCustomMeshDefinition(
-					Item.getItemFromBlock(ModBlocks.dirtyCrystalFluidBlocks.get(i)),
-					new ItemMeshDefinition()
-					{
-						@Override
-						public ModelResourceLocation getModelLocation(ItemStack stack)
-						{
-							return dirtyFluidModelLocation;
-						}
-					});
-			ModelLoader.setCustomStateMapper(ModBlocks.dirtyCrystalFluidBlocks.get(i),
-					new StateMapperBase()
-					{
-						@Override
-						protected ModelResourceLocation getModelResourceLocation(IBlockState state)
-						{
-							return dirtyFluidModelLocation;
-						}
-					});
-
-		}
-
-		for (int i = 0; i < ModFluids.moltenCrystalFluidInfos().length; i++)
-		{
-			final ModelResourceLocation fluidModelLocation = new ModelResourceLocation(
-					ModBlocks.moltenCrystalFluidBlocks.get(i).getRegistryName(), "fluid");
-
-			ModelBakery.registerItemVariants(
-					Item.getItemFromBlock(ModBlocks.moltenCrystalFluidBlocks.get(i)),
-					fluidModelLocation);
-
-			ModelLoader.setCustomMeshDefinition(
-					Item.getItemFromBlock(ModBlocks.moltenCrystalFluidBlocks.get(i)),
-					new ItemMeshDefinition()
-					{
-						@Override
-						public ModelResourceLocation getModelLocation(ItemStack stack)
-						{
-							return fluidModelLocation;
-						}
-					});
-			ModelLoader.setCustomStateMapper(ModBlocks.moltenCrystalFluidBlocks.get(i),
 					new StateMapperBase()
 					{
 						@Override
@@ -171,11 +110,9 @@ public class ModRenderers
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.alchemicalCondenser));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.advancedCoolingCondenser));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.crystallizer));
-		registerItemRenderer(Item.getItemFromBlock(ModBlocks.purificationVessel));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.miniFreezer));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.ironFreezer));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.crucible));
-		registerItemRenderer(Item.getItemFromBlock(ModBlocks.concentrator));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.fluidDropper));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.blazePowderBlock));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.dirtFurnace));
@@ -200,9 +137,6 @@ public class ModRenderers
 				new ModelResourceLocation("skyresources:WaterExtractor.full6", "inventory"));
 
 		registerVariantsDefaulted(ModBlocks.combustionHeater, CombustionHeaterVariants.class,
-				"variant");
-
-		registerVariantsDefaulted(ModBlocks.waterConcentrator, WaterConcentratorVariants.class,
 				"variant");
 
 		ModelLoader.setCustomMeshDefinition(ModItems.waterExtractor, new ItemMeshDefinition()
@@ -263,8 +197,6 @@ public class ModRenderers
 		}, ModItems.dirtyGem);
 
 		ClientRegistry.bindTileEntitySpecialRenderer(CrucibleTile.class, new CrucibleTESR());
-		ClientRegistry.bindTileEntitySpecialRenderer(PurificationVesselTile.class,
-				new PurificationVesselTESR());
 	}
 
 	public static void registerItemRenderer(Item item, int meta, ResourceLocation name)

@@ -40,14 +40,9 @@ public class CombustionRecipeCategory extends BlankRecipeCategory
 	}
 
 	@Override
-	public void drawAnimations(Minecraft minecraft)
-	{
-		heatBar.draw(minecraft, 128, 1);
-	}
-
-	@Override
 	public void drawExtras(Minecraft minecraft)
 	{
+		heatBar.draw(minecraft, 128, 1);
 	}
 
 	@Override
@@ -83,8 +78,8 @@ public class CombustionRecipeCategory extends BlankRecipeCategory
 		{
 			layout.getItemStacks().set(slotInputStacks[i], inputs.get(i));
 		}
-		List<ItemStack> outputs = ingredients.getOutputs(ItemStack.class);
-		layout.getItemStacks().set(slotOutput, outputs);
+		List<List<ItemStack>> outputs = ingredients.getOutputs(ItemStack.class);
+		layout.getItemStacks().set(slotOutput, outputs.get(0));
 	}
 
 }

@@ -130,18 +130,18 @@ public class References
 		} catch (Exception e)
 		{
 			player.inventory.clear();
-			player.addChatMessage(new TextComponentString(
+			player.sendMessage(new TextComponentString(
 					TextFormatting.RED + "Error getting starting inventory.\n" + e.toString()));
 		}
 	}
 
 	public static void tpPlayerToPos(EntityPlayer player, BlockPos pos)
 	{
-		if (!player.worldObj.isAirBlock(pos) && !player.worldObj.isAirBlock(pos.up()))
+		if (!player.world.isAirBlock(pos) && !player.world.isAirBlock(pos.up()))
 		{
-			pos = player.worldObj.getTopSolidOrLiquidBlock(pos);
+			pos = player.world.getTopSolidOrLiquidBlock(pos);
 
-			player.addChatComponentMessage(new TextComponentString(
+			player.sendMessage(new TextComponentString(
 					"Failed to spawn. Sent to top block of platform spawn."));
 		}
 		player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 60, 20, false, false));

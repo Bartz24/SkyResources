@@ -45,13 +45,13 @@ public class ContainerLifeInfuser extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer player)
 	{
-		return tile.isUseableByPlayer(player);
+		return tile.isUsableByPlayer(player);
 	}
 
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int fromSlot)
 	{
-		ItemStack previous = null;
+		ItemStack previous = ItemStack.EMPTY;
 		Slot slot = this.inventorySlots.get(fromSlot);
 
 		if (slot != null && slot.getHasStack())
@@ -62,7 +62,7 @@ public class ContainerLifeInfuser extends Container
 			if (fromSlot < 3)
 			{
 				if (!this.mergeItemStack(current, 3, 39, true))
-					return null;
+					return ItemStack.EMPTY;
 			} else
 			{
 				if (current.getItem() instanceof ItemHealthGem)
@@ -77,14 +77,14 @@ public class ContainerLifeInfuser extends Container
 					return null;
 			}
 
-			if (current.stackSize == 0)
+			if (current.getCount() == 0)
 				slot.putStack((ItemStack) null);
 			else
 				slot.onSlotChanged();
 
-			if (current.stackSize == previous.stackSize)
+			if (current.getCount() == previous.getCount())
 				return null;
-			slot.onPickupFromSlot(playerIn, current);
+			slot.onTake(playerIn, current);
 		}
 		return previous;
 	}

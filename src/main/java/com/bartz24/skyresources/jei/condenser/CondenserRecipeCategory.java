@@ -3,7 +3,6 @@ package com.bartz24.skyresources.jei.condenser;
 import java.util.List;
 
 import com.bartz24.skyresources.References;
-import com.bartz24.skyresources.alchemy.fluid.FluidMoltenCrystalBlock;
 import com.bartz24.skyresources.registry.ModBlocks;
 
 import mezz.jei.api.IGuiHelper;
@@ -12,7 +11,6 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -33,11 +31,6 @@ public class CondenserRecipeCategory extends BlankRecipeCategory
 		super();
 		background = guiHelper.createDrawable(new ResourceLocation(References.ModID, "textures/gui/jei/condenser.png"),
 				0, 0, 86, 50);
-	}
-
-	@Override
-	public void drawAnimations(Minecraft minecraft)
-	{
 	}
 
 	@Override
@@ -72,12 +65,9 @@ public class CondenserRecipeCategory extends BlankRecipeCategory
 
 		List<List<ItemStack>> inputs = ingredients.getInputs(ItemStack.class);
 		layout.getItemStacks().set(slotInputBlock, inputs.get(0));
-		List<ItemStack> outputs = ingredients.getOutputs(ItemStack.class);
-		layout.getItemStacks().set(slotOutput, outputs);
-		if (Block.getBlockFromItem(((ItemStack) inputs.get(0).get(0)).getItem()) instanceof FluidMoltenCrystalBlock)
-			layout.getItemStacks().set(slotCondenser, new ItemStack(ModBlocks.advancedCoolingCondenser));
-		else
-			layout.getItemStacks().set(slotCondenser, new ItemStack(ModBlocks.alchemicalCondenser));
+		List<List<ItemStack>> outputs = ingredients.getOutputs(ItemStack.class);
+		layout.getItemStacks().set(slotOutput, outputs.get(0));
+		layout.getItemStacks().set(slotCondenser, new ItemStack(ModBlocks.alchemicalCondenser));
 	}
 
 }

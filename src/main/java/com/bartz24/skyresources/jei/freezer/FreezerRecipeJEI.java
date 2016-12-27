@@ -26,7 +26,6 @@ public class FreezerRecipeJEI extends BlankRecipeWrapper
 		time = ticks;
 	}
 
-	@Override
 	public List getInputs()
 	{
 		return Collections.singletonList(input);
@@ -41,7 +40,6 @@ public class FreezerRecipeJEI extends BlankRecipeWrapper
 		fontRendererObj.drawString(s, 1, -5, java.awt.Color.gray.getRGB());
 	}
 
-	@Override
 	public List getOutputs()
 	{
 		return Collections.singletonList(output);

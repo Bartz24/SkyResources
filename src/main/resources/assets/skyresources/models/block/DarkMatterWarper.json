@@ -1,8 +1,8 @@
 {
     "ambientocclusion": false,
     "textures": {
-        "particle": "skyresources:blocks/dmWarper",
-        "side": "skyresources:blocks/dmWarper"
+        "particle": "skyresources:blocks/dmwarper",
+        "side": "skyresources:blocks/dmwarper"
     },
     "elements": [
         {   "from": [ 2, 2, 2 ],

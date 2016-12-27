@@ -33,10 +33,4 @@ public class CauldronCleanRecipeHandler
 		return References.ModID + ":cauldronclean";
 	}
 
-	@Override
-	public String getRecipeCategoryUid()
-	{
-		return References.ModID + ":cauldronclean";
-	}
-
 }

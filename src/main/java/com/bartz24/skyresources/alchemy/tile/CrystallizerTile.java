@@ -4,29 +4,23 @@ import java.util.Random;
 
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.alchemy.fluid.FluidCrystalBlock;
-import com.bartz24.skyresources.alchemy.fluid.FluidMoltenCrystalBlock;
-import com.bartz24.skyresources.base.HeatSources;
-import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModFluids;
 import com.bartz24.skyresources.registry.ModItems;
-import com.bartz24.skyresources.technology.block.BlockFreezer;
-import com.bartz24.skyresources.technology.tile.FreezerTile;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class CrystallizerTile extends TileEntity implements ITickable
 {
@@ -36,24 +30,24 @@ public class CrystallizerTile extends TileEntity implements ITickable
 	@Override
 	public void update()
 	{
-		moltenCrystalFluidUpdate();
+		fluidUpdate();
 	}
 
-	void moltenCrystalFluidUpdate()
+	void fluidUpdate()
 	{
-		Random rand = worldObj.rand;
+		Random rand = world.rand;
 		Block block = getBlockAbove();
-		if (!worldObj.isRemote)
+		boolean success = false;
+		if (!world.isRemote)
 		{
-			if (block instanceof FluidMoltenCrystalBlock)
+			if (block instanceof FluidCrystalBlock)
 			{
-				FluidMoltenCrystalBlock crystalBlock = (FluidMoltenCrystalBlock) block;
+				FluidCrystalBlock crystalBlock = (FluidCrystalBlock) block;
 				Fluid fluid = crystalBlock.getFluid();
-				String type = ModFluids.moltenCrystalFluidInfos()[ModBlocks.moltenCrystalFluidBlocks
-						.indexOf(crystalBlock)].name;
+				String type = ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks.indexOf(crystalBlock)].name;
 
-				if (crystalBlock.isSourceBlock(worldObj, pos.up()) && crystalBlock
-						.isNotFlowing(worldObj, pos.up(), worldObj.getBlockState(pos.up())))
+				if (crystalBlock.isSourceBlock(world, pos.up())
+						&& crystalBlock.isNotFlowing(world, pos.up(), world.getBlockState(pos.up())))
 					timeCondense++;
 				else
 					timeCondense = 0;
@@ -61,21 +55,23 @@ public class CrystallizerTile extends TileEntity implements ITickable
 				{
 					if (crystallize(crystalBlock))
 					{
-						if (rand.nextInt(
-								10 + ModFluids.crystalFluidInfos()[ModBlocks.moltenCrystalFluidBlocks
-										.indexOf(crystalBlock)].rarity / 2) >= 8)
-							worldObj.setBlockToAir(pos.up());
-						
-						ItemStack stack = new ItemStack(ModItems.metalCrystal, 1,
-								ModFluids.moltenCrystalFluidInfos()[ModBlocks.moltenCrystalFluidBlocks
-										.indexOf(crystalBlock)].crystalIndex);
+						if (rand.nextInt(10 + ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks
+								.indexOf(crystalBlock)].rarity / 2) >= 8)
+							world.setBlockToAir(pos.up());
+
+						ItemStack stack = new ItemStack(ModItems.metalCrystal, 1, ModFluids
+								.crystalFluidInfos()[ModBlocks.crystalFluidBlocks.indexOf(crystalBlock)].crystalIndex);
 						ejectResultSlot(stack);
+						success = true;
 					}
 					timeCondense = 0;
-					randInterval = rand.nextInt(240) + 20;
+					randInterval = rand.nextInt(1) + 1;
 				}
 			}
 		}
+		if (success)
+			world.playSound((EntityPlayer) null, pos, SoundEvents.ENTITY_ARROW_HIT_PLAYER, SoundCategory.BLOCKS, 1.0F,
+					2.2F / (rand.nextFloat() * 0.2F + 0.9F));
 	}
 
 	@Override
@@ -97,33 +93,32 @@ public class CrystallizerTile extends TileEntity implements ITickable
 		randInterval = compound.getInteger("rand");
 	}
 
-	public boolean crystallize(FluidMoltenCrystalBlock block)
+	public boolean crystallize(FluidCrystalBlock block)
 	{
-		return worldObj.rand
-				.nextInt(ModFluids.crystalFluidInfos()[ModBlocks.moltenCrystalFluidBlocks
-						.indexOf(block)].rarity * 2) == 0;
+		return world.rand
+				.nextInt(ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks.indexOf(block)].rarity * 2) == 0;
 	}
 
 	public Block getBlockAbove()
 	{
-		return this.worldObj.getBlockState(pos.add(0, 1, 0)).getBlock();
+		return this.world.getBlockState(pos.add(0, 1, 0)).getBlock();
 	}
 
 	void ejectResultSlot(ItemStack output)
 	{
-		if (!worldObj.isRemote)
+		if (!world.isRemote)
 		{
 
 			BlockPos facingPos = getPos().down();
 
-			TileEntity tile = worldObj.getTileEntity(facingPos);
+			TileEntity tile = world.getTileEntity(facingPos);
 			if (tile instanceof IInventory)
 			{
 				output = RandomHelper.fillInventory((IInventory) tile, output);
 			}
 
-			if (output != null && output.stackSize > 0)
-				RandomHelper.spawnItemInWorld(worldObj, output, facingPos);
+			if (output != ItemStack.EMPTY && output.getCount() > 0)
+				RandomHelper.spawnItemInWorld(world, output, facingPos);
 		}
 	}
 }

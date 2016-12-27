@@ -5,6 +5,7 @@ import java.util.List;
 
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -23,11 +24,11 @@ public class HeatSourcesRecipeJEI extends BlankRecipeWrapper
 		value = heatValue;
 	}
 
-	@Override
 	public List getInputs()
 	{
 		ItemStack stack = new ItemStack(input.getBlock(), 1, input.getBlock().getMetaFromState(input));
-		return (stack == null || !(stack.getItem() instanceof Item)) ? null : Collections.singletonList(stack);
+		return Collections.singletonList(
+				(stack == ItemStack.EMPTY || !(stack.getItem() instanceof Item)) ? ItemStack.EMPTY : stack);
 	}
 
 	@Override
@@ -35,17 +36,13 @@ public class HeatSourcesRecipeJEI extends BlankRecipeWrapper
 	{
 		ItemStack stack = new ItemStack(input.getBlock(), 1, input.getBlock().getMetaFromState(input));
 		FontRenderer fontRendererObj = minecraft.fontRendererObj;
-		if (stack == null || !(stack.getItem() instanceof Item))
-		{
-			String s = input.getBlock().getLocalizedName() + " :";
-			fontRendererObj.drawString(s, 10, 12, java.awt.Color.gray.getRGB());
-		}
-		String s = Integer.toString(value) + " Heat";
+		String s = input.getBlock().getLocalizedName();
+		fontRendererObj.drawString(s, 20, 12, java.awt.Color.gray.getRGB());
+		s = Integer.toString(value) + " Heat";
 		fontRendererObj = minecraft.fontRendererObj;
 		fontRendererObj.drawString(s, 20, 24, java.awt.Color.gray.getRGB());
 	}
 
-	@Override
 	public List getOutputs()
 	{
 		return null;

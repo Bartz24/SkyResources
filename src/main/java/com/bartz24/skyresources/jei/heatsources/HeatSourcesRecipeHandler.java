@@ -10,12 +10,6 @@ public class HeatSourcesRecipeHandler
 {
 
 	@Override
-	public String getRecipeCategoryUid()
-	{
-		return References.ModID + ":heatsources";
-	}
-
-	@Override
 	public Class<HeatSourcesRecipeJEI> getRecipeClass()
 	{
 		return HeatSourcesRecipeJEI.class;

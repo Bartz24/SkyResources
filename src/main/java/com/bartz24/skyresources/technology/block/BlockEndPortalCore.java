@@ -21,8 +21,7 @@ import net.minecraft.world.World;
 
 public class BlockEndPortalCore extends BlockContainer
 {
-	public BlockEndPortalCore(String unlocalizedName, String registryName, float hardness,
-			float resistance)
+	public BlockEndPortalCore(String unlocalizedName, String registryName, float hardness, float resistance)
 	{
 		super(Material.ROCK);
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
@@ -46,14 +45,13 @@ public class BlockEndPortalCore extends BlockContainer
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state,
-			EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX,
-			float hitY, float hitZ)
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
+			EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		if (!world.isRemote)
 		{
-			player.openGui(SkyResources.instance, ModGuiHandler.EndPortalCoreGUI, world, pos.getX(),
-					pos.getY(), pos.getZ());
+			player.openGui(SkyResources.instance, ModGuiHandler.EndPortalCoreGUI, world, pos.getX(), pos.getY(),
+					pos.getZ());
 		}
 		return true;
 	}

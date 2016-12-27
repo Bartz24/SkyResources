@@ -48,13 +48,13 @@ public class ContainerFreezer extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer player)
 	{
-		return tile.isUseableByPlayer(player);
+		return tile.isUsableByPlayer(player);
 	}
 
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int fromSlot)
 	{
-		ItemStack previous = null;
+		ItemStack previous = ItemStack.EMPTY;
 		Slot slot = this.inventorySlots.get(fromSlot);
 
 		if (slot != null && slot.getHasStack())
@@ -65,21 +65,21 @@ public class ContainerFreezer extends Container
 			if (fromSlot < tile.getSizeInventory())
 			{
 				if (!this.mergeItemStack(current, tile.getSizeInventory(), 36+tile.getSizeInventory(), true))
-					return null;
+					return ItemStack.EMPTY;
 			} else
 			{
 				if (!this.mergeItemStack(current, 0, tile.getSizeInventory(), false))
-					return null;
+					return ItemStack.EMPTY;
 			}
 
-			if (current.stackSize == 0)
-				slot.putStack((ItemStack) null);
+			if (current.getCount() == 0)
+				slot.putStack(ItemStack.EMPTY);
 			else
 				slot.onSlotChanged();
 
-			if (current.stackSize == previous.stackSize)
-				return null;
-			slot.onPickupFromSlot(playerIn, current);
+			if (current.getCount() == previous.getCount())
+				return ItemStack.EMPTY;
+			slot.onTake(playerIn, current);
 		}
 		return previous;
 	}

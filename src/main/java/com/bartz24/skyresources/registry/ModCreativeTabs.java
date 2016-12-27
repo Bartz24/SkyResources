@@ -2,6 +2,7 @@ package com.bartz24.skyresources.registry;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -13,9 +14,9 @@ public class ModCreativeTabs
 	{
 		@Override
 		@SideOnly(Side.CLIENT)
-		public Item getTabIconItem()
+		public ItemStack getTabIconItem()
 		{
-			return ModItems.ironKnife;
+			return new ItemStack(ModItems.ironKnife);
 		}
 	};
 
@@ -24,9 +25,9 @@ public class ModCreativeTabs
 	{
 		@Override
 		@SideOnly(Side.CLIENT)
-		public Item getTabIconItem()
+		public ItemStack getTabIconItem()
 		{
-			return ModItems.sandstoneInfusionStone;
+			return new ItemStack(ModItems.sandstoneInfusionStone);
 		}
 	};
 
@@ -35,9 +36,9 @@ public class ModCreativeTabs
 	{
 		@Override
 		@SideOnly(Side.CLIENT)
-		public Item getTabIconItem()
+		public ItemStack getTabIconItem()
 		{
-			return Item.getItemFromBlock(ModBlocks.combustionHeater);
+			return new ItemStack(ModBlocks.combustionHeater);
 		}
 	};
 }

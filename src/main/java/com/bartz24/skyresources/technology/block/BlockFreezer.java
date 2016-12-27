@@ -33,11 +33,10 @@ import net.minecraft.world.World;
 public class BlockFreezer extends BlockContainer
 {
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
-	public static final PropertyEnum<EnumPartType> PART = PropertyEnum
-			.<EnumPartType> create("part", EnumPartType.class);
+	public static final PropertyEnum<EnumPartType> PART = PropertyEnum.<EnumPartType> create("part",
+			EnumPartType.class);
 
-	public BlockFreezer(String unlocalizedName, String registryName,
-			float hardness, float resistance)
+	public BlockFreezer(String unlocalizedName, String registryName, float hardness, float resistance)
 	{
 		super(Material.IRON);
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
@@ -46,8 +45,7 @@ public class BlockFreezer extends BlockContainer
 		this.setResistance(resistance);
 		this.setRegistryName(registryName);
 		this.isBlockContainer = true;
-		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING,
-				EnumFacing.NORTH));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 
 	@Override
@@ -86,28 +84,23 @@ public class BlockFreezer extends BlockContainer
 		FreezerTile te = (FreezerTile) world.getTileEntity(pos);
 		if (te.getInv() != null)
 		{
-			for (int i = 0; i < te.getInv().length; i++)
+			for (int i = 0; i < te.getInv().size(); i++)
 			{
-				if (te.getInv()[i] != null)
-					RandomHelper.spawnItemInWorld(world, te.getInv()[i].copy(),
-							pos);
+				if (te.getInv().get(i) != ItemStack.EMPTY)
+					RandomHelper.spawnItemInWorld(world, te.getInv().get(i).copy(), pos);
 			}
 		}
 		super.breakBlock(world, pos, state);
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos,
-			IBlockState state, EntityPlayer player, EnumHand hand,
-			ItemStack heldItem, EnumFacing side, float hitX, float hitY,
-			float hitZ)
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
+			EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		if (!world.isRemote)
 		{
-			BlockPos bottomPos = state.getProperties()
-					.get(PART) == EnumPartType.BOTTOM ? pos : pos.down();
-			player.openGui(SkyResources.instance, ModGuiHandler.FreezerGUI,
-					world, bottomPos.getX(), bottomPos.getY(),
+			BlockPos bottomPos = state.getProperties().get(PART) == EnumPartType.BOTTOM ? pos : pos.down();
+			player.openGui(SkyResources.instance, ModGuiHandler.FreezerGUI, world, bottomPos.getX(), bottomPos.getY(),
 					bottomPos.getZ());
 		}
 		return true;
@@ -119,8 +112,7 @@ public class BlockFreezer extends BlockContainer
 		this.setDefaultFacing(worldIn, pos, state);
 	}
 
-	private void setDefaultFacing(World worldIn, BlockPos pos,
-			IBlockState state)
+	private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state)
 	{
 		if (!worldIn.isRemote)
 		{
@@ -130,40 +122,29 @@ public class BlockFreezer extends BlockContainer
 			IBlockState iblockstate3 = worldIn.getBlockState(pos.east());
 			EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
 
-			if (enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock()
-					&& !iblockstate1.isFullBlock())
+			if (enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock() && !iblockstate1.isFullBlock())
 			{
 				enumfacing = EnumFacing.SOUTH;
-			} else if (enumfacing == EnumFacing.SOUTH
-					&& iblockstate1.isFullBlock() && !iblockstate.isFullBlock())
+			} else if (enumfacing == EnumFacing.SOUTH && iblockstate1.isFullBlock() && !iblockstate.isFullBlock())
 			{
 				enumfacing = EnumFacing.NORTH;
-			} else if (enumfacing == EnumFacing.WEST
-					&& iblockstate2.isFullBlock()
-					&& !iblockstate3.isFullBlock())
+			} else if (enumfacing == EnumFacing.WEST && iblockstate2.isFullBlock() && !iblockstate3.isFullBlock())
 			{
 				enumfacing = EnumFacing.EAST;
-			} else if (enumfacing == EnumFacing.EAST
-					&& iblockstate3.isFullBlock()
-					&& !iblockstate2.isFullBlock())
+			} else if (enumfacing == EnumFacing.EAST && iblockstate3.isFullBlock() && !iblockstate2.isFullBlock())
 			{
 				enumfacing = EnumFacing.WEST;
 			}
 
-			worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing),
-					2);
+			worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing), 2);
 		}
 	}
 
-	public IBlockState onBlockPlaced(World worldIn, BlockPos pos,
-			EnumFacing facing, float hitX, float hitY, float hitZ, int meta,
-			EntityLivingBase placer)
+	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
+			int meta, EntityLivingBase placer)
 	{
-		super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta,
-				placer);
-		return this.getDefaultState()
-				.withProperty(FACING,
-						placer.getHorizontalFacing().getOpposite())
+		super.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
+		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite())
 				.withProperty(PART, EnumPartType.BOTTOM);
 	}
 
@@ -171,10 +152,8 @@ public class BlockFreezer extends BlockContainer
 	{
 		EnumFacing enumfacing = EnumFacing.getHorizontal(meta);
 		return (meta & 8) > 0
-				? this.getDefaultState().withProperty(PART, EnumPartType.BOTTOM)
-						.withProperty(FACING, enumfacing)
-				: this.getDefaultState().withProperty(PART, EnumPartType.TOP)
-						.withProperty(FACING, enumfacing);
+				? this.getDefaultState().withProperty(PART, EnumPartType.BOTTOM).withProperty(FACING, enumfacing)
+				: this.getDefaultState().withProperty(PART, EnumPartType.TOP).withProperty(FACING, enumfacing);
 	}
 
 	/**
@@ -200,8 +179,7 @@ public class BlockFreezer extends BlockContainer
 	 */
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
-		return state.withProperty(FACING,
-				rot.rotate((EnumFacing) state.getValue(FACING)));
+		return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
 	}
 
 	/**
@@ -210,14 +188,12 @@ public class BlockFreezer extends BlockContainer
 	 */
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
-		return state.withRotation(
-				mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
+		return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
 	}
 
 	protected BlockStateContainer createBlockState()
 	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ FACING, PART });
+		return new BlockStateContainer(this, new IProperty[] { FACING, PART });
 	}
 
 	public static enum EnumPartType implements IStringSerializable

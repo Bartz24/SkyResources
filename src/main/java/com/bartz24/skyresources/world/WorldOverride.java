@@ -3,9 +3,7 @@ package com.bartz24.skyresources.world;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.config.ConfigOptions;
 
-import ic2.core.WorldData;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.WorldProviderHell;
 import net.minecraftforge.common.DimensionManager;
 
 public class WorldOverride

@@ -21,7 +21,6 @@ public class CrucibleRecipeJEI extends BlankRecipeWrapper
 		this.output = output;
 	}
 
-	@Override
 	public List getInputs()
 	{
 		return Collections.singletonList(input);
@@ -33,7 +32,6 @@ public class CrucibleRecipeJEI extends BlankRecipeWrapper
 	{
 	}
 
-	@Override
 	public List getFluidOutputs()
 	{
 		return Collections.singletonList(output);

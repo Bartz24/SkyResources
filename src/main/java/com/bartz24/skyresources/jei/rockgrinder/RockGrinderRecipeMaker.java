@@ -3,23 +3,23 @@ package com.bartz24.skyresources.jei.rockgrinder;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bartz24.skyresources.technology.rockgrinder.RockGrinderRecipe;
-import com.bartz24.skyresources.technology.rockgrinder.RockGrinderRecipes;
+import com.bartz24.skyresources.recipe.ProcessRecipe;
+import com.bartz24.skyresources.recipe.ProcessRecipeManager;
+
+import net.minecraft.item.ItemStack;
 
 public class RockGrinderRecipeMaker
 {
 	public static List<RockGrinderRecipeJEI> getRecipes()
 	{
-		List<RockGrinderRecipe> grinderRecipes = RockGrinderRecipes
-				.getRecipes();
+		List<ProcessRecipe> grinderRecipes = ProcessRecipeManager.rockGrinderRecipes.getRecipes();
 
 		ArrayList<RockGrinderRecipeJEI> recipes = new ArrayList<RockGrinderRecipeJEI>();
 
-		for (RockGrinderRecipe recipe : grinderRecipes)
+		for (ProcessRecipe recipe : grinderRecipes)
 		{
-			RockGrinderRecipeJEI addRecipe = new RockGrinderRecipeJEI(
-					recipe.getOutput(), recipe.getInputBlock(),
-					recipe.getFuzzyInput(), recipe.getOutputChance());
+			RockGrinderRecipeJEI addRecipe = new RockGrinderRecipeJEI(recipe.getOutputs().get(0),
+					(ItemStack) recipe.getInputs().get(0), true, recipe.getIntParameter());
 			recipes.add(addRecipe);
 		}
 

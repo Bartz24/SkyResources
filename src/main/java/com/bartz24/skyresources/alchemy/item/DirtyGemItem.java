@@ -1,7 +1,6 @@
 package com.bartz24.skyresources.alchemy.item;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
@@ -11,7 +10,7 @@ import com.bartz24.skyresources.technology.item.GemRegisterInfo;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -45,7 +44,7 @@ public class DirtyGemItem extends Item
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item id, CreativeTabs creativeTab, List<ItemStack> list)
+	public void getSubItems(Item id, CreativeTabs creativeTab, NonNullList<ItemStack> list)
 	{
 		for (int i = 0; i < names.size(); i++)
 			list.add(new ItemStack(id, 1, i));

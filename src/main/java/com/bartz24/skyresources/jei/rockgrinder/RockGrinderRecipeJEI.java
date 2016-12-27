@@ -13,14 +13,14 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class RockGrinderRecipeJEI extends BlankRecipeWrapper
 {
-	private final IBlockState inputBlock;
+	private final ItemStack inputBlock;
 
 	private final ItemStack output;
 
 	private final boolean fuzzyInput;
 	private final float outChance;
 
-	public RockGrinderRecipeJEI(ItemStack output, IBlockState input,
+	public RockGrinderRecipeJEI(ItemStack output, ItemStack input,
 			boolean fuzzyIn, float chance)
 	{
 		inputBlock = input;
@@ -29,12 +29,9 @@ public class RockGrinderRecipeJEI extends BlankRecipeWrapper
 		outChance = chance;
 	}
 
-	@Override
 	public List getInputs()
 	{
-		return Collections.singletonList(new ItemStack(inputBlock.getBlock(), 1,
-				fuzzyInput ? OreDictionary.WILDCARD_VALUE
-						: inputBlock.getBlock().getMetaFromState(inputBlock)));
+		return Collections.singletonList(inputBlock);
 	}
 
 	@Override
@@ -46,7 +43,6 @@ public class RockGrinderRecipeJEI extends BlankRecipeWrapper
 		fontRendererObj.drawString(s, 70, 0, java.awt.Color.gray.getRGB());
 	}
 
-	@Override
 	public List getOutputs()
 	{
 		return Collections.singletonList(output);

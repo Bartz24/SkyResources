@@ -8,13 +8,6 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 public class WaterExtractorInsertRecipeHandler
 		implements IRecipeHandler<WaterExtractorInsertRecipeJEI>
 {
-
-	@Override
-	public String getRecipeCategoryUid()
-	{
-		return References.ModID + ":waterextractor";
-	}
-
 	@Override
 	public Class<WaterExtractorInsertRecipeJEI> getRecipeClass()
 	{

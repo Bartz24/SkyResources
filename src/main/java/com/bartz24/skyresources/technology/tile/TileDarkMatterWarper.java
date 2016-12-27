@@ -9,7 +9,7 @@ import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityCaveSpider;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySpider;
-import net.minecraft.entity.monster.SkeletonType;
+import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,13 +22,14 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 
 public class TileDarkMatterWarper extends TileEntity implements ITickable, IInventory
 {
-	private ItemStack[] inventory = new ItemStack[1];
+	private NonNullList<ItemStack> inventory = NonNullList.<ItemStack> withSize(1, ItemStack.EMPTY);
 	private int burnTime;
 	private int maxBurnTime = 3600;
 
@@ -36,23 +37,22 @@ public class TileDarkMatterWarper extends TileEntity implements ITickable, IInve
 	public void update()
 	{
 
-		if (!worldObj.isRemote)
+		if (!world.isRemote)
 		{
 			if (burnTime <= 0)
 			{
-				if (inventory[0] != null
-						&& inventory[0].isItemEqual(new ItemStack(ModItems.baseComponent, 1, 5)))
+				if (inventory.get(0) != ItemStack.EMPTY
+						&& inventory.get(0).isItemEqual(new ItemStack(ModItems.baseComponent, 1, 5)))
 				{
-					inventory[0].stackSize--;
-					if (inventory[0].stackSize == 0)
-						inventory[0] = null;
+					inventory.get(0).shrink(1);
+					if (inventory.get(0).getCount() == 0)
+						inventory.set(0, ItemStack.EMPTY);
 					burnTime = maxBurnTime;
 				}
 			}
 
-			List<EntityLivingBase> list = worldObj.getEntitiesWithinAABB(EntityLivingBase.class,
-					new AxisAlignedBB(pos.getX() - 4, pos.getY() - 4, pos.getZ() - 4,
-							pos.getX() + 4, pos.getY() + 4, pos.getZ() + 4));
+			List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(
+					pos.getX() - 4, pos.getY() - 4, pos.getZ() - 4, pos.getX() + 4, pos.getY() + 4, pos.getZ() + 4));
 			if (burnTime > 0)
 			{
 				burnTime--;
@@ -61,43 +61,42 @@ public class TileDarkMatterWarper extends TileEntity implements ITickable, IInve
 				{
 					if (!entity.isDead && entity instanceof EntitySkeleton)
 					{
-						if (((EntitySkeleton) entity).func_189771_df() == SkeletonType.NORMAL)
-						{
-							EntitySkeleton skeleton = (EntitySkeleton) entity;
-							skeleton.func_189768_a(SkeletonType.WITHER);
-							skeleton.setHealth(skeleton.getMaxHealth());
-						}
+						EntityWitherSkeleton skeleton = new EntityWitherSkeleton(world);
+						skeleton.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, entity.rotationYaw,
+								entity.rotationPitch);
+						skeleton.renderYawOffset = entity.renderYawOffset;
+						skeleton.setHealth(skeleton.getMaxHealth());
+						world.spawnEntity(skeleton);
 					} else if (!entity.isDead && entity instanceof EntitySpider
 							&& !(entity instanceof EntityCaveSpider))
 					{
 						EntitySpider spider = (EntitySpider) entity;
 						spider.setDead();
 
-						EntityCaveSpider caveSpider = new EntityCaveSpider(worldObj);
-						caveSpider.setLocationAndAngles(spider.posX, spider.posY, spider.posZ,
-								spider.rotationYaw, spider.rotationPitch);
+						EntityCaveSpider caveSpider = new EntityCaveSpider(world);
+						caveSpider.setLocationAndAngles(spider.posX, spider.posY, spider.posZ, spider.rotationYaw,
+								spider.rotationPitch);
 						caveSpider.renderYawOffset = spider.renderYawOffset;
 						caveSpider.setHealth(caveSpider.getMaxHealth());
 
-						worldObj.spawnEntityInWorld(caveSpider);
+						world.spawnEntity(caveSpider);
 					} else if (!entity.isDead && entity instanceof EntitySquid)
 					{
 						EntitySquid squid = (EntitySquid) entity;
 						squid.setDead();
 
-						EntityBlaze blaze = new EntityBlaze(worldObj);
-						blaze.setLocationAndAngles(squid.posX, squid.posY, squid.posZ,
-								squid.rotationYaw, squid.rotationPitch);
+						EntityBlaze blaze = new EntityBlaze(world);
+						blaze.setLocationAndAngles(squid.posX, squid.posY, squid.posZ, squid.rotationYaw,
+								squid.rotationPitch);
 						blaze.renderYawOffset = squid.renderYawOffset;
 						blaze.setHealth(blaze.getMaxHealth());
 
-						worldObj.spawnEntityInWorld(blaze);
-					} else if (!entity.isDead
-							&& (entity instanceof EntityPlayer || entity instanceof EntityAnimal))
+						world.spawnEntity(blaze);
+					} else if (!entity.isDead && (entity instanceof EntityPlayer || entity instanceof EntityAnimal))
 					{
-						entity.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 360,0));
+						entity.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 360, 0));
 						entity.addPotionEffect(new PotionEffect(MobEffects.WITHER, 360, 0));
-						entity.addPotionEffect(new PotionEffect(MobEffects.HUNGER, 360,0));
+						entity.addPotionEffect(new PotionEffect(MobEffects.HUNGER, 360, 0));
 						entity.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE, 360, 0));
 						entity.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 360, 0));
 						entity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 360, 0));
@@ -123,8 +122,8 @@ public class TileDarkMatterWarper extends TileEntity implements ITickable, IInve
 	public ItemStack getStackInSlot(int index)
 	{
 		if (index < 0 || index >= this.getSizeInventory())
-			return null;
-		return this.inventory[index];
+			return ItemStack.EMPTY;
+		return this.inventory.get(index);
 	}
 
 	@Override
@@ -154,23 +153,23 @@ public class TileDarkMatterWarper extends TileEntity implements ITickable, IInve
 	@Override
 	public ItemStack decrStackSize(int index, int count)
 	{
-		if (this.getStackInSlot(index) != null)
+		if (this.getStackInSlot(index) != ItemStack.EMPTY)
 		{
 			ItemStack itemstack;
 
-			if (this.getStackInSlot(index).stackSize <= count)
+			if (this.getStackInSlot(index).getCount() <= count)
 			{
 				itemstack = this.getStackInSlot(index);
-				this.setInventorySlotContents(index, null);
+				this.setInventorySlotContents(index, ItemStack.EMPTY);
 				this.markDirty();
 				return itemstack;
 			} else
 			{
 				itemstack = this.getStackInSlot(index).splitStack(count);
 
-				if (this.getStackInSlot(index).stackSize <= 0)
+				if (this.getStackInSlot(index).getCount() <= 0)
 				{
-					this.setInventorySlotContents(index, null);
+					this.setInventorySlotContents(index, ItemStack.EMPTY);
 				} else
 				{
 					// Just to show that changes happened
@@ -182,7 +181,7 @@ public class TileDarkMatterWarper extends TileEntity implements ITickable, IInve
 			}
 		} else
 		{
-			return null;
+			return ItemStack.EMPTY;
 		}
 	}
 
@@ -192,13 +191,13 @@ public class TileDarkMatterWarper extends TileEntity implements ITickable, IInve
 		if (index < 0 || index >= this.getSizeInventory())
 			return;
 
-		if (stack != null && stack.stackSize > this.getInventoryStackLimit())
-			stack.stackSize = this.getInventoryStackLimit();
+		if (stack != ItemStack.EMPTY && stack.getCount() > this.getInventoryStackLimit())
+			stack.setCount(this.getInventoryStackLimit());
 
-		if (stack != null && stack.stackSize == 0)
-			stack = null;
+		if (stack != ItemStack.EMPTY && stack.getCount() == 0)
+			stack = ItemStack.EMPTY;
 
-		this.inventory[index] = stack;
+		this.inventory.set(index, stack);
 		this.markDirty();
 
 	}
@@ -210,9 +209,9 @@ public class TileDarkMatterWarper extends TileEntity implements ITickable, IInve
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer player)
+	public boolean isUsableByPlayer(EntityPlayer player)
 	{
-		return this.worldObj.getTileEntity(this.getPos()) == this
+		return this.world.getTileEntity(this.getPos()) == this
 				&& player.getDistanceSq(this.pos.add(0.5, 0.5, 0.5)) <= 64;
 	}
 
@@ -253,7 +252,7 @@ public class TileDarkMatterWarper extends TileEntity implements ITickable, IInve
 	public void clear()
 	{
 		for (int i = 0; i < this.getSizeInventory(); i++)
-			this.setInventorySlotContents(i, null);
+			this.setInventorySlotContents(i, ItemStack.EMPTY);
 	}
 
 	@Override
@@ -272,7 +271,7 @@ public class TileDarkMatterWarper extends TileEntity implements ITickable, IInve
 		NBTTagList list = new NBTTagList();
 		for (int i = 0; i < this.getSizeInventory(); ++i)
 		{
-			if (this.getStackInSlot(i) != null)
+			if (this.getStackInSlot(i) != ItemStack.EMPTY)
 			{
 				NBTTagCompound stackTag = new NBTTagCompound();
 				stackTag.setByte("Slot", (byte) i);
@@ -296,7 +295,20 @@ public class TileDarkMatterWarper extends TileEntity implements ITickable, IInve
 		{
 			NBTTagCompound stackTag = list.getCompoundTagAt(i);
 			int slot = stackTag.getByte("Slot") & 255;
-			this.setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(stackTag));
+			this.setInventorySlotContents(slot, new ItemStack(stackTag));
 		}
+	}
+
+	@Override
+	public boolean isEmpty()
+	{
+		for (ItemStack stack : this.inventory)
+		{
+			if (!stack.isEmpty())
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 }

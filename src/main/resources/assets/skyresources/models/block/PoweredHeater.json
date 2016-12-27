@@ -1,13 +1,13 @@
 {
-    "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
+    "__comment": "model generated using mrcrayfish's model creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "particle": "skyresources:blocks/steelMachine",
-        "0": "skyresources:blocks/steelMachine",
-        "1": "skyresources:blocks/heaterTop"
+        "particle": "skyresources:blocks/steelmachine",
+        "0": "skyresources:blocks/steelmachine",
+        "1": "skyresources:blocks/heatertop"
     },
     "elements": [
         {
-            "name": "Base",
+            "name": "base",
             "from": [ 0.0, 0.0, 0.0 ], 
             "to": [ 16.0, 15.0, 16.0 ], 
             "faces": {
@@ -20,7 +20,7 @@
             }
         },
         {
-            "name": "Side1",
+            "name": "side1",
             "from": [ 0.0, 15.0, 0.0 ], 
             "to": [ 16.0, 16.0, 5.0 ], 
             "faces": {
@@ -33,7 +33,7 @@
             }
         },
         {
-            "name": "Side2",
+            "name": "side2",
             "from": [ 0.0, 15.0, 5.0 ], 
             "to": [ 5.0, 16.0, 16.0 ], 
             "faces": {
@@ -46,7 +46,7 @@
             }
         },
         {
-            "name": "Side3",
+            "name": "side3",
             "from": [ 5.0, 15.0, 11.0 ], 
             "to": [ 16.0, 16.0, 16.0 ], 
             "faces": {
@@ -59,7 +59,7 @@
             }
         },
         {
-            "name": "Side4",
+            "name": "side4",
             "from": [ 11.0, 15.0, 5.0 ], 
             "to": [ 16.0, 16.0, 11.0 ], 
             "faces": {

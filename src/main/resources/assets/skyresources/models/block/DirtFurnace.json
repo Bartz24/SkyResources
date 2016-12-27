@@ -3,7 +3,7 @@
   "textures": {
        "down": "blocks/dirt",
          "up": "blocks/dirt",
-      "north": "skyresources:blocks/dirtFurnace",
+      "north": "skyresources:blocks/dirtfurnace",
       "south": "blocks/dirt",
        "west": "blocks/dirt",
        "east": "blocks/dirt",

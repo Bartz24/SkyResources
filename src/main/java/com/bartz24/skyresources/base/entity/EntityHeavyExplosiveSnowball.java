@@ -41,15 +41,15 @@ public class EntityHeavyExplosiveSnowball extends EntitySnowball
             }
 
             result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float)i);
-            result.entityHit.worldObj.createExplosion(result.entityHit, result.entityHit.posX, result.entityHit.posY, result.entityHit.posZ, 0.01f, false);
+            result.entityHit.world.createExplosion(result.entityHit, result.entityHit.posX, result.entityHit.posY, result.entityHit.posZ, 0.01f, false);
         }
 
         for (int j = 0; j < 32; ++j)
         {
-            this.worldObj.spawnParticle(EnumParticleTypes.SNOWBALL, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
+            this.world.spawnParticle(EnumParticleTypes.SNOWBALL, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
         }
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             this.setDead();
         }

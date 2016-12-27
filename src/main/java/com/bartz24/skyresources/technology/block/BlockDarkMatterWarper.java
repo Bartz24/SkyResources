@@ -14,7 +14,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -29,8 +28,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class BlockDarkMatterWarper extends BlockContainer
 {
 
-	public BlockDarkMatterWarper(String unlocalizedName, String registryName, float hardness,
-			float resistance)
+	public BlockDarkMatterWarper(String unlocalizedName, String registryName, float hardness, float resistance)
 	{
 		super(Material.IRON);
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
@@ -58,31 +56,29 @@ public class BlockDarkMatterWarper extends BlockContainer
 	{
 		return false;
 	}
-	
+
 	@Override
-	@SideOnly(Side.CLIENT)
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState worldIn, World pos,
-			BlockPos state)
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB p_185477_4_,
+			List<AxisAlignedBB> p_185477_5_, Entity p_185477_6_)
+	{
+		addCollisionBoxToList(pos, p_185477_4_, p_185477_5_,
+				new AxisAlignedBB(0.125D, 0.125D, 0.125D, 0.875D, 0.875D, 0.875D));
+	}
+
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return new AxisAlignedBB(0.125D, 0.125D, 0.125D, 0.875D, 0.875D, 0.875D);
 	}
 
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source,
-			BlockPos pos)
-	{
-		return new AxisAlignedBB(0.125D, 0.125D, 0.125D, 0.875D, 0.875D, 0.875D);
-	}
-
-	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state,
-			EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX,
-			float hitY, float hitZ)
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
+			EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		if (!world.isRemote)
 		{
-			player.openGui(SkyResources.instance, ModGuiHandler.DarkMatterWarperGUI, world,
-					pos.getX(), pos.getY(), pos.getZ());
+			player.openGui(SkyResources.instance, ModGuiHandler.DarkMatterWarperGUI, world, pos.getX(), pos.getY(),
+					pos.getZ());
 		}
 		return true;
 	}

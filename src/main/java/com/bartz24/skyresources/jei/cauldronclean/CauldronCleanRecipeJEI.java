@@ -25,7 +25,6 @@ public class CauldronCleanRecipeJEI extends BlankRecipeWrapper
 		outChance = chance;
 	}
 
-	@Override
 	public List getInputs()
 	{
 		return Collections.singletonList(input);
@@ -40,7 +39,6 @@ public class CauldronCleanRecipeJEI extends BlankRecipeWrapper
 		fontRendererObj.drawString(s, 70, 10, java.awt.Color.gray.getRGB());
 	}
 
-	@Override
 	public List getOutputs()
 	{
 		return Collections.singletonList(output);

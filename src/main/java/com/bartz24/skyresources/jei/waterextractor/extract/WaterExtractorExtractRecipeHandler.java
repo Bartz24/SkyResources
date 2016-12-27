@@ -10,12 +10,6 @@ public class WaterExtractorExtractRecipeHandler
 {
 
 	@Override
-	public String getRecipeCategoryUid()
-	{
-		return References.ModID + ":waterextractor";
-	}
-
-	@Override
 	public Class<WaterExtractorExtractRecipeJEI> getRecipeClass()
 	{
 		return WaterExtractorExtractRecipeJEI.class;

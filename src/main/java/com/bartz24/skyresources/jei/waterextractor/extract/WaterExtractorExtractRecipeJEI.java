@@ -15,15 +15,15 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class WaterExtractorExtractRecipeJEI extends BlankRecipeWrapper
 {
-	private final IBlockState inputBlock;
+	private final ItemStack inputBlock;
 
-	private final IBlockState output;
+	private final ItemStack output;
 
 	private final boolean fuzzyInput;
 	private final int fluidOut;
 
 	public WaterExtractorExtractRecipeJEI(int outAmt, boolean fuzzy,
-			IBlockState inputState, IBlockState outputState)
+			ItemStack inputState, ItemStack outputState)
 	{
 		inputBlock = inputState;
 		output = outputState;
@@ -31,12 +31,9 @@ public class WaterExtractorExtractRecipeJEI extends BlankRecipeWrapper
 		fluidOut = outAmt;
 	}
 
-	@Override
 	public List getInputs()
 	{
-		return Collections.singletonList(new ItemStack(inputBlock.getBlock(), 1,
-				fuzzyInput ? OreDictionary.WILDCARD_VALUE
-						: inputBlock.getBlock().getMetaFromState(inputBlock)));
+		return Collections.singletonList(inputBlock);
 	}
 
 	@Override
@@ -47,11 +44,9 @@ public class WaterExtractorExtractRecipeJEI extends BlankRecipeWrapper
 		fontRendererObj.drawString("Extracting", 65, 0, java.awt.Color.gray.getRGB());
 	}
 
-	@Override
 	public List getOutputs()
 	{
-		return output == null ? Collections.EMPTY_LIST : Collections.singletonList(new ItemStack(output.getBlock(), 1,
-				output.getBlock().getMetaFromState(output)));
+		return Collections.singletonList(output);
 	}
 
     public List getFluidOutputs()

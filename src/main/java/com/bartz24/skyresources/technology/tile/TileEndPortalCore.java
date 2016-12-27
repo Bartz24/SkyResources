@@ -19,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -26,12 +27,12 @@ import net.minecraft.util.text.TextComponentTranslation;
 
 public class TileEndPortalCore extends RedstoneCompatibleTile implements ITickable, IInventory
 {
-	private ItemStack[] inventory = new ItemStack[1];
+	private NonNullList<ItemStack> inventory = NonNullList.<ItemStack> withSize(1, ItemStack.EMPTY);
 
 	@Override
 	public void update()
 	{
-		if (!worldObj.isRemote)
+		if (!world.isRemote)
 		{
 			if (hasValidMultiblock())
 			{
@@ -39,22 +40,22 @@ public class TileEndPortalCore extends RedstoneCompatibleTile implements ITickab
 
 				if (receivedPulse())
 				{
-					List<EntityPlayerMP> list = worldObj.getEntitiesWithinAABB(EntityPlayerMP.class,
+					List<EntityPlayerMP> list = world.getEntitiesWithinAABB(EntityPlayerMP.class,
 							new AxisAlignedBB(pos.getX(), pos.getY() + 1, pos.getZ(),
 									pos.getX() + 1, pos.getY() + 2F, pos.getZ() + 1));
 
 					for (EntityPlayerMP player : list)
 					{
-						if (inventory[0] != null
-								&& inventory[0].isItemEqual(new ItemStack(Items.ENDER_EYE))
-								&& inventory[0].stackSize >= 16)
+						if (inventory.get(0) != ItemStack.EMPTY
+								&& inventory.get(0).isItemEqual(new ItemStack(Items.ENDER_EYE))
+								&& inventory.get(0).getCount() >= 16)
 						{
 							if (player.dimension == 0)
 							{
 								player.changeDimension(1);
-								inventory[0].stackSize -= 16;
-								if (inventory[0].stackSize == 0)
-									inventory[0] = null;
+								inventory.get(0).shrink(16);
+								if (inventory.get(0).getCount() == 0)
+									inventory.set(0, ItemStack.EMPTY);
 							}
 						}
 					}
@@ -66,12 +67,12 @@ public class TileEndPortalCore extends RedstoneCompatibleTile implements ITickab
 
 	void spawnFish()
 	{
-		List<EntitySilverfish> list = worldObj.getEntitiesWithinAABB(EntitySilverfish.class,
+		List<EntitySilverfish> list = world.getEntitiesWithinAABB(EntitySilverfish.class,
 				new AxisAlignedBB(pos.getX() - 4, pos.getY(), pos.getZ() - 4, pos.getX() + 4,
 						pos.getY() + 5F, pos.getZ() + 4));
-		if (!ConfigOptions.endPussyMode && worldObj.rand.nextInt(90) == 0 && list.size() < 16)
+		if (!ConfigOptions.endPussyMode && world.rand.nextInt(90) == 0 && list.size() < 16)
 		{
-			EntitySilverfish fish = new EntitySilverfish(worldObj);
+			EntitySilverfish fish = new EntitySilverfish(world);
 			if (!ConfigOptions.easyMode)
 			{
 				fish.setDropChance(EntityEquipmentSlot.MAINHAND, 0);
@@ -93,7 +94,7 @@ public class TileEndPortalCore extends RedstoneCompatibleTile implements ITickab
 						new ItemStack(Items.DIAMOND_BOOTS));
 			}
 			fish.setPosition(pos.getX() + 0.5, pos.getY() + 1.5, pos.getZ() + 0.5);
-			worldObj.spawnEntityInWorld(fish);
+			world.spawnEntity(fish);
 		}
 	}
 
@@ -103,25 +104,25 @@ public class TileEndPortalCore extends RedstoneCompatibleTile implements ITickab
 		{ pos.north(), pos.south(), pos.west(), pos.east() };
 		for (BlockPos pos : goldBlockPoses)
 		{
-			if (worldObj.getBlockState(pos).getBlock() != Blocks.GOLD_BLOCK)
+			if (world.getBlockState(pos).getBlock() != Blocks.GOLD_BLOCK)
 				return false;
 		}
 		BlockPos[] endBlockPoses = new BlockPos[]
 		{ pos.north(2).west(2), pos.north(2).east(2), pos.south(2).west(2), pos.south(2).east(2) };
 		for (BlockPos pos : endBlockPoses)
 		{
-			if (worldObj.getBlockState(pos.up()).getBlock() != Blocks.END_BRICKS)
+			if (world.getBlockState(pos.up()).getBlock() != Blocks.END_BRICKS)
 				return false;
-			if (worldObj.getBlockState(pos.up(2)).getBlock() != Blocks.END_BRICKS)
+			if (world.getBlockState(pos.up(2)).getBlock() != Blocks.END_BRICKS)
 				return false;
-			if (worldObj.getBlockState(pos.up(3)).getBlock() != Blocks.GLOWSTONE)
+			if (world.getBlockState(pos.up(3)).getBlock() != Blocks.GLOWSTONE)
 				return false;
 		}
 		BlockPos[] diamBlockPoses = new BlockPos[]
 		{ pos.north().west(), pos.north().east(), pos.south().west(), pos.south().east() };
 		for (BlockPos pos : diamBlockPoses)
 		{
-			if (worldObj.getBlockState(pos).getBlock() != Blocks.DIAMOND_BLOCK)
+			if (world.getBlockState(pos).getBlock() != Blocks.DIAMOND_BLOCK)
 				return false;
 		}
 
@@ -132,7 +133,7 @@ public class TileEndPortalCore extends RedstoneCompatibleTile implements ITickab
 				if (Math.abs(pos.getX() - x) > 1 || Math.abs(pos.getZ() - z) > 1)
 				{
 
-					if (worldObj.getBlockState(new BlockPos(x, pos.getY(), z))
+					if (world.getBlockState(new BlockPos(x, pos.getY(), z))
 							.getBlock() != ModBlocks.darkMatterBlock)
 						return false;
 				}
@@ -145,8 +146,8 @@ public class TileEndPortalCore extends RedstoneCompatibleTile implements ITickab
 	public ItemStack getStackInSlot(int index)
 	{
 		if (index < 0 || index >= this.getSizeInventory())
-			return null;
-		return this.inventory[index];
+			return ItemStack.EMPTY;
+		return this.inventory.get(index);
 	}
 
 	@Override
@@ -176,23 +177,23 @@ public class TileEndPortalCore extends RedstoneCompatibleTile implements ITickab
 	@Override
 	public ItemStack decrStackSize(int index, int count)
 	{
-		if (this.getStackInSlot(index) != null)
+		if (this.getStackInSlot(index) != ItemStack.EMPTY)
 		{
 			ItemStack itemstack;
 
-			if (this.getStackInSlot(index).stackSize <= count)
+			if (this.getStackInSlot(index).getCount() <= count)
 			{
 				itemstack = this.getStackInSlot(index);
-				this.setInventorySlotContents(index, null);
+				this.setInventorySlotContents(index, ItemStack.EMPTY);
 				this.markDirty();
 				return itemstack;
 			} else
 			{
 				itemstack = this.getStackInSlot(index).splitStack(count);
 
-				if (this.getStackInSlot(index).stackSize <= 0)
+				if (this.getStackInSlot(index).getCount() <= 0)
 				{
-					this.setInventorySlotContents(index, null);
+					this.setInventorySlotContents(index, ItemStack.EMPTY);
 				} else
 				{
 					// Just to show that changes happened
@@ -204,7 +205,7 @@ public class TileEndPortalCore extends RedstoneCompatibleTile implements ITickab
 			}
 		} else
 		{
-			return null;
+			return ItemStack.EMPTY;
 		}
 	}
 
@@ -214,13 +215,13 @@ public class TileEndPortalCore extends RedstoneCompatibleTile implements ITickab
 		if (index < 0 || index >= this.getSizeInventory())
 			return;
 
-		if (stack != null && stack.stackSize > this.getInventoryStackLimit())
-			stack.stackSize = this.getInventoryStackLimit();
+		if (stack != ItemStack.EMPTY && stack.getCount() > this.getInventoryStackLimit())
+			stack.setCount(this.getInventoryStackLimit());
 
-		if (stack != null && stack.stackSize == 0)
-			stack = null;
+		if (stack != ItemStack.EMPTY && stack.getCount() == 0)
+			stack = ItemStack.EMPTY;
 
-		this.inventory[index] = stack;
+		this.inventory.set(prevRedstoneSignal, stack);
 		this.markDirty();
 
 	}
@@ -232,9 +233,9 @@ public class TileEndPortalCore extends RedstoneCompatibleTile implements ITickab
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer player)
+	public boolean isUsableByPlayer(EntityPlayer player)
 	{
-		return this.worldObj.getTileEntity(this.getPos()) == this
+		return this.world.getTileEntity(this.getPos()) == this
 				&& player.getDistanceSq(this.pos.add(0.5, 0.5, 0.5)) <= 64;
 	}
 
@@ -275,7 +276,7 @@ public class TileEndPortalCore extends RedstoneCompatibleTile implements ITickab
 	public void clear()
 	{
 		for (int i = 0; i < this.getSizeInventory(); i++)
-			this.setInventorySlotContents(i, null);
+			this.setInventorySlotContents(i, ItemStack.EMPTY);
 	}
 
 	@Override
@@ -292,7 +293,7 @@ public class TileEndPortalCore extends RedstoneCompatibleTile implements ITickab
 		NBTTagList list = new NBTTagList();
 		for (int i = 0; i < this.getSizeInventory(); ++i)
 		{
-			if (this.getStackInSlot(i) != null)
+			if (this.getStackInSlot(i) != ItemStack.EMPTY)
 			{
 				NBTTagCompound stackTag = new NBTTagCompound();
 				stackTag.setByte("Slot", (byte) i);
@@ -314,7 +315,20 @@ public class TileEndPortalCore extends RedstoneCompatibleTile implements ITickab
 		{
 			NBTTagCompound stackTag = list.getCompoundTagAt(i);
 			int slot = stackTag.getByte("Slot") & 255;
-			this.setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(stackTag));
+			this.setInventorySlotContents(slot, new ItemStack(stackTag));
 		}
+	}
+
+	@Override
+	public boolean isEmpty()
+	{
+		for (ItemStack stack : this.inventory)
+		{
+			if (!stack.isEmpty())
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 }

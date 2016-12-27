@@ -10,6 +10,7 @@ import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModGuiHandler;
 import com.bartz24.skyresources.technology.block.BlockFreezer.EnumPartType;
+import com.bartz24.skyresources.technology.tile.TilePoweredCombustionHeater;
 import com.bartz24.skyresources.technology.tile.TilePoweredHeater;
 
 import net.minecraft.block.BlockContainer;
@@ -69,23 +70,24 @@ public class BlockPoweredHeater extends BlockContainer
 
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state,
-			EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX,
+			EntityPlayer player, EnumHand hand, EnumFacing side, float hitX,
 			float hitY, float hitZ)
 	{
 		if (!world.isRemote)
 		{
-			if (!player.isSneaking())
+			if (player.getHeldItemMainhand() == ItemStack.EMPTY && !player.isSneaking())
 			{
-				List<ITextComponent> toSend = new ArrayList();			
+				List<ITextComponent> toSend = new ArrayList();
+
 				TilePoweredHeater tile = (TilePoweredHeater) world.getTileEntity(pos);
-				toSend.add(new TextComponentString(TextFormatting.RED + "RF Stored: "
-						+ tile.getEnergyStored(null) + " / " + tile.getMaxEnergyStored(null)));
+				toSend.add(new TextComponentString(TextFormatting.RED + "FE Stored: " + tile.getEnergyStored()
+						+ " / " + tile.getMaxEnergyStored()));
 
-
-				for(ITextComponent text:toSend)
+				for (ITextComponent text : toSend)
 				{
-					player.addChatComponentMessage(text);
+					player.sendMessage(text);
 				}
+
 			}
 		}
 		return true;

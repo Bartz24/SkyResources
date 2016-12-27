@@ -4,11 +4,7 @@ import com.bartz24.skyresources.alchemy.tile.CondenserTile;
 import com.bartz24.skyresources.alchemy.tile.CrucibleTile;
 import com.bartz24.skyresources.alchemy.tile.CrystallizerTile;
 import com.bartz24.skyresources.alchemy.tile.LifeInfuserTile;
-import com.bartz24.skyresources.alchemy.tile.PurificationVesselTile;
-import com.bartz24.skyresources.alchemy.tile.TileWaterConcentrator;
-import com.bartz24.skyresources.plugin.forestry.tile.TileBeeAttractor;
 import com.bartz24.skyresources.technology.tile.CombustionHeaterTile;
-import com.bartz24.skyresources.technology.tile.ConcentratorTile;
 import com.bartz24.skyresources.technology.tile.DirtFurnaceTile;
 import com.bartz24.skyresources.technology.tile.FluidDropperTile;
 import com.bartz24.skyresources.technology.tile.FreezerTile;
@@ -24,24 +20,21 @@ public final class ModEntities
 {
 	public static void init()
 	{
-		GameRegistry.registerTileEntity(CombustionHeaterTile.class, "combustionHeaterTile");
-		GameRegistry.registerTileEntity(FluidDropperTile.class, "fluidDropperTile");
-		GameRegistry.registerTileEntity(CondenserTile.class, "condenserTile");
-		GameRegistry.registerTileEntity(CrucibleTile.class, "crucibleTile");
-		GameRegistry.registerTileEntity(ConcentratorTile.class, "concentratorTile");
-		GameRegistry.registerTileEntity(PurificationVesselTile.class, "purificationVesselTile");
-		GameRegistry.registerTileEntity(FreezerTile.class, "freezerTile");
-		GameRegistry.registerTileEntity(DirtFurnaceTile.class, "furnaceTile");
-		GameRegistry.registerTileEntity(TileBeeAttractor.class, "beeAttractorTile");
-		GameRegistry.registerTileEntity(TilePoweredHeater.class, "poweredHeaterTile");
+		GameRegistry.registerTileEntity(CombustionHeaterTile.class, "combustionHeatertile");
+		GameRegistry.registerTileEntity(FluidDropperTile.class, "fluidDroppertile");
+		GameRegistry.registerTileEntity(CondenserTile.class, "condensertile");
+		GameRegistry.registerTileEntity(CrucibleTile.class, "crucibletile");
+		GameRegistry.registerTileEntity(FreezerTile.class, "freezertile");
+		GameRegistry.registerTileEntity(DirtFurnaceTile.class, "dirtfurnacetile");
+		GameRegistry.registerTileEntity(TilePoweredHeater.class, "poweredHeatertile");
 		GameRegistry.registerTileEntity(TilePoweredCombustionHeater.class,
-				"poweredCombustionHeaterTile");
-		GameRegistry.registerTileEntity(CrystallizerTile.class, "crystallizerTile");
-		GameRegistry.registerTileEntity(TileDarkMatterWarper.class, "darkMatterWarperTile");
-		GameRegistry.registerTileEntity(TileEndPortalCore.class, "endPortalCoreTile");
-		GameRegistry.registerTileEntity(LifeInfuserTile.class, "lifeInfuserTile");
-		GameRegistry.registerTileEntity(TileCrucibleInserter.class, "crucibleInserterTile");
-		GameRegistry.registerTileEntity(TileWaterConcentrator.class, "waterConcentratorTile");
+				"poweredcombustionheatertile");
+		GameRegistry.registerTileEntity(CrystallizerTile.class, "crystallizertile");
+		GameRegistry.registerTileEntity(TileDarkMatterWarper.class, "darkmatterwarpertile");
+		GameRegistry.registerTileEntity(TileEndPortalCore.class, "endportalcoretile");
+		GameRegistry.registerTileEntity(LifeInfuserTile.class, "lifeinfusertile");
+		GameRegistry.registerTileEntity(TileCrucibleInserter.class, "crucibleinsertertile");
+		//GameRegistry.registerTileEntity(TileBeeAttractor.class, "beeAttractorTile");
 
 
 	}

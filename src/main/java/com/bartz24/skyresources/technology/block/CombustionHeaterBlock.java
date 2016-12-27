@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import com.bartz24.skyresources.ChatHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.base.block.IMetaBlockName;
@@ -28,6 +27,7 @@ import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.ITextComponent;
@@ -37,14 +37,12 @@ import net.minecraft.world.World;
 
 public class CombustionHeaterBlock extends BlockContainer implements IMetaBlockName
 {
-	public static final PropertyEnum<CombustionHeaterVariants> heaterVariant = PropertyEnum
-			.create("variant", CombustionHeaterVariants.class);
+	public static final PropertyEnum<CombustionHeaterVariants> heaterVariant = PropertyEnum.create("variant",
+			CombustionHeaterVariants.class);
 
-	private String[] combustionHeaterTypes = new String[]
-	{ "wood", "iron", "steel" };
+	private String[] combustionHeaterTypes = new String[] { "wood", "iron", "steel" };
 
-	public CombustionHeaterBlock(String unlocalizedName, String registryName, float hardness,
-			float resistance)
+	public CombustionHeaterBlock(String unlocalizedName, String registryName, float hardness, float resistance)
 	{
 		super(Material.WOOD);
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
@@ -54,8 +52,7 @@ public class CombustionHeaterBlock extends BlockContainer implements IMetaBlockN
 		this.setRegistryName(registryName);
 		this.isBlockContainer = true;
 
-		setDefaultState(blockState.getBaseState().withProperty(heaterVariant,
-				CombustionHeaterVariants.WOOD));
+		setDefaultState(blockState.getBaseState().withProperty(heaterVariant, CombustionHeaterVariants.WOOD));
 	}
 
 	@Override
@@ -112,12 +109,11 @@ public class CombustionHeaterBlock extends BlockContainer implements IMetaBlockN
 		{
 			meta = 0;
 		}
-		return getDefaultState().withProperty(heaterVariant,
-				CombustionHeaterVariants.values()[meta]);
+		return getDefaultState().withProperty(heaterVariant, CombustionHeaterVariants.values()[meta]);
 	}
 
 	@Override
-	public void getSubBlocks(Item par1, CreativeTabs par2, List<ItemStack> par3)
+	public void getSubBlocks(Item par1, CreativeTabs par2, NonNullList<ItemStack> par3)
 	{
 		par3.add(new ItemStack(par1, 1, 0));
 		par3.add(new ItemStack(par1, 1, 1));
@@ -172,46 +168,41 @@ public class CombustionHeaterBlock extends BlockContainer implements IMetaBlockN
 	}
 
 	@Override
-	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world,
-			BlockPos pos, EntityPlayer player)
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos,
+			EntityPlayer player)
 	{
-		return new ItemStack(Item.getItemFromBlock(this), 1,
-				this.getMetaFromState(world.getBlockState(pos)));
+		return new ItemStack(Item.getItemFromBlock(this), 1, this.getMetaFromState(world.getBlockState(pos)));
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state,
-			EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX,
-			float hitY, float hitZ)
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
+			EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		if (!world.isRemote)
 		{
 			if (getMetaFromState(state) != 2)
 			{
-				player.openGui(SkyResources.instance, ModGuiHandler.CombustionHeaterGUI, world,
-						pos.getX(), pos.getY(), pos.getZ());
+				player.openGui(SkyResources.instance, ModGuiHandler.CombustionHeaterGUI, world, pos.getX(), pos.getY(),
+						pos.getZ());
 			} else
 			{
-				if (player.getHeldItemMainhand() == null && !player.isSneaking())
+				if (player.getHeldItemMainhand() == ItemStack.EMPTY && !player.isSneaking())
 				{
 					List<ITextComponent> toSend = new ArrayList();
 
-					TilePoweredCombustionHeater tile = (TilePoweredCombustionHeater) world
-							.getTileEntity(pos);
-					toSend.add(new TextComponentString(TextFormatting.RED + "RF Stored: "
-							+ tile.getEnergyStored(null) + " / " + tile.getMaxEnergyStored(null)));
-					toSend.add(new TextComponentString(TextFormatting.GOLD + "Current Heat: "
-							+ tile.currentHeatValue + " / " + tile.getMaxHeat()));
+					TilePoweredCombustionHeater tile = (TilePoweredCombustionHeater) world.getTileEntity(pos);
+					toSend.add(new TextComponentString(TextFormatting.RED + "FE Stored: " + tile.getEnergyStored()
+							+ " / " + tile.getMaxEnergyStored()));
+					toSend.add(new TextComponentString(TextFormatting.GOLD + "Current Heat: " + tile.currentHeatValue
+							+ " / " + tile.getMaxHeat()));
 					if (tile.hasValidMultiblock())
-						toSend.add(new TextComponentString(
-								TextFormatting.GREEN + "Valid Multiblock!"));
+						toSend.add(new TextComponentString(TextFormatting.GREEN + "Valid Multiblock!"));
 					else
-						toSend.add(new TextComponentString(
-								TextFormatting.RED + "Invalid Multiblock."));
+						toSend.add(new TextComponentString(TextFormatting.RED + "Invalid Multiblock."));
 
 					for (ITextComponent text : toSend)
 					{
-						player.addChatComponentMessage(text);
+						player.sendMessage(text);
 					}
 
 				}

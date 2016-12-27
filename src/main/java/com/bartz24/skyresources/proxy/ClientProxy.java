@@ -2,14 +2,9 @@ package com.bartz24.skyresources.proxy;
 
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.base.ModKeyBindings;
-import com.bartz24.skyresources.plugin.ModPlugins;
-import com.bartz24.skyresources.plugin.forestry.ForestryPlugin;
-import com.bartz24.skyresources.plugin.ic2.IC2Plugin;
-import com.bartz24.skyresources.plugin.techreborn.TechRebornPlugin;
 import com.bartz24.skyresources.registry.ModRenderers;
 
 import net.minecraftforge.client.model.obj.OBJLoader;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
@@ -25,7 +20,7 @@ public class ClientProxy extends CommonProxy
 		ModRenderers.preInit();
 
 		
-		ModPlugins.initRenderers();
+		//ModPlugins.initRenderers();
 	}
 
 	@Override

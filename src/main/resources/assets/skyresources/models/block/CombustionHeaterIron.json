@@ -2,12 +2,12 @@
   "parent":"block/cube_all",
   "textures": {
        "down": "blocks/iron_block",
-         "up": "skyresources:blocks/combustionHeaterIron",
+         "up": "skyresources:blocks/combustionheateriron",
       "north": "blocks/iron_block",
       "south": "blocks/iron_block",
        "west": "blocks/iron_block",
        "east": "blocks/iron_block",
-   "particle": "skyresources:blocks/combustionHeaterIron"
+   "particle": "skyresources:blocks/combustionheateriron"
   },
   "display": {
         "thirdperson": {

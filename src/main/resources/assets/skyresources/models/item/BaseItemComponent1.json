@@ -1,6 +1,6 @@
 {
-  "parent":"skyresources:item/BaseItemModel",
+  "parent":"skyresources:item/baseitemmodel",
   "textures": {
-    "layer0":"skyresources:items/ironHeatComponent"
+    "layer0":"skyresources:items/ironheatcomponent"
   }
 }

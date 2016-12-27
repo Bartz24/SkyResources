@@ -38,12 +38,6 @@ public class InfusionRecipeCategory extends BlankRecipeCategory
 	}
 
 	@Override
-	public void drawAnimations(Minecraft arg0)
-	{
-
-	}
-
-	@Override
 	public void drawExtras(Minecraft minecraft)
 	{
 		heartIcon.draw(minecraft, 70, 0);
@@ -78,8 +72,8 @@ public class InfusionRecipeCategory extends BlankRecipeCategory
 		List<List<ItemStack>> inputs = ingredients.getInputs(ItemStack.class);
 		layout.getItemStacks().set(slotInputStack, inputs.get(0));
 		layout.getItemStacks().set(slotInputBlock, inputs.get(1));
-		List<ItemStack> outputs = ingredients.getOutputs(ItemStack.class);
-		layout.getItemStacks().set(slotOutput, outputs);
+		List<List<ItemStack>> outputs = ingredients.getOutputs(ItemStack.class);
+		layout.getItemStacks().set(slotOutput, outputs.get(0));
 		layout.getItemStacks().set(slotInfusionStones, ItemHelper.getInfusionStones());
 	}
 

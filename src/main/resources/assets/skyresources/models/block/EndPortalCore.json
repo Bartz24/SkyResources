@@ -1,13 +1,13 @@
 {
   "parent":"block/cube_all",
   "textures": {
-       "down": "skyresources:blocks/enderCoreSide",
-         "up": "skyresources:blocks/enderCoreTop",
-      "north": "skyresources:blocks/enderCoreSide",
-      "south": "skyresources:blocks/enderCoreSide",
-       "west": "skyresources:blocks/enderCoreSide",
-       "east": "skyresources:blocks/enderCoreSide",
-   "particle": "skyresources:blocks/enderCoreSide"
+       "down": "skyresources:blocks/endercoreside",
+         "up": "skyresources:blocks/endercoretop",
+      "north": "skyresources:blocks/endercoreside",
+      "south": "skyresources:blocks/endercoreside",
+       "west": "skyresources:blocks/endercoreside",
+       "east": "skyresources:blocks/endercoreside",
+   "particle": "skyresources:blocks/endercoreside"
   },
   "display": {
         "thirdperson": {

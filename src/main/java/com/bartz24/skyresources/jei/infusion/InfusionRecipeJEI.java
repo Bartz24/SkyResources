@@ -28,7 +28,6 @@ public class InfusionRecipeJEI extends BlankRecipeWrapper
 		healthReq = healthNeeded;
 	}
 
-	@Override
 	public List getInputs()
 	{
 		return inputs;
@@ -43,7 +42,6 @@ public class InfusionRecipeJEI extends BlankRecipeWrapper
 		fontRendererObj.drawString(s, 80, 0, java.awt.Color.gray.getRGB());
 	}
 
-	@Override
 	public List getOutputs()
 	{
 		return Collections.singletonList(output);

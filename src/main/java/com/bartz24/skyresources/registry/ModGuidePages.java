@@ -66,9 +66,6 @@ public class ModGuidePages
 		SkyResourcesGuide.addPage("alchemicalCondenser", "guide.skyresources.stage2",
 				new ItemStack(ModBlocks.alchemicalCondenser));
 
-		SkyResourcesGuide.addPage("purificationVessel", "guide.skyresources.stage2",
-				new ItemStack(ModBlocks.purificationVessel));
-
 		SkyResourcesGuide.addPage("cleanCrystal", "guide.skyresources.stage2",
 				new ItemStack(ModBlocks.crystalFluidBlocks.get(0)));
 
@@ -86,9 +83,6 @@ public class ModGuidePages
 
 		SkyResourcesGuide.addPage("alchemicalItems", "guide.skyresources.stage3",
 				new ItemStack(ModItems.alchemyComponent, 1, 4));
-
-		SkyResourcesGuide.addPage("concentrator", "guide.skyresources.stage3",
-				new ItemStack(ModBlocks.concentrator));
 
 		SkyResourcesGuide.addPage("ironFreezer", "guide.skyresources.stage3",
 				new ItemStack(ModBlocks.ironFreezer));

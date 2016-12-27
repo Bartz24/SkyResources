@@ -34,11 +34,6 @@ public class RockGrinderRecipeCategory extends BlankRecipeCategory
 	}
 
 	@Override
-	public void drawAnimations(Minecraft minecraft)
-	{
-	}
-
-	@Override
 	public void drawExtras(Minecraft minecraft)
 	{
 	}
@@ -71,8 +66,8 @@ public class RockGrinderRecipeCategory extends BlankRecipeCategory
 		List<List<ItemStack>> inputs = ingredients.getInputs(ItemStack.class);
 		layout.getItemStacks().set(slotInputStack, inputs.get(0));
 		layout.getItemStacks().set(slotInputGrinder, ItemHelper.getRockGrinders());
-		List<ItemStack> outputs = ingredients.getOutputs(ItemStack.class);
-		layout.getItemStacks().set(slotOutput, outputs);
+		List<List<ItemStack>> outputs = ingredients.getOutputs(ItemStack.class);
+		layout.getItemStacks().set(slotOutput, outputs.get(0));
 	}
 
 }

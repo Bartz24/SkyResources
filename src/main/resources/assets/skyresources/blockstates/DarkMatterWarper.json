@@ -1,7 +1,7 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "skyresources:DarkMatterWarper"
+    "model": "skyresources:darkmatterwarper"
   },
   "variants": {
     "normal": [{}],

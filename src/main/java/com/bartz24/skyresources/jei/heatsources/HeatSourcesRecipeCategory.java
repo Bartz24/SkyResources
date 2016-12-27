@@ -31,11 +31,6 @@ public class HeatSourcesRecipeCategory extends BlankRecipeCategory
 	}
 
 	@Override
-	public void drawAnimations(Minecraft minecraft)
-	{
-	}
-
-	@Override
 	public void drawExtras(Minecraft minecraft)
 	{
 	}

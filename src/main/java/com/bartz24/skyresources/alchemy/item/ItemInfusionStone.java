@@ -1,9 +1,12 @@
 package com.bartz24.skyresources.alchemy.item;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import com.bartz24.skyresources.ItemHelper;
 import com.bartz24.skyresources.References;
-import com.bartz24.skyresources.alchemy.infusion.InfusionRecipe;
-import com.bartz24.skyresources.alchemy.infusion.InfusionRecipes;
+import com.bartz24.skyresources.recipe.ProcessRecipe;
+import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 
 import net.minecraft.block.Block;
@@ -20,8 +23,7 @@ import net.minecraft.world.World;
 
 public class ItemInfusionStone extends Item
 {
-	public ItemInfusionStone(int durability, String unlocalizedName,
-			String registryName)
+	public ItemInfusionStone(int durability, String unlocalizedName, String registryName)
 	{
 		this.setMaxDamage(durability);
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
@@ -34,46 +36,45 @@ public class ItemInfusionStone extends Item
 	}
 
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player,
-			World world, BlockPos pos, EnumHand hand, EnumFacing side,
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing side,
 			float hitX, float hitY, float hitZ)
 	{
-		super.onItemUse(stack, player, world, pos, hand, side, hitX, hitY,
-				hitZ);
-
+		super.onItemUse(player, world, pos, hand, side, hitX, hitY, hitZ);
+		ItemStack stack = player.getHeldItem(EnumHand.MAIN_HAND);		
 		Block block = world.getBlockState(pos).getBlock();
 
 		ItemStack offHand = player.getHeldItemOffhand();
 
-		InfusionRecipe recipe = InfusionRecipes.getRecipe(offHand, block,
-				block.getMetaFromState(world.getBlockState(pos)));
+		ProcessRecipe recipe = ProcessRecipeManager.infusionRecipes.getRecipe(
+				new ArrayList<Object>(Arrays.asList((Object) offHand,
+						(Object) new ItemStack(block, 1, block.getMetaFromState(world.getBlockState(pos))))),
+				player.getHealth(), false, false);
 
-		if (recipe != null && recipe.getOutput() != null)
+		if (recipe != null && recipe.getOutputs().get(0) != ItemStack.EMPTY)
 		{
-			if (player.getMaxHealth() < recipe.getHealthReq())
+			if (player.getMaxHealth() < recipe.getIntParameter())
 			{
 				if (world.isRemote)
-					player.addChatMessage(new TextComponentString(
+					player.sendMessage(new TextComponentString(
 							"You are not strong enough to infuse. Your max health is too low."));
 			}
-			if (player.getHealth() >= recipe.getHealthReq())
+			if (player.getHealth() >= recipe.getIntParameter())
 			{
 				if (!world.isRemote)
 				{
-					player.attackEntityFrom(DamageSource.magic,
-							recipe.getHealthReq());
+					player.attackEntityFrom(DamageSource.MAGIC, recipe.getIntParameter());
 					world.setBlockToAir(pos);
-					player.dropItem(recipe.getOutput().copy(), false);
-					if (offHand != null)
-						offHand.stackSize -= recipe.getInputStack().stackSize;
+					player.dropItem(recipe.getOutputs().get(0).copy(), false);
+					if (offHand != ItemStack.EMPTY)
+						offHand.shrink(recipe.getInputs().get(0) instanceof ItemStack
+								? ((ItemStack) recipe.getInputs().get(0)).getCount() : 1);
 
 					stack.damageItem(1, player);
 				}
 			} else
 			{
 				if (world.isRemote)
-					player.addChatMessage(new TextComponentString(
-							"Not enough health to infuse."));
+					player.sendMessage(new TextComponentString("Not enough health to infuse."));
 			}
 		}
 

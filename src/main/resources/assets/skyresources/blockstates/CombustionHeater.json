@@ -1,11 +1,11 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "skyresources:CombustionHeaterWood"
+    "model": "skyresources:combustionheaterwood"
   },
   "variants": {
-    "variant=wood": { "model":"skyresources:CombustionHeaterWood" },
-    "variant=iron": { "model":"skyresources:CombustionHeaterIron" },
-    "variant=steel": { "model":"skyresources:CombustionHeaterSteel" }
+    "variant=wood": { "model":"skyresources:combustionheaterwood" },
+    "variant=iron": { "model":"skyresources:combustionheateriron" },
+    "variant=steel": { "model":"skyresources:combustionheatersteel" }
   }
 }

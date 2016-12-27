@@ -42,11 +42,6 @@ public class WaterExtractorRecipeCategory extends BlankRecipeCategory
 	}
 
 	@Override
-	public void drawAnimations(Minecraft minecraft)
-	{
-	}
-
-	@Override
 	public void drawExtras(Minecraft minecraft)
 	{
 	}
@@ -86,11 +81,13 @@ public class WaterExtractorRecipeCategory extends BlankRecipeCategory
 				inputs.get(0));
 		layout.getItemStacks().set(slotInputExtractor,
 				new ItemStack(ModItems.waterExtractor));
-		List<ItemStack> outputs = ingredients.getOutputs(ItemStack.class);
-		List<FluidStack> foutputs = ingredients.getOutputs(FluidStack.class);
-		layout.getItemStacks().set(slotOutput, outputs);
+		List<List<ItemStack>> outputs = ingredients.getOutputs(ItemStack.class);
+		List<List<FluidStack>> foutputs = ingredients.getOutputs(FluidStack.class);
+		layout.getItemStacks().set(slotOutput, outputs.get(0));
+		if(finputs != null && finputs.size() > 0)
 		layout.getFluidStacks().set(slotInputFluid, finputs.get(0));
-		layout.getFluidStacks().set(slotOutputFluid, foutputs);
+		if(foutputs != null && foutputs.size() > 0)
+		layout.getFluidStacks().set(slotOutputFluid, foutputs.get(0));
 	}
 
 }

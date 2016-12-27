@@ -30,7 +30,7 @@ public class ItemHeavyExplosiveSnowball extends Item
 	{
 		if (!playerIn.capabilities.isCreativeMode)
 		{
-			--itemStackIn.stackSize;
+			itemStackIn.shrink(1);
 		}
 
 		worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY,
@@ -44,7 +44,7 @@ public class ItemHeavyExplosiveSnowball extends Item
 					worldIn, playerIn);
 			entitysnowball.setHeadingFromThrower(playerIn, playerIn.rotationPitch,
 					playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-			worldIn.spawnEntityInWorld(entitysnowball);
+			worldIn.spawnEntity(entitysnowball);
 		}
 
 		return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);

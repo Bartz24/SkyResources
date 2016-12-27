@@ -25,7 +25,6 @@ public class CombustionRecipeJEI extends BlankRecipeWrapper
 		heatReq = heatNeeded;
 	}
 
-	@Override
 	public List getInputs()
 	{
 		return inputs;
@@ -42,7 +41,6 @@ public class CombustionRecipeJEI extends BlankRecipeWrapper
 				java.awt.Color.gray.getRGB());
 	}
 
-	@Override
 	public List getOutputs()
 	{
 		return Collections.singletonList(output);

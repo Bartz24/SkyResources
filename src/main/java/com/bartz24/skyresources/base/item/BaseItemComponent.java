@@ -13,11 +13,11 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -33,14 +33,14 @@ public class BaseItemComponent extends Item
 	public static final String plantMatter = "plantMatter";
 	public static final String steelPowerComp = "steelPowerComponent";
 	public static final String frozenIronComp = "frozenIronCoolingComponent";
-	public static final String darkMatter = "darkMatter";
+	public static final String darkMatter = "darkmatter";
 
 	public BaseItemComponent()
 	{
 		super();
 
 		setUnlocalizedName(References.ModID + ".baseItemComponent.");
-		setRegistryName("BaseItemComponent");
+		setRegistryName("baseitemcomponent");
 		setHasSubtypes(true);
 		this.setCreativeTab(ModCreativeTabs.tabMain);
 
@@ -65,7 +65,7 @@ public class BaseItemComponent extends Item
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item id, CreativeTabs creativeTab, List<ItemStack> list)
+	public void getSubItems(Item id, CreativeTabs creativeTab, NonNullList<ItemStack> list)
 	{
 		for (int i = 0; i < names.size(); i++)
 			list.add(new ItemStack(id, 1, i));
@@ -146,7 +146,7 @@ public class BaseItemComponent extends Item
 						}
 					}
 
-					--stack.stackSize;
+					stack.shrink(1);
 				}
 
 				return true;

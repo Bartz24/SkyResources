@@ -1,6 +1,6 @@
 {
-  "parent":"skyresources:item/BaseItemModel",
+  "parent":"skyresources:item/baseitemmodel",
   "textures": {
-    "layer0":"skyresources:items/heavyExplosiveSnowball"
+    "layer0":"skyresources:items/heavyexplosivesnowball"
   }
 }

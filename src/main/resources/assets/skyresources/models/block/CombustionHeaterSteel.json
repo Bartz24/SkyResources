@@ -1,13 +1,13 @@
 {
   "parent":"block/cube_all",
   "textures": {
-       "down": "skyresources:blocks/steelMachine",
-         "up": "skyresources:blocks/combustionHeaterSteel",
-      "north": "skyresources:blocks/steelMachine",
-      "south": "skyresources:blocks/steelMachine",
-       "west": "skyresources:blocks/steelMachine",
-       "east": "skyresources:blocks/steelMachine",
-   "particle": "skyresources:blocks/combustionHeaterSteel"
+       "down": "skyresources:blocks/steelmachine",
+         "up": "skyresources:blocks/combustionheatersteel",
+      "north": "skyresources:blocks/steelmachine",
+      "south": "skyresources:blocks/steelmachine",
+       "west": "skyresources:blocks/steelmachine",
+       "east": "skyresources:blocks/steelmachine",
+   "particle": "skyresources:blocks/combustionheatersteel"
   },
   "display": {
         "thirdperson": {

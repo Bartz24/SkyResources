@@ -56,13 +56,11 @@ public class ItemKnife extends Item
 		if (equipmentSlot == EntityEquipmentSlot.MAINHAND)
 		{
 			multimap.put(
-					SharedMonsterAttributes.ATTACK_DAMAGE
-							.getAttributeUnlocalizedName(),
+					SharedMonsterAttributes.ATTACK_DAMAGE.getName(),
 					new AttributeModifier(ATTACK_DAMAGE_MODIFIER,
 							"Weapon modifier", this.damageVsEntity, 0));
 			multimap.put(
-					SharedMonsterAttributes.ATTACK_SPEED
-							.getAttributeUnlocalizedName(),
+					SharedMonsterAttributes.ATTACK_SPEED.getName(),
 					new AttributeModifier(ATTACK_SPEED_MODIFIER,
 							"Weapon modifier", -1.4000000953674316D, 0));
 		}
@@ -86,7 +84,7 @@ public class ItemKnife extends Item
         ItemStack stack = itemStack.copy();
 
         stack.setItemDamage(stack.getItemDamage() + 1);
-        stack.stackSize = 1;
+        stack.setCount(1);
 
         return stack;
     }

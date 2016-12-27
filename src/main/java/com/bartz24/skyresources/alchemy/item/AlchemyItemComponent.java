@@ -15,6 +15,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -36,7 +37,7 @@ public class AlchemyItemComponent extends Item
 		super();
 
 		setUnlocalizedName(References.ModID + ".alchemyItemComponent.");
-		setRegistryName("AlchemyItemComponent");
+		setRegistryName("alchemyitemcomponent");
 		setHasSubtypes(true);
 		this.setCreativeTab(ModCreativeTabs.tabAlchemy);
 
@@ -63,8 +64,7 @@ public class AlchemyItemComponent extends Item
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item id, CreativeTabs creativeTab,
-			List<ItemStack> list)
+	public void getSubItems(Item id, CreativeTabs tab, NonNullList<ItemStack> list)
 	{
 		for (int i = 0; i < names.size(); i++)
 			list.add(new ItemStack(id, 1, i));
@@ -81,16 +81,16 @@ public class AlchemyItemComponent extends Item
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack stack,
-			World world, EntityPlayer player, EnumHand hand)
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
 	{
-		super.onItemRightClick(stack, world, player, hand);
+		super.onItemRightClick(world, player, hand);
 
+		ItemStack stack = player.getHeldItem(hand);
 		if (player.isSneaking())
 		{
 			if (stack.getMetadata() == names.indexOf(cactusNeedle))
 			{
-				stack.stackSize--;
+				stack.shrink(1);
 
 				if (!player.inventory.addItemStackToInventory(
 						new ItemStack(ModItems.alchemyComponent, 1,
@@ -102,7 +102,7 @@ public class AlchemyItemComponent extends Item
 							false);
 				}
 
-				player.attackEntityFrom(DamageSource.cactus, 2);
+				player.attackEntityFrom(DamageSource.CACTUS, 1);
 			}
 		}
 

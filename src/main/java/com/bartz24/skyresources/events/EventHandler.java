@@ -13,10 +13,10 @@ import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
 import com.bartz24.skyresources.api.IslandPos;
 import com.bartz24.skyresources.base.ModKeyBindings;
 import com.bartz24.skyresources.config.ConfigOptions;
+import com.bartz24.skyresources.recipe.ProcessRecipe;
+import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 import com.bartz24.skyresources.registry.ModGuiHandler;
 import com.bartz24.skyresources.registry.ModItems;
-import com.bartz24.skyresources.technology.cauldron.CauldronCleanRecipe;
-import com.bartz24.skyresources.technology.cauldron.CauldronCleanRecipes;
 import com.bartz24.skyresources.world.WorldTypeSky;
 
 import net.minecraft.block.Block;
@@ -58,7 +58,7 @@ public class EventHandler
 	@SubscribeEvent
 	public void playerUpdate(LivingUpdateEvent event)
 	{
-		if (event.getEntityLiving() instanceof EntityPlayer && !event.getEntity().worldObj.isRemote)
+		if (event.getEntityLiving() instanceof EntityPlayer && !event.getEntity().world.isRemote)
 		{
 			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 			NBTTagCompound data = player.getEntityData();
@@ -67,11 +67,11 @@ public class EventHandler
 
 			NBTTagCompound persist = data.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
 
-			if (player.worldObj.getWorldInfo().getTerrainType() instanceof WorldTypeSky && player.dimension == 0)
+			if (player.world.getWorldInfo().getTerrainType() instanceof WorldTypeSky && player.dimension == 0)
 			{
 				if (!References.hasPlayerSpawned(player.getName()))
 				{
-					World world = player.worldObj;
+					World world = player.world;
 					if (world.getSpawnPoint().getX() != 0 && world.getSpawnPoint().getY() != 0)
 						world.setSpawnPoint(new BlockPos(0, 86, 0));
 					BlockPos spawn = world.getSpawnPoint();
@@ -82,8 +82,8 @@ public class EventHandler
 
 						if (ConfigOptions.oneChunk)
 						{
-							WorldBorder border = event.getEntityLiving().getEntityWorld()
-									.getMinecraftServer().worldServers[0].getWorldBorder();
+							WorldBorder border = event.getEntityLiving().getEntityWorld().getMinecraftServer().worlds[0]
+									.getWorldBorder();
 
 							border.setCenter(0, 0);
 							border.setTransition(16);
@@ -106,7 +106,7 @@ public class EventHandler
 	public static void spawnPlayer(EntityPlayer player, BlockPos pos, boolean spawnPlat)
 	{
 		if (spawnPlat)
-			createSpawn(player.worldObj, pos);
+			createSpawn(player.world, pos);
 
 		if (player instanceof EntityPlayerMP)
 		{
@@ -122,7 +122,7 @@ public class EventHandler
 	{
 		spawnPlayer(player, pos, false);
 
-		spawnPlat(player.worldObj, pos, forceType);
+		spawnPlat(player.world, pos, forceType);
 	}
 
 	public static void createSpawn(World world, BlockPos spawn)
@@ -298,19 +298,19 @@ public class EventHandler
 			if (event.getPos() == null)
 				return;
 			Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
-			if (block != null && equip == null && event.getEntityPlayer().isSneaking())
+			if (block != null && equip == ItemStack.EMPTY && event.getEntityPlayer().isSneaking())
 			{
 				if (block == Blocks.CACTUS)
 				{
 					RandomHelper.spawnItemInWorld(event.getWorld(), new ItemStack(ModItems.alchemyComponent, 1,
 							((AlchemyItemComponent) ModItems.alchemyComponent).getNames().indexOf("cactusNeedle")),
 							event.getEntityPlayer().getPosition());
-					event.getEntityPlayer().attackEntityFrom(DamageSource.cactus, 4);
+					event.getEntityPlayer().attackEntityFrom(DamageSource.CACTUS, 1);
 				} else if (block == Blocks.SNOW_LAYER)
 				{
 					RandomHelper.spawnItemInWorld(event.getWorld(), new ItemStack(Items.SNOWBALL), event.getPos());
 					event.getEntityPlayer().addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE,
-							event.getWorld().rand.nextInt(750) + 750, event.getWorld().rand.nextInt(4)));
+							event.getWorld().rand.nextInt(750) + 750, 1));
 
 					int meta = Blocks.SNOW_LAYER.getMetaFromState(event.getWorld().getBlockState(event.getPos()));
 
@@ -322,11 +322,11 @@ public class EventHandler
 				{
 					RandomHelper.spawnItemInWorld(event.getWorld(), new ItemStack(Items.SNOWBALL), event.getPos());
 					event.getEntityPlayer().addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE,
-							event.getWorld().rand.nextInt(750) + 750, event.getWorld().rand.nextInt(4)));
+							event.getWorld().rand.nextInt(750) + 750, 1));
 
 					event.getWorld().setBlockState(event.getPos(), Blocks.SNOW_LAYER.getStateFromMeta(6));
 				}
-			} else if (block != null && equip != null)
+			} else if (block != null && equip != ItemStack.EMPTY)
 			{
 				if (block == Blocks.CAULDRON)
 				{
@@ -334,16 +334,16 @@ public class EventHandler
 					int i = ((Integer) event.getWorld().getBlockState(event.getPos()).getValue(BlockCauldron.LEVEL))
 							.intValue();
 					ItemStack item = event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND);
-					if (i > 0 && item != null && item.getItem() == ModItems.dirtyGem)
+					if (i > 0 && item != ItemStack.EMPTY && item.getItem() == ModItems.dirtyGem)
 					{
 						List<ItemStack> items = OreDictionary.getOres(
 								"gem" + RandomHelper.capatilizeString(ModItems.gemList.get(item.getMetadata()).name));
 
 						if (items.size() > 0)
 						{
-							item.stackSize--;
-							if (item.stackSize == 0)
-								event.getEntityPlayer().setHeldItem(EnumHand.MAIN_HAND, null);
+							item.shrink(1);
+							if (item.getCount() == 0)
+								event.getEntityPlayer().setHeldItem(EnumHand.MAIN_HAND, ItemStack.EMPTY);
 							RandomHelper.spawnItemInWorld(event.getWorld(),
 									new ItemStack(items.get(0).getItem(), 1, items.get(0).getMetadata()),
 									event.getPos());
@@ -356,23 +356,24 @@ public class EventHandler
 
 					if (i > 0)
 					{
-						List<CauldronCleanRecipe> recipes = CauldronCleanRecipes.getRecipes(item);
+						List<ProcessRecipe> recipes = ProcessRecipeManager.cauldronCleanRecipes.getRecipes();
 						if (recipes.size() > 0)
 						{
-							item.stackSize--;
-							if (item.stackSize == 0)
-								event.getEntityPlayer().setHeldItem(EnumHand.MAIN_HAND, null);
-							for (CauldronCleanRecipe rec : recipes)
+							for (ProcessRecipe rec : recipes)
 							{
-								if (event.getWorld().rand.nextFloat() <= rec.getDropChance())
-								{
-									RandomHelper.spawnItemInWorld(event.getWorld(), rec.getOutput().copy(),
-											event.getPos());
-								}
+								if (((ItemStack) rec.getInputs().get(0)).isItemEqual(item))
+									if (event.getWorld().rand.nextFloat() <= rec.getIntParameter())
+									{
+										RandomHelper.spawnItemInWorld(event.getWorld(), rec.getOutputs().get(0),
+												event.getPos());
+									}
 							}
 							if (event.getWorld().rand.nextFloat() < 0.4F)
 								new BlockCauldron().setWaterLevel(event.getWorld(), event.getPos(),
 										event.getWorld().getBlockState(event.getPos()), i - 1);
+							item.shrink(1);
+							if (item.getCount() == 0)
+								event.getEntityPlayer().setHeldItem(EnumHand.MAIN_HAND, ItemStack.EMPTY);
 						}
 					}
 				}
@@ -384,17 +385,17 @@ public class EventHandler
 	@SubscribeEvent
 	public void onPlayerTickEvent(PlayerTickEvent event)
 	{
-		if (!event.player.worldObj.isRemote)
+		if (!event.player.world.isRemote)
 		{
 			EntityPlayer player = event.player;
 
 			int healthToAdd = 0;
 
-			for (int i = 0; i <= player.inventory.mainInventory.length; i++)
+			for (int i = 0; i <= player.inventory.mainInventory.size(); i++)
 			{
 				ItemStack stack = player.inventory.getStackInSlot(i);
 
-				if (stack == null)
+				if (stack == ItemStack.EMPTY)
 					continue;
 
 				if (stack.getItem() instanceof IHealthBoostItem)
@@ -426,10 +427,10 @@ public class EventHandler
 
 		if (ConfigOptions.displayFirstChatInfo)
 		{
-			if (player.worldObj.getWorldInfo().getTerrainType() instanceof WorldTypeSky)
+			if (player.world.getWorldInfo().getTerrainType() instanceof WorldTypeSky)
 			{
 				if (!References.playerHasIsland(player.getName()) && !References.worldOneChunk)
-					player.addChatMessage(new TextComponentString(
+					player.sendMessage(new TextComponentString(
 							"Type " + TextFormatting.AQUA.toString() + "/" + ConfigOptions.commandName + " create"
 									+ TextFormatting.WHITE.toString() + " to create your starting island"));
 			}
@@ -438,15 +439,14 @@ public class EventHandler
 					+ TextFormatting.AQUA + "Open Guide Key (Default: G)" + TextFormatting.WHITE
 					+ " to open the Sky Resources in-game guide! " + "\n " + TextFormatting.AQUA + "/"
 					+ ConfigOptions.commandName + " guide " + TextFormatting.WHITE + "works too!");
-			player.addChatMessage(text);
+			player.sendMessage(text);
 			if (ConfigOptions.easyMode)
 			{
-				player.addChatMessage(
-						new TextComponentString(TextFormatting.RED + "You're playing on easy mode D: WHY!? "
-								+ "Either you are a pussy, or you don't want to spend time grinding away :P"));
+				player.sendMessage(new TextComponentString(TextFormatting.RED + "You're playing on easy mode D: WHY!? "
+						+ "Either you are a pussy, or you don't want to spend time grinding away :P"));
 			} else
 			{
-				player.addChatMessage(new TextComponentString(TextFormatting.GRAY
+				player.sendMessage(new TextComponentString(TextFormatting.GRAY
 						+ "If you find it to be too grindy or you want a more casual time, turn on easy mode in the config for Sky Resources."));
 			}
 		}
@@ -457,10 +457,10 @@ public class EventHandler
 	{
 		EntityPlayer player = event.player;
 
-		if (player.worldObj.getWorldInfo().getTerrainType() instanceof WorldTypeSky)
+		if (player.world.getWorldInfo().getTerrainType() instanceof WorldTypeSky)
 		{
 			if (player.getBedLocation() == null
-					|| player.getBedSpawnLocation(player.worldObj, player.getBedLocation(), true) == null)
+					|| player.getBedSpawnLocation(player.world, player.getBedLocation(), true) == null)
 			{
 
 				IslandPos iPos = References.getPlayerIsland(player.getName());
@@ -492,12 +492,12 @@ public class EventHandler
 	{
 		if (ModKeyBindings.guideKey.isPressed())
 		{
-			EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
+			EntityPlayerSP player = Minecraft.getMinecraft().player;
 
-			if (player.worldObj.isRemote)
+			if (player.world.isRemote)
 			{
-				player.openGui(SkyResources.instance, ModGuiHandler.GuideGUI, player.worldObj,
-						player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ());
+				player.openGui(SkyResources.instance, ModGuiHandler.GuideGUI, player.world, player.getPosition().getX(),
+						player.getPosition().getY(), player.getPosition().getZ());
 			}
 		}
 	}
