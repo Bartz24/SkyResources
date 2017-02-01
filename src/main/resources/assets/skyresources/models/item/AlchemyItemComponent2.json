@@ -1,6 +1,6 @@
 {
   "parent":"skyresources:item/baseitemmodel",
   "textures": {
-    "layer0":"skyresources:items/coalalchemical"
+    "layer0":"skyresources:items/dustalchemical"
   }
 }

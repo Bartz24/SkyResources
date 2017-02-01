@@ -6,6 +6,7 @@
   "variants": {
     "variant=wood": { "model":"skyresources:combustionheaterwood" },
     "variant=iron": { "model":"skyresources:combustionheateriron" },
-    "variant=steel": { "model":"skyresources:combustionheatersteel" }
+    "variant=steel": { "model":"skyresources:combustionheatersteel" },
+    "variant=darkmatter": { "model":"skyresources:combustionheaterdarkmatter" }
   }
 }

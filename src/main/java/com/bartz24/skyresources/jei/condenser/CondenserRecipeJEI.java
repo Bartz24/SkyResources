@@ -1,50 +1,42 @@
 package com.bartz24.skyresources.jei.condenser;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.bartz24.skyresources.config.ConfigOptions;
-
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 
 public class CondenserRecipeJEI extends BlankRecipeWrapper
 {
-	private final IBlockState inputBlock;
+	private final FluidStack input;
 
 	private final ItemStack output;
-	
+
 	private final int time;
 
-	public CondenserRecipeJEI(ItemStack out, IBlockState input, int timeCondense)
+	public CondenserRecipeJEI(ItemStack out, FluidStack in, int timeCondense)
 	{
-		inputBlock = input;
+		input = in;
 		output = out;
 		time = timeCondense;
 	}
 
-	public List getInputs()
+	public List getFluidInputs()
 	{
-		List list = new ArrayList();
-		list.add(new ItemStack(inputBlock.getBlock(), 1,
-				inputBlock.getBlock().getMetaFromState(inputBlock)));
-		return list;
+		return Collections.singletonList(input);
 	}
 
 	@Override
-	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight,
-			int mouseX, int mouseY)
+	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY)
 	{
-		String s = ConfigOptions.easyMode ? "DISABLED" : Integer.toString(time) + " base ticks";
+		String s = Integer.toString(time) + " base ticks";
 		FontRenderer fontRendererObj = minecraft.fontRendererObj;
 		int stringWidth = fontRendererObj.getStringWidth(s);
-		fontRendererObj.drawString(s, 80 - stringWidth, 8,
-				java.awt.Color.gray.getRGB());
+		fontRendererObj.drawString(s, 80 - stringWidth, 8, java.awt.Color.gray.getRGB());
 	}
 
 	public List getOutputs()
@@ -61,7 +53,7 @@ public class CondenserRecipeJEI extends BlankRecipeWrapper
 	@Override
 	public void getIngredients(IIngredients ingredients)
 	{
-		ingredients.setInputs(ItemStack.class, getInputs());
+		ingredients.setInputs(FluidStack.class, getFluidInputs());
 		ingredients.setOutputs(ItemStack.class, getOutputs());
 	}
 }

@@ -25,9 +25,9 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.client.GuiScrollingList;
 
 public class GuideGUI extends GuiScreen
@@ -73,14 +73,13 @@ public class GuideGUI extends GuiScreen
 			if (stack != null)
 				drawItem(stack, x, 22);
 
-			this.fontRendererObj.drawString(currentPage.pageDisplay, x + 20, 26, 16777215);
+			this.fontRendererObj.drawString(I18n.translateToLocal(currentPage.pageDisplay), x + 20, 26, 16777215);
 
-			String catDisplay = Strings.isNullOrEmpty(currentCategory) ? "All"
-					: I18n.format(currentCategory);
-			this.fontRendererObj.drawString(catDisplay,
-					60 - fontRendererObj.getStringWidth(catDisplay) / 2, 18, 16777215);
-			this.fontRendererObj.drawString("Category",
-					60 - fontRendererObj.getStringWidth("Category") / 2, 6, 16777215);
+			String catDisplay = Strings.isNullOrEmpty(currentCategory) ? "All" : I18n.translateToLocal(currentCategory);
+			this.fontRendererObj.drawString(catDisplay, 60 - fontRendererObj.getStringWidth(catDisplay) / 2, 18,
+					16777215);
+			this.fontRendererObj.drawString("Category", 60 - fontRendererObj.getStringWidth("Category") / 2, 6,
+					16777215);
 
 			this.searchBox.drawTextBox();
 			this.pageScroll.drawScreen(mouseX, mouseY, partialTicks);
@@ -106,8 +105,7 @@ public class GuideGUI extends GuiScreen
 	{
 		if (page != null)
 		{
-			if (pageHistory.size() == 0
-					|| !pageHistory.get(pageHistory.size() - 1).equals(currentPage.pageId))
+			if (pageHistory.size() == 0 || !pageHistory.get(pageHistory.size() - 1).equals(currentPage.pageId))
 				pageHistory.add(currentPage.pageId);
 			currentPage = page;
 			curIndex = getPageIndex(currentPage);
@@ -161,8 +159,7 @@ public class GuideGUI extends GuiScreen
 				currentCategory = ConfigOptions.lastGuideCat;
 				GuidePage lastPage = SkyResourcesGuide.getPage(ConfigOptions.lastGuidePage);
 				currentPage = lastPage == null ? SkyResourcesGuide.getPage("basics") : lastPage;
-			}
-			else
+			} else
 				currentPage = SkyResourcesGuide.getPage("basics");
 		}
 		if (linkButtons == null)
@@ -181,8 +178,7 @@ public class GuideGUI extends GuiScreen
 			searchBox.setMaxStringLength(23);
 			this.searchBox.setFocused(true);
 
-			if (ConfigOptions.rememberGuide
-					&& !Strings.isNullOrEmpty(ConfigOptions.lastGuideSearch))
+			if (ConfigOptions.rememberGuide && !Strings.isNullOrEmpty(ConfigOptions.lastGuideSearch))
 			{
 				this.searchBox.setText(ConfigOptions.lastGuideSearch);
 			}
@@ -190,28 +186,24 @@ public class GuideGUI extends GuiScreen
 
 		this.searchBox.width = Math.min(width / 2, 250) - 110;
 
-		if (pageScroll == null || pageScroll.getWidth() != width
-				|| pageScroll.getHeight() != height)
+		if (pageScroll == null || pageScroll.getWidth() != width || pageScroll.getHeight() != height)
 		{
-			this.pageScroll = new PageList(mc, Math.min(width / 2, 250), this.height - 60, 40,
-					this.height - 20, 10, 20, width, height);
+			this.pageScroll = new PageList(mc, Math.min(width / 2, 250), this.height - 60, 40, this.height - 20, 10, 20,
+					width, height);
 		}
 		if (pageInfo == null || pageInfo.getWidth() != width || pageInfo.getHeight() != height)
 		{
-			this.pageInfo = new PageInfo(mc, this.width - Math.max(this.width / 2 - 100, 225) - 50,
-					this.height - 60, 40, this.height - 20, Math.max(this.width / 2 - 100, 275), 20,
-					width, height);
+			this.pageInfo = new PageInfo(mc, this.width - Math.max(this.width / 2 - 100, 225) - 50, this.height - 60,
+					40, this.height - 20, Math.max(this.width / 2 - 100, 275), 20, width, height);
 		}
 		this.buttonList.add(this.cycleCatLeftButton = new GuiButton(8, 10, 4, 10, 20, "<"));
 		this.buttonList.add(this.cycleCatRightButton = new GuiButton(9, 105, 4, 10, 20, ">"));
+		this.buttonList.add(this.closeButton = new GuiButton(0, 0, this.height - 20, 40, 20, "Close"));
 		this.buttonList
-				.add(this.closeButton = new GuiButton(0, 0, this.height - 20, 40, 20, "Close"));
-		this.buttonList.add(this.backButton = new GuiButton(10, Math.max(this.width / 2 - 100, 275),
-				2, 40, 20, "Back"));
+				.add(this.backButton = new GuiButton(10, Math.max(this.width / 2 - 100, 275), 2, 40, 20, "Back"));
 		this.addLinkButtons();
 
-		currentPageInfo = setupPage(currentPage.pageInfo,
-				this.width - Math.max(this.width / 2 - 100, 225) - 50, 600);
+		currentPageInfo = setupPage(currentPage.pageInfo, this.width - Math.max(this.width / 2 - 100, 225) - 50, 600);
 
 		if (currentImage != null)
 		{
@@ -225,8 +217,8 @@ public class GuideGUI extends GuiScreen
 
 	public void addLinkButton(String pageLink, String display, ItemStack stack)
 	{
-		linkButtons.add(new GuiPageButton(linkButtons.size() + 2000, 10,
-				40 + linkButtons.size() * 20, new GuideLinkPageButton(pageLink, display, stack)));
+		linkButtons.add(new GuiPageButton(linkButtons.size() + 2000, 10, 40 + linkButtons.size() * 20,
+				new GuideLinkPageButton(pageLink, display, stack)));
 	}
 
 	public int getMaxLinkButtons()
@@ -254,8 +246,7 @@ public class GuideGUI extends GuiScreen
 		for (int i = 0; i < ((linkButtons == null) ? 0 : linkButtons.size()); i++)
 		{
 			if (linkButtons.get(i).buttonInfo instanceof GuideLinkPageButton
-					&& ((GuideLinkPageButton) linkButtons.get(i).buttonInfo)
-							.getLinkPage().pageId == page.pageId)
+					&& ((GuideLinkPageButton) linkButtons.get(i).buttonInfo).getLinkPage().pageId == page.pageId)
 				return i;
 		}
 		return 0;
@@ -390,11 +381,11 @@ public class GuideGUI extends GuiScreen
 
 	}
 
-	List<List<Object>> setupPage(String string, int width, int height)
+	List<List<Object>> setupPage(String info, int width, int height)
 	{
 		int buttonIndex = 5000;
 		List<List<Object>> richTextLines = new ArrayList<List<Object>>();
-
+		String string = I18n.translateToLocal(info).replace("\\n", "\n");
 		String[] words = string.split(" ");
 		List<Object> line = new ArrayList<Object>();
 		int lineWidth = 0;
@@ -450,6 +441,8 @@ public class GuideGUI extends GuiScreen
 				}
 			} else
 			{
+				if (currentString.equals(" ") && (word.equals(",") || word.equals(".")))
+					currentString = "";
 				int wordWidth = fontRendererObj.getStringWidth(word + " ");
 
 				if (lineWidth + wordWidth > width)
@@ -485,8 +478,8 @@ public class GuideGUI extends GuiScreen
 	private class PageList extends GuiScrollingList
 	{
 
-		public PageList(Minecraft client, int width, int height, int top, int bottom, int left,
-				int entryHeight, int screenWidth, int screenHeight)
+		public PageList(Minecraft client, int width, int height, int top, int bottom, int left, int entryHeight,
+				int screenWidth, int screenHeight)
 		{
 			super(client, width, height, top, bottom, left, entryHeight, screenWidth, screenHeight);
 		}
@@ -518,8 +511,7 @@ public class GuideGUI extends GuiScreen
 		}
 
 		@Override
-		protected void drawSlot(int slotId, int entryRight, int slotTop, int slotBuffer,
-				Tessellator tess)
+		protected void drawSlot(int slotId, int entryRight, int slotTop, int slotBuffer, Tessellator tess)
 		{
 			GuiPageButton button = linkButtons.get(slotId);
 
@@ -540,8 +532,8 @@ public class GuideGUI extends GuiScreen
 	private class PageInfo extends GuiScrollingList
 	{
 
-		public PageInfo(Minecraft client, int width, int height, int top, int bottom, int left,
-				int entryHeight, int screenWidth, int screenHeight)
+		public PageInfo(Minecraft client, int width, int height, int top, int bottom, int left, int entryHeight,
+				int screenWidth, int screenHeight)
 		{
 			super(client, width, height, top, bottom, left, entryHeight, screenWidth, screenHeight);
 		}
@@ -570,8 +562,7 @@ public class GuideGUI extends GuiScreen
 		}
 
 		@Override
-		protected void drawSlot(int slotId, int entryRight, int slotTop, int slotBuffer,
-				Tessellator tess)
+		protected void drawSlot(int slotId, int entryRight, int slotTop, int slotBuffer, Tessellator tess)
 		{
 			int curX = left;
 			int curY = slotTop;
@@ -591,16 +582,14 @@ public class GuideGUI extends GuiScreen
 							continue;
 						}
 						Date date = new Date();
-						FontRenderer fontrenderer = (fontType == 1
-								|| (date.getMonth() == 4 && date.getDate() == 1)
-										? mc.standardGalacticFontRenderer : mc.fontRendererObj);
+						FontRenderer fontrenderer = (fontType == 1 || (date.getMonth() == 4 && date.getDate() == 1)
+								? mc.standardGalacticFontRenderer : mc.fontRendererObj);
 						fontrenderer.drawString(obj.toString(), curX, curY, 16777215);
 						curX += fontrenderer.getStringWidth(obj.toString());
 					} else if (obj instanceof GuiPageButton)
 					{
 						GuiPageButton button = (GuiPageButton) obj;
-						button.buttonInfo
-								.setDisplay(button.buttonInfo.getDisplay().replace("_", " "));
+						button.buttonInfo.setDisplay(button.buttonInfo.getDisplay().replace("_", " "));
 						button.xPosition = curX;
 						button.yPosition = curY - 4;
 						button.drawButton(mc, mouseX, mouseY);

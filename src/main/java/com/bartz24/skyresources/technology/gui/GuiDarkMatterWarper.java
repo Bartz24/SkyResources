@@ -1,9 +1,5 @@
 package com.bartz24.skyresources.technology.gui;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.bartz24.skyresources.GuiHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.technology.gui.container.ContainerDarkMatterWarper;
 import com.bartz24.skyresources.technology.tile.TileDarkMatterWarper;
@@ -12,7 +8,6 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextFormatting;
 
 public class GuiDarkMatterWarper extends GuiContainer
 {
@@ -32,29 +27,28 @@ public class GuiDarkMatterWarper extends GuiContainer
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float partialTicks,
-			int mouseX, int mouseY)
+	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
 	{
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
-		this.mc.getTextureManager().bindTexture(new ResourceLocation(
-				References.ModID, "textures/gui/blankInventory.png"));
-		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize,
-				this.ySize);
+		this.mc.getTextureManager()
+				.bindTexture(new ResourceLocation(References.ModID, "textures/gui/blankInventory.png"));
+		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 
-		this.drawTexturedModalRect(this.guiLeft + 79,
-				this.guiTop + 52, 7, 83, 18, 18);
+		this.drawTexturedModalRect(this.guiLeft + 79, this.guiTop + 52, 7, 83, 18, 18);
 	}
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
 		String s = tile.getDisplayName().getUnformattedText();
-		this.fontRendererObj.drawString(s,
-				88 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
-		this.fontRendererObj.drawString(
-				this.playerInv.getDisplayName().getUnformattedText(), 8, 72,
-				4210752);
-		
-		
+		this.fontRendererObj.drawString(s, 88 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
+		this.fontRendererObj.drawString(this.playerInv.getDisplayName().getUnformattedText(), 8, 72, 4210752);
+
+		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
+		this.mc.getTextureManager().bindTexture(new ResourceLocation(References.ModID, "textures/gui/guiIcons.png"));
+		this.drawTexturedModalRect(81, 37, 85, 0, 14, 13);
+		int burn = (int) ((float) tile.getBurnTime() * 13F / (float) tile.getMaxBurnTime());
+		this.drawTexturedModalRect(81, 50 - burn, 59, 13 - burn, 14, burn);
+
 	}
 }

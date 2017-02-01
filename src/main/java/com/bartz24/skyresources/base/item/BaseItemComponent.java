@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bartz24.skyresources.References;
-import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModItems;
 
@@ -14,6 +13,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -33,7 +33,9 @@ public class BaseItemComponent extends Item
 	public static final String plantMatter = "plantMatter";
 	public static final String steelPowerComp = "steelPowerComponent";
 	public static final String frozenIronComp = "frozenIronCoolingComponent";
-	public static final String darkMatter = "darkmatter";
+	public static final String darkMatter = "darkMatter";
+	public static final String enrichedBonemeal = "enrichedBonemeal";
+	public static final String sawdust = "sawdust";
 
 	public BaseItemComponent()
 	{
@@ -55,6 +57,8 @@ public class BaseItemComponent extends Item
 		names.add(3, steelPowerComp);
 		names.add(4, frozenIronComp);
 		names.add(5, darkMatter);
+		names.add(6, enrichedBonemeal);
+		names.add(7, sawdust);
 	}
 
 	@Override
@@ -81,17 +85,18 @@ public class BaseItemComponent extends Item
 		return names;
 	}
 
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn,
-			BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand,
+			EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if (!playerIn.canPlayerEdit(pos.offset(facing), facing, stack))
+		if (!playerIn.canPlayerEdit(pos.offset(facing), facing, playerIn.getHeldItem(hand)))
 		{
 			return EnumActionResult.FAIL;
 		} else
 		{
-			if (stack.getMetadata() == names.indexOf(plantMatter))
+			if (playerIn.getHeldItem(hand).getMetadata() == names.indexOf(plantMatter)
+					|| playerIn.getHeldItem(hand).getMetadata() == names.indexOf(enrichedBonemeal))
 			{
-				if (applyBonemeal(stack, worldIn, pos, playerIn))
+				if (applyBonemeal(playerIn.getHeldItem(hand), worldIn, pos, playerIn))
 				{
 					if (!worldIn.isRemote)
 					{
@@ -106,26 +111,24 @@ public class BaseItemComponent extends Item
 		}
 	}
 
-	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List list,
-			boolean par4)
+	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List list, boolean par4)
 	{
 		if (stack.getMetadata() == names.indexOf(plantMatter))
 		{
 			list.add(TextFormatting.DARK_GRAY + "Acts as bonemeal");
-			if (ConfigOptions.easyMode)
-				list.add(TextFormatting.DARK_GRAY + "4-6x as effective as normal bonemeal");
-			else
-				list.add(TextFormatting.DARK_GRAY + "2-4x as effective as normal bonemeal");
+			list.add(TextFormatting.DARK_GRAY + "2-4x as effective as normal bonemeal");
+		} else if (stack.getMetadata() == names.indexOf(enrichedBonemeal))
+		{
+			list.add(TextFormatting.DARK_GRAY + "2-4x as effective as normal bonemeal");
 		}
 	}
 
-	public static boolean applyBonemeal(ItemStack stack, World worldIn, BlockPos target,
-			EntityPlayer player)
+	public static boolean applyBonemeal(ItemStack stack, World worldIn, BlockPos target, EntityPlayer player)
 	{
 		IBlockState iblockstate = worldIn.getBlockState(target);
 
-		int hook = net.minecraftforge.event.ForgeEventFactory.onApplyBonemeal(player, worldIn,
-				target, iblockstate, stack);
+		int hook = net.minecraftforge.event.ForgeEventFactory.onApplyBonemeal(player, worldIn, target, iblockstate,
+				stack);
 		if (hook != 0)
 			return hook > 0;
 
@@ -133,23 +136,22 @@ public class BaseItemComponent extends Item
 		{
 			IGrowable igrowable = (IGrowable) iblockstate.getBlock();
 
-			if (igrowable.canGrow(worldIn, target, iblockstate, worldIn.isRemote))
+			for (int i = 0; i < worldIn.rand.nextInt(4) + 2; i++)
 			{
-				if (!worldIn.isRemote)
+				if (igrowable.canGrow(worldIn, target, iblockstate, worldIn.isRemote))
 				{
-					for (int i = 0; i < worldIn.rand.nextInt(4) + 2
-							+ (ConfigOptions.easyMode ? 2 : 0); i++)
+					if (!worldIn.isRemote)
 					{
 						if (igrowable.canUseBonemeal(worldIn, worldIn.rand, target, iblockstate))
 						{
 							igrowable.grow(worldIn, worldIn.rand, target, iblockstate);
 						}
+
+						stack.shrink(1);
 					}
 
-					stack.shrink(1);
+					return true;
 				}
-
-				return true;
 			}
 		}
 

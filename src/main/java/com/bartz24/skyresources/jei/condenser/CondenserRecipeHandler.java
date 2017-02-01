@@ -24,7 +24,7 @@ public class CondenserRecipeHandler
 	@Override
 	public boolean isRecipeValid(CondenserRecipeJEI recipe)
 	{
-		return recipe.getInputs().size() > 0 && recipe.getOutputs().size() > 0;
+		return recipe.getFluidInputs().size() > 0 && recipe.getOutputs().size() > 0;
 	}
 
 	@Override

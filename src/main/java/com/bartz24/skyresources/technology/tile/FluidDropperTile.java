@@ -1,8 +1,6 @@
 package com.bartz24.skyresources.technology.tile;
 
-import java.util.Arrays;
-
-import com.bartz24.skyresources.api.RedstoneCompatibleTile;
+import com.bartz24.skyresources.base.tile.TileBase;
 import com.bartz24.skyresources.config.ConfigOptions;
 
 import net.minecraft.init.SoundEvents;
@@ -11,7 +9,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
@@ -19,7 +16,7 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
-public class FluidDropperTile extends RedstoneCompatibleTile implements ITickable, IFluidHandler
+public class FluidDropperTile extends TileBase implements ITickable, IFluidHandler
 {
 	FluidTank tank;
 
@@ -66,6 +63,7 @@ public class FluidDropperTile extends RedstoneCompatibleTile implements ITickabl
 
 	public FluidDropperTile()
 	{
+		super("fluidDropper");
 		tank = new FluidTank(ConfigOptions.fluidDropperCapacity);
 	}
 
@@ -91,6 +89,7 @@ public class FluidDropperTile extends RedstoneCompatibleTile implements ITickabl
 	{
 		if (!world.isRemote)
 		{
+			updateRedstone();
 			pullFromAround();
 
 			if (tank.getFluidAmount() >= 1000 && world.isAirBlock(pos.down()))

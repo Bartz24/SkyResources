@@ -1,24 +1,45 @@
 package com.bartz24.skyresources.registry;
 
 import com.bartz24.skyresources.alchemy.gui.GuiLifeInfuser;
+import com.bartz24.skyresources.alchemy.gui.GuiLifeInjector;
 import com.bartz24.skyresources.alchemy.gui.container.ContainerLifeInfuser;
+import com.bartz24.skyresources.alchemy.gui.container.ContainerLifeInjector;
 import com.bartz24.skyresources.alchemy.tile.LifeInfuserTile;
+import com.bartz24.skyresources.alchemy.tile.LifeInjectorTile;
 import com.bartz24.skyresources.base.guide.gui.GuideGUI;
+import com.bartz24.skyresources.plugin.forestry.gui.GuiBeeAttractor;
+import com.bartz24.skyresources.plugin.forestry.gui.container.ContainerBeeAttractor;
+import com.bartz24.skyresources.plugin.forestry.tile.TileBeeAttractor;
+import com.bartz24.skyresources.technology.gui.GuiAqueousConcentrator;
+import com.bartz24.skyresources.technology.gui.GuiCombustionCollector;
 import com.bartz24.skyresources.technology.gui.GuiCombustionHeater;
 import com.bartz24.skyresources.technology.gui.GuiDarkMatterWarper;
 import com.bartz24.skyresources.technology.gui.GuiDirtFurnace;
 import com.bartz24.skyresources.technology.gui.GuiEndPortalCore;
 import com.bartz24.skyresources.technology.gui.GuiFreezer;
+import com.bartz24.skyresources.technology.gui.GuiQuickDropper;
+import com.bartz24.skyresources.technology.gui.GuiRockCleaner;
+import com.bartz24.skyresources.technology.gui.GuiRockCrusher;
+import com.bartz24.skyresources.technology.gui.container.ContainerAqueousConcentrator;
+import com.bartz24.skyresources.technology.gui.container.ContainerCombustionCollector;
 import com.bartz24.skyresources.technology.gui.container.ContainerCombustionHeater;
 import com.bartz24.skyresources.technology.gui.container.ContainerDarkMatterWarper;
 import com.bartz24.skyresources.technology.gui.container.ContainerDirtFurnace;
 import com.bartz24.skyresources.technology.gui.container.ContainerEndPortalCore;
 import com.bartz24.skyresources.technology.gui.container.ContainerFreezer;
-import com.bartz24.skyresources.technology.tile.CombustionHeaterTile;
+import com.bartz24.skyresources.technology.gui.container.ContainerQuickDropper;
+import com.bartz24.skyresources.technology.gui.container.ContainerRockCleaner;
+import com.bartz24.skyresources.technology.gui.container.ContainerRockCrusher;
 import com.bartz24.skyresources.technology.tile.DirtFurnaceTile;
-import com.bartz24.skyresources.technology.tile.FreezerTile;
+import com.bartz24.skyresources.technology.tile.MiniFreezerTile;
+import com.bartz24.skyresources.technology.tile.TileAqueousConcentrator;
+import com.bartz24.skyresources.technology.tile.TileCombustionCollector;
+import com.bartz24.skyresources.technology.tile.TileCombustionHeater;
 import com.bartz24.skyresources.technology.tile.TileDarkMatterWarper;
 import com.bartz24.skyresources.technology.tile.TileEndPortalCore;
+import com.bartz24.skyresources.technology.tile.TileQuickDropper;
+import com.bartz24.skyresources.technology.tile.TileRockCleaner;
+import com.bartz24.skyresources.technology.tile.TileRockCrusher;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -33,7 +54,13 @@ public class ModGuiHandler implements IGuiHandler
 	public static final int DarkMatterWarperGUI = 4;
 	public static final int EndPortalCoreGUI = 5;
 	public static final int LifeInfuserGUI = 6;
-	public static final int BeeAttractorGUI = 10;
+	public static final int LifeInjectorGUI = 7;
+	public static final int RockCrusherGUI = 8;
+	public static final int RockCleanerGUI = 9;
+	public static final int CombustionCollectorGUI = 10;
+	public static final int QuickDropperGUI = 11;
+	public static final int AqueousConcentratorGUI = 12;
+	public static final int BeeAttractorGUI = 15;
 	public static final int GuideGUI = 25;
 
 	@Override
@@ -41,9 +68,9 @@ public class ModGuiHandler implements IGuiHandler
 	{
 		if (id == CombustionHeaterGUI)
 			return new ContainerCombustionHeater(player.inventory,
-					(CombustionHeaterTile) world.getTileEntity(new BlockPos(x, y, z)));
+					(TileCombustionHeater) world.getTileEntity(new BlockPos(x, y, z)));
 		else if (id == FreezerGUI)
-			return new ContainerFreezer(player.inventory, (FreezerTile) world.getTileEntity(new BlockPos(x, y, z)));
+			return new ContainerFreezer(player.inventory, (MiniFreezerTile) world.getTileEntity(new BlockPos(x, y, z)));
 		else if (id == FurnaceGUI)
 			return new ContainerDirtFurnace(player.inventory,
 					(DirtFurnaceTile) world.getTileEntity(new BlockPos(x, y, z)));
@@ -56,11 +83,28 @@ public class ModGuiHandler implements IGuiHandler
 		else if (id == LifeInfuserGUI)
 			return new ContainerLifeInfuser(player.inventory,
 					(LifeInfuserTile) world.getTileEntity(new BlockPos(x, y, z)));
-		/*
-		 * else if (id == BeeAttractorGUI) return new
-		 * ContainerBeeAttractor(player.inventory, (TileBeeAttractor) world
-		 * .getTileEntity(new BlockPos(x, y, z)));
-		 */
+		else if (id == LifeInjectorGUI)
+			return new ContainerLifeInjector(player.inventory,
+					(LifeInjectorTile) world.getTileEntity(new BlockPos(x, y, z)));
+		else if (id == RockCrusherGUI)
+			return new ContainerRockCrusher(player.inventory,
+					(TileRockCrusher) world.getTileEntity(new BlockPos(x, y, z)));
+		else if (id == RockCleanerGUI)
+			return new ContainerRockCleaner(player.inventory,
+					(TileRockCleaner) world.getTileEntity(new BlockPos(x, y, z)));
+		else if (id == CombustionCollectorGUI)
+			return new ContainerCombustionCollector(player.inventory,
+					(TileCombustionCollector) world.getTileEntity(new BlockPos(x, y, z)));
+		else if (id == QuickDropperGUI)
+			return new ContainerQuickDropper(player.inventory,
+					(TileQuickDropper) world.getTileEntity(new BlockPos(x, y, z)));
+		else if (id == AqueousConcentratorGUI)
+			return new ContainerAqueousConcentrator(player.inventory,
+					(TileAqueousConcentrator) world.getTileEntity(new BlockPos(x, y, z)));
+		else if (id == BeeAttractorGUI)
+			return new ContainerBeeAttractor(player.inventory,
+					(TileBeeAttractor) world.getTileEntity(new BlockPos(x, y, z)));
+
 		return null;
 	}
 
@@ -69,9 +113,9 @@ public class ModGuiHandler implements IGuiHandler
 	{
 		if (id == CombustionHeaterGUI)
 			return new GuiCombustionHeater(player.inventory,
-					(CombustionHeaterTile) world.getTileEntity(new BlockPos(x, y, z)));
+					(TileCombustionHeater) world.getTileEntity(new BlockPos(x, y, z)));
 		else if (id == FreezerGUI)
-			return new GuiFreezer(player.inventory, (FreezerTile) world.getTileEntity(new BlockPos(x, y, z)));
+			return new GuiFreezer(player.inventory, (MiniFreezerTile) world.getTileEntity(new BlockPos(x, y, z)));
 		else if (id == FurnaceGUI)
 			return new GuiDirtFurnace(player.inventory, (DirtFurnaceTile) world.getTileEntity(new BlockPos(x, y, z)));
 		else if (id == DarkMatterWarperGUI)
@@ -82,11 +126,23 @@ public class ModGuiHandler implements IGuiHandler
 					(TileEndPortalCore) world.getTileEntity(new BlockPos(x, y, z)));
 		else if (id == LifeInfuserGUI)
 			return new GuiLifeInfuser(player.inventory, (LifeInfuserTile) world.getTileEntity(new BlockPos(x, y, z)));
-		/*
-		 * else if (id == BeeAttractorGUI) return new
-		 * GuiBeeAttractor(player.inventory, (TileBeeAttractor) world
-		 * .getTileEntity(new BlockPos(x, y, z)));
-		 */
+		else if (id == LifeInjectorGUI)
+			return new GuiLifeInjector(player.inventory, (LifeInjectorTile) world.getTileEntity(new BlockPos(x, y, z)));
+		else if (id == RockCrusherGUI)
+			return new GuiRockCrusher(player.inventory, (TileRockCrusher) world.getTileEntity(new BlockPos(x, y, z)));
+		else if (id == RockCleanerGUI)
+			return new GuiRockCleaner(player.inventory, (TileRockCleaner) world.getTileEntity(new BlockPos(x, y, z)));
+		else if (id == CombustionCollectorGUI)
+			return new GuiCombustionCollector(player.inventory,
+					(TileCombustionCollector) world.getTileEntity(new BlockPos(x, y, z)));
+		else if (id == QuickDropperGUI)
+			return new GuiQuickDropper(player.inventory, (TileQuickDropper) world.getTileEntity(new BlockPos(x, y, z)));
+		else if (id == AqueousConcentratorGUI)
+			return new GuiAqueousConcentrator(player.inventory,
+					(TileAqueousConcentrator) world.getTileEntity(new BlockPos(x, y, z)));
+		else if (id == BeeAttractorGUI)
+			return new GuiBeeAttractor(player.inventory, (TileBeeAttractor) world.getTileEntity(new BlockPos(x, y, z)));
+
 		else if (id == GuideGUI)
 			return new GuideGUI();
 

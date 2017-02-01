@@ -48,9 +48,8 @@ public class SkyResourcesGuide
 		List<GuidePage> pages = new ArrayList<GuidePage>();
 		for (GuidePage p : guidePages)
 		{
-			if ((category == null || p.pageCategory.equals(category))
-					&& (Strings.isNullOrEmpty(filter.trim())
-							|| p.pageDisplay.toLowerCase().contains(filter.trim().toLowerCase())))
+			if ((category == null || p.pageCategory.equals(category)) && (Strings.isNullOrEmpty(filter.trim())
+					|| p.pageDisplay.toLowerCase().contains(filter.trim().toLowerCase())))
 				pages.add(p);
 		}
 		return pages;
@@ -73,17 +72,14 @@ public class SkyResourcesGuide
 	{
 		String base = category + "." + id;
 
-		guidePages.add(new GuidePage(id, category,
-				I18n.translateToLocal(base + ".title").replace("\\n", "\n"), displayStack,
-				I18n.translateToLocal(base + ".text").replace("\\n", "\n")));
+		guidePages.add(new GuidePage(id, category, base + ".title", displayStack, base + ".text"));
 	}
 
 	public static void addPage(String id, String category, ItemStack displayStack, String info)
 	{
 		String base = category + "." + id;
 
-		guidePages.add(new GuidePage(id, category,
-				I18n.translateToLocal(base + ".title").replace("\\n", "\n"), displayStack, info));
+		guidePages.add(new GuidePage(id, category, base + ".title", displayStack, info));
 	}
 
 	public static void addButtonType(GuidePageButton button)

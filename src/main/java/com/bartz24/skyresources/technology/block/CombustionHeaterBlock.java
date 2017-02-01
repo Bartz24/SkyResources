@@ -9,7 +9,7 @@ import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.base.block.IMetaBlockName;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModGuiHandler;
-import com.bartz24.skyresources.technology.tile.CombustionHeaterTile;
+import com.bartz24.skyresources.technology.tile.TileCombustionHeater;
 import com.bartz24.skyresources.technology.tile.TilePoweredCombustionHeater;
 
 import net.minecraft.block.BlockContainer;
@@ -40,7 +40,7 @@ public class CombustionHeaterBlock extends BlockContainer implements IMetaBlockN
 	public static final PropertyEnum<CombustionHeaterVariants> heaterVariant = PropertyEnum.create("variant",
 			CombustionHeaterVariants.class);
 
-	private String[] combustionHeaterTypes = new String[] { "wood", "iron", "steel" };
+	private String[] combustionHeaterTypes = new String[] { "wood", "iron", "steel", "darkmatter" };
 
 	public CombustionHeaterBlock(String unlocalizedName, String registryName, float hardness, float resistance)
 	{
@@ -79,9 +79,9 @@ public class CombustionHeaterBlock extends BlockContainer implements IMetaBlockN
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
-		if (meta == 2)
+		if (meta >= 2)
 			return new TilePoweredCombustionHeater();
-		return new CombustionHeaterTile();
+		return new TileCombustionHeater();
 	}
 
 	@Override
@@ -118,11 +118,12 @@ public class CombustionHeaterBlock extends BlockContainer implements IMetaBlockN
 		par3.add(new ItemStack(par1, 1, 0));
 		par3.add(new ItemStack(par1, 1, 1));
 		par3.add(new ItemStack(par1, 1, 2));
+		par3.add(new ItemStack(par1, 1, 3));
 	}
 
 	public enum CombustionHeaterVariants implements IStringSerializable
 	{
-		WOOD, IRON, STEEL;
+		WOOD, IRON, STEEL, DARKMATTER;
 
 		@Override
 		public String getName()
@@ -135,10 +136,10 @@ public class CombustionHeaterBlock extends BlockContainer implements IMetaBlockN
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state)
 	{
-		if (this.getMetaFromState(state) != 2)
+		if (this.getMetaFromState(state) < 2)
 		{
-			CombustionHeaterTile te = (CombustionHeaterTile) world.getTileEntity(pos);
-			InventoryHelper.dropInventoryItems(world, pos, te);
+			TileCombustionHeater te = (TileCombustionHeater) world.getTileEntity(pos);
+			te.dropInventory();
 		}
 
 		super.breakBlock(world, pos, state);
@@ -157,6 +158,9 @@ public class CombustionHeaterBlock extends BlockContainer implements IMetaBlockN
 		} else if (getMetaFromState(state) == 2)
 		{
 			return 2750;
+		} else if (getMetaFromState(state) == 3)
+		{
+			return 6040;
 		}
 		return 0;
 	}
@@ -180,7 +184,7 @@ public class CombustionHeaterBlock extends BlockContainer implements IMetaBlockN
 	{
 		if (!world.isRemote)
 		{
-			if (getMetaFromState(state) != 2)
+			if (getMetaFromState(state) < 2)
 			{
 				player.openGui(SkyResources.instance, ModGuiHandler.CombustionHeaterGUI, world, pos.getX(), pos.getY(),
 						pos.getZ());

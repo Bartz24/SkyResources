@@ -29,12 +29,11 @@ public class BlazePowderBlock extends BaseBlock
 		if (!world.isRemote)
 		{
 			
-			int chance =  rand.nextInt(2500);
-			System.out.println(chance);
+			int chance =  rand.nextInt(1000);
 			if (HeatSources.isValidHeatSource(pos.down(), world)
 					&& chance <= HeatSources.getHeatSourceValue(pos.down(), world))
 			{
-				world.setBlockState(pos, Blocks.LAVA.getDefaultState());
+				world.setBlockState(pos, Blocks.LAVA.getDefaultState(), 3);
 			} else
 				world.scheduleUpdate(pos, this, tickRate(world));
 		}

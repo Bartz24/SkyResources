@@ -8,67 +8,46 @@ import java.util.Map;
 
 import com.bartz24.skyresources.alchemy.item.ItemHealthGem;
 import com.bartz24.skyresources.alchemy.item.ItemInfusionStone;
-import com.bartz24.skyresources.api.RedstoneCompatibleTile;
+import com.bartz24.skyresources.base.gui.ItemHandlerSpecial;
+import com.bartz24.skyresources.base.tile.TileItemInventory;
 import com.bartz24.skyresources.recipe.ProcessRecipe;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
+import com.bartz24.skyresources.registry.ModBlocks;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class LifeInfuserTile extends RedstoneCompatibleTile implements IInventory, ITickable
+public class LifeInfuserTile extends TileItemInventory implements ITickable
 {
-	// 0 = Health Gem, 1 = Infusion Stone, 2 = Off-hand
-	private NonNullList<ItemStack> inventory = NonNullList.<ItemStack> withSize(3, ItemStack.EMPTY);
-	private static final Map<String, List<ItemStack>> oreMap = new HashMap<String, List<ItemStack>>();
-
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound)
+	public LifeInfuserTile()
 	{
-		super.writeToNBT(compound);
-
-		NBTTagList list = new NBTTagList();
-		for (int i = 0; i < this.getSizeInventory(); ++i)
+		super("lifeInfuser", 3, null, new Integer[] { 1, 2 });
+		this.setInventory(new ItemHandlerSpecial(3, null, new Integer[] { 1, 2 })
 		{
-			if (this.getStackInSlot(i) != ItemStack.EMPTY)
+			protected void onContentsChanged(int slot)
 			{
-				NBTTagCompound stackTag = new NBTTagCompound();
-				stackTag.setByte("Slot", (byte) i);
-				this.getStackInSlot(i).writeToNBT(stackTag);
-				list.appendTag(stackTag);
+				super.onContentsChanged(slot);
+				LifeInfuserTile.this.markDirty();
 			}
-		}
-		compound.setTag("Items", list);
-		return compound;
+
+			public boolean isItemValid(int slot, ItemStack stack)
+			{
+				if (slot == 0)
+					return stack.getItem() instanceof ItemHealthGem;
+				else if (slot == 1)
+					return stack.getItem() instanceof ItemInfusionStone;
+				return super.isItemValid(slot, stack);
+			}
+		});
 	}
 
-	@Override
-	public void readFromNBT(NBTTagCompound compound)
-	{
-		super.readFromNBT(compound);
-
-		NBTTagList list = compound.getTagList("Items", 10);
-		for (int i = 0; i < list.tagCount(); ++i)
-		{
-			NBTTagCompound stackTag = list.getCompoundTagAt(i);
-			int slot = stackTag.getByte("Slot") & 255;
-			this.setInventorySlotContents(slot, new ItemStack(stackTag));
-		}
-	}
+	private static final Map<String, List<ItemStack>> oreMap = new HashMap<String, List<ItemStack>>();
 
 	@Override
 	public void update()
@@ -78,8 +57,7 @@ public class LifeInfuserTile extends RedstoneCompatibleTile implements IInventor
 			craftItem();
 		}
 
-		if (!world.isRemote)
-			prevRedstoneSignal = getRedstoneSignal();
+		updateRedstone();
 	}
 
 	public boolean hasValidMultiblock()
@@ -104,10 +82,13 @@ public class LifeInfuserTile extends RedstoneCompatibleTile implements IInventor
 				BlockPos posCheck = new BlockPos(x, 0, z).add(pos);
 				ItemStack stack = new ItemStack(world.getBlockState(posCheck.up()).getBlock(), 1, world
 						.getBlockState(posCheck.up()).getBlock().damageDropped(world.getBlockState(posCheck.up())));
-				if (!isOreDict(stack, "treeLeaves"))
+				if (x == 0 && z == 0)
+				{
+					if (world.getBlockState(posCheck.up()).getBlock() != ModBlocks.darkMatterBlock)
+						return false;
+				} else if (!isOreDict(stack, "treeLeaves"))
 					return false;
-				if (x != 0 && z != 0 && world.getBlockState(posCheck.down(2)).getBlock() != Blocks.DIRT)
-					return false;
+
 			}
 		}
 		return true;
@@ -143,25 +124,22 @@ public class LifeInfuserTile extends RedstoneCompatibleTile implements IInventor
 	void craftItem()
 	{
 		ProcessRecipe recipe = recipeToCraft();
+		boolean worked = false;
 		if (recipe != null)
 		{
-			this.world.spawnParticle(EnumParticleTypes.HEART, pos.getX() + 0.5D, pos.getY() - 0.5D, pos.getZ() + 0.5D,
-					0.0D, 0.0D, 0.0D, new int[0]);
-
 			if (!world.isRemote)
 			{
-
-				this.decrStackSize(2, ((ItemStack) recipe.getInputs().get(0)).getCount());
-				inventory.get(1).setItemDamage(inventory.get(1).getItemDamage() + 1);
-				if (inventory.get(1).getItemDamage() >= inventory.get(1).getMaxDamage())
-					inventory.set(1, ItemStack.EMPTY);
+				getInventory().extractItem(2, ((ItemStack) recipe.getInputs().get(0)).getCount(), false);
+				getInventory().getStackInSlot(1).setItemDamage(getInventory().getStackInSlot(1).getItemDamage() + 1);
+				if (getInventory().getStackInSlot(1).getItemDamage() >= getInventory().getStackInSlot(1).getMaxDamage())
+					getInventory().setStackInSlot(1, ItemStack.EMPTY);
 				world.setBlockToAir(pos.down(1));
-				ItemStack gemStack = inventory.get(0);
+				ItemStack gemStack = getInventory().getStackInSlot(0);
 				if (gemStack != ItemStack.EMPTY && gemStack.getItem() instanceof ItemHealthGem)
 				{
 					ItemHealthGem healthGem = (ItemHealthGem) gemStack.getItem();
 					gemStack.getTagCompound().setInteger("health",
-							gemStack.getTagCompound().getInteger("health") - (int)recipe.getIntParameter());
+							gemStack.getTagCompound().getInteger("health") - (int) recipe.getIntParameter());
 				}
 
 				ItemStack stack = recipe.getOutputs().get(0).copy();
@@ -169,12 +147,17 @@ public class LifeInfuserTile extends RedstoneCompatibleTile implements IInventor
 				Entity entity = new EntityItem(world, pos.getX() + 0.5F, pos.getY() - 0.5F, pos.getZ() + 0.5F, stack);
 				world.spawnEntity(entity);
 			}
+			if (worked)
+			{
+				this.world.spawnParticle(EnumParticleTypes.HEART, pos.getX() + 0.5D, pos.getY() - 0.5D,
+						pos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D, new int[0]);
+			}
 		}
 	}
 
 	public int getHealthInGem()
 	{
-		ItemStack gemStack = inventory.get(0);
+		ItemStack gemStack = getInventory().getStackInSlot(0);
 		if (gemStack != ItemStack.EMPTY && gemStack.getItem() instanceof ItemHealthGem)
 		{
 			ItemHealthGem healthGem = (ItemHealthGem) gemStack.getItem();
@@ -190,171 +173,16 @@ public class LifeInfuserTile extends RedstoneCompatibleTile implements IInventor
 		{
 			ProcessRecipe recipe = ProcessRecipeManager.infusionRecipes
 					.getRecipe(
-							new ArrayList<Object>(Arrays.asList((Object) inventory.get(2),
+							new ArrayList<Object>(Arrays.asList((Object) getInventory().getStackInSlot(2),
 									(Object) new ItemStack(state.getBlock(), 1,
 											state.getBlock().getMetaFromState(state)))),
 							this.getHealthInGem(), false, false);
 
-			if (recipe != null && recipe.getIntParameter() <= this.getHealthInGem() && inventory.get(1) != ItemStack.EMPTY
-					&& inventory.get(1).getItem() instanceof ItemInfusionStone)
+			if (recipe != null && recipe.getIntParameter() <= this.getHealthInGem()
+					&& getInventory().getStackInSlot(1) != ItemStack.EMPTY
+					&& getInventory().getStackInSlot(1).getItem() instanceof ItemInfusionStone)
 				return recipe;
 		}
 		return null;
-	}
-
-	@Override
-	public ItemStack getStackInSlot(int index)
-	{
-		if (index < 0 || index >= this.getSizeInventory())
-			return ItemStack.EMPTY;
-		return this.inventory.get(index);
-	}
-
-	@Override
-	public String getName()
-	{
-		return "container.skyresources.lifeInfuser";
-	}
-
-	@Override
-	public boolean hasCustomName()
-	{
-		return false;
-	}
-
-	@Override
-	public ITextComponent getDisplayName()
-	{
-		return new TextComponentTranslation(this.getName());
-	}
-
-	@Override
-	public int getSizeInventory()
-	{
-		return 3;
-	}
-
-	@Override
-	public ItemStack decrStackSize(int index, int count)
-	{
-		if (this.getStackInSlot(index) != ItemStack.EMPTY)
-		{
-			ItemStack itemstack;
-
-			if (this.getStackInSlot(index).getCount() <= count)
-			{
-				itemstack = this.getStackInSlot(index);
-				this.setInventorySlotContents(index, null);
-				this.markDirty();
-				return itemstack;
-			} else
-			{
-				itemstack = this.getStackInSlot(index).splitStack(count);
-
-				if (this.getStackInSlot(index).getCount() <= 0)
-				{
-					this.setInventorySlotContents(index, ItemStack.EMPTY);
-				} else
-				{
-					this.setInventorySlotContents(index, this.getStackInSlot(index));
-				}
-
-				this.markDirty();
-				return itemstack;
-			}
-		} else
-		{
-			return ItemStack.EMPTY;
-		}
-	}
-
-	@Override
-	public void setInventorySlotContents(int index, ItemStack stack)
-	{
-		if (index < 0 || index >= this.getSizeInventory())
-			return;
-
-		if (stack != ItemStack.EMPTY && stack.getCount() > this.getInventoryStackLimit())
-			stack.setCount(this.getInventoryStackLimit());
-
-		if (stack != ItemStack.EMPTY && stack.getCount() == 0)
-			stack = ItemStack.EMPTY;
-
-		this.inventory.set(index, stack);
-		this.markDirty();
-
-	}
-
-	@Override
-	public int getInventoryStackLimit()
-	{
-		return 64;
-	}
-
-	@Override
-	public boolean isUsableByPlayer(EntityPlayer player)
-	{
-		return this.world.getTileEntity(this.getPos()) == this
-				&& player.getDistanceSq(this.pos.add(0.5, 0.5, 0.5)) <= 64;
-	}
-
-	@Override
-	public void openInventory(EntityPlayer player)
-	{
-	}
-
-	@Override
-	public void closeInventory(EntityPlayer player)
-	{
-	}
-
-	@Override
-	public boolean isItemValidForSlot(int index, ItemStack stack)
-	{
-		return index == 0 ? (stack.getItem() instanceof ItemHealthGem)
-				: (index == 1 ? (stack.getItem() instanceof ItemInfusionStone) : true);
-	}
-
-	@Override
-	public int getField(int id)
-	{
-		return 0;
-	}
-
-	@Override
-	public void setField(int id, int value)
-	{
-	}
-
-	@Override
-	public int getFieldCount()
-	{
-		return 0;
-	}
-
-	@Override
-	public void clear()
-	{
-		for (int i = 0; i < this.getSizeInventory(); i++)
-			this.setInventorySlotContents(i, null);
-	}
-
-	@Override
-	public ItemStack removeStackFromSlot(int index)
-	{
-		return ItemStackHelper.getAndRemove(this.inventory, index);
-	}
-
-	@Override
-	public boolean isEmpty()
-	{
-		for (ItemStack stack : this.inventory)
-		{
-			if (!stack.isEmpty())
-			{
-				return false;
-			}
-		}
-		return true;
 	}
 }

@@ -3,7 +3,7 @@ package com.bartz24.skyresources.technology.tile;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bartz24.skyresources.api.RedstoneCompatibleTile;
+import com.bartz24.skyresources.base.tile.TileGenericPower;
 import com.bartz24.skyresources.recipe.ProcessRecipe;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 import com.bartz24.skyresources.technology.block.CombustionHeaterBlock;
@@ -18,6 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
@@ -28,57 +29,20 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TilePoweredCombustionHeater extends RedstoneCompatibleTile implements ITickable, IEnergyStorage
+public class TilePoweredCombustionHeater extends TileGenericPower implements ITickable
 {
 
-	private int energy;
-	private int maxEnergy = 100000;
-	private int maxReceive = 2000;
-	private int powerUsage = 800;
+	public TilePoweredCombustionHeater()
+	{
+		super("combustionHeaterPowered", 100000, 2000, 0);
+	}
+
 	public int currentHeatValue;
 	private int heatPerTick = 20;
-
-	@Override
-	public int receiveEnergy(int maxReceive, boolean simulate)
-	{
-		int energyReceived = (int) Math.min(getMaxEnergyStored() - energy, Math.min(this.maxReceive, maxReceive));
-		if (!simulate)
-		{
-			energy += energyReceived;
-		}
-		return energyReceived;
-	}
-
-	@Override
-	public int extractEnergy(int maxExtract, boolean simulate)
-	{
-		return 0;
-	}
-
-	@Override
-	public int getEnergyStored()
-	{
-		return energy;
-	}
-
-	@Override
-	public int getMaxEnergyStored()
-	{
-		return maxEnergy;
-	}
-
-	@Override
-	public boolean canExtract()
-	{
-		return false;
-	}
-
-	@Override
-	public boolean canReceive()
-	{
-		return true;
-	}
+	private int powerUsage = 800;
 
 	public int getMaxHeat()
 	{
@@ -99,10 +63,12 @@ public class TilePoweredCombustionHeater extends RedstoneCompatibleTile implemen
 
 		if (!this.world.isRemote)
 		{
-			prevRedstoneSignal = getRedstoneSignal();
-			if (energy >= powerUsage && currentHeatValue < getMaxHeat())
+			updateRedstone();
+			heatPerTick = 40 * (world.getBlockState(pos).getBlock().getMetaFromState(world.getBlockState(pos)) - 1);
+			powerUsage = 400 * world.getBlockState(pos).getBlock().getMetaFromState(world.getBlockState(pos));
+			if (getEnergyStored() >= powerUsage && currentHeatValue < getMaxHeat())
 			{
-				energy -= powerUsage;
+				internalExtractEnergy(powerUsage, false);
 				currentHeatValue += heatPerTick;
 			}
 
@@ -142,6 +108,10 @@ public class TilePoweredCombustionHeater extends RedstoneCompatibleTile implemen
 			mats.add(Material.ROCK);
 			mats.add(Material.IRON);
 			break;
+		case 3: // DARKMATTER
+			mats.add(Material.ROCK);
+			mats.add(Material.IRON);
+			break;
 		}
 		return mats;
 	}
@@ -176,18 +146,30 @@ public class TilePoweredCombustionHeater extends RedstoneCompatibleTile implemen
 				}
 
 				int timesToCraft = (int) Math.floor((float) item1.getCount() / (float) item2.getCount());
-				
+
 				for (int times = 0; times < timesToCraft; times++)
 				{
 					if (currentHeatValue < recipe.getIntParameter())
 						break;
+					List<ItemStack> inputs = new ArrayList<ItemStack>();
+					for (Object o : recipe.getInputs())
+						inputs.add(((ItemStack) o).copy());
 					for (int i = 0; i < list.size(); i++)
 					{
 						ItemStack stack = list.get(i).getEntityItem();
-						for (Object i2 : recipe.getInputs())
+						for (ItemStack i2 : inputs)
 						{
-							if (stack.isItemEqual((ItemStack) i2))
-								stack.shrink(((ItemStack) i2).getCount());
+							int count = Math.min(i2.getCount(), stack.getCount());
+							if (stack.isItemEqual(i2))
+							{
+								stack.shrink(count);
+								i2.shrink(count);
+							}
+						}
+						for (int i2 = inputs.size() - 1; i2 >= 0; i2--)
+						{
+							if (inputs.get(i2).isEmpty())
+								inputs.remove(i2);
 						}
 					}
 
@@ -195,12 +177,41 @@ public class TilePoweredCombustionHeater extends RedstoneCompatibleTile implemen
 
 					ItemStack stack = recipe.getOutputs().get(0).copy();
 
-					Entity entity = new EntityItem(world, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F,
-							stack);
-					world.spawnEntity(entity);
+					TileCombustionCollector collector = getCollector();
+					if (collector != null)
+					{
+						for (int i = 0; i < 5; i++)
+						{
+							if (!stack.isEmpty())
+								stack = collector.getInventory().insertItem(i, stack, false);
+							else
+								break;
+						}
+					}
+					if (!stack.isEmpty())
+					{
+						Entity entity = new EntityItem(world, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F,
+								stack);
+						world.spawnEntity(entity);
+					}
 				}
 			}
 		}
+		if (!world.isRemote)
+			this.markDirty();
+	}
+
+	public TileCombustionCollector getCollector()
+	{
+		BlockPos[] poses = new BlockPos[] { pos.add(-1, 1, 0), pos.add(1, 1, 0), pos.add(0, 1, -1), pos.add(0, 1, 1),
+				pos.add(0, 2, 0) };
+		for (BlockPos p : poses)
+		{
+			TileEntity t = world.getTileEntity(p);
+			if (t != null && t instanceof TileCombustionCollector)
+				return (TileCombustionCollector) t;
+		}
+		return null;
 	}
 
 	public ProcessRecipe recipeToCraft()
@@ -226,7 +237,6 @@ public class TilePoweredCombustionHeater extends RedstoneCompatibleTile implemen
 	{
 		compound = super.writeToNBT(compound);
 
-		compound.setInteger("Energy", energy);
 		compound.setInteger("heat", currentHeatValue);
 
 		return compound;
@@ -236,7 +246,6 @@ public class TilePoweredCombustionHeater extends RedstoneCompatibleTile implemen
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
-		energy = compound.getInteger("Energy");
 		currentHeatValue = compound.getInteger("heat");
 	}
 
@@ -244,35 +253,4 @@ public class TilePoweredCombustionHeater extends RedstoneCompatibleTile implemen
 	{
 		return oldState.getBlock() != newState.getBlock();
 	}
-
-	@Override
-	public SPacketUpdateTileEntity getUpdatePacket()
-	{
-		NBTTagCompound nbtTag = new NBTTagCompound();
-		this.writeToNBT(nbtTag);
-		return new SPacketUpdateTileEntity(getPos(), 1, nbtTag);
-	}
-
-	@Override
-	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet)
-	{
-		super.onDataPacket(net, packet);
-		this.readFromNBT(packet.getNbtCompound());
-	}
-
-	@Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-        if (capability == CapabilityEnergy.ENERGY) {
-            return true;
-        }
-        return super.hasCapability(capability, facing);
-    }
-
-    @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (capability == CapabilityEnergy.ENERGY) {
-            return (T) this;
-        }
-        return super.getCapability(capability, facing);
-    }
 }

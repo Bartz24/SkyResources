@@ -13,6 +13,7 @@ import com.bartz24.skyresources.base.item.BaseItemComponent;
 import com.bartz24.skyresources.base.item.ItemHeavyExplosiveSnowball;
 import com.bartz24.skyresources.base.item.ItemHeavySnowball;
 import com.bartz24.skyresources.base.item.ItemKnife;
+import com.bartz24.skyresources.base.item.ItemSurvivalFishingRod;
 import com.bartz24.skyresources.base.item.ItemWaterExtractor;
 import com.bartz24.skyresources.base.item.ModItemFood;
 import com.bartz24.skyresources.technology.item.GemRegisterInfo;
@@ -54,11 +55,14 @@ public class ModItems
 	public static Item redSandstoneInfusionStone;
 	public static Item alchemicalInfusionStone;
 
+	public static Item survivalistFishingRod;
+
 	public static ArrayList<GemRegisterInfo> gemList = new ArrayList<GemRegisterInfo>();
 
 	public static void init()
 	{
 		ModItems.addGem("emerald", 0xFF12DB3A, 0.005F);
+		ModItems.addGem("diamond", 0xFF6BFFFD, 0.011F);
 		ModItems.addGem("ruby", 0xFFFA1E1E, 0.005F);
 		ModItems.addGem("sapphire", 0xFF1E46FA, 0.005F);
 		ModItems.addGem("peridot", 0xFF1CB800, 0.005F);
@@ -129,6 +133,8 @@ public class ModItems
 				"redSandstoneInfusionStone", "RedSandstoneInfusionStone"));
 		alchemicalInfusionStone = registerItem(
 				new ItemInfusionStone(1500, "alchemicalInfusionStone", "AlchemicalInfusionStone"));
+		survivalistFishingRod = registerItem(
+				new ItemSurvivalFishingRod("survivalistFishingRod", "SurvivalistFishingRod"));
 	}
 
 	private static Item registerItem(Item item, String name)

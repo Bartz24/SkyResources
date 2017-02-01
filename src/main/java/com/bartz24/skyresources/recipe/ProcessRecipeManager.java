@@ -20,7 +20,6 @@ public class ProcessRecipeManager
 	public static ProcessRecipeManager freezerRecipes = new ProcessRecipeManager();
 	public static ProcessRecipeManager waterExtractorInsertRecipes = new ProcessRecipeManager();
 	public static ProcessRecipeManager waterExtractorExtractRecipes = new ProcessRecipeManager();
-	public static ProcessRecipeManager cauldronRecipes = new ProcessRecipeManager();
 	public static ProcessRecipeManager cauldronCleanRecipes = new ProcessRecipeManager();
 
 	public ProcessRecipeManager()

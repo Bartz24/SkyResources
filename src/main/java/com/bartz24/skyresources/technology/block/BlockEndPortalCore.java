@@ -60,7 +60,7 @@ public class BlockEndPortalCore extends BlockContainer
 	public void breakBlock(World world, BlockPos pos, IBlockState state)
 	{
 		TileEndPortalCore te = (TileEndPortalCore) world.getTileEntity(pos);
-		InventoryHelper.dropInventoryItems(world, pos, te);
+		te.dropInventory();
 
 		super.breakBlock(world, pos, state);
 	}

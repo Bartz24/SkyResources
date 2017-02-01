@@ -19,8 +19,6 @@ public class InfusionRecipeMaker
 
 		for (ProcessRecipe recipe : infusionRecipes)
 		{
-			System.out.println("Recipe Input Size: " + recipe.getInputs().size() + "   "
-					+ recipe.getOutputs().get(0).getDisplayName());
 			ItemStack input = (ItemStack) recipe.getInputs().get(0);
 
 			Object input2 = recipe.getInputs().get(1);

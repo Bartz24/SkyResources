@@ -38,7 +38,7 @@ public class WaterExtractorRecipeCategory extends BlankRecipeCategory
 				.createDrawable(
 						new ResourceLocation(References.ModID,
 								"textures/gui/jei/extractor.png"),
-						0, 0, 150, 71);
+						0, 0, 150, 50);
 	}
 
 	@Override

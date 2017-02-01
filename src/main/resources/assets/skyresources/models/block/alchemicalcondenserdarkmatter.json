@@ -1,0 +1,19 @@
+{
+  "parent":"block/cube_all",
+  "textures": {
+       "down": "skyresources:blocks/endercoreside",
+         "up": "skyresources:blocks/condenserdarkmatter",
+      "north": "skyresources:blocks/endercoreside",
+      "south": "skyresources:blocks/endercoreside",
+       "west": "skyresources:blocks/endercoreside",
+       "east": "skyresources:blocks/endercoreside",
+   "particle": "skyresources:blocks/condenserdarkmatter"
+  },
+  "display": {
+        "thirdperson": {
+            "rotation": [ 10, -45, 170 ],
+            "translation": [ 0, 1.5, -2.75 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        }
+    }
+}

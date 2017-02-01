@@ -2,6 +2,8 @@ package com.bartz24.skyresources.alchemy.block;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.alchemy.tile.CrucibleTile;
@@ -45,14 +47,14 @@ public class CrucibleBlock extends BlockContainer
 	}
 
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB p_185477_4_,
-			List<AxisAlignedBB> p_185477_5_, Entity p_185477_6_)
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox,
+			List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
 	{
-		addCollisionBoxToList(pos, p_185477_4_, p_185477_5_, AABB_LEGS);
-		addCollisionBoxToList(pos, p_185477_4_, p_185477_5_, AABB_WALL_WEST);
-		addCollisionBoxToList(pos, p_185477_4_, p_185477_5_, AABB_WALL_NORTH);
-		addCollisionBoxToList(pos, p_185477_4_, p_185477_5_, AABB_WALL_EAST);
-		addCollisionBoxToList(pos, p_185477_4_, p_185477_5_, AABB_WALL_SOUTH);
+		addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_LEGS);
+		addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_WALL_WEST);
+		addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_WALL_NORTH);
+		addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_WALL_EAST);
+		addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_WALL_SOUTH);
 	}
 
 	@Override

@@ -12,7 +12,6 @@ import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.google.common.collect.Multimap;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -25,6 +24,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class ItemRockGrinder extends ItemPickaxe
 {
@@ -51,10 +51,29 @@ public class ItemRockGrinder extends ItemPickaxe
 	public float getStrVsBlock(ItemStack stack, IBlockState state)
 	{
 		Block block = state.getBlock();
-		Material material = block.getMaterial(state);
-		if (toolMaterial.getHarvestLevel() < block.getHarvestLevel(state))
-			return 0.5F;
-		return material != Material.ROCK ? 1.0F : toolMaterial.getEfficiencyOnProperMaterial();
+
+		List<ProcessRecipe> recipes = ProcessRecipeManager.rockGrinderRecipes.getRecipes();
+		boolean worked = false;
+		for (ProcessRecipe r : recipes)
+
+		{
+			ItemStack stackIn = new ItemStack(state.getBlock(), 1, state.getBlock().getMetaFromState(state));
+			ItemStack recIn = (ItemStack) r.getInputs().get(0);
+
+			if (r != null
+					&& ((recIn.getMetadata() == OreDictionary.WILDCARD_VALUE && stackIn.getItem() == recIn.getItem())
+							|| (stackIn.isItemEqual(recIn) && !r.getOutputs().get(0).isEmpty())))
+			{
+				if (toolMaterial.getHarvestLevel() < block.getHarvestLevel(state))
+					return 0.5F;
+				else
+				{
+					return toolMaterial.getEfficiencyOnProperMaterial();
+				}
+			}
+		}
+		return 0.5F;
+
 	}
 
 	@Override
@@ -64,7 +83,7 @@ public class ItemRockGrinder extends ItemPickaxe
 		IBlockState state = world.getBlockState(pos);
 		if (item.attemptDamageItem(1, this.itemRand))
 		{
-			player.setHeldItem(EnumHand.MAIN_HAND, null);
+			player.setHeldItem(EnumHand.MAIN_HAND, ItemStack.EMPTY);
 		}
 
 		List<ProcessRecipe> recipes = ProcessRecipeManager.rockGrinderRecipes.getRecipes();
@@ -72,8 +91,12 @@ public class ItemRockGrinder extends ItemPickaxe
 		for (ProcessRecipe r : recipes)
 
 		{
-			if (r != null && new ItemStack(state.getBlock(), 1, state.getBlock().getMetaFromState(state))
-					.isItemEqual((ItemStack) r.getInputs().get(0)) && r.getOutputs().get(0) != null)
+			ItemStack stackIn = new ItemStack(state.getBlock(), 1, state.getBlock().getMetaFromState(state));
+			ItemStack recIn = (ItemStack) r.getInputs().get(0);
+
+			if (r != null
+					&& ((recIn.getMetadata() == OreDictionary.WILDCARD_VALUE && stackIn.getItem() == recIn.getItem())
+							|| (stackIn.isItemEqual(recIn) && !r.getOutputs().get(0).isEmpty())))
 			{
 				worked = true;
 				if (!world.isRemote)

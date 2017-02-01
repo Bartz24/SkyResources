@@ -2,6 +2,7 @@ package com.bartz24.skyresources.proxy;
 
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.base.ModKeyBindings;
+import com.bartz24.skyresources.plugin.ModPlugins;
 import com.bartz24.skyresources.registry.ModRenderers;
 
 import net.minecraftforge.client.model.obj.OBJLoader;
@@ -20,7 +21,7 @@ public class ClientProxy extends CommonProxy
 		ModRenderers.preInit();
 
 		
-		//ModPlugins.initRenderers();
+		ModPlugins.initRenderers();
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.alchemy.fluid.FluidCrystalBlock;
+import com.bartz24.skyresources.alchemy.fluid.FluidRegisterInfo.CrystalFluidType;
 import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModBlocks;
@@ -22,32 +23,29 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class CondenserTile extends TileEntity implements ITickable
 {
-	int timeCondense;
+	private int timeCondense;
 
 	@Override
 	public void update()
 	{
-		if (!ConfigOptions.easyMode)
-		{
-			crystalFluidUpdate();
-			moltenCrystalFluidUpdate();
-		}
+		crystalFluidUpdate();
 	}
 
 	void crystalFluidUpdate()
 	{
 		Random rand = world.rand;
 		Block block = getBlockAbove();
-		if (block instanceof FluidCrystalBlock
-				&& this.world.getBlockState(getPos()).getBlock() == ModBlocks.alchemicalCondenser)
+		if (block instanceof FluidCrystalBlock)
 		{
 			FluidCrystalBlock crystalBlock = (FluidCrystalBlock) block;
 			Fluid fluid = crystalBlock.getFluid();
 			String type = ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks.indexOf(crystalBlock)].name;
+			CrystalFluidType fluidType = ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks
+					.indexOf(crystalBlock)].type;
 
 			String oreDictCheck = "ingot" + RandomHelper.capatilizeString(type);
 
-			if (crystalBlock.isSourceBlock(world, pos.add(0, 1, 0))
+			if (tierCanCondense(fluidType) && crystalBlock.isSourceBlock(world, pos.add(0, 1, 0))
 					&& crystalBlock.isNotFlowing(world, pos.add(0, 1, 0), world.getBlockState(pos.add(0, 1, 0)))
 					&& OreDictionary.getOres(oreDictCheck).size() > 0
 					&& HeatSources.isValidHeatSource(pos.down(), world))
@@ -71,56 +69,14 @@ public class CondenserTile extends TileEntity implements ITickable
 		}
 	}
 
-	void moltenCrystalFluidUpdate()
-	{
-		Random rand = world.rand;
-		Block block = getBlockAbove();
-		if (block instanceof FluidCrystalBlock
-				&& this.world.getBlockState(getPos()).getBlock() == ModBlocks.advancedCoolingCondenser)
-		{
-			FluidCrystalBlock crystalBlock = (FluidCrystalBlock) block;
-			Fluid fluid = crystalBlock.getFluid();
-			String type = ModFluids.crystalFluidInfos()[ModBlocks.moltenCrystalFluidBlocks
-					.indexOf(crystalBlock)].name;
-
-			String oreDictCheck = "ingot" + RandomHelper.capatilizeString(type);
-
-			if (crystalBlock.isSourceBlock(world, pos.add(0, 1, 0))
-					&& crystalBlock.isNotFlowing(world, pos.add(0, 1, 0), world.getBlockState(pos.add(0, 1, 0)))
-					&& OreDictionary.getOres(oreDictCheck).size() > 0
-					&& HeatSources.isValidHeatSource(pos.down(), world))
-			{
-				this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + rand.nextFloat(),
-						pos.getY() + 1.5D, pos.getZ() + rand.nextFloat(), 0.0D, 0.0D, 0.0D);
-				if (!world.isRemote)
-				{
-					timeCondense += HeatSources.getHeatSourceValue(pos.down(), world);
-				}
-			} else if (!world.isRemote)
-				timeCondense = 0;
-
-			if (timeCondense >= getMoltenTimeToCondense(crystalBlock))
-			{
-				world.setBlockToAir(pos.add(0, 1, 0));
-				ItemStack stack = OreDictionary.getOres(oreDictCheck).get(0).copy();
-				stack.setCount(1);
-				Entity entity = new EntityItem(world, pos.getX() + 0.5F, pos.getY() + 1.5F, pos.getZ() + 0.5F, stack);
-				world.spawnEntity(entity);
-				timeCondense = 0;
-			}
-		}
-	}
-
 	public int getTimeToCondense(FluidCrystalBlock block)
 	{
-		return ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks.indexOf(block)].rarity
-				* ConfigOptions.condenserProcessTimeBase;
-	}
-
-	public int getMoltenTimeToCondense(FluidCrystalBlock block)
-	{
-		return ModFluids.crystalFluidInfos()[ModBlocks.moltenCrystalFluidBlocks.indexOf(block)].rarity
-				* ConfigOptions.condenserProcessTimeBase * 20;
+		return (int)(ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks.indexOf(block)].rarity
+				* ConfigOptions.condenserProcessTimeBase
+				* (ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks
+						.indexOf(block)].type == CrystalFluidType.NORMAL ? 1 : 20)
+				* getCondenserSpeedFromTier(
+						ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks.indexOf(block)].type));
 	}
 
 	@Override
@@ -145,4 +101,35 @@ public class CondenserTile extends TileEntity implements ITickable
 		return this.world.getBlockState(pos.add(0, 1, 0)).getBlock();
 	}
 
+	public boolean tierCanCondense(CrystalFluidType type)
+	{
+		switch (world.getTileEntity(pos).getBlockMetadata())
+		{
+		case 0:
+			return type == CrystalFluidType.NORMAL;
+		case 1:
+			return true;
+		case 2:
+			return true;
+		case 3:
+			return true;
+		}
+		return false;
+	}
+
+	public float getCondenserSpeedFromTier(CrystalFluidType type)
+	{
+		switch (world.getTileEntity(pos).getBlockMetadata())
+		{
+		case 0:
+			return 1;
+		case 1:
+			return 2;
+		case 2:
+			return 3;
+		case 3:
+			return 4;
+		}
+		return 1;
+	}
 }

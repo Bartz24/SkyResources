@@ -143,9 +143,9 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 					itemIn = ItemStack.EMPTY;
 
 			}
+			markDirty();
+			world.notifyBlockUpdate(getPos(), world.getBlockState(getPos()), world.getBlockState(getPos()), 3);
 		}
-		markDirty();
-		world.notifyBlockUpdate(getPos(), world.getBlockState(getPos()), world.getBlockState(getPos()), 3);
 	}
 
 	@Override
@@ -185,11 +185,6 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 				return Math.max(HeatSources.getHeatSourceValue(pos.down(), world) / 3, 1);
 		}
 		return 0;
-	}
-
-	public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState)
-	{
-		return oldState.getBlock() != newState.getBlock();
 	}
 
 	public int getItemAmount()

@@ -1,15 +1,14 @@
 package com.bartz24.skyresources.technology.block;
 
 import java.util.List;
-import java.util.Random;
 
-import com.bartz24.skyresources.RandomHelper;
+import javax.annotation.Nullable;
+
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModGuiHandler;
-import com.bartz24.skyresources.technology.tile.CombustionHeaterTile;
-import com.bartz24.skyresources.technology.tile.FreezerTile;
+import com.bartz24.skyresources.technology.tile.MiniFreezerTile;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
@@ -21,9 +20,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -52,10 +48,10 @@ public class BlockMiniFreezer extends BlockContainer
 	}
 
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB p_185477_4_,
-			List<AxisAlignedBB> p_185477_5_, Entity p_185477_6_)
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox,
+			List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
 	{
-		addCollisionBoxToList(pos, p_185477_4_, p_185477_5_,
+		addCollisionBoxToList(pos, entityBox, collidingBoxes,
 				new AxisAlignedBB(0.125D, 0D, 0.125D, 0.875D, 1.0D, 0.875D));
 	}
 
@@ -74,7 +70,7 @@ public class BlockMiniFreezer extends BlockContainer
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
-		return new FreezerTile();
+		return new MiniFreezerTile();
 	}
 
 	@Override
@@ -92,16 +88,8 @@ public class BlockMiniFreezer extends BlockContainer
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state)
 	{
-		FreezerTile te = (FreezerTile) world.getTileEntity(pos);
-
-		if (te != null && te.getInv() != null)
-		{
-			for (int i = 0; i < te.getInv().size(); i++)
-			{
-				if (te.getInv().get(i)!= ItemStack.EMPTY)
-					RandomHelper.spawnItemInWorld(world, te.getInv().get(i).copy(), pos);
-			}
-		}
+		MiniFreezerTile te = (MiniFreezerTile) world.getTileEntity(pos);
+		te.dropInventory();
 		super.breakBlock(world, pos, state);
 	}
 
@@ -150,8 +138,8 @@ public class BlockMiniFreezer extends BlockContainer
 		}
 	}
 
-	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
-			int meta, EntityLivingBase placer)
+	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY,
+			float hitZ, int meta, EntityLivingBase placer)
 	{
 		super.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
 		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());

@@ -50,7 +50,7 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 		this.maxStackSize = 1;
 		this.setCreativeTab(ModCreativeTabs.tabMain);
 		tank = new FluidTank(new FluidStack(FluidRegistry.WATER, 0), maxAmount);
-		setUnlocalizedName(References.ModID + ".waterextractor");
+		setUnlocalizedName(References.ModID + ".waterExtractor");
 		setRegistryName("waterextractor");
 	}
 
@@ -106,11 +106,11 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 					{
 						IBlockState recipeOut = Block.getBlockFromItem(recipe.getOutputs().get(0).getItem())
 								.getStateFromMeta(recipe.getOutputs().get(0).getMetadata());
-						getCompound(stack).setInteger("amount", stack.getTagCompound().getInteger("amount")
+						getCompound(stack).setInteger("amount", getCompound(stack).getInteger("amount")
 								+ tank.fill(recipe.getFluidOutputs().get(0).copy(), true));
-						tank.getFluid().amount = stack.getTagCompound().getInteger("amount");
+						tank.getFluid().amount = getCompound(stack).getInteger("amount");
 						world.setBlockState(pos, recipe.getOutputs().get(0) == ItemStack.EMPTY
-								? Blocks.AIR.getDefaultState() : recipeOut);
+								? Blocks.AIR.getDefaultState() : recipeOut, 3);
 						world.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ,
 								SoundEvents.ENTITY_PLAYER_SPLASH, SoundCategory.NEUTRAL, 1.0F,
 								1.0F / (itemRand.nextFloat() * 0.4F + 1.2F));
@@ -138,12 +138,13 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 		IBlockState iblockstate = world.getBlockState(pos);
 		Block block = iblockstate.getBlock();
 		ItemStack stack = playerIn.getHeldItem(hand);
+		tank.setFluid(new FluidStack(FluidRegistry.WATER, getCompound(stack).getInteger("amount")));
 		if (world.getTileEntity(pos) instanceof IFluidHandler)
 		{
 			IFluidHandler tile = (IFluidHandler) world.getTileEntity(pos);
 			getCompound(stack).setInteger("amount",
 					stack.getTagCompound().getInteger("amount") - tile.fill(tank.getFluid(), true));
-			tank.getFluid().amount = stack.getTagCompound().getInteger("amount");
+			tank.getFluid().amount = getCompound(stack).getInteger("amount");
 			return EnumActionResult.SUCCESS;
 		}
 
@@ -159,7 +160,7 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 			world.setBlockState(pos, recipeOut, 3);
 			getCompound(stack).setInteger("amount",
 					stack.getTagCompound().getInteger("amount") - recipe.getFluidInputs().get(0).amount);
-			tank.getFluid().amount = stack.getTagCompound().getInteger("amount");
+			tank.getFluid().amount = getCompound(stack).getInteger("amount");
 			world.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ,
 					SoundEvents.ENTITY_PLAYER_SPLASH, SoundCategory.NEUTRAL, 1.0F,
 					1.0F / (itemRand.nextFloat() * 0.4F + 1.2F));
@@ -189,8 +190,8 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 							playerIn);
 
 					world.setBlockState(pos, iblockstate1, 3);
-					getCompound(stack).setInteger("amount", stack.getTagCompound().getInteger("amount") - 1000);
-					tank.getFluid().amount = stack.getTagCompound().getInteger("amount");
+					getCompound(stack).setInteger("amount", getCompound(stack).getInteger("amount") - 1000);
+					tank.getFluid().amount = getCompound(stack).getInteger("amount");
 					world.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ,
 							SoundEvents.ENTITY_PLAYER_SPLASH, SoundCategory.NEUTRAL, 1.0F,
 							1.0F / (itemRand.nextFloat() * 0.4F + 1.2F));

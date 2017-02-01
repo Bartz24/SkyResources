@@ -34,7 +34,7 @@ public class CombustionRecipeCategory extends BlankRecipeCategory
 				0, 0, 137, 71);
 
 		IDrawableStatic arrowDrawable = guiHelper.createDrawable(
-				new ResourceLocation(References.ModID, "textures/gui/combustionHeater.png"), 176, 14, 8, 69);
+				new ResourceLocation(References.ModID, "textures/gui/guiIcons.png"), 59, 14, 8, 69);
 		heatBar = guiHelper.createAnimatedDrawable(arrowDrawable, 200,
 				mezz.jei.api.gui.IDrawableAnimated.StartDirection.BOTTOM, false);
 	}

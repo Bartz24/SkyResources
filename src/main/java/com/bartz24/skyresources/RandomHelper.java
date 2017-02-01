@@ -1,7 +1,5 @@
 package com.bartz24.skyresources;
 
-import java.util.List;
-
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
@@ -13,14 +11,14 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 
 public class RandomHelper
 {
@@ -312,12 +310,36 @@ public class RandomHelper
 		{
 			for (int i = 0; i < inv.getSizeInventory(); i++)
 			{
-				if (stack == ItemStack.EMPTY || stack.getCount() <= 0)
+				if (stack.isEmpty())
 					return ItemStack.EMPTY;
 				ItemStack inside = inv.getStackInSlot(i);
-				if (inside == ItemStack.EMPTY || inside.getCount() <= 0)
+				if (inside.isEmpty())
 				{
 					inv.setInventorySlotContents(i, stack);
+					return ItemStack.EMPTY;
+				} else if (RandomHelper.canStacksMerge(inside, stack))
+				{
+					stack.shrink(RandomHelper.mergeStacks(stack, inside,
+							true));
+				}
+			}
+		}
+		return stack;
+
+	}
+	
+	public static ItemStack fillInventory(IItemHandler inv, ItemStack stack)
+	{
+		if (inv != null)
+		{
+			for (int i = 0; i < inv.getSlots(); i++)
+			{
+				if (stack.isEmpty())
+					return ItemStack.EMPTY;
+				ItemStack inside = inv.getStackInSlot(i);
+				if (inside.isEmpty())
+				{
+					inv.insertItem(i, stack, false);
 					return ItemStack.EMPTY;
 				} else if (RandomHelper.canStacksMerge(inside, stack))
 				{

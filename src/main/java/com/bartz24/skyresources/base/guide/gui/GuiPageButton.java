@@ -7,6 +7,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.client.config.GuiUtils;
 
 public class GuiPageButton extends GuiButton
@@ -32,7 +33,7 @@ public class GuiPageButton extends GuiButton
 		mc.getRenderItem().renderItemAndEffectIntoGUI(
 				buttonInfo.getItemDisplay(), this.xPosition, this.yPosition);
 
-		mc.fontRendererObj.drawString(buttonInfo.getDisplay(),
+		mc.fontRendererObj.drawString(I18n.translateToLocal(buttonInfo.getDisplay()),
 				this.xPosition + 20, this.yPosition + 4, 16777215);
 
 		resetWidth();
@@ -57,7 +58,7 @@ public class GuiPageButton extends GuiButton
 		mc.getRenderItem().renderItemAndEffectIntoGUI(
 				buttonInfo.getItemDisplay(), x, y);
 
-		mc.fontRendererObj.drawString(buttonInfo.getDisplay(),
+		mc.fontRendererObj.drawString(I18n.translateToLocal(buttonInfo.getDisplay()),
 				x + 20, y + 4, 16777215);
 
 		RenderHelper.disableStandardItemLighting();		

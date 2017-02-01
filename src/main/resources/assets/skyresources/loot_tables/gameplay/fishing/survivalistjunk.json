@@ -1,0 +1,53 @@
+{
+    "pools": [
+        {
+            "name": "main",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "minecraft:dirt",
+                    "weight": 10
+                },
+				{
+                    "type": "item",
+                    "name": "minecraft:planks",
+                    "weight": 20,
+					"functions": [
+                        {
+                            "function": "minecraft:set_data",
+                            "data": {
+                                "min": 0,
+                                "max": 5
+                            }
+                        }
+                    ]
+                },
+				{
+                    "type": "item",
+                    "name": "minecraft:sapling",
+                    "weight": 10,
+					"functions": [
+                        {
+                            "function": "minecraft:set_data",
+                            "data": {
+                                "min": 0,
+                                "max": 5
+                            }
+                        }
+                    ]
+                },
+				{
+                    "type": "item",
+                    "name": "minecraft:stick",
+                    "weight": 45
+                },
+				{
+                    "type": "item",
+                    "name": "minecraft:string",
+                    "weight": 15
+                }
+            ]
+        }
+    ]
+}

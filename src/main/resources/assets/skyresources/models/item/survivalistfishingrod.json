@@ -1,0 +1,14 @@
+{
+  "parent":"item/handheld_rod",
+  "textures": {
+    "layer0":"skyresources:items/survivalistrod"
+  },
+    "overrides": [
+        {
+            "predicate": {
+                "cast": 1
+            },
+            "model": "skyresources:item/survivalistfishingrodcast"
+        }
+    ]
+}

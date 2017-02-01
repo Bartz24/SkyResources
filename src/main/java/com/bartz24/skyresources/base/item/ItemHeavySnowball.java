@@ -20,35 +20,34 @@ public class ItemHeavySnowball extends Item
 {
 	public ItemHeavySnowball(String unlocalizedName, String registryName)
 	{
-		this.maxStackSize = 4;
+		this.maxStackSize = 8;
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
 		setRegistryName(registryName);
 		this.setCreativeTab(ModCreativeTabs.tabMain);
 	}
 
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn,
-			World worldIn, EntityPlayer playerIn, EnumHand hand)
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
 	{
-		if (!playerIn.capabilities.isCreativeMode)
+		if (!player.capabilities.isCreativeMode)
 		{
-			itemStackIn.shrink(1);
+			player.getHeldItem(hand).shrink(1);
 		}
 
-		worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY,
-				playerIn.posZ, SoundEvents.ENTITY_SNOWBALL_THROW,
+		world.playSound((EntityPlayer) null, player.posX, player.posY,
+				player.posZ, SoundEvents.ENTITY_SNOWBALL_THROW,
 				SoundCategory.NEUTRAL, 0.5F,
 				0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
-		if (!worldIn.isRemote)
+		if (!world.isRemote)
 		{
 			EntityHeavySnowball entitysnowball = new EntityHeavySnowball(
-					worldIn, playerIn);
-			entitysnowball.setHeadingFromThrower(playerIn, playerIn.rotationPitch,
-					playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-			worldIn.spawnEntity(entitysnowball);
+					world, player);
+			entitysnowball.setHeadingFromThrower(player, player.rotationPitch,
+					player.rotationYaw, 0.0F, 1.5F, 1.0F);
+			world.spawnEntity(entitysnowball);
 		}
 
-		return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
+		return new ActionResult(EnumActionResult.SUCCESS, player.getHeldItem(hand));
 	}
 
 }

@@ -30,7 +30,7 @@ public class RockGrinderRecipeCategory extends BlankRecipeCategory
 	{
 		super();
 		background = guiHelper.createDrawable(new ResourceLocation(References.ModID, "textures/gui/jei/infusion.png"),
-				32, 0, 95, 71);
+				32, 0, 96, 50);
 	}
 
 	@Override

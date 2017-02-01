@@ -1,11 +1,9 @@
 package com.bartz24.skyresources.technology.block;
 
-import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModGuiHandler;
-import com.bartz24.skyresources.technology.tile.CombustionHeaterTile;
 import com.bartz24.skyresources.technology.tile.FreezerTile;
 
 import net.minecraft.block.BlockContainer;
@@ -18,8 +16,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -82,14 +78,7 @@ public class BlockFreezer extends BlockContainer
 	public void breakBlock(World world, BlockPos pos, IBlockState state)
 	{
 		FreezerTile te = (FreezerTile) world.getTileEntity(pos);
-		if (te.getInv() != null)
-		{
-			for (int i = 0; i < te.getInv().size(); i++)
-			{
-				if (te.getInv().get(i) != ItemStack.EMPTY)
-					RandomHelper.spawnItemInWorld(world, te.getInv().get(i).copy(), pos);
-			}
-		}
+		te.dropInventory();
 		super.breakBlock(world, pos, state);
 	}
 

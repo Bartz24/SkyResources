@@ -1,12 +1,14 @@
 package com.bartz24.skyresources.recipe;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
+import com.bartz24.skyresources.ItemHelper;
+
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class ProcessRecipe
 {
@@ -89,15 +91,35 @@ public class ProcessRecipe
 
 	boolean stacksAreValidMulti(ProcessRecipe recipe)
 	{
-		if (inputs.size() != recipe.inputs.size())
+		HashMap<ItemStack, Integer> items = new HashMap();
+		for (Object o : inputs)
+		{
+			if (!(o instanceof String))
+			{
+				ItemStack i = ((ItemStack) o).copy();
+				int count = i.getCount();
+				i.setCount(1);
+				boolean added = false;
+				for (ItemStack i2 : items.keySet())
+				{
+					if (i2.isItemEqual(i))
+					{
+						items.put(i2, items.get(i2) + count);
+						added = true;
+					}
+				}
+				if (!added)
+					items.put(i, count);
+			}
+
+		}
+
+		if (items.size() != recipe.inputs.size())
 			return false;
 
 		int itemsChecked = 0;
-		for (Object o : inputs)
+		for (ItemStack i : items.keySet())
 		{
-			if (o instanceof String)
-				continue;
-			ItemStack i = (ItemStack) o;
 			boolean valid = false;
 			float ratio = -1;
 			for (Object o2 : recipe.inputs)
@@ -105,12 +127,12 @@ public class ProcessRecipe
 				if (o2 instanceof String)
 					continue;
 				ItemStack i2 = (ItemStack) o2;
-				if (i.isItemEqual(i2) && i.getCount() >= i2.getCount()
-						&& (ratio == -1 || ((float) i.getCount() / (float) i2.getCount()) == ratio))
+				if (ItemHelper.itemStacksEqualOD(i, i2) && items.get(i) >= i2.getCount()
+						&& (ratio == -1 || ((float) items.get(i) / (float) i2.getCount()) == ratio))
 				{
 					valid = true;
 					if (ratio == -1)
-						ratio = (float) i.getCount() / (float) i2.getCount();
+						ratio = (float) items.get(i) / (float) i2.getCount();
 				}
 			}
 			if (!valid)
@@ -118,7 +140,7 @@ public class ProcessRecipe
 			itemsChecked++;
 		}
 
-		return itemsChecked == inputs.size();
+		return itemsChecked == items.size();
 	}
 
 	boolean stacksAreValid(ProcessRecipe recipe, boolean forceEqual)
@@ -136,7 +158,7 @@ public class ProcessRecipe
 				{
 					valid = i.toString().equals(i2.toString());
 				} else if (i instanceof ItemStack && i2 instanceof ItemStack)
-					if (((ItemStack) i).isItemEqual((ItemStack) i2)
+					if (ItemHelper.itemStacksEqualOD((ItemStack) i, (ItemStack) i2)
 							&& (forceEqual ? ((ItemStack) i).getCount() == ((ItemStack) i2).getCount()
 									: ((ItemStack) i).getCount() >= ((ItemStack) i2).getCount()))
 						valid = true;

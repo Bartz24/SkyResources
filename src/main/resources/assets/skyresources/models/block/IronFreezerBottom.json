@@ -1,9 +1,9 @@
 {
     "ambientocclusion": false,
     "textures": {
-        "particle": "blocks/iron_block",
-        "top": "blocks/iron_block",
-        "bottom": "blocks/iron_block",
+        "particle": "skyresources:blocks/ironmachine",
+        "top": "skyresources:blocks/ironmachine",
+        "bottom": "skyresources:blocks/ironmachine",
         "side": "skyresources:blocks/ironfreezerbottom",
         "handle": "blocks/hardened_clay_stained_black"
     },

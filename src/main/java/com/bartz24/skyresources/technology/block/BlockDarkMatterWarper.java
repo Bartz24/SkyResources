@@ -2,6 +2,8 @@ package com.bartz24.skyresources.technology.block;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
@@ -58,10 +60,10 @@ public class BlockDarkMatterWarper extends BlockContainer
 	}
 
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB p_185477_4_,
-			List<AxisAlignedBB> p_185477_5_, Entity p_185477_6_)
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox,
+			List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
 	{
-		addCollisionBoxToList(pos, p_185477_4_, p_185477_5_,
+		addCollisionBoxToList(pos, entityBox, collidingBoxes,
 				new AxisAlignedBB(0.125D, 0.125D, 0.125D, 0.875D, 0.875D, 0.875D));
 	}
 
@@ -87,7 +89,7 @@ public class BlockDarkMatterWarper extends BlockContainer
 	public void breakBlock(World world, BlockPos pos, IBlockState state)
 	{
 		TileDarkMatterWarper te = (TileDarkMatterWarper) world.getTileEntity(pos);
-		InventoryHelper.dropInventoryItems(world, pos, te);
+		te.dropInventory();
 
 		super.breakBlock(world, pos, state);
 	}

@@ -3,10 +3,10 @@ package com.bartz24.skyresources.alchemy.gui;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bartz24.skyresources.GuiHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.alchemy.gui.container.ContainerLifeInfuser;
 import com.bartz24.skyresources.alchemy.tile.LifeInfuserTile;
+import com.bartz24.skyresources.base.gui.GuiHelper;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.inventory.GuiContainer;

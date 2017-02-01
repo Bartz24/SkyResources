@@ -1,16 +1,15 @@
 package com.bartz24.skyresources.jei.condenser;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.alchemy.fluid.FluidRegisterInfo.CrystalFluidType;
 import com.bartz24.skyresources.config.ConfigOptions;
-import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModFluids;
 
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class CondenserRecipeMaker
@@ -29,7 +28,7 @@ public class CondenserRecipeMaker
 						.copy();
 				ingot.setCount(1);
 				CondenserRecipeJEI addRecipe = new CondenserRecipeJEI(ingot,
-						ModBlocks.crystalFluidBlocks.get(i).getDefaultState(),
+						new FluidStack(ModFluids.crystalFluids.get(i), 1000),
 						ModFluids.crystalFluidInfos()[i].rarity * ConfigOptions.condenserProcessTimeBase
 								* (ModFluids.crystalFluidInfos()[i].type == CrystalFluidType.MOLTEN ? 20 : 1));
 				recipes.add(addRecipe);

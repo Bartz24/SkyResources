@@ -1,34 +1,30 @@
 package com.bartz24.skyresources.registry;
 
 import com.bartz24.skyresources.base.guide.SkyResourcesGuide;
-import com.bartz24.skyresources.config.ConfigOptions;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraftforge.fml.common.Loader;
 
 public class ModGuidePages
 {
 	public static void init()
 	{
-		SkyResourcesGuide.addPage("basics", "guide.skyresources.stage1",
-				new ItemStack(Blocks.BEDROCK));
+		SkyResourcesGuide.addPage("basics", "guide.skyresources.stage1", new ItemStack(Blocks.BEDROCK));
 
-		SkyResourcesGuide.addPage("sandPlatform", "guide.skyresources.stage1",
-				new ItemStack(Blocks.SAND, 1, 1));
+		SkyResourcesGuide.addPage("sandIsland", "guide.skyresources.stage1", new ItemStack(Blocks.SAND, 1, 1));
 
 		SkyResourcesGuide.addPage("lifeInfusion", "guide.skyresources.stage1",
 				new ItemStack(ModItems.alchemicalInfusionStone));
 
-		SkyResourcesGuide.addPage("snowPlatform", "guide.skyresources.stage1",
-				new ItemStack(Blocks.SNOW));
+		SkyResourcesGuide.addPage("snowIsland", "guide.skyresources.stage1", new ItemStack(Blocks.SNOW));
 
-		SkyResourcesGuide.addPage("miniFreezer", "guide.skyresources.stage1",
-				new ItemStack(ModBlocks.miniFreezer));
+		SkyResourcesGuide.addPage("miniFreezer", "guide.skyresources.stage1", new ItemStack(ModBlocks.miniFreezer));
 
-		SkyResourcesGuide.addPage("grassPlatform", "guide.skyresources.stage1",
-				new ItemStack(Blocks.GRASS));
+		SkyResourcesGuide.addPage("woodIsland", "guide.skyresources.stage1", new ItemStack(Blocks.PLANKS, 1, 5));
+
+		SkyResourcesGuide.addPage("grassIsland", "guide.skyresources.stage1", new ItemStack(Blocks.GRASS));
 
 		SkyResourcesGuide.addPage("combustionHeater", "guide.skyresources.stage2",
 				new ItemStack(ModBlocks.combustionHeater));
@@ -36,90 +32,63 @@ public class ModGuidePages
 		SkyResourcesGuide.addPage("waterExtractor", "guide.skyresources.stage2",
 				new ItemStack(ModItems.waterExtractor));
 
-		SkyResourcesGuide.addPage("plantMatter", "guide.skyresources.stage2",
-				new ItemStack(ModItems.baseComponent, 1, 2));
+		SkyResourcesGuide.addPage("dirtFurnace", "guide.skyresources.stage2", new ItemStack(ModBlocks.dirtFurnace));
 
-		SkyResourcesGuide.addPage("dirtFurnace", "guide.skyresources.stage2",
-				new ItemStack(ModBlocks.dirtFurnace));
+		SkyResourcesGuide.addPage("lavaBlaze", "guide.skyresources.stage2", new ItemStack(ModBlocks.blazePowderBlock));
 
-		SkyResourcesGuide.addPage("lavaBlaze", "guide.skyresources.stage2",
-				new ItemStack(ModBlocks.blazePowderBlock));
+		SkyResourcesGuide.addPage("heatSources", "guide.skyresources.stage2", new ItemStack(Blocks.TORCH));
 
-		SkyResourcesGuide.addPage("heatSources", "guide.skyresources.stage2",
-				new ItemStack(Blocks.TORCH));
+		SkyResourcesGuide.addPage("rockGrinder", "guide.skyresources.stage2", new ItemStack(ModItems.stoneGrinder));
 
-		SkyResourcesGuide.addPage("listHeatSources", "guide.skyresources.stage2",
-				new ItemStack(Blocks.TORCH));
+		SkyResourcesGuide.addPage("metalCreation", "guide.skyresources.stage2", new ItemStack(ModItems.metalCrystal));
 
-		SkyResourcesGuide.addPage("rockGrinder", "guide.skyresources.stage2",
-				new ItemStack(ModItems.stoneGrinder));
+		SkyResourcesGuide.addPage("crucible", "guide.skyresources.stage2", new ItemStack(ModBlocks.crucible));
 
-		SkyResourcesGuide.addPage("metalCreation", "guide.skyresources.stage2",
-				new ItemStack(ModItems.metalCrystal));
-
-		SkyResourcesGuide.addPage("crucible", "guide.skyresources.stage2",
-				new ItemStack(ModBlocks.crucible));
-
-		SkyResourcesGuide.addPage("fluidDropper", "guide.skyresources.stage2",
-				new ItemStack(ModBlocks.fluidDropper));
+		SkyResourcesGuide.addPage("fluidDropper", "guide.skyresources.stage2", new ItemStack(ModBlocks.fluidDropper));
 
 		SkyResourcesGuide.addPage("alchemicalCondenser", "guide.skyresources.stage2",
 				new ItemStack(ModBlocks.alchemicalCondenser));
+		
+		SkyResourcesGuide.addPage("crystallizer", "guide.skyresources.stage2",
+				new ItemStack(ModBlocks.crystallizer));
 
-		SkyResourcesGuide.addPage("cleanCrystal", "guide.skyresources.stage2",
-				new ItemStack(ModBlocks.crystalFluidBlocks.get(0)));
-
-		SkyResourcesGuide.addPage("earlyMetalSetup", "guide.skyresources.stage2",
-				new ItemStack(ModItems.metalCrystal));
-
-		SkyResourcesGuide.addPage("crucibleAuto", "guide.skyresources.stage2",
+		SkyResourcesGuide.addPage("crucibleInserter", "guide.skyresources.stage2",
 				new ItemStack(ModBlocks.crucibleInserter));
+
+		SkyResourcesGuide.addPage("combustionCollector", "guide.skyresources.stage2",
+				new ItemStack(ModBlocks.combustionCollector));
+		
+		SkyResourcesGuide.addPage("quickDropper", "guide.skyresources.stage2", new ItemStack(ModBlocks.quickDropper));
 
 		SkyResourcesGuide.addPage("crushedStone", "guide.skyresources.stage2",
 				new ItemStack(ModItems.techComponent, 1, 0));
 
-		SkyResourcesGuide.addPage("gemProduction", "guide.skyresources.stage2",
-				new ItemStack(Items.EMERALD));
+		SkyResourcesGuide.addPage("gemProduction", "guide.skyresources.stage2", new ItemStack(Items.EMERALD));
 
 		SkyResourcesGuide.addPage("alchemicalItems", "guide.skyresources.stage3",
 				new ItemStack(ModItems.alchemyComponent, 1, 4));
 
-		SkyResourcesGuide.addPage("ironFreezer", "guide.skyresources.stage3",
-				new ItemStack(ModBlocks.ironFreezer));
+		SkyResourcesGuide.addPage("ironFreezer", "guide.skyresources.stage3", new ItemStack(ModBlocks.ironFreezer));
 
-		SkyResourcesGuide.addPage("poweredCombustion", "guide.skyresources.stage3",
-				new ItemStack(ModBlocks.combustionHeater, 1, 2));
+		SkyResourcesGuide.addPage("rockCrusher", "guide.skyresources.stage3", new ItemStack(ModBlocks.rockCrusher));
+		
+		SkyResourcesGuide.addPage("rockCleaner", "guide.skyresources.stage3", new ItemStack(ModBlocks.rockCleaner));
 
-		SkyResourcesGuide.addPage("poweredHeater", "guide.skyresources.stage3",
-				new ItemStack(ModBlocks.poweredHeater));
+		SkyResourcesGuide.addPage("aqueous", "guide.skyresources.stage3", new ItemStack(ModBlocks.aqueousConcentrator));
 
-		SkyResourcesGuide.addPage("nether", "guide.skyresources.stage3",
-				new ItemStack(Blocks.NETHERRACK));
+		SkyResourcesGuide.addPage("poweredHeater", "guide.skyresources.stage3", new ItemStack(ModBlocks.poweredHeater));
 
-		SkyResourcesGuide.addPage("betterLava", "guide.skyresources.stage3",
-				new ItemStack(ModBlocks.compressedNetherrack));
+		if (Loader.isModLoaded("voidislandcontrol"))
+			SkyResourcesGuide.addPage("nether", "guide.skyresources.misc", new ItemStack(Blocks.NETHERRACK));
 
-		SkyResourcesGuide.addPage("netherMetalCreation", "guide.skyresources.stage3",
-				new ItemStack(ModBlocks.advancedCoolingCondenser));
+		SkyResourcesGuide.addPage("dmWarper", "guide.skyresources.stage3", new ItemStack(ModBlocks.darkMatterWarper));
 
-		SkyResourcesGuide.addPage("dmWarper", "guide.skyresources.stage3",
-				new ItemStack(ModBlocks.darkMatterWarper));
+		SkyResourcesGuide.addPage("healthGem", "guide.skyresources.stage3", new ItemStack(ModItems.healthGem));
 
-		SkyResourcesGuide.addPage("end", "guide.skyresources.stage3",
-				new ItemStack(Items.ENDER_EYE));
+		SkyResourcesGuide.addPage("lifeInfuser", "guide.skyresources.stage3", new ItemStack(ModBlocks.lifeInfuser));
 
-		SkyResourcesGuide.addPage("healthGem", "guide.skyresources.stage3",
-				new ItemStack(ModItems.healthGem));
+		SkyResourcesGuide.addPage("end", "guide.skyresources.stage3", new ItemStack(Items.ENDER_EYE));
 
-		SkyResourcesGuide.addPage("lifeInfuser", "guide.skyresources.stage3",
-				new ItemStack(ModBlocks.lifeInfuser));
-
-		SkyResourcesGuide.addPage("commands", "guide.skyresources.misc",
-				new ItemStack(Blocks.COMMAND_BLOCK),
-				I18n.translateToLocal("guide.skyresources.misc.commands.text").replace("\\n", "\n")
-						.replace("{distance}", Integer.toString(ConfigOptions.islandDistance / 2)));
-
-		SkyResourcesGuide.addPage("minetweaker", "guide.skyresources.misc",
-				new ItemStack(Blocks.CRAFTING_TABLE));
+		SkyResourcesGuide.addPage("minetweaker", "guide.skyresources.misc", new ItemStack(Blocks.CRAFTING_TABLE));
 	}
 }

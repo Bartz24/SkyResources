@@ -1,5 +1,3 @@
-
-// For those who want the bleeding edge
 buildscript {
     repositories {
         jcenter()
@@ -20,12 +18,17 @@ plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
 */
-version = "1.5.0"
+version = "1.5.3"
 group= "com.bartz24.skyresources" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "skyresources"
 
+sourceCompatibility = targetCompatibility = "1.8" // Need this here so eclipse task generates correctly.
+compileJava {
+    sourceCompatibility = targetCompatibility = "1.8"
+}
+
 minecraft {
-    version = "1.11-13.19.1.2198"
+    version = "1.11.2-13.20.0.2201"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.
@@ -43,11 +46,11 @@ dependencies {
     //compile "some.group:artifact:version:classifier"
     //compile "some.group:artifact:version"
       
-	compile files("lib/jei_1.11-4.1.1.207.jar")
+	compile files("lib/jei_1.11.2-4.2.0.210.jar")
 	compile files("lib/theoneprobe-1.11-1.3.4.jar")
 	//compile files("lib/CraftTweaker-1.10.2-3.0.13.jar")
 	//compile files("lib/Waila-1.7.0-B3_1.9.4.jar")
-	//compile files("lib/forestry_1.10.2-5.2.14.263.jar")
+	compile files("lib/forestry_1.11.2-5.3.0.26.jar")
 	//compile files("lib/industrialcraft-2-2.6.69-ex110.jar")
 	//compile files("lib/Draconic-Evolution-1.10.2-2.0.3.137-universal.jar")
 	//compile files("lib/BrandonsCore-1.10.2-2.1.1.61-universal.jar")

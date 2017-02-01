@@ -25,7 +25,6 @@ public class AlchemyItemComponent extends Item
 	private static ArrayList<String> names = new ArrayList<String>();
 
 	public static final String cactusNeedle = "cactusNeedle";
-	public static final String cactusNeedleBloody = "cactusNeedleBloody";
 	public static final String coalAlchemical = "coalAlchemical";
 	public static final String dustAlchemical = "dustAlchemical";
 	public static final String diamondAlchemical = "diamondAlchemical";
@@ -47,12 +46,11 @@ public class AlchemyItemComponent extends Item
 	private void itemList()
 	{
 		names.add(0, cactusNeedle);
-		names.add(1, cactusNeedleBloody);
-		names.add(2, coalAlchemical);
-		names.add(3, dustAlchemical);
-		names.add(4, diamondAlchemical);
-		names.add(5, goldIngotAlchemical);
-		names.add(6, goldNeedleAlchemical);
+		names.add(1, coalAlchemical);
+		names.add(2, dustAlchemical);
+		names.add(3, diamondAlchemical);
+		names.add(4, goldIngotAlchemical);
+		names.add(5, goldNeedleAlchemical);
 	}
 
 	@Override
@@ -78,34 +76,5 @@ public class AlchemyItemComponent extends Item
 	public static ArrayList<String> getNames()
 	{
 		return names;
-	}
-
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
-	{
-		super.onItemRightClick(world, player, hand);
-
-		ItemStack stack = player.getHeldItem(hand);
-		if (player.isSneaking())
-		{
-			if (stack.getMetadata() == names.indexOf(cactusNeedle))
-			{
-				stack.shrink(1);
-
-				if (!player.inventory.addItemStackToInventory(
-						new ItemStack(ModItems.alchemyComponent, 1,
-								names.indexOf(cactusNeedleBloody))))
-				{
-					player.dropItem(
-							new ItemStack(ModItems.alchemyComponent, 1,
-									names.indexOf(cactusNeedleBloody)),
-							false);
-				}
-
-				player.attackEntityFrom(DamageSource.CACTUS, 1);
-			}
-		}
-
-		return new ActionResult(EnumActionResult.SUCCESS, stack);
 	}
 }

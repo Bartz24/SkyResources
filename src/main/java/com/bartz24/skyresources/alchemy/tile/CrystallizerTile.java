@@ -4,23 +4,25 @@ import java.util.Random;
 
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.alchemy.fluid.FluidCrystalBlock;
+import com.bartz24.skyresources.alchemy.fluid.FluidRegisterInfo.CrystalFluidType;
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModFluids;
 import com.bartz24.skyresources.registry.ModItems;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.items.CapabilityItemHandler;
 
 public class CrystallizerTile extends TileEntity implements ITickable
 {
@@ -46,26 +48,28 @@ public class CrystallizerTile extends TileEntity implements ITickable
 				Fluid fluid = crystalBlock.getFluid();
 				String type = ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks.indexOf(crystalBlock)].name;
 
-				if (crystalBlock.isSourceBlock(world, pos.up())
-						&& crystalBlock.isNotFlowing(world, pos.up(), world.getBlockState(pos.up())))
-					timeCondense++;
-				else
-					timeCondense = 0;
-				if (timeCondense >= randInterval)
+				if (this.tierCanCrystallize(
+						ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks.indexOf(crystalBlock)].type))
 				{
-					if (crystallize(crystalBlock))
+					if (crystalBlock.isSourceBlock(world, pos.up())
+							&& crystalBlock.isNotFlowing(world, pos.up(), world.getBlockState(pos.up())))
+						timeCondense++;
+					else
+						timeCondense = 0;
+					if (timeCondense >= randInterval)
 					{
-						if (rand.nextInt(10 + ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks
-								.indexOf(crystalBlock)].rarity / 2) >= 8)
+						if (rand.nextInt(50 + ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks
+								.indexOf(crystalBlock)].rarity * 5) >= 40 + 15 * getCrystallizeEfficiencyFromTier())
 							world.setBlockToAir(pos.up());
 
 						ItemStack stack = new ItemStack(ModItems.metalCrystal, 1, ModFluids
 								.crystalFluidInfos()[ModBlocks.crystalFluidBlocks.indexOf(crystalBlock)].crystalIndex);
 						ejectResultSlot(stack);
 						success = true;
+						timeCondense = 0;
+						randInterval = (int) ((float) (20 * ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks
+								.indexOf(crystalBlock)].rarity + 20) / getCrystallizeSpeedFromTier());
 					}
-					timeCondense = 0;
-					randInterval = rand.nextInt(1) + 1;
 				}
 			}
 		}
@@ -93,12 +97,6 @@ public class CrystallizerTile extends TileEntity implements ITickable
 		randInterval = compound.getInteger("rand");
 	}
 
-	public boolean crystallize(FluidCrystalBlock block)
-	{
-		return world.rand
-				.nextInt(ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks.indexOf(block)].rarity * 2) == 0;
-	}
-
 	public Block getBlockAbove()
 	{
 		return this.world.getBlockState(pos.add(0, 1, 0)).getBlock();
@@ -112,13 +110,76 @@ public class CrystallizerTile extends TileEntity implements ITickable
 			BlockPos facingPos = getPos().down();
 
 			TileEntity tile = world.getTileEntity(facingPos);
-			if (tile instanceof IInventory)
+
+			if (tile != null)
 			{
-				output = RandomHelper.fillInventory((IInventory) tile, output);
+				if (tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP))
+				{
+					output = RandomHelper.fillInventory(
+							tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP), output);
+				} else if (tile instanceof IInventory)
+				{
+					output = RandomHelper.fillInventory((IInventory) tile, output);
+				}
 			}
 
 			if (output != ItemStack.EMPTY && output.getCount() > 0)
-				RandomHelper.spawnItemInWorld(world, output, facingPos);
+			{
+				EntityItem item = new EntityItem(world, pos.down().getX() + 0.5f, pos.down().getY() + 0.5f,
+						pos.down().getZ() + 0.5f, output.copy());
+				item.motionY = 0;
+				item.motionX = 0;
+				item.motionZ = 0;
+				world.spawnEntity(item);
+			}
 		}
+	}
+
+	public boolean tierCanCrystallize(CrystalFluidType type)
+	{
+		switch (world.getTileEntity(pos).getBlockMetadata())
+		{
+		case 0:
+			return type == CrystalFluidType.NORMAL;
+		case 1:
+			return true;
+		case 2:
+			return true;
+		case 3:
+			return true;
+		}
+		return false;
+	}
+
+	public float getCrystallizeSpeedFromTier()
+	{
+		switch (world.getTileEntity(pos).getBlockMetadata())
+		{
+		case 0:
+			return 0.5f;
+		case 1:
+			return 1;
+		case 2:
+			return 2.5f;
+		case 3:
+			return 4;
+		}
+		return 1;
+	}
+
+	public float getCrystallizeEfficiencyFromTier()
+	{
+		switch (world.getTileEntity(pos).getBlockMetadata())
+		{
+		case 0:
+			return 1;
+		case 1:
+			return 1.5f;
+		case 2:
+			return 2;
+		case 3:
+			return 3;
+		}
+		return 1;
 	}
 }

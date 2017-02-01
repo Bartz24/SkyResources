@@ -25,7 +25,7 @@ public class GuideRecipeButton extends GuidePageButton
 	@Override
 	public boolean onClicked()
 	{
-		if(Loader.isModLoaded("JEI"))
+		if(Loader.isModLoaded("jei"))
 		{
 			JEIPlugin.openRecipesGui(this.stackDisplay);
 		}
