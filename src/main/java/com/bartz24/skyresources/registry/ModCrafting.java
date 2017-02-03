@@ -173,9 +173,9 @@ public class ModCrafting
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.crucibleInserter),
 				new Object[] { "XXX", "XYX", " X ", 'X', "ingotIron", 'Y', new ItemStack(Blocks.DROPPER) }));
 
-		String steelIngot = OreDictionary.doesOreNameExist("ingotSteel") ? "ingotSteel"
-				: OreDictionary.doesOreNameExist("ingotElectricalSteel") ? "ingotElectricalSteel" : "ingotIron";
-		String coalDust = OreDictionary.doesOreNameExist("dustCoal") ? "dustCoal" : "dustRedstone";
+		String steelIngot = OreDictionary.getOres("ingotSteel").size() > 0 ? "ingotSteel"
+				: OreDictionary.getOres("ingotElectricalSteel").size() > 0  ? "ingotElectricalSteel" : "ingotIron";
+		String coalDust = OreDictionary.getOres("dustCoal").size() > 0 ? "dustCoal" : "dustRedstone";
 		{
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.baseComponent, 1, 3),
 					new Object[] { "XZX", "XYX", "XZX", 'X', steelIngot, 'Y', Blocks.REDSTONE_BLOCK, 'Z', coalDust }));

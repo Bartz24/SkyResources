@@ -3,7 +3,7 @@
   "modid": "skyresources",
   "name": "Sky Resources",
   "description": "The skyblock companion mod. Everything comes from nearly nothing.",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "mcversion": "${mcversion}",
   "url": "https://github.com/Bartz24/SkyResources",
   "updateUrl": "",
