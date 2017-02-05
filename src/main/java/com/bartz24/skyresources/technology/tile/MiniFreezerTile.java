@@ -128,7 +128,7 @@ public class MiniFreezerTile extends TileItemInventory implements ITickable
 	{
 		if (canProcess(output, inSlot + this.getInventory().getSlots() / 2))
 		{
-			this.getInventory().insertItem(inSlot + this.getInventory().getSlots() / 2, output, false);
+			this.getInventory().insertInternalItem(inSlot + this.getInventory().getSlots() / 2, output, false);
 			return true;
 		}
 		return false;

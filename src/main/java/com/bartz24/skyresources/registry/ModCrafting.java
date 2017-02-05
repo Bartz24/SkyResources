@@ -174,7 +174,7 @@ public class ModCrafting
 				new Object[] { "XXX", "XYX", " X ", 'X', "ingotIron", 'Y', new ItemStack(Blocks.DROPPER) }));
 
 		String steelIngot = OreDictionary.getOres("ingotSteel").size() > 0 ? "ingotSteel"
-				: OreDictionary.getOres("ingotElectricalSteel").size() > 0  ? "ingotElectricalSteel" : "ingotIron";
+				: OreDictionary.getOres("ingotElectricalSteel").size() > 0 ? "ingotElectricalSteel" : "ingotIron";
 		String coalDust = OreDictionary.getOres("dustCoal").size() > 0 ? "dustCoal" : "dustRedstone";
 		{
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.baseComponent, 1, 3),
@@ -565,14 +565,19 @@ public class ModCrafting
 		for (FluidRegisterInfo i : ModFluids.crystalFluidInfos())
 		{
 			String dust = "dust" + RandomHelper.capatilizeString(i.name);
-			if (OreDictionary.getOres(dust).size() > 0 && i.type == CrystalFluidType.NORMAL)
+			if (OreDictionary.getOres(dust).size() > 0)
 			{
-				ProcessRecipeManager.cauldronCleanRecipes.addRecipe(OreDictionary.getOres(dust).get(0),
-						1F / ((float) i.rarity * 2F), new ItemStack(ModItems.techComponent, 1, 0));
-			} else if (OreDictionary.getOres(dust).size() > 0 && i.type == CrystalFluidType.MOLTEN)
-			{
-				ProcessRecipeManager.cauldronCleanRecipes.addRecipe(OreDictionary.getOres(dust).get(0),
-						1F / ((float) i.rarity * 3F), new ItemStack(ModItems.techComponent, 1, 3));
+				ItemStack dustStack = OreDictionary.getOres(dust).get(0);
+				dustStack.setCount(1);
+				if (i.type == CrystalFluidType.NORMAL)
+				{
+					ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dustStack,
+							1F / ((float) i.rarity * 2F), new ItemStack(ModItems.techComponent, 1, 0));
+				} else if (i.type == CrystalFluidType.MOLTEN)
+				{
+					ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dustStack,
+							1F / ((float) i.rarity * 3F), new ItemStack(ModItems.techComponent, 1, 3));
+				}
 			}
 		}
 		for (GemRegisterInfo i : ModItems.gemList)

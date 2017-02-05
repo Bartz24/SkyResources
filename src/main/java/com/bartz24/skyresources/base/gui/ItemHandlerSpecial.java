@@ -33,6 +33,10 @@ public class ItemHandlerSpecial extends ItemStackHandler
 		}
 		return super.insertItem(slot, stack, simulate);
 	}
+	
+	public ItemStack insertInternalItem(int slot, ItemStack stack, boolean simulate) {
+		return super.insertItem(slot, stack, simulate);
+	}
 
 	public boolean isItemValid(int slot, ItemStack itemStack) {
 		return !slotsNoInsert.contains(slot);

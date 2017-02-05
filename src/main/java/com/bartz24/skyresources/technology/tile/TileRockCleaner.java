@@ -94,7 +94,7 @@ public class TileRockCleaner extends TileGenericPower implements ITickable, IFlu
 	{
 		if (bufferStacks.size() > 0)
 		{
-			ItemStack stack = this.getInventory().insertItem(slot, bufferStacks.get(bufferStacks.size() - 1), false);
+			ItemStack stack = this.getInventory().insertInternalItem(slot, bufferStacks.get(bufferStacks.size() - 1), false);
 			bufferStacks.set(bufferStacks.size() - 1, stack);
 			if (bufferStacks.get(bufferStacks.size() - 1).isEmpty())
 				bufferStacks.remove(bufferStacks.size() - 1);

@@ -58,17 +58,17 @@ public class TileAqueousConcentrator extends TileGenericPower implements ITickab
 					false, false);
 			if (curProgress < 100 && getEnergyStored() >= powerUsage && recipe != null
 					&& tank.getFluidAmount() >= recipe.getIntParameter()
-					&& this.getInventory().insertItem(1, recipe.getOutputs().get(0).copy(), true).isEmpty())
+					&& this.getInventory().insertInternalItem(1, recipe.getOutputs().get(0).copy(), true).isEmpty())
 			{
 				internalExtractEnergy(powerUsage, false);
 				curProgress += 5;
 			} else if (recipe == null)
 				curProgress = 0;
 			if (curProgress >= 100
-					&& this.getInventory().insertItem(1, recipe.getOutputs().get(0).copy(), true).isEmpty()
+					&& this.getInventory().insertInternalItem(1, recipe.getOutputs().get(0).copy(), true).isEmpty()
 					&& recipe != null)
 			{
-				this.getInventory().insertItem(1, recipe.getOutputs().get(0).copy(), false);
+				this.getInventory().insertInternalItem(1, recipe.getOutputs().get(0).copy(), false);
 				tank.drain((int) recipe.getFluidInputs().get(0).amount, true);
 				this.getInventory().getStackInSlot(0).shrink(1);
 				curProgress = 0;
@@ -82,16 +82,16 @@ public class TileAqueousConcentrator extends TileGenericPower implements ITickab
 				.getRecipe(this.getInventory().getStackInSlot(0), 0, false, false);
 		if (curProgress < 100 && getEnergyStored() >= powerUsage && recipe != null
 				&& tank.getFluidAmount() + recipe.getFluidOutputs().get(0).amount <= tank.getCapacity()
-				&& this.getInventory().insertItem(1, recipe.getOutputs().get(0).copy(), true).isEmpty())
+				&& this.getInventory().insertInternalItem(1, recipe.getOutputs().get(0).copy(), true).isEmpty())
 		{
 			internalExtractEnergy(powerUsage, false);
 			curProgress += 10;
 		} else if (recipe == null)
 			curProgress = 0;
-		if (curProgress >= 100 && this.getInventory().insertItem(1, recipe.getOutputs().get(0).copy(), true).isEmpty()
+		if (curProgress >= 100 && this.getInventory().insertInternalItem(1, recipe.getOutputs().get(0).copy(), true).isEmpty()
 				&& recipe != null)
 		{
-			this.getInventory().insertItem(1, recipe.getOutputs().get(0).copy(), false);
+			this.getInventory().insertInternalItem(1, recipe.getOutputs().get(0).copy(), false);
 			tank.fill(recipe.getFluidOutputs().get(0), true);
 			this.getInventory().getStackInSlot(0).shrink(1);
 			curProgress = 0;
