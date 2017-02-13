@@ -57,7 +57,8 @@ public class TileRockCrusher extends TileGenericPower implements ITickable
 				this.addToOutput(4);
 			} else
 			{
-				if (curProgress < 100 && getEnergyStored() >= powerUsage && hasRecipes() && hasRockGrinder()
+				boolean hasRecipes = hasRecipes();
+				if (curProgress < 100 && getEnergyStored() >= powerUsage && hasRecipes && hasRockGrinder()
 						&& bufferStacks.size() == 0)
 				{
 					internalExtractEnergy(powerUsage, false);
@@ -66,9 +67,9 @@ public class TileRockCrusher extends TileGenericPower implements ITickable
 					int base = (int) ((ItemRockGrinder) this.getInventory().getStackInSlot(0).getItem())
 							.getToolMaterial().getEfficiencyOnProperMaterial();
 					curProgress += Math.floor(Math.sqrt(base * (level + 1)));
-				} else if (!hasRecipes())
+				} else if (!hasRecipes)
 					curProgress = 0;
-				if (curProgress >= 100 && hasRecipes() && hasRockGrinder())
+				if (curProgress >= 100 && hasRecipes && hasRockGrinder())
 				{
 					List<ProcessRecipe> recipes = ProcessRecipeManager.rockGrinderRecipes.getRecipes();
 					for (ProcessRecipe r : recipes)
@@ -93,19 +94,21 @@ public class TileRockCrusher extends TileGenericPower implements ITickable
 						}
 					}
 					this.getInventory().getStackInSlot(1).shrink(1);
-					this.getInventory().getStackInSlot(0).attemptDamageItem(1, this.world.rand);
+					if (this.getInventory().getStackInSlot(0).attemptDamageItem(1, this.world.rand))
+						this.getInventory().setStackInSlot(0, ItemStack.EMPTY);
 					curProgress = 0;
 				}
 			}
+			this.markDirty();
 		}
-		this.markDirty();
 	}
 
 	public void addToOutput(int slot)
 	{
 		if (bufferStacks.size() > 0)
 		{
-			ItemStack stack = this.getInventory().insertInternalItem(slot, bufferStacks.get(bufferStacks.size() - 1), false);
+			ItemStack stack = this.getInventory().insertInternalItem(slot, bufferStacks.get(bufferStacks.size() - 1),
+					false);
 			bufferStacks.set(bufferStacks.size() - 1, stack);
 			if (bufferStacks.get(bufferStacks.size() - 1).isEmpty())
 				bufferStacks.remove(bufferStacks.size() - 1);

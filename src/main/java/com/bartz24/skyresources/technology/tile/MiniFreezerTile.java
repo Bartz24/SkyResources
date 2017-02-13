@@ -3,14 +3,9 @@ package com.bartz24.skyresources.technology.tile;
 import com.bartz24.skyresources.base.tile.TileItemInventory;
 import com.bartz24.skyresources.recipe.ProcessRecipe;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
-import com.bartz24.skyresources.registry.ModBlocks;
-import com.bartz24.skyresources.technology.block.BlockFreezer;
-import com.bartz24.skyresources.technology.block.BlockMiniFreezer;
 
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -77,7 +72,8 @@ public class MiniFreezerTile extends TileItemInventory implements ITickable
 			{
 				ProcessRecipe recipe = recipeToCraft(i);
 
-				if (recipe != null)
+				if (recipe != null
+						&& canProcess(recipe.getOutputs().get(0).copy(), i + this.getInventory().getSlots() / 2))
 				{
 					if (timeFreeze[i] >= getTimeReq(recipe, this.getInventory().getStackInSlot(i)))
 					{
@@ -104,7 +100,7 @@ public class MiniFreezerTile extends TileItemInventory implements ITickable
 
 	private boolean canProcess(ItemStack output, int slotOut)
 	{
-		if (this.getInventory().getStackInSlot(slotOut) == ItemStack.EMPTY)
+		if (this.getInventory().getStackInSlot(slotOut).isEmpty())
 			return true;
 		if (!this.getInventory().getStackInSlot(slotOut).isItemEqual(output))
 			return false;

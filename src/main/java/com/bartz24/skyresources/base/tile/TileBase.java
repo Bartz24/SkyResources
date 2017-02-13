@@ -7,8 +7,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileBase extends TileEntity
 {
@@ -81,12 +79,12 @@ public class TileBase extends TileEntity
 		super.onDataPacket(net, packet);
 		this.readFromNBT(packet.getNbtCompound());
 	}
-	
+
 	public void markDirty()
 	{
 		super.markDirty();
-		world.notifyBlockUpdate(getPos(), world.getBlockState(getPos()),
-				world.getBlockState(getPos()), 3);
+		world.notifyBlockUpdate(getPos(), world.getBlockState(getPos()), world.getBlockState(getPos()), 3);
+
 	}
 
 	@Override

@@ -85,9 +85,8 @@ public class TileRockCleaner extends TileGenericPower implements ITickable, IFlu
 					curProgress = 0;
 				}
 			}
+			this.markDirty();
 		}
-		this.markDirty();
-
 	}
 
 	public void addToOutput(int slot)

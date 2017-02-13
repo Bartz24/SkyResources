@@ -83,6 +83,7 @@ public class TilePoweredCombustionHeater extends TileGenericPower implements ITi
 
 			if (currentHeatValue > getMaxHeat())
 				currentHeatValue = getMaxHeat();
+			this.markDirty();
 		}
 	}
 
