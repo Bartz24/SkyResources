@@ -35,7 +35,7 @@ public class CauldronCleanRecipeJEI extends BlankRecipeWrapper
 			int mouseX, int mouseY)
 	{
 		String s =  Float.toString(Math.round(outChance * 10000F)/100F) + "%";
-		FontRenderer fontRendererObj = minecraft.fontRendererObj;
+		FontRenderer fontRendererObj = minecraft.fontRenderer;
 		fontRendererObj.drawString(s, 70, 10, java.awt.Color.gray.getRGB());
 	}
 

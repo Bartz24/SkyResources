@@ -18,6 +18,14 @@ plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
 */
+
+repositories {
+  maven {
+    // location of the maven that hosts JEI files
+    url = "http://dvs1.progwml6.com/files/maven"
+  }
+}
+
 version = "1.5.6"
 group= "com.bartz24.skyresources" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "skyresources"
@@ -28,7 +36,7 @@ compileJava {
 }
 
 minecraft {
-    version = "1.11.2-13.20.0.2201"
+    version = "1.11.2-13.20.0.2233"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.
@@ -36,7 +44,7 @@ minecraft {
     // stable_#            stables are built at the discretion of the MCP team.
     // Use non-default mappings at your own risk. they may not allways work.
     // simply re-run your setup task after changing the mappings to update your workspace.
-    mappings = "snapshot_20161220"
+    mappings = "snapshot_20170206"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
@@ -46,7 +54,9 @@ dependencies {
     //compile "some.group:artifact:version:classifier"
     //compile "some.group:artifact:version"
       
-	compile files("lib/jei_1.11.2-4.2.0.210.jar")
+	deobfCompile "mezz.jei:jei_1.11.2:4.2.6.238:api"
+	runtime "mezz.jei:jei_1.11.2:4.2.6.238"
+	  
 	compile files("lib/theoneprobe-1.11-1.3.4.jar")
 	//compile files("lib/CraftTweaker-1.10.2-3.0.13.jar")
 	//compile files("lib/Waila-1.7.0-B3_1.9.4.jar")

@@ -100,6 +100,7 @@ public class ModItems
 		ModItems.addGem("blackDiamond", 0xFF262626, 0.003F);
 		ModItems.addGem("chaos", 0xFFFFE6FB, 0.003F);
 		ModItems.addGem("enderEssence", 0xFF356E19, 0.003F);
+		ModItems.addGem("dark", 0xFF242424, 0.09F);
 
 		alchemyComponent = registerItem(new AlchemyItemComponent());
 		metalCrystal = registerItem(new MetalCrystalItem());

@@ -35,11 +35,11 @@ public class HeatSourcesRecipeJEI extends BlankRecipeWrapper
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY)
 	{
 		ItemStack stack = new ItemStack(input.getBlock(), 1, input.getBlock().getMetaFromState(input));
-		FontRenderer fontRendererObj = minecraft.fontRendererObj;
+		FontRenderer fontRendererObj = minecraft.fontRenderer;
 		String s = input.getBlock().getLocalizedName();
 		fontRendererObj.drawString(s, 20, 12, java.awt.Color.gray.getRGB());
 		s = Integer.toString(value) + " Heat";
-		fontRendererObj = minecraft.fontRendererObj;
+		fontRendererObj = minecraft.fontRenderer;
 		fontRendererObj.drawString(s, 20, 24, java.awt.Color.gray.getRGB());
 	}
 

@@ -59,8 +59,8 @@ public class GuiBeeAttractor extends GuiContainer
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
 		String s = tile.getDisplayName().getUnformattedText();
-		this.fontRendererObj.drawString(s, 88 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
-		this.fontRendererObj.drawString(this.playerInv.getDisplayName().getUnformattedText(), 3, 96, 4210752);
+		this.fontRenderer.drawString(s, 88 - this.fontRenderer.getStringWidth(s) / 2, 6, 4210752);
+		this.fontRenderer.drawString(this.playerInv.getDisplayName().getUnformattedText(), 3, 96, 4210752);
 
 		if (GuiHelper.isMouseInRect(142 + guiLeft, 30 + guiTop, 16, 59, mouseX, mouseY))
 		{
@@ -69,7 +69,7 @@ public class GuiBeeAttractor extends GuiContainer
 			List list = new ArrayList();
 			list.add("Seed Oil:");
 			list.add(tile.getTank().getFluidAmount() + " mB / " + tile.getTank().getCapacity() + " mB");
-			this.drawHoveringText(list, mouseX - k, mouseY - l, fontRendererObj);
+			this.drawHoveringText(list, mouseX - k, mouseY - l, fontRenderer);
 		} else if (GuiHelper.isMouseInRect(22 + guiLeft, 30 + guiTop, 8, 59, mouseX, mouseY))
 		{
 			int k = (this.width - this.xSize) / 2;
@@ -77,7 +77,7 @@ public class GuiBeeAttractor extends GuiContainer
 			List list = new ArrayList();
 			list.add(TextFormatting.RED + "Power:");
 			list.add(TextFormatting.RED + (tile.getEnergyStored() + " FE / " + tile.getMaxEnergyStored() + " FE"));
-			this.drawHoveringText(list, mouseX - k, mouseY - l, fontRendererObj);
+			this.drawHoveringText(list, mouseX - k, mouseY - l, fontRenderer);
 		}
 	}
 

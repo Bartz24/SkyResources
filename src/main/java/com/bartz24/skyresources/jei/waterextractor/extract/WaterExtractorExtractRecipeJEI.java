@@ -40,7 +40,7 @@ public class WaterExtractorExtractRecipeJEI extends BlankRecipeWrapper
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight,
 			int mouseX, int mouseY)
 	{
-		FontRenderer fontRendererObj = minecraft.fontRendererObj;
+		FontRenderer fontRendererObj = minecraft.fontRenderer;
 		fontRendererObj.drawString("Extracting", 65, 0, java.awt.Color.gray.getRGB());
 	}
 

@@ -46,9 +46,9 @@ public class GuiLifeInfuser extends GuiContainer
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
 		String s = tile.getDisplayName().getUnformattedText();
-		this.fontRendererObj.drawString(s, 88 - this.fontRendererObj.getStringWidth(s) / 2, 6,
+		this.fontRenderer.drawString(s, 88 - this.fontRenderer.getStringWidth(s) / 2, 6,
 				4210752);
-		this.fontRendererObj.drawString(this.playerInv.getDisplayName().getUnformattedText(), 8, 72,
+		this.fontRenderer.drawString(this.playerInv.getDisplayName().getUnformattedText(), 8, 72,
 				4210752);
 
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
@@ -63,7 +63,7 @@ public class GuiLifeInfuser extends GuiContainer
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 		this.mc.getTextureManager().bindTexture(new ResourceLocation("textures/gui/icons.png"));
 		this.drawTexturedModalRect(120, 29, 53, 1, 8, 8);
-		this.fontRendererObj.drawString("x" + (float)tile.getHealthInGem()/2F, 130, 29,
+		this.fontRenderer.drawString("x" + (float)tile.getHealthInGem()/2F, 130, 29,
 				4210752);
 
 		IBlockState state = tile.getWorld().getBlockState(tile.getPos().down());
@@ -100,7 +100,7 @@ public class GuiLifeInfuser extends GuiContainer
 				list.add("Multiblock Formed!");
 			else
 				list.add("Multiblock Not Formed.");
-			this.drawHoveringText(list, mouseX - k, mouseY - l, fontRendererObj);
+			this.drawHoveringText(list, mouseX - k, mouseY - l, fontRenderer);
 		}
 	}
 

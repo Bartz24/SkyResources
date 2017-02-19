@@ -34,7 +34,7 @@ public class CondenserRecipeJEI extends BlankRecipeWrapper
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY)
 	{
 		String s = Integer.toString(time) + " base ticks";
-		FontRenderer fontRendererObj = minecraft.fontRendererObj;
+		FontRenderer fontRendererObj = minecraft.fontRenderer;
 		int stringWidth = fontRendererObj.getStringWidth(s);
 		fontRendererObj.drawString(s, 80 - stringWidth, 8, java.awt.Color.gray.getRGB());
 	}

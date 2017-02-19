@@ -406,10 +406,9 @@ public class ModCrafting
 		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(Items.SLIME_BALL), 200, new ArrayList<Object>(
 				Arrays.asList(new ItemStack(ModItems.baseComponent, 8, 2), new ItemStack(Items.SNOWBALL))));
 
-		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModItems.techComponent, 2, 1), 1400,
+		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModItems.techComponent, 4, 1), 1400,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.POISONOUS_POTATO, 3),
-						new ItemStack(Items.FERMENTED_SPIDER_EYE, 2), new ItemStack(Items.SLIME_BALL, 1),
-						new ItemStack(Items.GUNPOWDER, 2))));
+						new ItemStack(Items.FERMENTED_SPIDER_EYE, 2), new ItemStack(Items.GUNPOWDER, 2))));
 
 		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(Items.PRISMARINE_SHARD, 4), 800,
 				new ArrayList<Object>(
@@ -571,12 +570,12 @@ public class ModCrafting
 				dustStack.setCount(1);
 				if (i.type == CrystalFluidType.NORMAL)
 				{
-					ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dustStack,
-							1F / ((float) i.rarity * 2F), new ItemStack(ModItems.techComponent, 1, 0));
+					ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dustStack, 1F / ((float) i.rarity * 2F),
+							new ItemStack(ModItems.techComponent, 1, 0));
 				} else if (i.type == CrystalFluidType.MOLTEN)
 				{
-					ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dustStack,
-							1F / ((float) i.rarity * 3F), new ItemStack(ModItems.techComponent, 1, 3));
+					ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dustStack, 1F / ((float) i.rarity * 3F),
+							new ItemStack(ModItems.techComponent, 1, 3));
 				}
 			}
 		}

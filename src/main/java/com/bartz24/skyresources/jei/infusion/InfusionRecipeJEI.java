@@ -38,7 +38,7 @@ public class InfusionRecipeJEI extends BlankRecipeWrapper
 			int mouseX, int mouseY)
 	{
 		String s = "x" + Float.toString(healthReq / 2F);
-		FontRenderer fontRendererObj = minecraft.fontRendererObj;
+		FontRenderer fontRendererObj = minecraft.fontRenderer;
 		fontRendererObj.drawString(s, 80, 0, java.awt.Color.gray.getRGB());
 	}
 

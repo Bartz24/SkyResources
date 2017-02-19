@@ -33,7 +33,7 @@ public class GuiPageButton extends GuiButton
 		mc.getRenderItem().renderItemAndEffectIntoGUI(
 				buttonInfo.getItemDisplay(), this.xPosition, this.yPosition);
 
-		mc.fontRendererObj.drawString(I18n.translateToLocal(buttonInfo.getDisplay()),
+		mc.fontRenderer.drawString(I18n.translateToLocal(buttonInfo.getDisplay()),
 				this.xPosition + 20, this.yPosition + 4, 16777215);
 
 		resetWidth();
@@ -58,7 +58,7 @@ public class GuiPageButton extends GuiButton
 		mc.getRenderItem().renderItemAndEffectIntoGUI(
 				buttonInfo.getItemDisplay(), x, y);
 
-		mc.fontRendererObj.drawString(I18n.translateToLocal(buttonInfo.getDisplay()),
+		mc.fontRenderer.drawString(I18n.translateToLocal(buttonInfo.getDisplay()),
 				x + 20, y + 4, 16777215);
 
 		RenderHelper.disableStandardItemLighting();		
@@ -66,7 +66,7 @@ public class GuiPageButton extends GuiButton
 
 	public void resetWidth()
 	{
-		this.width = Minecraft.getMinecraft().fontRendererObj
+		this.width = Minecraft.getMinecraft().fontRenderer
 				.getStringWidth(buttonInfo.getDisplay()) + 22;
 	}
 	

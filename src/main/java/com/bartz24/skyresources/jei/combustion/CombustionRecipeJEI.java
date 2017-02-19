@@ -35,7 +35,7 @@ public class CombustionRecipeJEI extends BlankRecipeWrapper
 			int mouseX, int mouseY)
 	{
 		String s = Integer.toString(heatReq) + " C";
-		FontRenderer fontRendererObj = minecraft.fontRendererObj;
+		FontRenderer fontRendererObj = minecraft.fontRenderer;
 		int stringWidth = fontRendererObj.getStringWidth(s);
 		fontRendererObj.drawString(s, 118 - stringWidth, 8,
 				java.awt.Color.gray.getRGB());

@@ -44,8 +44,8 @@ public class GuiCombustionHeater extends GuiContainer
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
 		String s = tile.getDisplayName().getUnformattedText();
-		this.fontRendererObj.drawString(s, 88 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
-		this.fontRendererObj.drawString(this.playerInv.getDisplayName().getUnformattedText(), 8, 72, 4210752);
+		this.fontRenderer.drawString(s, 88 - this.fontRenderer.getStringWidth(s) / 2, 6, 4210752);
+		this.fontRenderer.drawString(this.playerInv.getDisplayName().getUnformattedText(), 8, 72, 4210752);
 
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 		this.mc.getTextureManager().bindTexture(new ResourceLocation(References.ModID, "textures/gui/guiIcons.png"));
@@ -72,7 +72,7 @@ public class GuiCombustionHeater extends GuiContainer
 			List list = new ArrayList();
 			list.add(TextFormatting.RED.toString() + "Current Temp: " + tile.currentHeatValue);
 			list.add(TextFormatting.GRAY.toString() + "Maximum Temp: " + tile.getMaxHeat());
-			this.drawHoveringText(list, mouseX - k, mouseY - l, fontRendererObj);
+			this.drawHoveringText(list, mouseX - k, mouseY - l, fontRenderer);
 		} else if (GuiHelper.isMouseInRect(3 + guiLeft, 12 + guiTop, 50, 32, mouseX, mouseY))
 		{
 			int k = (this.width - this.xSize) / 2;
@@ -82,7 +82,7 @@ public class GuiCombustionHeater extends GuiContainer
 				list.add("Multiblock Formed!");
 			else
 				list.add("Multiblock Not Formed.");
-			this.drawHoveringText(list, mouseX - k, mouseY - l, fontRendererObj);
+			this.drawHoveringText(list, mouseX - k, mouseY - l, fontRenderer);
 		}
 	}
 }

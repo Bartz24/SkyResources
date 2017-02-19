@@ -39,7 +39,7 @@ public class RockGrinderRecipeJEI extends BlankRecipeWrapper
 			int mouseX, int mouseY)
 	{
 		String s =  Float.toString(outChance * 100) + "%";
-		FontRenderer fontRendererObj = minecraft.fontRendererObj;
+		FontRenderer fontRendererObj = minecraft.fontRenderer;
 		fontRendererObj.drawString(s, 70, 0, java.awt.Color.gray.getRGB());
 	}
 

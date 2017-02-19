@@ -51,8 +51,6 @@ public class CommonProxy
 		ModCrafting.initOreDict();
 
 		ModPlugins.init();
-		//if (Loader.isModLoaded("MineTweaker3"))
-			//MinetweakerPlugin.init(e);
 	}
 
 	public void postInit(FMLPostInitializationEvent e)

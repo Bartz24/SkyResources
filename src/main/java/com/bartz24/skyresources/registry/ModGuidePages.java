@@ -88,7 +88,5 @@ public class ModGuidePages
 		SkyResourcesGuide.addPage("lifeInfuser", "guide.skyresources.stage3", new ItemStack(ModBlocks.lifeInfuser));
 
 		SkyResourcesGuide.addPage("end", "guide.skyresources.stage3", new ItemStack(Items.ENDER_EYE));
-
-		SkyResourcesGuide.addPage("minetweaker", "guide.skyresources.misc", new ItemStack(Blocks.CRAFTING_TABLE));
 	}
 }

@@ -36,7 +36,7 @@ public class FreezerRecipeJEI extends BlankRecipeWrapper
 			int mouseX, int mouseY)
 	{
 		String s = Float.toString(time) + " ticks";
-		FontRenderer fontRendererObj = minecraft.fontRendererObj;
+		FontRenderer fontRendererObj = minecraft.fontRenderer;
 		fontRendererObj.drawString(s, 1, -5, java.awt.Color.gray.getRGB());
 	}
 

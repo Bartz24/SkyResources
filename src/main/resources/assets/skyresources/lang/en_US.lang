@@ -192,6 +192,7 @@ item.skyresources.dirtyGem.iolite.name=Dirty Iolite
 item.skyresources.dirtyGem.blackDiamond.name=Dirty Black Diamond
 item.skyresources.dirtyGem.chaos.name=Dirty Chaos
 item.skyresources.dirtyGem.enderEssence.name=Dirty Ender Essence
+item.skyresources.dirtyGem.dark.name=Dirty Dark Gem
 
 itemGroup.skyresources.tabMain=Sky Resources:Main
 itemGroup.skyresources.tabAlchemy=Sky Resources:Alchemy
@@ -327,7 +328,7 @@ guide.skyresources.stage3.healthGem.title=Health Gem
 guide.skyresources.stage3.healthGem.text=The <recipe,,skyresources:ItemHealthGem:0> is used to boost maximum health and stores health for use in the <link,Life_Infuser,skyresources:LifeInfuser:0,lifeInfuser> . \n Shift right-click to infuse 2 health (or 1 heart). You will gain 1 health for every 50 health infused (by default).
 
 guide.skyresources.stage3.lifeInfuser.title=Life Infuser
-guide.skyresources.stage3.lifeInfuser.text=The <recipe,,skyresources:LifeInfuser:0> is used to automate <link,Life_Infusion,skyresources:AlchemicalInfusionStone:0,lifeInfusion> . \n The life infuser requires a multiblock structure. The following are needed: \n 1 <recipe,,skyresources:LifeInfuser:0> \n 4 <recipe,,minecraft:log:0> (any type of wood) \n 8 <recipe,,minecraft:leaves:0> (any type of leaves) \n 1 <recipe,,skyresources:DarkMatterBlock:0> \n \n <image,Multiblock_Setup,skyresources:LifeInfuser:0,skyresources:textures/guide/lifeInfuser.png> \n To use it, put in the health gem on the right, infusion stone in the middle, off-hand item on the left, place the block getting infused below the core, and give the core the a redstone pulse, through the <recipe,,skyresources:DarkMatterBlock:0> works best. \n Make sure the <link,Health_Gem,skyresources:ItemHealthGem:0,healthGem> has enough health to infuse.
+guide.skyresources.stage3.lifeInfuser.text=The <recipe,,skyresources:LifeInfuser:0> is used to automate <link,Life_Infusion,skyresources:AlchemicalInfusionStone:0,lifeInfusion> . \n The life infuser requires a multiblock structure. The following are needed: \n 1 <recipe,,skyresources:LifeInfuser:0> \n 8 <recipe,,minecraft:log:0> (any type of wood) \n 8 <recipe,,minecraft:leaves:0> (any type of leaves) \n 1 <recipe,,skyresources:DarkMatterBlock:0> \n \n <image,Multiblock_Setup,skyresources:LifeInfuser:0,skyresources:textures/guide/lifeInfuser.png> \n To use it, put in the health gem on the right, infusion stone in the middle, off-hand item on the left, place the block getting infused below the core, and give the core the a redstone pulse, through the <recipe,,skyresources:DarkMatterBlock:0> works best. \n Make sure the <link,Health_Gem,skyresources:ItemHealthGem:0,healthGem> has enough health to infuse.
 
 guide.skyresources.misc.minetweaker.title=Minetweaker/CraftTweaker
 guide.skyresources.misc.minetweaker.text=For Minetweaker/CraftTweaker support, go to \n https://github.com/Bartz24/SkyResources/wiki/Minetweaker-Support
@@ -349,6 +350,12 @@ guide.skyresources.misc.ic2.text=Sky Resources provides for ways to get basic IC
 
 guide.skyresources.misc.quantumflux.title=Quantum Flux Support
 guide.skyresources.misc.quantumflux.text=Sky Resources provides for ways to get Quantum Flux items. \n \n <recipe,,quantumflux:graphiteDust:0> is obtainable.
+
+guide.skyresources.misc.integdyn.title=Integrated Dynamics Support
+guide.skyresources.misc.integdyn.text=Sky Resources provides for ways to get Integrated Dynamics items. \n \n <recipe,,integrateddynamics:menril_berries:0> and <recipe,,integrateddynamics:menril_sapling:0> are obtainable.
+
+guide.skyresources.misc.extremereactors.title=Extreme Reactors Support
+guide.skyresources.misc.extremereactors.text=Sky Resources provides for ways to get Extreme Reactors items. \n \n <recipe,,bigreactors:dustmetals:0> is obtainable.
 
 guide.skyresources.misc.tinkers.title=Tinkers Construct Support
 guide.skyresources.misc.tinkers.text=Sky Resources provides for ways to get Tinker's Construct slimy items. \n \n All variants of the <recipe,,tconstruct:edible:1> , <recipe,,tconstruct:slime_sapling:0> , and the <recipe,,tconstruct:slime_dirt:0> are obtainable.

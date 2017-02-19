@@ -72,13 +72,12 @@ public class GuideGUI extends GuiScreen
 
 			if (stack != null)
 				drawItem(stack, x, 22);
-
-			this.fontRendererObj.drawString(I18n.translateToLocal(currentPage.pageDisplay), x + 20, 26, 16777215);
+			this.fontRenderer.drawString(I18n.translateToLocal(currentPage.pageDisplay), x + 20, 26, 16777215);
 
 			String catDisplay = Strings.isNullOrEmpty(currentCategory) ? "All" : I18n.translateToLocal(currentCategory);
-			this.fontRendererObj.drawString(catDisplay, 60 - fontRendererObj.getStringWidth(catDisplay) / 2, 18,
+			this.fontRenderer.drawString(catDisplay, 60 - fontRenderer.getStringWidth(catDisplay) / 2, 18,
 					16777215);
-			this.fontRendererObj.drawString("Category", 60 - fontRendererObj.getStringWidth("Category") / 2, 6,
+			this.fontRenderer.drawString("Category", 60 - fontRenderer.getStringWidth("Category") / 2, 6,
 					16777215);
 
 			this.searchBox.drawTextBox();
@@ -174,7 +173,7 @@ public class GuideGUI extends GuiScreen
 
 		if (this.searchBox == null)
 		{
-			this.searchBox = new GuiTextField(55, this.fontRendererObj, 120, 5, 100, 20);
+			this.searchBox = new GuiTextField(55, this.fontRenderer, 120, 5, 100, 20);
 			searchBox.setMaxStringLength(23);
 			this.searchBox.setFocused(true);
 
@@ -443,7 +442,7 @@ public class GuideGUI extends GuiScreen
 			{
 				if (currentString.equals(" ") && (word.equals(",") || word.equals(".")))
 					currentString = "";
-				int wordWidth = fontRendererObj.getStringWidth(word + " ");
+				int wordWidth = fontRenderer.getStringWidth(word + " ");
 
 				if (lineWidth + wordWidth > width)
 				{
@@ -583,7 +582,7 @@ public class GuideGUI extends GuiScreen
 						}
 						Date date = new Date();
 						FontRenderer fontrenderer = (fontType == 1 || (date.getMonth() == 4 && date.getDate() == 1)
-								? mc.standardGalacticFontRenderer : mc.fontRendererObj);
+								? mc.standardGalacticFontRenderer : mc.fontRenderer);
 						fontrenderer.drawString(obj.toString(), curX, curY, 16777215);
 						curX += fontrenderer.getStringWidth(obj.toString());
 					} else if (obj instanceof GuiPageButton)

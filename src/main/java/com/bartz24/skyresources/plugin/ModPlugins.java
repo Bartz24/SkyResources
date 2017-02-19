@@ -3,8 +3,11 @@ package com.bartz24.skyresources.plugin;
 import java.util.ArrayList;
 
 import com.bartz24.skyresources.plugin.armorplus.ArmorPlusPlugin;
+import com.bartz24.skyresources.plugin.ctweaker.CraftTweakerPlugin;
 import com.bartz24.skyresources.plugin.environmentaltech.EnvTechPlugin;
+import com.bartz24.skyresources.plugin.extremereactors.ExtremeReactorsPlugin;
 import com.bartz24.skyresources.plugin.forestry.ForestryPlugin;
+import com.bartz24.skyresources.plugin.integdyn.IntegratedDynamicsPlugin;
 import com.bartz24.skyresources.plugin.techreborn.TechRebornPlugin;
 
 import net.minecraftforge.fml.common.Loader;
@@ -23,6 +26,12 @@ public class ModPlugins
 			plugins.add(new EnvTechPlugin());
 		if (Loader.isModLoaded("armorplus"))
 			plugins.add(new ArmorPlusPlugin());
+		if (Loader.isModLoaded("integrateddynamics"))
+			plugins.add(new IntegratedDynamicsPlugin());
+		if (Loader.isModLoaded("bigreactors"))
+			plugins.add(new ExtremeReactorsPlugin());
+		if (Loader.isModLoaded("minetweaker3"))
+			plugins.add(new CraftTweakerPlugin());
 
 		for (IModPlugin p : plugins)
 		{
