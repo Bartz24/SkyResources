@@ -78,6 +78,7 @@ public class CondenserRecipeCategory extends BlankRecipeCategory
 		}
 		condensers.add(new ItemStack(ModBlocks.alchemicalCondenser, 1, 1));
 		condensers.add(new ItemStack(ModBlocks.alchemicalCondenser, 1, 2));
+		condensers.add(new ItemStack(ModBlocks.alchemicalCondenser, 1, 3));
 		List<List<ItemStack>> outputs = ingredients.getOutputs(ItemStack.class);
 		layout.getItemStacks().set(slotOutput, outputs.get(0));
 		layout.getItemStacks().set(slotCondenser, condensers);

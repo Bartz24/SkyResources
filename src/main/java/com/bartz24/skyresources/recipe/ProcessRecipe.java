@@ -17,14 +17,16 @@ public class ProcessRecipe
 	private List<FluidStack> fluidOutputs;
 	private List<FluidStack> fluidInputs;
 	private float intParameter;
+	private String type;
 
-	public ProcessRecipe(List<Object> output, List<Object> input, float param)
+	public ProcessRecipe(List<Object> output, List<Object> input, float param, String type)
 	{
 		outputs = new ArrayList<ItemStack>();
 		inputs = new ArrayList<Object>();
 		fluidOutputs = new ArrayList<FluidStack>();
 		fluidInputs = new ArrayList<FluidStack>();
 		intParameter = param;
+		this.type = type;
 
 		for (Object o : output)
 		{
@@ -42,13 +44,14 @@ public class ProcessRecipe
 		}
 	}
 
-	public ProcessRecipe(List<Object> input, float param)
+	public ProcessRecipe(List<Object> input, float param, String type)
 	{
 		outputs = new ArrayList<ItemStack>();
 		inputs = new ArrayList<Object>();
 		fluidOutputs = new ArrayList<FluidStack>();
 		fluidInputs = new ArrayList<FluidStack>();
 		intParameter = param;
+		this.type = type;
 		for (Object o : input)
 		{
 			if (o instanceof ItemStack || o instanceof String)
@@ -56,6 +59,11 @@ public class ProcessRecipe
 			else if (o instanceof FluidStack)
 				fluidInputs.add((FluidStack) o);
 		}
+	}
+
+	public String getRecipeType()
+	{
+		return type;
 	}
 
 	public boolean isInputRecipeEqualTo(ProcessRecipe recipe, boolean forceEqual)

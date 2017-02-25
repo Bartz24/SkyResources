@@ -32,6 +32,7 @@ public class ConfigOptions
 
 	public static boolean endPussyMode;
 
+	public static boolean allowGuide;
 	public static boolean rememberGuide;
 	public static int draconiumType;
 	public static boolean allowAllGemTypes;
@@ -96,6 +97,7 @@ public class ConfigOptions
 				.getBoolean(true);
 
 		rememberGuide = config.get("guide", "Remember Current Guide Page", true).getBoolean(true);
+		allowGuide = config.get("guide", "Allow guide to be opened", true).getBoolean(true);
 
 		if (config.hasChanged())
 			config.save();

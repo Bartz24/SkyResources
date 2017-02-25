@@ -160,7 +160,7 @@ public class EventHandler
 	{
 		EntityPlayer player = event.player;
 
-		if (ConfigOptions.displayFirstChatInfo)
+		if (ConfigOptions.displayFirstChatInfo && ConfigOptions.allowGuide)
 		{
 			TextComponentString text = new TextComponentString(
 					"Need help or a guide? \nPress your " + TextFormatting.AQUA + "Open Guide Key (Default: G)"
@@ -172,7 +172,7 @@ public class EventHandler
 	@SubscribeEvent
 	public void onKeyInput(KeyInputEvent event)
 	{
-		if (ModKeyBindings.guideKey.isPressed())
+		if (ModKeyBindings.guideKey.isPressed() && ConfigOptions.allowGuide)
 		{
 			EntityPlayerSP player = Minecraft.getMinecraft().player;
 

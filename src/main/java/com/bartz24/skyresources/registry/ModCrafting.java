@@ -370,6 +370,30 @@ public class ModCrafting
 								new ItemStack(Items.REDSTONE, 8), new ItemStack(Items.FLINT, 3),
 								new ItemStack(Blocks.STONE, 6))));
 
+		ProcessRecipeManager.combustionRecipes
+				.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 18), 1400,
+						new ArrayList<Object>(Arrays.asList(new ItemStack(ModItems.metalCrystal, 1, 0),
+								new ItemStack(Items.GOLD_INGOT, 2), new ItemStack(Items.IRON_INGOT, 4),
+								new ItemStack(Items.QUARTZ, 5))));
+
+		ProcessRecipeManager.combustionRecipes
+				.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 19), 1500,
+						new ArrayList<Object>(Arrays.asList(new ItemStack(ModItems.metalCrystal, 1, 1),
+								new ItemStack(Items.GOLD_INGOT, 3), new ItemStack(Items.NETHERBRICK, 4),
+								new ItemStack(Items.COAL, 5))));
+
+		ProcessRecipeManager.combustionRecipes
+				.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 20), 1800,
+						new ArrayList<Object>(Arrays.asList(new ItemStack(ModItems.metalCrystal, 1, 1),
+								new ItemStack(Items.GOLD_INGOT, 3), new ItemStack(Items.IRON_INGOT, 8),
+								new ItemStack(Items.QUARTZ, 5), new ItemStack(Items.SUGAR, 2))));
+
+		ProcessRecipeManager.combustionRecipes
+				.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 21), 2600,
+						new ArrayList<Object>(Arrays.asList(new ItemStack(ModItems.metalCrystal, 1, 1),
+								new ItemStack(Items.GOLD_INGOT, 7), new ItemStack(Items.DIAMOND, 5),
+								new ItemStack(Blocks.OBSIDIAN, 5), new ItemStack(Items.SUGAR, 2))));
+
 		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModBlocks.dryCactus), 400,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.BONE_BLOCK), new ItemStack(Items.DYE, 8, 7),
 						new ItemStack(Blocks.LEAVES, 8, 1))));

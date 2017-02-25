@@ -94,6 +94,10 @@ tile.skyresources.osmiumCrystalFluidBlock.name=Osmium Crystal Liquid
 tile.skyresources.lapisCrystalFluidBlock.name=Lapis Lazuli Crystal Liquid
 tile.skyresources.draconiumCrystalFluidBlock.name=Draconium Crystal Liquid
 tile.skyresources.certusCrystalFluidBlock.name=Certus Quartz Crystal Liquid
+tile.skyresources.titaniumCrystalFluidBlock.name=Titanium Crystal Liquid
+tile.skyresources.tungstenCrystalFluidBlock.name=Tungsten Crystal Liquid
+tile.skyresources.chromeCrystalFluidBlock.name=Chrome Crystal Liquid
+tile.skyresources.iridiumCrystalFluidBlock.name=Iridium Crystal Liquid
 
 tile.skyresources.quartzMoltenCrystalFluidBlock.name=Molten Quartz Crystal Liquid
 tile.skyresources.cobaltMoltenCrystalFluidBlock.name=Molten Cobalt Crystal Liquid
@@ -152,6 +156,10 @@ item.skyresources.metalCrystal.osmium.name=Osmium Crystal Shard
 item.skyresources.metalCrystal.lapis.name=Lapis Lazuli Crystal Shard
 item.skyresources.metalCrystal.draconium.name=Draconium Crystal Shard
 item.skyresources.metalCrystal.certus.name=Certus Quartz Crystal Shard
+item.skyresources.metalCrystal.tungsten.name=Tungsten Crystal Shard
+item.skyresources.metalCrystal.titanium.name=Titanium Crystal Shard
+item.skyresources.metalCrystal.chrome.name=Chrome Crystal Shard
+item.skyresources.metalCrystal.iridium.name=Iridium Crystal Shard
 
 item.skyresources.dirtyGem.emerald.name=Dirty Emerald
 item.skyresources.dirtyGem.diamond.name=Dirty Diamond
@@ -213,6 +221,10 @@ fluid.osmiumcrystalfluid=Osmium Crystal Fluid
 fluid.lapiscrystalfluid=Lapis Lazuli Crystal Fluid
 fluid.draconiumcrystalfluid=Draconium Crystal Fluid
 fluid.certuscrystalfluid=Certus Quartz Crystal Fluid
+fluid.tungstencrystalfluid=Tungsten Crystal Fluid
+fluid.titaniumcrystalfluid=Titanium Crystal Fluid
+fluid.chromecrystalfluid=Chrome Crystal Fluid
+fluid.iridiumcrystalfluid=Iridium Crystal Fluid
 
 fluid.quartzmoltencrystalfluid=Molten Quartz Crystal Fluid
 fluid.cobaltmoltencrystalfluid=Molten Cobalt Crystal Fluid

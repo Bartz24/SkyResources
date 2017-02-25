@@ -3,7 +3,6 @@ package com.bartz24.skyresources.jei.heatsources;
 import java.util.List;
 
 import com.bartz24.skyresources.References;
-import com.bartz24.skyresources.jei.freezer.FreezerRecipeJEI;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;

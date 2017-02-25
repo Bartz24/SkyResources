@@ -43,6 +43,10 @@ public class ModFluids
 		ModFluids.addCrystalFluid("draconium", 0xFF9E6DCF, 10,
 				ConfigOptions.draconiumType == 0 ? CrystalFluidType.NORMAL : CrystalFluidType.MOLTEN);
 		ModFluids.addCrystalFluid("certus", 0xFFB0F4F7, 5, CrystalFluidType.NORMAL);
+		ModFluids.addCrystalFluid("titanium", 0xFFBABABA, 7, CrystalFluidType.NORMAL);
+		ModFluids.addCrystalFluid("tungsten", 0xFF464659, 7, CrystalFluidType.NORMAL);
+		ModFluids.addCrystalFluid("chrome", 0xFFD6D6D6, 9, CrystalFluidType.NORMAL);
+		ModFluids.addCrystalFluid("iridium", 0xFFE3E3E3, 12, CrystalFluidType.NORMAL);
 
 		registerCrystalFluid();
 	}
