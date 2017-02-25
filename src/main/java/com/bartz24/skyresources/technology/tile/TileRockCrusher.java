@@ -132,7 +132,7 @@ public class TileRockCrusher extends TileGenericPower implements ITickable
 			ItemStack recIn = (ItemStack) r.getInputs().get(0);
 			if (r != null
 					&& ((recIn.getMetadata() == OreDictionary.WILDCARD_VALUE && stackIn.getItem() == recIn.getItem())
-							|| (stackIn.isItemEqual(recIn) && !r.getOutputs().get(0).isEmpty())))
+							|| (stackIn.isItemEqual(recIn) && !stackIn.isEmpty() && !recIn.isEmpty() && !r.getOutputs().get(0).isEmpty())))
 			{
 				return true;
 			}

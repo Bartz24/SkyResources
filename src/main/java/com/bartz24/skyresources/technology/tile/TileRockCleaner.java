@@ -3,7 +3,6 @@ package com.bartz24.skyresources.technology.tile;
 import java.util.List;
 
 import com.bartz24.skyresources.base.tile.TileGenericPower;
-import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.recipe.ProcessRecipe;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 
@@ -21,8 +20,6 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileRockCleaner extends TileGenericPower implements ITickable, IFluidHandler
 {
@@ -49,14 +46,15 @@ public class TileRockCleaner extends TileGenericPower implements ITickable, IFlu
 				this.addToOutput(3);
 			} else
 			{
-				if (curProgress < 100 && getEnergyStored() >= powerUsage && hasRecipes()
-						&& tank.getFluidAmount() >= 250 && bufferStacks.size() == 0)
+				boolean hasRecipes = hasRecipes();
+				if (curProgress < 100 && getEnergyStored() >= powerUsage && hasRecipes && tank.getFluidAmount() >= 250
+						&& bufferStacks.size() == 0)
 				{
 					internalExtractEnergy(powerUsage, false);
 					curProgress += 20;
-				} else if (!hasRecipes())
+				} else if (!hasRecipes)
 					curProgress = 0;
-				if (curProgress >= 100 && hasRecipes())
+				if (curProgress >= 100 && hasRecipes)
 				{
 					List<ProcessRecipe> recipes = ProcessRecipeManager.cauldronCleanRecipes.getRecipes();
 					for (ProcessRecipe r : recipes)
@@ -93,7 +91,8 @@ public class TileRockCleaner extends TileGenericPower implements ITickable, IFlu
 	{
 		if (bufferStacks.size() > 0)
 		{
-			ItemStack stack = this.getInventory().insertInternalItem(slot, bufferStacks.get(bufferStacks.size() - 1), false);
+			ItemStack stack = this.getInventory().insertInternalItem(slot, bufferStacks.get(bufferStacks.size() - 1),
+					false);
 			bufferStacks.set(bufferStacks.size() - 1, stack);
 			if (bufferStacks.get(bufferStacks.size() - 1).isEmpty())
 				bufferStacks.remove(bufferStacks.size() - 1);
@@ -113,7 +112,8 @@ public class TileRockCleaner extends TileGenericPower implements ITickable, IFlu
 
 		{
 			if (r != null && this.getInventory().getStackInSlot(0).isItemEqual((ItemStack) r.getInputs().get(0))
-					&& r.getOutputs().get(0) != ItemStack.EMPTY)
+					&& !((ItemStack) r.getInputs().get(0)).isEmpty() && !this.getInventory().getStackInSlot(0).isEmpty()
+					&& !r.getOutputs().get(0).isEmpty())
 			{
 				return true;
 			}

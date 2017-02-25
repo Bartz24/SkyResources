@@ -30,7 +30,7 @@ public class ModPlugins
 			plugins.add(new IntegratedDynamicsPlugin());
 		if (Loader.isModLoaded("bigreactors"))
 			plugins.add(new ExtremeReactorsPlugin());
-		if (Loader.isModLoaded("minetweaker3"))
+		if (Loader.isModLoaded("crafttweaker"))
 			plugins.add(new CraftTweakerPlugin());
 
 		for (IModPlugin p : plugins)
