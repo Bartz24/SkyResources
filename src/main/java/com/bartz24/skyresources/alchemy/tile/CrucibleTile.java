@@ -144,7 +144,6 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 
 			}
 			markDirty();
-			world.notifyBlockUpdate(getPos(), world.getBlockState(getPos()), world.getBlockState(getPos()), 3);
 		}
 	}
 
