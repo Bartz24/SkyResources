@@ -80,13 +80,6 @@ public class TileBase extends TileEntity
 		this.readFromNBT(packet.getNbtCompound());
 	}
 
-	public void markDirty()
-	{
-		super.markDirty();
-		world.notifyBlockUpdate(getPos(), world.getBlockState(getPos()), world.getBlockState(getPos()), 3);
-
-	}
-
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
