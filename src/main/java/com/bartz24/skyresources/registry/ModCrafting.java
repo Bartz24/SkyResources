@@ -480,9 +480,7 @@ public class ModCrafting
 		ProcessRecipeManager.rockGrinderRecipes.addRecipe(new ItemStack(ModItems.techComponent, 1, 3), 1,
 				new ItemStack(Blocks.NETHERRACK));
 		ProcessRecipeManager.rockGrinderRecipes.addRecipe(new ItemStack(ModItems.baseComponent, 1, 7), 1.5f,
-				new ItemStack(Blocks.LOG, 1, OreDictionary.WILDCARD_VALUE));
-		ProcessRecipeManager.rockGrinderRecipes.addRecipe(new ItemStack(ModItems.baseComponent, 1, 7), 1.5f,
-				new ItemStack(Blocks.LOG2, 1, OreDictionary.WILDCARD_VALUE));
+				"logWood");
 
 		for (int i = 0; i < ModItems.gemList.size(); i++)
 		{
@@ -512,10 +510,7 @@ public class ModCrafting
 				new ItemStack(Blocks.SNOW));
 		ProcessRecipeManager.waterExtractorExtractRecipes.addRecipe(
 				new ArrayList<Object>(Arrays.asList(ItemStack.EMPTY, new FluidStack(FluidRegistry.WATER, 20))), 0,
-				new ItemStack(Blocks.LEAVES));
-		ProcessRecipeManager.waterExtractorExtractRecipes.addRecipe(
-				new ArrayList<Object>(Arrays.asList(ItemStack.EMPTY, new FluidStack(FluidRegistry.WATER, 20))), 0,
-				new ItemStack(Blocks.LEAVES2));
+				"treeLeaves");
 
 		ProcessRecipeManager.waterExtractorInsertRecipes.addRecipe(new ItemStack(Blocks.CLAY), 0, new ArrayList<Object>(
 				Arrays.asList(new ItemStack(Blocks.DIRT), new FluidStack(FluidRegistry.WATER, 200))));

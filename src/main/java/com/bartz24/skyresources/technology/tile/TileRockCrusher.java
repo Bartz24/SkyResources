@@ -1,5 +1,6 @@
 package com.bartz24.skyresources.technology.tile;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.bartz24.skyresources.base.gui.ItemHandlerSpecial;
@@ -71,15 +72,11 @@ public class TileRockCrusher extends TileGenericPower implements ITickable
 					curProgress = 0;
 				if (curProgress >= 100 && hasRecipes && hasRockGrinder())
 				{
-					List<ProcessRecipe> recipes = ProcessRecipeManager.rockGrinderRecipes.getRecipes();
-					for (ProcessRecipe r : recipes)
-
+					ProcessRecipe recMachine = new ProcessRecipe(Collections.singletonList(this.getInventory().getStackInSlot(1)),
+							Integer.MAX_VALUE, "rockgrinder");
+					for (ProcessRecipe r : ProcessRecipeManager.rockGrinderRecipes.getRecipes())
 					{
-						ItemStack stackIn = this.getInventory().getStackInSlot(1);
-						ItemStack recIn = (ItemStack) r.getInputs().get(0);
-						if (r != null && ((recIn.getMetadata() == OreDictionary.WILDCARD_VALUE
-								&& stackIn.getItem() == recIn.getItem())
-								|| (stackIn.isItemEqual(recIn) && !r.getOutputs().get(0).isEmpty())))
+						if (r != null && recMachine.isInputRecipeEqualTo(r, false))
 						{
 							int level = EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE,
 									this.getInventory().getStackInSlot(0));
@@ -123,19 +120,14 @@ public class TileRockCrusher extends TileGenericPower implements ITickable
 
 	public boolean hasRecipes()
 	{
-		List<ProcessRecipe> recipes = ProcessRecipeManager.rockGrinderRecipes.getRecipes();
-		for (ProcessRecipe r : recipes)
-
+		if (this.getInventory().getStackInSlot(1).isEmpty())
+			return false;
+		ProcessRecipe recMachine = new ProcessRecipe(Collections.singletonList(this.getInventory().getStackInSlot(1)),
+				Integer.MAX_VALUE, "rockgrinder");
+		for (ProcessRecipe r : ProcessRecipeManager.rockGrinderRecipes.getRecipes())
 		{
-
-			ItemStack stackIn = this.getInventory().getStackInSlot(1);
-			ItemStack recIn = (ItemStack) r.getInputs().get(0);
-			if (r != null
-					&& ((recIn.getMetadata() == OreDictionary.WILDCARD_VALUE && stackIn.getItem() == recIn.getItem())
-							|| (stackIn.isItemEqual(recIn) && !stackIn.isEmpty() && !recIn.isEmpty() && !r.getOutputs().get(0).isEmpty())))
-			{
+			if (r != null && recMachine.isInputRecipeEqualTo(r, false))
 				return true;
-			}
 		}
 		return false;
 	}

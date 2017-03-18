@@ -1,5 +1,6 @@
 package com.bartz24.skyresources.technology.item;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.bartz24.skyresources.ItemHelper;
@@ -52,17 +53,12 @@ public class ItemRockGrinder extends ItemPickaxe
 	{
 		Block block = state.getBlock();
 
-		List<ProcessRecipe> recipes = ProcessRecipeManager.rockGrinderRecipes.getRecipes();
-		boolean worked = false;
-		for (ProcessRecipe r : recipes)
-
+		ProcessRecipe rec = new ProcessRecipe(
+				Collections.singletonList(new ItemStack(state.getBlock(), 1, state.getBlock().getMetaFromState(state))),
+				Integer.MAX_VALUE, "rockgrinder");
+		for (ProcessRecipe r : ProcessRecipeManager.rockGrinderRecipes.getRecipes())
 		{
-			ItemStack stackIn = new ItemStack(state.getBlock(), 1, state.getBlock().getMetaFromState(state));
-			ItemStack recIn = (ItemStack) r.getInputs().get(0);
-
-			if (r != null
-					&& ((recIn.getMetadata() == OreDictionary.WILDCARD_VALUE && stackIn.getItem() == recIn.getItem())
-							|| (stackIn.isItemEqual(recIn) && !r.getOutputs().get(0).isEmpty())))
+			if (r != null && rec.isInputRecipeEqualTo(r, false))
 			{
 				if (toolMaterial.getHarvestLevel() < block.getHarvestLevel(state))
 					return 0.5F;
@@ -86,17 +82,13 @@ public class ItemRockGrinder extends ItemPickaxe
 			player.setHeldItem(EnumHand.MAIN_HAND, ItemStack.EMPTY);
 		}
 
-		List<ProcessRecipe> recipes = ProcessRecipeManager.rockGrinderRecipes.getRecipes();
 		boolean worked = false;
-		for (ProcessRecipe r : recipes)
-
+		ProcessRecipe rec = new ProcessRecipe(
+				Collections.singletonList(new ItemStack(state.getBlock(), 1, state.getBlock().getMetaFromState(state))),
+				Integer.MAX_VALUE, "rockgrinder");
+		for (ProcessRecipe r : ProcessRecipeManager.rockGrinderRecipes.getRecipes())
 		{
-			ItemStack stackIn = new ItemStack(state.getBlock(), 1, state.getBlock().getMetaFromState(state));
-			ItemStack recIn = (ItemStack) r.getInputs().get(0);
-
-			if (r != null
-					&& ((recIn.getMetadata() == OreDictionary.WILDCARD_VALUE && stackIn.getItem() == recIn.getItem())
-							|| (stackIn.isItemEqual(recIn) && !r.getOutputs().get(0).isEmpty())))
+			if (r != null && rec.isInputRecipeEqualTo(r, false))
 			{
 				worked = true;
 				if (!world.isRemote)

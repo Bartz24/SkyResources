@@ -6,9 +6,9 @@ import java.util.List;
 
 import com.bartz24.skyresources.ItemHelper;
 
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class ProcessRecipe
 {
@@ -133,14 +133,21 @@ public class ProcessRecipe
 			for (Object o2 : recipe.inputs)
 			{
 				if (o2 instanceof String)
-					continue;
-				ItemStack i2 = (ItemStack) o2;
-				if (ItemHelper.itemStacksEqualOD(i, i2) && items.get(i) >= i2.getCount()
-						&& (ratio == -1 || ((float) items.get(i) / (float) i2.getCount()) == ratio))
 				{
-					valid = true;
-					if (ratio == -1)
-						ratio = (float) items.get(i) / (float) i2.getCount();
+					int[] ids = OreDictionary.getOreIDs((ItemStack) i);
+					for (int id : ids)
+						if (id == OreDictionary.getOreID(o2.toString()))
+							valid = true;
+				} else if (o2 instanceof ItemStack)
+				{
+					ItemStack i2 = (ItemStack) o2;
+					if (ItemHelper.itemStacksEqualOD(i, i2) && items.get(i) >= i2.getCount()
+							&& (ratio == -1 || ((float) items.get(i) / (float) i2.getCount()) == ratio))
+					{
+						valid = true;
+						if (ratio == -1)
+							ratio = (float) items.get(i) / (float) i2.getCount();
+					}
 				}
 			}
 			if (!valid)
@@ -162,9 +169,12 @@ public class ProcessRecipe
 			boolean valid = false;
 			for (Object i2 : recipe.inputs)
 			{
-				if (i instanceof String && i2 instanceof String)
+				if (i instanceof ItemStack && i2 instanceof String)
 				{
-					valid = i.toString().equals(i2.toString());
+					int[] ids = OreDictionary.getOreIDs((ItemStack) i);
+					for (int id : ids)
+						if (id == OreDictionary.getOreID(i2.toString()))
+							valid = true;
 				} else if (i instanceof ItemStack && i2 instanceof ItemStack)
 					if (ItemHelper.itemStacksEqualOD((ItemStack) i, (ItemStack) i2)
 							&& (forceEqual ? ((ItemStack) i).getCount() == ((ItemStack) i2).getCount()

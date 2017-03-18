@@ -78,7 +78,7 @@ public class TileAqueousConcentrator extends TileGenericPower implements ITickab
 
 	private void updateDeconcentrate()
 	{
-		ProcessRecipe recipe = ProcessRecipeManager.waterExtractorExtractRecipes
+		ProcessRecipe recipe = this.getInventory().getStackInSlot(0).isEmpty() ? null : ProcessRecipeManager.waterExtractorExtractRecipes
 				.getRecipe(this.getInventory().getStackInSlot(0), 0, false, false);
 		if (curProgress < 100 && getEnergyStored() >= powerUsage && recipe != null
 				&& tank.getFluidAmount() + recipe.getFluidOutputs().get(0).amount <= tank.getCapacity()

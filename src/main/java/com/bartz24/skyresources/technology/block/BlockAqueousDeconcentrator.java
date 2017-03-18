@@ -196,7 +196,7 @@ public class BlockAqueousDeconcentrator extends BlockContainer
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state)
 	{
-		TileRockCleaner te = (TileRockCleaner) world.getTileEntity(pos);
+		TileAqueousConcentrator te = (TileAqueousConcentrator) world.getTileEntity(pos);
 		te.dropInventory();
 
 		super.breakBlock(world, pos, state);

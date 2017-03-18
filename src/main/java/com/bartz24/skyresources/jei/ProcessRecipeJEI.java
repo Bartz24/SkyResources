@@ -1,6 +1,7 @@
 package com.bartz24.skyresources.jei;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.bartz24.skyresources.recipe.ProcessRecipe;
@@ -38,15 +39,15 @@ public class ProcessRecipeJEI extends BlankRecipeWrapper
 	@Override
 	public void getIngredients(IIngredients ingredients)
 	{
-		List<ItemStack> input = new ArrayList<>();
+		List<List<ItemStack>> input = new ArrayList<>();
 		for (Object o : rec.getInputs())
 		{
 			if (o instanceof String)
-				input.add(OreDictionary.getOres(o.toString()).get(0));
+				input.add(OreDictionary.getOres(o.toString()));
 			else if (o instanceof ItemStack)
-				input.add((ItemStack) o);
+				input.add(Collections.singletonList((ItemStack) o));
 		}
-		ingredients.setInputs(ItemStack.class, input);
+		ingredients.setInputLists(ItemStack.class, input);
 		ingredients.setOutputs(ItemStack.class, rec.getOutputs());
 		ingredients.setInputs(FluidStack.class, rec.getFluidInputs());
 		ingredients.setOutputs(FluidStack.class, rec.getFluidOutputs());
