@@ -98,6 +98,11 @@ tile.skyresources.titaniumCrystalFluidBlock.name=Titanium Crystal Liquid
 tile.skyresources.tungstenCrystalFluidBlock.name=Tungsten Crystal Liquid
 tile.skyresources.chromeCrystalFluidBlock.name=Chrome Crystal Liquid
 tile.skyresources.iridiumCrystalFluidBlock.name=Iridium Crystal Liquid
+tile.skyresources.quartzBlackCrystalFluidBlock.name=Black Quartz Crystal Liquid
+tile.skyresources.thoriumCrystalFluidBlock.name=Thorium Crystal Liquid
+tile.skyresources.boronCrystalFluidBlock.name=Boron Crystal Liquid
+tile.skyresources.magnesiumCrystalFluidBlock.name=Magnesium Crystal Liquid
+tile.skyresources.lithiumCrystalFluidBlock.name=Lithium Crystal Liquid
 
 tile.skyresources.quartzMoltenCrystalFluidBlock.name=Molten Quartz Crystal Liquid
 tile.skyresources.cobaltMoltenCrystalFluidBlock.name=Molten Cobalt Crystal Liquid
@@ -160,6 +165,11 @@ item.skyresources.metalCrystal.tungsten.name=Tungsten Crystal Shard
 item.skyresources.metalCrystal.titanium.name=Titanium Crystal Shard
 item.skyresources.metalCrystal.chrome.name=Chrome Crystal Shard
 item.skyresources.metalCrystal.iridium.name=Iridium Crystal Shard
+item.skyresources.metalCrystal.quartzBlack.name=Black Quartz Crystal Shard
+item.skyresources.metalCrystal.thorium.name=Thorium Crystal Shard
+item.skyresources.metalCrystal.magnesium.name=Magnesium Crystal Shard
+item.skyresources.metalCrystal.lithium.name=Lithium Crystal Shard
+item.skyresources.metalCrystal.boron.name=Boron Crystal Shard
 
 item.skyresources.dirtyGem.emerald.name=Dirty Emerald
 item.skyresources.dirtyGem.diamond.name=Dirty Diamond
@@ -225,6 +235,11 @@ fluid.tungstencrystalfluid=Tungsten Crystal Fluid
 fluid.titaniumcrystalfluid=Titanium Crystal Fluid
 fluid.chromecrystalfluid=Chrome Crystal Fluid
 fluid.iridiumcrystalfluid=Iridium Crystal Fluid
+fluid.quartzBlackcrystalfluid=Black Quartz Crystal Fluid
+fluid.thoriumcrystalfluid=Thorium Crystal Fluid
+fluid.lithiumcrystalfluid=Lithium Crystal Fluid
+fluid.boroncrystalfluid=Boron Crystal Fluid
+fluid.magnesiumcrystalfluid=Magnesium Crystal Fluid
 
 fluid.quartzmoltencrystalfluid=Molten Quartz Crystal Fluid
 fluid.cobaltmoltencrystalfluid=Molten Cobalt Crystal Fluid
@@ -280,7 +295,7 @@ guide.skyresources.stage2.rockGrinder.title=Rock Grinder
 guide.skyresources.stage2.rockGrinder.text=The rock grinder allows for the player to break cobblestone down into gravel, and gravel into sand, and more. \n There are 3 by default, which are the <recipe,,skyresources:stonegrinder:0> , <recipe,,skyresources:irongrinder:0> , and <recipe,,skyresources:diamondgrinder:0> . \n Rock grinding can be automated with the <link,Rock_Crusher,skyresources:rockcrusher:0,rockCrusher> .
 
 guide.skyresources.stage2.metalCreation.title=Metal Creation
-guide.skyresources.stage2.metalCreation.text=To get started in metal creation you're going to need to get <recipe,,skyresources:metalcrystal:0> , the first available shard, through <link,combustion,skyresources:combustionheater:0,combustionHeater> . \n The rest of the process is done using the following blocks : \n <link,Crucible,skyresources:crucible:0,crucible> \n <link,Fluid_Dropper,skyresources:fluiddropper:0,fluidDropper> \n <link,Stone_Alchemical_Condenser,skyresources:alchemicalcondenser:0,alchemicalCondenser> \n <link,Stone_Crystallizer,skyresources:crystallizer:0,crystallizer> . \n \n For an early game setup, a <link,Crucible,skyresources:crucible:0,crucible> , 2 <link,Fluid_Droppers,skyresources:fluiddropper:0,fluidDropper> , and either a <link,Crystallizer,skyresources:crystallizer:0,crystallizer> or <link,Alchemical_Condenser,skyresources:alchemicalcondenser:0,alchemicalCondenser> . \n <image,View_Condenser_Setup,minecraft:iron_ingot:0,skyresources:textures/guide/earlycondensersetup.png> \n <image,View_Crystallizer_Setup,skyresources:metalcrystal:0,skyresources:textures/guide/earlycrystallizersetup.png>
+guide.skyresources.stage2.metalCreation.text=To get started in metal creation you're going to need to get <recipe,,skyresources:metalcrystal:0> , the first available shard, through <link,combustion,skyresources:combustionheater:0,combustionHeater> . \n The rest of the process is done using the following blocks : \n <link,Crucible,skyresources:crucible:0,crucible> \n <link,Fluid_Dropper,skyresources:fluiddropper:0,fluidDropper> \n <link,Stone_Alchemical_Condenser,skyresources:alchemicalcondenser:0,alchemicalCondenser> \n <link,Stone_Crystallizer,skyresources:crystallizer:0,crystallizer> . \n \n For an early game setup, a <link,Crucible,skyresources:crucible:0,crucible> , 2 <link,Fluid_Droppers,skyresources:fluiddropper:0,fluidDropper> , and either a <link,Crystallizer,skyresources:crystallizer:0,crystallizer> or <link,Alchemical_Condenser,skyresources:alchemicalcondenser:0,alchemicalCondenser> . \n <image,View_Condenser_Setup,minecraft:iron_ingot:0,skyresources:textures/guide/earlycondensersetup.png> \n <image,View_Crystallizer_Setup,skyresources:metalcrystal:0,skyresources:textures/guide/earlycrystallizersetup.png> \n \n NOTE: Some shards use a different process instead of using the <link,Alchemical_Condenser,skyresources:alchemicalcondenser:0,alchemicalCondenser> . Check the uses of the shards.
 
 guide.skyresources.stage2.crucible.title=Crucible
 guide.skyresources.stage2.crucible.text=The <recipe,,skyresources:crucible:0> is used for creating crystal fluid from crystal shards. \n This requires a <link,heat_source,minecraft:torch:0,heatSources> underneath to function. \n Drop the item in and it will turn into the fluid. \n Crystal fluid can be condensed using the <link,Alchemical_Condenser,skyresources:AlchemicalCondenser:0,alchemicalCondenser> , or crystallized into more crystal shards using a <link,Crystallizer,skyresources:crystallizer:0,crystallizer> . \n It can be automated with the <link,Crucible_Inserter,skyresources:crucibleinserter:0,crucibleInserter> .
@@ -292,7 +307,7 @@ guide.skyresources.stage2.alchemicalCondenser.title=Alchemical Condenser
 guide.skyresources.stage2.alchemicalCondenser.text=There are 4 types by default, the <recipe,,skyresources:alchemicalcondenser:0> , <recipe,,skyresources:alchemicalcondenser:1> ,  <recipe,,skyresources:alchemicalcondenser:2> and <recipe,,skyresources:alchemicalcondenser:3> . \n Condenses crystal fluids above the block and requires a <link,heat_source,minecraft:torch:0,heatSources> under it. \n \n <recipe,,skyresources:alchemicalcondenser:0> \n CANNOT condense molten crystal fluid. \n Runs at 1x speed. \n \n <recipe,,skyresources:alchemicalcondenser:1> \n CAN condense molten crystal fluid. \n Runs at 2x speed. \n \n <recipe,,skyresources:alchemicalcondenser:2> \n CAN condense molten crystal fluid. \n Runs at 3x speed. \n \n <recipe,,skyresources:alchemicalcondenser:3> \n CAN condense molten crystal fluid. \n Runs at 4x speed.
 
 guide.skyresources.stage2.crystallizer.title=Crystallizer
-guide.skyresources.stage2.crystallizer.text=There are 4 types by default, the <recipe,,skyresources:crystallizer:0> , <recipe,,skyresources:crystallizer:1> ,  <recipe,,skyresources:crystallizer:2> and <recipe,,skyresources:crystallizer:3> . \n Crystallizes crystal fluids above the block and drops the shards under it either in the world, or a valid inventory. \n Crystal fluid may disappear depending on the efficiency of the crystallizer and the rarity of the fluid. \n \n <recipe,,skyresources:crystallizer:0> \n CANNOT crystallize molten crystal fluid. \n Runs at 0.5x speed. \n Efficiency value of 1. \n \n <recipe,,skyresources:crystallizer:1> \n CAN crystallize molten crystal fluid. \n Runs at 1x speed. \n Efficiency value of 1.5. \n \n <recipe,,skyresources:crystallizer:2> \n CAN crystallize molten crystal fluid. \n Runs at 2.5x speed. \n Efficiency value of 2. \n \n <recipe,,skyresources:crystallizer:3> \n CAN crystallize molten crystal fluid. \n Runs at 4x speed. \n Efficiency value of 3.
+guide.skyresources.stage2.crystallizer.text=There are 4 types by default, the <recipe,,skyresources:crystallizer:0> , <recipe,,skyresources:crystallizer:1> ,  <recipe,,skyresources:crystallizer:2> and <recipe,,skyresources:crystallizer:3> . \n Crystallizes crystal fluids above the block and drops the shards under it either in the world, or a valid inventory. \n Crystal fluid may disappear depending on the efficiency of the crystallizer and the rarity of the fluid. \n NOTE: The lower the rarity of the metal and the higher tier of crystallizer, the more shards you will get, and eventually it will give infinite shards from one fluid source. \n \n <recipe,,skyresources:crystallizer:0> \n CANNOT crystallize molten crystal fluid. \n Runs at 0.5x speed. \n Efficiency value of 1. \n \n <recipe,,skyresources:crystallizer:1> \n CAN crystallize molten crystal fluid. \n Runs at 1x speed. \n Efficiency value of 1.5. \n \n <recipe,,skyresources:crystallizer:2> \n CAN crystallize molten crystal fluid. \n Runs at 2.5x speed. \n Efficiency value of 2. \n \n <recipe,,skyresources:crystallizer:3> \n CAN crystallize molten crystal fluid. \n Runs at 4x speed. \n Efficiency value of 3.
 
 guide.skyresources.stage2.crucibleInserter.title=Crucible Inserter
 guide.skyresources.stage2.crucibleInserter.text=The <recipe,,skyresources:crucibleinserter:0> is used for automatically inserting items into the <link,crucible,skyresources:crucible:0,crucible> . \n Items are "piped" in using hoppers, conduits, etc.
@@ -374,6 +389,9 @@ guide.skyresources.misc.tinkers.text=Sky Resources provides for ways to get Tink
 
 guide.skyresources.misc.techreborn.title=Tech Reborn Support
 guide.skyresources.misc.techreborn.text=Sky Resources provides for ways to get basic TechReborn items. \n \n <recipe,,techreborn:part:31> is obtainable as well as the <recipe,,techreborn:rubberSapling:0> .
+
+guide.skyresources.misc.actadd.title=Actually Additions Support
+guide.skyresources.misc.actadd.text=Sky Resources provides for ways to get basic Actually Additions items. \n \n <recipe,,actuallyadditions:item_misc:5> is obtainable. The <recipe,,actuallyadditions:item_rice_seed:0> , <recipe,,actuallyadditions:item_canola_seed:0> , <recipe,,actuallyadditions:item_coffee_seed:0> , <recipe,,actuallyadditions:item_flax_seed:0> are dropped from breaking tall grass.
 
 guide.skyresources.misc.ae2.title=Applied Energistics 2 Support
 guide.skyresources.misc.ae2.text=Sky Resources provides for ways to get basic AE2 items. \n \n <recipe,,appliedenergistics2:material:0> , <recipe,,appliedenergistics2:material:1> , <recipe,,appliedenergistics2:sky_stone_block> are obtainable as well as the 4 inscriber presses.

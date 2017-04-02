@@ -1,5 +1,8 @@
 package com.bartz24.skyresources.registry;
 
+import javax.annotation.Nonnull;
+
+import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.alchemy.block.CondenserBlock.CondenserVariants;
 import com.bartz24.skyresources.alchemy.block.CrystallizerBlock.CrystallizerVariants;
 import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
@@ -31,6 +34,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -42,30 +46,7 @@ public class ModRenderers
 
 		for (int i = 0; i < ModFluids.crystalFluidInfos().length; i++)
 		{
-			final ModelResourceLocation fluidModelLocation = new ModelResourceLocation(
-					ModBlocks.crystalFluidBlocks.get(i).getRegistryName(), "fluid");
-
-			ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.crystalFluidBlocks.get(i)),
-					fluidModelLocation);
-
-			ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(ModBlocks.crystalFluidBlocks.get(i)),
-					new ItemMeshDefinition()
-					{
-						@Override
-						public ModelResourceLocation getModelLocation(ItemStack stack)
-						{
-							return fluidModelLocation;
-						}
-					});
-			ModelLoader.setCustomStateMapper(ModBlocks.crystalFluidBlocks.get(i), new StateMapperBase()
-			{
-				@Override
-				protected ModelResourceLocation getModelResourceLocation(IBlockState state)
-				{
-					return fluidModelLocation;
-				}
-			});
-
+			mapFluidState(ModFluids.crystalFluids.get(i));
 		}
 
 		for (int i = 0; i < AlchemyItemComponent.getNames().size(); i++)
@@ -269,6 +250,37 @@ public class ModRenderers
 			String variantName = variantHeader + "=" + e.getName().toLowerCase();
 			ModelLoader.setCustomModelResourceLocation(item, e.ordinal(),
 					new ModelResourceLocation(b.getRegistryName(), variantName));
+		}
+	}
+	
+	public static void mapFluidState(Fluid fluid) {
+		Block block = fluid.getBlock();
+		Item item = Item.getItemFromBlock(block);
+		FluidStateMapper mapper = new FluidStateMapper(fluid);
+		if (item != null) {
+			ModelLoader.registerItemVariants(item);
+			ModelLoader.setCustomMeshDefinition(item, mapper);
+		}
+		ModelLoader.setCustomStateMapper(block, mapper);
+	}
+	
+	static class FluidStateMapper extends StateMapperBase implements ItemMeshDefinition {
+		public final ModelResourceLocation location;
+
+		public FluidStateMapper(Fluid fluid) {
+			this.location = new ModelResourceLocation(References.ModID + ":fluid_block", fluid.getName());
+		}
+
+		@Nonnull
+		@Override
+		protected ModelResourceLocation getModelResourceLocation(@Nonnull IBlockState state) {
+			return location;
+		}
+
+		@Nonnull
+		@Override
+		public ModelResourceLocation getModelLocation(@Nonnull ItemStack stack) {
+			return location;
 		}
 	}
 }

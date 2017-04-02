@@ -1,0 +1,80 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "forge:fluid"
+    },
+    "variants": {
+        "ironcrystalfluid": [{
+            "custom": { "fluid": "ironcrystalfluid" }
+        }],
+        "goldcrystalfluid": [{
+            "custom": { "fluid": "goldcrystalfluid" }
+        }],
+        "coppercrystalfluid": [{
+            "custom": { "fluid": "coppercrystalfluid" }
+        }],
+        "tincrystalfluid": [{
+            "custom": { "fluid": "tincrystalfluid" }
+        }],
+        "silvercrystalfluid": [{
+            "custom": { "fluid": "silvercrystalfluid" }
+        }],
+        "zinccrystalfluid": [{
+            "custom": { "fluid": "zinccrystalfluid" }
+        }],
+        "nickelcrystalfluid": [{
+            "custom": { "fluid": "nickelcrystalfluid" }
+        }],
+        "platinumcrystalfluid": [{
+            "custom": { "fluid": "platinumcrystalfluid" }
+        }],
+        "aluminumcrystalfluid": [{
+            "custom": { "fluid": "aluminumcrystalfluid" }
+        }],
+        "leadcrystalfluid": [{
+            "custom": { "fluid": "leadcrystalfluid" }
+        }],
+        "mercurycrystalfluid": [{
+            "custom": { "fluid": "mercurycrystalfluid" }
+        }],
+        "quartzmoltencrystalfluid": [{
+            "custom": { "fluid": "quartzmoltencrystalfluid" }
+        }],
+        "cobaltmoltencrystalfluid": [{
+            "custom": { "fluid": "cobaltmoltencrystalfluid" }
+        }],
+        "arditemoltencrystalfluid": [{
+            "custom": { "fluid": "arditemoltencrystalfluid" }
+        }],
+        "omsiumcrystalfluid": [{
+            "custom": { "fluid": "osmiumcrystalfluid" }
+        }],
+        "lapiscrystalfluid": [{
+            "custom": { "fluid": "lapiscrystalfluid" }
+        }],
+        "draconiumcrystalfluid": [{
+            "custom": { "fluid": "draconiumcrystalfluid" }
+        }],
+        "draconiummoltencrystalfluid": [{
+            "custom": { "fluid": draconiummoltencrystalfluid" }
+        }],
+        "certuscrystalfluid": [{
+            "custom": { "fluid": "certuscrystalfluid" }
+        }],
+        "titaniumcrystalfluid": [{
+            "custom": { "fluid": "titaniumcrystalfluid" }
+        }],
+        "tungstencrystalfluid": [{
+            "custom": { "fluid": "tungstencrystalfluid" }
+        }],
+        "chromecrystalfluid": [{
+            "custom": { "fluid": "chromecrystalfluid" }
+        }],
+        "iridiumcrystalfluid": [{
+            "custom": { "fluid": "iridiumcrystalfluid" }
+        }],
+        "quartzblackcrystalfluid": [{
+            "custom": { "fluid": "quartzblackcrystalfluid" }
+        }]
+    }
+}

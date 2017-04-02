@@ -2,6 +2,7 @@ package com.bartz24.skyresources.plugin;
 
 import java.util.ArrayList;
 
+import com.bartz24.skyresources.plugin.actuallyadditions.ActAddPlugin;
 import com.bartz24.skyresources.plugin.armorplus.ArmorPlusPlugin;
 import com.bartz24.skyresources.plugin.ctweaker.CraftTweakerPlugin;
 import com.bartz24.skyresources.plugin.environmentaltech.EnvTechPlugin;
@@ -30,6 +31,8 @@ public class ModPlugins
 			plugins.add(new IntegratedDynamicsPlugin());
 		if (Loader.isModLoaded("bigreactors"))
 			plugins.add(new ExtremeReactorsPlugin());
+		if (Loader.isModLoaded("actuallyadditions"))
+			plugins.add(new ActAddPlugin());
 		if (Loader.isModLoaded("crafttweaker"))
 			plugins.add(new CraftTweakerPlugin());
 

@@ -128,6 +128,8 @@ public class ProcessRecipe
 		int itemsChecked = 0;
 		for (ItemStack i : items.keySet())
 		{
+			if (i.isEmpty())
+				continue;
 			boolean valid = false;
 			float ratio = -1;
 			for (Object o2 : recipe.inputs)
@@ -166,6 +168,8 @@ public class ProcessRecipe
 		int itemsChecked = 0;
 		for (Object i : inputs)
 		{
+			if (i instanceof ItemStack && ((ItemStack) i).isEmpty())
+				continue;
 			boolean valid = false;
 			for (Object i2 : recipe.inputs)
 			{
