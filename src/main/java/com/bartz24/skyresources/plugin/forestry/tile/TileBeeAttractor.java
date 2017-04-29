@@ -65,7 +65,6 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 			}
 		}
 		markDirty();
-		world.notifyBlockUpdate(getPos(), world.getBlockState(getPos()), world.getBlockState(getPos()), 3);
 	}
 
 	boolean isInvFull()
