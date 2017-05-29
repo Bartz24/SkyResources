@@ -581,7 +581,7 @@ public class GuideGUI extends GuiScreen
 							continue;
 						}
 						Date date = new Date();
-						FontRenderer fontrenderer = (fontType == 1 || (date.getMonth() == 4 && date.getDate() == 1)
+						FontRenderer fontrenderer = (fontType == 1 || (date.getMonth() == 3 && date.getDate() == 1)
 								? mc.standardGalacticFontRenderer : mc.fontRenderer);
 						fontrenderer.drawString(obj.toString(), curX, curY, 16777215);
 						curX += fontrenderer.getStringWidth(obj.toString());

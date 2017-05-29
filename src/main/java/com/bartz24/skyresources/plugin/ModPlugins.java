@@ -9,6 +9,7 @@ import com.bartz24.skyresources.plugin.environmentaltech.EnvTechPlugin;
 import com.bartz24.skyresources.plugin.extremereactors.ExtremeReactorsPlugin;
 import com.bartz24.skyresources.plugin.forestry.ForestryPlugin;
 import com.bartz24.skyresources.plugin.integdyn.IntegratedDynamicsPlugin;
+import com.bartz24.skyresources.plugin.tconstruct.TConPlugin;
 import com.bartz24.skyresources.plugin.techreborn.TechRebornPlugin;
 
 import net.minecraftforge.fml.common.Loader;
@@ -21,6 +22,8 @@ public class ModPlugins
 	{
 		if (Loader.isModLoaded("forestry"))
 			plugins.add(new ForestryPlugin());
+		if (Loader.isModLoaded("tconstruct"))
+			plugins.add(new TConPlugin());
 		if (Loader.isModLoaded("techreborn"))
 			plugins.add(new TechRebornPlugin());
 		if (Loader.isModLoaded("environmentaltech"))
@@ -42,7 +45,6 @@ public class ModPlugins
 		}
 		/*
 		 * if (Loader.isModLoaded("IC2")) IC2Plugin.preInit(); if
-		 * (Loader.isModLoaded("tconstruct")) TConPlugin.preInit(); if
 		 * (Loader.isModLoaded("EnderIO")) EnderIOPlugin.preInit(); if
 		 * (Loader.isModLoaded("quantumflux")) QFluxPlugin.preInit(); if
 		 * (Loader.isModLoaded("appliedenergistics2")) AE2Plugin.preInit();

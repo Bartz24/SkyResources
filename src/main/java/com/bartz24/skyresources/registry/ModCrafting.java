@@ -173,7 +173,7 @@ public class ModCrafting
 				new ItemStack(ModItems.heavySnowball), new ItemStack(ModItems.heavySnowball),
 				new ItemStack(ModItems.heavySnowball), new ItemStack(Items.GUNPOWDER)));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.crucibleInserter),
-				new Object[] { "XXX", "XYX", " X ", 'X', "ingotIron", 'Y', new ItemStack(Blocks.DROPPER) }));
+				new Object[] { "XYX", "X X", "X X", 'X', "ingotIron", 'Y', new ItemStack(Blocks.DROPPER) }));
 
 		String steelIngot = OreDictionary.getOres("ingotSteel").size() > 0 ? "ingotSteel"
 				: OreDictionary.getOres("ingotElectricalSteel").size() > 0 ? "ingotElectricalSteel" : "ingotIron";
@@ -398,26 +398,24 @@ public class ModCrafting
 				new ArrayList<Object>(Arrays.asList(new ItemStack(ModItems.metalCrystal, 1, 11),
 						new ItemStack(Items.COAL, 5), new ItemStack(Items.QUARTZ, 4), new ItemStack(Blocks.STONE, 2))));
 
-		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 23), 1200,
-				new ArrayList<Object>(
-						Arrays.asList(new ItemStack(ModItems.metalCrystal, 1, 1), new ItemStack(Items.COAL, 3),
-								new ItemStack(Items.IRON_INGOT, 4), new ItemStack(Blocks.OBSIDIAN, 1))));
+		ProcessRecipeManager.combustionRecipes
+				.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 23), 1000,
+						new ArrayList<Object>(Arrays.asList(new ItemStack(ModItems.metalCrystal, 1, 1),
+								new ItemStack(Blocks.STONE, 4), new ItemStack(Items.IRON_INGOT, 6),
+								new ItemStack(Blocks.DIRT, 3))));
 
-		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 24), 1000,
-				new ArrayList<Object>(
-						Arrays.asList(new ItemStack(ModItems.metalCrystal, 1, 1), new ItemStack(Blocks.STONE, 4),
-								new ItemStack(Items.IRON_INGOT, 6), new ItemStack(Blocks.DIRT, 3))));
+		ProcessRecipeManager.combustionRecipes
+				.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 24), 1300,
+						new ArrayList<Object>(Arrays.asList(new ItemStack(ModItems.metalCrystal, 1, 1),
+								new ItemStack(Items.GUNPOWDER, 3), new ItemStack(Items.IRON_INGOT, 5),
+								new ItemStack(Items.GOLD_INGOT, 3))));
 
-		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 25), 1300,
-				new ArrayList<Object>(
-						Arrays.asList(new ItemStack(ModItems.metalCrystal, 1, 1), new ItemStack(Items.GUNPOWDER, 3),
-								new ItemStack(Items.IRON_INGOT, 5), new ItemStack(Items.GOLD_INGOT, 3))));
+		ProcessRecipeManager.combustionRecipes
+				.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 25), 700,
+						new ArrayList<Object>(Arrays.asList(new ItemStack(ModItems.metalCrystal, 1, 0),
+								new ItemStack(Items.REDSTONE, 4), new ItemStack(Items.IRON_INGOT, 3),
+								new ItemStack(Items.DYE, 3, 9))));
 
-		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 26), 700,
-				new ArrayList<Object>(
-						Arrays.asList(new ItemStack(ModItems.metalCrystal, 1, 0), new ItemStack(Items.REDSTONE, 4),
-								new ItemStack(Items.IRON_INGOT, 3), new ItemStack(Items.DYE, 3, 9))));
-		
 		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModBlocks.dryCactus), 400,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.BONE_BLOCK), new ItemStack(Items.DYE, 8, 7),
 						new ItemStack(Blocks.LEAVES, 8, 1))));
@@ -610,6 +608,15 @@ public class ModCrafting
 			}
 		}
 
+		if (OreDictionary.getOres("dustThorium").size() > 0)
+		{
+			ItemStack s = OreDictionary.getOres("dustThorium").get(0);
+			ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(s.getItem(), 5, s.getItemDamage()), 1500,
+					new ArrayList<Object>(Arrays.asList(new ItemStack(Items.REDSTONE, 2),
+							new ItemStack(Items.SPIDER_EYE, 1), new ItemStack(Items.BLAZE_POWDER, 3),
+							new ItemStack(ModItems.techComponent, 5, 1))));
+		}
+
 		for (FluidRegisterInfo i : ModFluids.crystalFluidInfos())
 		{
 			String dust = "dust" + RandomHelper.capatilizeString(i.name);
@@ -619,11 +626,11 @@ public class ModCrafting
 				dustStack.setCount(1);
 				if (i.type == CrystalFluidType.NORMAL)
 				{
-					ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dustStack, 1F / ((float) i.rarity * 2F),
+					ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dustStack, 1F / ((float) i.rarity * 3.2F),
 							new ItemStack(ModItems.techComponent, 1, 0));
 				} else if (i.type == CrystalFluidType.MOLTEN)
 				{
-					ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dustStack, 1F / ((float) i.rarity * 3F),
+					ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dustStack, 1F / ((float) i.rarity * 4.4F),
 							new ItemStack(ModItems.techComponent, 1, 3));
 				}
 			}

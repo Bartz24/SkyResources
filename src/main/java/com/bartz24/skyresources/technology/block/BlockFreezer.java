@@ -65,8 +65,13 @@ public class BlockFreezer extends BlockContainer
 	@Override
 	public boolean isFullCube(IBlockState state)
 	{
-		return false;
+		return true;
 	}
+	
+	public boolean isFullyOpaque(IBlockState state)
+    {
+        return true;
+    }
 
 	@Override
 	public int damageDropped(IBlockState blockstate)

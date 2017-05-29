@@ -48,7 +48,6 @@ public class ModFluids
 		ModFluids.addCrystalFluid("chrome", 0xFFD6D6D6, 9, CrystalFluidType.NORMAL);
 		ModFluids.addCrystalFluid("iridium", 0xFFE3E3E3, 12, CrystalFluidType.NORMAL);
 		ModFluids.addCrystalFluid("quartzBlack", 0xFF171717, 5, CrystalFluidType.NORMAL);
-		ModFluids.addCrystalFluid("thorium", 0xFF333333, 6, CrystalFluidType.NORMAL);
 		ModFluids.addCrystalFluid("boron", 0xFF9E9E9E, 6, CrystalFluidType.NORMAL);
 		ModFluids.addCrystalFluid("lithium", 0xFFF2F2F2, 8, CrystalFluidType.NORMAL);
 		ModFluids.addCrystalFluid("magnesium", 0xFFFFD4D4, 6, CrystalFluidType.NORMAL);

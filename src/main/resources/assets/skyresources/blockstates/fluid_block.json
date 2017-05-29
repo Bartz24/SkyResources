@@ -75,6 +75,15 @@
         }],
         "quartzblackcrystalfluid": [{
             "custom": { "fluid": "quartzblackcrystalfluid" }
+        }],
+        "boroncrystalfluid": [{
+            "custom": { "fluid": "boroncrystalfluid" }
+        }],
+        "lithiumcrystalfluid": [{
+            "custom": { "fluid": "lithiumcrystalfluid" }
+        }],
+        "magnesiumcrystalfluid": [{
+            "custom": { "fluid": "magnesiumcrystalfluid" }
         }]
     }
 }

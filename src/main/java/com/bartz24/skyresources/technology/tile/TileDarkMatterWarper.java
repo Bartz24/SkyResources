@@ -15,16 +15,13 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
-import net.minecraft.inventory.ItemStackHelper;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
 
 public class TileDarkMatterWarper extends TileItemInventory implements ITickable
 {
@@ -64,11 +61,18 @@ public class TileDarkMatterWarper extends TileItemInventory implements ITickable
 				{
 					if (!entity.isDead && entity instanceof EntitySkeleton)
 					{
+						EntitySkeleton skely = (EntitySkeleton) entity;
+						skely.setDead();
 						EntityWitherSkeleton skeleton = new EntityWitherSkeleton(world);
 						skeleton.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, entity.rotationYaw,
 								entity.rotationPitch);
 						skeleton.renderYawOffset = entity.renderYawOffset;
 						skeleton.setHealth(skeleton.getMaxHealth());
+						skeleton.setHeldItem(EnumHand.MAIN_HAND, skely.getHeldItemMainhand());
+						skeleton.setHeldItem(EnumHand.OFF_HAND, skely.getHeldItemOffhand());
+						for (int i = 0; i < EntityEquipmentSlot.values().length; i++)
+							skeleton.setItemStackToSlot(EntityEquipmentSlot.values()[i],
+									skely.getItemStackFromSlot(EntityEquipmentSlot.values()[i]));
 						world.spawnEntity(skeleton);
 					} else if (!entity.isDead && entity instanceof EntitySpider
 							&& !(entity instanceof EntityCaveSpider))
