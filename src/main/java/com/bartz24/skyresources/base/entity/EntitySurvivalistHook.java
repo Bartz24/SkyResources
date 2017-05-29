@@ -395,12 +395,12 @@ public class EntitySurvivalistHook extends EntityFishHook
 		int i = 1;
 		BlockPos blockpos = p_190621_1_.up();
 
-		if (this.rand.nextFloat() < 0.25F && this.world.isRainingAt(blockpos))
+		if (this.rand.nextFloat() < 0.75F || this.world.isRainingAt(blockpos))
 		{
 			++i;
 		}
 
-		if (this.rand.nextFloat() < 0.5F && !this.world.canSeeSky(blockpos))
+		if (this.rand.nextFloat() < 0.25F && !this.world.canSeeSky(blockpos))
 		{
 			--i;
 		}
@@ -496,11 +496,11 @@ public class EntitySurvivalistHook extends EntityFishHook
 			if (this.ticksCaughtDelay <= 0)
 			{
 				this.fishApproachAngle = MathHelper.nextFloat(this.rand, 0.0F, 360.0F);
-				this.ticksCatchableDelay = MathHelper.getInt(this.rand, 20, 80);
+				this.ticksCatchableDelay = MathHelper.getInt(this.rand, 10, 50);
 			}
 		} else
 		{
-			this.ticksCaughtDelay = MathHelper.getInt(this.rand, 100, 600);
+			this.ticksCaughtDelay = MathHelper.getInt(this.rand, 20, 120);
 			this.ticksCaughtDelay -= this.field_191519_ax * 20 * 5;
 		}
 	}
