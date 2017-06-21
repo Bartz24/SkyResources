@@ -22,7 +22,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
@@ -55,11 +54,14 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 				energy -= powerUsage;
 				if (ticks == 0)
 				{
-					ItemStack bee = getRandomBee();
+					for (int i = 0; i < world.rand.nextInt(3) + 1; i++)
+						if (!isInvFull())
+						{
+							ItemStack bee = getRandomBee();
 
-					RandomHelper.fillInventory(this.getInventory(), bee);
-
-					ticks = 200;
+							RandomHelper.fillInternalInventory(this.getInventory(), bee);
+						}
+					ticks = 150;
 				} else
 					ticks--;
 			}
@@ -84,18 +86,20 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 		if (world.rand.nextInt(5) == 0)
 		{
 			List<ItemStack> drops = new ArrayList();
+			boolean smallChance = world.rand.nextFloat() <= 0.25f;
 			for (Hive h : PluginApiculture.getHiveRegistry().getHives())
 			{
 				Biome biome = world.getBiomeForCoordsBody(getPos());
-				if (h.isGoodBiome(biome) && h.isGoodHumidity(EnumHumidity.getFromValue(biome.getRainfall()))
-						&& h.isGoodTemperature(EnumTemperature.getFromValue(biome.getTemperature())))
+				if (smallChance
+						|| (h.isGoodBiome(biome) && h.isGoodHumidity(EnumHumidity.getFromValue(biome.getRainfall()))
+								&& h.isGoodTemperature(EnumTemperature.getFromValue(biome.getTemperature()))))
 				{
 					List<IHiveDrop> hiveDrops = h.getDrops();
 					drops.addAll(getBeeDrops(hiveDrops));
 				}
 			}
 
-			boolean princess = (world.rand.nextInt(8) == 0);
+			boolean princess = (world.rand.nextInt(5) == 0);
 
 			ItemStack beeStack = ItemStack.EMPTY;
 			int tries = 0;
@@ -154,6 +158,7 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 		} while (true);
 		return drops;
 	}
+
 	@Override
 	public IFluidTankProperties[] getTankProperties()
 	{
@@ -163,7 +168,7 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 	@Override
 	public int fill(FluidStack resource, boolean doFill)
 	{
-		if (resource != null && resource.getFluid() == FluidRegistry.WATER)
+		if (resource != null && resource.getFluid().getName().equals("seed.oil"))
 		{
 			int filled = tank.fill(resource, doFill);
 

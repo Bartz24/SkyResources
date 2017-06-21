@@ -2,6 +2,8 @@ package com.bartz24.skyresources;
 
 import org.lwjgl.opengl.GL11;
 
+import com.bartz24.skyresources.base.gui.ItemHandlerSpecial;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -18,7 +20,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 
 public class RandomHelper
 {
@@ -340,6 +341,30 @@ public class RandomHelper
 				if (inside.isEmpty())
 				{
 					inv.insertItem(i, stack, false);
+					return ItemStack.EMPTY;
+				} else if (RandomHelper.canStacksMerge(inside, stack))
+				{
+					stack.shrink(RandomHelper.mergeStacks(stack, inside,
+							true));
+				}
+			}
+		}
+		return stack;
+
+	}
+	
+	public static ItemStack fillInternalInventory(ItemHandlerSpecial inv, ItemStack stack)
+	{
+		if (inv != null)
+		{
+			for (int i = 0; i < inv.getSlots(); i++)
+			{
+				if (stack.isEmpty())
+					return ItemStack.EMPTY;
+				ItemStack inside = inv.getStackInSlot(i);
+				if (inside.isEmpty())
+				{
+					inv.insertInternalItem(i, stack, false);
 					return ItemStack.EMPTY;
 				} else if (RandomHelper.canStacksMerge(inside, stack))
 				{

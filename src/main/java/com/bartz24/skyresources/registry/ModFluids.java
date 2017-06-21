@@ -51,6 +51,7 @@ public class ModFluids
 		ModFluids.addCrystalFluid("boron", 0xFF9E9E9E, 6, CrystalFluidType.NORMAL);
 		ModFluids.addCrystalFluid("lithium", 0xFFF2F2F2, 8, CrystalFluidType.NORMAL);
 		ModFluids.addCrystalFluid("magnesium", 0xFFFFD4D4, 6, CrystalFluidType.NORMAL);
+		ModFluids.addCrystalFluid("mithril", 0xFF45BCCC, 10, CrystalFluidType.NORMAL);
 
 		registerCrystalFluid();
 	}

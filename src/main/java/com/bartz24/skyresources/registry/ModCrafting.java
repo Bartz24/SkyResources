@@ -416,6 +416,12 @@ public class ModCrafting
 								new ItemStack(Items.REDSTONE, 4), new ItemStack(Items.IRON_INGOT, 3),
 								new ItemStack(Items.DYE, 3, 9))));
 
+		ProcessRecipeManager.combustionRecipes
+				.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 26), 1800,
+						new ArrayList<Object>(Arrays.asList(new ItemStack(ModItems.metalCrystal, 1, 1),
+								new ItemStack(Items.GOLD_INGOT, 6), new ItemStack(Items.DYE, 6, 4),
+								new ItemStack(ModItems.baseComponent, 1, 5))));
+
 		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModBlocks.dryCactus), 400,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.BONE_BLOCK), new ItemStack(Items.DYE, 8, 7),
 						new ItemStack(Blocks.LEAVES, 8, 1))));
