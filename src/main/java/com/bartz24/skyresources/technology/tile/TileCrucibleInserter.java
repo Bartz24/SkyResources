@@ -23,12 +23,14 @@ public class TileCrucibleInserter extends TileItemInventory
 			}
 
 			public boolean isItemValid(int slot, ItemStack stack)
-			{				
+			{
+				if (!(getWorld().getTileEntity(pos.down()) instanceof CrucibleTile))
+					return false;
 				ProcessRecipe recipe = ProcessRecipeManager.crucibleRecipes.getRecipe(stack, 0, false, false);
 
 				int amount = recipe == null ? 0 : recipe.getFluidOutputs().get(0).amount;
 
-				CrucibleTile tile = (CrucibleTile) TileCrucibleInserter.this.world.getTileEntity(pos.down());
+				CrucibleTile tile = (CrucibleTile) getWorld().getTileEntity(pos.down());
 
 				if (tile == null)
 					return false;
@@ -49,17 +51,19 @@ public class TileCrucibleInserter extends TileItemInventory
 				}
 				return false;
 			}
-			
+
 			@Override
-			public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
-				if(!isItemValid(slot, stack)) {
+			public ItemStack insertItem(int slot, ItemStack stack, boolean simulate)
+			{
+				if (!isItemValid(slot, stack))
+				{
 					return stack;
 				}
 				ProcessRecipe recipe = ProcessRecipeManager.crucibleRecipes.getRecipe(stack, 0, false, false);
 
 				int amount = recipe == null ? 0 : recipe.getFluidOutputs().get(0).amount;
 
-				CrucibleTile tile = (CrucibleTile) TileCrucibleInserter.this.world.getTileEntity(pos.down());
+				CrucibleTile tile = (CrucibleTile) getWorld().getTileEntity(pos.down());
 
 				if (tile == null)
 					return stack;

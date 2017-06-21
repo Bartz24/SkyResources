@@ -36,6 +36,8 @@ public class TileRockCrusher extends TileGenericPower implements ITickable
 			{
 				if (slot == 0)
 					return stack.getItem() instanceof ItemRockGrinder;
+				else if (slot != 0)
+					return !(stack.getItem() instanceof ItemRockGrinder);
 				return super.isItemValid(slot, stack);
 			}
 		});

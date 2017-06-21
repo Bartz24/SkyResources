@@ -75,8 +75,7 @@ public class CondenserTile extends TileEntity implements ITickable
 				* ConfigOptions.condenserProcessTimeBase
 				* (ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks
 						.indexOf(block)].type == CrystalFluidType.NORMAL ? 1 : 20)
-				* getCondenserSpeedFromTier(
-						ModFluids.crystalFluidInfos()[ModBlocks.crystalFluidBlocks.indexOf(block)].type));
+				* getCondenserSpeedFromTier());
 	}
 
 	@Override
@@ -98,12 +97,12 @@ public class CondenserTile extends TileEntity implements ITickable
 
 	public Block getBlockAbove()
 	{
-		return this.world.getBlockState(pos.add(0, 1, 0)).getBlock();
+		return getWorld().getBlockState(pos.add(0, 1, 0)).getBlock();
 	}
 
 	public boolean tierCanCondense(CrystalFluidType type)
 	{
-		switch (world.getTileEntity(pos).getBlockMetadata())
+		switch (getBlockMetadata())
 		{
 		case 0:
 			return type == CrystalFluidType.NORMAL;
@@ -117,18 +116,18 @@ public class CondenserTile extends TileEntity implements ITickable
 		return false;
 	}
 
-	public float getCondenserSpeedFromTier(CrystalFluidType type)
+	public float getCondenserSpeedFromTier()
 	{
-		switch (world.getTileEntity(pos).getBlockMetadata())
+		switch (getBlockMetadata())
 		{
 		case 0:
 			return 1;
 		case 1:
-			return 2;
+			return 0.5f;
 		case 2:
-			return 3;
+			return 1f/3f;
 		case 3:
-			return 4;
+			return 0.25f;
 		}
 		return 1;
 	}

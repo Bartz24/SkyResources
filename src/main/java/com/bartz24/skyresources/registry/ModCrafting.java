@@ -364,7 +364,7 @@ public class ModCrafting
 				.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 16), 2000,
 						new ArrayList<Object>(Arrays.asList(new ItemStack(ModItems.metalCrystal, 1, 1),
 								new ItemStack(Items.GOLD_INGOT, 6), new ItemStack(Items.ENDER_EYE, 3),
-								new ItemStack(Items.DIAMOND, 1))));
+								new ItemStack(ModItems.baseComponent, 2, 5))));
 
 		ProcessRecipeManager.combustionRecipes
 				.addRecipe(new ItemStack(ModItems.metalCrystal, 1, 17), 700,
