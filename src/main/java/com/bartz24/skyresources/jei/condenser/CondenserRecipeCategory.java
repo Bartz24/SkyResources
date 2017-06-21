@@ -84,4 +84,10 @@ public class CondenserRecipeCategory extends BlankRecipeCategory
 		layout.getItemStacks().set(slotCondenser, condensers);
 	}
 
+	@Override
+	public String getModName()
+	{
+		return References.ModName;
+	}
+
 }

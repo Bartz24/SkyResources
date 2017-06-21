@@ -77,4 +77,10 @@ public class InfusionRecipeCategory extends BlankRecipeCategory
 		layout.getItemStacks().set(slotInfusionStones, ItemHelper.getInfusionStones());
 	}
 
+
+	@Override
+	public String getModName()
+	{
+		return References.ModName;
+	}
 }

@@ -65,4 +65,10 @@ public class HeatSourcesRecipeCategory extends BlankRecipeCategory
 
 	}
 
+	@Override
+	public String getModName()
+	{
+		return References.ModName;
+	}
+
 }

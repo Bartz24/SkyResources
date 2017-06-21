@@ -71,4 +71,10 @@ public class CauldronCleanRecipeCategory extends BlankRecipeCategory
 		layout.getItemStacks().set(slotCauldron, new ItemStack(Items.CAULDRON));
 
 	}
+
+	@Override
+	public String getModName()
+	{
+		return References.ModName;
+	}
 }

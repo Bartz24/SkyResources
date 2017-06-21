@@ -69,4 +69,10 @@ public class CrucibleRecipeCategory extends BlankRecipeCategory
 		layout.getFluidStacks().set(slotOutputFluid, outputs.get(0));
 	}
 
+	@Override
+	public String getModName()
+	{
+		return References.ModName;
+	}
+
 }

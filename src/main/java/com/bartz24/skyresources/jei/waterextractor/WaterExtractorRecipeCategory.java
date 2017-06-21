@@ -90,4 +90,10 @@ public class WaterExtractorRecipeCategory extends BlankRecipeCategory
 		layout.getFluidStacks().set(slotOutputFluid, foutputs.get(0));
 	}
 
+	@Override
+	public String getModName()
+	{
+		return References.ModName;
+	}
+
 }

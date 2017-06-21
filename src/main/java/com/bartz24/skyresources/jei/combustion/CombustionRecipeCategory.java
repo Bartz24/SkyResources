@@ -82,4 +82,10 @@ public class CombustionRecipeCategory extends BlankRecipeCategory
 		layout.getItemStacks().set(slotOutput, outputs.get(0));
 	}
 
+	@Override
+	public String getModName()
+	{
+		return References.ModName;
+	}
+
 }

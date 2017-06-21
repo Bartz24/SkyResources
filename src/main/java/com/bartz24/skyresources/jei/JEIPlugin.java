@@ -25,6 +25,7 @@ import mezz.jei.api.IModRegistry;
 import mezz.jei.api.IRecipesGui;
 import mezz.jei.api.ISubtypeRegistry;
 import mezz.jei.api.ingredients.IModIngredientRegistration;
+import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.gui.Focus;
 import mezz.jei.plugins.jei.JEIInternalPlugin;
 import net.minecraft.init.Items;
@@ -131,5 +132,12 @@ public class JEIPlugin implements IModPlugin
 	public void registerItemSubtypes(ISubtypeRegistry isubtyperegistry)
 	{
 
+	}
+
+	@Override
+	public void registerCategories(IRecipeCategoryRegistration arg0)
+	{
+		// TODO Auto-generated method stub
+		
 	}
 }
