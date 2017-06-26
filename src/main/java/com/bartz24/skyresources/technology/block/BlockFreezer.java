@@ -24,6 +24,7 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockFreezer extends BlockContainer
@@ -49,6 +50,16 @@ public class BlockFreezer extends BlockContainer
 	{
 		return EnumBlockRenderType.MODEL;
 	}
+	
+	public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
+
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
@@ -56,22 +67,10 @@ public class BlockFreezer extends BlockContainer
 		return new FreezerTile();
 	}
 
-	@Override
-	public boolean isOpaqueCube(IBlockState state)
+	public boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side)
 	{
 		return false;
 	}
-
-	@Override
-	public boolean isFullCube(IBlockState state)
-	{
-		return true;
-	}
-	
-	public boolean isFullyOpaque(IBlockState state)
-    {
-        return true;
-    }
 
 	@Override
 	public int damageDropped(IBlockState blockstate)
@@ -134,8 +133,8 @@ public class BlockFreezer extends BlockContainer
 		}
 	}
 
-	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
-			int meta, EntityLivingBase placer)
+	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY,
+			float hitZ, int meta, EntityLivingBase placer)
 	{
 		super.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
 		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite())

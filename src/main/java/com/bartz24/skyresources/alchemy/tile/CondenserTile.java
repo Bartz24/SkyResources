@@ -6,6 +6,7 @@ import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.alchemy.fluid.FluidCrystalBlock;
 import com.bartz24.skyresources.alchemy.fluid.FluidRegisterInfo.CrystalFluidType;
 import com.bartz24.skyresources.base.HeatSources;
+import com.bartz24.skyresources.base.tile.TileBase;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModFluids;
@@ -15,19 +16,24 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class CondenserTile extends TileEntity implements ITickable
+public class CondenserTile extends TileBase implements ITickable
 {
+	public CondenserTile()
+	{
+		super("condenser");
+	}
+
 	private int timeCondense;
 
 	@Override
 	public void update()
 	{
+		updateRedstone();
 		crystalFluidUpdate();
 	}
 
@@ -35,7 +41,7 @@ public class CondenserTile extends TileEntity implements ITickable
 	{
 		Random rand = world.rand;
 		Block block = getBlockAbove();
-		if (block instanceof FluidCrystalBlock)
+		if (block instanceof FluidCrystalBlock && getRedstoneSignal() == 0)
 		{
 			FluidCrystalBlock crystalBlock = (FluidCrystalBlock) block;
 			Fluid fluid = crystalBlock.getFluid();

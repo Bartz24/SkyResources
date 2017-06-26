@@ -46,7 +46,7 @@
         "arditemoltencrystalfluid": [{
             "custom": { "fluid": "arditemoltencrystalfluid" }
         }],
-        "omsiumcrystalfluid": [{
+        "osmiumcrystalfluid": [{
             "custom": { "fluid": "osmiumcrystalfluid" }
         }],
         "lapiscrystalfluid": [{

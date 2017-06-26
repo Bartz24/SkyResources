@@ -190,7 +190,7 @@ public class CombustionHeaterBlock extends BlockContainer implements IMetaBlockN
 						pos.getZ());
 			} else
 			{
-				if (player.getHeldItemMainhand() == ItemStack.EMPTY && !player.isSneaking())
+				if (player.getHeldItemMainhand().isEmpty() && !player.isSneaking())
 				{
 					List<ITextComponent> toSend = new ArrayList();
 

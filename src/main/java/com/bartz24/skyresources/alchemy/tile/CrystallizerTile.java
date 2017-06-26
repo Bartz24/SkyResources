@@ -5,6 +5,7 @@ import java.util.Random;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.alchemy.fluid.FluidCrystalBlock;
 import com.bartz24.skyresources.alchemy.fluid.FluidRegisterInfo.CrystalFluidType;
+import com.bartz24.skyresources.base.tile.TileBase;
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModFluids;
 import com.bartz24.skyresources.registry.ModItems;
@@ -24,14 +25,20 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.items.CapabilityItemHandler;
 
-public class CrystallizerTile extends TileEntity implements ITickable
+public class CrystallizerTile extends TileBase implements ITickable
 {
+	public CrystallizerTile()
+	{
+		super("crystallizer");
+	}
+
 	int timeCondense;
 	int randInterval;
 
 	@Override
 	public void update()
 	{
+		updateRedstone();
 		fluidUpdate();
 	}
 
@@ -40,7 +47,7 @@ public class CrystallizerTile extends TileEntity implements ITickable
 		Random rand = world.rand;
 		Block block = getBlockAbove();
 		boolean success = false;
-		if (!world.isRemote)
+		if (!world.isRemote && getRedstoneSignal() == 0)
 		{
 			if (block instanceof FluidCrystalBlock)
 			{

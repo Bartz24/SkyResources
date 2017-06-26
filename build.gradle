@@ -26,7 +26,7 @@ repositories {
   }
 }
 
-version = "1.6.5"
+version = "1.6.6"
 group= "com.bartz24.skyresources" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "skyresources"
 

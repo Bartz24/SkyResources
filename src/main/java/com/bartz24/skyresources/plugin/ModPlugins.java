@@ -11,6 +11,7 @@ import com.bartz24.skyresources.plugin.forestry.ForestryPlugin;
 import com.bartz24.skyresources.plugin.integdyn.IntegratedDynamicsPlugin;
 import com.bartz24.skyresources.plugin.tconstruct.TConPlugin;
 import com.bartz24.skyresources.plugin.techreborn.TechRebornPlugin;
+import com.bartz24.skyresources.plugin.theoneprobe.TOPPlugin;
 
 import net.minecraftforge.fml.common.Loader;
 
@@ -38,11 +39,14 @@ public class ModPlugins
 			plugins.add(new ActAddPlugin());
 		if (Loader.isModLoaded("crafttweaker"))
 			plugins.add(new CraftTweakerPlugin());
+		if (Loader.isModLoaded("theoneprobe"))
+			plugins.add(new TOPPlugin());
 
 		for (IModPlugin p : plugins)
 		{
 			p.preInit();
 		}
+		
 		/*
 		 * if (Loader.isModLoaded("IC2")) IC2Plugin.preInit(); if
 		 * (Loader.isModLoaded("EnderIO")) EnderIOPlugin.preInit(); if

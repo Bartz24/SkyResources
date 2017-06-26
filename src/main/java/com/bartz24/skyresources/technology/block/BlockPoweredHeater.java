@@ -75,7 +75,7 @@ public class BlockPoweredHeater extends BlockContainer
 	{
 		if (!world.isRemote)
 		{
-			if (player.getHeldItemMainhand() == ItemStack.EMPTY && !player.isSneaking())
+			if (player.getHeldItemMainhand().isEmpty() && !player.isSneaking())
 			{
 				List<ITextComponent> toSend = new ArrayList();
 
