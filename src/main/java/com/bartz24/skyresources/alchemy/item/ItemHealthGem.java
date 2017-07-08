@@ -2,6 +2,8 @@ package com.bartz24.skyresources.alchemy.item;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import org.lwjgl.input.Keyboard;
 
 import com.bartz24.skyresources.References;
@@ -9,6 +11,7 @@ import com.bartz24.skyresources.alchemy.effects.IHealthBoostItem;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -68,8 +71,7 @@ public class ItemHealthGem extends Item implements IHealthBoostItem
 						&& stack.getTagCompound().getInteger("cooldown") == 0)
 				{
 					player.attackEntityFrom(DamageSource.GENERIC, 2);
-					stack.getTagCompound().setInteger("health",
-							stack.getTagCompound().getInteger("health") + 2);
+					stack.getTagCompound().setInteger("health", stack.getTagCompound().getInteger("health") + 2);
 					stack.getTagCompound().setInteger("cooldown", 20);
 				}
 			} else
@@ -82,31 +84,27 @@ public class ItemHealthGem extends Item implements IHealthBoostItem
 	}
 
 	@Override
-	public boolean shouldCauseReequipAnimation(ItemStack oldStack,
-			ItemStack newStack, boolean slotChanged)
+	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged)
 	{
 		return slotChanged;
 	}
 
 	@Override
-	public void addInformation(ItemStack itemStack, EntityPlayer player,
-			List list, boolean par4)
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
-		
-		if (player != null && Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
+
+		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
 		{
-			list.add(TextFormatting.GREEN + "Shift-right click to inject health.");
-			if (itemStack.getTagCompound() != null)
+			tooltip.add(TextFormatting.GREEN + "Shift-right click to inject health.");
+			if (stack.getTagCompound() != null)
 			{
-				list.add(TextFormatting.RED + "Health Injected: "
-						+ itemStack.getTagCompound().getInteger("health"));
+				tooltip.add(TextFormatting.RED + "Health Injected: " + stack.getTagCompound().getInteger("health"));
 			} else
-				list.add("Health Injected: " + 0);
-			
-			list.add(TextFormatting.DARK_RED + "Health Gained: "
-					+ getHealthBoost(itemStack));
+				tooltip.add("Health Injected: " + 0);
+
+			tooltip.add(TextFormatting.DARK_RED + "Health Gained: " + getHealthBoost(stack));
 		} else
-			list.add(TextFormatting.GREEN + "Hold LSHIFT for info.");
+			tooltip.add(TextFormatting.GREEN + "Hold LSHIFT for info.");
 	}
 
 	public NBTTagCompound getCompound(ItemStack stack)

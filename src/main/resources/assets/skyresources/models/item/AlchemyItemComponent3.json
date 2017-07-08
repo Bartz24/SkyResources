@@ -1,6 +1,6 @@
 {
   "parent":"skyresources:item/baseitemmodel",
   "textures": {
-    "layer0":"skyresources:items/diamondalchemical"
+    "layer0":"skyresources:items/alchdust2"
   }
 }

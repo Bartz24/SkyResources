@@ -30,7 +30,8 @@ public class ConfigOptions
 
 	public static int fluidDropperCapacity;
 
-	public static boolean endPussyMode;
+	public static boolean endWussMode;
+	public static boolean recipeDifficulty;
 
 	public static boolean allowGuide;
 	public static boolean rememberGuide;
@@ -65,8 +66,10 @@ public class ConfigOptions
 		Property worldTypeProperty = config.get(Configuration.CATEGORY_GENERAL, "WorldSpawnType", 0,
 				"0=random, 1=sand, 2=snow, 3=wood, 4=grass (Not in random choices)");
 
-		endPussyMode = config.get(Configuration.CATEGORY_GENERAL, "End Portal Pussy Mode", false,
+		endWussMode = config.get(Configuration.CATEGORY_GENERAL, "End Portal Wuss Mode", false,
 				"Makes the end portal less dangerous").getBoolean(false);
+		recipeDifficulty = config.get(Configuration.CATEGORY_GENERAL, "Difficult Recipes", false,
+				"Harder Recipes using higher tier materials from other mods").getBoolean(false);
 
 		draconiumType = config.get(Configuration.CATEGORY_GENERAL, "Draconium Crystal Type", 1, "0=overworld, 1=nether")
 				.getInt(1);

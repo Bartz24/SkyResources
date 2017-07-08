@@ -82,15 +82,15 @@ public class ItemInfusionStone extends Item
 
 		if (recipe == null)
 		{
-            if (applyBonemeal(stack, world, pos, player))
-            {
-                if (!world.isRemote)
-                {
-                    world.playEvent(2005, pos, 0);
-                }
+			if (applyBonemeal(stack, world, pos, player))
+			{
+				if (!world.isRemote)
+				{
+					world.playEvent(2005, pos, 0);
+				}
 
-                return EnumActionResult.SUCCESS;
-            }
+				return EnumActionResult.SUCCESS;
+			}
 		}
 
 		if (world.isRemote)
@@ -100,33 +100,35 @@ public class ItemInfusionStone extends Item
 	}
 
 	public static boolean applyBonemeal(ItemStack stack, World worldIn, BlockPos target, EntityPlayer player)
-    {
-        IBlockState iblockstate = worldIn.getBlockState(target);
+	{
+		IBlockState iblockstate = worldIn.getBlockState(target);
 
-        int hook = net.minecraftforge.event.ForgeEventFactory.onApplyBonemeal(player, worldIn, target, iblockstate, stack);
-        if (hook != 0) return hook > 0;
+		int hook = net.minecraftforge.event.ForgeEventFactory.onApplyBonemeal(player, worldIn, target, iblockstate,
+				stack, player.getActiveHand());
+		if (hook != 0)
+			return hook > 0;
 
-        if (iblockstate.getBlock() instanceof IGrowable)
-        {
-            IGrowable igrowable = (IGrowable)iblockstate.getBlock();
+		if (iblockstate.getBlock() instanceof IGrowable)
+		{
+			IGrowable igrowable = (IGrowable) iblockstate.getBlock();
 
-            if (igrowable.canGrow(worldIn, target, iblockstate, worldIn.isRemote))
-            {
-                if (!worldIn.isRemote)
-                {
-                    if (igrowable.canUseBonemeal(worldIn, worldIn.rand, target, iblockstate))
-                    {
-                        igrowable.grow(worldIn, worldIn.rand, target, iblockstate);
-                    }
+			if (igrowable.canGrow(worldIn, target, iblockstate, worldIn.isRemote))
+			{
+				if (!worldIn.isRemote)
+				{
+					if (igrowable.canUseBonemeal(worldIn, worldIn.rand, target, iblockstate))
+					{
+						igrowable.grow(worldIn, worldIn.rand, target, iblockstate);
+					}
 
-                    stack.damageItem(1, player);
-                    player.attackEntityFrom(DamageSource.MAGIC, 4);
-                }
+					stack.damageItem(1, player);
+					player.attackEntityFrom(DamageSource.MAGIC, 4);
+				}
 
-                return true;
-            }
-        }
+				return true;
+			}
+		}
 
-        return false;
-    }
+		return false;
+	}
 }

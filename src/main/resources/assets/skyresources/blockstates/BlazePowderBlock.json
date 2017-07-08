@@ -1,7 +1,10 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "skyresources:blazepowderblock"
+    "model": "cube_all",
+    "textures": {
+        "all": "skyresources:blocks/blazepowderblock"
+    }
   },
   "variants": {
     "normal": [{}],

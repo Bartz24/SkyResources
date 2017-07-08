@@ -1,6 +1,6 @@
 {
-  "parent":"block/cauldron_empty",
-  "textures": {
+    "parent":"block/cauldron_empty",
+    "textures": {
         "particle": "blocks/brick",
         "top": "skyresources:blocks/crucibletop",
         "bottom": "skyresources:blocks/cruciblebottom",

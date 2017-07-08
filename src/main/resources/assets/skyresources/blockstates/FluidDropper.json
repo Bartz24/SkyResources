@@ -1,7 +1,16 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "skyresources:fluiddropper"
+    "model": "cube_all",
+    "textures": {
+       "down": "skyresources:blocks/fluiddropper",
+         "up": "blocks/furnace_top",
+      "north": "blocks/furnace_side",
+      "south": "blocks/furnace_side",
+       "west": "blocks/furnace_side",
+       "east": "blocks/furnace_side",
+   "particle": "skyresources:blocks/fluiddropper"
+  }
   },
   "variants": {
     "normal": [{}],

@@ -1,7 +1,16 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "skyresources:aqueousdeconcentrator"
+    "model": "cube_all",
+    "textures": {
+        "down": "skyresources:blocks/steelmachine",
+        "up": "skyresources:blocks/steelmachine",
+        "north": "skyresources:blocks/aqueousdeconcentrator",
+        "south": "skyresources:blocks/steelmachine",
+        "west": "skyresources:blocks/steelmachine",
+        "east": "skyresources:blocks/steelmachine",
+        "particle": "skyresources:blocks/aqueousdeconcentrator"
+    }
   },
   "variants": {
     "normal": [{}],

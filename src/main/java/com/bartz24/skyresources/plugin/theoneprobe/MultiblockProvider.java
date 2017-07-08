@@ -2,9 +2,10 @@ package com.bartz24.skyresources.plugin.theoneprobe;
 
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.alchemy.tile.LifeInfuserTile;
-import com.bartz24.skyresources.technology.tile.TileCombustionHeater;
+import com.bartz24.skyresources.base.tile.TileCasing;
+import com.bartz24.skyresources.technology.item.ItemCombustionHeater;
+import com.bartz24.skyresources.technology.tile.FreezerTile;
 import com.bartz24.skyresources.technology.tile.TileEndPortalCore;
-import com.bartz24.skyresources.technology.tile.TilePoweredCombustionHeater;
 
 import mcjty.theoneprobe.api.ElementAlignment;
 import mcjty.theoneprobe.api.IProbeHitData;
@@ -36,15 +37,7 @@ public class MultiblockProvider implements IProbeInfoProvider
 		boolean hasVal = false;
 		boolean valid = false;
 		float maxHeat = 0;
-		if (te instanceof TilePoweredCombustionHeater)
-		{
-			hasVal = true;
-			valid = ((TilePoweredCombustionHeater) te).hasValidMultiblock();
-		} else if (te instanceof TileCombustionHeater)
-		{
-			hasVal = true;
-			valid = ((TileCombustionHeater) te).hasValidMultiblock();
-		} else if (te instanceof TileEndPortalCore)
+		if (te instanceof TileEndPortalCore)
 		{
 			hasVal = true;
 			valid = ((TileEndPortalCore) te).hasValidMultiblock();
@@ -52,10 +45,23 @@ public class MultiblockProvider implements IProbeInfoProvider
 		{
 			hasVal = true;
 			valid = ((LifeInfuserTile) te).hasValidMultiblock();
+		} else if (te instanceof FreezerTile)
+		{
+			hasVal = true;
+			valid = ((FreezerTile) te).hasValidMulti();
+		} else if (te instanceof TileCasing)
+		{
+			if (!((TileCasing) te).machineStored.isEmpty()
+					&& ((TileCasing) te).getMachine() instanceof ItemCombustionHeater)
+			{
+				hasVal = true;
+				valid = ((ItemCombustionHeater) ((TileCasing) te).getMachine()).hasValidMultiblock(te.getWorld(),
+						te.getPos(), ((TileCasing) te).machineStored);
+			}
 		}
 		if (hasVal)
 		{
-			
+
 			boolean v = Config.harvestStyleVanilla;
 			int offs = v ? 16 : 0;
 			int dim = v ? 13 : 16;

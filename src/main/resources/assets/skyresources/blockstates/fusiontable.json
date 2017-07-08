@@ -1,0 +1,19 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cube_all",
+        "textures": {
+            "down": "blocks/planks_oak",
+            "up": "skyresources:blocks/fusiontabletop",
+            "north": "skyresources:blocks/fusiontableside",
+            "south": "skyresources:blocks/fusiontableside",
+            "west": "skyresources:blocks/fusiontableside",
+            "east": "skyresources:blocks/fusiontableside",
+            "particle": "skyresources:blocks/fusiontableside"
+        }
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

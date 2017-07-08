@@ -12,55 +12,59 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityHeavySnowball extends EntityThrowable
 {
-    public EntityHeavySnowball(World worldIn)
-    {
-        super(worldIn);
-    }
+	public EntityHeavySnowball(World worldIn)
+	{
+		super(worldIn);
+	}
 
-    public EntityHeavySnowball(World worldIn, EntityLivingBase throwerIn)
-    {
-        super(worldIn, throwerIn);
-        this.moveRelative(1, .5f, 1);
-    }
+	public EntityHeavySnowball(World worldIn, EntityLivingBase throwerIn)
+	{
+		super(worldIn, throwerIn);
+		this.moveRelative(0, 0, 2, 0);
+	}
 
-    public EntityHeavySnowball(World worldIn, double x, double y, double z)
-    {
-        super(worldIn, x, y, z);
-    }
+	public EntityHeavySnowball(World worldIn, double x, double y, double z)
+	{
+		super(worldIn, x, y, z);
+	}
 
-    @SideOnly(Side.CLIENT)
-    public void handleStatusUpdate(byte id)
-    {
-        if (id == 3)
-        {
-            for (int i = 0; i < 8; ++i)
-            {
-                this.world.spawnParticle(EnumParticleTypes.SNOWBALL, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
-            }
-        }
-    }
+	@SideOnly(Side.CLIENT)
+	public void handleStatusUpdate(byte id)
+	{
+		if (id == 3)
+		{
+			for (int i = 0; i < 8; ++i)
+			{
+				this.world.spawnParticle(EnumParticleTypes.SNOWBALL, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D,
+						new int[0]);
+			}
+		}
+	}
 
-    /**
-     * Called when this EntityThrowable hits a block or entity.
-     */
-    protected void onImpact(RayTraceResult result)
-    {
-        if (result.entityHit != null)
-        {
-            int i = 8;
+	/**
+	 * Called when this EntityThrowable hits a block or entity.
+	 */
+	protected void onImpact(RayTraceResult result)
+	{
+		if (this.ticksExisted > 1)
+		{
+			if (result.entityHit != null)
+			{
+				int i = 8;
 
-            if (result.entityHit instanceof EntityBlaze)
-            {
-                i = 14;
-            }
+				if (result.entityHit instanceof EntityBlaze)
+				{
+					i = 14;
+				}
 
-            result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float)i);
-        }
+				result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float) i);
+			}
 
-        if (!this.world.isRemote)
-        {
-            this.setDead();
-        }
-    }
+			if (!this.world.isRemote)
+			{
+				this.setDead();
+			}
+		}
+	}
 
 }

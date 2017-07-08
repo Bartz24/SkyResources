@@ -32,6 +32,13 @@ public class GuiLifeInfuser extends GuiContainer
 		this.xSize = 176;
 		this.ySize = 166;
 	}
+	
+	public void drawScreen(int mouseX, int mouseY, float partialTicks)
+    {
+        this.drawDefaultBackground();
+        super.drawScreen(mouseX, mouseY, partialTicks);
+        this.renderHoveredToolTip(mouseX, mouseY);
+    }
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
@@ -54,7 +61,7 @@ public class GuiLifeInfuser extends GuiContainer
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 		this.mc.getTextureManager()
 				.bindTexture(new ResourceLocation(References.ModID, "textures/gui/guiIcons.png"));
-		this.drawTexturedModalRect(100, 50, 0, 16, 32, 32);
+		this.drawTexturedModalRect(100, 50, 0, 16, 32, 28);
 		if (tile.hasValidMultiblock())
 			this.drawTexturedModalRect(132, 58, 0, 0, 16, 16);
 		else

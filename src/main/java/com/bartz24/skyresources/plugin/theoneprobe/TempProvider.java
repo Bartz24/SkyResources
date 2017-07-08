@@ -1,8 +1,8 @@
 package com.bartz24.skyresources.plugin.theoneprobe;
 
 import com.bartz24.skyresources.References;
-import com.bartz24.skyresources.technology.tile.TileCombustionHeater;
-import com.bartz24.skyresources.technology.tile.TilePoweredCombustionHeater;
+import com.bartz24.skyresources.base.tile.TileCasing;
+import com.bartz24.skyresources.technology.item.ItemCombustionHeater;
 
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
@@ -29,23 +29,23 @@ public class TempProvider implements IProbeInfoProvider
 		TileEntity te = world.getTileEntity(data.getPos());
 		float curHeat = -1;
 		float maxHeat = 0;
-		if (te instanceof TilePoweredCombustionHeater)
+		if (te instanceof TileCasing)
 		{
-			curHeat = ((TilePoweredCombustionHeater) te).currentHeatValue;
-			maxHeat = ((TilePoweredCombustionHeater) te).getMaxHeat();
-		} else if (te instanceof TileCombustionHeater)
-		{
-			curHeat = ((TileCombustionHeater) te).currentHeatValue;
-			maxHeat = ((TileCombustionHeater) te).getMaxHeat();
+			if (!((TileCasing) te).machineStored.isEmpty()
+					&& ((TileCasing) te).getMachine() instanceof ItemCombustionHeater)
+			{
+				maxHeat = ((ItemCombustionHeater) ((TileCasing) te).getMachine()).getMaxHU(world, te.getPos());
+				curHeat = ((TileCasing) te).machineData.getFloat("curHU");
+			}
 		}
 		if (curHeat >= 0f)
 		{
-			if(!player.isSneaking())
-			probeInfo.horizontal().progress((int) (curHeat / maxHeat * 100f), 100, probeInfo.defaultProgressStyle()
-					.suffix("% Temp").filledColor(0xFFDEB81F).alternateFilledColor(0xFFFFD633));
+			if (!player.isSneaking())
+				probeInfo.horizontal().progress((int) (curHeat / maxHeat * 100f), 100, probeInfo.defaultProgressStyle()
+						.suffix("% HU").filledColor(0xFFDEB81F).alternateFilledColor(0xFFFFD633));
 			else
 				probeInfo.horizontal().progress((int) (curHeat), (int) maxHeat, probeInfo.defaultProgressStyle()
-						.suffix(" / " + maxHeat + " Temp").filledColor(0xFFDEB81F).alternateFilledColor(0xFFFFD633));
+						.suffix(" / " + maxHeat + " HU").filledColor(0xFFDEB81F).alternateFilledColor(0xFFFFD633));
 		}
 	}
 }

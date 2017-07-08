@@ -1,7 +1,16 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "skyresources:endportalcore"
+    "model": "cube_all",
+    "textures": {
+       "down": "skyresources:blocks/darkmatter",
+         "up": "skyresources:blocks/endercoretop",
+      "north": "skyresources:blocks/darkmatter",
+      "south": "skyresources:blocks/darkmatter",
+       "west": "skyresources:blocks/darkmatter",
+       "east": "skyresources:blocks/darkmatter",
+   "particle": "skyresources:blocks/darkmatter"
+  }
   },
   "variants": {
     "normal": [{}],

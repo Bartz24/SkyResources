@@ -35,7 +35,7 @@ public class HeatSources
 
 			TileEntity tile = world.getTileEntity(pos);
 			if (tile != null && tile instanceof IHeatSource)
-				return true;
+				return getHeatSourceValue(pos, world) > 0;
 
 		} else
 			return true;
@@ -64,8 +64,6 @@ public class HeatSources
 	public static int getHeatSourceValue(BlockPos pos, World world)
 	{
 		IBlockState state = world.getBlockState(pos);
-		if (!isValidHeatSource(pos, world))
-			return 0;
 
 		if (validHeatSources.containsKey(state))
 			return validHeatSources.get(state);

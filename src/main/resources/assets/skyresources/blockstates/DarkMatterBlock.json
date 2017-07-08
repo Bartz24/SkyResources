@@ -1,7 +1,10 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "skyresources:darkmatterblock"
+    "model": "cube_all",
+    "textures": {
+        "all": "skyresources:blocks/darkmatter"
+    }
   },
   "variants": {
     "normal": [{}],

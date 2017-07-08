@@ -31,6 +31,13 @@ public class GuiRockCrusher extends GuiContainer
 		this.xSize = 176;
 		this.ySize = 189;
 	}
+	
+	public void drawScreen(int mouseX, int mouseY, float partialTicks)
+    {
+        this.drawDefaultBackground();
+        super.drawScreen(mouseX, mouseY, partialTicks);
+        this.renderHoveredToolTip(mouseX, mouseY);
+    }
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
@@ -62,7 +69,7 @@ public class GuiRockCrusher extends GuiContainer
 	{
 		String s = tile.getDisplayName().getUnformattedText();
 		this.fontRenderer.drawString(s, 88 - this.fontRenderer.getStringWidth(s) / 2, 6, 4210752);
-		this.fontRenderer.drawString(this.playerInv.getDisplayName().getUnformattedText(), 70, 96, 4210752);
+		this.fontRenderer.drawString(this.playerInv.getDisplayName().getUnformattedText(), 8, 96, 4210752);
 
 		if (GuiHelper.isMouseInRect(22 + guiLeft, 30 + guiTop, 8, 59, mouseX, mouseY))
 		{

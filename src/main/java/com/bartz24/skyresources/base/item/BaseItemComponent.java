@@ -3,17 +3,19 @@ package com.bartz24.skyresources.base.item;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModItems;
 
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -28,8 +30,6 @@ public class BaseItemComponent extends Item
 {
 	private static ArrayList<String> names = new ArrayList<String>();
 
-	public static final String woodHeatComp = "woodHeatComponent";
-	public static final String ironHeatComp = "ironHeatComponent";
 	public static final String plantMatter = "plantMatter";
 	public static final String steelPowerComp = "steelPowerComponent";
 	public static final String frozenIronComp = "frozenIronCoolingComponent";
@@ -51,14 +51,12 @@ public class BaseItemComponent extends Item
 
 	private void itemList()
 	{
-		names.add(0, woodHeatComp);
-		names.add(1, ironHeatComp);
-		names.add(2, plantMatter);
-		names.add(3, steelPowerComp);
-		names.add(4, frozenIronComp);
-		names.add(5, darkMatter);
-		names.add(6, enrichedBonemeal);
-		names.add(7, sawdust);
+		names.add(0, plantMatter);
+		names.add(1, steelPowerComp);
+		names.add(2, frozenIronComp);
+		names.add(3, darkMatter);
+		names.add(4, enrichedBonemeal);
+		names.add(5, sawdust);
 	}
 
 	@Override
@@ -69,10 +67,11 @@ public class BaseItemComponent extends Item
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item id, CreativeTabs creativeTab, NonNullList<ItemStack> list)
+	public void getSubItems(CreativeTabs creativeTab, NonNullList<ItemStack> list)
 	{
-		for (int i = 0; i < names.size(); i++)
-			list.add(new ItemStack(id, 1, i));
+		if (isInCreativeTab(creativeTab))
+			for (int i = 0; i < names.size(); i++)
+				list.add(new ItemStack(this, 1, i));
 	}
 
 	public static ItemStack getStack(String name)
@@ -111,15 +110,16 @@ public class BaseItemComponent extends Item
 		}
 	}
 
-	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List list, boolean par4)
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
 		if (stack.getMetadata() == names.indexOf(plantMatter))
 		{
-			list.add(TextFormatting.DARK_GRAY + "Acts as bonemeal");
-			list.add(TextFormatting.DARK_GRAY + "2-4x as effective as normal bonemeal");
+			tooltip.add(TextFormatting.GRAY + "Acts as bone meal");
+			tooltip.add(TextFormatting.GRAY + "2-4x as effective as normal bone meal");
 		} else if (stack.getMetadata() == names.indexOf(enrichedBonemeal))
 		{
-			list.add(TextFormatting.DARK_GRAY + "2-4x as effective as normal bonemeal");
+			tooltip.add(TextFormatting.GRAY + "2-4x as effective as normal bone meal");
 		}
 	}
 
@@ -128,7 +128,7 @@ public class BaseItemComponent extends Item
 		IBlockState iblockstate = worldIn.getBlockState(target);
 
 		int hook = net.minecraftforge.event.ForgeEventFactory.onApplyBonemeal(player, worldIn, target, iblockstate,
-				stack);
+				stack, player.getActiveHand());
 		if (hook != 0)
 			return hook > 0;
 

@@ -13,12 +13,12 @@ public class ModFuelHandler implements IFuelHandler
 	public int getBurnTime(ItemStack fuel)
 	{
 
-		if(fuel.isItemEqual(new ItemStack(ModItems.alchemyComponent, 1, 2)))
-			return 2400;
+		if(fuel.isItemEqual(new ItemStack(ModItems.alchemyComponent, 1, 6)))
+			return 3000;
 		else if(fuel.isItemEqual(new ItemStack(ModBlocks.coalInfusedBlock)))
-			return 24000;
+			return 30000;
 		else if(fuel.isItemEqual(new ItemStack(ModBlocks.compressedCoalBlock)))
-			return 24000;
+			return 128000;
 		
 		return 0;
 	}

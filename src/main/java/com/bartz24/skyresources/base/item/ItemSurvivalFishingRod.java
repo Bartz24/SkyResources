@@ -50,14 +50,14 @@ public class ItemSurvivalFishingRod extends ItemFishingRod
             if (!worldIn.isRemote)
             {
                 EntitySurvivalistHook entityfishhook = new EntitySurvivalistHook(worldIn, playerIn);
-                int j = EnchantmentHelper.func_191528_c(itemstack);
+                int j = EnchantmentHelper.getFishingSpeedBonus(itemstack);
 
                 if (j > 0)
                 {
                     entityfishhook.func_191516_a(j);
                 }
 
-                int k = EnchantmentHelper.func_191529_b(itemstack);
+                int k = EnchantmentHelper.getFishingLuckBonus(itemstack);
 
                 if (k > 0)
                 {

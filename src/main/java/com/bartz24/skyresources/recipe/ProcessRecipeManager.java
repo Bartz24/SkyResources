@@ -20,7 +20,7 @@ public class ProcessRecipeManager
 		public void drawJEIInfo(ProcessRecipe rec, Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX,
 				int mouseY)
 		{
-			String s = Integer.toString((int) rec.getIntParameter()) + " C";
+			String s = Integer.toString((int) rec.getIntParameter()) + " HU";
 			FontRenderer fontRendererObj = minecraft.fontRenderer;
 			int stringWidth = fontRendererObj.getStringWidth(s);
 			fontRendererObj.drawString(s, 118 - stringWidth, 8, java.awt.Color.gray.getRGB());
@@ -85,6 +85,32 @@ public class ProcessRecipeManager
 			fontRendererObj.drawString(s, 70, 10, java.awt.Color.gray.getRGB());
 		}
 	};
+	public static ProcessRecipeManager condenserRecipes = new ProcessRecipeManager("condenser")
+	{
+		public void drawJEIInfo(ProcessRecipe rec, Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX,
+				int mouseY)
+		{
+			String s = Math.round(rec.getIntParameter() * 50f) + " ticks at 100% speed";
+			FontRenderer fontRendererObj = minecraft.fontRenderer;
+			int stringWidth = fontRendererObj.getStringWidth(s);
+			fontRendererObj.drawString(s, 130 - stringWidth, 8, java.awt.Color.gray.getRGB());
+			s = Math.round(rec.getIntParameter() / (1600f * Math.pow(rec.getIntParameter(), 0.05f)) * 1000000f) / 1000000f
+					+ "/tick used at 100% eff.";
+			stringWidth = fontRendererObj.getStringWidth(s);
+			fontRendererObj.drawString(s, 130 - stringWidth, 50, java.awt.Color.gray.getRGB());
+		}
+	};
+	public static ProcessRecipeManager fusionRecipes = new ProcessRecipeManager("fusion")
+	{
+		public void drawJEIInfo(ProcessRecipe rec, Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX,
+				int mouseY)
+		{
+			String s = Integer.toString((int) (rec.getIntParameter()*10000f)) + "% of catalyst used";
+			FontRenderer fontRendererObj = minecraft.fontRenderer;
+			int stringWidth = fontRendererObj.getStringWidth(s);
+			fontRendererObj.drawString(s, 118 - stringWidth, 0, java.awt.Color.gray.getRGB());
+		}
+	};
 
 	private static List<ProcessRecipeManager> managers;
 
@@ -144,10 +170,8 @@ public class ProcessRecipeManager
 		return null;
 	}
 
-	public ProcessRecipe getMultiRecipe(List<Object> input, float intVal, boolean forceEqual, boolean mergeStacks)
-	{
-		input = mergeStacks ? mergeStacks(input) : input;
-
+	public ProcessRecipe getMultiRecipe(List<Object> input, float intVal)
+	{		
 		ProcessRecipe rec = new ProcessRecipe(input, intVal, type);
 
 		for (ProcessRecipe recipe : recipes)
@@ -179,11 +203,10 @@ public class ProcessRecipeManager
 						continue;
 					ItemStack stack2 = (ItemStack) input.get(i2);
 
-					int moveAmt = RandomHelper.mergeStacks(stack2, stack1, false);
-					if (moveAmt > 0)
+					if (RandomHelper.canStacksMerge(stack2, stack1))
 					{
-						stack1.grow(moveAmt);
-						stack2.shrink(moveAmt);
+						stack1.grow(stack2.getCount());
+						stack2.setCount(0);
 						if (stack2.getCount() <= 0)
 							stack2 = ItemStack.EMPTY;
 						merged = true;
@@ -306,16 +329,16 @@ public class ProcessRecipeManager
 	}
 
 	public List<ProcessRecipe> removeRecipe(ProcessRecipe recipe)
-	{		
-		if ((recipe.getOutputs() == null || recipe.getOutputs().size() == 0) && (recipe.getFluidOutputs() == null
-				|| recipe.getFluidOutputs().size() == 0))
+	{
+		if ((recipe.getOutputs() == null || recipe.getOutputs().size() == 0)
+				&& (recipe.getFluidOutputs() == null || recipe.getFluidOutputs().size() == 0))
 		{
 			SkyResources.logger.error("Need outputs for recipe. DID NOT REMOVE RECIPE.");
 			return null;
 		}
 
-		if ((recipe.getInputs() == null || recipe.getInputs().size() == 0) && (recipe.getFluidInputs() == null
-				|| recipe.getFluidInputs().size() == 0))
+		if ((recipe.getInputs() == null || recipe.getInputs().size() == 0)
+				&& (recipe.getFluidInputs() == null || recipe.getFluidInputs().size() == 0))
 		{
 
 			List<Integer> recipesToRemoveAt = new ArrayList<Integer>();

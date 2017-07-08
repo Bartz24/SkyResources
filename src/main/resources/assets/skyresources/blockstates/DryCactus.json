@@ -1,7 +1,13 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "skyresources:drycactus"
+    "model": "cactus",
+    "textures": {    
+        "particle": "skyresources:blocks/drycactusside",
+        "bottom": "skyresources:blocks/drycactusbottom",
+        "top": "skyresources:blocks/drycactustop",
+        "side": "skyresources:blocks/drycactusside"
+    }
   },
   "variants": {
     "normal": [{}],

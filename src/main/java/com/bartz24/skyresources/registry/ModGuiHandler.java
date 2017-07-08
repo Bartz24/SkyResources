@@ -1,18 +1,23 @@
 package com.bartz24.skyresources.registry;
 
+import com.bartz24.skyresources.alchemy.gui.GuiFusionTable;
 import com.bartz24.skyresources.alchemy.gui.GuiLifeInfuser;
 import com.bartz24.skyresources.alchemy.gui.GuiLifeInjector;
+import com.bartz24.skyresources.alchemy.gui.container.ContainerFusionTable;
 import com.bartz24.skyresources.alchemy.gui.container.ContainerLifeInfuser;
 import com.bartz24.skyresources.alchemy.gui.container.ContainerLifeInjector;
 import com.bartz24.skyresources.alchemy.tile.LifeInfuserTile;
 import com.bartz24.skyresources.alchemy.tile.LifeInjectorTile;
+import com.bartz24.skyresources.alchemy.tile.TileAlchemyFusionTable;
+import com.bartz24.skyresources.base.gui.ContainerCasing;
+import com.bartz24.skyresources.base.gui.GuiCasing;
 import com.bartz24.skyresources.base.guide.gui.GuideGUI;
+import com.bartz24.skyresources.base.tile.TileCasing;
 import com.bartz24.skyresources.plugin.forestry.gui.GuiBeeAttractor;
 import com.bartz24.skyresources.plugin.forestry.gui.container.ContainerBeeAttractor;
 import com.bartz24.skyresources.plugin.forestry.tile.TileBeeAttractor;
 import com.bartz24.skyresources.technology.gui.GuiAqueousConcentrator;
 import com.bartz24.skyresources.technology.gui.GuiCombustionCollector;
-import com.bartz24.skyresources.technology.gui.GuiCombustionHeater;
 import com.bartz24.skyresources.technology.gui.GuiDarkMatterWarper;
 import com.bartz24.skyresources.technology.gui.GuiDirtFurnace;
 import com.bartz24.skyresources.technology.gui.GuiEndPortalCore;
@@ -22,7 +27,6 @@ import com.bartz24.skyresources.technology.gui.GuiRockCleaner;
 import com.bartz24.skyresources.technology.gui.GuiRockCrusher;
 import com.bartz24.skyresources.technology.gui.container.ContainerAqueousConcentrator;
 import com.bartz24.skyresources.technology.gui.container.ContainerCombustionCollector;
-import com.bartz24.skyresources.technology.gui.container.ContainerCombustionHeater;
 import com.bartz24.skyresources.technology.gui.container.ContainerDarkMatterWarper;
 import com.bartz24.skyresources.technology.gui.container.ContainerDirtFurnace;
 import com.bartz24.skyresources.technology.gui.container.ContainerEndPortalCore;
@@ -34,7 +38,6 @@ import com.bartz24.skyresources.technology.tile.DirtFurnaceTile;
 import com.bartz24.skyresources.technology.tile.MiniFreezerTile;
 import com.bartz24.skyresources.technology.tile.TileAqueousConcentrator;
 import com.bartz24.skyresources.technology.tile.TileCombustionCollector;
-import com.bartz24.skyresources.technology.tile.TileCombustionHeater;
 import com.bartz24.skyresources.technology.tile.TileDarkMatterWarper;
 import com.bartz24.skyresources.technology.tile.TileEndPortalCore;
 import com.bartz24.skyresources.technology.tile.TileQuickDropper;
@@ -48,7 +51,8 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 
 public class ModGuiHandler implements IGuiHandler
 {
-	public static final int CombustionHeaterGUI = 0;
+	public static final int FusionGUI = 0;
+	public static final int CasingGUI = 1;
 	public static final int FreezerGUI = 2;
 	public static final int FurnaceGUI = 3;
 	public static final int DarkMatterWarperGUI = 4;
@@ -66,9 +70,8 @@ public class ModGuiHandler implements IGuiHandler
 	@Override
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
 	{
-		if (id == CombustionHeaterGUI)
-			return new ContainerCombustionHeater(player.inventory,
-					(TileCombustionHeater) world.getTileEntity(new BlockPos(x, y, z)));
+		if (id == CasingGUI)
+			return new ContainerCasing(player.inventory, (TileCasing) world.getTileEntity(new BlockPos(x, y, z)));
 		else if (id == FreezerGUI)
 			return new ContainerFreezer(player.inventory, (MiniFreezerTile) world.getTileEntity(new BlockPos(x, y, z)));
 		else if (id == FurnaceGUI)
@@ -104,16 +107,17 @@ public class ModGuiHandler implements IGuiHandler
 		else if (id == BeeAttractorGUI)
 			return new ContainerBeeAttractor(player.inventory,
 					(TileBeeAttractor) world.getTileEntity(new BlockPos(x, y, z)));
-
+		else if (id == FusionGUI)
+			return new ContainerFusionTable(player.inventory,
+					(TileAlchemyFusionTable) world.getTileEntity(new BlockPos(x, y, z)));
 		return null;
 	}
 
 	@Override
 	public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
 	{
-		if (id == CombustionHeaterGUI)
-			return new GuiCombustionHeater(player.inventory,
-					(TileCombustionHeater) world.getTileEntity(new BlockPos(x, y, z)));
+		if (id == CasingGUI)
+			return new GuiCasing(player.inventory, (TileCasing) world.getTileEntity(new BlockPos(x, y, z)));
 		else if (id == FreezerGUI)
 			return new GuiFreezer(player.inventory, (MiniFreezerTile) world.getTileEntity(new BlockPos(x, y, z)));
 		else if (id == FurnaceGUI)
@@ -142,7 +146,9 @@ public class ModGuiHandler implements IGuiHandler
 					(TileAqueousConcentrator) world.getTileEntity(new BlockPos(x, y, z)));
 		else if (id == BeeAttractorGUI)
 			return new GuiBeeAttractor(player.inventory, (TileBeeAttractor) world.getTileEntity(new BlockPos(x, y, z)));
-
+		else if (id == FusionGUI)
+			return new GuiFusionTable(player.inventory,
+					(TileAlchemyFusionTable) world.getTileEntity(new BlockPos(x, y, z)));
 		else if (id == GuideGUI)
 			return new GuideGUI();
 

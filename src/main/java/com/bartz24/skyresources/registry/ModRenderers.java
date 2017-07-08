@@ -3,19 +3,19 @@ package com.bartz24.skyresources.registry;
 import javax.annotation.Nonnull;
 
 import com.bartz24.skyresources.References;
-import com.bartz24.skyresources.alchemy.block.CondenserBlock.CondenserVariants;
-import com.bartz24.skyresources.alchemy.block.CrystallizerBlock.CrystallizerVariants;
 import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
 import com.bartz24.skyresources.alchemy.item.DirtyGemItem;
-import com.bartz24.skyresources.alchemy.item.MetalCrystalItem;
+import com.bartz24.skyresources.alchemy.item.ItemOreAlchDust;
 import com.bartz24.skyresources.alchemy.render.CrucibleTESR;
 import com.bartz24.skyresources.alchemy.tile.CrucibleTile;
+import com.bartz24.skyresources.base.MachineVariants;
 import com.bartz24.skyresources.base.entity.EntityHeavyExplosiveSnowball;
 import com.bartz24.skyresources.base.entity.EntityHeavySnowball;
 import com.bartz24.skyresources.base.entity.RenderEntityItem;
 import com.bartz24.skyresources.base.item.BaseItemComponent;
 import com.bartz24.skyresources.base.item.ItemWaterExtractor;
-import com.bartz24.skyresources.technology.block.CombustionHeaterBlock.CombustionHeaterVariants;
+import com.bartz24.skyresources.base.render.CasingTESR;
+import com.bartz24.skyresources.base.tile.TileCasing;
 import com.bartz24.skyresources.technology.item.TechItemComponent;
 
 import net.minecraft.block.Block;
@@ -44,19 +44,16 @@ public class ModRenderers
 	public static void preInit()
 	{
 
-		for (int i = 0; i < ModFluids.crystalFluidInfos().length; i++)
-		{
-			mapFluidState(ModFluids.crystalFluids.get(i));
-		}
+		mapFluidState(ModFluids.crystalFluid);
 
 		for (int i = 0; i < AlchemyItemComponent.getNames().size(); i++)
 		{
 			registerItemRenderer(ModItems.alchemyComponent, i);
 		}
 
-		for (int i = 0; i < MetalCrystalItem.getNames().size(); i++)
+		for (int i = 0; i < ItemOreAlchDust.getNames().size(); i++)
 		{
-			registerItemRenderer(ModItems.metalCrystal, i, true);
+			registerItemRenderer(ModItems.oreAlchDust, i, true);
 		}
 
 		for (int i = 0; i < DirtyGemItem.getNames().size(); i++)
@@ -90,7 +87,6 @@ public class ModRenderers
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.sandyNetherrack));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.darkMatterBlock));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.heavySnow));
-		registerItemRenderer(Item.getItemFromBlock(ModBlocks.heavySnow2));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.dryCactus));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.miniFreezer));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.ironFreezer));
@@ -98,7 +94,6 @@ public class ModRenderers
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.fluidDropper));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.blazePowderBlock));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.dirtFurnace));
-		registerItemRenderer(Item.getItemFromBlock(ModBlocks.poweredHeater));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.darkMatterWarper));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.endPortalCore));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.lifeInfuser));
@@ -110,9 +105,18 @@ public class ModRenderers
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.quickDropper));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.aqueousConcentrator));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.aqueousDeconcentrator));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.fusionTable));
 
 		registerItemRenderer(ModItems.sandstoneInfusionStone);
 		registerItemRenderer(ModItems.redSandstoneInfusionStone);
+
+		registerVariantsDefaulted(ModBlocks.casing, MachineVariants.class, "variant");
+
+		registerVariantsDefaulted(ModItems.condenser, MachineVariants.class, "variant");
+		registerVariantsDefaulted(ModItems.combustionHeater, MachineVariants.class, "variant");
+		registerVariantsDefaulted(ModItems.heatProvider, MachineVariants.class, "variant");
+		registerVariantsDefaulted(ModItems.alchComponent, MachineVariants.class, "variant");
+		registerVariantsDefaulted(ModItems.heatComponent, MachineVariants.class, "variant");
 
 		ModelBakery.registerItemVariants(ModItems.waterExtractor,
 				new ModelResourceLocation("skyresources:WaterExtractor.empty", "inventory"),
@@ -123,10 +127,6 @@ public class ModRenderers
 				new ModelResourceLocation("skyresources:WaterExtractor.full4", "inventory"),
 				new ModelResourceLocation("skyresources:WaterExtractor.full5", "inventory"),
 				new ModelResourceLocation("skyresources:WaterExtractor.full6", "inventory"));
-
-		registerVariantsDefaulted(ModBlocks.combustionHeater, CombustionHeaterVariants.class, "variant");
-		registerVariantsDefaulted(ModBlocks.alchemicalCondenser, CondenserVariants.class, "variant");
-		registerVariantsDefaulted(ModBlocks.crystallizer, CrystallizerVariants.class, "variant");
 
 		ModelLoader.setCustomMeshDefinition(ModItems.waterExtractor, new ItemMeshDefinition()
 		{
@@ -181,13 +181,13 @@ public class ModRenderers
 			@Override
 			public int getColorFromItemstack(ItemStack stack, int tintIndex)
 			{
-				if (stack.getMetadata() < 0 || stack.getMetadata() >= MetalCrystalItem.getNames().size())
+				if (stack.getMetadata() < 0 || stack.getMetadata() >= ItemOreAlchDust.getNames().size())
 					return -1;
 
-				return ModFluids.getFluidInfo(stack.getMetadata()).color;
+				return ItemOreAlchDust.oreInfos.get(stack.getMetadata()).color;
 			}
 
-		}, ModItems.metalCrystal);
+		}, ModItems.oreAlchDust);
 
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor()
 		{
@@ -204,6 +204,7 @@ public class ModRenderers
 		}, ModItems.dirtyGem);
 
 		ClientRegistry.bindTileEntitySpecialRenderer(CrucibleTile.class, new CrucibleTESR());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileCasing.class, new CasingTESR());
 	}
 
 	public static void registerItemRenderer(Item item, int meta, ResourceLocation name)
@@ -252,34 +253,51 @@ public class ModRenderers
 					new ModelResourceLocation(b.getRegistryName(), variantName));
 		}
 	}
-	
-	public static void mapFluidState(Fluid fluid) {
+
+	private static <T extends Enum<T> & IStringSerializable> void registerVariantsDefaulted(Item item,
+			Class<T> enumclazz, String variantHeader)
+	{
+		for (T e : enumclazz.getEnumConstants())
+		{
+			String variantName = variantHeader + "=" + e.getName().toLowerCase();
+			ModelLoader.setCustomModelResourceLocation(item, e.ordinal(),
+					new ModelResourceLocation(item.getRegistryName(), variantName));
+		}
+	}
+
+	public static void mapFluidState(Fluid fluid)
+	{
 		Block block = fluid.getBlock();
 		Item item = Item.getItemFromBlock(block);
 		FluidStateMapper mapper = new FluidStateMapper(fluid);
-		if (item != null) {
+		if (item != null)
+		{
 			ModelLoader.registerItemVariants(item);
 			ModelLoader.setCustomMeshDefinition(item, mapper);
 		}
 		ModelLoader.setCustomStateMapper(block, mapper);
 	}
-	
-	static class FluidStateMapper extends StateMapperBase implements ItemMeshDefinition {
+
+	static class FluidStateMapper extends StateMapperBase implements ItemMeshDefinition
+	{
 		public final ModelResourceLocation location;
 
-		public FluidStateMapper(Fluid fluid) {
+		public FluidStateMapper(Fluid fluid)
+		{
 			this.location = new ModelResourceLocation(References.ModID + ":fluid_block", fluid.getName());
 		}
 
 		@Nonnull
 		@Override
-		protected ModelResourceLocation getModelResourceLocation(@Nonnull IBlockState state) {
+		protected ModelResourceLocation getModelResourceLocation(@Nonnull IBlockState state)
+		{
 			return location;
 		}
 
 		@Nonnull
 		@Override
-		public ModelResourceLocation getModelLocation(@Nonnull ItemStack stack) {
+		public ModelResourceLocation getModelLocation(@Nonnull ItemStack stack)
+		{
 			return location;
 		}
 	}

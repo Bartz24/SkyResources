@@ -75,22 +75,16 @@ public class GuideGUI extends GuiScreen
 			this.fontRenderer.drawString(I18n.translateToLocal(currentPage.pageDisplay), x + 20, 26, 16777215);
 
 			String catDisplay = Strings.isNullOrEmpty(currentCategory) ? "All" : I18n.translateToLocal(currentCategory);
-			this.fontRenderer.drawString(catDisplay, 60 - fontRenderer.getStringWidth(catDisplay) / 2, 18,
-					16777215);
-			this.fontRenderer.drawString("Category", 60 - fontRenderer.getStringWidth("Category") / 2, 6,
-					16777215);
+			this.fontRenderer.drawString(catDisplay, 60 - fontRenderer.getStringWidth(catDisplay) / 2, 18, 16777215);
+			this.fontRenderer.drawString("Category", 60 - fontRenderer.getStringWidth("Category") / 2, 6, 16777215);
 
 			this.searchBox.drawTextBox();
 			this.pageScroll.drawScreen(mouseX, mouseY, partialTicks);
 			this.pageInfo.drawScreen(mouseX, mouseY, partialTicks);
-		}
-
-		if (currentImage != null)
+		} else
 		{
-
-			this.mc.getTextureManager().bindTexture(currentImage.imgLocation);
-			this.drawTexturedModalRect(this.width / 2 - 128, this.height / 2 - 128, 0, 0, 256, 256);
-			this.closeButton.drawButton(mc, mouseX, mouseY);
+			this.closeButton.drawButton(mc, mouseX, mouseY, partialTicks);
+			this.currentImage.draw(this.mc, this.width / 2 - 128, this.height / 2 - 128, 256, 256);
 		}
 	}
 
@@ -157,9 +151,9 @@ public class GuideGUI extends GuiScreen
 			{
 				currentCategory = ConfigOptions.lastGuideCat;
 				GuidePage lastPage = SkyResourcesGuide.getPage(ConfigOptions.lastGuidePage);
-				currentPage = lastPage == null ? SkyResourcesGuide.getPage("basics") : lastPage;
+				currentPage = lastPage == null ? SkyResourcesGuide.getPage("stage1") : lastPage;
 			} else
-				currentPage = SkyResourcesGuide.getPage("basics");
+				currentPage = SkyResourcesGuide.getPage("stage1");
 		}
 		if (linkButtons == null)
 			linkButtons = new ArrayList();
@@ -440,7 +434,7 @@ public class GuideGUI extends GuiScreen
 				}
 			} else
 			{
-				if (currentString.equals(" ") && (word.equals(",") || word.equals(".")))
+				if (currentString.equals(" ") && (word.equals(",") || word.equals(".") || word.equals("!")))
 					currentString = "";
 				int wordWidth = fontRenderer.getStringWidth(word + " ");
 
@@ -589,9 +583,9 @@ public class GuideGUI extends GuiScreen
 					{
 						GuiPageButton button = (GuiPageButton) obj;
 						button.buttonInfo.setDisplay(button.buttonInfo.getDisplay().replace("_", " "));
-						button.xPosition = curX;
-						button.yPosition = curY - 4;
-						button.drawButton(mc, mouseX, mouseY);
+						button.x = curX;
+						button.y = curY - 4;
+						button.drawButton(mc, mouseX, mouseY, 0);
 						curX += button.width;
 					}
 				}

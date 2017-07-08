@@ -1,0 +1,103 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "skyresources:machineparttop",
+        "textures": {
+            "part": "skyresources:blocks/heatprovider",
+            "all": "skyresources:blocks/ironmachine"
+        }
+    },
+    "variants": {
+        "variant=wood": {
+            "model": "skyresources:machineparttop",
+            "textures": {
+                "part": "skyresources:blocks/heatprovider",
+                "all": "minecraft:blocks/log_oak"
+            }
+        },
+        "variant=stone": {
+            "model": "skyresources:machineparttop",
+            "textures": {
+                "part": "skyresources:blocks/heatprovider",
+                "all": "minecraft:blocks/stone"
+            }
+        },
+        "variant=bronze": {
+            "model": "skyresources:machineparttop",
+            "textures": {
+                "part": "skyresources:blocks/heatprovider",
+                "all": "skyresources:blocks/bronzemachine"
+            }
+        },
+        "variant=iron": {
+            "model": "skyresources:machineparttop",
+            "textures": {
+                "part": "skyresources:blocks/heatprovider",
+                "all": "skyresources:blocks/ironmachine"
+            }
+        },
+        "variant=steel": {
+            "model": "skyresources:machineparttop",
+            "textures": {
+                "part": "skyresources:blocks/heatprovider",
+                "all": "skyresources:blocks/steelmachine"
+            }
+        },
+        "variant=electrum": {
+            "model": "skyresources:machineparttop",
+            "textures": {
+                "part": "skyresources:blocks/heatprovider",
+                "all": "skyresources:blocks/electrummachine"
+            }
+        },
+        "variant=netherbrick": {
+            "model": "skyresources:machineparttop",
+            "textures": {
+                "part": "skyresources:blocks/heatprovider",
+                "all": "minecraft:blocks/nether_brick"
+            }
+        },
+        "variant=lead": {
+            "model": "skyresources:machineparttop",
+            "textures": {
+                "part": "skyresources:blocks/heatprovider",
+                "all": "skyresources:blocks/leadmachine"
+            }
+        },
+        "variant=manyullyn": {
+            "model": "skyresources:machineparttop",
+            "textures": {
+                "part": "skyresources:blocks/heatprovider",
+                "all": "skyresources:blocks/manyullynmachine"
+            }
+        },
+        "variant=signalum": {
+            "model": "skyresources:machineparttop",
+            "textures": {
+                "part": "skyresources:blocks/heatprovider",
+                "all": "skyresources:blocks/signalummachine"
+            }
+        },
+        "variant=endstone": {
+            "model": "skyresources:machineparttop",
+            "textures": {
+                "part": "skyresources:blocks/heatprovider",
+                "all": "minecraft:blocks/end_stone"
+            }
+        },
+        "variant=enderium": {
+            "model": "skyresources:machineparttop",
+            "textures": {
+                "part": "skyresources:blocks/heatprovider",
+                "all": "skyresources:blocks/enderiummachine"
+            }
+        },
+        "variant=darkmatter": {
+            "model": "skyresources:machineparttop",
+            "textures": {
+                "part": "skyresources:blocks/heatprovider",
+                "all": "skyresources:blocks/darkmatter"
+            }
+        }
+    }
+}

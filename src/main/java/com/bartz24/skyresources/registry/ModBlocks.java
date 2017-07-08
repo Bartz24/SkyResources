@@ -1,18 +1,14 @@
 package com.bartz24.skyresources.registry;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.bartz24.skyresources.References;
-import com.bartz24.skyresources.alchemy.block.CondenserBlock;
+import com.bartz24.skyresources.alchemy.block.BlockAlchemyFusionTable;
 import com.bartz24.skyresources.alchemy.block.CrucibleBlock;
-import com.bartz24.skyresources.alchemy.block.CrystallizerBlock;
 import com.bartz24.skyresources.alchemy.block.LifeInfuserBlock;
 import com.bartz24.skyresources.alchemy.block.LifeInjectorBlock;
 import com.bartz24.skyresources.alchemy.fluid.FluidCrystalBlock;
-import com.bartz24.skyresources.alchemy.fluid.FluidRegisterInfo.CrystalFluidType;
 import com.bartz24.skyresources.base.block.BaseBlock;
 import com.bartz24.skyresources.base.block.BlazePowderBlock;
+import com.bartz24.skyresources.base.block.BlockCasing;
 import com.bartz24.skyresources.base.block.BlockDryCactus;
 import com.bartz24.skyresources.base.block.ItemBlockMeta;
 import com.bartz24.skyresources.base.block.TransparentBlock;
@@ -25,11 +21,9 @@ import com.bartz24.skyresources.technology.block.BlockDirtFurnace;
 import com.bartz24.skyresources.technology.block.BlockEndPortalCore;
 import com.bartz24.skyresources.technology.block.BlockFreezer;
 import com.bartz24.skyresources.technology.block.BlockMiniFreezer;
-import com.bartz24.skyresources.technology.block.BlockPoweredHeater;
 import com.bartz24.skyresources.technology.block.BlockQuickDropper;
 import com.bartz24.skyresources.technology.block.BlockRockCleaner;
 import com.bartz24.skyresources.technology.block.BlockRockCrusher;
-import com.bartz24.skyresources.technology.block.CombustionHeaterBlock;
 import com.bartz24.skyresources.technology.block.FluidDropperBlock;
 
 import net.minecraft.block.Block;
@@ -38,20 +32,16 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.GameData;
 
 public class ModBlocks
 {
 	public static Block cactusFruitNeedle;
 
-	public static Block combustionHeater;
 	public static Block crucible;
 	public static Block fluidDropper;
-	public static Block alchemicalCondenser;
-	public static Block crystallizer;
 	public static Block miniFreezer;
 	public static Block ironFreezer;
-	public static Block poweredHeater;
 	public static Block darkMatterWarper;
 	public static Block endPortalCore;
 	public static Block lifeInfuser;
@@ -63,24 +53,24 @@ public class ModBlocks
 	public static Block quickDropper;
 	public static Block aqueousConcentrator;
 	public static Block aqueousDeconcentrator;
+	public static Block casing;
+	public static Block fusionTable;
 
 	public static Block compressedCoalBlock;
 	public static Block coalInfusedBlock;
 	public static Block sandyNetherrack;
 	public static Block darkMatterBlock;
 	public static Block heavySnow;
-	public static Block heavySnow2;
 
 	public static Block blazePowderBlock;
 
 	public static Block dryCactus;
 	public static Block dirtFurnace;
 
-	public static List<Block> crystalFluidBlocks;
+	public static Block crystalFluidBlock;
 
 	public static void init()
 	{
-		crystalFluidBlocks = new ArrayList<Block>();
 		cactusFruitNeedle = registerBlock(new TransparentBlock(Material.PLANTS, "cactusFruitNeedle",
 				"CactusFruitNeedle", 0.5F, 0.5F, new AxisAlignedBB(0.3D, 0D, 0.3D, 0.7D, 0.8D, 0.7D), SoundType.PLANT));
 
@@ -98,14 +88,7 @@ public class ModBlocks
 		blazePowderBlock = registerBlock(new BlazePowderBlock(Material.CLAY, "blazePowderBlock", "BlazePowderBlock",
 				0.5F, 0.5F, SoundType.GROUND));
 		heavySnow = registerBlock(new BaseBlock(Material.CLAY, "heavySnow", "HeavySnow", 0.5F, 0.5F, SoundType.SNOW));
-		heavySnow2 = registerBlock(new BaseBlock(Material.CLAY, "heavySnow2", "HeavySnow2", 1F, 1F, SoundType.SNOW));
 
-		registerItemBlock(
-				alchemicalCondenser = new CondenserBlock("alchemicalCondenser", "AlchemicalCondenser", 2F, 12F));
-
-		registerItemBlock(crystallizer = new CrystallizerBlock("crystallizer", "crystallizer", 6F, 12F));
-
-		poweredHeater = registerBlock(new BlockPoweredHeater("poweredHeater", "PoweredHeater", 4F, 12F));
 		darkMatterWarper = registerBlock(new BlockDarkMatterWarper("darkMatterWarper", "DarkMatterWarper", 8F, 12F));
 		endPortalCore = registerBlock(new BlockEndPortalCore("endPortalCore", "EndPortalCore", 6F, 12F));
 		rockCrusher = registerBlock(new BlockRockCrusher("rockCrusher", "RockCrusher", 6F, 12F));
@@ -129,58 +112,49 @@ public class ModBlocks
 		aqueousDeconcentrator = registerBlock(
 				new BlockAqueousDeconcentrator("aqueousDeconcentrator", "AqueousDeconcentrator", 2F, 12F));
 
-		registerItemBlock(
-				combustionHeater = new CombustionHeaterBlock("combustionHeater", "CombustionHeater", 2F, 12F));
 		dryCactus = registerBlock(new BlockDryCactus());
 
 		dirtFurnace = registerBlock(new BlockDirtFurnace("dirtFurnace", "DirtFurnace", 0.5F, 0.5F));
+		fusionTable = registerBlock(new BlockAlchemyFusionTable("fusionTable", "FusionTable", 3F, 10F));
 
-		for (int i = 0; i < ModFluids.crystalFluidInfos().length; i++)
-		{
-			CrystalFluidType type = ModFluids.crystalFluidInfos()[i].type;
-			crystalFluidBlocks.add(registerBlockOnly(new FluidCrystalBlock(ModFluids.crystalFluids.get(i),
-					type == CrystalFluidType.NORMAL ? Material.WATER : Material.LAVA,
-					ModFluids.crystalFluidInfos()[i].name + (type == CrystalFluidType.NORMAL ? "" : "Molten")
-							+ "CrystalFluidBlock",
-					ModFluids.crystalFluidInfos()[i].name + (type == CrystalFluidType.NORMAL ? "" : "molten")
-							+ "crystalfluidblock")));
-		}
+		crystalFluidBlock = registerBlockOnly(new FluidCrystalBlock());
+		registerItemBlock(casing = new BlockCasing("casing", "Casing", 2F, 12F));
 	}
 
 	public static Block registerBlockOnly(Block block, String name)
 	{
-		GameRegistry.register(block, new ResourceLocation(References.ModID, name));
+		GameData.register_impl(block.setRegistryName(new ResourceLocation(References.ModID, name)));
 
 		return block;
 	}
 
 	public static Block registerBlock(Block block, String name)
 	{
-		GameRegistry.register(block, new ResourceLocation(References.ModID, name));
-		GameRegistry.register(new ItemBlock(block).setRegistryName(new ResourceLocation(References.ModID, name)));
+		GameData.register_impl(block.setRegistryName(new ResourceLocation(References.ModID, name)));
+		GameData.register_impl(new ItemBlock(block).setRegistryName(new ResourceLocation(References.ModID, name)));
 
 		return block;
 	}
 
 	public static Block registerBlockOnly(Block block)
 	{
-		GameRegistry.register(block);
+		GameData.register_impl(block);
 
 		return block;
 	}
 
 	public static Block registerBlock(Block block)
 	{
-		GameRegistry.register(block);
-		GameRegistry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+		GameData.register_impl(block);
+		GameData.register_impl(new ItemBlock(block).setRegistryName(block.getRegistryName()));
 
 		return block;
 	}
 
 	public static void registerItemBlock(Block block)
 	{
-		GameRegistry.register(block);
-		GameRegistry.register(new ItemBlockMeta(block).setRegistryName(block.getRegistryName()));
+		GameData.register_impl(block);
+		GameData.register_impl(new ItemBlockMeta(block).setRegistryName(block.getRegistryName()));
 
 	}
 }

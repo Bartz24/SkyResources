@@ -1,7 +1,10 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "skyresources:heavysnow2"
+    "model": "cube_all",
+    "textures": {
+    "all": "skyresources:blocks/heavysnow2"
+  }
   },
   "variants": {
     "normal": [{}],

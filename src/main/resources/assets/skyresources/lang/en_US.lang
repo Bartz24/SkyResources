@@ -1,11 +1,14 @@
 item.skyresources.alchemyItemComponent.cactusNeedle.name=Cactus Needle
-item.skyresources.alchemyItemComponent.coalAlchemical.name=Alchemical Coal
-item.skyresources.alchemyItemComponent.dustAlchemical.name=Alchemical Dust
-item.skyresources.alchemyItemComponent.diamondAlchemical.name=Alchemical Diamond
-item.skyresources.alchemyItemComponent.goldIngotAlchemical.name=Alchemical Gold Ingot
-item.skyresources.alchemyItemComponent.goldNeedleAlchemical.name=Alchemical Gold Needle
-item.skyresources.baseItemComponent.woodHeatComponent.name=Wooden Heat Component
-item.skyresources.baseItemComponent.ironHeatComponent.name=Iron Heat Component
+item.skyresources.alchemyItemComponent.crystalShard.name=Crystal Shard
+item.skyresources.alchemyItemComponent.alchDust1.name=Primus Alchemical Dust
+item.skyresources.alchemyItemComponent.alchDust2.name=Secundus Alchemical Dust
+item.skyresources.alchemyItemComponent.alchDust3.name=Tertius Alchemical Dust
+item.skyresources.alchemyItemComponent.alchDust4.name=Quartus Alchemical Dust
+item.skyresources.alchemyItemComponent.alchCoal.name=Alchemical Coal
+item.skyresources.alchemyItemComponent.alchGoldIngot.name=Alchemical Gold Ingot
+item.skyresources.alchemyItemComponent.alchIronIngot.name=Alchemical Iron Ingot
+item.skyresources.alchemyItemComponent.alchGoldNeedle.name=Alchemical Gold Needle
+item.skyresources.alchemyItemComponent.alchDiamond.name=Alchemical Diamond
 item.skyresources.baseItemComponent.plantMatter.name=Plant Matter
 item.skyresources.baseItemComponent.steelPowerComponent.name=Advanced Power Component
 item.skyresources.baseItemComponent.frozenIronCoolingComponent.name=Frozen Iron Cooling Component
@@ -42,18 +45,6 @@ tile.skyresources.sandyNetherrack.name=Sandy Netherrack
 tile.skyresources.darkMatterBlock.name=Dark Matter Block
 tile.skyresources.coalInfusedBlock.name=Alchemical Coal Block
 tile.skyresources.dryCactus.name=Dehydrated Cactus
-tile.skyresources.combustionHeater.wood.name=Wooden Combustion Heater
-tile.skyresources.combustionHeater.iron.name=Iron Combustion Heater
-tile.skyresources.combustionHeater.steel.name=Advanced Combustion Heater
-tile.skyresources.combustionHeater.darkmatter.name=Dark Matter Combustion Heater
-tile.skyresources.alchemicalCondenser.stone.name=Stone Alchemical Condenser
-tile.skyresources.alchemicalCondenser.iron.name=Iron Alchemical Condenser
-tile.skyresources.alchemicalCondenser.steel.name=Advanced Alchemical Condenser
-tile.skyresources.alchemicalCondenser.darkmatter.name=Dark Matter Alchemical Condenser
-tile.skyresources.crystallizer.stone.name=Stone Crystallizer
-tile.skyresources.crystallizer.iron.name=Iron Crystallizer
-tile.skyresources.crystallizer.steel.name=Advanced Crystallizer
-tile.skyresources.crystallizer.darkmatter.name=Dark Matter Crystallizer
 tile.skyresources.BlazePowderBlock.name=Blaze Powder Block
 tile.skyresources.crucible.name=Crucible
 tile.skyresources.fluidDropper.name=Fluid Dropper
@@ -62,10 +53,8 @@ tile.skyresources.purificationVessel.name=Purification Vessel
 tile.skyresources.miniFreezer.name=Mini Freezer
 tile.skyresources.ironFreezer.name=Iron Freezer
 tile.skyresources.heavySnow.name=Heavy Snow
-tile.skyresources.heavySnow2.name=Very Heavy Snow
 tile.skyresources.dirtFurnace.name=Dirt Furnace
 tile.skyresources.beeAttractor.name=Bee Attractor
-tile.skyresources.poweredHeater.name=Advanced Heater
 tile.skyresources.darkMatterWarper.name=Dark Matter Warper
 tile.skyresources.endPortalCore.name=End Portal Core
 tile.skyresources.lifeInfuser.name=Life Infuser Core
@@ -77,37 +66,10 @@ tile.skyresources.combustionCollector.name=Combustion Collector
 tile.skyresources.quickDropper.name=Quick Dropper
 tile.skyresources.aqueousConcentrator.name=Aqueous Concentrator
 tile.skyresources.aqueousDeconcentrator.name=Aqueous Deconcentrator
+tile.skyresources.fusionTable.name=Alchemical Fusion Table
 
 
-tile.skyresources.ironCrystalFluidBlock.name=Iron Crystal Fluid
-tile.skyresources.goldCrystalFluidBlock.name=Gold Crystal Fluid
-tile.skyresources.copperCrystalFluidBlock.name=Copper Crystal Fluid
-tile.skyresources.tinCrystalFluidBlock.name=Tin Crystal Fluid
-tile.skyresources.silverCrystalFluidBlock.name=Silver Crystal Fluid
-tile.skyresources.zincCrystalFluidBlock.name=Zinc Crystal Fluid
-tile.skyresources.nickelCrystalFluidBlock.name=Nickel Crystal Fluid
-tile.skyresources.platinumCrystalFluidBlock.name=Platinum Crystal Fluid
-tile.skyresources.aluminumCrystalFluidBlock.name=Aluminum Crystal Fluid
-tile.skyresources.leadCrystalFluidBlock.name=Lead Crystal Fluid
-tile.skyresources.mercuryCrystalFluidBlock.name=Mercury Crystal Fluid
-tile.skyresources.osmiumCrystalFluidBlock.name=Osmium Crystal Fluid
-tile.skyresources.lapisCrystalFluidBlock.name=Lapis Lazuli Crystal Fluid
-tile.skyresources.draconiumCrystalFluidBlock.name=Draconium Crystal Fluid
-tile.skyresources.certusCrystalFluidBlock.name=Certus Quartz Crystal Fluid
-tile.skyresources.titaniumCrystalFluidBlock.name=Titanium Crystal Fluid
-tile.skyresources.tungstenCrystalFluidBlock.name=Tungsten Crystal Fluid
-tile.skyresources.chromeCrystalFluidBlock.name=Chrome Crystal Fluid
-tile.skyresources.iridiumCrystalFluidBlock.name=Iridium Crystal Fluid
-tile.skyresources.quartzBlackCrystalFluidBlock.name=Black Quartz Crystal Fluid
-tile.skyresources.boronCrystalFluidBlock.name=Boron Crystal Fluid
-tile.skyresources.magnesiumCrystalFluidBlock.name=Magnesium Crystal Fluid
-tile.skyresources.lithiumCrystalFluidBlock.name=Lithium Crystal Fluid
-tile.skyresources.mithrilCrystalFluidBlock.name=Mithril Crystal Fluid
-
-tile.skyresources.quartzMoltenCrystalFluidBlock.name=Molten Quartz Crystal Fluid
-tile.skyresources.cobaltMoltenCrystalFluidBlock.name=Molten Cobalt Crystal Fluid
-tile.skyresources.arditeMoltenCrystalFluidBlock.name=Molten Ardite Crystal Fluid
-tile.skyresources.draconiumMoltenCrystalFluidBlock.name=Molten Draconium Crystal Fluid
+tile.fluid.srCrystalFluid.name=Crystal Fluid
 
 
 jei.skyresources.desc.cactusNeedle=Obtained by shift right-clicking on a cactus block.\n\nNOTE: You will take damage.
@@ -127,6 +89,7 @@ jei.skyresources.recipe.heatsources=Heat Sources
 jei.skyresources.recipe.cauldron=Cauldron
 jei.skyresources.recipe.cauldronclean=Cauldron Cleaning
 jei.skyresources.recipe.waterextractor=Water Extractor
+jei.skyresources.recipe.fusion=Alchemical Fusion
 
 
 container.skyresources.combustionHeater=Combustion Heater
@@ -142,34 +105,114 @@ container.skyresources.rockCleaner=Rock Cleaner
 container.skyresources.combustionCollector=Combustion Collector
 container.skyresources.quickDropper=Quick Dropper
 container.skyresources.aqueousConcentrator=Aqueous Concentrator
+container.skyresources.fusionTable=Alchemical Fusion Table
 
-item.skyresources.metalCrystal.iron.name=Iron Crystal Shard
-item.skyresources.metalCrystal.gold.name=Gold Crystal Shard
-item.skyresources.metalCrystal.copper.name=Copper Crystal Shard
-item.skyresources.metalCrystal.tin.name=Tin Crystal Shard
-item.skyresources.metalCrystal.silver.name=Silver Crystal Shard
-item.skyresources.metalCrystal.zinc.name=Zinc Crystal Shard
-item.skyresources.metalCrystal.nickel.name=Nickel Crystal Shard
-item.skyresources.metalCrystal.platinum.name=Platinum Crystal Shard
-item.skyresources.metalCrystal.aluminum.name=Aluminum Crystal Shard
-item.skyresources.metalCrystal.lead.name=Lead Crystal Shard
-item.skyresources.metalCrystal.mercury.name=Mercury Crystal Shard
-item.skyresources.metalCrystal.quartz.name=Quartz Crystal Shard
-item.skyresources.metalCrystal.cobalt.name=Cobalt Crystal Shard
-item.skyresources.metalCrystal.ardite.name=Ardite Crystal Shard
-item.skyresources.metalCrystal.osmium.name=Osmium Crystal Shard
-item.skyresources.metalCrystal.lapis.name=Lapis Lazuli Crystal Shard
-item.skyresources.metalCrystal.draconium.name=Draconium Crystal Shard
-item.skyresources.metalCrystal.certus.name=Certus Quartz Crystal Shard
-item.skyresources.metalCrystal.tungsten.name=Tungsten Crystal Shard
-item.skyresources.metalCrystal.titanium.name=Titanium Crystal Shard
-item.skyresources.metalCrystal.chrome.name=Chrome Crystal Shard
-item.skyresources.metalCrystal.iridium.name=Iridium Crystal Shard
-item.skyresources.metalCrystal.quartzBlack.name=Black Quartz Crystal Shard
-item.skyresources.metalCrystal.magnesium.name=Magnesium Crystal Shard
-item.skyresources.metalCrystal.lithium.name=Lithium Crystal Shard
-item.skyresources.metalCrystal.boron.name=Boron Crystal Shard
-item.skyresources.metalCrystal.mithril.name=Mithril Crystal Shard
+tile.skyresources.casing.wood.name=Wooden Casing
+tile.skyresources.casing.stone.name=Stone Casing
+tile.skyresources.casing.bronze.name=Bronze Casing
+tile.skyresources.casing.iron.name=Iron Casing
+tile.skyresources.casing.steel.name=Steel Casing
+tile.skyresources.casing.electrum.name=Electrum Casing
+tile.skyresources.casing.netherbrick.name=Nether Brick Casing
+tile.skyresources.casing.lead.name=Lead Casing
+tile.skyresources.casing.manyullyn.name=Manyullyn Casing
+tile.skyresources.casing.signalum.name=Signalum Casing
+tile.skyresources.casing.endstone.name=End Stone Casing
+tile.skyresources.casing.enderium.name=Enderium Casing
+tile.skyresources.casing.darkmatter.name=Dark Matter Casing
+
+item.skyresources.condenser.wood.name=Wooden Condenser
+item.skyresources.condenser.stone.name=Stone Condenser
+item.skyresources.condenser.bronze.name=Bronze Condenser
+item.skyresources.condenser.iron.name=Iron Condenser
+item.skyresources.condenser.steel.name=Steel Condenser
+item.skyresources.condenser.electrum.name=Electrum Condenser
+item.skyresources.condenser.netherbrick.name=Nether Brick Condenser
+item.skyresources.condenser.lead.name=Lead Condenser
+item.skyresources.condenser.manyullyn.name=Manyullyn Condenser
+item.skyresources.condenser.signalum.name=Signalum Condenser
+item.skyresources.condenser.endstone.name=End Stone Condenser
+item.skyresources.condenser.enderium.name=Enderium Condenser
+item.skyresources.condenser.darkmatter.name=Dark Matter Condenser
+
+item.skyresources.heatprovider.wood.name=Wooden Heat Provider
+item.skyresources.heatprovider.stone.name=Stone Heat Provider
+item.skyresources.heatprovider.bronze.name=Bronze Heat Provider
+item.skyresources.heatprovider.iron.name=Iron Heat Provider
+item.skyresources.heatprovider.steel.name=Steel Heat Provider
+item.skyresources.heatprovider.electrum.name=Electrum Heat Provider
+item.skyresources.heatprovider.netherbrick.name=Nether Brick Heat Provider
+item.skyresources.heatprovider.lead.name=Lead Heat Provider
+item.skyresources.heatprovider.manyullyn.name=Manyullyn Heat Provider
+item.skyresources.heatprovider.signalum.name=Signalum Heat Provider
+item.skyresources.heatprovider.endstone.name=End Stone Heat Provider
+item.skyresources.heatprovider.enderium.name=Enderium Heat Provider
+item.skyresources.heatprovider.darkmatter.name=Dark Matter Heat Provider
+
+item.skyresources.combustionheater.wood.name=Wooden Combustion Heater
+item.skyresources.combustionheater.stone.name=Stone Combustion Heater
+item.skyresources.combustionheater.bronze.name=Bronze Combustion Heater
+item.skyresources.combustionheater.iron.name=Iron Combustion Heater
+item.skyresources.combustionheater.steel.name=Steel Combustion Heater
+item.skyresources.combustionheater.electrum.name=Electrum Combustion Heater
+item.skyresources.combustionheater.netherbrick.name=Nether Brick Combustion Heater
+item.skyresources.combustionheater.lead.name=Lead Combustion Heater
+item.skyresources.combustionheater.manyullyn.name=Manyullyn Combustion Heater
+item.skyresources.combustionheater.signalum.name=Signalum Combustion Heater
+item.skyresources.combustionheater.endstone.name=End Stone Combustion Heater
+item.skyresources.combustionheater.enderium.name=Enderium Combustion Heater
+item.skyresources.combustionheater.darkmatter.name=Dark Matter Combustion Heater
+
+item.skyresources.alchemy.wood.name=Wooden Alchemy Component
+item.skyresources.alchemy.stone.name=Stone Alchemy Component
+item.skyresources.alchemy.bronze.name=Bronze Alchemy Component
+item.skyresources.alchemy.iron.name=Iron Alchemy Component
+item.skyresources.alchemy.steel.name=Steel Alchemy Component
+item.skyresources.alchemy.electrum.name=Electrum Alchemy Component
+item.skyresources.alchemy.netherbrick.name=Nether Brick Alchemy Component
+item.skyresources.alchemy.lead.name=Lead Alchemy Component
+item.skyresources.alchemy.manyullyn.name=Manyullyn Alchemy Component
+item.skyresources.alchemy.signalum.name=Signalum Alchemy Component
+item.skyresources.alchemy.endstone.name=End Stone Alchemy Component
+item.skyresources.alchemy.enderium.name=Enderium Alchemy Component
+item.skyresources.alchemy.darkmatter.name=Dark Matter Alchemy Component
+
+item.skyresources.heat.wood.name=Wooden Heat Component
+item.skyresources.heat.stone.name=Stone Heat Component
+item.skyresources.heat.bronze.name=Bronze Heat Component
+item.skyresources.heat.iron.name=Iron Heat Component
+item.skyresources.heat.steel.name=Steel Heat Component
+item.skyresources.heat.electrum.name=Electrum Heat Component
+item.skyresources.heat.netherbrick.name=Nether Brick Heat Component
+item.skyresources.heat.lead.name=Lead Heat Component
+item.skyresources.heat.manyullyn.name=Manyullyn Heat Component
+item.skyresources.heat.signalum.name=Signalum Heat Component
+item.skyresources.heat.endstone.name=End Stone Heat Component
+item.skyresources.heat.enderium.name=Enderium Heat Component
+item.skyresources.heat.darkmatter.name=Dark Matter Heat Component
+
+item.skyresources.oreAlchDust.iron.name=Iron Alchemical Ore Dust
+item.skyresources.oreAlchDust.gold.name=Gold Alchemical Ore Dust
+item.skyresources.oreAlchDust.copper.name=Copper Alchemical Ore Dust
+item.skyresources.oreAlchDust.tin.name=Tin Alchemical Ore Dust
+item.skyresources.oreAlchDust.silver.name=Silver Alchemical Ore Dust
+item.skyresources.oreAlchDust.zinc.name=Zinc Alchemical Ore Dust
+item.skyresources.oreAlchDust.nickel.name=Nickel Alchemical Ore Dust
+item.skyresources.oreAlchDust.platinum.name=Platinum Alchemical Ore Dust
+item.skyresources.oreAlchDust.aluminum.name=Aluminum Alchemical Ore Dust
+item.skyresources.oreAlchDust.lead.name=Lead Alchemical Ore Dust
+item.skyresources.oreAlchDust.cobalt.name=Cobalt Alchemical Ore Dust
+item.skyresources.oreAlchDust.ardite.name=Ardite Alchemical Ore Dust
+item.skyresources.oreAlchDust.osmium.name=Osmium Alchemical Ore Dust
+item.skyresources.oreAlchDust.draconium.name=Draconium Alchemical Ore Dust
+item.skyresources.oreAlchDust.tungsten.name=Tungsten Alchemical Ore Dust
+item.skyresources.oreAlchDust.titanium.name=Titanium Alchemical Ore Dust
+item.skyresources.oreAlchDust.chrome.name=Chrome Alchemical Ore Dust
+item.skyresources.oreAlchDust.iridium.name=Iridium Alchemical Ore Dust
+item.skyresources.oreAlchDust.magnesium.name=Magnesium Alchemical Ore Dust
+item.skyresources.oreAlchDust.lithium.name=Lithium Alchemical Ore Dust
+item.skyresources.oreAlchDust.boron.name=Boron Alchemical Ore Dust
+item.skyresources.oreAlchDust.mithril.name=Mithril Alchemical Ore Dust
 
 item.skyresources.dirtyGem.emerald.name=Dirty Emerald
 item.skyresources.dirtyGem.diamond.name=Dirty Diamond
@@ -211,127 +254,111 @@ item.skyresources.dirtyGem.blackDiamond.name=Dirty Black Diamond
 item.skyresources.dirtyGem.chaos.name=Dirty Chaos
 item.skyresources.dirtyGem.enderEssence.name=Dirty Ender Essence
 item.skyresources.dirtyGem.dark.name=Dirty Dark Gem
+item.skyresources.dirtyGem.quartz.name=Dirty Quartz
+item.skyresources.dirtyGem.lapis.name=Dirty Lapis Lazuli
+item.skyresources.dirtyGem.quartzBlack.name=Dirty Black Quartz
+item.skyresources.dirtyGem.certus.name=Dirty Certus Quartz
 
 itemGroup.skyresources.tabMain=Sky Resources:Main
 itemGroup.skyresources.tabAlchemy=Sky Resources:Alchemy
 itemGroup.skyresources.tabTech=Sky Resources:Technology
 
-fluid.ironcrystalfluid=Iron Crystal Fluid
-fluid.goldcrystalfluid=Gold Crystal Fluid
-fluid.tincrystalfluid=Tin Crystal Fluid
-fluid.coppercrystalfluid=Copper Crystal Fluid
-fluid.silvercrystalfluid=Silver Crystal Fluid
-fluid.zinccrystalfluid=Zinc Crystal Fluid
-fluid.nickelcrystalfluid=Nickel Crystal Fluid
-fluid.platinumcrystalfluid=Platinum Crystal Fluid
-fluid.aluminumcrystalfluid=Aluminum Crystal Fluid
-fluid.leadcrystalfluid=Lead Crystal Fluid
-fluid.mercurycrystalfluid=Mercury Crystal Fluid
-fluid.osmiumcrystalfluid=Osmium Crystal Fluid
-fluid.lapiscrystalfluid=Lapis Lazuli Crystal Fluid
-fluid.draconiumcrystalfluid=Draconium Crystal Fluid
-fluid.certuscrystalfluid=Certus Quartz Crystal Fluid
-fluid.tungstencrystalfluid=Tungsten Crystal Fluid
-fluid.titaniumcrystalfluid=Titanium Crystal Fluid
-fluid.chromecrystalfluid=Chrome Crystal Fluid
-fluid.iridiumcrystalfluid=Iridium Crystal Fluid
-fluid.quartzBlackcrystalfluid=Black Quartz Crystal Fluid
-fluid.lithiumcrystalfluid=Lithium Crystal Fluid
-fluid.boroncrystalfluid=Boron Crystal Fluid
-fluid.magnesiumcrystalfluid=Magnesium Crystal Fluid
-fluid.mithrilcrystalfluid=Mithril Crystal Fluid
-
-fluid.quartzmoltencrystalfluid=Molten Quartz Crystal Fluid
-fluid.cobaltmoltencrystalfluid=Molten Cobalt Crystal Fluid
-fluid.arditemoltencrystalfluid=Molten Ardite Crystal Fluid
-fluid.adamantinemoltencrystalfluid=Molten Adamantine Crystal Fluid
-fluid.coldironmoltencrystalfluid=Molten Cold Iron Crystal Fluid
-fluid.draconiummoltencrystalfluid=Molten Draconium Crystal Fluid
+fluid.srCrystalFluid=Crystal Fluid
 
 key.skyresources.guide=Open Guide
 
 guide.skyresources.stage1=Stage 1
 guide.skyresources.stage2=Stage 2
 guide.skyresources.stage3=Stage 3
+guide.skyresources.stage4=Stage 4
 guide.skyresources.misc=Misc
 
-guide.skyresources.stage1.basics.title=The Basics
-guide.skyresources.stage1.basics.text=Welcome to Sky Resources! \n \n If you are playing with Void Island Control, type /island create (optional type) for your own island. \n Depending on what you start with, choose one of the islands to get started. \n <link,Sand_Island,minecraft:sand:1,sandIsland> \n <link,Snow_Island,minecraft:snow:0,snowIsland> \n <link,Wood_Island,minecraft:planks:5,woodIsland> \n <link,Grass_Island,minecraft:grass:0,grassIsland> \n If you don't have JEI, I don't know how you're going to get through modded MC. I'm not giving info on crafting if it's in JEI at all in this guide. \n Note that some recipes may be inaccurate or non-existant due to MineTweaker/CraftTweaker.
+guide.skyresources.stage1.stage1.title=Stage 1-The Basics
+guide.skyresources.stage1.stage1.text=Welcome to Sky Resources 2! \n \n This guide is split into 4 different stages. You can filter the category at the top left to get things usually used for the first time during that stage. You can also search for what you are looking for. \n Some buttons in this guide (shown with items) take you to a different guide page, shows the recipe for that item using JEI, or show the setup of using the item. \n \n If you are playing with Void Island Control, type /island create (optional type) for your own island. \n The types are sand, snow, wood, grass, or gog (if Botania and Garden of Glass are installed). \n For additional help using VIC, type /island to bring it up. \n Depending on what you start with, choose one of the islands to get started. \n <link,Sand_Island,minecraft:sand:1,sandIsland> \n <link,Snow_Island,minecraft:snow:0,snowIsland> \n <link,Wood_Island,minecraft:planks:5,woodIsland> \n <link,Grass_Island_or_GoG_Island,minecraft:grass:0,grassIsland> \n \n If you don't have JEI, I don't know how you're going to get through modded MC.
 
 guide.skyresources.stage1.sandIsland.title=Sand Island
-guide.skyresources.stage1.sandIsland.text=To get started on the sand island, you're going to need some <recipe,,skyresources:alchemyitemcomponent:0> . \n Recommended to keep 1 cactus at all times if you want to progress. Using a <recipe,,skyresources:cactuscuttingknife:0> , make some <recipe,,skyresources:cactusfruit:0> , which has high saturation for regenerating. \n A <recipe,,skyresources:redsandstoneinfusionstone:0> or <recipe,,skyresources:sandstoneinfusionstone:0> is needed for <link,Life_Infusion,skyresources:alchemicalinfusionstone:0,lifeInfusion> . \n Using <link,Life_Infusion,skyresources:AlchemicalInfusionStone:0,lifeInfusion> , you can duplicate <recipe,,minecraft:cactus:0> . You can also use it on a <recipe,,skyresources:cactusfruitneedle:0> to get a <recipe,,minecraft:sapling:4> . Also, use <link,Life_Infusion,skyresources:alchemicalinfusionstone:0,lifeInfusion> to get <recipe,,minecraft:dirt:1> . If you find that you are running out of life too quickly, try spamming the <recipe,,skyresources:alchemyitemcomponent:0> plucking.
+guide.skyresources.stage1.sandIsland.text=First, some warnings, keep at least 1 <recipe,,minecraft:cactus:0> and don't use the <recipe,,minecraft:sand:1> unless it is required for a recipe mentioned! \n \n Your first goal is to get some <recipe,,skyresources:alchemyitemcomponent:0> . Shift right-click on the <recipe,,minecraft:cactus:0> to get some. You will take damage. \n Next, you'll want some <recipe,,skyresources:cactusfruit:0> as they help greatly for regenerating health. \n In order to get some new items on this island, you'll need to get a <recipe,,skyresources:redsandstoneinfusionstone:0> . This is used for a process called <link,Life_Infusion,skyresources:redsandstoneinfusionstone:0,lifeInfusion> . \n Using <link,Life_Infusion,skyresources:redsandstoneinfusionstone:0,lifeInfusion> , your first step is to increase your <recipe,,minecraft:cactus:0> production. \n Once you get a decent amount, make a <recipe,,skyresources:cactusfruitneedle:0> in order to make your first <recipe,,minecraft:sapling:4> ! \n After that, make your first <recipe,,minecraft:dirt:1> ! \n \n You are now done in stage 1! Continue on to <link,Stage_2,minecraft:log:0,stage2> !
 
-guide.skyresources.stage1.lifeInfusion.title=Life Infusion
-guide.skyresources.stage1.lifeInfusion.text=In order to do life infusion, you need a few things to do it. \n First, you need an infusion stone. There are 3 by default. \n <recipe,,skyresources:redsandstoneinfusionstone:0> <recipe,,skyresources:sandstoneinfusionstone:0> <recipe,,skyresources:alchemicalinfusionstone:0> \n Next, look in JEI for a recipe and put the items shown in the off-hand slot (the slot with the shield icon) into your off-hand slot. \n Hold the infusion stone in your main hand and right click the block shown to get your result. \n \n The infusion stone also works like bonemeal, but damages yourself. \n Life infusion can be automated with the <link,Life_Infuser,skyresources:lifeinfuser:0,lifeInfuser> .
+guide.skyresources.stage1.lifeInfusion.title=Life Infusion (Infusion Stone)
+guide.skyresources.stage1.lifeInfusion.text=In order to do life infusion, the first thing you'll need is a type of infusion stone. There are 3 by default, the <recipe,,skyresources:redsandstoneinfusionstone:0> , <recipe,,skyresources:sandstoneinfusionstone:0> ,  <recipe,,skyresources:alchemicalinfusionstone:0> . \n \n Once you have one, check the recipe for the item you need in JEI. \n The item above the shield is the one that goes in the off hand. \n The hearts is the amount of health needed to do the infusion. \n The infusion stone is held in your main hand. \n The block is the block you click on with the infusion stone. \n \n Once you're setup to do this, right-click on the block, and you'll drop the result on the ground! \n \n This process can be automated, with the help of other mods, using the <link,Life_Infuser,skyresources:lifeinfuser:0,lifeInfuser> . \n \n The infusion stones also act as bonemeal if used on plants. The stone and yourself will take damage though.
 
 guide.skyresources.stage1.snowIsland.title=Snow Island
-guide.skyresources.stage1.snowIsland.text=To get started on the snow island, you're going to need some <recipe,,minecraft:snowball:0> and a <recipe,,minecraft:pumpkin:0> . \n In order to get <recipe,,minecraft:snowball:0> , shift right-click the snow to get them, and don't use the second pumpkin as it is needed for later. \n Make a snow golem and make sure it doesn't fall off the edge or die. Get more snow from the snow golem. \n Next, you need to make a <link,Mini_Freezer,skyresources:minifreezer:0,miniFreezer> , which is used to make <recipe,,skyresources:heavysnowball:0> . \n The <recipe,,skyresources:heavysnowball:0> and <recipe,,skyresources:heavyexplosivesnowball:0> can be used as projectile weapons as they deal a lot of damage. \n Make a mob farm using the snow, or <recipe,,skyresources:heavysnow:0> blocks for rotten flesh and bones. \n <recipe,,skyresources:fleshysnownugget:0> can be made for food. \n The mob farm will be used to make <recipe,,skyresources:heavysnow2:0> , which can then be froze into <recipe,,minecraft:dirt:1> . \n Another block of <recipe,,minecraft:dirt:1> is needed for a <recipe,,minecraft:sapling:1> .
+guide.skyresources.stage1.snowIsland.text=First, a warning, don't use the <recipe,,minecraft:pumpkin:0> unless it is required for a recipe or process mentioned! \n \n Your first goal is to get some <recipe,,minecraft:snowball:0> . Shift right-click on the <recipe,,minecraft:snow:0> to get some. You will get mining fatigue for a few seconds. \n Next, you'll want to create a snow golem. This is done by placing 2 <recipe,,minecraft:snow:0> on top of each other, and then a <recipe,,minecraft:pumpkin:0> on top of those <recipe,,minecraft:snow:0> blocks. The golem will continuously make snow layers on the ground that you get snow from. Make sure the golem doesn't fall of or get hurt by rain! If it does die, you can still get a surplus of <recipe,,minecraft:snowball:0> through shift right-clicking on <recipe,,minecraft:snow:0> though. \n Now you want to make a <link,Mini_Freezer,skyresources:minifreezer:0,freezer> . \n Make some <link,Heavy_Snowballs,skyresources:heavysnowball:0,heavySnowball> using the <link,Mini_Freezer,skyresources:minifreezer:0,freezer> which can also be made into <recipe,,skyresources:heavysnow:0> for building. \n Next goal is to build a mob farm in order to get some <recipe,,minecraft:bone:0> . \n If you get some <recipe,,minecraft:rotten_flesh:0> , you can make some <recipe,,skyresources:fleshySnowNugget:0> as food. \n Once you get that, you need to make 2 <recipe,,minecraft:dirt:1> , and use 1 of them for a <recipe,,minecraft:sapling:1> ! \n \n You are now done in stage 1! Continue on to <link,Stage_2,minecraft:log:0,stage2> !
 
-guide.skyresources.stage1.miniFreezer.title=Mini Freezer
-guide.skyresources.stage1.miniFreezer.text=The <recipe,,skyresources:minifreezer:0> is the first tier of freezers. The <link,Iron_Freezer,skyresources:ironfreezer:0,ironFreezer> is the next tier. \n This freezer runs at 0.25x the speed of the <link,Iron_Freezer,skyresources:IronFreezer:0,ironFreezer> . 1x is the normal speed shown in JEI. This freezer can also only freeze 1 stack of items at a time.
+guide.skyresources.stage1.freezer.title=Freezers
+guide.skyresources.stage1.freezer.text=The <recipe,,skyresources:minifreezer:0> is the first tier of freezers. The other tier is the <recipe,,skyresources:ironfreezer:0> . \n \n The freezers freeze items into other items. The speed they freeze at depends on how many items are in the freezer, and the speed of the freezer itself. \n The <recipe,,skyresources:minifreezer:0> runs at 0.25x speed, while the <recipe,,skyresources:ironfreezer:0> runs at 1x speed. \n \n Note that the <recipe,,skyresources:ironfreezer:0> is a multiblock. Put 1 block on top of the other as <image,shown_here,skyresources:ironfreezer:0,ironFreezer> . \n \n Place the input items into the top slots of the freezer, and the results will be put into the bottom slots.
+
+guide.skyresources.stage1.heavySnowball.title=Heavy Snowballs
+guide.skyresources.stage1.heavySnowball.text=The <recipe,,skyresources:heavysnowball:0> and <recipe,,skyresources:heavyexplosivesnowball:0> are used as deadly ammunition against mobs when you have nothing but snow.
 
 guide.skyresources.stage1.woodIsland.title=Wood Island
-guide.skyresources.stage1.woodIsland.text=To get started on the wood island, you're going to need a <recipe,,skyresources:survivalistfishingrod:0> . \n Keep fishing until you get a block of <recipe,,minecraft:dirt:0> and a <recipe,,minecraft:sapling:0> (any sapling).
+guide.skyresources.stage1.woodIsland.text=First, you're going to want to find the piece of <recipe,,minecraft:string:0> . Using this, make a <link,Survivalist_Fishing_Rod,skyresources:survivalistfishingrod:0,survFish> . \n \n  Keep fishing until you get your <recipe,,minecraft:dirt:0> and a <recipe,,minecraft:sapling:0> of any kind! \n \n You are now done in stage 1! Continue on to <link,Stage_2,minecraft:log:0,stage2> !
 
-guide.skyresources.stage1.grassIsland.title=Grass Island
-guide.skyresources.stage1.grassIsland.text=The grass island skips over stage 1, so start with stage 2. \n This is due to having dirt and a tree on this island.
+guide.skyresources.stage1.survFish.title=Survivalist Fishing Rod
+guide.skyresources.stage1.survFish.text=The <recipe,,skyresources:survivalistfishingrod:0> is a cheaper rod used for catching mainly junk and no fish. The most valuable items that can be fished for are <recipe,,minecraft:dirt:0> and any vanilla <recipe,,minecraft:sapling:0> . \n This rod does have a faster fishing speed and lower durability.
 
-guide.skyresources.stage2.combustionHeater.title=Combustion Heater
-guide.skyresources.stage2.combustionHeater.text=There are 4 types by default. The <recipe,,skyresources:combustionheater:0> , <recipe,,skyresources:combustionheater:1> ,  <recipe,,skyresources:combustionheater:2> and <recipe,,skyresources:combustionheater:3> are part of the combustion multiblock structures. \n To setup the multiblock, place down the heater, have an EMPTY space above the heater, and surround the empty space with valid blocks for that type of heater. \n <image,Combustion_Heater_Setup,skyresources:combustionheater:0,skyresources:textures/guide/combustion.png> \n \n <recipe,,skyresources:combustionheater:0> \n Requires blocks made of wood material for the other blocks. \n Maximum temperature of 100 C. \n Fuels with relatively high burn times will not work. \n \n <recipe,,skyresources:combustionheater:1> \n Requires blocks made of stone or iron material for the other blocks. \n Maximum temperature of 1538 C. \n Fuels with very high burn times will not work. \n \n <recipe,,skyresources:combustionheater:2> \n Requires blocks made of stone or iron material for the other blocks. \n Maximum temperature of 2750 C. \n Runs off of FE and requires 800 FE/tick to heat up. Right-click with empty hand to see FE and heat. \n \n <recipe,,skyresources:combustionheater:3> \n Requires blocks made of stone or iron material for the other blocks. \n Maximum temperature of 6040 C. \n Runs off of FE and requires 1200 FE/tick to heat up. Right-click with empty hand to see FE and heat. \n \n \n The crafting process is as follows: \n Drop a set of items into the center for crafting (NOTE: Make sure the ratio is correct). \n Provide the heater with fuel to get a high enough temperature. \n Give the heater a redstone signal (Ex: button). \n If there was an explosion, it worked! \n \n \n There are automation upgrades including the <recipe,,minecraft:dropper:0> , <link,Quick_Dropper,skyresources:quickdropper:0,quickDropper> , and <link,Combustion_Collector,skyresources:combustioncollector:0,combustionCollector> .
+guide.skyresources.stage1.grassIsland.title=Grass or GoG Island
+guide.skyresources.stage1.grassIsland.text=The grass and GoG island skips over stage 1, so start with stage 2. \n This is due to having <recipe,,minecraft:dirt:0> and a tree on this island. \n GoG skips a little further due to having a method to get <recipe,,minecraft:cobblestone:0> . Continue on to <link,Stage_2,minecraft:log:0,stage2> !
+
+guide.skyresources.stage2.stage2.title=Stage 2-Resource Production
+guide.skyresources.stage2.stage2.text=This stage is the most important stage as it provides all the methods for getting nearly all of the basic resources! \n \n It is very important to learn how to use everything shown in this section of the guide! \n \n This stage will take you up until you obtain <recipe,,minecraft:glowstone_dust:0> for <link,Stage_3,minecraft:glowstone:0,stage3> !
+
+guide.skyresources.stage2.casing.title=Casings
+guide.skyresources.stage2.casing.text=Casings are blocks that are used by a few machines, the <link,Combustion_Heaters,skyresources:combustionheater:0,combustionHeater> , the <link,Heat_Providers,skyresources:heatprovider:0,heatProvider> , and the <link,Condensers,skyresources:condenser:0,condenser> . \n \n Insert one of those machines by right clicking it into the casing. Take it out by shift right-clicking. \n \n Different variants of the casing may affect efficiency, fuel efficiency, max HU, etc. \n \n NOTE: Casings shown in setups/structures are empty. Make sure to insert the correct machine for that structure!
+
+guide.skyresources.stage2.combustionHeater.title=Combustion Heaters
+guide.skyresources.stage2.combustionHeater.text=Combustion Heaters are used in the <link,Casings,skyresources:casing:0,casing> . \n \n CRAFTING PROCESS: \n Make sure the structure is valid. \n Drop items into the INSIDE of the structure (above the heater) and make sure the ratio of items is the same as the recipe. NOTE: You can put in stacks of items in a time, as long as the HU lasts during the crafting. \n Push the button on the heater, or give the heater a redstone signal. \n If something exploded (inside the structure), it worked! \n Now pick up the items! \n \n To setup a combustion heater multiblock check the design as <image,shown_here,skyresources:combustionheater:0,combustion> when using a <recipe,,skyresources:combustionheater:0> , the first one you'll probably use. Place the heater inside the casing after that. Note that all variants use the same shaped structure. \n \n Different variants of the heaters use different fuels, affect fuel efficiency, affect the block types allowed for other blocks, and affect fuel speed. \n Different variants of the casing determine the Max HU of the structure, and affect fuel efficiency. \n \n When building your structure, make sure the blocks used are valid. The requirements for all other blocks are they have to be solid on the side facing towards the center. \n \n The <recipe,,skyresources:combustionheater:0> allows for wooden and glass blocks to be used. \n The <recipe,,skyresources:combustionheater:1> allows for rock and glass blocks to be used. \n All the other variants allow for metal, rock and glass blocks to be used. \n \n The process can be automated using blocks like the <recipe,,minecraft:dropper:0> , <link,Quick_Dropper,skyresources:quickdropper:0,quickDropper> , and <link,Combustion_Collector,skyresources:combustioncollector:0,combustionCollector> . Just make sure the block type is VALID for the structure!
 
 guide.skyresources.stage2.waterExtractor.title=Water Extractor
-guide.skyresources.stage2.waterExtractor.text=The <recipe,,skyresources:waterextractor:0> is used for storing, extracting, placing, and inserting water. It can hold 4000mB of water. \n To extract water from blocks, hold right-click for a little bit and let go. It can also pick up water source blocks. \n To place water, you must have 1000mB of water and shift-right click to place it in the world. \n To insert water into blocks, you must have the required water amount and right click the block. \n All recipes for extracting and inserting are in JEI. Check the uses of the <recipe,,skyresources:waterextractor:0> . \n The water extractor can be automated with the <link,Aqueous_Concentrator_and_Deconcentrator,skyresources:aqueousconcentrator:0,aqueous> .
+guide.skyresources.stage2.waterExtractor.text=The <recipe,,skyresources:waterextractor:0> is used for storing, extracting, placing, and inserting water. \n All recipes for extracting and inserting are in JEI. Check the uses of the <recipe,,skyresources:waterextractor:0> . \n It can hold 4000mB of water. \n To extract water from blocks, hold right-click for a little bit and let go. It can also pick up water source blocks. \n To place water, you must have 1000mB of water and shift-right click to place it in the world. \n To insert water into blocks, you must have the required water amount and right click the block. \n The water extractor can be automated with the <link,Aqueous_Concentrator_and_Deconcentrator,skyresources:aqueousconcentrator:0,aqueous> .
 
 guide.skyresources.stage2.dirtFurnace.title=Dirt Furnace
-guide.skyresources.stage2.dirtFurnace.text=Use the <recipe,,skyresources:DirtFurnace:0> to get access to torches, and other smeltable items without a cobblestone generator.
+guide.skyresources.stage2.dirtFurnace.text=Use the <recipe,,skyresources:dirtfurnace:0> to get access to torches, and other smeltable items without a cobblestone generator.
 
 guide.skyresources.stage2.lavaBlaze.title=Lava/Blaze Powder Block
-guide.skyresources.stage2.lavaBlaze.text=The <recipe,,skyresources:BlazePowderBlock:0> is used for creating lava. \n To get lava, place the blaze powder block above a <link,heat_source,minecraft:torch:0,heatSources> . \n Note that you will want to be able to setup your first lava for a cobblestone generator. \n \n Lava can also be obtained using a <link,Crucible,skyresources:Crucible:0,crucible> .
+guide.skyresources.stage2.lavaBlaze.text=The <recipe,,skyresources:blazepowderblock:0> is used for creating lava. \n To get lava, place the blaze powder block above a <link,heat_source,minecraft:torch:0,heatSources> as <image,shown_here,skyresources:blazepowderblock:0,lava> . The lava will replace the <recipe,,skyresources:blazepowderblock:0> . \n Note that you will want to be able to setup your first lava in a spot for a <recipe,,minecraft:cobblestone:0> generator. \n \n Lava can also be obtained using a <link,Crucible,skyresources:Crucible:0,crucible> .
 
 guide.skyresources.stage2.heatSources.title=Heat Sources
-guide.skyresources.stage2.heatSources.text=Heat Sources are used for heating many functional blocks. \n Heat Sources go under these blocks: \n <link,Crucible,skyresources:crucible:0,crucible>  \n <link,Alchemical_Condensers,skyresources:alchemicalcondenser:0,alchemicalCondenser> \n <link,Blaze_Powder_Block,skyresources:blazepowderblock:0,lavaBlaze> \n Better heat sources make the blocks mentioned earlier run faster. \n \n List of heat sources are shown in JEI. \n Look for uses of common heat sources like the <recipe,,minecraft:torch:0> and <recipe,,minecraft:obsidian:0> .
+guide.skyresources.stage2.heatSources.text=Heat Sources are used for heating a couple functional blocks. \n Heat Sources go under these blocks: \n <link,Crucible,skyresources:crucible:0,crucible> \n <link,Blaze_Powder_Block,skyresources:blazepowderblock:0,lavaBlaze> \n \n List of heat sources are shown in JEI. \n Look for uses of common Heat Sources like the <recipe,,minecraft:torch:0> and <recipe,,minecraft:obsidian:0> and then click on the Heat Sources category to see all Heat Sources. \n A type of Heat Source that runs off of fuel are the <link,Heat_Providers,skyresources:heatProvider:0,heatProvider> .
+
+guide.skyresources.stage2.heatProvider.title=Heat Providers
+guide.skyresources.stage2.heatProvider.text=Heat Providers are used in the <link,Casings,skyresources:casing:0,casing> . \n Heat Providers act as powerful <link,heat_sources,minecraft:torch:0,heatSources> but require a type of fuel. \n \n Different variants of the providers use different fuels, affect fuel efficiency, and heat value. \n Different variants of the casing affect the heat value and fuel efficiency. \n \n This can be turned off with a redstone signal.
 
 guide.skyresources.stage2.rockGrinder.title=Rock Grinder
 guide.skyresources.stage2.rockGrinder.text=The rock grinder allows for the player to break cobblestone down into gravel, and gravel into sand, and more. \n There are 3 by default, which are the <recipe,,skyresources:stonegrinder:0> , <recipe,,skyresources:irongrinder:0> , and <recipe,,skyresources:diamondgrinder:0> . \n Rock grinding can be automated with the <link,Rock_Crusher,skyresources:rockcrusher:0,rockCrusher> .
 
 guide.skyresources.stage2.metalCreation.title=Metal Creation
-guide.skyresources.stage2.metalCreation.text=To get started in metal creation you're going to need to get <recipe,,skyresources:metalcrystal:0> , the first available shard, through <link,combustion,skyresources:combustionheater:0,combustionHeater> . \n The rest of the process is done using the following blocks : \n <link,Crucible,skyresources:crucible:0,crucible> \n <link,Fluid_Dropper,skyresources:fluiddropper:0,fluidDropper> \n <link,Stone_Alchemical_Condenser,skyresources:alchemicalcondenser:0,alchemicalCondenser> \n <link,Stone_Crystallizer,skyresources:crystallizer:0,crystallizer> . \n \n For an early game setup, a <link,Crucible,skyresources:crucible:0,crucible> , 2 <link,Fluid_Droppers,skyresources:fluiddropper:0,fluidDropper> , and either a <link,Crystallizer,skyresources:crystallizer:0,crystallizer> or <link,Alchemical_Condenser,skyresources:alchemicalcondenser:0,alchemicalCondenser> . \n <image,View_Condenser_Setup,minecraft:iron_ingot:0,skyresources:textures/guide/earlycondensersetup.png> \n <image,View_Crystallizer_Setup,skyresources:metalcrystal:0,skyresources:textures/guide/earlycrystallizersetup.png> \n \n NOTE: Some shards use a different process instead of using the <link,Alchemical_Condenser,skyresources:alchemicalcondenser:0,alchemicalCondenser> . Check the uses of the shards.
+guide.skyresources.stage2.metalCreation.text=The metal creation process provides you with ingots and ores. This guide will give a basic, early-game setup for creating ingots. Expanding to more advanced and powerful setups will benefit greatly. You DO NOT have to use the same variant of machines that are used in the setup shown. \n \n For a basic setup, you will need an <link,Alchemical_Fusion_Table,skyresources:fusionTable:0,fusionTable> , a <link,Crucible,skyresources:crucible:0,crucible> , 2 <link,Fluid_Droppers,skyresources:fluiddropper:0,fluidDropper> , and a <link,Condenser_with_a_Casing,skyresources:condenser:0,condenser> . <image,View_Setup_Here,skyresources:crucible:0,crystalSetup> . \n \n Drop the <recipe,,skyresources:alchemyitemcomponent:1> into the <link,Crucible,skyresources:crucible:0,crucible> and the Alchemical Ore Dust of your choosing into the <link,Condenser,skyresources:condenser:0,condenser> . \n Wait for a while and you should see the crystal fluid above the <link,Condenser,skyresources:condenser:0,condenser> and then an ingot should pop below it (or into the inventory below)!
 
 guide.skyresources.stage2.crucible.title=Crucible
-guide.skyresources.stage2.crucible.text=The <recipe,,skyresources:crucible:0> is used for creating crystal fluid from crystal shards. \n This requires a <link,heat_source,minecraft:torch:0,heatSources> underneath to function. \n Drop the item in and it will turn into the fluid. \n Crystal fluid can be condensed using the <link,Alchemical_Condenser,skyresources:AlchemicalCondenser:0,alchemicalCondenser> , or crystallized into more crystal shards using a <link,Crystallizer,skyresources:crystallizer:0,crystallizer> . \n It can be automated with the <link,Crucible_Inserter,skyresources:crucibleinserter:0,crucibleInserter> .
+guide.skyresources.stage2.crucible.text=The <recipe,,skyresources:crucible:0> is used for melting down some items. \n This requires a <link,heat_source,minecraft:torch:0,heatSources> underneath to function. \n Drop the item in and it will turn into the fluid. \n It can be automated with the <link,Crucible_Inserter,skyresources:crucibleinserter:0,crucibleInserter> .
 
 guide.skyresources.stage2.fluidDropper.title=Fluid Dropper
 guide.skyresources.stage2.fluidDropper.text=The <recipe,,skyresources:fluiddropper:0> will pull fluids from tanks next to it and place the source below it when it has 1 bucket. \n This is useful for automating the output of the <link,Crucible,skyresources:crucible:0,crucible> .
 
-guide.skyresources.stage2.alchemicalCondenser.title=Alchemical Condenser
-guide.skyresources.stage2.alchemicalCondenser.text=There are 4 types by default, the <recipe,,skyresources:alchemicalcondenser:0> , <recipe,,skyresources:alchemicalcondenser:1> ,  <recipe,,skyresources:alchemicalcondenser:2> and <recipe,,skyresources:alchemicalcondenser:3> . \n Condenses crystal fluids above the block and requires a <link,heat_source,minecraft:torch:0,heatSources> under it. \n Turn off with a redstone signal! \n \n <recipe,,skyresources:alchemicalcondenser:0> \n CANNOT condense molten crystal fluid. \n Runs at 1x speed. \n \n <recipe,,skyresources:alchemicalcondenser:1> \n CAN condense molten crystal fluid. \n Runs at 2x speed. \n \n <recipe,,skyresources:alchemicalcondenser:2> \n CAN condense molten crystal fluid. \n Runs at 3x speed. \n \n <recipe,,skyresources:alchemicalcondenser:3> \n CAN condense molten crystal fluid. \n Runs at 4x speed.
+guide.skyresources.stage2.fusionTable.title=Fusion Table
+guide.skyresources.stage2.fusionTable.text=The <recipe,,skyresources:fusionTable:0> is used for creating alchemical items and can be easily automated. \n \n The filter for automation is set by MANUALLY inserting the items into the slots for crafting. The filter is set this way and removed by taking the items out of it MANUALLY (Basically, you put in or take out the items in the GUI, and that sets the filter for pipes, hoppers, etc to follow). \n \n The fusion process requires a catalyst like the <recipe,,skyresources:alchemyitemcomponent:1> in the slot next to the output. \n \n Once there are enough items to craft and a catalyst, crafting will begin. \n The result will yield based on the catalyst's yield rate. The purple yield bar next to the output fills when the process completes, and once it reaches 100%, you get 1 set of items per 100%, so higher yields may result in 200% or higher.
 
-guide.skyresources.stage2.crystallizer.title=Crystallizer
-guide.skyresources.stage2.crystallizer.text=There are 4 types by default, the <recipe,,skyresources:crystallizer:0> , <recipe,,skyresources:crystallizer:1> ,  <recipe,,skyresources:crystallizer:2> and <recipe,,skyresources:crystallizer:3> . \n Crystallizes crystal fluids above the block and drops the shards under it either in the world, or a valid inventory. \n Turn off with a redstone signal! \n Crystal fluid may disappear depending on the efficiency of the crystallizer and the rarity of the fluid. \n NOTE: The lower the rarity of the metal and the higher tier of crystallizer, the more shards you will get, and eventually it will give infinite shards from one fluid source. \n \n <recipe,,skyresources:crystallizer:0> \n CANNOT crystallize molten crystal fluid. \n Runs at 0.5x speed. \n Efficiency value of 1. \n \n <recipe,,skyresources:crystallizer:1> \n CAN crystallize molten crystal fluid. \n Runs at 1x speed. \n Efficiency value of 1.5. \n \n <recipe,,skyresources:crystallizer:2> \n CAN crystallize molten crystal fluid. \n Runs at 2.5x speed. \n Efficiency value of 2. \n \n <recipe,,skyresources:crystallizer:3> \n CAN crystallize molten crystal fluid. \n Runs at 4x speed. \n Efficiency value of 3.
+guide.skyresources.stage2.condenser.title=Condenser
+guide.skyresources.stage2.condenser.text=Condensers are used in the <link,Casings,skyresources:casing:0,casing> . \n \n Condensers require an item (usually a type of <recipe,,skyresources:orealchdust:0> ) to use for condensing the block above. \n Condensers will output the result below itself either in the world, or into an inventory (only if the inventory hsa space, otherwise the condenser will turn off and wait for it to have space). \n \n Different variants of the condensers affect efficiency and affect speed. \n Different variants of the casing affect efficiency. \n \n This can be turned off with a redstone signal.
 
 guide.skyresources.stage2.crucibleInserter.title=Crucible Inserter
 guide.skyresources.stage2.crucibleInserter.text=The <recipe,,skyresources:crucibleinserter:0> is used for automatically inserting items into the <link,crucible,skyresources:crucible:0,crucible> . \n Items are "piped" in using hoppers, conduits, etc.
 
 guide.skyresources.stage2.combustionCollector.title=Combustion Collector
-guide.skyresources.stage2.combustionCollector.text=The <recipe,,skyresources:combustioncollector:0> is used for automatically collecting items during <link,combustion,skyresources:combustionheater:0,combustionHeater> . \n Items are sent to the <recipe,,skyresources:combustioncollector:0> after each crafting process, allowing the crafting process to be uninterrupted by the results being "stuck." \n \n This CANNOT be used with the <recipe,,skyresources:combustionheater:0> .
+guide.skyresources.stage2.combustionCollector.text=The <recipe,,skyresources:combustioncollector:0> is used for automatically collecting items during <link,combustion,skyresources:combustionheater:0,combustionHeater> . \n Items are sent to the <recipe,,skyresources:combustioncollector:0> after each crafting process, allowing more crafts to occur as crafting will be uninterrupted by the results being "stuck." \n \n This CANNOT be used with the <recipe,,skyresources:combustionheater:0> or <recipe,,skyresources:combustionheater:1> .
 
-guide.skyresources.stage2.quickDropper.title=Quick Dropper
-guide.skyresources.stage2.quickDropper.text=The <recipe,,skyresources:quickdropper:0> is used for dropping a full stack of items at a time with no redstone pulse. \n Stops when given a redstone signal. \n \n This CANNOT be used with the <recipe,,skyresources:combustionheater:0> .
-
-guide.skyresources.stage2.crushedStone.title=Crushed Rock (Ore Dust Production)
+guide.skyresources.stage2.crushedStone.title=Crushed Stone (Ore Dust Production)
 guide.skyresources.stage2.crushedStone.text=Dusts for ores are obtained through this process. \n First, use the <link,rock_grinder,skyresources:StoneGrinder:0,rockGrinder> on <recipe,,minecraft:stone:0> to get <recipe,,skyresources:techitemcomponent:0> and  <recipe,,minecraft:netherrack:0> to get <recipe,,skyresources:techitemcomponent:3> . \n Next, right-click the crushed rock on to a <recipe,,minecraft:cauldron:0> filled with water to get dusts. This will not work if the dust for the ore does not exist in ore dictionary. Dusts have a chance to drop based on their rarity. \n The <recipe,,minecraft:cauldron:0> can be automated with the <link,Rock_Cleaner,skyresources:rockcleaner:0,rockCleaner> .
 
 guide.skyresources.stage2.gemProduction.title=Gem Production
 guide.skyresources.stage2.gemProduction.text=Gems like emeralds, diamonds, etc are obtained through this process. \n First, use the <link,rock_grinder,skyresources:StoneGrinder:0,rockGrinder> on stone to get dirty gems like the <recipe,,skyresources:DirtyGem:0> . These have a low chance to drop. \n Next, right-click the dirty gems on to a <recipe,,minecraft:cauldron:0> filled with water to get the clean, usable gems. This will not work if the clean gems do not exist in ore dictionary. \n The <recipe,,minecraft:cauldron:0> can be automated with the <link,Rock_Cleaner,skyresources:rockcleaner:0,rockCleaner> .
 
-guide.skyresources.stage3.alchemicalItems.title=Alchemical Items
-guide.skyresources.stage3.alchemicalItems.text=There are 4 alchemical items used for advanced crafting currently. \n <recipe,,skyresources:AlchemyItemComponent:3> \n <recipe,,skyresources:AlchemyItemComponent:2> \n <recipe,,skyresources:AlchemyItemComponent:4> \n <recipe,,skyresources:AlchemyItemComponent:5>
+guide.skyresources.stage3.stage3.title=Stage 3-Advanced Automation/Machines
+guide.skyresources.stage3.stage3.text=This stage improves your technology and processes to be faster and more efficient with fuel, catalysts, etc! \n \n The items in this section are only new items, but you now have access to improve the processes from the last stage! \n \n This stage will take you up until you obtain <recipe,,skyresources:baseItemComponent:3> for <link,Stage_4,skyresources:baseItemComponent:3,stage4> !
 
-guide.skyresources.stage3.ironFreezer.title=Iron Freezer
-guide.skyresources.stage3.ironFreezer.text=The <recipe,,skyresources:IronFreezer:0> is the second tier of freezers. \n To setup the <recipe,,skyresources:IronFreezer:0> , place 2 of these blocks vertically to form the multiblock. \n This freezer runs at 1x speed. This freezer can freeze 3 stacks of items at a time.
-
-guide.skyresources.stage3.poweredHeater.title=Powered Heater
-guide.skyresources.stage3.poweredHeater.text=The <recipe,,skyresources:PoweredHeater:0> is a <link,heat_source,minecraft:torch:0,heatSources> . \n Requires 120 RF/tick and a redstone signal. \n Provides a heat value of 30. \n Right-click to see current RF.
+guide.skyresources.stage3.quickDropper.title=Quick Dropper
+guide.skyresources.stage3.quickDropper.text=The <recipe,,skyresources:quickdropper:0> is used for dropping a full stack of items at a time with no redstone pulse. \n Stops when given a redstone signal. \n \n This CANNOT be used with the <recipe,,skyresources:combustionheater:0> or <recipe,,skyresources:combustionheater:1> .
 
 guide.skyresources.stage3.rockCrusher.title=Rock Crusher
 guide.skyresources.stage3.rockCrusher.text=The <recipe,,skyresources:rockcrusher:0> automates <link,rock_grinding,skyresources:stonegrinder:0,rockGrinder> . \n Requires 80 RF/tick. \n Needs a type of <link,Rock_grinder,skyresources:stonegrinder:0,rockGrinder> to run.
@@ -345,23 +372,35 @@ guide.skyresources.stage3.aqueous.text=The <recipe,,skyresources:aqueousconcentr
 guide.skyresources.misc.nether.title=The Nether Void (Void Island Control)
 guide.skyresources.misc.nether.text=The nether is (possibly) a void. Nether portals link to the same position as in the overworld. The nether is not 1/8 the size anymore. \n All materials normally found in the nether are now obtainanble in other ways. \n Nether ores are obtained through the <link,metal_creation,skyresources:alchemicalcondenser:0,metalCreation> process. \n Nether mobs can be found either through naturally spawning them or using the <link,Dark_Matter_Warper,skyresources:DarkMatterWarper:0,dmWarper> .
 
-guide.skyresources.stage3.dmWarper.title=Dark Matter Warper
-guide.skyresources.stage3.dmWarper.text=The <recipe,,skyresources:DarkMatterWarper:0> is used for getting rare mobs.  \n It consumes <recipe,,skyresources:BaseItemComponent:5> to run (needed every 6 min) and affects a 8x8x8 cube around the <recipe,,skyresources:DarkMatterWarper:0> . \n It turns skeletons into wither skeletons, squid into blazes, spiders into cave spiders, and hurts players and animals.
+guide.skyresources.stage4.stage4.title=Stage 4-Extremely Powerful Materials
+guide.skyresources.stage4.stage4.text=This stage improves your technology and processes to be faster and more near infinite efficiency with fuel, catalysts, etc! \n \n Reach powerful heights through the use of <recipe,,skyresources:baseItemComponent:3> ! \n \n This stage will take you to <link,The_End,minecraft:ender_eye:0,end> !
 
-guide.skyresources.stage3.end.title=The End
-guide.skyresources.stage3.end.text=The end portal requires a multiblock structure. The following are needed: \n 1 <recipe,,skyresources:EndPortalCore:0> \n 4 <recipe,,minecraft:diamond_block:0> \n 4 <recipe,,minecraft:gold_block:0> \n 16 <recipe,,skyresources:DarkMatterBlock:0> \n 8 <recipe,,minecraft:end_bricks:0> \n 4 <recipe,,minecraft:glowstone:0> \n \n <image,Multiblock_Setup,skyresources:EndPortalCore:0,skyresources:textures/guide/endPortalSetup.png> \n To use the portal, stand on the core, and give the <recipe,,skyresources:EndPortalCore:0> at least 16 <recipe,,minecraft:ender_eye:0> and a redstone pulse (button). \n \n *gl A ilfsiesrvh waenrsp si itaecv nda reyv edsroanug ehwn eht urturscte is valdi! *nl
+guide.skyresources.stage4.dmWarper.title=Dark Matter Warper
+guide.skyresources.stage4.dmWarper.text=The <recipe,,skyresources:DarkMatterWarper:0> is used for getting rare mobs.  \n It consumes <recipe,,skyresources:BaseItemComponent:3> to run (needed every 6 min) and affects a 8x8x8 cube around the <recipe,,skyresources:DarkMatterWarper:0> . \n It turns skeletons into wither skeletons, squid into blazes, spiders into cave spiders, and hurts players and animals.
 
-guide.skyresources.stage3.healthGem.title=Health Gem
-guide.skyresources.stage3.healthGem.text=The <recipe,,skyresources:ItemHealthGem:0> is used to boost maximum health and stores health for use in the <link,Life_Infuser,skyresources:LifeInfuser:0,lifeInfuser> . \n Shift right-click to infuse 2 health (or 1 heart). You will gain 1 health for every 50 health infused (by default).
+guide.skyresources.stage4.end.title=The End
+guide.skyresources.stage4.end.text=The end portal requires a multiblock structure. The following are needed: \n 1 <recipe,,skyresources:EndPortalCore:0> \n 4 <recipe,,minecraft:diamond_block:0> \n 4 <recipe,,minecraft:gold_block:0> \n 16 <recipe,,skyresources:DarkMatterBlock:0> \n 8 <recipe,,minecraft:end_bricks:0> \n 4 <recipe,,minecraft:glowstone:0> \n \n <image,Multiblock_Setup,skyresources:EndPortalCore:0,end> \n To use the portal, stand on the core, and give the <recipe,,skyresources:EndPortalCore:0> at least 16 <recipe,,minecraft:ender_eye:0> and a redstone pulse (button). \n \n *gl A ilfsiesrvh waenrsp si itaecv nda reyv edsroanug ehwn eht urturscte is valdi! *nl
 
-guide.skyresources.stage3.lifeInfuser.title=Life Infuser
-guide.skyresources.stage3.lifeInfuser.text=The <recipe,,skyresources:LifeInfuser:0> is used to automate <link,Life_Infusion,skyresources:AlchemicalInfusionStone:0,lifeInfusion> . \n The life infuser requires a multiblock structure. The following are needed: \n 1 <recipe,,skyresources:LifeInfuser:0> \n 8 <recipe,,minecraft:log:0> (any type of wood) \n 8 <recipe,,minecraft:leaves:0> (any type of leaves) \n 1 <recipe,,skyresources:DarkMatterBlock:0> \n \n <image,Multiblock_Setup,skyresources:LifeInfuser:0,skyresources:textures/guide/lifeInfuser.png> \n To use it, put in the health gem on the right, infusion stone in the middle, off-hand item on the left, place the block getting infused below the core, and give the core the a redstone pulse, through the <recipe,,skyresources:DarkMatterBlock:0> works best. \n Make sure the <link,Health_Gem,skyresources:ItemHealthGem:0,healthGem> has enough health to infuse.
+guide.skyresources.stage4.healthGem.title=Health Gem
+guide.skyresources.stage4.healthGem.text=The <recipe,,skyresources:ItemHealthGem:0> is used to boost maximum health and stores health for use in the <link,Life_Infuser,skyresources:LifeInfuser:0,lifeInfuser> . \n Shift right-click to infuse 2 health (or 1 heart). \n You will gain 1 health for every 50 health infused (by default). \n The <recipe,,skyresources:ItemHealthGem:0> can be infused automatically using the <link,Life_Injector,skyresources:lifeInjector:0,lifeInjector> .
 
-guide.skyresources.misc.minetweaker.title=Minetweaker/CraftTweaker
-guide.skyresources.misc.minetweaker.text=For Minetweaker/CraftTweaker support, go to \n https://github.com/Bartz24/SkyResources/wiki/Minetweaker-Support
+guide.skyresources.stage4.lifeInfuser.title=Life Infuser
+guide.skyresources.stage4.lifeInfuser.text=The <recipe,,skyresources:LifeInfuser:0> is used to automate <link,Life_Infusion,skyresources:AlchemicalInfusionStone:0,lifeInfusion> . \n The life infuser requires a multiblock structure. The following are needed: \n 1 <recipe,,skyresources:LifeInfuser:0> \n 8 <recipe,,minecraft:log:0> (any type of wood) \n 8 <recipe,,minecraft:leaves:0> (any type of leaves) \n 1 <recipe,,skyresources:DarkMatterBlock:0> \n \n <image,Multiblock_Setup,skyresources:LifeInfuser:0,infuser> \n To use it, put in the health gem on the right, off-hand item on the left, place the block getting infused below the core, and give the core the a redstone pulse, through the <recipe,,skyresources:DarkMatterBlock:0> works best. \n Make sure the <link,Health_Gem,skyresources:ItemHealthGem:0,healthGem> has enough health to infuse.
+
+guide.skyresources.stage4.lifeInjector.title=Life Injector
+guide.skyresources.stage4.lifeInjector.text=The <recipe,,skyresources:lifeInjector:0> is used infuse life automatically into the <link,Health_Gem,skyresources:ItemHealthGem:0,healthGem> . \n \n It works by damaging entities that are on top of it for a maximum of 1 heart per entity. It will kill players, mobs, animals, etc.
+
+guide.skyresources.misc.minetweaker.title=CraftTweaker
+guide.skyresources.misc.minetweaker.text=For CraftTweaker support, go to \n https://github.com/Bartz24/SkyResources/wiki/Minetweaker-Support
+
+guide.skyresources.misc.thermal.title=Thermal Expansion/Foundation Support
+guide.skyresources.misc.thermal.text=Sky Resources allows for Blazing Pyrotheum to be a <link,heat_source,minecraft:torch:0,heatSources> . Some <link,Crucible_Recipes,skyresources:crucible:0,crucible> are also added to the Magma Crucible machine!
 
 guide.skyresources.misc.armorplus.title=Armor Plus Support
 guide.skyresources.misc.armorplus.text=Sky Resources provides for ways to get the <recipe,,armorplus:lava_crystal:0> .
+
+guide.skyresources.misc.embers.title=Embers Support
+guide.skyresources.misc.embers.text=Sky Resources provides for ways to get the <recipe,,embers:shard_ember:0> .
 
 guide.skyresources.misc.enderio.title=Ender IO Support
 guide.skyresources.misc.enderio.text=Sky Resources provides for ways to get the <recipe,,enderio:itemBrokenSpawner:0> .
@@ -388,7 +427,7 @@ guide.skyresources.misc.tinkers.title=Tinkers Construct Support
 guide.skyresources.misc.tinkers.text=Sky Resources provides for ways to get Tinker's Construct slimy items. \n \n All variants of the <recipe,,tconstruct:edible:1> , <recipe,,tconstruct:slime_sapling:0> , and the <recipe,,tconstruct:slime_dirt:0> are obtainable.
 
 guide.skyresources.misc.techreborn.title=Tech Reborn Support
-guide.skyresources.misc.techreborn.text=Sky Resources provides for ways to get basic TechReborn items. \n \n <recipe,,techreborn:part:31> is obtainable as well as the <recipe,,techreborn:rubberSapling:0> .
+guide.skyresources.misc.techreborn.text=Sky Resources provides for ways to get basic TechReborn items. \n \n <recipe,,techreborn:part:31> is obtainable as well as the <recipe,,techreborn:rubber_sapling:0> .
 
 guide.skyresources.misc.actadd.title=Actually Additions Support
 guide.skyresources.misc.actadd.text=Sky Resources provides for ways to get basic Actually Additions items. \n \n <recipe,,actuallyadditions:item_misc:5> is obtainable. The <recipe,,actuallyadditions:item_rice_seed:0> , <recipe,,actuallyadditions:item_canola_seed:0> , <recipe,,actuallyadditions:item_coffee_seed:0> , <recipe,,actuallyadditions:item_flax_seed:0> are dropped from breaking tall grass.

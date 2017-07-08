@@ -126,12 +126,12 @@ public class ProcessRecipe
 			return false;
 
 		int itemsChecked = 0;
+		float ratio = -1;
 		for (ItemStack i : items.keySet())
 		{
 			if (i.isEmpty())
 				continue;
 			boolean valid = false;
-			float ratio = -1;
 			for (Object o2 : recipe.inputs)
 			{
 				if (o2 instanceof String)
@@ -143,12 +143,15 @@ public class ProcessRecipe
 				} else if (o2 instanceof ItemStack)
 				{
 					ItemStack i2 = (ItemStack) o2;
+					if (ItemHelper.itemStacksEqualOD(i, i2))
+						System.out.println(ratio + ": " + ((float) items.get(i) / (float) i2.getCount()));
 					if (ItemHelper.itemStacksEqualOD(i, i2) && items.get(i) >= i2.getCount()
 							&& (ratio == -1 || ((float) items.get(i) / (float) i2.getCount()) == ratio))
 					{
 						valid = true;
 						if (ratio == -1)
 							ratio = (float) items.get(i) / (float) i2.getCount();
+						break;
 					}
 				}
 			}

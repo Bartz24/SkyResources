@@ -79,6 +79,20 @@ public class TileBase extends TileEntity
 		super.onDataPacket(net, packet);
 		this.readFromNBT(packet.getNbtCompound());
 	}
+	
+	@Override
+	  public NBTTagCompound getUpdateTag()
+	  {
+	    NBTTagCompound nbtTagCompound = new NBTTagCompound();
+	    writeToNBT(nbtTagCompound);
+	    return nbtTagCompound;
+	  }
+
+	  @Override
+	  public void handleUpdateTag(NBTTagCompound tag)
+	  {
+	    this.readFromNBT(tag);
+	  }
 
 	public void markDirty()
 	{

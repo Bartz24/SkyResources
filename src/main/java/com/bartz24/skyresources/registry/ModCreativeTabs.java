@@ -38,7 +38,7 @@ public class ModCreativeTabs
 		@SideOnly(Side.CLIENT)
 		public ItemStack getTabIconItem()
 		{
-			return new ItemStack(ModBlocks.combustionHeater);
+			return new ItemStack(ModBlocks.aqueousConcentrator);
 		}
 	};
 }

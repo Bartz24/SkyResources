@@ -2,9 +2,11 @@ package com.bartz24.skyresources.events;
 
 import java.util.List;
 
+import com.bartz24.skyresources.InfoToast;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
+import com.bartz24.skyresources.alchemy.FusionCatalysts;
 import com.bartz24.skyresources.alchemy.effects.IHealthBoostItem;
 import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
 import com.bartz24.skyresources.base.ModKeyBindings;
@@ -29,6 +31,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -54,7 +57,7 @@ public class EventHandler
 					RandomHelper.spawnItemInWorld(event.getWorld(), new ItemStack(ModItems.alchemyComponent, 1,
 							((AlchemyItemComponent) ModItems.alchemyComponent).getNames().indexOf("cactusNeedle")),
 							event.getEntityPlayer().getPosition());
-					event.getEntityPlayer().attackEntityFrom(DamageSource.CACTUS, 5);
+					event.getEntityPlayer().attackEntityFrom(DamageSource.CACTUS, 2);
 				} else if (block == Blocks.SNOW_LAYER)
 				{
 					RandomHelper.spawnItemInWorld(event.getWorld(), new ItemStack(Items.SNOWBALL), event.getPos());
@@ -160,12 +163,11 @@ public class EventHandler
 	{
 		EntityPlayer player = event.player;
 
-		if (ConfigOptions.displayFirstChatInfo && ConfigOptions.allowGuide)
+		if (ConfigOptions.displayFirstChatInfo && ConfigOptions.allowGuide && Minecraft.getMinecraft().player != null
+				&& Minecraft.getMinecraft().player.getGameProfile().getId().equals(player.getGameProfile().getId()))
 		{
-			TextComponentString text = new TextComponentString(
-					"Need help or a guide? \nPress your " + TextFormatting.AQUA + "Open Guide Key (Default: G)"
-							+ TextFormatting.WHITE + " to open the Sky Resources in-game guide!");
-			player.sendMessage(text);
+			Minecraft.getMinecraft().getToastGui().add(new InfoToast(new TextComponentString("Sky Resources Guide"),
+					new TextComponentString("Press " + TextFormatting.AQUA + "Open Guide Key (G)"), 20000));
 		}
 	}
 
@@ -190,6 +192,17 @@ public class EventHandler
 		if (event.getModID().equalsIgnoreCase(References.ModID))
 		{
 			ConfigOptions.reloadConfigs();
+		}
+	}
+
+	@SubscribeEvent
+	public void tooltipEvent(ItemTooltipEvent event)
+	{
+		ItemStack stack = event.getItemStack();
+		if (FusionCatalysts.isCatalyst(stack))
+		{
+			event.getToolTip().add(TextFormatting.AQUA + "Catalyst Yield: "
+					+ (int) (FusionCatalysts.getCatalystValue(stack) * 100f) + "%");
 		}
 	}
 }

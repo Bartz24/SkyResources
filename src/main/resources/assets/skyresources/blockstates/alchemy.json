@@ -1,0 +1,103 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "skyresources:component",
+        "textures": {
+            "part": "skyresources:items/alchemy",
+            "all": "skyresources:blocks/ironmachine"
+        }
+    },
+    "variants": {
+        "variant=wood": {
+            "model": "skyresources:component",
+            "textures": {
+                "part": "skyresources:items/alchemy",
+                "all": "minecraft:blocks/planks_oak"
+            }
+        },
+        "variant=stone": {
+            "model": "skyresources:component",
+            "textures": {
+                "part": "skyresources:items/alchemy",
+                "all": "minecraft:blocks/stone"
+            }
+        },
+        "variant=bronze": {
+            "model": "skyresources:component",
+            "textures": {
+                "part": "skyresources:items/alchemy",
+                "all": "skyresources:blocks/bronzemachine"
+            }
+        },
+        "variant=iron": {
+            "model": "skyresources:component",
+            "textures": {
+                "part": "skyresources:items/alchemy",
+                "all": "skyresources:blocks/ironmachine"
+            }
+        },
+        "variant=steel": {
+            "model": "skyresources:component",
+            "textures": {
+                "part": "skyresources:items/alchemy",
+                "all": "skyresources:blocks/steelmachine"
+            }
+        },
+        "variant=electrum": {
+            "model": "skyresources:component",
+            "textures": {
+                "part": "skyresources:items/alchemy",
+                "all": "skyresources:blocks/electrummachine"
+            }
+        },
+        "variant=netherbrick": {
+            "model": "skyresources:component",
+            "textures": {
+                "part": "skyresources:items/alchemy",
+                "all": "minecraft:blocks/nether_brick"
+            }
+        },
+        "variant=lead": {
+            "model": "skyresources:component",
+            "textures": {
+                "part": "skyresources:items/alchemy",
+                "all": "skyresources:blocks/leadmachine"
+            }
+        },
+        "variant=manyullyn": {
+            "model": "skyresources:component",
+            "textures": {
+                "part": "skyresources:items/alchemy",
+                "all": "skyresources:blocks/manyullynmachine"
+            }
+        },
+        "variant=signalum": {
+            "model": "skyresources:component",
+            "textures": {
+                "part": "skyresources:items/alchemy",
+                "all": "skyresources:blocks/signalummachine"
+            }
+        },
+        "variant=endstone": {
+            "model": "skyresources:component",
+            "textures": {
+                "part": "skyresources:items/alchemy",
+                "all": "minecraft:blocks/end_stone"
+            }
+        },
+        "variant=enderium": {
+            "model": "skyresources:component",
+            "textures": {
+                "part": "skyresources:items/alchemy",
+                "all": "skyresources:blocks/enderiummachine"
+            }
+        },
+        "variant=darkmatter": {
+            "model": "skyresources:component",
+            "textures": {
+                "part": "skyresources:items/alchemy",
+                "all": "skyresources:blocks/darkmatter"
+            }
+        }
+    }
+}

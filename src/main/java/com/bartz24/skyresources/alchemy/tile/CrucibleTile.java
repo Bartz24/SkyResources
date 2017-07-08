@@ -108,7 +108,7 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 
 			for (EntityItem entity : list)
 			{
-				ItemStack stack = entity.getEntityItem();
+				ItemStack stack = entity.getItem();
 
 				ProcessRecipe recipe = ProcessRecipeManager.crucibleRecipes.getRecipe(stack, 0, false, false);
 

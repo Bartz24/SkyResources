@@ -6,10 +6,12 @@ import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
 import com.bartz24.skyresources.alchemy.item.DirtyGemItem;
+import com.bartz24.skyresources.alchemy.item.ItemCondenser;
 import com.bartz24.skyresources.alchemy.item.ItemHealthGem;
 import com.bartz24.skyresources.alchemy.item.ItemInfusionStone;
-import com.bartz24.skyresources.alchemy.item.MetalCrystalItem;
+import com.bartz24.skyresources.alchemy.item.ItemOreAlchDust;
 import com.bartz24.skyresources.base.item.BaseItemComponent;
+import com.bartz24.skyresources.base.item.ItemComponent;
 import com.bartz24.skyresources.base.item.ItemHeavyExplosiveSnowball;
 import com.bartz24.skyresources.base.item.ItemHeavySnowball;
 import com.bartz24.skyresources.base.item.ItemKnife;
@@ -17,21 +19,30 @@ import com.bartz24.skyresources.base.item.ItemSurvivalFishingRod;
 import com.bartz24.skyresources.base.item.ItemWaterExtractor;
 import com.bartz24.skyresources.base.item.ModItemFood;
 import com.bartz24.skyresources.technology.item.GemRegisterInfo;
+import com.bartz24.skyresources.technology.item.ItemCombustionHeater;
+import com.bartz24.skyresources.technology.item.ItemHeatProvider;
 import com.bartz24.skyresources.technology.item.ItemRockGrinder;
 import com.bartz24.skyresources.technology.item.TechItemComponent;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.GameData;
 
 public class ModItems
 {
 	public static Item alchemyComponent;
-	public static Item metalCrystal;
+	public static Item oreAlchDust;
 	public static Item baseComponent;
 	public static Item techComponent;
 	public static Item healthGem;
+
+	public static Item alchComponent;
+	public static Item heatComponent;
+	
+	public static Item condenser;
+	public static Item combustionHeater;
+	public static Item heatProvider;
 
 	public static Item cactusFruit;
 	public static Item fleshySnowNugget;
@@ -101,14 +112,25 @@ public class ModItems
 		ModItems.addGem("chaos", 0xFFFFE6FB, 0.003F);
 		ModItems.addGem("enderEssence", 0xFF356E19, 0.003F);
 		ModItems.addGem("dark", 0xFF242424, 0.09F);
+		ModItems.addGem("quartz", 0xFFFFFFFF, 0.14F);
+		ModItems.addGem("lapis", 0xFF075BBA, 0.18F);
+		ModItems.addGem("quartzBlack", 0xFF171717, 0.12F);
+		ModItems.addGem("certus", 0xFFB0F4F7, 0.16F);
+		
+		ItemOreAlchDust.init();
 
 		alchemyComponent = registerItem(new AlchemyItemComponent());
-		metalCrystal = registerItem(new MetalCrystalItem());
+		oreAlchDust = registerItem(new ItemOreAlchDust());
+		condenser = registerItem(new ItemCondenser());
+		alchComponent = registerItem(new ItemComponent("alchemy", ModCreativeTabs.tabAlchemy));
+		heatComponent = registerItem(new ItemComponent("heat", ModCreativeTabs.tabTech));
 		dirtyGem = registerItem(new DirtyGemItem());
 		baseComponent = registerItem(new BaseItemComponent());
 		techComponent = registerItem(new TechItemComponent());
 		healthGem = registerItem(new ItemHealthGem());
 		waterExtractor = registerItem(new ItemWaterExtractor());
+		combustionHeater = registerItem(new ItemCombustionHeater());
+		heatProvider = registerItem(new ItemHeatProvider());
 		heavySnowball = registerItem(new ItemHeavySnowball("heavySnowball", "HeavySnowball"));
 		heavyExpSnowball = registerItem(new ItemHeavyExplosiveSnowball("heavyExplosiveSnowball", "HeavyExplosiveSnowball"));
 		cactusFruit = registerItem(new ModItemFood(3, 2F, false, "cactusFruit", "CactusFruit"));
@@ -140,7 +162,7 @@ public class ModItems
 
 	private static Item registerItem(Item item, String name)
 	{
-		GameRegistry.register(item, new ResourceLocation(References.ModID, name));
+		GameData.register_impl(item.setRegistryName(new ResourceLocation(References.ModID, name)));
 
 		return item;
 	}
@@ -154,7 +176,7 @@ public class ModItems
 					item.getClass().getCanonicalName());
 			return item;
 		}
-		GameRegistry.register(item);
+		GameData.register_impl(item);
 
 		return item;
 	}

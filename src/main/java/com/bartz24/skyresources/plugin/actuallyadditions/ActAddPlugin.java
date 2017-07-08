@@ -35,10 +35,6 @@ public class ActAddPlugin implements IModPlugin
 		MinecraftForge.addGrassSeed(new ItemStack(coffee), 10);
 		MinecraftForge.addGrassSeed(new ItemStack(flax), 10);
 		MinecraftForge.addGrassSeed(new ItemStack(rice), 10);
-		
-
-		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(misc, 6, 5), 500, new ArrayList<Object>(
-				Arrays.asList(new ItemStack(ModItems.metalCrystal, 1, 22), new ItemStack(Items.FLINT, 3))));
 
 		SkyResourcesGuide.addPage("actadd", "guide.skyresources.misc", new ItemStack(misc, 1, 5));
 	}

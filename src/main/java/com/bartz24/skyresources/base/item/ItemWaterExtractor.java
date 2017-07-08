@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.recipe.ProcessRecipe;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
@@ -12,6 +14,7 @@ import com.bartz24.skyresources.registry.ModCreativeTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSnow;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -88,7 +91,7 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 			{
 				Vec3d vec3d = player.getPositionVector().addVector(0, player.eyeHeight, 0);
 				Vec3d vec3d1 = player.getLookVec();
-				Vec3d vec3d2 = vec3d.addVector(vec3d1.xCoord * 5, vec3d1.yCoord * 5, vec3d1.zCoord * 5);
+				Vec3d vec3d2 = vec3d.addVector(vec3d1.x * 5, vec3d1.y * 5, vec3d1.z * 5);
 				RayTraceResult rayTrace = world.rayTraceBlocks(vec3d, vec3d2, false, false, true);
 
 				if ((rayTrace != null))
@@ -265,13 +268,13 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 	}
 
 	@Override
-	public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4)
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
-		if (itemStack.getTagCompound() != null)
+		if (stack.getTagCompound() != null)
 		{
-			list.add("Water: " + itemStack.getTagCompound().getInteger("amount") + " mB");
+			tooltip.add("Water: " + stack.getTagCompound().getInteger("amount") + " mB");
 		} else
-			list.add("Water: 0 mB");
+			tooltip.add("Water: 0 mB");
 	}
 
 	public int getMaxAmount()

@@ -1,0 +1,89 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "skyresources:casing",
+        "textures": {
+            "all": "skyresources:blocks/ironmachine"
+        }
+    },
+    "variants": {
+        "variant=wood": {
+            "model": "skyresources:casing",
+            "textures": {
+                "all": "minecraft:blocks/log_oak"
+            }
+        },
+        "variant=stone": {
+            "model": "skyresources:casing",
+            "textures": {
+                "all": "minecraft:blocks/stone"
+            }
+        },
+        "variant=bronze": {
+            "model": "skyresources:casing",
+            "textures": {
+                "all": "skyresources:blocks/bronzemachine"
+            }
+        },
+        "variant=iron": {
+            "model": "skyresources:casing",
+            "textures": {
+                "all": "skyresources:blocks/ironmachine"
+            }
+        },
+        "variant=steel": {
+            "model": "skyresources:casing",
+            "textures": {
+                "all": "skyresources:blocks/steelmachine"
+            }
+        },
+        "variant=electrum": {
+            "model": "skyresources:casing",
+            "textures": {
+                "all": "skyresources:blocks/electrummachine"
+            }
+        },
+        "variant=netherbrick": {
+            "model": "skyresources:casing",
+            "textures": {
+                "all": "minecraft:blocks/nether_brick"
+            }
+        },
+        "variant=lead": {
+            "model": "skyresources:casing",
+            "textures": {
+                "all": "skyresources:blocks/leadmachine"
+            }
+        },
+        "variant=manyullyn": {
+            "model": "skyresources:casing",
+            "textures": {
+                "all": "skyresources:blocks/manyullynmachine"
+            }
+        },
+        "variant=signalum": {
+            "model": "skyresources:casing",
+            "textures": {
+                "all": "skyresources:blocks/signalummachine"
+            }
+        },
+        "variant=endstone": {
+            "model": "skyresources:casing",
+            "textures": {
+                "all": "minecraft:blocks/end_stone"
+            }
+        },
+        "variant=enderium": {
+            "model": "skyresources:casing",
+            "textures": {
+                "all": "skyresources:blocks/enderiummachine"
+            }
+        },
+        "variant=darkmatter": {
+            "model": "skyresources:casing",
+            "textures": {
+                "all": "skyresources:blocks/darkmatter"
+            }
+        }
+    }
+}

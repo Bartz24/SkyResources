@@ -17,7 +17,8 @@ public class TileGenericPower extends TileItemInventory implements IEnergyStorag
 		maxExtract = maxOut;
 	}
 
-	public TileGenericPower(String name, int maxPower, int maxIn, int maxOut, int invSlots, Integer[] noInsert, Integer[] noExtract)
+	public TileGenericPower(String name, int maxPower, int maxIn, int maxOut, int invSlots, Integer[] noInsert,
+			Integer[] noExtract)
 	{
 		super(name, invSlots, noInsert, noExtract);
 		maxEnergy = maxPower;
@@ -26,9 +27,9 @@ public class TileGenericPower extends TileItemInventory implements IEnergyStorag
 	}
 
 	protected int energy;
-	private int maxEnergy;
-	private int maxReceive;
-	private int maxExtract;
+	protected int maxEnergy;
+	protected int maxReceive;
+	protected int maxExtract;
 
 	@Override
 	public int receiveEnergy(int maxReceive, boolean simulate)
@@ -45,22 +46,21 @@ public class TileGenericPower extends TileItemInventory implements IEnergyStorag
 	@Override
 	public int extractEnergy(int maxExtract, boolean simulate)
 	{
-		int energyExtract = (int) Math.min(energy, Math.min(this.maxExtract, maxExtract));
+		int energyExtract = (int) Math.min(Math.max(energy, 0), Math.min(this.maxExtract, maxExtract));		
 		if (!simulate)
 		{
-			System.out.println("HERE");
 			energy -= energyExtract;
 			this.markDirty();
 		}
 		return energyExtract;
 	}
-	
+
 	public int internalExtractEnergy(int extract, boolean simulate)
 	{
-		int energyExtract = (int) Math.min(energy, extract);
+		int energyExtract = (int) Math.min(Math.max(energy, 0), extract);
 		if (!simulate)
 		{
-			energy -= extract;
+			energy -= energyExtract;
 			this.markDirty();
 		}
 		return energyExtract;
@@ -89,6 +89,7 @@ public class TileGenericPower extends TileItemInventory implements IEnergyStorag
 	{
 		return maxReceive != 0;
 	}
+
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
@@ -107,18 +108,22 @@ public class TileGenericPower extends TileItemInventory implements IEnergyStorag
 	}
 
 	@Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-        if (capability == CapabilityEnergy.ENERGY) {
-            return true;
-        }
-        return super.hasCapability(capability, facing);
-    }
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing)
+	{
+		if (capability == CapabilityEnergy.ENERGY)
+		{
+			return true;
+		}
+		return super.hasCapability(capability, facing);
+	}
 
-    @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (capability == CapabilityEnergy.ENERGY) {
-            return (T) this;
-        }
-        return super.getCapability(capability, facing);
-    }
+	@Override
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing)
+	{
+		if (capability == CapabilityEnergy.ENERGY)
+		{
+			return (T) this;
+		}
+		return super.getCapability(capability, facing);
+	}
 }

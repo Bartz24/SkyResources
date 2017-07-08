@@ -1,7 +1,10 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "skyresources:cactusfruitneedle"
+    "model": "cross",
+    "textures": {
+        "cross": "skyresources:blocks/cactusfruitneedle"
+    }
   },
   "variants": {
     "normal": [{}],

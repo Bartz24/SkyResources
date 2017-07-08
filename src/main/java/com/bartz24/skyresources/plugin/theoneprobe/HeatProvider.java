@@ -1,7 +1,6 @@
 package com.bartz24.skyresources.plugin.theoneprobe;
 
 import com.bartz24.skyresources.References;
-import com.bartz24.skyresources.alchemy.tile.CondenserTile;
 import com.bartz24.skyresources.alchemy.tile.CrucibleTile;
 import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.base.IHeatSource;
@@ -34,7 +33,7 @@ public class HeatProvider implements IProbeInfoProvider
 			IBlockState blockState, IProbeHitData data)
 	{
 		TileEntity te = world.getTileEntity(data.getPos());
-		if (te instanceof CondenserTile || te instanceof CrucibleTile
+		if (te instanceof CrucibleTile
 				|| world.getBlockState(data.getPos()).getBlock().equals(ModBlocks.blazePowderBlock))
 		{
 			boolean v = Config.harvestStyleVanilla;
@@ -46,12 +45,13 @@ public class HeatProvider implements IProbeInfoProvider
 							probeInfo.defaultIconStyle().width(v ? 18 : 20).height(v ? 14 : 16).textureWidth(32)
 									.textureHeight(32))
 					.text((HeatSources.isValidHeatSource(data.getPos().down(), world)
-							? (TextFormatting.GREEN + "Valid ") : (TextFormatting.YELLOW + "Invalid ")) + "Heat Source");
+							? (TextFormatting.GREEN + "Valid ") : (TextFormatting.YELLOW + "Invalid "))
+							+ "Heat Source");
 		}
 
 		te = world.getTileEntity(data.getPos());
 		int curHeat = -1;
-		if (te instanceof IHeatSource)
+		if (te instanceof IHeatSource && HeatSources.isValidHeatSource(te.getPos(), world))
 		{
 			curHeat = ((IHeatSource) te).getHeatValue();
 		} else if (HeatSources.isValidHeatSource(data.getPos(), world))

@@ -1,7 +1,10 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "skyresources:combustioncollector"
+    "model": "cube_all",
+    "textures": {
+        "all": "skyresources:blocks/combustioncollector"
+    }
   },
   "variants": {
     "normal": [{}],

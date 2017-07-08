@@ -1,7 +1,10 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "skyresources:compressedcoalblock"
+    "model": "cube_all",
+    "textures": {
+        "all": "skyresources:blocks/compressedcoalblock"
+    }
   },
   "variants": {
     "normal": [{}],

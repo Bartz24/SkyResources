@@ -18,8 +18,15 @@ compileJava {
     sourceCompatibility = targetCompatibility = "1.8"
 }
 
+repositories {
+	maven {
+		name "Jared"
+		url "http://maven.blamejared.com/"
+	}
+}
+
 minecraft {
-    version = "1.12-14.21.0.2373"
+    version = "1.12-14.21.1.2400"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.
@@ -32,15 +39,16 @@ minecraft {
 }
 
 dependencies {
+	compile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.0.0.5"
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"
     //compile "some.group:artifact:version"
       
 	compile files("lib/jei_1.12-4.7.0.67.jar")
-	compile files("lib/theoneprobe-1.12-1.4.9.jar")
+	compile files("lib/theoneprobe-1.12-1.4.10.jar")
+	compile files("lib/forestry_1.12-5.4.0.116.jar")
 	//compile files("lib/CraftTweaker-1.11.2-3.0.26.jar")
-	//compile files("lib/forestry_1.11.2-5.3.4.102.jar")
 	//compile files("lib/industrialcraft-2-2.6.69-ex110.jar")
 	//compile files("lib/Draconic-Evolution-1.10.2-2.0.3.137-universal.jar")
 	//compile files("lib/BrandonsCore-1.10.2-2.1.1.61-universal.jar")

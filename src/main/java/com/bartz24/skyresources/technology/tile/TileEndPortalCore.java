@@ -7,23 +7,17 @@ import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModBlocks;
 
 import net.minecraft.entity.monster.EntitySilverfish;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
 
 public class TileEndPortalCore extends TileItemInventory implements ITickable
 {
@@ -40,6 +34,9 @@ public class TileEndPortalCore extends TileItemInventory implements ITickable
 		{
 			if (hasValidMultiblock())
 			{
+				if (world.getTotalWorldTime() % 200 == 0)
+					world.playSound(null, pos, SoundEvents.BLOCK_END_PORTAL_FRAME_FILL, SoundCategory.BLOCKS, 1.0F,
+							1.0F);
 				spawnFish();
 
 				if (receivedPulse())
@@ -73,7 +70,8 @@ public class TileEndPortalCore extends TileItemInventory implements ITickable
 	{
 		List<EntitySilverfish> list = world.getEntitiesWithinAABB(EntitySilverfish.class, new AxisAlignedBB(
 				pos.getX() - 4, pos.getY(), pos.getZ() - 4, pos.getX() + 4, pos.getY() + 5F, pos.getZ() + 4));
-		if (!ConfigOptions.endPussyMode && world.rand.nextInt(90) == 0 && list.size() < 16)
+		if (!ConfigOptions.endWussMode && this.world.getTotalWorldTime() % 800 == 0 && world.rand.nextFloat() <= 0.9f
+				&& list.size() < 16)
 		{
 			EntitySilverfish fish = new EntitySilverfish(world);
 			fish.setDropChance(EntityEquipmentSlot.MAINHAND, 0);

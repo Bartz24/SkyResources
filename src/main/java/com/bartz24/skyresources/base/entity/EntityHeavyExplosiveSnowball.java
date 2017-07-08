@@ -20,7 +20,7 @@ public class EntityHeavyExplosiveSnowball extends EntityThrowable
 	public EntityHeavyExplosiveSnowball(World worldIn, EntityLivingBase throwerIn)
 	{
 		super(worldIn, throwerIn);
-		this.moveRelative(1, .5f, 1);
+		this.moveRelative(0, 0, 2, 0);
 	}
 
 	public EntityHeavyExplosiveSnowball(World worldIn, double x, double y, double z)
@@ -46,23 +46,26 @@ public class EntityHeavyExplosiveSnowball extends EntityThrowable
 	 */
 	protected void onImpact(RayTraceResult result)
 	{
-		if (result.entityHit != null)
+		if (this.ticksExisted > 1)
 		{
-			int i = 12;
-
-			if (result.entityHit instanceof EntityBlaze)
+			if (result.entityHit != null)
 			{
-				i = 18;
+				int i = 12;
+
+				if (result.entityHit instanceof EntityBlaze)
+				{
+					i = 18;
+				}
+
+				result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float) i);
+				result.entityHit.world.createExplosion(result.entityHit, result.entityHit.posX, result.entityHit.posY,
+						result.entityHit.posZ, 0.01f, false);
 			}
 
-			result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float) i);
-			result.entityHit.world.createExplosion(result.entityHit, result.entityHit.posX, result.entityHit.posY,
-					result.entityHit.posZ, 0.01f, false);
-		}
-
-		if (!this.world.isRemote)
-		{
-			this.setDead();
+			if (!this.world.isRemote)
+			{
+				this.setDead();
+			}
 		}
 	}
 

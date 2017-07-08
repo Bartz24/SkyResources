@@ -47,8 +47,7 @@ public class GuideImageButton extends GuidePageButton
 	@Override
 	public GuidePageButton clone()
 	{
-		return new GuideImageButton(image.imgLocation.toString(), this.display,
-				this.stackDisplay);
+		return new GuideImageButton(image.imgAddress, this.display, this.stackDisplay);
 	}
 
 	@Override

@@ -27,8 +27,8 @@ public class LifeInfuserTile extends TileItemInventory implements ITickable
 {
 	public LifeInfuserTile()
 	{
-		super("lifeInfuser", 3, null, new Integer[] { 1, 2 });
-		this.setInventory(new ItemHandlerSpecial(3, null, new Integer[] { 1, 2 })
+		super("lifeInfuser", 2, null, new Integer[] { 1 });
+		this.setInventory(new ItemHandlerSpecial(3, null, new Integer[] { 1 })
 		{
 			protected void onContentsChanged(int slot)
 			{
@@ -40,8 +40,6 @@ public class LifeInfuserTile extends TileItemInventory implements ITickable
 			{
 				if (slot == 0)
 					return stack.getItem() instanceof ItemHealthGem;
-				else if (slot == 1)
-					return stack.getItem() instanceof ItemInfusionStone;
 				return super.isItemValid(slot, stack);
 			}
 		});
@@ -62,8 +60,8 @@ public class LifeInfuserTile extends TileItemInventory implements ITickable
 
 	public boolean hasValidMultiblock()
 	{
-		BlockPos[] pillarPoses = new BlockPos[] { pos.north(1).west(1), pos.north(1).east(1), pos.south(1).west(1),
-				pos.south(1).east(1) };
+		BlockPos[] pillarPoses = new BlockPos[] { pos.north().west(), pos.north().east(), pos.south().west(),
+				pos.south().east() };
 		for (BlockPos pos : pillarPoses)
 		{
 			ItemStack stack = new ItemStack(world.getBlockState(pos).getBlock(), 1,
@@ -129,10 +127,7 @@ public class LifeInfuserTile extends TileItemInventory implements ITickable
 		{
 			if (!world.isRemote)
 			{
-				getInventory().extractItem(2, ((ItemStack) recipe.getInputs().get(0)).getCount(), false);
-				getInventory().getStackInSlot(1).setItemDamage(getInventory().getStackInSlot(1).getItemDamage() + 1);
-				if (getInventory().getStackInSlot(1).getItemDamage() >= getInventory().getStackInSlot(1).getMaxDamage())
-					getInventory().setStackInSlot(1, ItemStack.EMPTY);
+				getInventory().extractItem(1, ((ItemStack) recipe.getInputs().get(0)).getCount(), false);
 				world.setBlockToAir(pos.down(1));
 				ItemStack gemStack = getInventory().getStackInSlot(0);
 				if (gemStack != ItemStack.EMPTY && gemStack.getItem() instanceof ItemHealthGem)
@@ -173,14 +168,12 @@ public class LifeInfuserTile extends TileItemInventory implements ITickable
 		{
 			ProcessRecipe recipe = ProcessRecipeManager.infusionRecipes
 					.getRecipe(
-							new ArrayList<Object>(Arrays.asList((Object) getInventory().getStackInSlot(2),
+							new ArrayList<Object>(Arrays.asList((Object) getInventory().getStackInSlot(1),
 									(Object) new ItemStack(state.getBlock(), 1,
 											state.getBlock().getMetaFromState(state)))),
 							this.getHealthInGem(), false, false);
 
-			if (recipe != null && recipe.getIntParameter() <= this.getHealthInGem()
-					&& getInventory().getStackInSlot(1) != ItemStack.EMPTY
-					&& getInventory().getStackInSlot(1).getItem() instanceof ItemInfusionStone)
+			if (recipe != null && recipe.getIntParameter() <= this.getHealthInGem())
 				return recipe;
 		}
 		return null;

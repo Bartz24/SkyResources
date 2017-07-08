@@ -64,16 +64,12 @@ public class TileRockCleaner extends TileGenericPower implements ITickable, IFlu
 						{
 							if (!world.isRemote)
 							{
-								// int level =
-								// EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE,
-								// this.getInventory().getStackInSlot(0));
-								float chance = r.getIntParameter() * (((float) 0 + 3F) / 3F);
-								while (chance >= 1)
+								float chance = r.getIntParameter() * 2;
+								if (chance >= 1)
 								{
 									bufferStacks.add(r.getOutputs().get(0).copy());
-									chance -= 1;
 								}
-								if (this.world.rand.nextFloat() <= chance)
+								else if (this.world.rand.nextFloat() <= chance)
 									bufferStacks.add(r.getOutputs().get(0).copy());
 							}
 						}
