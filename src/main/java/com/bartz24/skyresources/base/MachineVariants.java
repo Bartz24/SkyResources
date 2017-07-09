@@ -15,16 +15,16 @@ public enum MachineVariants implements IStringSerializable
 {
 	WOOD(100, 0.5f, 0.4f, "Fuel", 75), 
 	STONE(600, 0.75f, 0.8f, "Fuel", 90), 
-	BRONZE(950, 1.3f, 1.2f, "FE", 20), 
-	IRON(1538, 1.1f, 1.0f, "Fuel", 110), 
-	STEEL(1370, 1.8f, 1.3f, "Fuel", 140), 
-	ELECTRUM(1878, 0.65f, 1.7f, "FE", 60), 
-	NETHERBRICK(3072, 1.0f, 0.5f, new ItemStack(Items.BLAZE_POWDER), 300), 
-	LEAD(328, 0.4f, 3.7f, new ItemStack(ModItems.techComponent, 1, 1), 900), 
-	MANYULLYN(2324, 3.3f, 1.6f, FluidRegistry.LAVA, 1), 
-	SIGNALUM(1362, 1.3f, 2.4f, "FE", 80), 
-	ENDSTONE(2164, 2.5f, 1.9f, new ItemStack(Items.ENDER_PEARL), 2200), 
-	ENDERIUM(3166, 4.2f, 2.6f, "FE", 1200), 
+	BRONZE(950, 1.4f, 1.2f, "FE", 20), 
+	IRON(1538, 1.2f, 1.0f, "Fuel", 110), 
+	STEEL(1370, 2.3f, 1.4f, "Fuel", 140), 
+	ELECTRUM(1878, 0.65f, 2.4f, "FE", 60), 
+	NETHERBRICK(3072, 0.4f, 0.5f, new ItemStack(Items.BLAZE_POWDER), 300), 
+	LEAD(328, 0.8f, 3.7f, new ItemStack(ModItems.techComponent, 1, 1), 900), 
+	MANYULLYN(2324, 3.6f, 1.9f, FluidRegistry.LAVA, 1), 
+	SIGNALUM(1362, 1.5f, 3.3f, "FE", 80), 
+	ENDSTONE(2164, 3.2f, 2.2f, new ItemStack(Items.ENDER_PEARL), 2200), 
+	ENDERIUM(3166, 4.2f, 3.8f, "FE", 1200), 
 	DARKMATTER(4042, 100f, 100f, new ItemStack(ModItems.baseComponent, 1, 5), 31415);
 
 	private int maxHeat;

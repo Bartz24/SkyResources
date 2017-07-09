@@ -7,7 +7,9 @@ import com.bartz24.skyresources.alchemy.tile.TileAlchemyFusionTable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 public class GuiFusionTable extends GuiContainer
@@ -71,5 +73,18 @@ public class GuiFusionTable extends GuiContainer
 		this.mc.getTextureManager().bindTexture(new ResourceLocation(References.ModID, "textures/gui/fusiontable.png"));
 		this.drawTexturedModalRect(103, 69, 176, 0, 3, 26);
 		this.drawTexturedModalRect(104, 95 - height, 179, 26 - height, 1, height);
+
+		for (int i = 0; i < 9; i++)
+		{
+			if (tile.getInventory().getStackInSlot(i + 1).isEmpty() && !tile.getFilterStack(i).isEmpty())
+			{
+				RenderHelper.enableGUIStandardItemLighting();
+				ItemStack stack = tile.getFilterStack(i);
+				stack.setCount(1);
+				this.itemRender.renderItemAndEffectIntoGUI(stack, 8 + i * 18, 34);
+				this.fontRenderer.drawString("0", 8 + i * 18, 52, 0xFFFF0000);
+				RenderHelper.disableStandardItemLighting();
+			}
+		}
 	}
 }

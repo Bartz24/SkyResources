@@ -237,7 +237,7 @@ public class ModCrafting
 		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(Items.COAL, 1), 170,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.COAL, 1, 1))));
 
-		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(Items.BLAZE_POWDER, 3), 275,
+		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(Items.BLAZE_POWDER, 3), 75,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.GUNPOWDER))));
 		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(Items.GUNPOWDER), 1120,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.FLINT))));
@@ -391,23 +391,23 @@ public class ModCrafting
 				ItemStack output = OreDictionary.getOres(itemDust).get(0).copy();
 				output.setCount(1);
 				ProcessRecipeManager.cauldronCleanRecipes.addRecipe(output,
-						1f / ((float)Math.pow((ItemOreAlchDust.oreInfos.get(i).rarity+2.5f) * 4.6f, 1.7f)),
+						1f / ((float)Math.pow((ItemOreAlchDust.oreInfos.get(i).rarity+2.5f) * 2.9f, 2.1f)),
 						new ItemStack(ModItems.techComponent, 1, ItemOreAlchDust.oreInfos.get(i).parentBlock
 								.isItemEqual(new ItemStack(Blocks.NETHERRACK)) ? 3 : 0));
 			}
 		}
 
-		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 3, 2), 335f,
-				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.GUNPOWDER, 5),
+		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 5, 2), 335f,
+				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.GUNPOWDER, 3),
 						new ItemStack(Items.BLAZE_POWDER, 2), new ItemStack(Items.COAL, 1, 1))));
-		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 3, 3), 0.0025f,
-				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.REDSTONE, 3),
+		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 5, 3), 0.0025f,
+				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.REDSTONE, 2),
 						new ItemStack(Items.BLAZE_POWDER, 2), new ItemStack(ModItems.alchemyComponent, 1, 8))));
-		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 3, 4), 0.004f,
-				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.GLOWSTONE_DUST, 3),
+		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 5, 4), 0.004f,
+				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.GLOWSTONE_DUST, 2),
 						new ItemStack(Items.DYE, 2, 4), new ItemStack(ModItems.alchemyComponent, 1, 7))));
 		ProcessRecipeManager.fusionRecipes
-				.addRecipe(new ItemStack(ModItems.alchemyComponent, 3, 5), 0.01f,
+				.addRecipe(new ItemStack(ModItems.alchemyComponent, 5, 5), 0.01f,
 						new ArrayList<Object>(Arrays.asList(new ItemStack(ModItems.baseComponent, 1, 3),
 								new ItemStack(Items.GLOWSTONE_DUST, 6),
 								new ItemStack(ModItems.alchemyComponent, 3, 6))));
@@ -416,13 +416,13 @@ public class ModCrafting
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.COAL, 1), new ItemStack(Items.GUNPOWDER, 3))));
 		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 1, 8), 0.002f,
 				new ArrayList<Object>(
-						Arrays.asList(new ItemStack(Items.IRON_INGOT, 1), new ItemStack(Items.BLAZE_POWDER, 5))));
+						Arrays.asList(new ItemStack(Items.IRON_INGOT, 1), new ItemStack(Items.BLAZE_POWDER, 3))));
 		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 1, 7), 0.005f,
 				new ArrayList<Object>(
-						Arrays.asList(new ItemStack(Items.GOLD_INGOT, 1), new ItemStack(Items.GLOWSTONE_DUST, 4))));
+						Arrays.asList(new ItemStack(Items.GOLD_INGOT, 1), new ItemStack(Items.GLOWSTONE_DUST, 3))));
 		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 1, 10), 0.03f,
 				new ArrayList<Object>(
-						Arrays.asList(new ItemStack(Items.DIAMOND, 1), new ItemStack(Items.REDSTONE, 9))));
+						Arrays.asList(new ItemStack(Items.DIAMOND, 1), new ItemStack(Items.REDSTONE, 8))));
 
 		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 1, 1), 0.001f,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.GLASS, 2))));
@@ -463,12 +463,9 @@ public class ModCrafting
 				String dust = "dust" + RandomHelper.capatilizeString(ItemOreAlchDust.oreInfos.get(i).name);
 				if (OreDictionary.getOres(dust).size() > 0)
 				{
-					ItemStack dustStack = OreDictionary.getOres(dust).get(0);
-					dustStack.setCount(1);
-
 					ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.oreAlchDust, 1, i),
 							ItemOreAlchDust.oreInfos.get(i).rarity * 0.004f, new ArrayList<Object>(
-									Arrays.asList(dustStack, getOreItemDust(ItemOreAlchDust.oreInfos.get(i).rarity))));
+									Arrays.asList(dust, getOreItemDust(ItemOreAlchDust.oreInfos.get(i).rarity))));
 				}
 			}
 		}
@@ -486,8 +483,8 @@ public class ModCrafting
 		HeatSources.addHeatSource(Blocks.MAGMA.getDefaultState(), 6);
 
 		FusionCatalysts.addCatalyst(new ItemStack(ModItems.alchemyComponent, 1, 2), 0.75f);
-		FusionCatalysts.addCatalyst(new ItemStack(ModItems.alchemyComponent, 1, 3), 1.25f);
-		FusionCatalysts.addCatalyst(new ItemStack(ModItems.alchemyComponent, 1, 4), 2.75f);
+		FusionCatalysts.addCatalyst(new ItemStack(ModItems.alchemyComponent, 1, 3), 1.75f);
+		FusionCatalysts.addCatalyst(new ItemStack(ModItems.alchemyComponent, 1, 4), 4.50f);
 		FusionCatalysts.addCatalyst(new ItemStack(ModItems.alchemyComponent, 1, 5), 20.00f);
 
 		GameRegistry.registerFuelHandler(new ModFuelHandler());
@@ -648,9 +645,9 @@ public class ModCrafting
 		switch (type)
 		{
 		case 0:
-			return getModGear("Wood");
+			return getModGear("Wood") != null ? getModGear("Wood") : "plankWood";
 		case 1:
-			return getModGear("Stone");
+			return getModGear("Stone") != null ? getModGear("Stone") : new ItemStack(Blocks.STONEBRICK);
 		case 2:
 			return getModGear("Bronze");
 		case 3:

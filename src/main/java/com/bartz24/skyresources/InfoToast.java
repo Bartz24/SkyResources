@@ -1,15 +1,13 @@
 package com.bartz24.skyresources;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.client.gui.toasts.GuiToast;
 import net.minecraft.client.gui.toasts.IToast;
-import net.minecraft.client.gui.toasts.SystemToast;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.text.ITextComponent;
 
 public class InfoToast implements IToast
 {
+	private InfoToast.Type type;
 	private int time;
 	private String title;
 	private String subtitle;
@@ -18,6 +16,7 @@ public class InfoToast implements IToast
 
 	public InfoToast(ITextComponent titleComponent, ITextComponent subtitleComponent, int time)
 	{
+		this.type = Type.Info;
 		this.time = time;
 		this.title = titleComponent.getUnformattedText();
 		this.subtitle = subtitleComponent == null ? null : subtitleComponent.getUnformattedText();
@@ -45,5 +44,15 @@ public class InfoToast implements IToast
 		}
 
 		return delta - this.firstDrawTime < time ? IToast.Visibility.SHOW : IToast.Visibility.HIDE;
+	}
+
+	public InfoToast.Type getType()
+	{
+		return this.type;
+	}
+
+	public static enum Type
+	{
+		Info;
 	}
 }

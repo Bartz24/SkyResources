@@ -1,5 +1,7 @@
 package com.bartz24.skyresources.alchemy.gui.container;
 
+import javax.annotation.Nonnull;
+
 import com.bartz24.skyresources.alchemy.tile.TileAlchemyFusionTable;
 import com.bartz24.skyresources.base.gui.ContainerBase;
 import com.bartz24.skyresources.base.gui.SlotSpecial;
@@ -34,8 +36,19 @@ public class ContainerFusionTable extends ContainerBase
 			{
 				ItemStack newStack = super.decrStackSize(amount);
 				if (tile.getInventory().getStackInSlot(index).isEmpty())
-					((TileAlchemyFusionTable) tile).setFilter(index-1, ItemStack.EMPTY);
+				{
+					((TileAlchemyFusionTable) tile).setFilter(index - 1, ItemStack.EMPTY);
+				}
 				return newStack;
+			}
+
+			public void putStack(@Nonnull ItemStack stack)
+			{
+				if (!stack.isEmpty())
+				{
+					((TileAlchemyFusionTable) tile).setFilter(index - 1, stack.copy());
+				}
+				super.putStack(stack);
 			}
 		};
 	}

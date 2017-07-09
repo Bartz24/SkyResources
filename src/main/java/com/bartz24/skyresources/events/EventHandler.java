@@ -156,19 +156,14 @@ public class EventHandler
 				player.setHealth(player.getMaxHealth());
 		}
 
-	}
-
-	@SubscribeEvent
-	public void onPlayerJoinEvent(PlayerLoggedInEvent event)
-	{
 		EntityPlayer player = event.player;
-
 		if (ConfigOptions.displayFirstChatInfo && ConfigOptions.allowGuide && Minecraft.getMinecraft().player != null
-				&& Minecraft.getMinecraft().player.getGameProfile().getId().equals(player.getGameProfile().getId()))
+				&& Minecraft.getMinecraft().player.getGameProfile().getId().equals(player.getGameProfile().getId())
+				&& Minecraft.getMinecraft().getToastGui().getToast(InfoToast.class, InfoToast.Type.Info) == null)
 		{
 			Minecraft.getMinecraft().getToastGui().add(new InfoToast(new TextComponentString("Sky Resources Guide"),
-					new TextComponentString("Press " + TextFormatting.AQUA + "Open Guide Key (G)"), 20000));
 		}
+
 	}
 
 	@SubscribeEvent

@@ -51,13 +51,6 @@ public class TileAlchemyFusionTable extends TileItemInventory implements ITickab
 
 	private void updateCrafting()
 	{
-		for (int i = 0; i < 9; i++)
-		{
-			if (!this.getInventory().getStackInSlot(i + 1).isItemEqual(this.filter.get(i)))
-			{
-				this.filter.set(i, this.getInventory().getStackInSlot(i + 1).copy());
-			}
-		}
 		ProcessRecipe recipe = ProcessRecipeManager.fusionRecipes.getRecipe(getStacksForRecipe(), Integer.MAX_VALUE,
 				false, false);
 

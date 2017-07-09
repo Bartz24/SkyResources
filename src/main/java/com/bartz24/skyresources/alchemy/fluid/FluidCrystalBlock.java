@@ -13,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fml.relauncher.Side;
@@ -26,7 +27,7 @@ public class FluidCrystalBlock extends BlockFluidClassic
 		super(ModFluids.crystalFluid, Material.WATER);
 		this.setUnlocalizedName(ModFluids.crystalFluid.getUnlocalizedName());
 		this.setRegistryName(RandomHelper.capatilizeString(ModFluids.crystalFluid.getUnlocalizedName()));
-		this.setTickRandomly(true);
+        this.displacements.put(this, false);
 	}
 
 	@Override
@@ -54,6 +55,16 @@ public class FluidCrystalBlock extends BlockFluidClassic
 
 		return true;
 	}
+	
+	@Override
+    public boolean canDisplace(IBlockAccess world, BlockPos pos){
+        return !world.getBlockState(pos).getMaterial().isLiquid() && super.canDisplace(world, pos);
+    }
+
+    @Override
+    public boolean displaceIfPossible(World world, BlockPos pos){
+        return !world.getBlockState(pos).getMaterial().isLiquid() && super.displaceIfPossible(world, pos);
+    }
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
