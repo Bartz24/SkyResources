@@ -159,9 +159,11 @@ public class EventHandler
 		EntityPlayer player = event.player;
 		if (ConfigOptions.displayFirstChatInfo && ConfigOptions.allowGuide && Minecraft.getMinecraft().player != null
 				&& Minecraft.getMinecraft().player.getGameProfile().getId().equals(player.getGameProfile().getId())
+				&& player.ticksExisted > 100 && player.ticksExisted < 150
 				&& Minecraft.getMinecraft().getToastGui().getToast(InfoToast.class, InfoToast.Type.Info) == null)
 		{
 			Minecraft.getMinecraft().getToastGui().add(new InfoToast(new TextComponentString("Sky Resources Guide"),
+					new TextComponentString("Press " + TextFormatting.AQUA + "Open Guide Key (G)"), 5000));
 		}
 
 	}
