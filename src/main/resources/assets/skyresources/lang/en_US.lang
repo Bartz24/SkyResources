@@ -303,6 +303,9 @@ guide.skyresources.stage1.grassIsland.text=The grass and GoG island skips over s
 guide.skyresources.stage2.stage2.title=Stage 2-Resource Production
 guide.skyresources.stage2.stage2.text=This stage is the most important stage as it provides all the methods for getting nearly all of the basic resources! \n \n It is very important to learn how to use everything shown in this section of the guide! \n \n This stage will take you up until you obtain <recipe,,minecraft:glowstone_dust:0> for <link,Stage_3,minecraft:glowstone:0,stage3> !
 
+guide.skyresources.stage2.seeds.title=Seeds
+guide.skyresources.stage2.seeds.text=Vanilla seeds including <recipe,,minecraft:wheat_seeds:0> , <recipe,,minecraft:melon_seeds:0> , <recipe,,minecraft:wheat_seeds:0> , <recipe,,minecraft:pumpkin_seeds:0> , <recipe,,minecraft:beetroot_seeds:0> and <recipe,,minecraft:dye:3> are dropped from breaking <recipe,,minecraft:tallgrass:0> .
+
 guide.skyresources.stage2.casing.title=Casings
 guide.skyresources.stage2.casing.text=Casings are blocks that are used by a few machines, the <link,Combustion_Heaters,skyresources:combustionheater:0,combustionHeater> , the <link,Heat_Providers,skyresources:heatprovider:0,heatProvider> , and the <link,Condensers,skyresources:condenser:0,condenser> . \n \n Insert one of those machines by right clicking it into the casing. Take it out by shift right-clicking. \n \n Different variants of the casing may affect efficiency, fuel efficiency, max HU, etc. \n \n NOTE: Casings shown in setups/structures are empty. Make sure to insert the correct machine for that structure!
 
@@ -361,7 +364,7 @@ guide.skyresources.stage3.quickDropper.title=Quick Dropper
 guide.skyresources.stage3.quickDropper.text=The <recipe,,skyresources:quickdropper:0> is used for dropping a full stack of items at a time with no redstone pulse. \n Stops when given a redstone signal. \n \n This CANNOT be used with the <recipe,,skyresources:combustionheater:0> or <recipe,,skyresources:combustionheater:1> .
 
 guide.skyresources.stage3.rockCrusher.title=Rock Crusher
-guide.skyresources.stage3.rockCrusher.text=The <recipe,,skyresources:rockcrusher:0> automates <link,rock_grinding,skyresources:stonegrinder:0,rockGrinder> . \n Requires 80 RF/tick. \n Needs a type of <link,Rock_grinder,skyresources:stonegrinder:0,rockGrinder> to run.
+guide.skyresources.stage3.rockCrusher.text=The <recipe,,skyresources:rockcrusher:0> automates <link,rock_grinding,skyresources:stonegrinder:0,rockGrinder> . \n Requires 80 RF/tick.
 
 guide.skyresources.stage3.rockCleaner.title=Rock Cleaner
 guide.skyresources.stage3.rockCleaner.text=The <recipe,,skyresources:rockcleaner:0> automates the <recipe,,minecraft:cauldron:0> . \n Requires 80 RF/tick. \n Needs 250 mB to run.
@@ -409,7 +412,7 @@ guide.skyresources.misc.envtech.title=Environmental Tech Support
 guide.skyresources.misc.envtech.text=Sky Resources provides for ways to get Environmental Tech stone types. \n \n <recipe,,environmentaltech:alabaster:0> and <recipe,,environmentaltech:basalt:0> are obtainable.
 
 guide.skyresources.misc.forestry.title=Forestry Support
-guide.skyresources.misc.forestry.text=Sky Resources provides a way to get <recipe,,forestry:bee_princess_ge:0> and <recipe,,forestry:bee_drone_ge:0> . \n This is done by making a <recipe,,skyresources:beeattractor:0> . \n The <recipe,,skyresources:beeattractor:0> requires RF and <recipe,,forestry:fluid.seed.oil:0> . \n Every 10 seconds, there is a chance for a <recipe,,forestry:bee_princess_ge:0> or <recipe,,forestry:bee_drone_ge:0> to be in the <recipe,,skyresources:beeattractor:0> . \n The species depends on the biome, just like hives. \n Note that a <recipe,,forestry:bee_princess_ge:0> is rarer than a <recipe,,forestry:bee_drone_ge:0> .
+guide.skyresources.misc.forestry.text=Sky Resources provides a way to get <recipe,,forestry:bee_princess_ge:0> and <recipe,,forestry:bee_drone_ge:0> . \n This is done by making a <recipe,,skyresources:beeattractor:0> . \n The <recipe,,skyresources:beeattractor:0> requires RF and <recipe,,forestry:fluid.seed.oil:0> . \n Every 10 seconds, there is a chance for a <recipe,,forestry:bee_princess_ge:0> or <recipe,,forestry:bee_drone_ge:0> to be in the <recipe,,skyresources:beeattractor:0> . \n The most common species you'll get depends on the biome, just like hives. You will get species from all hives at a small chance though. \n Note that a <recipe,,forestry:bee_princess_ge:0> is rarer than a <recipe,,forestry:bee_drone_ge:0> .
 
 guide.skyresources.misc.ic2.title=IndustrialCraft 2 Support
 guide.skyresources.misc.ic2.text=Sky Resources provides for ways to get basic IC2 items. \n \n <recipe,,ic2:misc_resource:4> is obtainable as well as the <recipe,,ic2:sapling:0> . \n \n <recipe,,skyresources:TechItemComponent:0> can be used to get <recipe,,ic2:dust:15> . \n \n <recipe,,skyresources:TechItemComponent:1> can be used to get <recipe,,ic2:nuclear:5> and <recipe,,ic2:nuclear:2>

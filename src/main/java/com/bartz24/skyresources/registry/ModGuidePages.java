@@ -30,9 +30,8 @@ public class ModGuidePages
 		SkyResourcesGuide.addPage("freezer", "guide.skyresources.stage1", new ItemStack(ModBlocks.miniFreezer));
 		addImagePos("ironFreezer", new BlockPos(0, -1, 0), ModBlocks.ironFreezer.getStateFromMeta(8));
 		addImagePos("ironFreezer", new BlockPos(0, 0, 0), ModBlocks.ironFreezer.getStateFromMeta(0));
-		
-		SkyResourcesGuide.addPage("heavySnowball", "guide.skyresources.stage1",
-				new ItemStack(ModItems.heavySnowball));
+
+		SkyResourcesGuide.addPage("heavySnowball", "guide.skyresources.stage1", new ItemStack(ModItems.heavySnowball));
 
 		SkyResourcesGuide.addPage("woodIsland", "guide.skyresources.stage1", new ItemStack(Blocks.PLANKS, 1, 5));
 
@@ -43,9 +42,10 @@ public class ModGuidePages
 
 		SkyResourcesGuide.addPage("stage2", "guide.skyresources.stage2", new ItemStack(Blocks.LOG));
 
-		SkyResourcesGuide.addPage("casing", "guide.skyresources.stage2",
-				new ItemStack(ModBlocks.casing));
-		
+		SkyResourcesGuide.addPage("seeds", "guide.skyresources.stage2", new ItemStack(Items.PUMPKIN_SEEDS));
+
+		SkyResourcesGuide.addPage("casing", "guide.skyresources.stage2", new ItemStack(ModBlocks.casing));
+
 		SkyResourcesGuide.addPage("combustionHeater", "guide.skyresources.stage2",
 				new ItemStack(ModItems.combustionHeater));
 		addImagePos("combustion", new BlockPos(0, -1, 0), ModBlocks.casing.getDefaultState());
@@ -66,7 +66,7 @@ public class ModGuidePages
 		addImagePos("lava", new BlockPos(0, 0, 0), ModBlocks.blazePowderBlock.getDefaultState());
 
 		SkyResourcesGuide.addPage("heatSources", "guide.skyresources.stage2", new ItemStack(Blocks.TORCH));
-		
+
 		SkyResourcesGuide.addPage("heatProvider", "guide.skyresources.stage2", new ItemStack(ModItems.heatProvider));
 
 		SkyResourcesGuide.addPage("rockGrinder", "guide.skyresources.stage2", new ItemStack(ModItems.stoneGrinder));
@@ -93,7 +93,7 @@ public class ModGuidePages
 
 		SkyResourcesGuide.addPage("crucibleInserter", "guide.skyresources.stage2",
 				new ItemStack(ModBlocks.crucibleInserter));
-		
+
 		SkyResourcesGuide.addPage("combustionCollector", "guide.skyresources.stage2",
 				new ItemStack(ModBlocks.combustionCollector));
 
@@ -113,7 +113,7 @@ public class ModGuidePages
 		SkyResourcesGuide.addPage("aqueous", "guide.skyresources.stage3", new ItemStack(ModBlocks.aqueousConcentrator));
 
 		SkyResourcesGuide.addPage("stage4", "guide.skyresources.stage4", new ItemStack(ModItems.baseComponent, 1, 3));
-		
+
 		SkyResourcesGuide.addPage("dmWarper", "guide.skyresources.stage4", new ItemStack(ModBlocks.darkMatterWarper));
 
 		SkyResourcesGuide.addPage("end", "guide.skyresources.stage4", new ItemStack(Items.ENDER_EYE));
@@ -180,7 +180,7 @@ public class ModGuidePages
 		addImagePos("infuser", new BlockPos(0, 2, 0), Blocks.STONE_BUTTON.getStateFromMeta(5));
 
 		SkyResourcesGuide.addPage("lifeInjector", "guide.skyresources.stage4", new ItemStack(ModBlocks.lifeInjector));
-		
+
 		if (Loader.isModLoaded("voidislandcontrol"))
 			SkyResourcesGuide.addPage("nether", "guide.skyresources.misc", new ItemStack(Blocks.NETHERRACK));
 	}

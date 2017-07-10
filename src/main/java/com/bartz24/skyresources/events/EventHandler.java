@@ -2,11 +2,9 @@ package com.bartz24.skyresources.events;
 
 import java.util.List;
 
-import com.bartz24.skyresources.InfoToast;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
-import com.bartz24.skyresources.alchemy.FusionCatalysts;
 import com.bartz24.skyresources.alchemy.effects.IHealthBoostItem;
 import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
 import com.bartz24.skyresources.base.ModKeyBindings;
@@ -29,14 +27,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
 public class EventHandler
@@ -156,16 +150,6 @@ public class EventHandler
 				player.setHealth(player.getMaxHealth());
 		}
 
-		EntityPlayer player = event.player;
-		if (ConfigOptions.displayFirstChatInfo && ConfigOptions.allowGuide && Minecraft.getMinecraft().player != null
-				&& Minecraft.getMinecraft().player.getGameProfile().getId().equals(player.getGameProfile().getId())
-				&& player.ticksExisted > 100 && player.ticksExisted < 150
-				&& Minecraft.getMinecraft().getToastGui().getToast(InfoToast.class, InfoToast.Type.Info) == null)
-		{
-			Minecraft.getMinecraft().getToastGui().add(new InfoToast(new TextComponentString("Sky Resources Guide"),
-					new TextComponentString("Press " + TextFormatting.AQUA + "Open Guide Key (G)"), 5000));
-		}
-
 	}
 
 	@SubscribeEvent
@@ -189,17 +173,6 @@ public class EventHandler
 		if (event.getModID().equalsIgnoreCase(References.ModID))
 		{
 			ConfigOptions.reloadConfigs();
-		}
-	}
-
-	@SubscribeEvent
-	public void tooltipEvent(ItemTooltipEvent event)
-	{
-		ItemStack stack = event.getItemStack();
-		if (FusionCatalysts.isCatalyst(stack))
-		{
-			event.getToolTip().add(TextFormatting.AQUA + "Catalyst Yield: "
-					+ (int) (FusionCatalysts.getCatalystValue(stack) * 100f) + "%");
 		}
 	}
 }

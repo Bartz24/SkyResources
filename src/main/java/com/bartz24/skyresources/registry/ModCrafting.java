@@ -330,7 +330,7 @@ public class ModCrafting
 			if (ConfigOptions.allowAllGemTypes || OreDictionary
 					.getOres("gem" + RandomHelper.capatilizeString(ModItems.gemList.get(i).name)).size() > 0)
 				ProcessRecipeManager.rockGrinderRecipes.addRecipe(new ItemStack(ModItems.dirtyGem, 1, i),
-						ModItems.gemList.get(i).rarity, new ItemStack(Blocks.STONE));
+						ModItems.gemList.get(i).rarity, ModItems.gemList.get(i).parentBlock);
 		}
 
 		ProcessRecipeManager.crucibleRecipes.addRecipe(new FluidStack(ModFluids.crystalFluid, 1000), 0,
@@ -424,8 +424,8 @@ public class ModCrafting
 				new ArrayList<Object>(
 						Arrays.asList(new ItemStack(Items.DIAMOND, 1), new ItemStack(Items.REDSTONE, 8))));
 
-		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 1, 1), 0.001f,
-				new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.GLASS, 2))));
+		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 2, 1), 0.001f,
+				new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.GLASS))));
 
 		List<ItemStack> componentsOreDust = new ArrayList();
 		componentsOreDust.add(new ItemStack(Items.ROTTEN_FLESH, 2));
@@ -437,7 +437,7 @@ public class ModCrafting
 		componentsOreDust.add(new ItemStack(Items.IRON_INGOT, 2));
 		componentsOreDust.add(new ItemStack(Items.GOLD_INGOT, 3));
 		componentsOreDust.add(new ItemStack(Items.BONE, 2));
-		componentsOreDust.add(new ItemStack(ModItems.techComponent, 2, 1));
+		componentsOreDust.add(new ItemStack(Blocks.CLAY, 1));
 		componentsOreDust.add(new ItemStack(Items.GOLD_INGOT, 4));
 		componentsOreDust.add(new ItemStack(Items.MAGMA_CREAM, 3));
 		componentsOreDust.add(new ItemStack(Items.CLAY_BALL, 4));
