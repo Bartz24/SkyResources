@@ -304,7 +304,7 @@ guide.skyresources.stage2.stage2.title=Stage 2-Resource Production
 guide.skyresources.stage2.stage2.text=This stage is the most important stage as it provides all the methods for getting nearly all of the basic resources! \n \n It is very important to learn how to use everything shown in this section of the guide! \n \n This stage will take you up until you obtain <recipe,,minecraft:glowstone_dust:0> for <link,Stage_3,minecraft:glowstone:0,stage3> !
 
 guide.skyresources.stage2.seeds.title=Seeds
-guide.skyresources.stage2.seeds.text=Vanilla seeds including <recipe,,minecraft:wheat_seeds:0> , <recipe,,minecraft:melon_seeds:0> , <recipe,,minecraft:wheat_seeds:0> , <recipe,,minecraft:pumpkin_seeds:0> , <recipe,,minecraft:beetroot_seeds:0> and <recipe,,minecraft:dye:3> are dropped from breaking <recipe,,minecraft:tallgrass:0> .
+guide.skyresources.stage2.seeds.text=Vanilla seeds including <recipe,,minecraft:wheat_seeds:0> , <recipe,,minecraft:melon_seeds:0> , <recipe,,minecraft:wheat_seeds:0> , <recipe,,minecraft:pumpkin_seeds:0> , <recipe,,minecraft:beetroot_seeds:0> and <recipe,,minecraft:dye:3> are dropped from breaking <recipe,,minecraft:tallgrass:1> .
 
 guide.skyresources.stage2.casing.title=Casings
 guide.skyresources.stage2.casing.text=Casings are blocks that are used by a few machines, the <link,Combustion_Heaters,skyresources:combustionheater:0,combustionHeater> , the <link,Heat_Providers,skyresources:heatprovider:0,heatProvider> , and the <link,Condensers,skyresources:condenser:0,condenser> . \n \n Insert one of those machines by right clicking it into the casing. Take it out by shift right-clicking. \n \n Different variants of the casing may affect efficiency, fuel efficiency, max HU, etc. \n \n NOTE: Casings shown in setups/structures are empty. Make sure to insert the correct machine for that structure!
@@ -433,7 +433,7 @@ guide.skyresources.misc.techreborn.title=Tech Reborn Support
 guide.skyresources.misc.techreborn.text=Sky Resources provides for ways to get basic TechReborn items. \n \n <recipe,,techreborn:part:31> is obtainable as well as the <recipe,,techreborn:rubber_sapling:0> .
 
 guide.skyresources.misc.actadd.title=Actually Additions Support
-guide.skyresources.misc.actadd.text=Sky Resources provides for ways to get basic Actually Additions items. \n \n <recipe,,actuallyadditions:item_misc:5> is obtainable. The <recipe,,actuallyadditions:item_rice_seed:0> , <recipe,,actuallyadditions:item_canola_seed:0> , <recipe,,actuallyadditions:item_coffee_seed:0> , <recipe,,actuallyadditions:item_flax_seed:0> are dropped from breaking tall grass.
+guide.skyresources.misc.actadd.text=Sky Resources provides for ways to get basic Actually Additions items. \n \n <recipe,,actuallyadditions:item_misc:5> is obtainable. The <recipe,,actuallyadditions:item_rice_seed:0> , <recipe,,actuallyadditions:item_canola_seed:0> , <recipe,,actuallyadditions:item_coffee_seed:0> , <recipe,,actuallyadditions:item_flax_seed:0> are dropped from breaking <recipe,,minecraft:tallgrass:1> .
 
 guide.skyresources.misc.ae2.title=Applied Energistics 2 Support
 guide.skyresources.misc.ae2.text=Sky Resources provides for ways to get basic AE2 items. \n \n <recipe,,appliedenergistics2:material:0> , <recipe,,appliedenergistics2:material:1> , <recipe,,appliedenergistics2:sky_stone_block> are obtainable as well as the 4 inscriber presses.

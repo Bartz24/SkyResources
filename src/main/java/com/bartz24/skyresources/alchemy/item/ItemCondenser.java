@@ -99,19 +99,22 @@ public class ItemCondenser extends ItemMachine
 			} else if (!world.isRemote)
 				timeCondense = 0;
 
-			if (recipe != null && timeCondense >= getTimeToCondense(world, pos, machineStack, recipe))
+			boolean sound = false;
+			if (recipe != null && timeCondense >= getTimeToCondense(world, pos, machineStack, recipe)
+					&& !world.isRemote)
 			{
 				ItemStack stack = recipe.getOutputs().get(0).copy();
 				if (ejectResultSlot(stack, world, pos, true))
 				{
-					world.playSound(null, pos, SoundEvents.ENTITY_ARROW_HIT_PLAYER, SoundCategory.BLOCKS, 1.0F,
-							2.2F / (rand.nextFloat() * 0.2F + 0.9F));
+					sound = true;
 					world.setBlockToAir(pos.add(0, 1, 0));
 					ejectResultSlot(stack, world, pos, false);
 					timeCondense = 0;
-					System.out.println(itemLeft);
 				}
 			}
+			if (sound)
+				world.playSound(null, pos, SoundEvents.ENTITY_ARROW_HIT_PLAYER, SoundCategory.BLOCKS, 1.0F,
+						2.2F / (rand.nextFloat() * 0.2F + 0.9F));
 		}
 		data.setInteger("time", timeCondense);
 		data.setFloat("left", itemLeft);
@@ -132,12 +135,12 @@ public class ItemCondenser extends ItemMachine
 				if (tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP))
 				{
 					out = RandomHelper.fillInventory(
-							tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP), out,
-							sim);
+							tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP), out, sim);
 				} else if (tile instanceof IInventory)
 				{
 					out = RandomHelper.fillInventory((IInventory) tile, out, sim);
 				}
+				System.out.println(out.isEmpty());
 				return out.isEmpty();
 			}
 

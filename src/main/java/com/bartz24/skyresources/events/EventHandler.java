@@ -86,23 +86,24 @@ public class EventHandler
 						List<ProcessRecipe> recipes = ProcessRecipeManager.cauldronCleanRecipes.getRecipes();
 						if (recipes.size() > 0)
 						{
-							boolean worked = false;
+							boolean validIn = false;
 							for (ProcessRecipe rec : recipes)
 							{
+								if (!validIn)
+									validIn = ((ItemStack) rec.getInputs().get(0)).isItemEqual(item);
 								if (((ItemStack) rec.getInputs().get(0)).isItemEqual(item))
 									if (event.getWorld().rand.nextFloat() <= rec.getIntParameter())
 									{
-										worked = true;
-										RandomHelper.spawnItemInWorld(event.getWorld(), rec.getOutputs().get(0),
+										RandomHelper.spawnItemInWorld(event.getWorld(), rec.getOutputs().get(0).copy(),
 												event.getPos());
 									}
 							}
-							if (worked)
+							if (validIn)
 							{
+								item.shrink(1);
 								if (event.getWorld().rand.nextFloat() < 0.4F)
 									new BlockCauldron().setWaterLevel(event.getWorld(), event.getPos(),
 											event.getWorld().getBlockState(event.getPos()), i - 1);
-								item.shrink(1);
 								if (item.getCount() == 0)
 									event.getEntityPlayer().setHeldItem(EnumHand.MAIN_HAND, ItemStack.EMPTY);
 							}

@@ -4,6 +4,7 @@ import com.bartz24.skyresources.base.IHeatSource;
 import com.bartz24.skyresources.base.gui.ItemHandlerSpecial;
 import com.bartz24.skyresources.base.item.ItemMachine;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -78,9 +79,17 @@ public class TileCasing extends TileGenericPower implements IFluidHandler, ITick
 		return (ItemMachine) machineStored.getItem();
 	}
 
-	public void setMachine(ItemStack machine)
+	public void setMachine(ItemStack machine, EntityPlayer player)
 	{
-		super.dropInventory();
+		for (int i = 0; i < getInventory().getSlots(); ++i)
+		{
+			ItemStack itemstack = getInventory().getStackInSlot(i);
+
+			if (!itemstack.isEmpty())
+			{
+				InventoryHelper.spawnItemStack(getWorld(), player.posX, player.posY, player.posZ, itemstack);
+			}
+		}
 		machineStored = machine;
 		updateHandlerData();
 	}

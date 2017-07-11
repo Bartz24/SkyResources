@@ -152,7 +152,7 @@ public class BlockCasing extends BlockContainer implements IMetaBlockName
 				{
 					ItemStack machine = player.getHeldItem(hand).copy();
 					machine.setCount(1);
-					((TileCasing) world.getTileEntity(pos)).setMachine(machine);
+					((TileCasing) world.getTileEntity(pos)).setMachine(machine, player);
 					player.getHeldItem(hand).shrink(1);
 				}
 				return true;
@@ -162,7 +162,7 @@ public class BlockCasing extends BlockContainer implements IMetaBlockName
 				{
 					RandomHelper.spawnItemInWorld(world, ((TileCasing) world.getTileEntity(pos)).machineStored,
 							new BlockPos(player.posX, player.posY, player.posZ));
-					((TileCasing) world.getTileEntity(pos)).setMachine(ItemStack.EMPTY);
+					((TileCasing) world.getTileEntity(pos)).setMachine(ItemStack.EMPTY, player);
 				} else
 					player.openGui(SkyResources.instance, ModGuiHandler.CasingGUI, world, pos.getX(), pos.getY(),
 							pos.getZ());

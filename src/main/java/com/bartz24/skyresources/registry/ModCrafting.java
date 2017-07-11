@@ -15,7 +15,6 @@ import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 import com.bartz24.skyresources.technology.item.GemRegisterInfo;
 
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
@@ -35,7 +34,7 @@ public class ModCrafting
 {
 	public static void init()
 	{
-		CraftingRegistry.addShapedOreRecipe(new ItemStack(Blocks.SNOW_LAYER, 3),
+		CraftingRegistry.addShapedOreRecipe(new ItemStack(Blocks.SNOW_LAYER, 4),
 				new Object[] { "XX", 'X', new ItemStack(Items.SNOWBALL) });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.survivalistFishingRod),
 				new Object[] { " X", "XY", 'X', new ItemStack(Items.STICK), 'Y', new ItemStack(Items.STRING) });
@@ -135,8 +134,8 @@ public class ModCrafting
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.sandyNetherrack, 4),
 				new Object[] { "XY", "ZX", 'X', new ItemStack(Blocks.SAND), 'Y', new ItemStack(Items.NETHER_WART), 'Z',
 						new ItemStack(Blocks.NETHERRACK) });
-		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.lifeInfuser),
-				new Object[] { "XXX", " X ", " Y ", 'X', "logWood", 'Y', new ItemStack(ModItems.alchemicalInfusionStone) });
+		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.lifeInfuser), new Object[] { "XXX", " X ", " Y ",
+				'X', "logWood", 'Y', new ItemStack(ModItems.alchemicalInfusionStone) });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.lifeInjector),
 				new Object[] { " Y ", " X ", "XXX", 'X', "logWood", 'Y', new ItemStack(Items.DIAMOND_SWORD) });
 		CraftingRegistry.addShapelessOreRecipe(new ItemStack(ModItems.heavyExpSnowball, 3),
@@ -144,10 +143,11 @@ public class ModCrafting
 				new ItemStack(ModItems.heavySnowball), new ItemStack(Items.GUNPOWDER));
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.crucibleInserter),
 				new Object[] { "XYX", "X X", "X X", 'X', "ingotIron", 'Y', new ItemStack(Blocks.DROPPER) });
-		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.fusionTable),
-				new Object[] { "XZX", "XYX", "X X", 'X', "plankWood", 'Y',
-						new ItemStack(ModItems.alchComponent, 1, 1), 'Z',
-						new ItemStack(ModItems.alchemyComponent, 1, 2) });
+		CraftingRegistry
+				.addShapedOreRecipe(new ItemStack(ModBlocks.fusionTable),
+						new Object[] { "XZX", "XYX", "X X", 'X', "plankWood", 'Y',
+								new ItemStack(ModItems.alchComponent, 1, 1), 'Z',
+								new ItemStack(ModItems.alchemyComponent, 1, 2) });
 
 		Object advComponent = getModMaterial("Steel", ConfigOptions.recipeDifficulty) != null
 				? getModMaterial("Steel", ConfigOptions.recipeDifficulty)
@@ -390,10 +390,12 @@ public class ModCrafting
 			{
 				ItemStack output = OreDictionary.getOres(itemDust).get(0).copy();
 				output.setCount(1);
-				ProcessRecipeManager.cauldronCleanRecipes.addRecipe(output,
-						1f / ((float)Math.pow((ItemOreAlchDust.oreInfos.get(i).rarity+2.5f) * 2.9f, 2.1f)),
-						new ItemStack(ModItems.techComponent, 1, ItemOreAlchDust.oreInfos.get(i).parentBlock
-								.isItemEqual(new ItemStack(Blocks.NETHERRACK)) ? 3 : 0));
+				ProcessRecipeManager.cauldronCleanRecipes
+						.addRecipe(output,
+								1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(i).rarity + 2.5f) * 2.9f, 2.1f))
+										/ 2.2f),
+								new ItemStack(ModItems.techComponent, 1, ItemOreAlchDust.oreInfos.get(i).parentBlock
+										.isItemEqual(new ItemStack(Blocks.NETHERRACK)) ? 3 : 0));
 			}
 		}
 
@@ -554,8 +556,8 @@ public class ModCrafting
 							"XXX", "X X", "XYX", 'X', material, 'Y', new ItemStack(ModItems.heatComponent, 1, i) });
 
 				}
-				CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.heatProvider, 1, i), new Object[] {
-						"XYX", "XYX", "X X", 'X', material, 'Y', new ItemStack(ModItems.heatComponent, 1, i) });
+				CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.heatProvider, 1, i), new Object[] { "XYX",
+						"XYX", "X X", 'X', material, 'Y', new ItemStack(ModItems.heatComponent, 1, i) });
 				if (materialGear != null)
 					CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.casing, 1, i),
 							new Object[] { "XXX", "XYX", "XXX", 'X', material, 'Y', materialGear });

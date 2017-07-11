@@ -7,6 +7,7 @@ import com.bartz24.skyresources.plugin.armorplus.ArmorPlusPlugin;
 import com.bartz24.skyresources.plugin.embers.EmbersPlugin;
 import com.bartz24.skyresources.plugin.extremereactors.ExtremeReactorsPlugin;
 import com.bartz24.skyresources.plugin.forestry.ForestryPlugin;
+import com.bartz24.skyresources.plugin.integdyn.IntegratedDynamicsPlugin;
 import com.bartz24.skyresources.plugin.techreborn.TechRebornPlugin;
 import com.bartz24.skyresources.plugin.theoneprobe.TOPPlugin;
 import com.bartz24.skyresources.plugin.thermal.ThermalPlugin;
@@ -33,8 +34,8 @@ public class ModPlugins
 		// plugins.add(new EnvTechPlugin());
 		if (Loader.isModLoaded("armorplus"))
 			plugins.add(new ArmorPlusPlugin());
-		// if (Loader.isModLoaded("integrateddynamics"))
-		// plugins.add(new IntegratedDynamicsPlugin());
+		if (Loader.isModLoaded("integrateddynamics"))
+			plugins.add(new IntegratedDynamicsPlugin());
 		if (Loader.isModLoaded("bigreactors"))
 			plugins.add(new ExtremeReactorsPlugin());
 		if (Loader.isModLoaded("actuallyadditions"))

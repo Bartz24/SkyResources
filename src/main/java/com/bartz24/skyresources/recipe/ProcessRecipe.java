@@ -168,32 +168,44 @@ public class ProcessRecipe
 		if (inputs.size() != recipe.inputs.size())
 			return false;
 
-		int itemsChecked = 0;
+		List<Integer> itemsChecked = new ArrayList();
+		int index = 0;
 		for (Object i : inputs)
 		{
 			if (i instanceof ItemStack && ((ItemStack) i).isEmpty())
 				continue;
 			boolean valid = false;
+			int index2 = 0;
 			for (Object i2 : recipe.inputs)
 			{
-				if (i instanceof ItemStack && i2 instanceof String)
+				if (!itemsChecked.contains(index2))
 				{
-					int[] ids = OreDictionary.getOreIDs((ItemStack) i);
-					for (int id : ids)
-						if (id == OreDictionary.getOreID(i2.toString()))
+					if (i instanceof ItemStack && i2 instanceof String)
+					{
+						int[] ids = OreDictionary.getOreIDs((ItemStack) i);
+						for (int id : ids)
+							if (id == OreDictionary.getOreID(i2.toString()))
+							{
+								valid = true;
+								itemsChecked.add(index2);
+							}
+					} else if (i instanceof ItemStack && i2 instanceof ItemStack)
+						if (ItemHelper.itemStacksEqualOD((ItemStack) i, (ItemStack) i2)
+								&& (forceEqual ? ((ItemStack) i).getCount() == ((ItemStack) i2).getCount()
+										: ((ItemStack) i).getCount() >= ((ItemStack) i2).getCount()))
+						{
 							valid = true;
-				} else if (i instanceof ItemStack && i2 instanceof ItemStack)
-					if (ItemHelper.itemStacksEqualOD((ItemStack) i, (ItemStack) i2)
-							&& (forceEqual ? ((ItemStack) i).getCount() == ((ItemStack) i2).getCount()
-									: ((ItemStack) i).getCount() >= ((ItemStack) i2).getCount()))
-						valid = true;
+							itemsChecked.add(index2);
+						}
+				}
+				index2++;
 			}
 			if (!valid)
 				return false;
-			itemsChecked++;
+			index++;
 		}
 
-		return itemsChecked == inputs.size();
+		return itemsChecked.size() == inputs.size();
 	}
 
 	boolean intValid(ProcessRecipe recipe)
