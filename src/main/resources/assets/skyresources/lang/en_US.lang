@@ -106,6 +106,7 @@ container.skyresources.combustionCollector=Combustion Collector
 container.skyresources.quickDropper=Quick Dropper
 container.skyresources.aqueousConcentrator=Aqueous Concentrator
 container.skyresources.fusionTable=Alchemical Fusion Table
+container.skyresources.crucibleInserter=Crucible Inserter
 
 tile.skyresources.casing.wood.name=Wooden Casing
 tile.skyresources.casing.stone.name=Stone Casing
@@ -346,7 +347,7 @@ guide.skyresources.stage2.condenser.title=Condenser
 guide.skyresources.stage2.condenser.text=Condensers are used in the <link,Casings,skyresources:casing:0,casing> . \n \n Condensers require an item (usually a type of <recipe,,skyresources:orealchdust:0> ) to use for condensing the block above. \n Condensers will output the result below itself either in the world, or into an inventory (only if the inventory has space, otherwise the condenser will turn off and wait for it to have space). \n \n Different variants of the condensers affect efficiency and affect speed. \n Different variants of the casing affect efficiency. \n \n This can be turned off with a redstone signal.
 
 guide.skyresources.stage2.crucibleInserter.title=Crucible Inserter
-guide.skyresources.stage2.crucibleInserter.text=The <recipe,,skyresources:crucibleinserter:0> is used for automatically inserting items into the <link,crucible,skyresources:crucible:0,crucible> . \n Items are "piped" in using hoppers, conduits, etc.
+guide.skyresources.stage2.crucibleInserter.text=The <recipe,,skyresources:crucibleinserter:0> is used for automatically inserting items into the <link,crucible,skyresources:crucible:0,crucible> . \n Put items into the <recipe,,skyresources:crucibleinserter:0> using the gui or item pipes, conduits, etc.
 
 guide.skyresources.stage2.combustionCollector.title=Combustion Collector
 guide.skyresources.stage2.combustionCollector.text=The <recipe,,skyresources:combustioncollector:0> is used for automatically collecting items during <link,combustion,skyresources:combustionheater:0,combustionHeater> . \n Items are sent to the <recipe,,skyresources:combustioncollector:0> after each crafting process, allowing more crafts to occur as crafting will be uninterrupted by the results being "stuck." \n \n This CANNOT be used with the <recipe,,skyresources:combustionheater:0> or <recipe,,skyresources:combustionheater:1> .
@@ -364,10 +365,10 @@ guide.skyresources.stage3.quickDropper.title=Quick Dropper
 guide.skyresources.stage3.quickDropper.text=The <recipe,,skyresources:quickdropper:0> is used for dropping a full stack of items at a time with no redstone pulse. \n Stops when given a redstone signal. \n \n This CANNOT be used with the <recipe,,skyresources:combustionheater:0> or <recipe,,skyresources:combustionheater:1> .
 
 guide.skyresources.stage3.rockCrusher.title=Rock Crusher
-guide.skyresources.stage3.rockCrusher.text=The <recipe,,skyresources:rockcrusher:0> automates <link,rock_grinding,skyresources:stonegrinder:0,rockGrinder> . \n Requires 80 RF/tick.
+guide.skyresources.stage3.rockCrusher.text=The <recipe,,skyresources:rockcrusher:0> automates <link,rock_grinding,skyresources:stonegrinder:0,rockGrinder> . \n Requires 80 RF/tick. \n Gives a 3x fortune yield!
 
 guide.skyresources.stage3.rockCleaner.title=Rock Cleaner
-guide.skyresources.stage3.rockCleaner.text=The <recipe,,skyresources:rockcleaner:0> automates the <recipe,,minecraft:cauldron:0> . \n Requires 80 RF/tick. \n Needs 250 mB to run.
+guide.skyresources.stage3.rockCleaner.text=The <recipe,,skyresources:rockcleaner:0> automates the <recipe,,minecraft:cauldron:0> . \n Requires 80 RF/tick. \n Needs 250 mB to run. \n Gives a 2x fortune yield! (Maximum of 100% chance)
 
 guide.skyresources.stage3.aqueous.title=Aqueous Concentrator/Deconcentrator
 guide.skyresources.stage3.aqueous.text=The <recipe,,skyresources:aqueousconcentrator:0> and <recipe,,skyresources:aqueousdeconcentrator:0> automate the <link,Water_Extractor,skyresources:waterextractor:0,waterExtractor> inserting and extracting respectively. \n Requires 80 RF/tick.

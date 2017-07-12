@@ -76,7 +76,7 @@ public class GuiFreezer extends GuiContainer
 			GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 			this.mc.getTextureManager()
 					.bindTexture(new ResourceLocation(References.ModID, "textures/gui/guiIcons.png"));
-			this.drawTexturedModalRect(3, 12, 0, 16, 32, 32);
+			this.drawTexturedModalRect(3, 12, 0, 16, 32, 28);
 
 			if (tile.hasValidMulti())
 				this.drawTexturedModalRect(35, 20, 0, 0, 16, 16);

@@ -6,8 +6,8 @@ import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.recipe.ProcessRecipe;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
+import com.bartz24.skyresources.technology.tile.TileCrucibleInserter;
 
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -17,10 +17,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
@@ -108,27 +105,13 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 
 			for (EntityItem entity : list)
 			{
-				ItemStack stack = entity.getItem();
-
-				ProcessRecipe recipe = ProcessRecipeManager.crucibleRecipes.getRecipe(stack, 0, false, false);
-
-				int amount = recipe == null ? 0 : recipe.getFluidOutputs().get(0).amount;
-				if (itemAmount + amount <= maxItemAmount && recipe != null)
-				{
-					ItemStack input = (ItemStack) recipe.getInputs().get(0);
-
-					if (tank.getFluid() == null || tank.getFluid().getFluid() == null)
-					{
-						this.itemIn = input;
-					}
-
-					if (itemIn == input)
-					{
-						itemAmount += amount;
-						stack.shrink(1);
-					}
-				}
+				insertStack(entity.getItem());
 			}
+			TileEntity tile = world.getTileEntity(pos.up());
+			if (tile != null && tile instanceof TileCrucibleInserter
+					&& !((TileCrucibleInserter) tile).getInventory().getStackInSlot(0).isEmpty())
+				insertStack(((TileCrucibleInserter) tile).getInventory().getStackInSlot(0));
+
 			if (itemAmount > 0)
 			{
 				int val = Math.min(getHeatSourceVal(), itemAmount);
@@ -145,6 +128,28 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 			}
 			markDirty();
 			world.notifyBlockUpdate(getPos(), world.getBlockState(getPos()), world.getBlockState(getPos()), 3);
+		}
+	}
+
+	private void insertStack(ItemStack stack)
+	{
+		ProcessRecipe recipe = ProcessRecipeManager.crucibleRecipes.getRecipe(stack, 0, false, false);
+
+		int amount = recipe == null ? 0 : recipe.getFluidOutputs().get(0).amount;
+		if (itemAmount + amount <= maxItemAmount && recipe != null)
+		{
+			ItemStack input = (ItemStack) recipe.getInputs().get(0);
+
+			if (tank.getFluid() == null || tank.getFluid().getFluid() == null)
+			{
+				this.itemIn = input;
+			}
+
+			if (itemIn == input)
+			{
+				itemAmount += amount;
+				stack.shrink(1);
+			}
 		}
 	}
 
@@ -193,18 +198,22 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 	}
 
 	@Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
-            return true;
-        }
-        return super.hasCapability(capability, facing);
-    }
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing)
+	{
+		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
+		{
+			return true;
+		}
+		return super.hasCapability(capability, facing);
+	}
 
-    @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
-            return (T) this;
-        }
-        return super.getCapability(capability, facing);
-    }
+	@Override
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing)
+	{
+		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
+		{
+			return (T) this;
+		}
+		return super.getCapability(capability, facing);
+	}
 }
