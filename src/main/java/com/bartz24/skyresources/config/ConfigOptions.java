@@ -35,7 +35,6 @@ public class ConfigOptions
 
 	public static boolean allowGuide;
 	public static boolean rememberGuide;
-	public static int draconiumType;
 	public static boolean allowAllGemTypes;
 	public static boolean displayFirstChatInfo;
 
@@ -70,9 +69,6 @@ public class ConfigOptions
 				"Makes the end portal less dangerous").getBoolean(false);
 		recipeDifficulty = config.get(Configuration.CATEGORY_GENERAL, "Difficult Recipes", false,
 				"Harder Recipes using higher tier materials from other mods").getBoolean(false);
-
-		draconiumType = config.get(Configuration.CATEGORY_GENERAL, "Draconium Crystal Type", 1, "0=overworld, 1=nether")
-				.getInt(1);
 
 		healthGemMaxHealth = config
 				.get("health", "Health Gem Max Health Infusion", 100, "Max health Health Gem can store").getInt(100);

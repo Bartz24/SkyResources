@@ -3,11 +3,9 @@ package com.bartz24.skyresources;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bartz24.skyresources.alchemy.item.ItemInfusionStone;
-import com.bartz24.skyresources.technology.item.ItemRockGrinder;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -21,7 +19,7 @@ public class ItemHelper
 		return infusionStones;
 	}
 
-	public static void addInfusionStone(ItemInfusionStone item)
+	public static void addInfusionStone(Item item)
 	{
 		infusionStones.add(new ItemStack(item));
 	}
@@ -33,7 +31,7 @@ public class ItemHelper
 		return rockGrinders;
 	}
 
-	public static void addRockGrinder(ItemRockGrinder item)
+	public static void addRockGrinder(Item item)
 	{
 		rockGrinders.add(new ItemStack(item));
 	}

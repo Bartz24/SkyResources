@@ -14,6 +14,7 @@ import com.bartz24.skyresources.base.ModFuelHandler;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 import com.bartz24.skyresources.technology.item.GemRegisterInfo;
+import com.google.common.base.Strings;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -119,7 +120,8 @@ public class ModCrafting
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.fleshySnowNugget, 3), new Object[] { "XX", "XY", 'X',
 				new ItemStack(Items.SNOWBALL), 'Y', new ItemStack(Items.ROTTEN_FLESH) });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.baseComponent, 1, 2),
-				new Object[] { "XXX", "XYX", "XXX", 'X', "ingotFrozenIron", 'Y', new ItemStack(Items.GLOWSTONE_DUST) });
+				new Object[] { "XZX", "XYX", "XYX", 'X', "ingotFrozenIron", 'Y', new ItemStack(Items.GLOWSTONE_DUST),
+						'Z', new ItemStack(Items.DYE, 1, 4) });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.combustionCollector),
 				new Object[] { "XXX", "XYX", "XXX", 'X', "ingotIron", 'Y', new ItemStack(Blocks.HOPPER) });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.quickDropper), new Object[] { "XXX", "XZX", "XYX",
@@ -143,6 +145,12 @@ public class ModCrafting
 				new ItemStack(ModItems.heavySnowball), new ItemStack(Items.GUNPOWDER));
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.crucibleInserter),
 				new Object[] { "XYX", "X X", "X X", 'X', "ingotIron", 'Y', new ItemStack(Blocks.DROPPER) });
+		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.baseComponent, 1, 6),
+				new Object[] { "XYX", "XZX", "XZX", 'X', new ItemStack(Items.QUARTZ), 'Y',
+						ConfigOptions.recipeDifficulty ? new ItemStack(ModItems.alchemyComponent, 1, 10)
+								: new ItemStack(Items.DYE, 1, 4),
+						'Z', ConfigOptions.recipeDifficulty ? new ItemStack(ModItems.alchemyComponent, 1, 7)
+								: new ItemStack(Items.GLOWSTONE_DUST) });
 		CraftingRegistry
 				.addShapedOreRecipe(new ItemStack(ModBlocks.fusionTable),
 						new Object[] { "XZX", "XYX", "X X", 'X', "plankWood", 'Y',
@@ -203,7 +211,8 @@ public class ModCrafting
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.WHEAT_SEEDS, 4), new ItemStack(Blocks.DIRT))));
 
 		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Items.APPLE), 10,
-				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.SUGAR, 3), new ItemStack(Blocks.HAY_BLOCK))));
+				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.SUGAR, 3),
+						new ItemStack(Blocks.HAY_BLOCK, 1, OreDictionary.WILDCARD_VALUE))));
 
 		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Blocks.SAPLING, 1, 5), 19, new ArrayList<Object>(
 				Arrays.asList(new ItemStack(Items.GUNPOWDER, 10), new ItemStack(Blocks.SAPLING, 1, 0))));
@@ -327,8 +336,10 @@ public class ModCrafting
 
 		for (int i = 0; i < ModItems.gemList.size(); i++)
 		{
-			if (ConfigOptions.allowAllGemTypes || OreDictionary
-					.getOres("gem" + RandomHelper.capatilizeString(ModItems.gemList.get(i).name)).size() > 0)
+			String oreName = Strings.isNullOrEmpty(ModItems.gemList.get(i).oreOverride)
+					? ("gem" + RandomHelper.capatilizeString(ModItems.gemList.get(i).name))
+					: ModItems.gemList.get(i).oreOverride;
+			if (ConfigOptions.allowAllGemTypes || OreDictionary.getOres(oreName).size() > 0)
 				ProcessRecipeManager.rockGrinderRecipes.addRecipe(new ItemStack(ModItems.dirtyGem, 1, i),
 						ModItems.gemList.get(i).rarity, ModItems.gemList.get(i).parentBlock);
 		}
@@ -516,10 +527,11 @@ public class ModCrafting
 		}
 		for (GemRegisterInfo i : ModItems.gemList)
 		{
-			String gem = "gem" + RandomHelper.capatilizeString(i.name);
-			if (OreDictionary.getOres(gem).size() > 0)
+			String oreName = Strings.isNullOrEmpty(i.oreOverride) ? ("gem" + RandomHelper.capatilizeString(i.name))
+					: i.oreOverride;
+			if (OreDictionary.getOres(oreName).size() > 0)
 			{
-				ProcessRecipeManager.cauldronCleanRecipes.addRecipe(OreDictionary.getOres(gem).get(0), 1F,
+				ProcessRecipeManager.cauldronCleanRecipes.addRecipe(OreDictionary.getOres(oreName).get(0), 1F,
 						new ItemStack(ModItems.dirtyGem, 1, ModItems.gemList.indexOf(i)));
 			}
 		}
@@ -543,11 +555,11 @@ public class ModCrafting
 					CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.condenser, 1, i),
 							new Object[] { "XYX", "XZX", "X X", 'X', material, 'Y',
 									new ItemStack(ModItems.alchComponent, 1, i), 'Z',
-									new ItemStack(ModItems.baseComponent, 1, 2) });
+									new ItemStack(ModItems.baseComponent, 1, i >= 8 ? 6 : 2) });
 					CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.combustionHeater, 1, i),
 							new Object[] { "XXX", "XYX", "XZX", 'X', material, 'Y',
 									new ItemStack(ModItems.heatComponent, 1, i), 'Z',
-									new ItemStack(ModItems.baseComponent, 1, 2) });
+									new ItemStack(ModItems.baseComponent, 1, i >= 8 ? 6 : 2) });
 				} else
 				{
 					CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.condenser, 1, i), new Object[] { "XYX",

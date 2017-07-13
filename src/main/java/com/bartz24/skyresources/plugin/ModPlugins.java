@@ -3,6 +3,7 @@ package com.bartz24.skyresources.plugin;
 import java.util.ArrayList;
 
 import com.bartz24.skyresources.plugin.actuallyadditions.ActAddPlugin;
+import com.bartz24.skyresources.plugin.ae2.AE2Plugin;
 import com.bartz24.skyresources.plugin.armorplus.ArmorPlusPlugin;
 import com.bartz24.skyresources.plugin.embers.EmbersPlugin;
 import com.bartz24.skyresources.plugin.extremereactors.ExtremeReactorsPlugin;
@@ -42,6 +43,8 @@ public class ModPlugins
 			plugins.add(new ActAddPlugin());
 		if (Loader.isModLoaded("embers"))
 			plugins.add(new EmbersPlugin());
+		if (Loader.isModLoaded("appliedenergistics2"))
+			plugins.add(new AE2Plugin());
 		// if (Loader.isModLoaded("crafttweaker"))
 		// plugins.add(new CraftTweakerPlugin());
 		if (Loader.isModLoaded("theoneprobe"))

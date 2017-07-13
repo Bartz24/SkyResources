@@ -117,7 +117,7 @@ public class ModItems
 		ModItems.addGem("quartz", 0xFFFFFFFF, 0.14F, new ItemStack(Blocks.NETHERRACK));
 		ModItems.addGem("lapis", 0xFF075BBA, 0.18F, new ItemStack(Blocks.STONE));
 		ModItems.addGem("quartzBlack", 0xFF171717, 0.12F, new ItemStack(Blocks.STONE));
-		ModItems.addGem("certus", 0xFFB0F4F7, 0.16F, new ItemStack(Blocks.STONE));
+		ModItems.addGem("certus", 0xFFB0F4F7, 0.16F, new ItemStack(Blocks.STONE), "crystalCertusQuartz");
 
 		ItemOreAlchDust.init();
 
@@ -180,5 +180,10 @@ public class ModItems
 	public static void addGem(String name, int color, float rarity, ItemStack parentBlock)
 	{
 		gemList.add(new GemRegisterInfo(name, color, rarity, parentBlock));
+	}
+
+	public static void addGem(String name, int color, float rarity, ItemStack parentBlock, String oreOverride)
+	{
+		gemList.add(new GemRegisterInfo(name, color, rarity, parentBlock, oreOverride));
 	}
 }

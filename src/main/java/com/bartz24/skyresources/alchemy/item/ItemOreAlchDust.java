@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bartz24.skyresources.References;
-import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModItems;
 
@@ -36,8 +35,7 @@ public class ItemOreAlchDust extends Item
 		addOreInfo("cobalt", 0xFF0045D9, 6, new ItemStack(Blocks.NETHERRACK));
 		addOreInfo("ardite", 0xFFDE9000, 6, new ItemStack(Blocks.NETHERRACK));
 		addOreInfo("osmium", 0xFF7F13C2, 4);
-		addOreInfo("draconium", 0xFF9E6DCF, 9,
-				new ItemStack(ConfigOptions.draconiumType == 0 ? Blocks.STONE : Blocks.NETHERRACK));
+		addOreInfo("draconium", 0xFF9E6DCF, 9, new ItemStack(Blocks.END_STONE));
 		addOreInfo("titanium", 0xFFBABABA, 6);
 		addOreInfo("tungsten", 0xFF464659, 6, new ItemStack(Blocks.END_STONE));
 		addOreInfo("chrome", 0xFFD6D6D6, 8);

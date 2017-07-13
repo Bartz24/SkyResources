@@ -19,6 +19,7 @@ item.skyresources.techItemComponent.stoneCrushed.name=Crushed Stone
 item.skyresources.techItemComponent.radioactiveMix.name=Radioactive Powder Mixture
 item.skyresources.techItemComponent.frozenIronIngot.name=Frozen Iron Ingot
 item.skyresources.techItemComponent.netherrackCrushed.name=Crushed Netherrack
+item.skyresources.techItemComponent.quartzAmp.name=Quartz Amplification Component
 item.skyresources.cactusFruit.name=Cactus Fruit
 item.skyresources.fleshySnowNugget.name=Fleshy Snow Nugget
 item.skyresources.cactusCuttingKnife.name=Cactus Cutting Knife
@@ -437,4 +438,4 @@ guide.skyresources.misc.actadd.title=Actually Additions Support
 guide.skyresources.misc.actadd.text=Sky Resources provides for ways to get basic Actually Additions items. \n \n <recipe,,actuallyadditions:item_misc:5> is obtainable. The <recipe,,actuallyadditions:item_rice_seed:0> , <recipe,,actuallyadditions:item_canola_seed:0> , <recipe,,actuallyadditions:item_coffee_seed:0> , <recipe,,actuallyadditions:item_flax_seed:0> are dropped from breaking <recipe,,minecraft:tallgrass:1> .
 
 guide.skyresources.misc.ae2.title=Applied Energistics 2 Support
-guide.skyresources.misc.ae2.text=Sky Resources provides for ways to get basic AE2 items. \n \n <recipe,,appliedenergistics2:material:0> , <recipe,,appliedenergistics2:material:1> , <recipe,,appliedenergistics2:sky_stone_block> are obtainable as well as the 4 inscriber presses.
+guide.skyresources.misc.ae2.text=Sky Resources provides for ways to get basic AE2 items. \n \n <recipe,,appliedenergistics2:material:0> , <recipe,,appliedenergistics2:material:1> , <recipe,,appliedenergistics2:sky_stone_block:0> are obtainable as well as the 4 inscriber presses.
