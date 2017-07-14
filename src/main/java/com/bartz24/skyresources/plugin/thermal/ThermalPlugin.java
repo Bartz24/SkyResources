@@ -27,9 +27,9 @@ public class ThermalPlugin implements IModPlugin
 	public void init()
 	{
 		addCrucibleRecipe(new FluidStack(ModFluids.crystalFluid, 1000), new ItemStack(ModItems.alchemyComponent, 1, 1),
-				6000);
+				3500);
 		addCrucibleRecipe(new FluidStack(FluidRegistry.LAVA, 1000), new ItemStack(ModBlocks.blazePowderBlock),
-				80000);
+				55000);
 
 		Item wrench = Item.REGISTRY.getObject(new ResourceLocation("thermalfoundation", "wrench"));
 		Block pyrotheum = Block.REGISTRY.getObject(new ResourceLocation("thermalfoundation", "fluid_pyrotheum"));

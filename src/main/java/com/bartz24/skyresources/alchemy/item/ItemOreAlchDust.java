@@ -35,7 +35,7 @@ public class ItemOreAlchDust extends Item
 		addOreInfo("cobalt", 0xFF0045D9, 6, new ItemStack(Blocks.NETHERRACK));
 		addOreInfo("ardite", 0xFFDE9000, 6, new ItemStack(Blocks.NETHERRACK));
 		addOreInfo("osmium", 0xFF7F13C2, 4);
-		addOreInfo("draconium", 0xFF9E6DCF, 9, new ItemStack(Blocks.END_STONE));
+		addOreInfo("draconium", 0xFF9E6DCF, 9, new ItemStack(Blocks.END_STONE), false);
 		addOreInfo("titanium", 0xFFBABABA, 6);
 		addOreInfo("tungsten", 0xFF464659, 6, new ItemStack(Blocks.END_STONE));
 		addOreInfo("chrome", 0xFFD6D6D6, 8);
@@ -53,7 +53,12 @@ public class ItemOreAlchDust extends Item
 
 	public static void addOreInfo(String name, int color, int rarity, ItemStack block)
 	{
-		oreInfos.add(new OreRegisterInfo(name, color, rarity, oreInfos.size(), block));
+		addOreInfo(name, color, rarity, block, true);
+	}
+
+	public static void addOreInfo(String name, int color, int rarity, ItemStack block, boolean autoAdd)
+	{
+		oreInfos.add(new OreRegisterInfo(name, color, rarity, oreInfos.size(), block, autoAdd));
 	}
 
 	public static OreRegisterInfo getFluidInfo(int index)

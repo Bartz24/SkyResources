@@ -29,8 +29,8 @@ public class TileRockCrusher extends TileGenericPower implements ITickable
 		});
 	}
 
-	private int powerUsage = 80;
-	private int curProgress;
+	private int powerUsage = 400;
+	private float curProgress;
 
 	private NonNullList<ItemStack> bufferStacks = NonNullList.create();
 
@@ -51,7 +51,7 @@ public class TileRockCrusher extends TileGenericPower implements ITickable
 						&& bufferStacks.size() == 0)
 				{
 					internalExtractEnergy(powerUsage, false);
-					curProgress += 2;
+					curProgress += 0.5f;
 				} else if (!hasRecipes)
 					curProgress = 0;
 				if (curProgress >= 100 && hasRecipes)
@@ -115,7 +115,7 @@ public class TileRockCrusher extends TileGenericPower implements ITickable
 
 	public int getProgress()
 	{
-		return curProgress;
+		return (int) curProgress;
 	}
 
 	@Override
@@ -124,7 +124,7 @@ public class TileRockCrusher extends TileGenericPower implements ITickable
 		compound = super.writeToNBT(compound);
 
 		compound.setTag("buffer", bufferListWrite());
-		compound.setInteger("progress", curProgress);
+		compound.setFloat("progress", curProgress);
 
 		return compound;
 	}

@@ -71,8 +71,10 @@ public class ItemHeatProvider extends ItemMachine
 			if (extract > getMachineFuelPerHeat(machineStack, world, pos))
 			{
 				this.getCasingTile(world, pos).internalExtractEnergy((int) extract, false);
-				data.setFloat("itemHU", (float) Math.sqrt(getMachineFuelPerHeat(machineStack, world, pos)
-						* getMachineEfficiency(machineStack, world, pos)));
+				data.setFloat("itemHU",
+						(float) Math.sqrt(getMachineFuelPerHeat(machineStack, world, pos)
+								* this.getMachineEfficiency(machineStack, world, pos)
+								* this.getMachineEfficiency(machineStack, world, pos) / 16));
 				data.setFloat("huTick", 1);
 				return;
 			}
@@ -109,7 +111,7 @@ public class ItemHeatProvider extends ItemMachine
 
 	public int getHeatProv(ItemStack stack, World world, BlockPos pos)
 	{
-		return (int) Math.pow(this.getCasingTile(world, pos).machineData.getFloat("itemHU"), 0.8f);
+		return (int) Math.pow(this.getCasingTile(world, pos).machineData.getFloat("itemHU"), 0.95f);
 	}
 
 	public List<Slot> getSlots(TileCasing tile)

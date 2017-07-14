@@ -3,6 +3,8 @@ package com.bartz24.skyresources.plugin.theoneprobe;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.alchemy.tile.LifeInfuserTile;
 import com.bartz24.skyresources.base.tile.TileCasing;
+import com.bartz24.skyresources.technology.block.BlockFreezer;
+import com.bartz24.skyresources.technology.block.BlockFreezer.EnumPartType;
 import com.bartz24.skyresources.technology.item.ItemCombustionHeater;
 import com.bartz24.skyresources.technology.tile.FreezerTile;
 import com.bartz24.skyresources.technology.tile.TileEndPortalCore;
@@ -17,6 +19,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
@@ -47,8 +50,10 @@ public class MultiblockProvider implements IProbeInfoProvider
 			valid = ((LifeInfuserTile) te).hasValidMultiblock();
 		} else if (te instanceof FreezerTile)
 		{
+			BlockPos bottomPos = world.getBlockState(data.getPos()).getProperties()
+					.get(BlockFreezer.PART) == EnumPartType.BOTTOM ? data.getPos() : data.getPos().down();
 			hasVal = true;
-			valid = ((FreezerTile) te).hasValidMulti();
+			valid = ((FreezerTile) world.getTileEntity(bottomPos)).hasValidMulti();
 		} else if (te instanceof TileCasing)
 		{
 			if (!((TileCasing) te).machineStored.isEmpty()

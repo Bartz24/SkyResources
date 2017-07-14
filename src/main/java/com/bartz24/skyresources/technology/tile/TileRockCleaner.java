@@ -29,7 +29,7 @@ public class TileRockCleaner extends TileGenericPower implements ITickable, IFlu
 		tank = new FluidTank(4000);
 	}
 
-	private int powerUsage = 80;
+	private int powerUsage = 400;
 	private int curProgress;
 
 	private NonNullList<ItemStack> bufferStacks = NonNullList.create();
@@ -51,7 +51,7 @@ public class TileRockCleaner extends TileGenericPower implements ITickable, IFlu
 						&& bufferStacks.size() == 0)
 				{
 					internalExtractEnergy(powerUsage, false);
-					curProgress += 20;
+					curProgress += 5;
 				} else if (!hasRecipes)
 					curProgress = 0;
 				if (curProgress >= 100 && hasRecipes)
