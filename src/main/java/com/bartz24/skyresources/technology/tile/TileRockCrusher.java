@@ -39,44 +39,47 @@ public class TileRockCrusher extends TileGenericPower implements ITickable
 	{
 		if (!this.world.isRemote)
 		{
-			if (bufferStacks.size() > 0 && !fullOutput())
+			if (this.getRedstoneSignal() == 0)
 			{
-				this.addToOutput(1);
-				this.addToOutput(2);
-				this.addToOutput(3);
-			} else
-			{
-				boolean hasRecipes = hasRecipes();
-				if (curProgress < 100 && getEnergyStored() >= powerUsage && hasRecipes
-						&& bufferStacks.size() == 0)
+				if (bufferStacks.size() > 0 && !fullOutput())
 				{
-					internalExtractEnergy(powerUsage, false);
-					curProgress += 0.5f;
-				} else if (!hasRecipes)
-					curProgress = 0;
-				if (curProgress >= 100 && hasRecipes)
+					this.addToOutput(1);
+					this.addToOutput(2);
+					this.addToOutput(3);
+				} else
 				{
-					ProcessRecipe recMachine = new ProcessRecipe(
-							Collections.singletonList(this.getInventory().getStackInSlot(0)), Integer.MAX_VALUE,
-							"rockgrinder");
-					for (ProcessRecipe r : ProcessRecipeManager.rockGrinderRecipes.getRecipes())
+					boolean hasRecipes = hasRecipes();
+					if (curProgress < 100 && getEnergyStored() >= powerUsage && hasRecipes && bufferStacks.size() == 0)
 					{
-						if (r != null && recMachine.isInputRecipeEqualTo(r, false))
+						internalExtractEnergy(powerUsage, false);
+						curProgress += 0.5f;
+					} else if (!hasRecipes)
+						curProgress = 0;
+					if (curProgress >= 100 && hasRecipes)
+					{
+						ProcessRecipe recMachine = new ProcessRecipe(
+								Collections.singletonList(this.getInventory().getStackInSlot(0)), Integer.MAX_VALUE,
+								"rockgrinder");
+						for (ProcessRecipe r : ProcessRecipeManager.rockGrinderRecipes.getRecipes())
 						{
-							float chance = r.getIntParameter() * 3f;
-							while (chance >= 1)
+							if (r != null && recMachine.isInputRecipeEqualTo(r, false))
 							{
-								bufferStacks.add(r.getOutputs().get(0).copy());
-								chance -= 1;
+								float chance = r.getIntParameter() * 3f;
+								while (chance >= 1)
+								{
+									bufferStacks.add(r.getOutputs().get(0).copy());
+									chance -= 1;
+								}
+								if (this.world.rand.nextFloat() <= chance)
+									bufferStacks.add(r.getOutputs().get(0).copy());
 							}
-							if (this.world.rand.nextFloat() <= chance)
-								bufferStacks.add(r.getOutputs().get(0).copy());
 						}
+						this.getInventory().getStackInSlot(0).shrink(1);
+						curProgress = 0;
 					}
-					this.getInventory().getStackInSlot(0).shrink(1);
-					curProgress = 0;
 				}
 			}
+			updateRedstone();
 			this.markDirty();
 		}
 	}

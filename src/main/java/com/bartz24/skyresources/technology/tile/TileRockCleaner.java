@@ -39,46 +39,49 @@ public class TileRockCleaner extends TileGenericPower implements ITickable, IFlu
 	{
 		if (!this.world.isRemote)
 		{
-			if (bufferStacks.size() > 0 && !fullOutput())
+			if (this.getRedstoneSignal() == 0)
 			{
-				this.addToOutput(1);
-				this.addToOutput(2);
-				this.addToOutput(3);
-			} else
-			{
-				boolean hasRecipes = hasRecipes();
-				if (curProgress < 100 && getEnergyStored() >= powerUsage && hasRecipes && tank.getFluidAmount() >= 250
-						&& bufferStacks.size() == 0)
+				if (bufferStacks.size() > 0 && !fullOutput())
 				{
-					internalExtractEnergy(powerUsage, false);
-					curProgress += 5;
-				} else if (!hasRecipes)
-					curProgress = 0;
-				if (curProgress >= 100 && hasRecipes)
+					this.addToOutput(1);
+					this.addToOutput(2);
+					this.addToOutput(3);
+				} else
 				{
-					List<ProcessRecipe> recipes = ProcessRecipeManager.cauldronCleanRecipes.getRecipes();
-					for (ProcessRecipe r : recipes)
-
+					boolean hasRecipes = hasRecipes();
+					if (curProgress < 100 && getEnergyStored() >= powerUsage && hasRecipes
+							&& tank.getFluidAmount() >= 250 && bufferStacks.size() == 0)
 					{
-						if (((ItemStack) r.getInputs().get(0)).isItemEqual(this.getInventory().getStackInSlot(0)))
+						internalExtractEnergy(powerUsage, false);
+						curProgress += 5;
+					} else if (!hasRecipes)
+						curProgress = 0;
+					if (curProgress >= 100 && hasRecipes)
+					{
+						List<ProcessRecipe> recipes = ProcessRecipeManager.cauldronCleanRecipes.getRecipes();
+						for (ProcessRecipe r : recipes)
+
 						{
-							if (!world.isRemote)
+							if (((ItemStack) r.getInputs().get(0)).isItemEqual(this.getInventory().getStackInSlot(0)))
 							{
-								float chance = r.getIntParameter() * 2;
-								if (chance >= 1)
+								if (!world.isRemote)
 								{
-									bufferStacks.add(r.getOutputs().get(0).copy());
+									float chance = r.getIntParameter() * 2;
+									if (chance >= 1)
+									{
+										bufferStacks.add(r.getOutputs().get(0).copy());
+									} else if (this.world.rand.nextFloat() <= chance)
+										bufferStacks.add(r.getOutputs().get(0).copy());
 								}
-								else if (this.world.rand.nextFloat() <= chance)
-									bufferStacks.add(r.getOutputs().get(0).copy());
 							}
 						}
+						tank.drain(250, true);
+						this.getInventory().getStackInSlot(0).shrink(1);
+						curProgress = 0;
 					}
-					tank.drain(250, true);
-					this.getInventory().getStackInSlot(0).shrink(1);
-					curProgress = 0;
 				}
 			}
+			updateRedstone();
 			this.markDirty();
 		}
 	}

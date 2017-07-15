@@ -80,7 +80,7 @@ public class ProcessRecipeManager
 		public void drawJEIInfo(ProcessRecipe rec, Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX,
 				int mouseY)
 		{
-			String s = Float.toString(Math.round(rec.getIntParameter() * 10000F) / 100F) + "%";
+			String s = Float.toString(Math.round(rec.getIntParameter() * 100000F) / 1000F) + "%";
 			FontRenderer fontRendererObj = minecraft.fontRenderer;
 			fontRendererObj.drawString(s, 70, 10, java.awt.Color.gray.getRGB());
 		}

@@ -366,10 +366,10 @@ guide.skyresources.stage3.quickDropper.title=Quick Dropper
 guide.skyresources.stage3.quickDropper.text=The <recipe,,skyresources:quickdropper:0> is used for dropping a full stack of items at a time with no redstone pulse. \n Stops when given a redstone signal. \n \n This CANNOT be used with the <recipe,,skyresources:combustionheater:0> or <recipe,,skyresources:combustionheater:1> .
 
 guide.skyresources.stage3.rockCrusher.title=Rock Crusher
-guide.skyresources.stage3.rockCrusher.text=The <recipe,,skyresources:rockcrusher:0> automates <link,rock_grinding,skyresources:stonegrinder:0,rockGrinder> . \n Requires 400 RF/tick. \n Gives a 3x fortune yield!
+guide.skyresources.stage3.rockCrusher.text=The <recipe,,skyresources:rockcrusher:0> automates <link,rock_grinding,skyresources:stonegrinder:0,rockGrinder> . \n Requires 400 RF/tick. \n Gives a 3x fortune yield! \n Stops when given a redstone signal.
 
 guide.skyresources.stage3.rockCleaner.title=Rock Cleaner
-guide.skyresources.stage3.rockCleaner.text=The <recipe,,skyresources:rockcleaner:0> automates the <recipe,,minecraft:cauldron:0> . \n Requires 400 RF/tick. \n Needs 250 mB to run. \n Gives a 2x fortune yield! (Maximum of 100% chance)
+guide.skyresources.stage3.rockCleaner.text=The <recipe,,skyresources:rockcleaner:0> automates the <recipe,,minecraft:cauldron:0> . \n Requires 400 RF/tick. \n Needs 250 mB to run. \n Gives a 2x fortune yield! (Maximum of 100% chance) \n Stops when given a redstone signal.
 
 guide.skyresources.stage3.aqueous.title=Aqueous Concentrator/Deconcentrator
 guide.skyresources.stage3.aqueous.text=The <recipe,,skyresources:aqueousconcentrator:0> and <recipe,,skyresources:aqueousdeconcentrator:0> automate the <link,Water_Extractor,skyresources:waterextractor:0,waterExtractor> inserting and extracting respectively. \n Requires 80 RF/tick.
@@ -439,3 +439,6 @@ guide.skyresources.misc.actadd.text=Sky Resources provides for ways to get basic
 
 guide.skyresources.misc.ae2.title=Applied Energistics 2 Support
 guide.skyresources.misc.ae2.text=Sky Resources provides for ways to get basic AE2 items. \n \n <recipe,,appliedenergistics2:material:0> , <recipe,,appliedenergistics2:material:1> , <recipe,,appliedenergistics2:sky_stone_block:0> are obtainable as well as the 4 inscriber presses.
+
+guide.skyresources.misc.dracevo.title=Draconic Evolution Support
+guide.skyresources.misc.dracevo.text=Sky Resources provides for ways to get basic Draconic Evolution items. \n \n <recipe,,draconicevolution:draconium_ingot:0> is obtainable.

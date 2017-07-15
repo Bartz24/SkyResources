@@ -10,7 +10,6 @@ import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModItems;
 
 import net.minecraft.block.IGrowable;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -118,43 +117,29 @@ public class BaseItemComponent extends Item
 		if (stack.getMetadata() == names.indexOf(plantMatter))
 		{
 			tooltip.add(TextFormatting.GRAY + "Acts as bone meal");
-			tooltip.add(TextFormatting.GRAY + "2-4x as effective as normal bone meal");
+			tooltip.add(TextFormatting.GRAY + "Grows instantly");
 		} else if (stack.getMetadata() == names.indexOf(enrichedBonemeal))
 		{
-			tooltip.add(TextFormatting.GRAY + "2-4x as effective as normal bone meal");
+			tooltip.add(TextFormatting.GRAY + "Grows instantly");
 		}
 	}
 
 	public static boolean applyBonemeal(ItemStack stack, World worldIn, BlockPos target, EntityPlayer player)
 	{
-		IBlockState iblockstate = worldIn.getBlockState(target);
 
-		int hook = net.minecraftforge.event.ForgeEventFactory.onApplyBonemeal(player, worldIn, target, iblockstate,
-				stack, player.getActiveHand());
-		if (hook != 0)
-			return hook > 0;
-
-		if (iblockstate.getBlock() instanceof IGrowable)
+		if (worldIn.getBlockState(target).getBlock() instanceof IGrowable)
 		{
-			IGrowable igrowable = (IGrowable) iblockstate.getBlock();
-
-			for (int i = 0; i < worldIn.rand.nextInt(4) + 2; i++)
+			int tries = 100;
+			while (worldIn.getBlockState(target).getBlock() instanceof IGrowable && tries > 0)
 			{
-				if (igrowable.canGrow(worldIn, target, iblockstate, worldIn.isRemote))
-				{
-					if (!worldIn.isRemote)
-					{
-						if (igrowable.canUseBonemeal(worldIn, worldIn.rand, target, iblockstate))
-						{
-							igrowable.grow(worldIn, worldIn.rand, target, iblockstate);
-						}
-
-						stack.shrink(1);
-					}
-
-					return true;
-				}
+				tries--;
+				IGrowable igrowable = (IGrowable) worldIn.getBlockState(target).getBlock();
+				igrowable.grow(worldIn, worldIn.rand, target, worldIn.getBlockState(target));
 			}
+
+			stack.shrink(1);
+
+			return true;
 		}
 
 		return false;

@@ -425,12 +425,10 @@ public class ModCrafting
 			{
 				ItemStack output = OreDictionary.getOres(itemDust).get(0).copy();
 				output.setCount(1);
-				ProcessRecipeManager.cauldronCleanRecipes
-						.addRecipe(output,
-								1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(i).rarity + 2.5f) * 2.9f, 2.1f))
-										/ 2.2f),
-								new ItemStack(ModItems.techComponent, 1, ItemOreAlchDust.oreInfos.get(i).parentBlock
-										.isItemEqual(new ItemStack(Blocks.NETHERRACK)) ? 3 : 0));
+				ProcessRecipeManager.cauldronCleanRecipes.addRecipe(output,
+						1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(i).rarity + 2.5f), 3.1f)) * 14.4f),
+						new ItemStack(ModItems.techComponent, 1, ItemOreAlchDust.oreInfos.get(i).parentBlock
+								.isItemEqual(new ItemStack(Blocks.NETHERRACK)) ? 3 : 0));
 			}
 		}
 

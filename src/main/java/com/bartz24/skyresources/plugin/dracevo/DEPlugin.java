@@ -40,7 +40,7 @@ public class DEPlugin implements IModPlugin
 		ItemStack dustDraconium = OreDictionary.getOres("dustDraconium").get(0).copy();
 		dustDraconium.setCount(1);
 		ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dustDraconium,
-				1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(13).rarity + 2.5f) * 2.9f, 2.1f)) / 2.2f),
+				1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(13).rarity + 2.5f), 3.1f)) * 14.4f),
 				new ItemStack(ModItems.techComponent, 1, 3));
 
 		SkyResourcesGuide.addPage("dracevo", "guide.skyresources.misc", ingotDraconium);
