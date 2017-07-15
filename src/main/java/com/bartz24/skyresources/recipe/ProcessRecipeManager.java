@@ -94,8 +94,8 @@ public class ProcessRecipeManager
 			FontRenderer fontRendererObj = minecraft.fontRenderer;
 			int stringWidth = fontRendererObj.getStringWidth(s);
 			fontRendererObj.drawString(s, 130 - stringWidth, 8, java.awt.Color.gray.getRGB());
-			s = Math.round(rec.getIntParameter() / (1600f * Math.pow(rec.getIntParameter(), 0.05f)) * 1000000f) / 1000000f
-					+ "/tick used at 100% eff.";
+			s = Math.round(rec.getIntParameter() / (1600f * Math.pow(rec.getIntParameter(), 0.05f)) * 1000000f)
+					/ 1000000f + "/tick used at 100% eff.";
 			stringWidth = fontRendererObj.getStringWidth(s);
 			fontRendererObj.drawString(s, 130 - stringWidth, 50, java.awt.Color.gray.getRGB());
 		}
@@ -105,7 +105,7 @@ public class ProcessRecipeManager
 		public void drawJEIInfo(ProcessRecipe rec, Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX,
 				int mouseY)
 		{
-			String s = Integer.toString((int) (rec.getIntParameter()*10000f)) + "% of catalyst used";
+			String s = Integer.toString((int) (rec.getIntParameter() * 10000f)) + "% of catalyst used";
 			FontRenderer fontRendererObj = minecraft.fontRenderer;
 			int stringWidth = fontRendererObj.getStringWidth(s);
 			fontRendererObj.drawString(s, 118 - stringWidth, 0, java.awt.Color.gray.getRGB());
@@ -171,7 +171,7 @@ public class ProcessRecipeManager
 	}
 
 	public ProcessRecipe getMultiRecipe(List<Object> input, float intVal)
-	{		
+	{
 		ProcessRecipe rec = new ProcessRecipe(input, intVal, type);
 
 		for (ProcessRecipe recipe : recipes)
@@ -328,21 +328,19 @@ public class ProcessRecipeManager
 		recipes.add(recipe);
 	}
 
-	public List<ProcessRecipe> removeRecipe(ProcessRecipe recipe)
+	public void removeRecipe(ProcessRecipe recipe)
 	{
 		if ((recipe.getOutputs() == null || recipe.getOutputs().size() == 0)
 				&& (recipe.getFluidOutputs() == null || recipe.getFluidOutputs().size() == 0))
 		{
 			SkyResources.logger.error("Need outputs for recipe. DID NOT REMOVE RECIPE.");
-			return null;
+			return;
 		}
 
 		if ((recipe.getInputs() == null || recipe.getInputs().size() == 0)
 				&& (recipe.getFluidInputs() == null || recipe.getFluidInputs().size() == 0))
 		{
-
 			List<Integer> recipesToRemoveAt = new ArrayList<Integer>();
-			List<ProcessRecipe> recipesToRemove = new ArrayList<ProcessRecipe>();
 			for (int i = 0; i < recipes.size(); i++)
 			{
 				boolean valid = true;
@@ -367,14 +365,12 @@ public class ProcessRecipeManager
 			}
 			for (int i = recipesToRemoveAt.size() - 1; i >= 0; i--)
 			{
-				recipesToRemove.add(recipes.get(recipesToRemoveAt.get(i)));
 				recipes.remove((int) recipesToRemoveAt.get(i));
 			}
-			return recipesToRemove;
+			return;
 		}
 
 		List<Integer> recipesToRemoveAt = new ArrayList<Integer>();
-		List<ProcessRecipe> recipesToRemove = new ArrayList<ProcessRecipe>();
 		for (int i = 0; i < recipes.size(); i++)
 		{
 			if (recipes.get(i).isInputRecipeEqualTo(recipe, false))
@@ -402,10 +398,8 @@ public class ProcessRecipeManager
 		}
 		for (int i = recipesToRemoveAt.size() - 1; i >= 0; i--)
 		{
-			recipesToRemove.add(recipes.get(recipesToRemoveAt.get(i)));
 			recipes.remove((int) recipesToRemoveAt.get(i));
 		}
-		return recipesToRemove;
 	}
 
 	public void drawJEIInfo(ProcessRecipe rec, Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX,

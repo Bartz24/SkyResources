@@ -1,7 +1,6 @@
 package com.bartz24.skyresources.technology.item;
 
 import java.util.Collections;
-import java.util.List;
 
 import com.bartz24.skyresources.ItemHelper;
 import com.bartz24.skyresources.RandomHelper;
@@ -18,7 +17,6 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Enchantments;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemPickaxe;
@@ -26,7 +24,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class ItemRockGrinder extends ItemPickaxe
 {
@@ -106,12 +103,11 @@ public class ItemRockGrinder extends ItemPickaxe
 				}
 			}
 		}
-		if (!world.isRemote)
-			world.destroyBlock(pos, !worked);
+		world.destroyBlock(pos, !worked);
 		return worked;
 
 	}
-	
+
 	public ToolMaterial getMaterial()
 	{
 		return toolMaterial;

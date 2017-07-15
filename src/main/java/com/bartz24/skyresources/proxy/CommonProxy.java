@@ -32,13 +32,15 @@ public class CommonProxy
 		ModBlocks.init();
 		ModItems.init();
 
-		ModPlugins.preInit();
 
 		new HeatSources();
 		new SkyResourcesGuide();
 
 		ModGuidePages.init();
 		new ModGuiHandler();
+		ModCrafting.initOreDict();
+		ModCrafting.init();
+		ModPlugins.preInit();
 
 	}
 
@@ -48,14 +50,12 @@ public class CommonProxy
 		MinecraftForge.EVENT_BUS.register(new ModBucketHandler());
 		NetworkRegistry.INSTANCE.registerGuiHandler(SkyResources.instance, new ModGuiHandler());
 		ModEntities.init();
-		ModCrafting.initOreDict();
 
 		ModPlugins.init();
 	}
 
 	public void postInit(FMLPostInitializationEvent e)
 	{
-		ModCrafting.init();
 
 		ModPlugins.postInit();
 	}

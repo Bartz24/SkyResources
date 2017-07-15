@@ -127,7 +127,7 @@ public class BaseItemComponent extends Item
 	public static boolean applyBonemeal(ItemStack stack, World worldIn, BlockPos target, EntityPlayer player)
 	{
 
-		if (worldIn.getBlockState(target).getBlock() instanceof IGrowable)
+		if (worldIn.getBlockState(target).getBlock() instanceof IGrowable && !worldIn.isRemote)
 		{
 			int tries = 100;
 			while (worldIn.getBlockState(target).getBlock() instanceof IGrowable && tries > 0)

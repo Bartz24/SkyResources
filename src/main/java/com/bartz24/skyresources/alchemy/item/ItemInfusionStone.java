@@ -64,7 +64,6 @@ public class ItemInfusionStone extends Item
 				if (!world.isRemote)
 				{
 					player.attackEntityFrom(DamageSource.MAGIC, recipe.getIntParameter());
-					world.setBlockToAir(pos);
 					player.dropItem(recipe.getOutputs().get(0).copy(), false);
 					if (offHand != ItemStack.EMPTY)
 						offHand.shrink(recipe.getInputs().get(0) instanceof ItemStack
@@ -72,6 +71,7 @@ public class ItemInfusionStone extends Item
 
 					stack.damageItem(1, player);
 				}
+				world.setBlockToAir(pos);
 			} else
 			{
 				if (world.isRemote)
@@ -101,7 +101,7 @@ public class ItemInfusionStone extends Item
 	public static boolean applyBonemeal(ItemStack stack, World worldIn, BlockPos target, EntityPlayer player)
 	{
 
-		if (worldIn.getBlockState(target).getBlock() instanceof IGrowable)
+		if (worldIn.getBlockState(target).getBlock() instanceof IGrowable && !worldIn.isRemote)
 		{
 			int tries = 100;
 			while (worldIn.getBlockState(target).getBlock() instanceof IGrowable && tries > 0)

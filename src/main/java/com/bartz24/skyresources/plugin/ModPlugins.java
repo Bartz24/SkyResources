@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.bartz24.skyresources.plugin.actuallyadditions.ActAddPlugin;
 import com.bartz24.skyresources.plugin.ae2.AE2Plugin;
 import com.bartz24.skyresources.plugin.armorplus.ArmorPlusPlugin;
+import com.bartz24.skyresources.plugin.ctweaker.CraftTweakerPlugin;
 import com.bartz24.skyresources.plugin.dracevo.DEPlugin;
 import com.bartz24.skyresources.plugin.embers.EmbersPlugin;
 import com.bartz24.skyresources.plugin.extremereactors.ExtremeReactorsPlugin;
@@ -48,8 +49,8 @@ public class ModPlugins
 			plugins.add(new AE2Plugin());
 		if (Loader.isModLoaded("draconicevolution"))
 			plugins.add(new DEPlugin());
-		// if (Loader.isModLoaded("crafttweaker"))
-		// plugins.add(new CraftTweakerPlugin());
+		if (Loader.isModLoaded("crafttweaker"))
+			plugins.add(new CraftTweakerPlugin());
 		if (Loader.isModLoaded("theoneprobe"))
 			plugins.add(new TOPPlugin());
 
@@ -59,10 +60,9 @@ public class ModPlugins
 		}
 
 		/*
-		 * if (Loader.isModLoaded("IC2")) IC2Plugin.preInit(); if
+		 * if
 		 * (Loader.isModLoaded("EnderIO")) EnderIOPlugin.preInit(); if
-		 * (Loader.isModLoaded("quantumflux")) QFluxPlugin.preInit(); if
-		 * (Loader.isModLoaded("appliedenergistics2")) AE2Plugin.preInit();
+		 * (Loader.isModLoaded("quantumflux")) QFluxPlugin.preInit();
 		 */
 	}
 

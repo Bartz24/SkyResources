@@ -9,7 +9,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "2.0.9"
+version = "2.0.10"
 group= "com.bartz24.skyresources" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "skyresources"
 
@@ -39,7 +39,7 @@ minecraft {
 }
 
 dependencies {
-	compile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.0.0.5"
+	compile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.0.0.7"
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"
