@@ -1,6 +1,8 @@
 package com.bartz24.skyresources.base;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
@@ -14,6 +16,8 @@ public class HeatSources
 	public HeatSources()
 	{
 		validHeatSources = new HashMap<IBlockState, Integer>();
+		ctAdded = new HashMap<IBlockState, Integer>();
+		ctRemoved = new ArrayList();
 	}
 
 	public static void addHeatSource(IBlockState blockState, int value)
@@ -105,6 +109,26 @@ public class HeatSources
 			}
 		}
 		return 0;
+	}	
+
+	private static List<IBlockState> ctRemoved;
+	private static HashMap<IBlockState, Integer> ctAdded;
+	
+	public static void removeCTHeatSource(IBlockState blockState)
+	{
+		ctRemoved.add(blockState);
+	}
+	public static void addCTHeatSource(IBlockState blockState, int value)
+	{
+		ctAdded.put(blockState, value);
+	}
+	
+	public static void ctRecipes()
+	{
+		for(IBlockState s : ctRemoved)
+			removeHeatSource(s);
+		for(IBlockState s : ctAdded.keySet())
+			addHeatSource(s, ctAdded.get(s));
 	}
 
 	public static void removeHeatSource(IBlockState blockState)

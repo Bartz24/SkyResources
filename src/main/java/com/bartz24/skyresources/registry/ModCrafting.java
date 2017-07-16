@@ -425,10 +425,12 @@ public class ModCrafting
 			{
 				ItemStack output = OreDictionary.getOres(itemDust).get(0).copy();
 				output.setCount(1);
-				ProcessRecipeManager.cauldronCleanRecipes.addRecipe(output,
-						1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(i).rarity + 2.5f), 3.1f)) * 14.4f),
-						new ItemStack(ModItems.techComponent, 1, ItemOreAlchDust.oreInfos.get(i).parentBlock
-								.isItemEqual(new ItemStack(Blocks.NETHERRACK)) ? 3 : 0));
+				ProcessRecipeManager.cauldronCleanRecipes
+						.addRecipe(output,
+								1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(i).rarity + 2.5f), 3.1f))
+										* 14.4f),
+								new ItemStack(ModItems.techComponent, 1, ItemOreAlchDust.oreInfos.get(i).parentBlock
+										.isItemEqual(new ItemStack(Blocks.NETHERRACK)) ? 3 : 0));
 			}
 		}
 
@@ -461,6 +463,8 @@ public class ModCrafting
 
 		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 2, 1), 0.001f,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.GLASS))));
+		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(Blocks.DIRT), 0.005f, new ArrayList<Object>(
+				Arrays.asList(new ItemStack(Blocks.SAND), new ItemStack(ModItems.baseComponent, 12, 0))));
 
 		List<ItemStack> componentsOreDust = new ArrayList();
 		componentsOreDust.add(new ItemStack(Items.ROTTEN_FLESH, 2));
@@ -734,4 +738,15 @@ public class ModCrafting
 		OreDictionary.registerOre("dustWood", new ItemStack(ModItems.baseComponent, 1, 5));
 
 	}
+
+	public static void postInit()
+	{
+		for (ProcessRecipeManager m : ProcessRecipeManager.getManagers())
+		{
+			m.ctRecipes();
+		}
+		HeatSources.ctRecipes();
+		FusionCatalysts.ctRecipes();
+	}
+
 }

@@ -6,8 +6,6 @@ import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IItemStack;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
@@ -63,7 +61,7 @@ public class MTHeatSources
 		public void apply()
 		{
 			Block block = Block.getBlockFromItem(stack.getItem());
-			HeatSources.addHeatSource(block.getStateFromMeta(stack.getMetadata()), val);
+			HeatSources.addCTHeatSource(block.getStateFromMeta(stack.getMetadata()), val);
 		}
 
 		@Override
@@ -86,16 +84,7 @@ public class MTHeatSources
 		public void apply()
 		{
 			Block block = Block.getBlockFromItem(stack.getItem());
-			for (IBlockState state : HeatSources.getHeatSources().keySet())
-			{
-				if (state == block.getStateFromMeta(stack.getMetadata()))
-				{
-					Item item2 = Item.getItemFromBlock(state.getBlock());
-					HeatSources.removeHeatSource(block.getStateFromMeta(stack.getMetadata()));
-					break;
-				}
-
-			}
+			HeatSources.removeCTHeatSource(block.getStateFromMeta(stack.getMetadata()));
 		}
 
 		@Override

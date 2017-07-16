@@ -5,11 +5,16 @@ import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.technology.block.BlockFreezer;
 import com.bartz24.skyresources.technology.block.BlockMiniFreezer;
+import com.bartz24.skyresources.technology.block.BlockFreezer.EnumPartType;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.items.CapabilityItemHandler;
 
 public class FreezerTile extends MiniFreezerTile implements ITickable
 {
@@ -70,5 +75,16 @@ public class FreezerTile extends MiniFreezerTile implements ITickable
 				|| stateUp.getProperties().get(BlockFreezer.PART) != BlockFreezer.EnumPartType.TOP)
 			return false;
 		return true;
+	}
+	
+	@Override
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing)
+	{
+		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && world.getBlockState(pos).getProperties()
+				.get(BlockFreezer.PART) == EnumPartType.TOP)
+		{
+			return (T) world.getTileEntity(pos.down()).getCapability(capability, facing);
+		}
+		return super.getCapability(capability, facing);
 	}
 }

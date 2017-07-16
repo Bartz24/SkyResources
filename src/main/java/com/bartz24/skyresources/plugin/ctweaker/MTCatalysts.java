@@ -55,7 +55,7 @@ public class MTCatalysts
 		@Override
 		public void apply()
 		{
-			FusionCatalysts.addCatalyst(stack, val);
+			FusionCatalysts.addCTCatalyst(stack, val);
 		}
 
 		@Override
@@ -77,7 +77,7 @@ public class MTCatalysts
 		@Override
 		public void apply()
 		{
-			FusionCatalysts.removeCatalyst(stack);
+			FusionCatalysts.removeCTCatalyst(stack);
 		}
 
 		@Override

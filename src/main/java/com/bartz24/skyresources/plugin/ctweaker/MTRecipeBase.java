@@ -36,7 +36,7 @@ public class MTRecipeBase
 		@Override
 		public void apply()
 		{
-			recipeType.addRecipe(recipe);
+			recipeType.addCTRecipe(recipe);
 		}
 
 		@Override
@@ -61,7 +61,7 @@ public class MTRecipeBase
 		@Override
 		public void apply()
 		{
-			recipeType.removeRecipe(recipe);
+			recipeType.removeCTRecipe(recipe);
 		}
 
 		@Override
