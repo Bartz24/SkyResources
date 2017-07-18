@@ -42,7 +42,7 @@ public class TileDarkMatterWarper extends TileItemInventory implements ITickable
 			if (burnTime <= 0)
 			{
 				if (getInventory().getStackInSlot(0) != ItemStack.EMPTY
-						&& getInventory().getStackInSlot(0).isItemEqual(new ItemStack(ModItems.baseComponent, 1, 5)))
+						&& getInventory().getStackInSlot(0).isItemEqual(new ItemStack(ModItems.baseComponent, 1, 3)))
 				{
 					getInventory().getStackInSlot(0).shrink(1);
 					if (getInventory().getStackInSlot(0).getCount() == 0)

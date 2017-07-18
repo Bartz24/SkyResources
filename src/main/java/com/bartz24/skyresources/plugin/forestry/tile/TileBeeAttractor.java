@@ -32,7 +32,7 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 {
 	private FluidTank tank;
 	private int powerUsage = 100;
-	private int fluidUsage = 1;
+	private int fluidUsage = 20;
 	int ticks = 200;
 
 	public TileBeeAttractor()
@@ -46,14 +46,14 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 	{
 		if (!world.isRemote)
 		{
-
-			if (tank.getFluidAmount() >= fluidUsage && tank.getFluid().getFluid().getName().equals("seed.oil")
-					&& energy >= powerUsage && !isInvFull())
+			updateRedstone();
+			if (this.getRedstoneSignal() == 0)
 			{
-				tank.drain(fluidUsage, true);
-				energy -= powerUsage;
-				if (ticks == 0)
+				if (tank.getFluidAmount() >= fluidUsage && tank.getFluid().getFluid().getName().equals("seed.oil")
+						&& energy >= powerUsage && !isInvFull())
 				{
+					tank.drain(fluidUsage, true);
+					energy -= powerUsage;
 					for (int i = 0; i < world.rand.nextInt(3) + 1; i++)
 						if (!isInvFull())
 						{
@@ -61,9 +61,7 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 
 							RandomHelper.fillInternalInventory(this.getInventory(), bee);
 						}
-					ticks = 150;
-				} else
-					ticks--;
+				}
 			}
 		}
 		markDirty();
@@ -83,7 +81,7 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 
 	ItemStack getRandomBee()
 	{
-		if (world.rand.nextInt(5) == 0)
+		if (world.rand.nextInt(15) == 0)
 		{
 			List<ItemStack> drops = new ArrayList();
 			boolean smallChance = world.rand.nextFloat() <= 0.25f;

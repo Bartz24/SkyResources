@@ -477,7 +477,7 @@ public class ModCrafting
 		componentsOreDust.add(new ItemStack(Items.GOLD_INGOT, 3));
 		componentsOreDust.add(new ItemStack(Items.BONE, 2));
 		componentsOreDust.add(new ItemStack(Blocks.CLAY, 1));
-		componentsOreDust.add(new ItemStack(Items.GOLD_INGOT, 4));
+		componentsOreDust.add(new ItemStack(Items.DYE, 4, 4));
 		componentsOreDust.add(new ItemStack(Items.MAGMA_CREAM, 3));
 		componentsOreDust.add(new ItemStack(Items.CLAY_BALL, 4));
 		componentsOreDust.add(new ItemStack(Items.ENDER_EYE, 6));

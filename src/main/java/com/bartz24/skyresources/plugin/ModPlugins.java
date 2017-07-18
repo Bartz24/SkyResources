@@ -11,6 +11,7 @@ import com.bartz24.skyresources.plugin.embers.EmbersPlugin;
 import com.bartz24.skyresources.plugin.extremereactors.ExtremeReactorsPlugin;
 import com.bartz24.skyresources.plugin.forestry.ForestryPlugin;
 import com.bartz24.skyresources.plugin.integdyn.IntegratedDynamicsPlugin;
+import com.bartz24.skyresources.plugin.tconstruct.TConPlugin;
 import com.bartz24.skyresources.plugin.techreborn.TechRebornPlugin;
 import com.bartz24.skyresources.plugin.theoneprobe.TOPPlugin;
 import com.bartz24.skyresources.plugin.thermal.ThermalPlugin;
@@ -29,8 +30,8 @@ public class ModPlugins
 			plugins.add(new ThermalPlugin());
 		if (Loader.isModLoaded("forestry"))
 			plugins.add(new ForestryPlugin());
-		// if (Loader.isModLoaded("tconstruct"))
-		// plugins.add(new TConPlugin());
+		if (Loader.isModLoaded("tconstruct"))
+			plugins.add(new TConPlugin());
 		if (Loader.isModLoaded("techreborn"))
 			plugins.add(new TechRebornPlugin());
 		// if (Loader.isModLoaded("environmentaltech"))
@@ -60,8 +61,7 @@ public class ModPlugins
 		}
 
 		/*
-		 * if
-		 * (Loader.isModLoaded("EnderIO")) EnderIOPlugin.preInit(); if
+		 * if (Loader.isModLoaded("EnderIO")) EnderIOPlugin.preInit(); if
 		 * (Loader.isModLoaded("quantumflux")) QFluxPlugin.preInit();
 		 */
 	}

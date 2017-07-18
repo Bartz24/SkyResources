@@ -102,6 +102,7 @@ public class TileCasing extends TileGenericPower implements IFluidHandler, ITick
 		machineData = compound.getCompoundTag("MachineData");
 		tank.readFromNBT(compound);
 		super.readFromNBT(compound);
+		updateHandlerData();
 	}
 
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
@@ -157,6 +158,8 @@ public class TileCasing extends TileGenericPower implements IFluidHandler, ITick
 			this.setInventory(new ItemHandlerSpecial(0));
 			this.tank = new FluidTank(0);
 		}
+		if (world != null && !world.isRemote)
+			world.notifyNeighborsOfStateChange(pos, blockType, false);
 	}
 
 	@Override
@@ -190,7 +193,7 @@ public class TileCasing extends TileGenericPower implements IFluidHandler, ITick
 
 	@Override
 	public int getHeatValue()
-	{		
+	{
 		return machineStored.isEmpty() ? 0 : getMachine().getHeatProv(machineStored, world, pos);
 	}
 }
