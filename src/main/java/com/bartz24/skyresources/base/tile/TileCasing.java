@@ -137,15 +137,18 @@ public class TileCasing extends TileGenericPower implements IFluidHandler, ITick
 					: 0;
 			this.maxReceive = getMachine().getMaxEnergy(machineStored) != 0 ? getMachine().getMaxReceive(machineStored)
 					: 0;
-			this.setInventory(new ItemHandlerSpecial(getMachine().getItemSlots(machineStored),
-					getMachine().getInsertBlacklist(machineStored), getMachine().getExtractBlacklist(machineStored))
+			if (this.getInventory().getSlots() == 0)
 			{
-				protected void onContentsChanged(int slot)
+				this.setInventory(new ItemHandlerSpecial(getMachine().getItemSlots(machineStored),
+						getMachine().getInsertBlacklist(machineStored), getMachine().getExtractBlacklist(machineStored))
 				{
-					super.onContentsChanged(slot);
-					TileCasing.this.markDirty();
-				}
-			});
+					protected void onContentsChanged(int slot)
+					{
+						super.onContentsChanged(slot);
+						TileCasing.this.markDirty();
+					}
+				});
+			}
 			if (getMachine().getFluid(machineStored) != null)
 				this.tank = new FluidTank(getMachine().getFluid(machineStored), 0,
 						getMachine().getMaxFluid(machineStored));

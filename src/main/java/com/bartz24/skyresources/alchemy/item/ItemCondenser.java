@@ -33,6 +33,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -58,8 +59,13 @@ public class ItemCondenser extends ItemMachine
 		Block block = getBlockAbove(world, pos);
 		if (getCasingTile(world, pos).getRedstoneSignal() == 0 && block != Blocks.AIR)
 		{
-			Object blockIn;
-			if (block instanceof IFluidBlock)
+			Object blockIn = null;
+			if (block instanceof BlockFluidBase)
+			{
+				BlockFluidBase fluidBlock = (BlockFluidBase) block;
+				if (fluidBlock.getMetaFromState(world.getBlockState(pos.up())) == 0)
+					blockIn = new FluidStack(fluidBlock.getFluid(), 1000);
+			} else if (block instanceof IFluidBlock)
 			{
 				IFluidBlock fluidBlock = (IFluidBlock) block;
 				blockIn = new FluidStack(fluidBlock.getFluid(), 1000);
@@ -67,9 +73,10 @@ public class ItemCondenser extends ItemMachine
 				blockIn = new ItemStack(block, 1, block.getMetaFromState(world.getBlockState(pos.up())));
 
 			ItemStack dust = itemLeft > 0 ? itemUsing : this.getCasingTile(world, pos).getInventory().getStackInSlot(0);
-
-			ProcessRecipe recipe = ProcessRecipeManager.condenserRecipes.getRecipe(Arrays.asList(dust, blockIn),
-					Integer.MAX_VALUE, false, false);
+			ProcessRecipe recipe = null;
+			if (blockIn != null)
+				recipe = ProcessRecipeManager.condenserRecipes.getRecipe(Arrays.asList(dust, blockIn),
+						Integer.MAX_VALUE, false, false);
 
 			if (recipe != null)
 			{
@@ -140,7 +147,6 @@ public class ItemCondenser extends ItemMachine
 				{
 					out = RandomHelper.fillInventory((IInventory) tile, out, sim);
 				}
-				System.out.println(out.isEmpty());
 				return out.isEmpty();
 			}
 
