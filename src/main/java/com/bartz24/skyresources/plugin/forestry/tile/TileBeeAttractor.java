@@ -85,16 +85,20 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 		{
 			List<ItemStack> drops = new ArrayList();
 			boolean smallChance = world.rand.nextFloat() <= 0.25f;
-			for (Hive h : PluginApiculture.getHiveRegistry().getHives())
+			while (drops.size() != 0)
 			{
-				Biome biome = world.getBiomeForCoordsBody(getPos());
-				if (smallChance
-						|| (h.isGoodBiome(biome) && h.isGoodHumidity(EnumHumidity.getFromValue(biome.getRainfall()))
-								&& h.isGoodTemperature(EnumTemperature.getFromValue(biome.getTemperature()))))
+				for (Hive h : PluginApiculture.getHiveRegistry().getHives())
 				{
-					List<IHiveDrop> hiveDrops = h.getDrops();
-					drops.addAll(getBeeDrops(hiveDrops));
+					Biome biome = world.getBiomeForCoordsBody(getPos());
+					if (smallChance
+							|| (h.isGoodBiome(biome) && h.isGoodHumidity(EnumHumidity.getFromValue(biome.getRainfall()))
+									&& h.isGoodTemperature(EnumTemperature.getFromValue(biome.getTemperature()))))
+					{
+						List<IHiveDrop> hiveDrops = h.getDrops();
+						drops.addAll(getBeeDrops(hiveDrops));
+					}
 				}
+				smallChance = true;
 			}
 
 			boolean princess = (world.rand.nextInt(5) == 0);

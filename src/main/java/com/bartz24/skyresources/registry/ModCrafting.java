@@ -227,8 +227,8 @@ public class ModCrafting
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.SPECKLED_MELON, 3),
 						new ItemStack(Blocks.PUMPKIN, 1, OreDictionary.WILDCARD_VALUE))));
 
-		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Items.NETHER_WART), 19,
-				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.SPIDER_EYE, 8),
+		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Items.NETHER_WART), 14,
+				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.SPIDER_EYE, 4),
 						new ItemStack(Blocks.RED_MUSHROOM, 1, OreDictionary.WILDCARD_VALUE))));
 
 		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Blocks.RED_MUSHROOM), 15,
@@ -260,11 +260,7 @@ public class ModCrafting
 		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModBlocks.dryCactus), 400,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.BONE_BLOCK), new ItemStack(Items.DYE, 8, 7),
 						new ItemStack(Blocks.LEAVES, 8, 1))));
-
-		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(Blocks.CACTUS), 300,
-				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.SPIDER_EYE, 1),
-						new ItemStack(Items.SNOWBALL, 16), new ItemStack(ModBlocks.dryCactus))));
-
+		
 		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(Items.REDSTONE, 4), 880, new ArrayList<Object>(
 				Arrays.asList(new ItemStack(Items.GUNPOWDER, 2), new ItemStack(Items.BLAZE_POWDER, 2))));
 
@@ -277,9 +273,9 @@ public class ModCrafting
 		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(Items.SLIME_BALL), 200, new ArrayList<Object>(
 				Arrays.asList(new ItemStack(ModItems.baseComponent, 8, 0), new ItemStack(Items.SNOWBALL))));
 
-		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModItems.techComponent, 4, 1), 2700,
-				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.POISONOUS_POTATO, 3),
-						new ItemStack(Items.FERMENTED_SPIDER_EYE, 2), new ItemStack(Items.GUNPOWDER, 2))));
+		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModItems.techComponent, 6, 1), 1400,
+				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.POISONOUS_POTATO, 1),
+						new ItemStack(Items.SPIDER_EYE, 2), new ItemStack(Items.GUNPOWDER, 4))));
 
 		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(Items.PRISMARINE_SHARD, 4), 1900,
 				new ArrayList<Object>(
@@ -385,6 +381,9 @@ public class ModCrafting
 
 		ProcessRecipeManager.waterExtractorInsertRecipes.addRecipe(new ItemStack(Blocks.CLAY), 0,
 				Arrays.asList(new ItemStack(Blocks.DIRT), new FluidStack(FluidRegistry.WATER, 200)));
+
+		ProcessRecipeManager.waterExtractorInsertRecipes.addRecipe(new ItemStack(Blocks.CACTUS), 0,
+				Arrays.asList(new ItemStack(ModBlocks.dryCactus), new FluidStack(FluidRegistry.WATER, 1200)));
 
 		ProcessRecipeManager.freezerRecipes.addRecipe(new ItemStack(ModItems.heavySnowball), 40,
 				new ItemStack(Items.SNOWBALL, 4));
@@ -513,6 +512,8 @@ public class ModCrafting
 		MinecraftForge.addGrassSeed(new ItemStack(Items.MELON_SEEDS), 12);
 		MinecraftForge.addGrassSeed(new ItemStack(Items.PUMPKIN_SEEDS), 12);
 		MinecraftForge.addGrassSeed(new ItemStack(Items.DYE, 1, 3), 4);
+		MinecraftForge.addGrassSeed(new ItemStack(Items.CARROT), 7);
+		MinecraftForge.addGrassSeed(new ItemStack(Items.POTATO), 7);
 
 		HeatSources.addHeatSource(Blocks.FIRE.getDefaultState(), 7);
 		HeatSources.addHeatSource(Blocks.LAVA.getDefaultState(), 4);
@@ -568,7 +569,7 @@ public class ModCrafting
 			Object altMaterial = getAltMaterial(i, ConfigOptions.recipeDifficulty);
 			Object materialDust = getMaterialDust(i, false);
 			Object materialAlch = getMaterialDust(i, true);
-			Object materialGear = ConfigOptions.recipeDifficulty ? getGear(i) : null;
+			Object materialGear = getGear(i);
 
 			if (material != null)
 			{
@@ -596,12 +597,8 @@ public class ModCrafting
 				}
 				CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.heatProvider, 1, i), new Object[] { "XYX",
 						"XYX", "X X", 'X', material, 'Y', new ItemStack(ModItems.heatComponent, 1, i) });
-				if (materialGear != null)
-					CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.casing, 1, i),
-							new Object[] { "XXX", "XYX", "XXX", 'X', material, 'Y', materialGear });
-				else
-					CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.casing, 1, i),
-							new Object[] { "XXX", "X X", "XXX", 'X', material });
+				CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.casing, 1, i),
+						new Object[] { "XXX", "XYX", "XXX", 'X', material, 'Y', materialGear });
 			}
 		}
 

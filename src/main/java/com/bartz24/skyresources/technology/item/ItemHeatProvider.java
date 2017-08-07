@@ -70,9 +70,10 @@ public class ItemHeatProvider extends ItemMachine
 					.internalExtractEnergy((int) getMachineFuelPerTick(machineStack, world, pos), true);
 			if (extract > getMachineFuelPerHeat(machineStack, world, pos))
 			{
+				float mult = extract / getMachineFuelPerTick(machineStack, world, pos);
 				this.getCasingTile(world, pos).internalExtractEnergy((int) extract, false);
 				data.setFloat("itemHU",
-						(float) Math.sqrt(getMachineFuelPerHeat(machineStack, world, pos)
+						mult * (float) Math.sqrt(getMachineFuelPerHeat(machineStack, world, pos)
 								* this.getMachineEfficiency(machineStack, world, pos)
 								* this.getMachineEfficiency(machineStack, world, pos) / 16));
 				data.setFloat("huTick", 1);
@@ -81,7 +82,7 @@ public class ItemHeatProvider extends ItemMachine
 		} else if (getVariant(machineStack).getFuelType() instanceof ItemStack
 				&& isValidFuel(machineStack, this.getCasingTile(world, pos).getInventory().getStackInSlot(0)))
 		{
-			data.setFloat("itemHU", getMachineFuelPerHeat(machineStack, world, pos) / 16f);
+			data.setFloat("itemHU", (float)Math.sqrt(getMachineFuelPerHeat(machineStack, world, pos)) / 16f);
 			this.getCasingTile(world, pos).getInventory().getStackInSlot(0).shrink(1);
 			data.setFloat("huTick", this.getMachineFuelPerTick(machineStack, world, pos));
 			return;
@@ -90,7 +91,7 @@ public class ItemHeatProvider extends ItemMachine
 				&& this.getCasingTile(world, pos).getTank().drainInternal(1, false) != null
 				&& this.getCasingTile(world, pos).getTank().drainInternal(1, true).amount > 0)
 		{
-			data.setFloat("itemHU", getMachineFuelPerHeat(machineStack, world, pos) * 5);
+			data.setFloat("itemHU", (float) Math.sqrt(getMachineFuelPerHeat(machineStack, world, pos)) * 5);
 			data.setFloat("huTick", 1);
 			return;
 		} else if (getVariant(machineStack).getFuelType().equals("Fuel")
@@ -99,8 +100,8 @@ public class ItemHeatProvider extends ItemMachine
 			data.setFloat("itemHU",
 					(float) Math.sqrt(getMachineFuelPerHeat(machineStack, world, pos)
 							* TileEntityFurnace
-									.getItemBurnTime(this.getCasingTile(world, pos).getInventory().getStackInSlot(0))
-							/ 1600f));
+									.getItemBurnTime(this.getCasingTile(world, pos).getInventory().getStackInSlot(0)))
+							/ 160f);
 			this.getCasingTile(world, pos).getInventory().getStackInSlot(0).shrink(1);
 			data.setFloat("huTick", this.getMachineFuelPerTick(machineStack, world, pos));
 			return;

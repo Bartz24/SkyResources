@@ -84,15 +84,22 @@ public class TileAlchemyFusionTable extends TileItemInventory implements ITickab
 			{
 				for (Object o : recipe.getInputs())
 				{
-					ItemStack s = ItemStack.EMPTY;
+					List<ItemStack> stacks = new ArrayList();
 					if (o instanceof String && OreDictionary.getOres((String) o).size() > 0)
-						s = OreDictionary.getOres((String) o).get(0);
+						for(ItemStack s : OreDictionary.getOres((String) o))
+						stacks.add(s);
 					else if (o instanceof ItemStack)
-						s = (ItemStack) o;
-					if (!s.isEmpty() && s.isItemEqual(this.getInventory().getStackInSlot(i + 1)))
-					{
-						this.getInventory().getStackInSlot(i + 1).shrink(s.getCount());
-					}
+						stacks.add((ItemStack) o);
+					boolean success = false;
+					for (ItemStack s : stacks)
+						if (!s.isEmpty() && s.isItemEqual(this.getInventory().getStackInSlot(i + 1)))
+						{
+							this.getInventory().getStackInSlot(i + 1).shrink(s.getCount());
+							success = true;
+							break;
+						}
+					if (success)
+						break;
 				}
 
 			}
@@ -193,22 +200,22 @@ public class TileAlchemyFusionTable extends TileItemInventory implements ITickab
 	{
 		return filter.get(index);
 	}
-	
+
 	public int getProgress()
 	{
 		return curProgress;
 	}
-	
+
 	public float getCurYield()
 	{
 		return yieldAmount;
 	}
-	
+
 	public float getCurItemYield()
 	{
 		return curCatalystYield;
 	}
-	
+
 	public float getCurItemLeft()
 	{
 		return curCatalystLeft;

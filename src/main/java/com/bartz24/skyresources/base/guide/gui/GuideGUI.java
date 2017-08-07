@@ -206,6 +206,7 @@ public class GuideGUI extends GuiScreen
 					b.enabled = false;
 			}
 		}
+		curIndex = getPageIndex(currentPage);
 	}
 
 	public void addLinkButton(String pageLink, String display, ItemStack stack)

@@ -42,8 +42,6 @@ public class ModGuidePages
 
 		SkyResourcesGuide.addPage("stage2", "guide.skyresources.stage2", new ItemStack(Blocks.LOG));
 
-		SkyResourcesGuide.addPage("seeds", "guide.skyresources.stage2", new ItemStack(Items.PUMPKIN_SEEDS));
-
 		SkyResourcesGuide.addPage("casing", "guide.skyresources.stage2", new ItemStack(ModBlocks.casing));
 
 		SkyResourcesGuide.addPage("combustionHeater", "guide.skyresources.stage2",
@@ -101,6 +99,8 @@ public class ModGuidePages
 				new ItemStack(ModItems.techComponent, 1, 0));
 
 		SkyResourcesGuide.addPage("gemProduction", "guide.skyresources.stage2", new ItemStack(Items.EMERALD));
+
+		SkyResourcesGuide.addPage("seeds", "guide.skyresources.stage2", new ItemStack(Items.PUMPKIN_SEEDS));
 
 		SkyResourcesGuide.addPage("stage3", "guide.skyresources.stage3", new ItemStack(Blocks.GLOWSTONE));
 
