@@ -260,7 +260,7 @@ public class ModCrafting
 		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModBlocks.dryCactus), 400,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.BONE_BLOCK), new ItemStack(Items.DYE, 8, 7),
 						new ItemStack(Blocks.LEAVES, 8, 1))));
-		
+
 		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(Items.REDSTONE, 4), 880, new ArrayList<Object>(
 				Arrays.asList(new ItemStack(Items.GUNPOWDER, 2), new ItemStack(Items.BLAZE_POWDER, 2))));
 
@@ -597,8 +597,12 @@ public class ModCrafting
 				}
 				CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.heatProvider, 1, i), new Object[] { "XYX",
 						"XYX", "X X", 'X', material, 'Y', new ItemStack(ModItems.heatComponent, 1, i) });
-				CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.casing, 1, i),
-						new Object[] { "XXX", "XYX", "XXX", 'X', material, 'Y', materialGear });
+				if (materialGear != null)
+					CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.casing, 1, i),
+							new Object[] { "XXX", "XYX", "XXX", 'X', material, 'Y', materialGear });
+				else
+					CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.casing, 1, i),
+							new Object[] { "XXX", "X X", "XXX", 'X', material });
 			}
 		}
 
