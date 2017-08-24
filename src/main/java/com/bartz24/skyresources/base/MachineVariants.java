@@ -19,12 +19,12 @@ public enum MachineVariants implements IStringSerializable
 	IRON(1538, 1.2f, 1.0f, "Fuel", 110), 
 	STEEL(1370, 1.7f, 1.4f, "Fuel", 140), 
 	ELECTRUM(1878, 1.3f, 2.4f, "FE", 60), 
-	NETHERBRICK(3072, 0.4f, 0.5f, new ItemStack(Items.BLAZE_POWDER), 300), 
-	LEAD(328, 1.1f, 2.9f, new ItemStack(ModItems.techComponent, 1, 1), 6000), 
+	NETHERBRICK(3072, 0.4f, 1.6f, new ItemStack(Items.BLAZE_POWDER), 300), 
+	LEAD(328, 0.9f, 2.9f, new ItemStack(ModItems.techComponent, 1, 1), 6000), 
 	MANYULLYN(2324, 3.6f, 1.9f, FluidRegistry.LAVA, 1), 
 	SIGNALUM(1362, 1.8f, 3.6f, "FE", 80), 
 	ENDSTONE(2164, 6.6f, 6.6f, new ItemStack(Items.ENDER_PEARL), 2200), 
-	ENDERIUM(3166, 9.8f, 8.0f, "FE", 1200), 
+	ENDERIUM(3166, 6.8f, 8.0f, "FE", 1200), 
 	DARKMATTER(4042, 100f, 100f, new ItemStack(ModItems.baseComponent, 1, 5), 31415);
 
 	private int maxHeat;

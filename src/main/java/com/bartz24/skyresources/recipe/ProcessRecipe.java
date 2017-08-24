@@ -143,8 +143,6 @@ public class ProcessRecipe
 				} else if (o2 instanceof ItemStack)
 				{
 					ItemStack i2 = (ItemStack) o2;
-					if (ItemHelper.itemStacksEqualOD(i, i2))
-						System.out.println(ratio + ": " + ((float) items.get(i) / (float) i2.getCount()));
 					if (ItemHelper.itemStacksEqualOD(i, i2) && items.get(i) >= i2.getCount()
 							&& (ratio == -1 || ((float) items.get(i) / (float) i2.getCount()) == ratio))
 					{

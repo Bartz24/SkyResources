@@ -30,11 +30,11 @@ public class ItemOreAlchDust extends Item
 		addOreInfo("zinc", 0xFFFFF7C2, 2);
 		addOreInfo("nickel", 0xFFFAF191, 5);
 		addOreInfo("platinum", 0xFF44EAFC, 7);
-		addOreInfo("aluminum", 0xFFF5FFFD, 3);
+		addOreInfo("aluminum", 0xFFF5FFFD, 4);
 		addOreInfo("lead", 0xFF5B2EFF, 4);
 		addOreInfo("cobalt", 0xFF0045D9, 6, new ItemStack(Blocks.NETHERRACK));
 		addOreInfo("ardite", 0xFFDE9000, 6, new ItemStack(Blocks.NETHERRACK));
-		addOreInfo("osmium", 0xFF7F13C2, 4);
+		addOreInfo("osmium", 0xFF7F13C2, 3);
 		addOreInfo("draconium", 0xFF9E6DCF, 9, new ItemStack(Blocks.END_STONE), false);
 		addOreInfo("titanium", 0xFFBABABA, 6);
 		addOreInfo("tungsten", 0xFF464659, 6, new ItemStack(Blocks.END_STONE));

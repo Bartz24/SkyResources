@@ -2,6 +2,7 @@ package com.bartz24.skyresources.base.gui;
 
 import com.bartz24.skyresources.base.tile.TileCasing;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 

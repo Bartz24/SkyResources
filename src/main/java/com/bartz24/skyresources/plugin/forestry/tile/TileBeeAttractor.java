@@ -85,7 +85,7 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 		{
 			List<ItemStack> drops = new ArrayList();
 			boolean smallChance = world.rand.nextFloat() <= 0.25f;
-			while (drops.size() != 0)
+			while (drops.size() == 0)
 			{
 				for (Hive h : PluginApiculture.getHiveRegistry().getHives())
 				{

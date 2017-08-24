@@ -90,12 +90,14 @@ public class ProcessRecipeManager
 		public void drawJEIInfo(ProcessRecipe rec, Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX,
 				int mouseY)
 		{
-			String s = Math.round(rec.getIntParameter() * 50f) + " ticks at 100% speed";
+			String s = "100% spd: " + Math.round(rec.getIntParameter() * 50f) + " ticks";
 			FontRenderer fontRendererObj = minecraft.fontRenderer;
 			int stringWidth = fontRendererObj.getStringWidth(s);
 			fontRendererObj.drawString(s, 130 - stringWidth, 8, java.awt.Color.gray.getRGB());
-			s = Math.round(rec.getIntParameter() / (1600f * Math.pow(rec.getIntParameter(), 0.05f)) * 1000000f)
-					/ 1000000f + "/tick used at 100% eff.";
+			s = "100% eff: "
+					+ Math.round(rec.getIntParameter() / (1600f * Math.pow(rec.getIntParameter(), 0.05f)) * 1000000f)
+							/ 10000f
+					+ "%/tick";
 			stringWidth = fontRendererObj.getStringWidth(s);
 			fontRendererObj.drawString(s, 130 - stringWidth, 50, java.awt.Color.gray.getRGB());
 		}
