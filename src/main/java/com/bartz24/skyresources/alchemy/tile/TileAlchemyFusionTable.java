@@ -54,13 +54,19 @@ public class TileAlchemyFusionTable extends TileItemInventory implements ITickab
 		ProcessRecipe recipe = ProcessRecipeManager.fusionRecipes.getRecipe(getStacksForRecipe(), Integer.MAX_VALUE,
 				false, false);
 
-		if (curProgress < 100 && recipe != null && this.curCatalystLeft >= recipe.getIntParameter()
-				&& this.getInventory().insertInternalItem(10, recipe.getOutputs().get(0).copy(), true).isEmpty())
-		{
-			curProgress += 1;
-			this.curCatalystLeft -= recipe.getIntParameter();
+		if (curProgress < 100 && recipe != null && this.curCatalystLeft >= recipe.getIntParameter()) {
+			ItemStack result = recipe.getOutputs().get(0).copy();
+			result.setCount(result.getCount() * (int) Math.ceil(this.curCatalystYield));
+
+			if (Math.min(result.getMaxStackSize(), this.getInventory().getSlotLimit(10)) < result.getCount()
+					|| this.getInventory().insertInternalItem(10, result, true).isEmpty()) {
+				curProgress += 1;
+				this.curCatalystLeft -= recipe.getIntParameter();
+			} else
+				curProgress = 0;
 		} else
 			curProgress = 0;
+
 		if (recipe != null && this.curCatalystLeft < recipe.getIntParameter())
 		{
 			if (FusionCatalysts.isCatalyst(this.getInventory().getStackInSlot(0)))
