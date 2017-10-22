@@ -16,7 +16,7 @@ import net.minecraftforge.fluids.FluidStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-@ZenClass("mods.skyresources.crucible")
+@ZenClass("mods.skyresources.condenser")
 public class MTCondenserRecipe extends MTRecipeBase
 {
 	@ZenMethod
