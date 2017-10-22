@@ -108,7 +108,9 @@ public class ItemInfusionStone extends Item
 			{
 				tries--;
 				IGrowable igrowable = (IGrowable) worldIn.getBlockState(target).getBlock();
-				igrowable.grow(worldIn, worldIn.rand, target, worldIn.getBlockState(target));
+				if (igrowable.canGrow(worldIn, target, worldIn.getBlockState(target), false)) {
+					igrowable.grow(worldIn, worldIn.rand, target, worldIn.getBlockState(target));
+				}
 			}
 
 			stack.damageItem(1, player);

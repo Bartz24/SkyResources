@@ -27,7 +27,6 @@ public class ItemSurvivalFishingRod extends ItemFishingRod
 			String registryName)
 	{		
 		super();
-        this.setMaxDamage(32);
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
 		this.setCreativeTab(ModCreativeTabs.tabMain);
 		setRegistryName(registryName);
@@ -40,7 +39,6 @@ public class ItemSurvivalFishingRod extends ItemFishingRod
         if (playerIn.fishEntity != null)
         {
             int i = playerIn.fishEntity.handleHookRetraction();
-            itemstack.damageItem(i, playerIn);
             playerIn.swingArm(handIn);
         }
         else
