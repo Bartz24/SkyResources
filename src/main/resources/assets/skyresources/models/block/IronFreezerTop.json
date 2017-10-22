@@ -3,6 +3,7 @@
     "textures": {
         "particle": "skyresources:blocks/ironmachine",
         "top": "skyresources:blocks/ironmachine",
+        "bottom": "skyresources:blocks/ironmachine",
         "side": "skyresources:blocks/ironfreezertop",
         "handle": "blocks/hardened_clay_stained_black"
     },

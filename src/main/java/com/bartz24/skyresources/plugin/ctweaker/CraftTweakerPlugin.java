@@ -38,6 +38,7 @@ public class CraftTweakerPlugin implements IModPlugin
 		CraftTweakerAPI.registerClass(MTInfusionRecipe.class);
 		CraftTweakerAPI.registerClass(MTFreezerRecipe.class);
 		CraftTweakerAPI.registerClass(MTCrucibleRecipe.class);
+		CraftTweakerAPI.registerClass(MTCondenserRecipe.class);
 		CraftTweakerAPI.registerClass(MTWaterExtractorInsertRecipe.class);
 		CraftTweakerAPI.registerClass(MTWaterExtractorExtractRecipe.class);
 		CraftTweakerAPI.registerClass(MTCatalysts.class);

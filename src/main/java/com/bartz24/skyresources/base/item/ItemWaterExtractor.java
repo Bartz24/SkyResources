@@ -36,6 +36,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
@@ -119,10 +120,10 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 								1.0F / (itemRand.nextFloat() * 0.4F + 1.2F));
 						return;
 					}
-					if (blockHitSide == EnumFacing.UP && world.getBlockState(pos.up()).getBlock() == Blocks.WATER
+					if (world.getBlockState(pos.add(blockHitSide.getDirectionVec())).getBlock() == Blocks.WATER
 							&& getCompound(stack).getInteger("amount") < maxAmount)
 					{
-						world.setBlockToAir(pos.up());
+						world.setBlockToAir(pos.add(blockHitSide.getDirectionVec()));
 						getCompound(stack).setInteger("amount", getCompound(stack).getInteger("amount") + 1000);
 						world.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ,
 								SoundEvents.ENTITY_PLAYER_SPLASH, SoundCategory.NEUTRAL, 1.0F,
@@ -187,17 +188,9 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 				return EnumActionResult.FAIL;
 			} else
 			{
-				if (world.mayPlace(Blocks.WATER, pos, false, side, (Entity) null))
+				if (FluidUtil.tryPlaceFluid(playerIn, world, pos, tank, tank.getFluid()))
 				{
-					IBlockState iblockstate1 = Blocks.WATER.getStateForPlacement(world, pos, side, hitX, hitY, hitZ, 0,
-							playerIn);
-
-					world.setBlockState(pos, iblockstate1, 3);
-					getCompound(stack).setInteger("amount", getCompound(stack).getInteger("amount") - 1000);
-					tank.getFluid().amount = getCompound(stack).getInteger("amount");
-					world.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ,
-							SoundEvents.ENTITY_PLAYER_SPLASH, SoundCategory.NEUTRAL, 1.0F,
-							1.0F / (itemRand.nextFloat() * 0.4F + 1.2F));
+					getCompound(stack).setInteger("amount", tank.getFluid() == null ? 0 : tank.getFluid().amount);
 					return EnumActionResult.SUCCESS;
 				}
 

@@ -523,7 +523,7 @@ public class ModCrafting
 		HeatSources.addHeatSource(Blocks.FLOWING_LAVA.getDefaultState(), 4);
 		HeatSources.addHeatSource(Blocks.TORCH.getDefaultState(), 1);
 		HeatSources.addHeatSource(Blocks.OBSIDIAN.getDefaultState(), 3);
-		HeatSources.addHeatSource(Blocks.MAGMA.getDefaultState(), 7);
+		HeatSources.addHeatSource(Blocks.MAGMA.getDefaultState(), 9);
 
 		FusionCatalysts.addCatalyst(new ItemStack(ModItems.alchemyComponent, 1, 2), 0.75f);
 		FusionCatalysts.addCatalyst(new ItemStack(ModItems.alchemyComponent, 1, 3), 1.75f);
