@@ -15,7 +15,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
@@ -25,6 +24,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidUtil;
 
 public class CrucibleBlock extends BlockContainer
@@ -97,31 +97,30 @@ public class CrucibleBlock extends BlockContainer
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if (player == null)
+		if (!world.isRemote)
 		{
-			return false;
-		}
-
-		CrucibleTile crucible = (CrucibleTile) world.getTileEntity(pos);
-		ItemStack item = player.getHeldItem(hand);
-
-		if (item != ItemStack.EMPTY && crucible != null)
-		{
-			if (item.getItem() == Items.BUCKET)
+			if (!player.getHeldItem(hand).isEmpty() && FluidUtil.getFluidContained(player.getHeldItem(hand)) == null)
 			{
-				ItemStack newStack = FluidUtil.tryFillContainer(item, crucible.getTank(), 1000, player, true).getResult();
-				if (newStack != ItemStack.EMPTY)
+				CrucibleTile tile = (CrucibleTile) world.getTileEntity(pos);
+				FluidActionResult result = FluidUtil
+				.tryFillContainer(player.getHeldItem(hand), tile.getTank(), 1000, player, true);
+				
+				if (result.success)
 				{
-					if (item.getCount() > 1)
+					if (player.getHeldItem(hand).getCount() > 1)
 					{
-						item.shrink(1);
-						RandomHelper.spawnItemInWorld(world, newStack, player.getPosition());
+						player.getHeldItem(hand).shrink(1);
+						RandomHelper.spawnItemInWorld(world, result.getResult(), player.getPosition());
 					} else
 					{
-						player.setHeldItem(hand, newStack);
-						return true;
+						player.setHeldItem(hand, result.getResult());
 					}
+					return true;
 				}
+
+				ItemStack contents = player.getHeldItem(hand).copy();
+				contents.setCount(1);
+				return true;
 			}
 		}
 		return false;
