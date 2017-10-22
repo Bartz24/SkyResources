@@ -448,7 +448,7 @@ public class ModCrafting
 		ProcessRecipeManager.fusionRecipes
 				.addRecipe(new ItemStack(ModItems.alchemyComponent, 5, 5), 0.035f,
 						new ArrayList<Object>(Arrays.asList(new ItemStack(ModItems.baseComponent, 1, 3),
-								new ItemStack(ModItems.alchComponent, 6, 6), new ItemStack(Items.EMERALD, 2),
+								new ItemStack(ModItems.alchemyComponent, 6, 6), new ItemStack(Items.EMERALD, 2),
 								new ItemStack(ModItems.alchemyComponent, 6, 10))));
 
 		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 1, 6), 0.0015f,
@@ -481,7 +481,7 @@ public class ModCrafting
 		componentsOreDust.add(new ItemStack(Blocks.CLAY)); //lead 4
 		componentsOreDust.add(new ItemStack(Items.DYE, 1, 4)); //cobalt 6
 		componentsOreDust.add(new ItemStack(Items.MAGMA_CREAM)); //ardite 6
-		componentsOreDust.add(new ItemStack(Blocks.CLAY)); //osmium 3
+		componentsOreDust.add(new ItemStack(Items.CLAY_BALL)); //osmium 3
 		componentsOreDust.add(new ItemStack(Items.ENDER_EYE)); //draconium 9
 		componentsOreDust.add(new ItemStack(Items.COAL, 1, 1)); //titanium 6
 		componentsOreDust.add(new ItemStack(Blocks.OBSIDIAN)); //tungsten 6
@@ -528,7 +528,7 @@ public class ModCrafting
 		FusionCatalysts.addCatalyst(new ItemStack(ModItems.alchemyComponent, 1, 2), 0.75f);
 		FusionCatalysts.addCatalyst(new ItemStack(ModItems.alchemyComponent, 1, 3), 1.75f);
 		FusionCatalysts.addCatalyst(new ItemStack(ModItems.alchemyComponent, 1, 4), 4.50f);
-		FusionCatalysts.addCatalyst(new ItemStack(ModItems.alchemyComponent, 1, 5), 20.00f);
+		FusionCatalysts.addCatalyst(new ItemStack(ModItems.alchemyComponent, 1, 5), 32.00f);
 
 		GameRegistry.registerFuelHandler(new ModFuelHandler());
 

@@ -21,10 +21,12 @@ public class TileAlchemyFusionTable extends TileItemInventory implements ITickab
 {
 	private NonNullList<ItemStack> filter = NonNullList.withSize(9, ItemStack.EMPTY);
 
-	private float yieldAmount;
+	private double yieldAmount;
+	private float yieldRate;
 	private float curCatalystYield;
 	private float curCatalystLeft;
 	private int curProgress;
+	private ItemStack outputStack = ItemStack.EMPTY;
 
 	public TileAlchemyFusionTable()
 	{
@@ -51,17 +53,54 @@ public class TileAlchemyFusionTable extends TileItemInventory implements ITickab
 
 	private void updateCrafting()
 	{
-		ProcessRecipe recipe = ProcessRecipeManager.fusionRecipes.getRecipe(getStacksForRecipe(), Integer.MAX_VALUE,
-				false, false);
+		if (outputStack.isEmpty())
+		{
+			ProcessRecipe recipe = ProcessRecipeManager.fusionRecipes.getRecipe(getStacksForRecipe(), Integer.MAX_VALUE,
+					false, false);
+			if (recipe != null)
+			{
+				outputStack = recipe.getOutputs().get(0);
+				yieldRate = recipe.getIntParameter();
+				for (int i = 0; i < 9; i++)
+				{
+					for (Object o : recipe.getInputs())
+					{
+						List<ItemStack> stacks = new ArrayList();
+						if (o instanceof String && OreDictionary.getOres((String) o).size() > 0)
+							for (ItemStack s : OreDictionary.getOres((String) o))
+								stacks.add(s);
+						else if (o instanceof ItemStack)
+							stacks.add((ItemStack) o);
+						boolean success = false;
+						for (ItemStack s : stacks)
+							if (!s.isEmpty() && s.isItemEqual(this.getInventory().getStackInSlot(i + 1)))
+							{
+								this.getInventory().getStackInSlot(i + 1).shrink(s.getCount());
+								success = true;
+								break;
+							}
+						if (success)
+							break;
+					}
+				}
+			}
+		}
 
-		if (curProgress < 100 && recipe != null && this.curCatalystLeft >= recipe.getIntParameter()
-				&& this.getInventory().insertInternalItem(10, recipe.getOutputs().get(0).copy(), true).isEmpty())
+		if (curProgress < 100 && !outputStack.isEmpty() && this.curCatalystLeft >= yieldRate
+				&& this.getInventory().insertInternalItem(10, outputStack.copy(), true).isEmpty())
 		{
 			curProgress += 1;
-			this.curCatalystLeft -= recipe.getIntParameter();
-		} else
-			curProgress = 0;
-		if (recipe != null && this.curCatalystLeft < recipe.getIntParameter())
+			this.curCatalystLeft -= yieldRate;
+			this.yieldAmount = Math.round((this.yieldAmount + (double) this.curCatalystYield / 100d) * 10000d) / 10000d;
+			if (this.yieldAmount >= 1)
+			{
+				ItemStack output = outputStack.copy();
+				output.setCount((int) (output.getCount() * Math.floor(this.yieldAmount)));
+				this.getInventory().insertInternalItem(10, output, false);
+				this.yieldAmount -= Math.floor(this.yieldAmount);
+			}
+		}
+		if (!outputStack.isEmpty() && this.curCatalystLeft < yieldRate)
 		{
 			if (FusionCatalysts.isCatalyst(this.getInventory().getStackInSlot(0)))
 			{
@@ -72,39 +111,9 @@ public class TileAlchemyFusionTable extends TileItemInventory implements ITickab
 		}
 		if (curProgress >= 100)
 		{
-			this.yieldAmount += this.curCatalystYield;
-			if (this.yieldAmount >= 1)
-			{
-				ItemStack output = recipe.getOutputs().get(0).copy();
-				output.setCount((int) (output.getCount() * Math.floor(this.yieldAmount)));
-				this.getInventory().insertInternalItem(10, output, false);
-				this.yieldAmount -= Math.floor(this.yieldAmount);
-			}
-			for (int i = 0; i < 9; i++)
-			{
-				for (Object o : recipe.getInputs())
-				{
-					List<ItemStack> stacks = new ArrayList();
-					if (o instanceof String && OreDictionary.getOres((String) o).size() > 0)
-						for(ItemStack s : OreDictionary.getOres((String) o))
-						stacks.add(s);
-					else if (o instanceof ItemStack)
-						stacks.add((ItemStack) o);
-					boolean success = false;
-					for (ItemStack s : stacks)
-						if (!s.isEmpty() && s.isItemEqual(this.getInventory().getStackInSlot(i + 1)))
-						{
-							this.getInventory().getStackInSlot(i + 1).shrink(s.getCount());
-							success = true;
-							break;
-						}
-					if (success)
-						break;
-				}
-
-			}
-
 			curProgress = 0;
+			outputStack = ItemStack.EMPTY;
+			yieldRate = 0;
 		}
 	}
 
@@ -136,7 +145,9 @@ public class TileAlchemyFusionTable extends TileItemInventory implements ITickab
 	{
 		compound = super.writeToNBT(compound);
 
-		compound.setFloat("yield", yieldAmount);
+		compound.setDouble("yield", yieldAmount);
+		compound.setFloat("yieldRate", yieldRate);
+		compound.setTag("output", outputStack.writeToNBT(new NBTTagCompound()));
 		compound.setFloat("itemYield", curCatalystYield);
 		compound.setFloat("itemLeft", curCatalystLeft);
 		compound.setInteger("progress", curProgress);
@@ -148,7 +159,9 @@ public class TileAlchemyFusionTable extends TileItemInventory implements ITickab
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
-		yieldAmount = compound.getFloat("yield");
+		yieldAmount = compound.getDouble("yield");
+		yieldRate = compound.getFloat("yieldRate");
+		outputStack = new ItemStack(compound.getCompoundTag("output"));
 		curCatalystYield = compound.getFloat("itemYield");
 		curCatalystLeft = compound.getFloat("itemLeft");
 		curProgress = compound.getInteger("progress");
@@ -206,7 +219,7 @@ public class TileAlchemyFusionTable extends TileItemInventory implements ITickab
 		return curProgress;
 	}
 
-	public float getCurYield()
+	public double getCurYield()
 	{
 		return yieldAmount;
 	}

@@ -61,7 +61,7 @@ public class GuiFusionTable extends GuiContainer
 		this.drawTexturedModalRect(134, 73, 29, 60, 3, 18);
 
 		this.fontRenderer.drawString((Math.round(tile.getCurItemYield() * 100f)) + "%", 140, 78, 4210752);
-
+		
 		height = (int) ((float) tile.getCurItemLeft() * 16f);
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 		Minecraft.getMinecraft().getTextureManager()

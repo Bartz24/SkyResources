@@ -12,6 +12,8 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 
 @Mod(modid = References.ModID, name = References.ModName, version = References.Version, useMetadata = true, guiFactory = "com.bartz24.skyresources.config.ConfigGuiFactory")
 public class SkyResources
@@ -21,6 +23,8 @@ public class SkyResources
 
 	@Mod.Instance
 	public static SkyResources instance;
+	
+	public static final SimpleNetworkWrapper network = NetworkRegistry.INSTANCE.newSimpleChannel(References.ModID);
 
 	public static Logger logger;
 
