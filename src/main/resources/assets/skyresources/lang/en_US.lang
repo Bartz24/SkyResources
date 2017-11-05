@@ -215,6 +215,9 @@ item.skyresources.oreAlchDust.magnesium.name=Magnesium Alchemical Ore Dust
 item.skyresources.oreAlchDust.lithium.name=Lithium Alchemical Ore Dust
 item.skyresources.oreAlchDust.boron.name=Boron Alchemical Ore Dust
 item.skyresources.oreAlchDust.mithril.name=Mithril Alchemical Ore Dust
+item.skyresources.oreAlchDust.yellorium.name=Yellorium Alchemical Ore Dust
+item.skyresources.oreAlchDust.uranium.name=Uranium Alchemical Ore Dust
+item.skyresources.oreAlchDust.thorium.name=Thorium Alchemical Ore Dust
 
 item.skyresources.dirtyGem.emerald.name=Dirty Emerald
 item.skyresources.dirtyGem.diamond.name=Dirty Diamond

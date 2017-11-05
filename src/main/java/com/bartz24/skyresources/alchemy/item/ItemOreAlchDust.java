@@ -22,28 +22,31 @@ public class ItemOreAlchDust extends Item
 
 	public static void init()
 	{
-		addOreInfo("iron", 0xFFCC0000, 3);
-		addOreInfo("gold", 0xFFCCCC00, 5);
-		addOreInfo("copper", 0xFFFF6600, 1);
-		addOreInfo("tin", 0xFFBFBFBF, 3);
-		addOreInfo("silver", 0xFFD1F4FF, 4);
-		addOreInfo("zinc", 0xFFFFF7C2, 2);
-		addOreInfo("nickel", 0xFFFAF191, 5);
-		addOreInfo("platinum", 0xFF44EAFC, 7);
-		addOreInfo("aluminum", 0xFFF5FFFD, 4);
-		addOreInfo("lead", 0xFF5B2EFF, 4);
-		addOreInfo("cobalt", 0xFF0045D9, 6, new ItemStack(Blocks.NETHERRACK));
-		addOreInfo("ardite", 0xFFDE9000, 6, new ItemStack(Blocks.NETHERRACK));
-		addOreInfo("osmium", 0xFF7F13C2, 3);
-		addOreInfo("draconium", 0xFF9E6DCF, 9, new ItemStack(Blocks.END_STONE), false);
-		addOreInfo("titanium", 0xFFBABABA, 6);
-		addOreInfo("tungsten", 0xFF464659, 6, new ItemStack(Blocks.END_STONE));
-		addOreInfo("chrome", 0xFFD6D6D6, 8);
-		addOreInfo("iridium", 0xFFE3E3E3, 11);
-		addOreInfo("boron", 0xFF9E9E9E, 5);
-		addOreInfo("lithium", 0xFFF2F2F2, 7);
-		addOreInfo("magnesium", 0xFFFFD4D4, 5);
-		addOreInfo("mithril", 0xFF45BCCC, 9);
+		addOreInfo("iron", 0xFFCC0000, 3); //0
+		addOreInfo("gold", 0xFFCCCC00, 5); //1
+		addOreInfo("copper", 0xFFFF6600, 1); //2
+		addOreInfo("tin", 0xFFBFBFBF, 3); //3
+		addOreInfo("silver", 0xFFD1F4FF, 4); //4
+		addOreInfo("zinc", 0xFFFFF7C2, 2); //5
+		addOreInfo("nickel", 0xFFFAF191, 5); //6
+		addOreInfo("platinum", 0xFF44EAFC, 7); //7
+		addOreInfo("aluminum", 0xFFF5FFFD, 4); //8
+		addOreInfo("lead", 0xFF5B2EFF, 4); //9
+		addOreInfo("cobalt", 0xFF0045D9, 6, new ItemStack(Blocks.NETHERRACK)); //10
+		addOreInfo("ardite", 0xFFDE9000, 6, new ItemStack(Blocks.NETHERRACK)); //11
+		addOreInfo("osmium", 0xFF7F13C2, 3); //12
+		addOreInfo("draconium", 0xFF9E6DCF, 9, new ItemStack(Blocks.END_STONE), false); //13
+		addOreInfo("titanium", 0xFFBABABA, 6); //14
+		addOreInfo("tungsten", 0xFF464659, 6, new ItemStack(Blocks.END_STONE)); //15
+		addOreInfo("chrome", 0xFFD6D6D6, 8); //16
+		addOreInfo("iridium", 0xFFE3E3E3, 11); //17
+		addOreInfo("boron", 0xFF9E9E9E, 5); //18
+		addOreInfo("lithium", 0xFFF2F2F2, 7); //19
+		addOreInfo("magnesium", 0xFFFFD4D4, 5); //20
+		addOreInfo("mithril", 0xFF45BCCC, 9); //21
+		addOreInfo("yellorium", 0xFFFFFF2B, 6, new ItemStack(Blocks.STONE), false); //22
+		addOreInfo("uranium", 0xFF16BA00, 6, new ItemStack(Blocks.STONE), false); //23
+		addOreInfo("thorium", 0xFF2B4010, 7, new ItemStack(Blocks.STONE), false); //24
 	}
 
 	public static void addOreInfo(String name, int color, int rarity)
