@@ -20,18 +20,18 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class MTCondenserRecipe extends MTRecipeBase
 {
 	@ZenMethod
-	public static void addRecipe(IItemStack output, IItemStack catalyst, ILiquidStack inputFluid)
+	public static void addRecipe(IItemStack output, int tickTime, IItemStack catalyst, ILiquidStack inputFluid)
 	{
 		FluidStack stack = CraftTweakerPlugin.toFluidStack(inputFluid);
 		stack.amount = 1000;
 		addRecipe(
 				new ProcessRecipe(Arrays.asList(CraftTweakerPlugin.toStack(output)),
-						Arrays.asList(CraftTweakerPlugin.toStack(catalyst), stack), 0, "condenser"),
+						Arrays.asList(CraftTweakerPlugin.toStack(catalyst), stack), tickTime, "condenser"),
 				ProcessRecipeManager.condenserRecipes);
 	}
 
 	@ZenMethod
-	public static void addRecipe(IItemStack output, IItemStack catalyst, IItemStack inputBlock)
+	public static void addRecipe(IItemStack output, int tickTime, IItemStack catalyst, IItemStack inputBlock)
 	{
 		if (!(CraftTweakerPlugin.toStack(inputBlock).getItem() instanceof ItemBlock))
 		{
@@ -40,7 +40,7 @@ public class MTCondenserRecipe extends MTRecipeBase
 		}
 		List<Object> inputs = new ArrayList<>();
 		inputs.addAll(Arrays.asList(CraftTweakerPlugin.toStack(catalyst), CraftTweakerPlugin.toStack(inputBlock)));
-		addRecipe(new ProcessRecipe(Arrays.asList(CraftTweakerPlugin.toStack(output)), inputs, 0, "condenser"),
+		addRecipe(new ProcessRecipe(Arrays.asList(CraftTweakerPlugin.toStack(output)), inputs, tickTime, "condenser"),
 				ProcessRecipeManager.condenserRecipes);
 	}
 

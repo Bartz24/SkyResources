@@ -408,7 +408,7 @@ public class ModCrafting
 				ItemStack output = OreDictionary.getOres(itemIngot).get(0).copy();
 				output.setCount(1);
 				ProcessRecipeManager.condenserRecipes.addRecipe(output,
-						(float) Math.pow(ItemOreAlchDust.oreInfos.get(i).rarity * 1.05f, 1.4f),
+						(float) Math.pow(ItemOreAlchDust.oreInfos.get(i).rarity * 1.05f, 1.4f) * 50f,
 						Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, i),
 								new FluidStack(ModFluids.crystalFluid, 1000)));
 			}
@@ -418,7 +418,7 @@ public class ModCrafting
 				ItemStack output = OreDictionary.getOres(itemOre).get(0).copy();
 				output.setCount(1);
 				ProcessRecipeManager.condenserRecipes.addRecipe(output,
-						(float) Math.pow(ItemOreAlchDust.oreInfos.get(i).rarity * 1.05f, 1.8f),
+						(float) Math.pow(ItemOreAlchDust.oreInfos.get(i).rarity * 1.05f, 1.8f) * 50f,
 						Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, i),
 								ItemOreAlchDust.oreInfos.get(i).parentBlock));
 			}

@@ -165,7 +165,7 @@ public class ItemCondenser extends ItemMachine
 
 	public int getTimeToCondense(World world, BlockPos pos, ItemStack machineStack, ProcessRecipe recipe)
 	{
-		return Math.round(recipe.getIntParameter() * 50f / this.getMachineSpeed(machineStack, world, pos));
+		return Math.round(recipe.getIntParameter() / this.getMachineSpeed(machineStack, world, pos));
 	}
 
 	public Block getBlockAbove(World world, BlockPos pos)
