@@ -9,7 +9,6 @@ import com.bartz24.skyresources.config.ConfigOptions;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 
@@ -63,6 +62,8 @@ public class LifeInjectorTile extends TileItemInventory implements ITickable
 
 				for (EntityLivingBase entity : list)
 				{
+					if (entity.getMaxHealth() <= 0)
+						continue;
 					float dmg = Math.min(entity.getHealth(), 2);
 
 					ItemStack stack = getInventory().getStackInSlot(0);
@@ -70,9 +71,9 @@ public class LifeInjectorTile extends TileItemInventory implements ITickable
 					{
 						if (stack.getTagCompound().getInteger("health") + dmg <= ConfigOptions.healthGemMaxHealth)
 						{
-							entity.attackEntityFrom(DamageSource.MAGIC, dmg);
+							entity.setHealth(Math.max(0, entity.getHealth() - dmg));
 							stack.getTagCompound().setInteger("health",
-									stack.getTagCompound().getInteger("health") + 2);
+									stack.getTagCompound().getInteger("health") + (int) Math.floor(dmg));
 							stack.getTagCompound().setInteger("cooldown", 20);
 						}
 					}
