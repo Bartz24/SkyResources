@@ -26,7 +26,7 @@ repositories {
 }
 
 minecraft {
-    version = "1.12-14.21.1.2415"
+    version = "1.12.2-14.23.0.2531"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.
@@ -45,10 +45,10 @@ dependencies {
     //compile "some.group:artifact:version:classifier"
     //compile "some.group:artifact:version"
       
-	compile files("lib/jei_1.12-4.7.0.67.jar")
-	compile files("lib/theoneprobe-1.12-1.4.10.jar")
-	compile files("lib/forestry_1.12-5.4.0.116.jar")
-	//compile files("lib/industrialcraft-2-2.6.69-ex110.jar")
+	compile files("lib/jei_1.12.2-4.8.0.111.jar")
+	compile files("lib/theoneprobe-1.12-1.4.19.jar")
+	compile files("lib/forestry_1.12.2-5.7.0.209.jar")
+	compile files("lib/industrialcraft-2-2.8.16-ex112.jar")
 	  
     // real examples
     //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env

@@ -15,7 +15,7 @@ import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IHiveDrop;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
-import forestry.apiculture.PluginApiculture;
+import forestry.apiculture.ModuleApiculture;
 import forestry.apiculture.worldgen.Hive;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -88,7 +88,7 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 			boolean smallChance = world.rand.nextFloat() <= 0.25f;
 			while (drops.size() == 0)
 			{
-				for (Hive h : PluginApiculture.getHiveRegistry().getHives())
+				for (Hive h : ModuleApiculture.getHiveRegistry().getHives())
 				{
 					Biome biome = world.getBiomeForCoordsBody(getPos());
 					if (smallChance
@@ -109,9 +109,9 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 			while (beeStack.isEmpty() && tries < 30)
 			{
 				ItemStack stack = drops.get(world.rand.nextInt(drops.size()));
-				if (princess && stack.getItem() == PluginApiculture.getItems().beePrincessGE)
+				if (princess && stack.getItem() == ModuleApiculture.getItems().beePrincessGE)
 					beeStack = stack;
-				else if (!princess && stack.getItem() == PluginApiculture.getItems().beeDroneGE)
+				else if (!princess && stack.getItem() == ModuleApiculture.getItems().beeDroneGE)
 					beeStack = stack;
 				tries++;
 			}
