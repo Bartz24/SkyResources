@@ -163,7 +163,8 @@ public class ModCrafting
 		String coalDust = OreDictionary.getOres("dustCoal").size() > 0 ? "dustCoal" : "dustRedstone";
 		String circuit = (ConfigOptions.miscSettings.advancedRecipes ? OreDictionary.getOres("circuitAdvanced")
 				: OreDictionary.getOres("circuitBasic")).size() > 0
-						? (ConfigOptions.miscSettings.advancedRecipes ? "circuitAdvanced" : "circuitBasic") : "blockRedstone";
+						? (ConfigOptions.miscSettings.advancedRecipes ? "circuitAdvanced" : "circuitBasic")
+						: "blockRedstone";
 		{
 			CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.baseComponent, 1, 1),
 					new Object[] { "XZX", "XYX", "XZX", 'X', advComponent, 'Y', circuit, 'Z', coalDust });
@@ -407,7 +408,8 @@ public class ModCrafting
 				ItemStack output = OreDictionary.getOres(itemIngot).get(0).copy();
 				output.setCount(1);
 				ProcessRecipeManager.condenserRecipes.addRecipe(output,
-						(float) Math.pow(ItemOreAlchDust.oreInfos.get(i).rarity * 1.05f, 1.4f) * 50f,
+						(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(i).rarity) * 50f
+								* (float) ItemOreAlchDust.oreInfos.get(i).rarity,
 						Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, i),
 								new FluidStack(ModFluids.crystalFluid, 1000)));
 			}
@@ -417,7 +419,8 @@ public class ModCrafting
 				ItemStack output = OreDictionary.getOres(itemOre).get(0).copy();
 				output.setCount(1);
 				ProcessRecipeManager.condenserRecipes.addRecipe(output,
-						(float) Math.pow(ItemOreAlchDust.oreInfos.get(i).rarity * 1.05f, 1.8f) * 50f,
+						(float) Math.pow(1.8f, ItemOreAlchDust.oreInfos.get(i).rarity) * 50f
+						* (float) ItemOreAlchDust.oreInfos.get(i).rarity,
 						Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, i),
 								ItemOreAlchDust.oreInfos.get(i).parentBlock));
 			}
@@ -515,18 +518,18 @@ public class ModCrafting
 			}
 		}
 
-		if(ConfigOptions.miscSettings.addBeetrootSeedDrop)
-		MinecraftForge.addGrassSeed(new ItemStack(Items.BEETROOT_SEEDS), 10);
-		if(ConfigOptions.miscSettings.addMelonSeedDrop)
-		MinecraftForge.addGrassSeed(new ItemStack(Items.MELON_SEEDS), 12);
-		if(ConfigOptions.miscSettings.addPumpkinSeedDrop)
-		MinecraftForge.addGrassSeed(new ItemStack(Items.PUMPKIN_SEEDS), 12);
-		if(ConfigOptions.miscSettings.addCocoaBeanDrop)
-		MinecraftForge.addGrassSeed(new ItemStack(Items.DYE, 1, 3), 4);
-		if(ConfigOptions.miscSettings.addCarrotDrop)
-		MinecraftForge.addGrassSeed(new ItemStack(Items.CARROT), 7);
-		if(ConfigOptions.miscSettings.addPotatoDrop)
-		MinecraftForge.addGrassSeed(new ItemStack(Items.POTATO), 7);
+		if (ConfigOptions.miscSettings.addBeetrootSeedDrop)
+			MinecraftForge.addGrassSeed(new ItemStack(Items.BEETROOT_SEEDS), 10);
+		if (ConfigOptions.miscSettings.addMelonSeedDrop)
+			MinecraftForge.addGrassSeed(new ItemStack(Items.MELON_SEEDS), 12);
+		if (ConfigOptions.miscSettings.addPumpkinSeedDrop)
+			MinecraftForge.addGrassSeed(new ItemStack(Items.PUMPKIN_SEEDS), 12);
+		if (ConfigOptions.miscSettings.addCocoaBeanDrop)
+			MinecraftForge.addGrassSeed(new ItemStack(Items.DYE, 1, 3), 4);
+		if (ConfigOptions.miscSettings.addCarrotDrop)
+			MinecraftForge.addGrassSeed(new ItemStack(Items.CARROT), 7);
+		if (ConfigOptions.miscSettings.addPotatoDrop)
+			MinecraftForge.addGrassSeed(new ItemStack(Items.POTATO), 7);
 
 		HeatSources.addHeatSource(Blocks.FIRE.getDefaultState(), 8);
 		HeatSources.addHeatSource(Blocks.LAVA.getDefaultState(), 6);
@@ -548,12 +551,14 @@ public class ModCrafting
 			ingot.setCount(1);
 
 			ProcessRecipeManager.condenserRecipes.addRecipe(ingot,
-					(float) Math.pow(ItemOreAlchDust.oreInfos.get(23).rarity * 1.05f, 1.4f) * 50f, Arrays.asList(
+					(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(23).rarity) * 50f
+					* (float) ItemOreAlchDust.oreInfos.get(23).rarity, Arrays.asList(
 							new ItemStack(ModItems.oreAlchDust, 1, 23), new FluidStack(ModFluids.crystalFluid, 1000)));
 			ItemStack ore = OreDictionary.getOres("oreUranium").get(0).copy();
 			ore.setCount(1);
 			ProcessRecipeManager.condenserRecipes.addRecipe(ore,
-					(float) Math.pow(ItemOreAlchDust.oreInfos.get(23).rarity * 1.05f, 1.8f) * 50f,
+					(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(23).rarity) * 50f
+					* (float) ItemOreAlchDust.oreInfos.get(23).rarity,
 					Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, 23), new ItemStack(Blocks.STONE)));
 			ItemStack dust = OreDictionary.getOres("dustUranium").get(0).copy();
 			dust.setCount(1);
@@ -575,12 +580,14 @@ public class ModCrafting
 			ingot.setCount(1);
 
 			ProcessRecipeManager.condenserRecipes.addRecipe(ingot,
-					(float) Math.pow(ItemOreAlchDust.oreInfos.get(24).rarity * 1.05f, 1.4f) * 50f, Arrays.asList(
+					(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(24).rarity) * 50f
+					* (float) ItemOreAlchDust.oreInfos.get(24).rarity, Arrays.asList(
 							new ItemStack(ModItems.oreAlchDust, 1, 24), new FluidStack(ModFluids.crystalFluid, 1000)));
 			ItemStack ore = OreDictionary.getOres("oreThorium").get(0).copy();
 			ore.setCount(1);
 			ProcessRecipeManager.condenserRecipes.addRecipe(ore,
-					(float) Math.pow(ItemOreAlchDust.oreInfos.get(24).rarity * 1.05f, 1.8f) * 50f,
+					(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(24).rarity) * 50f
+					* (float) ItemOreAlchDust.oreInfos.get(24).rarity,
 					Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, 24), new ItemStack(Blocks.STONE)));
 			ItemStack dust = OreDictionary.getOres("dustThorium").get(0).copy();
 			dust.setCount(1);

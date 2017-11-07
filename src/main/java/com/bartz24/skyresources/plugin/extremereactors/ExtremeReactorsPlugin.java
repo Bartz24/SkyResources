@@ -30,12 +30,14 @@ public class ExtremeReactorsPlugin implements IModPlugin
 		ingot.setCount(1);
 		
 		ProcessRecipeManager.condenserRecipes.addRecipe(ingot,
-				(float) Math.pow(ItemOreAlchDust.oreInfos.get(22).rarity * 1.05f, 1.4f) * 50f, Arrays.asList(
+				(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(22).rarity) * 50f
+				* (float) ItemOreAlchDust.oreInfos.get(22).rarity, Arrays.asList(
 						new ItemStack(ModItems.oreAlchDust, 1, 22), new FluidStack(ModFluids.crystalFluid, 1000)));
 		ItemStack ore = OreDictionary.getOres("oreYellorium").get(0).copy();
 		ore.setCount(1);
 		ProcessRecipeManager.condenserRecipes.addRecipe(ore,
-				(float) Math.pow(ItemOreAlchDust.oreInfos.get(22).rarity * 1.05f, 1.8f) * 50f,
+				(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(22).rarity) * 50f
+				* (float) ItemOreAlchDust.oreInfos.get(22).rarity,
 				Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, 22), new ItemStack(Blocks.STONE)));
 		ItemStack dust = OreDictionary.getOres("dustYellorium").get(0).copy();
 		dust.setCount(1);

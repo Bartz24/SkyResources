@@ -32,13 +32,15 @@ public class DEPlugin implements IModPlugin
 		ItemStack ingotDraconium = OreDictionary.getOres("ingotDraconium").get(0).copy();
 		ingotDraconium.setCount(1);
 		ProcessRecipeManager.condenserRecipes.addRecipe(ingotDraconium,
-				(float) Math.pow(ItemOreAlchDust.oreInfos.get(13).rarity * 1.05f, 1.4f) * 50f, Arrays.asList(
+				(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(13).rarity) * 50f
+				* (float) ItemOreAlchDust.oreInfos.get(13).rarity, Arrays.asList(
 						new ItemStack(ModItems.oreAlchDust, 1, 13), new FluidStack(ModFluids.crystalFluid, 1000)));
 		ItemStack oreDraconium = new ItemStack(
 				Block.REGISTRY.getObject(new ResourceLocation("draconicevolution", "draconium_ore")), 1, 2);
 		oreDraconium.setCount(1);
 		ProcessRecipeManager.condenserRecipes.addRecipe(oreDraconium,
-				(float) Math.pow(ItemOreAlchDust.oreInfos.get(13).rarity * 1.05f, 1.8f) * 50f,
+				(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(13).rarity) * 50f
+				* (float) ItemOreAlchDust.oreInfos.get(13).rarity,
 				Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, 13), new ItemStack(Blocks.END_STONE)));
 		ItemStack dustDraconium = OreDictionary.getOres("dustDraconium").get(0).copy();
 		dustDraconium.setCount(1);
