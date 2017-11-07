@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.bartz24.skyresources.References;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModItems;
 
@@ -93,7 +94,8 @@ public class BaseItemComponent extends Item
 			return EnumActionResult.FAIL;
 		} else
 		{
-			if (playerIn.getHeldItem(hand).getMetadata() == names.indexOf(plantMatter)
+			if ((playerIn.getHeldItem(hand).getMetadata() == names.indexOf(plantMatter)
+					&& ConfigOptions.toolSettings.plantMatterBonemealCapability)
 					|| playerIn.getHeldItem(hand).getMetadata() == names.indexOf(enrichedBonemeal))
 			{
 				if (applyBonemeal(playerIn.getHeldItem(hand), worldIn, pos, playerIn))
@@ -114,7 +116,8 @@ public class BaseItemComponent extends Item
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
-		if (stack.getMetadata() == names.indexOf(plantMatter))
+		if (stack.getMetadata() == names.indexOf(plantMatter)
+				&& ConfigOptions.toolSettings.plantMatterBonemealCapability)
 		{
 			tooltip.add(TextFormatting.GRAY + "Acts as bone meal");
 			tooltip.add(TextFormatting.GRAY + "Grows instantly");
@@ -134,7 +137,8 @@ public class BaseItemComponent extends Item
 			{
 				tries--;
 				IGrowable igrowable = (IGrowable) worldIn.getBlockState(target).getBlock();
-				if (igrowable.canGrow(worldIn, target, worldIn.getBlockState(target), false)) {
+				if (igrowable.canGrow(worldIn, target, worldIn.getBlockState(target), false))
+				{
 					igrowable.grow(worldIn, worldIn.rand, target, worldIn.getBlockState(target));
 				}
 			}

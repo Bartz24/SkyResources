@@ -3,6 +3,7 @@ package com.bartz24.skyresources.technology.tile;
 import java.util.List;
 
 import com.bartz24.skyresources.base.tile.TileItemInventory;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModItems;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -31,7 +32,7 @@ public class TileDarkMatterWarper extends TileItemInventory implements ITickable
 	}
 
 	private int burnTime;
-	private int maxBurnTime = 3600;
+	private int maxBurnTime = ConfigOptions.machineSettings.darkMatterWarperFuelTime;
 
 	@Override
 	public void update()
@@ -101,7 +102,9 @@ public class TileDarkMatterWarper extends TileItemInventory implements ITickable
 						world.spawnEntity(blaze);
 					} else if (!entity.isDead && (entity instanceof EntityPlayer || entity instanceof EntityAnimal))
 					{
-						if (entity instanceof EntityPlayer && ((EntityPlayer) entity).isCreative())
+						if (entity instanceof EntityPlayer
+								&& (!ConfigOptions.machineSettings.darkMatterWarperEffectPlayers
+										|| ((EntityPlayer) entity).isCreative()))
 							continue;
 						entity.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 360, 0));
 						entity.addPotionEffect(new PotionEffect(MobEffects.WITHER, 360, 0));
@@ -111,7 +114,7 @@ public class TileDarkMatterWarper extends TileItemInventory implements ITickable
 						entity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 360, 0));
 					}
 				}
-			} else
+			} else if (ConfigOptions.machineSettings.darkMatterWarperEffectNoFuel)
 			{
 				for (EntityLivingBase entity : list)
 				{

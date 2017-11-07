@@ -3,7 +3,6 @@ package com.bartz24.skyresources.events;
 import java.util.List;
 
 import com.bartz24.skyresources.RandomHelper;
-import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.alchemy.effects.IHealthBoostItem;
 import com.bartz24.skyresources.alchemy.item.AlchemyItemComponent;
@@ -28,7 +27,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
@@ -156,7 +154,7 @@ public class EventHandler
 	@SubscribeEvent
 	public void onKeyInput(KeyInputEvent event)
 	{
-		if (ModKeyBindings.guideKey.isPressed() && ConfigOptions.allowGuide)
+		if (ModKeyBindings.guideKey.isPressed() && ConfigOptions.guideSettings.allowGuide)
 		{
 			EntityPlayerSP player = Minecraft.getMinecraft().player;
 
@@ -165,15 +163,6 @@ public class EventHandler
 				player.openGui(SkyResources.instance, ModGuiHandler.GuideGUI, player.world, player.getPosition().getX(),
 						player.getPosition().getY(), player.getPosition().getZ());
 			}
-		}
-	}
-
-	@SubscribeEvent
-	public void onConfigurationChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event)
-	{
-		if (event.getModID().equalsIgnoreCase(References.ModID))
-		{
-			ConfigOptions.reloadConfigs();
 		}
 	}
 }

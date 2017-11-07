@@ -1,6 +1,7 @@
 package com.bartz24.skyresources.technology.tile;
 
 import com.bartz24.skyresources.base.tile.TileItemInventory;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.recipe.ProcessRecipe;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 
@@ -26,7 +27,7 @@ public class MiniFreezerTile extends TileItemInventory implements ITickable
 
 	public float getFreezerSpeed()
 	{
-		return 0.25f;
+		return ConfigOptions.machineSettings.miniFreezerSpeed;
 	}
 
 	@Override

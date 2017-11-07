@@ -1,9 +1,12 @@
 package com.bartz24.skyresources.alchemy.item;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.bartz24.skyresources.References;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModItems;
 
@@ -20,48 +23,81 @@ public class ItemOreAlchDust extends Item
 
 	public static List<OreRegisterInfo> oreInfos = new ArrayList();
 
+	public static Map<String, Integer> defaultOreRarities()
+	{
+		Map<String, Integer> map = new HashMap();
+		map.put("iron", 3);
+		map.put("gold", 5);
+		map.put("copper", 1);
+		map.put("tin", 3);
+		map.put("silver", 4);
+		map.put("zinc", 2);
+		map.put("nickel", 5);
+		map.put("platinum", 7);
+		map.put("aluminum", 4);
+		map.put("lead", 4);
+		map.put("cobalt", 6);
+		map.put("ardite", 6);
+		map.put("osmium", 3);
+		map.put("draconium", 9);
+		map.put("titanium", 6);
+		map.put("tungsten", 6);
+		map.put("chrome", 8);
+		map.put("iridium", 11);
+		map.put("boron", 5);
+		map.put("lithium", 7);
+		map.put("magnesium", 5);
+		map.put("mithril", 9);
+		map.put("yellorium", 6);
+		map.put("uranium", 6);
+		map.put("thorium", 7);
+
+		return map;
+	}
+
 	public static void init()
 	{
-		addOreInfo("iron", 0xFFCC0000, 3); //0
-		addOreInfo("gold", 0xFFCCCC00, 5); //1
-		addOreInfo("copper", 0xFFFF6600, 1); //2
-		addOreInfo("tin", 0xFFBFBFBF, 3); //3
-		addOreInfo("silver", 0xFFD1F4FF, 4); //4
-		addOreInfo("zinc", 0xFFFFF7C2, 2); //5
-		addOreInfo("nickel", 0xFFFAF191, 5); //6
-		addOreInfo("platinum", 0xFF44EAFC, 7); //7
-		addOreInfo("aluminum", 0xFFF5FFFD, 4); //8
-		addOreInfo("lead", 0xFF5B2EFF, 4); //9
-		addOreInfo("cobalt", 0xFF0045D9, 6, new ItemStack(Blocks.NETHERRACK)); //10
-		addOreInfo("ardite", 0xFFDE9000, 6, new ItemStack(Blocks.NETHERRACK)); //11
-		addOreInfo("osmium", 0xFF7F13C2, 3); //12
-		addOreInfo("draconium", 0xFF9E6DCF, 9, new ItemStack(Blocks.END_STONE), false); //13
-		addOreInfo("titanium", 0xFFBABABA, 6); //14
-		addOreInfo("tungsten", 0xFF464659, 6, new ItemStack(Blocks.END_STONE)); //15
-		addOreInfo("chrome", 0xFFD6D6D6, 8); //16
-		addOreInfo("iridium", 0xFFE3E3E3, 11); //17
-		addOreInfo("boron", 0xFF9E9E9E, 5); //18
-		addOreInfo("lithium", 0xFFF2F2F2, 7); //19
-		addOreInfo("magnesium", 0xFFFFD4D4, 5); //20
-		addOreInfo("mithril", 0xFF45BCCC, 9); //21
-		addOreInfo("yellorium", 0xFFFFFF2B, 6, new ItemStack(Blocks.STONE), false); //22
-		addOreInfo("uranium", 0xFF16BA00, 6, new ItemStack(Blocks.STONE), false); //23
-		addOreInfo("thorium", 0xFF2B4010, 7, new ItemStack(Blocks.STONE), false); //24
+		addOreInfo("iron", 0xFFCC0000); // 0
+		addOreInfo("gold", 0xFFCCCC00); // 1
+		addOreInfo("copper", 0xFFFF6600); // 2
+		addOreInfo("tin", 0xFFBFBFBF); // 3
+		addOreInfo("silver", 0xFFD1F4FF); // 4
+		addOreInfo("zinc", 0xFFFFF7C2); // 5
+		addOreInfo("nickel", 0xFFFAF191); // 6
+		addOreInfo("platinum", 0xFF44EAFC); // 7
+		addOreInfo("aluminum", 0xFFF5FFFD); // 8
+		addOreInfo("lead", 0xFF5B2EFF); // 9
+		addOreInfo("cobalt", 0xFF0045D9, new ItemStack(Blocks.NETHERRACK)); // 10
+		addOreInfo("ardite", 0xFFDE9000, new ItemStack(Blocks.NETHERRACK)); // 11
+		addOreInfo("osmium", 0xFF7F13C2); // 12
+		addOreInfo("draconium", 0xFF9E6DCF, new ItemStack(Blocks.END_STONE), false); // 13
+		addOreInfo("titanium", 0xFFBABABA); // 14
+		addOreInfo("tungsten", 0xFF464659, new ItemStack(Blocks.END_STONE)); // 15
+		addOreInfo("chrome", 0xFFD6D6D6); // 16
+		addOreInfo("iridium", 0xFFE3E3E3); // 17
+		addOreInfo("boron", 0xFF9E9E9E); // 18
+		addOreInfo("lithium", 0xFFF2F2F2); // 19
+		addOreInfo("magnesium", 0xFFFFD4D4); // 20
+		addOreInfo("mithril", 0xFF45BCCC); // 21
+		addOreInfo("yellorium", 0xFFFFFF2B, new ItemStack(Blocks.STONE), false); // 22
+		addOreInfo("uranium", 0xFF16BA00, new ItemStack(Blocks.STONE), false); // 23
+		addOreInfo("thorium", 0xFF2B4010, new ItemStack(Blocks.STONE), false); // 24
 	}
 
-	public static void addOreInfo(String name, int color, int rarity)
+	public static void addOreInfo(String name, int color)
 	{
-		addOreInfo(name, color, rarity, new ItemStack(Blocks.STONE));
+		addOreInfo(name, color, new ItemStack(Blocks.STONE));
 	}
 
-	public static void addOreInfo(String name, int color, int rarity, ItemStack block)
+	public static void addOreInfo(String name, int color, ItemStack block)
 	{
-		addOreInfo(name, color, rarity, block, true);
+		addOreInfo(name, color, block, true);
 	}
 
-	public static void addOreInfo(String name, int color, int rarity, ItemStack block, boolean autoAdd)
+	public static void addOreInfo(String name, int color, ItemStack block, boolean autoAdd)
 	{
-		oreInfos.add(new OreRegisterInfo(name, color, rarity, oreInfos.size(), block, autoAdd));
+		oreInfos.add(new OreRegisterInfo(name, color, ConfigOptions.alchemicalOreRarities.get(name), oreInfos.size(),
+				block, autoAdd));
 	}
 
 	public static OreRegisterInfo getFluidInfo(int index)

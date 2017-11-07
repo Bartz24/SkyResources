@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.bartz24.skyresources.References;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.recipe.ProcessRecipe;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
@@ -42,7 +43,7 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
 public class ItemWaterExtractor extends Item implements IFluidHandler
 {
-	public static final int maxAmount = 4000;
+	public static final int maxAmount = ConfigOptions.toolSettings.waterExtractorCapacity;
 
 	FluidTank tank;
 

@@ -28,7 +28,6 @@ public class CommonProxy
 
 	public void preInit(FMLPreInitializationEvent e)
 	{
-		ConfigOptions.loadConfigThenSave(e);
 		ModFluids.init();
 		ModBlocks.init();
 		ModItems.init();
@@ -48,6 +47,7 @@ public class CommonProxy
 	public void init(FMLInitializationEvent e)
 	{
 		MinecraftForge.EVENT_BUS.register(events);
+		MinecraftForge.EVENT_BUS.register(new ConfigOptions());
 		MinecraftForge.EVENT_BUS.register(new ModBucketHandler());
 		NetworkRegistry.INSTANCE.registerGuiHandler(SkyResources.instance, new ModGuiHandler());
 		ModEntities.init();

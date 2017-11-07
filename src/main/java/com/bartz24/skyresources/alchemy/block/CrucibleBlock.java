@@ -136,7 +136,7 @@ public class CrucibleBlock extends BlockContainer
 	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
 	{
 		CrucibleTile tile = (CrucibleTile) world.getTileEntity(pos);
-		int val = (int) ((float) tile.getItemAmount() * 15f / ConfigOptions.crucibleCapacity);
+		int val = (int) ((float) tile.getItemAmount() * 15f / ConfigOptions.machineSettings.crucibleCapacity);
 		if (tile.getItemAmount() > 0)
 			val = Math.max(val, 1);
 

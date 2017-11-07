@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import com.bartz24.skyresources.ItemHelper;
 import com.bartz24.skyresources.References;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.recipe.ProcessRecipe;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
@@ -26,7 +27,7 @@ public class ItemInfusionStone extends Item
 {
 	public ItemInfusionStone(int durability, String unlocalizedName, String registryName)
 	{
-		this.setMaxDamage(durability);
+		this.setMaxDamage((int) (durability * ConfigOptions.toolSettings.infusionStoneBaseDurability));
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
 		setRegistryName(registryName);
 		this.setMaxStackSize(1);
@@ -101,14 +102,16 @@ public class ItemInfusionStone extends Item
 	public static boolean applyBonemeal(ItemStack stack, World worldIn, BlockPos target, EntityPlayer player)
 	{
 
-		if (worldIn.getBlockState(target).getBlock() instanceof IGrowable && !worldIn.isRemote)
+		if (ConfigOptions.toolSettings.infusionStoneBonemealCapability
+				&& worldIn.getBlockState(target).getBlock() instanceof IGrowable && !worldIn.isRemote)
 		{
 			int tries = 100;
 			while (worldIn.getBlockState(target).getBlock() instanceof IGrowable && tries > 0)
 			{
 				tries--;
 				IGrowable igrowable = (IGrowable) worldIn.getBlockState(target).getBlock();
-				if (igrowable.canGrow(worldIn, target, worldIn.getBlockState(target), false)) {
+				if (igrowable.canGrow(worldIn, target, worldIn.getBlockState(target), false))
+				{
 					igrowable.grow(worldIn, worldIn.rand, target, worldIn.getBlockState(target));
 				}
 			}

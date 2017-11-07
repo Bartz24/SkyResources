@@ -2,6 +2,7 @@ package com.bartz24.skyresources.base;
 
 import java.util.Locale;
 
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModItems;
 
 import net.minecraft.init.Items;
@@ -50,17 +51,17 @@ public enum MachineVariants implements IStringSerializable
 
 	public int getMaxHeat()
 	{
-		return maxHeat;
+		return ConfigOptions.modularMachineSettings.machineMaxHU.get(getName());
 	}
 
 	public float getRawEfficiency()
 	{
-		return efficiency;
+		return ConfigOptions.modularMachineSettings.machineEfficiency.get(getName());
 	}
 
 	public float getRawSpeed()
 	{
-		return speed;
+		return ConfigOptions.modularMachineSettings.machineSpeed.get(getName());
 	}
 
 	public Object getFuelType()
@@ -71,6 +72,21 @@ public enum MachineVariants implements IStringSerializable
 	public int getRawFuelRate()
 	{
 		return fuelRate;
+	}
+
+	public int getDefaultMaxHeat()
+	{
+		return maxHeat;
+	}
+
+	public float getDefaultRawEfficiency()
+	{
+		return efficiency;
+	}
+
+	public float getDefaultRawSpeed()
+	{
+		return speed;
 	}
 
 	public void setFuel(Object fuelType, int fuelRate)

@@ -32,6 +32,9 @@ import net.minecraftforge.fml.client.GuiScrollingList;
 
 public class GuideGUI extends GuiScreen
 {
+	public static String lastGuidePage;
+	public static String lastGuideCat;
+	public static String lastGuideSearch;
 
 	GuiButton closeButton, cycleCatLeftButton, cycleCatRightButton, backButton;
 
@@ -131,11 +134,11 @@ public class GuideGUI extends GuiScreen
 	{
 		super.onGuiClosed();
 
-		if (ConfigOptions.rememberGuide)
+		if (ConfigOptions.guideSettings.rememberGuide)
 		{
-			ConfigOptions.lastGuideCat = currentCategory;
-			ConfigOptions.lastGuidePage = currentPage.pageId;
-			ConfigOptions.lastGuideSearch = this.searchBox.getText();
+			lastGuideCat = currentCategory;
+			lastGuidePage = currentPage.pageId;
+			lastGuideSearch = this.searchBox.getText();
 		}
 	}
 
@@ -147,10 +150,10 @@ public class GuideGUI extends GuiScreen
 		new GuideImageButton("", null, null);
 		if (currentPage == null)
 		{
-			if (ConfigOptions.rememberGuide)
+			if (ConfigOptions.guideSettings.rememberGuide)
 			{
-				currentCategory = ConfigOptions.lastGuideCat;
-				GuidePage lastPage = SkyResourcesGuide.getPage(ConfigOptions.lastGuidePage);
+				currentCategory = lastGuideCat;
+				GuidePage lastPage = SkyResourcesGuide.getPage(lastGuidePage);
 				currentPage = lastPage == null ? SkyResourcesGuide.getPage("stage1") : lastPage;
 			} else
 				currentPage = SkyResourcesGuide.getPage("stage1");
@@ -171,9 +174,9 @@ public class GuideGUI extends GuiScreen
 			searchBox.setMaxStringLength(23);
 			this.searchBox.setFocused(true);
 
-			if (ConfigOptions.rememberGuide && !Strings.isNullOrEmpty(ConfigOptions.lastGuideSearch))
+			if (ConfigOptions.guideSettings.rememberGuide && !Strings.isNullOrEmpty(lastGuideSearch))
 			{
-				this.searchBox.setText(ConfigOptions.lastGuideSearch);
+				this.searchBox.setText(lastGuideSearch);
 			}
 		}
 

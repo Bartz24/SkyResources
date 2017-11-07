@@ -1,120 +1,298 @@
 package com.bartz24.skyresources.config;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-import net.minecraftforge.common.config.ConfigElement;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
-import net.minecraftforge.fml.client.config.IConfigElement;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import com.bartz24.skyresources.References;
+import com.bartz24.skyresources.alchemy.item.ItemOreAlchDust;
+import com.bartz24.skyresources.base.MachineVariants;
 
+import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+@Config(modid = References.ModID)
 public class ConfigOptions
 {
-	public static Configuration config;
+	@Config.Comment("Config Settings for the machines and casings")
+	public static ModularMachineSettings modularMachineSettings = new ModularMachineSettings();
 
-	public static int healthGemMaxHealth;
-	public static float healthGemPercentage;
-
-	public static int condenserProcessTimeBase;
-
-	public static int crucibleCapacity;
-
-	public static float knifeBaseDamage;
-	public static float knifeBaseDurability;
-
-	public static float rockGrinderBaseDamage;
-	public static float rockGrinderBaseDurability;
-
-	public static float combustionHeatMultiplier;
-
-	public static int fluidDropperCapacity;
-
-	public static boolean endWussMode;
-	public static boolean recipeDifficulty;
-
-	public static boolean allowGuide;
-	public static boolean rememberGuide;
-	public static boolean allowAllGemTypes;
-	public static boolean displayFirstChatInfo;
-
-	public static String lastGuidePage;
-	public static String lastGuideCat;
-	public static String lastGuideSearch;
-
-	public static List<IConfigElement> getConfigElements()
+	public static class ModularMachineSettings
 	{
-		List<IConfigElement> list = new ArrayList<IConfigElement>();
+		@Config.Comment("Set Machine Speeds")
+		public Map<String, Float> machineSpeed = defaultMachineSpeeds();
+		@Config.Comment("Set Machine Efficiencies")
+		public Map<String, Float> machineEfficiency = defaultMachineEfficiencies();
+		@Config.Comment("Set Machine Max HU")
+		public Map<String, Integer> machineMaxHU = defaultMachineMaxHUs();
 
-		list.addAll(new ConfigElement(config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements());
-		list.addAll(new ConfigElement(config.getCategory("healthRing")).getChildElements());
-		list.addAll(new ConfigElement(config.getCategory("condenser")).getChildElements());
-		list.addAll(new ConfigElement(config.getCategory("crucible")).getChildElements());
-		list.addAll(new ConfigElement(config.getCategory("knife")).getChildElements());
-		list.addAll(new ConfigElement(config.getCategory("rockGrinder")).getChildElements());
-		list.addAll(new ConfigElement(config.getCategory("combustion")).getChildElements());
-		list.addAll(new ConfigElement(config.getCategory("fluidDropper")).getChildElements());
-		list.addAll(new ConfigElement(config.getCategory("concentrator")).getChildElements());
-		list.addAll(new ConfigElement(config.getCategory("guide")).getChildElements());
+		private Map<String, Float> defaultMachineSpeeds()
+		{
+			Map<String, Float> map = new HashMap();
+			for (MachineVariants v : MachineVariants.values())
+			{
+				map.put(v.getName(), v.getDefaultRawSpeed());
+			}
+			return map;
+		}
 
-		return list;
+		private Map<String, Float> defaultMachineEfficiencies()
+		{
+			Map<String, Float> map = new HashMap();
+			for (MachineVariants v : MachineVariants.values())
+			{
+				map.put(v.getName(), v.getDefaultRawEfficiency());
+			}
+			return map;
+		}
+
+		private Map<String, Integer> defaultMachineMaxHUs()
+		{
+			Map<String, Integer> map = new HashMap();
+			for (MachineVariants v : MachineVariants.values())
+			{
+				map.put(v.getName(), v.getDefaultMaxHeat());
+			}
+			return map;
+		}
 	}
 
-	public static void setConfigSettings()
+	@Config.Comment("Config Settings for Tools and Items")
+	public static ToolSettings toolSettings = new ToolSettings();
+
+	public static class ToolSettings
 	{
-		Property worldTypeProperty = config.get(Configuration.CATEGORY_GENERAL, "WorldSpawnType", 0,
-				"0=random, 1=sand, 2=snow, 3=wood, 4=grass (Not in random choices)");
+		@Config.Comment("Multiplier of knife's material damage")
+		public float knifeBaseDamage = 1.5f;
+		@Config.Comment("Multiplier of knife's material durability")
+		public float knifeBaseDurability = 0.7f;
 
-		endWussMode = config.get(Configuration.CATEGORY_GENERAL, "End Portal Wuss Mode", false,
-				"Makes the end portal less dangerous").getBoolean(false);
-		recipeDifficulty = config.get(Configuration.CATEGORY_GENERAL, "Difficult Recipes", false,
-				"Harder Recipes using higher tier materials from other mods").getBoolean(false);
+		@Config.Comment("Multiplier of rock grinder's material damage")
+		public float rockGrinderBaseDamage = 2.5f;
+		@Config.Comment("Multiplier of rock grinder's material durability")
+		public float rockGrinderBaseDurability = 0.8f;
 
-		healthGemMaxHealth = config
-				.get("health", "Health Gem Max Health Infusion", 100, "Max health Health Gem can store").getInt(100);
-		healthGemPercentage = (float) config.get("health", "Health Gem Boost Percentage", 0.02,
-				"Percentage (min 0) of health stored to boost player health").getDouble(0.02);
-		condenserProcessTimeBase = config
-				.get("condenser", "Condenser Base Process Time", 250, "Base time for condensers to process")
-				.getInt(250);
-		crucibleCapacity = config.get("crucible", "Crucible Capacity", 4000).getInt(4000);
-		knifeBaseDamage = (float) config.get("knife", "Knife Base Damage", 1.5).getDouble(1.5);
-		knifeBaseDurability = (float) config.get("knife", "Knife Base Durability", 0.8).getDouble(0.8);
-		rockGrinderBaseDamage = (float) config.get("rockGrinder", "Rock Grinder Base Damage", 2.5).getDouble(2.5);
-		rockGrinderBaseDurability = (float) config.get("rockGrinder", "Rock Grinder Base Durability", 0.8)
-				.getDouble(0.8);
-		combustionHeatMultiplier = (float) config
-				.get("combustion", "Combustion Fuel Heat Multiplier", 0.5, "Amount of heat from fuel gained")
-				.getDouble(0.5);
-		fluidDropperCapacity = config.get("fluidDropper", "Fluid Dropper Capacity", 1000).getInt(1000);
+		@Config.Comment("Max amount in Water Extractor")
+		public int waterExtractorCapacity = 4000;
 
-		allowAllGemTypes = config.get(Configuration.CATEGORY_GENERAL, "All Dirty Gem Types", false,
-				"Allows all dirty gem types to be obtainable").getBoolean(false);
+		@Config.Comment("Max Health a Health Gem can store")
+		public int healthGemMaxHealth = 100;
+		@Config.Comment("Percent of health in Health Gem to add to player's health")
+		public float healthGemPercentage = 0.02f;
 
-		displayFirstChatInfo = config
-				.get(Configuration.CATEGORY_GENERAL, "Login Mod Info", true, "Display mod info in chat on login")
-				.getBoolean(true);
-
-		rememberGuide = config.get("guide", "Remember Current Guide Page", true).getBoolean(true);
-		allowGuide = config.get("guide", "Allow guide to be opened", true).getBoolean(true);
-
-		if (config.hasChanged())
-			config.save();
+		@Config.Comment("Multiplier of infusion stone's material durability")
+		public float infusionStoneBaseDurability = 1f;
+		@Config.Comment("Allow infusion stones to bonemeal")
+		public boolean infusionStoneBonemealCapability = true;
+		@Config.Comment("Allow plant matter to bonemeal")
+		public boolean plantMatterBonemealCapability = true;
 	}
 
-	public static void loadConfigThenSave(FMLPreInitializationEvent e)
-	{
-		config = new Configuration(e.getSuggestedConfigurationFile());
+	@Config.Comment("Config Settings for Machines")
+	public static MachineSettings machineSettings = new MachineSettings();
 
-		config.load();
-		setConfigSettings();
-		config.save();
+	public static class MachineSettings
+	{
+		@Config.Comment("Max amount in Fluid Dropper")
+		public int fluidDropperCapacity = 1000;
+		@Config.Comment("Dirt Furnace Fuel Rate")
+		public int dirtFurnaceFuelRate = 3;
+		@Config.Comment("Dirt Furnace Speed")
+		public int dirtFurnaceSpeed = 4;
+		@Config.Comment("Mini Freezer Speed")
+		public float miniFreezerSpeed = 0.25f;
+		@Config.Comment("Iron Freezer Speed")
+		public float ironFreezerSpeed = 1f;
+		@Config.Comment("Light Freezer Speed")
+		public float lightFreezerSpeed = 10f;
+		@Config.Comment("Aqueous Concentrator Speed")
+		public int aqueousConcentratorSpeed = 5;
+		@Config.Comment("Aqueous Concentrator RF Rate")
+		public int aqueousConcentratorPowerUsage = 80;
+		@Config.Comment("Aqueous Deconcentrator Speed")
+		public int aqueousDeconcentratorSpeed = 10;
+		@Config.Comment("Aqueous Deconcentrator RF Rate")
+		public int aqueousDeconcentratorPowerUsage = 80;
+		@Config.Comment("Dark Matter Warper Fuel Time")
+		public int darkMatterWarperFuelTime = 3600;
+		@Config.Comment("Dark Matter Warper Effect Players")
+		public boolean darkMatterWarperEffectPlayers = true;
+		@Config.Comment("Dark Matter Warper Effect With no Fuel")
+		public boolean darkMatterWarperEffectNoFuel = true;
+		@Config.Comment("End Portal Difficulty Level Normal(Armed Silverfish), Easy(Unarmed Silverfish), Wuss(No Silverfish)")
+		public EndPortalDifficultyLevel endPortalMode = EndPortalDifficultyLevel.NORMAL;
+		@Config.Comment("Rock Cleaner Speed")
+		public int rockCleanerSpeed = 5;
+		@Config.Comment("Rock Cleaner RF Rate")
+		public int rockCleanerPowerUsage = 80;
+		@Config.Comment("Rock Crusher Speed")
+		public int rockCrusherSpeed = 2;
+		@Config.Comment("Rock Crusher RF Rate")
+		public int rockCrusherPowerUsage = 100;
+		@Config.Comment("Base Crucible Speed")
+		public int crucibleSpeed = 8;
+		@Config.Comment("Max amount in Crucible")
+		public int crucibleCapacity = 4000;
+		@Config.Comment("Base Fusion Speed")
+		public int fusionSpeed = 8;
+
+		public enum EndPortalDifficultyLevel
+		{
+			NORMAL, EASY, WUSS
+		}
 	}
 
-	public static void reloadConfigs()
+	@Config.Comment("Config Settings for the Guide")
+	public static GuideSettings guideSettings = new GuideSettings();
+
+	public static class GuideSettings
 	{
-		setConfigSettings();
-		if (config.hasChanged())
-			config.save();
+		@Config.Comment("Display info about Guide in a notification")
+		public boolean displayGuideMessage;
+		@Config.Comment("Enable the in-game Guide")
+		public boolean allowGuide = true;
+		@Config.Comment("Remember page open in Guide")
+		public boolean rememberGuide = true;
+	}
+
+	@Config.Comment("Misc Config Settings")
+	public static MiscSettings miscSettings = new MiscSettings();
+
+	public static class MiscSettings
+	{
+		@Config.Comment("Heavy Snowball Damage Dealt")
+		public int heavySnowballDamage = 8;
+		@Config.Comment("Explosive Heavy Snowball Damage Dealt")
+		public int explosiveHeavySnowballDamage = 12;
+		@Config.Comment("Makes certain recipes require more advanced components")
+		public boolean advancedRecipes = false;
+		@Config.Comment("Forces all gem types to be enabled")
+		public boolean allowAllGemTypes = false;
+		@Config.Comment("Add beetroot seeds to grass drops")
+		public boolean addBeetrootSeedDrop = true;
+		@Config.Comment("Add melon seeds to grass drops")
+		public boolean addMelonSeedDrop = true;
+		@Config.Comment("Add pumpkin seeds to grass drops")
+		public boolean addPumpkinSeedDrop = true;
+		@Config.Comment("Add cocoa beans to grass drops")
+		public boolean addCocoaBeanDrop = true;
+		@Config.Comment("Add carrots to grass drops")
+		public boolean addCarrotDrop = true;
+		@Config.Comment("Add potatoes to grass drops")
+		public boolean addPotatoDrop = true;
+	}
+
+	@Config.Comment("Config Settings for plugins")
+	public static PluginSettings pluginSettings = new PluginSettings();
+
+	public static class PluginSettings
+	{
+		@Config.Comment("Config Settings for Actually Additions")
+		public ActuallyAdditionsSettings actuallyAdditionsSettings = new ActuallyAdditionsSettings();
+
+		public class ActuallyAdditionsSettings
+		{
+			@Config.Comment("Add canola to grass drops")
+			public boolean addCanolaDrop = true;
+			@Config.Comment("Add coffee to grass drops")
+			public boolean addCoffeeDrop = true;
+			@Config.Comment("Add flax to grass drops")
+			public boolean addFlaxDrop = true;
+			@Config.Comment("Add rice to grass drops")
+			public boolean addRiceDrop = true;
+		}
+		
+		@Config.Comment("Config Settings for Applied Energistics")
+		public AppliedEnergisticsSettings appliedEnergisticsSettings = new AppliedEnergisticsSettings();
+
+		public class AppliedEnergisticsSettings
+		{
+			@Config.Comment("Add inscriber press combustion recipes")
+			public boolean addPressRecipes = true;
+		}
+		
+		@Config.Comment("Config Settings for Armor Plus")
+		public ArmorPlusSettings armorPlusSettings = new ArmorPlusSettings();
+
+		public class ArmorPlusSettings
+		{
+			@Config.Comment("Add lava crystal combustion recipe")
+			public boolean addLavaCrystalRecipe = true;
+		}
+		
+		@Config.Comment("Config Settings for Embers")
+		public EmbersSettings embersSettings = new EmbersSettings();
+
+		public class EmbersSettings
+		{
+			@Config.Comment("Add ember shard combustion recipe")
+			public boolean addEmberShardRecipe = true;
+		}
+		
+		@Config.Comment("Config Settings for Forestry")
+		public ForestrySettings forestrySettings = new ForestrySettings();
+
+		public class ForestrySettings
+		{
+			@Config.Comment("Bee Attractor Time per cycle")
+			public int beeAttractorTime = 200;
+			@Config.Comment("Bee Attractor RF Rate")
+			public int beeAttractorPowerUsage = 100;
+			@Config.Comment("Bee Attractor Seed Oil Usage Rate")
+			public int beeAttractorSeedOilUsage = 20;
+			@Config.Comment("Bee Attractor Seed Oil Capacity")
+			public int beeAttractorSeedOilCapacity = 4000;
+		}
+		
+		@Config.Comment("Config Settings for Integrated Dynamics")
+		public IntegratedDynamicsSettings integratedDynamicsSettings = new IntegratedDynamicsSettings();
+
+		public class IntegratedDynamicsSettings
+		{
+			@Config.Comment("Add menril berry/sapling life infusion recipes")
+			public boolean addMenrilRecipes = true;
+		}
+		
+		@Config.Comment("Config Settings for Tinkers Construct")
+		public TinkersConstructSettings tinkersConstructSettings = new TinkersConstructSettings();
+
+		public class TinkersConstructSettings
+		{
+			@Config.Comment("Add slime ball/sapling life infusion and combustion recipes")
+			public boolean addSlimeRecipes = true;
+		}
+		
+		@Config.Comment("Config Settings for Tech Reborn")
+		public TechRebornSettings techRebornSettings = new TechRebornSettings();
+
+		public class TechRebornSettings
+		{
+			@Config.Comment("Add rubber life infusion and combustion recipes")
+			public boolean addRubberRecipes = true;
+		}
+		
+		@Config.Comment("Config Settings for Thermal Expansion")
+		public ThermalExpansionSettings thermalExpansionSettings = new ThermalExpansionSettings();
+
+		public class ThermalExpansionSettings
+		{
+			@Config.Comment("Add crystal fluid and lava recipes to magma crucible")
+			public boolean addSpecialMagmaCrucibleRecipes = true;
+			@Config.Comment("Add pyrotheum as heat source")
+			public boolean addPyrotheumHeatSource = true;
+		}
+	}
+
+	@Config.Comment("Config Settings for the Alchemical Ore Rarity values. Higher numbers are rarer.")
+	public static Map<String, Integer> alchemicalOreRarities = ItemOreAlchDust.defaultOreRarities();
+
+	@SubscribeEvent
+	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event)
+	{
+		if (event.getModID().equals(References.ModID))
+		{
+			ConfigManager.sync(References.ModID, Config.Type.INSTANCE);
+		}
 	}
 }

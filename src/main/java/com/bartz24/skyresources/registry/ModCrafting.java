@@ -145,9 +145,9 @@ public class ModCrafting
 				new Object[] { "XYX", "X X", "X X", 'X', "ingotIron", 'Y', new ItemStack(Blocks.DROPPER) });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.baseComponent, 1, 6),
 				new Object[] { "XYX", "XZX", "XZX", 'X', new ItemStack(Items.QUARTZ), 'Y',
-						ConfigOptions.recipeDifficulty ? new ItemStack(ModItems.alchemyComponent, 1, 10)
+						ConfigOptions.miscSettings.advancedRecipes ? new ItemStack(ModItems.alchemyComponent, 1, 10)
 								: new ItemStack(Items.DYE, 1, 4),
-						'Z', ConfigOptions.recipeDifficulty ? new ItemStack(ModItems.alchemyComponent, 1, 7)
+						'Z', ConfigOptions.miscSettings.advancedRecipes ? new ItemStack(ModItems.alchemyComponent, 1, 7)
 								: new ItemStack(Items.GLOWSTONE_DUST) });
 		CraftingRegistry
 				.addShapedOreRecipe(new ItemStack(ModBlocks.fusionTable),
@@ -155,15 +155,15 @@ public class ModCrafting
 								new ItemStack(ModItems.alchComponent, 1, 1), 'Z',
 								new ItemStack(ModItems.alchemyComponent, 1, 2) });
 
-		Object advComponent = getModMaterial("Steel", ConfigOptions.recipeDifficulty) != null
-				? getModMaterial("Steel", ConfigOptions.recipeDifficulty)
-				: getModMaterial("ElectricalSteel", ConfigOptions.recipeDifficulty) != null
-						? getModMaterial("ElectricalSteel", ConfigOptions.recipeDifficulty)
-						: getModMaterial("Iron", ConfigOptions.recipeDifficulty);
+		Object advComponent = getModMaterial("Steel", ConfigOptions.miscSettings.advancedRecipes) != null
+				? getModMaterial("Steel", ConfigOptions.miscSettings.advancedRecipes)
+				: getModMaterial("ElectricalSteel", ConfigOptions.miscSettings.advancedRecipes) != null
+						? getModMaterial("ElectricalSteel", ConfigOptions.miscSettings.advancedRecipes)
+						: getModMaterial("Iron", ConfigOptions.miscSettings.advancedRecipes);
 		String coalDust = OreDictionary.getOres("dustCoal").size() > 0 ? "dustCoal" : "dustRedstone";
-		String circuit = (ConfigOptions.recipeDifficulty ? OreDictionary.getOres("circuitAdvanced")
+		String circuit = (ConfigOptions.miscSettings.advancedRecipes ? OreDictionary.getOres("circuitAdvanced")
 				: OreDictionary.getOres("circuitBasic")).size() > 0
-						? (ConfigOptions.recipeDifficulty ? "circuitAdvanced" : "circuitBasic") : "blockRedstone";
+						? (ConfigOptions.miscSettings.advancedRecipes ? "circuitAdvanced" : "circuitBasic") : "blockRedstone";
 		{
 			CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.baseComponent, 1, 1),
 					new Object[] { "XZX", "XYX", "XZX", 'X', advComponent, 'Y', circuit, 'Z', coalDust });
@@ -298,28 +298,28 @@ public class ModCrafting
 		String hardestIngot2 = "ingotIron";
 		if (OreDictionary.getOres("ingotSteel").size() > 0)
 			hardestIngot = "ingotSteel";
-		if (ConfigOptions.recipeDifficulty && OreDictionary.getOres("ingotTungsten").size() > 0)
+		if (ConfigOptions.miscSettings.advancedRecipes && OreDictionary.getOres("ingotTungsten").size() > 0)
 		{
 			hardestIngot2 = hardestIngot.substring(0);
 			hardestIngot = "ingotTungsten";
 		}
-		if (ConfigOptions.recipeDifficulty && OreDictionary.getOres("ingotPlatinum").size() > 0)
+		if (ConfigOptions.miscSettings.advancedRecipes && OreDictionary.getOres("ingotPlatinum").size() > 0)
 		{
 			hardestIngot2 = hardestIngot.substring(0);
 			hardestIngot = "ingotPlatinum";
 		}
-		if (ConfigOptions.recipeDifficulty && OreDictionary.getOres("ingotEnderium").size() > 0)
+		if (ConfigOptions.miscSettings.advancedRecipes && OreDictionary.getOres("ingotEnderium").size() > 0)
 		{
 			hardestIngot2 = hardestIngot.substring(0);
 			hardestIngot = "ingotEnderium";
 		}
-		if (ConfigOptions.recipeDifficulty && OreDictionary.getOres("ingotTungstensteel").size() > 0)
+		if (ConfigOptions.miscSettings.advancedRecipes && OreDictionary.getOres("ingotTungstensteel").size() > 0)
 		{
 			hardestIngot2 = hardestIngot.substring(0);
 			hardestIngot = "ingotTungstensteel";
 		}
 
-		if (ConfigOptions.recipeDifficulty)
+		if (ConfigOptions.miscSettings.advancedRecipes)
 			ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModItems.baseComponent, 1, 3), 2900,
 					new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.SOUL_SAND, 5),
 							new ItemStack(ModBlocks.compressedCoalBlock, 3),
@@ -359,7 +359,7 @@ public class ModCrafting
 			String oreName = Strings.isNullOrEmpty(ModItems.gemList.get(i).oreOverride)
 					? ("gem" + RandomHelper.capatilizeString(ModItems.gemList.get(i).name))
 					: ModItems.gemList.get(i).oreOverride;
-			if (ConfigOptions.allowAllGemTypes || OreDictionary.getOres(oreName).size() > 0)
+			if (ConfigOptions.miscSettings.allowAllGemTypes || OreDictionary.getOres(oreName).size() > 0)
 				ProcessRecipeManager.rockGrinderRecipes.addRecipe(new ItemStack(ModItems.dirtyGem, 1, i),
 						ModItems.gemList.get(i).rarity, ModItems.gemList.get(i).parentBlock);
 		}
@@ -515,11 +515,17 @@ public class ModCrafting
 			}
 		}
 
+		if(ConfigOptions.miscSettings.addBeetrootSeedDrop)
 		MinecraftForge.addGrassSeed(new ItemStack(Items.BEETROOT_SEEDS), 10);
+		if(ConfigOptions.miscSettings.addMelonSeedDrop)
 		MinecraftForge.addGrassSeed(new ItemStack(Items.MELON_SEEDS), 12);
+		if(ConfigOptions.miscSettings.addPumpkinSeedDrop)
 		MinecraftForge.addGrassSeed(new ItemStack(Items.PUMPKIN_SEEDS), 12);
+		if(ConfigOptions.miscSettings.addCocoaBeanDrop)
 		MinecraftForge.addGrassSeed(new ItemStack(Items.DYE, 1, 3), 4);
+		if(ConfigOptions.miscSettings.addCarrotDrop)
 		MinecraftForge.addGrassSeed(new ItemStack(Items.CARROT), 7);
+		if(ConfigOptions.miscSettings.addPotatoDrop)
 		MinecraftForge.addGrassSeed(new ItemStack(Items.POTATO), 7);
 
 		HeatSources.addHeatSource(Blocks.FIRE.getDefaultState(), 8);
@@ -603,8 +609,8 @@ public class ModCrafting
 
 		for (int i = 0; i < MachineVariants.values().length; i++)
 		{
-			Object material = getMaterial(i, ConfigOptions.recipeDifficulty);
-			Object altMaterial = getAltMaterial(i, ConfigOptions.recipeDifficulty);
+			Object material = getMaterial(i, ConfigOptions.miscSettings.advancedRecipes);
+			Object altMaterial = getAltMaterial(i, ConfigOptions.miscSettings.advancedRecipes);
 			Object materialDust = getMaterialDust(i, false);
 			Object materialAlch = getMaterialDust(i, true);
 			Object materialGear = getGear(i);

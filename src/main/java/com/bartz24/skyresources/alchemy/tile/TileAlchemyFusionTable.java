@@ -6,6 +6,7 @@ import java.util.List;
 import com.bartz24.skyresources.alchemy.FusionCatalysts;
 import com.bartz24.skyresources.base.gui.ItemHandlerSpecial;
 import com.bartz24.skyresources.base.tile.TileItemInventory;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.recipe.ProcessRecipe;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 
@@ -109,7 +110,7 @@ public class TileAlchemyFusionTable extends TileItemInventory implements ITickab
 				this.getInventory().getStackInSlot(0).shrink(1);
 			}
 		}
-		if (curProgress >= 100)
+		if (curProgress >= (int) (800f / (float) ConfigOptions.machineSettings.fusionSpeed))
 		{
 			curProgress = 0;
 			outputStack = ItemStack.EMPTY;

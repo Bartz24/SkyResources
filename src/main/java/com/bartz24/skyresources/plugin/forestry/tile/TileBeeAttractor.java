@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.base.tile.TileGenericPower;
+import com.bartz24.skyresources.config.ConfigOptions;
 
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeType;
@@ -31,14 +32,14 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 public class TileBeeAttractor extends TileGenericPower implements ITickable, IFluidHandler
 {
 	private FluidTank tank;
-	private int powerUsage = 100;
-	private int fluidUsage = 20;
-	int ticks = 200;
+	private int powerUsage = ConfigOptions.pluginSettings.forestrySettings.beeAttractorPowerUsage;
+	private int fluidUsage = ConfigOptions.pluginSettings.forestrySettings.beeAttractorSeedOilUsage;
+	int ticks = ConfigOptions.pluginSettings.forestrySettings.beeAttractorTime;
 
 	public TileBeeAttractor()
 	{
 		super("beeAttractor", 100000, 2000, 0, 6, new Integer[] { 0, 1, 2, 3, 4, 5 }, null);
-		tank = new FluidTank(4000);
+		tank = new FluidTank(ConfigOptions.pluginSettings.forestrySettings.beeAttractorSeedOilCapacity);
 	}
 
 	@Override
