@@ -309,7 +309,7 @@ guide.skyresources.stage2.stage2.title=Stage 2-Resource Production
 guide.skyresources.stage2.stage2.text=This stage is the most important stage as it provides all the methods for getting nearly all of the basic resources! \n \n It is very important to learn how to use everything shown in this section of the guide! \n \n This stage will take you up until you obtain <recipe,,minecraft:glowstone_dust:0> for <link,Stage_3,minecraft:glowstone:0,stage3> !
 
 guide.skyresources.stage2.seeds.title=Seeds
-guide.skyresources.stage2.seeds.text=Vanilla seeds including <recipe,,minecraft:wheat_seeds:0> , <recipe,,minecraft:melon_seeds:0> , <recipe,,minecraft:pumpkin_seeds:0> , <recipe,,minecraft:beetroot_seeds:0> , <recipe,,minecraft:carrot:0> , <recipe,,minecraft:potato:0> and <recipe,,minecraft:dye:3> are dropped from breaking <recipe,,minecraft:tallgrass:1> .
+guide.skyresources.stage2.seeds.text=(By default) Vanilla seeds including <recipe,,minecraft:wheat_seeds:0> , <recipe,,minecraft:melon_seeds:0> , <recipe,,minecraft:pumpkin_seeds:0> , <recipe,,minecraft:beetroot_seeds:0> , <recipe,,minecraft:carrot:0> , <recipe,,minecraft:potato:0> and <recipe,,minecraft:dye:3> are dropped from breaking <recipe,,minecraft:tallgrass:1> .
 
 guide.skyresources.stage2.casing.title=Casings
 guide.skyresources.stage2.casing.text=Casings are blocks that are used by a few machines, the <link,Combustion_Heaters,skyresources:combustionheater:0,combustionHeater> , the <link,Heat_Providers,skyresources:heatprovider:0,heatProvider> , and the <link,Condensers,skyresources:condenser:0,condenser> . \n \n Insert one of those machines by right clicking it into the casing. Take it out by shift right-clicking. \n \n Different variants of the casing may affect efficiency, fuel efficiency, max HU, etc. \n \n NOTE: Casings shown in setups/structures are empty. Make sure to insert the correct machine for that structure!
@@ -318,7 +318,7 @@ guide.skyresources.stage2.combustionHeater.title=Combustion Heaters
 guide.skyresources.stage2.combustionHeater.text=Combustion Heaters are used in the <link,Casings,skyresources:casing:0,casing> . \n \n CRAFTING PROCESS: \n Make sure the structure is valid. \n Drop items into the INSIDE of the structure (above the heater) and make sure the ratio of items is the same as the recipe. NOTE: You can put in stacks of items in a time, as long as the HU lasts during the crafting. \n Push the button on the heater, or give the heater a redstone signal. \n If something exploded (inside the structure), it worked! \n Now pick up the items! \n \n To setup a combustion heater multiblock check the design as <image,shown_here,skyresources:combustionheater:0,combustion> when using a <recipe,,skyresources:combustionheater:0> , the first one you'll probably use. Place the heater inside the casing after that. Note that all variants use the same shaped structure. \n \n Different variants of the heaters use different fuels, affect fuel efficiency, affect the block types allowed for other blocks, and affect fuel speed. \n Different variants of the casing determine the Max HU of the structure, and affect fuel efficiency. \n \n When building your structure, make sure the blocks used are valid. The requirements for all other blocks are they have to be solid on the side facing towards the center. \n \n The <recipe,,skyresources:combustionheater:0> allows for wooden and glass blocks to be used. \n Also works with a <recipe,,minecraft:trapdoor:0> ! \n The <recipe,,skyresources:combustionheater:1> allows for rock and glass blocks to be used. \n All the other variants allow for metal, rock and glass blocks to be used. \n \n The process can be automated using blocks like the <recipe,,minecraft:dropper:0> , <link,Quick_Dropper,skyresources:quickdropper:0,quickDropper> , and <link,Combustion_Collector,skyresources:combustioncollector:0,combustionCollector> . Just make sure the block type is VALID for the structure!
 
 guide.skyresources.stage2.waterExtractor.title=Water Extractor
-guide.skyresources.stage2.waterExtractor.text=The <recipe,,skyresources:waterextractor:0> is used for storing, extracting, placing, and inserting water. \n All recipes for extracting and inserting are in JEI. Check the uses of the <recipe,,skyresources:waterextractor:0> . \n It can hold 4000mB of water. \n To extract water from blocks, hold right-click for a little bit and let go. It can also pick up water source blocks. \n To place water, you must have 1000mB of water and shift-right click to place it in the world. \n To insert water into blocks, you must have the required water amount and right click the block. \n The water extractor can be automated with the <link,Aqueous_Concentrator_and_Deconcentrator,skyresources:aqueousconcentrator:0,aqueous> .
+guide.skyresources.stage2.waterExtractor.text=The <recipe,,skyresources:waterextractor:0> is used for storing, extracting, placing, and inserting water. \n All recipes for extracting and inserting are in JEI. Check the uses of the <recipe,,skyresources:waterextractor:0> . \n It can hold 4000mB (by default) of water. \n To extract water from blocks, hold right-click for a little bit and let go. It can also pick up water source blocks. \n To place water, you must have 1000mB of water and shift-right click to place it in the world. \n To insert water into blocks, you must have the required water amount and right click the block. \n The water extractor can be automated with the <link,Aqueous_Concentrator_and_Deconcentrator,skyresources:aqueousconcentrator:0,aqueous> .
 
 guide.skyresources.stage2.dirtFurnace.title=Dirt Furnace
 guide.skyresources.stage2.dirtFurnace.text=Use the <recipe,,skyresources:dirtfurnace:0> to get access to torches, and other smeltable items without a cobblestone generator.
@@ -345,7 +345,7 @@ guide.skyresources.stage2.fluidDropper.title=Fluid Dropper
 guide.skyresources.stage2.fluidDropper.text=The <recipe,,skyresources:fluiddropper:0> will pull fluids from tanks next to it and place the source below it when it has 1 bucket. \n This is useful for automating the output of the <link,Crucible,skyresources:crucible:0,crucible> .
 
 guide.skyresources.stage2.fusionTable.title=Fusion Table
-guide.skyresources.stage2.fusionTable.text=The <recipe,,skyresources:fusionTable:0> is used for creating alchemical items and can be easily automated. \n \n The filter for automation is set by MANUALLY inserting the items into the slots for crafting. The filter is set this way and removed by taking the items out of it MANUALLY (Basically, you put in or take out the items in the GUI, and that sets the filter for pipes, hoppers, etc to follow). \n \n The fusion process requires a catalyst like the <recipe,,skyresources:alchemyitemcomponent:2> in the slot next to the output. \n \n Once there are enough items to craft and a catalyst, crafting will begin. \n The result will yield based on the catalyst's yield rate. The purple yield bar next to the output fills when the process completes, and once it reaches 100%, you get 1 set of items per 100%, so higher yields may result in 200% or higher.
+guide.skyresources.stage2.fusionTable.text=The <recipe,,skyresources:fusionTable:0> is used for creating alchemical items and can be easily automated. \n \n The filter for automation is set by MANUALLY inserting the items into the slots for crafting. The filter is set this way and removed by taking the items out of it MANUALLY (Basically, you put in or take out the items in the GUI, and that sets the filter for pipes, hoppers, etc to follow). \n \n The fusion process requires a catalyst like the <recipe,,skyresources:alchemyitemcomponent:2> in the slot next to the output. \n \n Once there are enough items to craft and a catalyst, crafting will begin. \n The result will yield based on the catalyst's yield rate. The purple yield bar next to the output fills as it is crafting, and once it reaches 100%, you get 1 set of items, so higher yields result in the purple bar filling faster.
 
 guide.skyresources.stage2.condenser.title=Condenser
 guide.skyresources.stage2.condenser.text=Condensers are used in the <link,Casings,skyresources:casing:0,casing> . \n \n Condensers require an item (usually a type of <recipe,,skyresources:orealchdust:0> ) to use for condensing the block above. \n Condensers will output the result below itself either in the world, or into an inventory (only if the inventory has space, otherwise the condenser will turn off and wait for it to have space). \n \n Different variants of the condensers affect efficiency and affect speed. \n Different variants of the casing affect efficiency. \n \n This can be turned off with a redstone signal.
@@ -369,13 +369,13 @@ guide.skyresources.stage3.quickDropper.title=Quick Dropper
 guide.skyresources.stage3.quickDropper.text=The <recipe,,skyresources:quickdropper:0> is used for dropping a full stack of items at a time with no redstone pulse. \n Stops when given a redstone signal. \n \n This CANNOT be used with the <recipe,,skyresources:combustionheater:0> or <recipe,,skyresources:combustionheater:1> .
 
 guide.skyresources.stage3.rockCrusher.title=Rock Crusher
-guide.skyresources.stage3.rockCrusher.text=The <recipe,,skyresources:rockcrusher:0> automates <link,rock_grinding,skyresources:stonegrinder:0,rockGrinder> . \n (default) Requires 100 RF/tick. \n Gives a 3x fortune yield! \n Stops when given a redstone signal.
+guide.skyresources.stage3.rockCrusher.text=The <recipe,,skyresources:rockcrusher:0> automates <link,rock_grinding,skyresources:stonegrinder:0,rockGrinder> . \n Requires 100 RF/tick. (by default) \n Gives a 3x fortune yield! \n Stops when given a redstone signal.
 
 guide.skyresources.stage3.rockCleaner.title=Rock Cleaner
-guide.skyresources.stage3.rockCleaner.text=The <recipe,,skyresources:rockcleaner:0> automates the <recipe,,minecraft:cauldron:0> . \n (default) Requires 80 RF/tick. \n Needs 250 mB to run. \n Gives a 2x fortune yield! (Maximum of 100% chance) \n Stops when given a redstone signal.
+guide.skyresources.stage3.rockCleaner.text=The <recipe,,skyresources:rockcleaner:0> automates the <recipe,,minecraft:cauldron:0> . \n (default) Requires 80 RF/tick. (by default) \n Needs 250 mB to run. \n Gives a 2x fortune yield! (Maximum of 100% chance) \n Stops when given a redstone signal.
 
 guide.skyresources.stage3.aqueous.title=Aqueous Concentrator/Deconcentrator
-guide.skyresources.stage3.aqueous.text=The <recipe,,skyresources:aqueousconcentrator:0> and <recipe,,skyresources:aqueousdeconcentrator:0> automate the <link,Water_Extractor,skyresources:waterextractor:0,waterExtractor> inserting and extracting respectively. \n Requires 80 RF/tick.
+guide.skyresources.stage3.aqueous.text=The <recipe,,skyresources:aqueousconcentrator:0> and <recipe,,skyresources:aqueousdeconcentrator:0> automate the <link,Water_Extractor,skyresources:waterextractor:0,waterExtractor> inserting and extracting respectively. \n Requires 80 RF/tick. (by default)
 
 guide.skyresources.misc.nether.title=The Nether Void (Void Island Control)
 guide.skyresources.misc.nether.text=The nether is (possibly) a void. Nether portals link to the same position as in the overworld. The nether is not 1/8 the size anymore. \n All materials normally found in the nether are now obtainanble in other ways. \n Nether ores are obtained through the <link,metal_creation,skyresources:alchemicalcondenser:0,metalCreation> process. \n Nether mobs can be found either through naturally spawning them or using the <link,Dark_Matter_Warper,skyresources:DarkMatterWarper:0,dmWarper> .
@@ -384,7 +384,7 @@ guide.skyresources.stage4.stage4.title=Stage 4-Extremely Powerful Materials
 guide.skyresources.stage4.stage4.text=This stage improves your technology and processes to be faster and more near infinite efficiency with fuel, catalysts, etc! \n \n Reach powerful heights through the use of <recipe,,skyresources:baseItemComponent:3> ! \n \n This stage will take you to <link,The_End,minecraft:ender_eye:0,end> !
 
 guide.skyresources.stage4.dmWarper.title=Dark Matter Warper
-guide.skyresources.stage4.dmWarper.text=The <recipe,,skyresources:DarkMatterWarper:0> is used for getting rare mobs.  \n It consumes <recipe,,skyresources:BaseItemComponent:3> to run (needed every 6 min) and affects a 8x8x8 cube around the <recipe,,skyresources:DarkMatterWarper:0> . \n It turns skeletons into wither skeletons, squid into blazes, spiders into cave spiders, and hurts players and animals.
+guide.skyresources.stage4.dmWarper.text=The <recipe,,skyresources:DarkMatterWarper:0> is used for getting rare mobs.  \n It consumes <recipe,,skyresources:BaseItemComponent:3> to run (needed every 6 min by default) and affects a 8x8x8 cube around the <recipe,,skyresources:DarkMatterWarper:0> . \n It turns skeletons into wither skeletons, squid into blazes, spiders into cave spiders, and hurts players (by default) and animals.
 
 guide.skyresources.stage4.end.title=The End
 guide.skyresources.stage4.end.text=The end portal requires a multiblock structure. The following are needed: \n 1 <recipe,,skyresources:EndPortalCore:0> \n 4 <recipe,,minecraft:diamond_block:0> \n 4 <recipe,,minecraft:gold_block:0> \n 16 <recipe,,skyresources:DarkMatterBlock:0> \n 8 <recipe,,minecraft:end_bricks:0> \n 4 <recipe,,minecraft:glowstone:0> \n \n <image,Multiblock_Setup,skyresources:EndPortalCore:0,end> \n To use the portal, stand on the core, and give the <recipe,,skyresources:EndPortalCore:0> at least 16 <recipe,,minecraft:ender_eye:0> and a redstone pulse (button). \n \n *gl A ilfsiesrvh waenrsp si itaecv nda reyv edsroanug ehwn eht urturscte is valdi! *nl
@@ -402,46 +402,46 @@ guide.skyresources.misc.minetweaker.title=CraftTweaker
 guide.skyresources.misc.minetweaker.text=For CraftTweaker support, go to \n https://github.com/Bartz24/SkyResources/wiki/CraftTweaker-Support
 
 guide.skyresources.misc.thermal.title=Thermal Expansion/Foundation Support
-guide.skyresources.misc.thermal.text=Sky Resources allows for Blazing Pyrotheum to be a <link,heat_source,minecraft:torch:0,heatSources> . Some <link,Crucible_Recipes,skyresources:crucible:0,crucible> are also added to the Magma Crucible machine!
+guide.skyresources.misc.thermal.text=(By default) Sky Resources allows for Blazing Pyrotheum to be a <link,heat_source,minecraft:torch:0,heatSources> . Some <link,Crucible_Recipes,skyresources:crucible:0,crucible> are also added to the Magma Crucible machine!
 
 guide.skyresources.misc.armorplus.title=Armor Plus Support
-guide.skyresources.misc.armorplus.text=Sky Resources provides for ways to get the <recipe,,armorplus:lava_crystal:0> .
+guide.skyresources.misc.armorplus.text=(By default) Sky Resources provides for ways to get the <recipe,,armorplus:lava_crystal:0> .
 
 guide.skyresources.misc.embers.title=Embers Support
-guide.skyresources.misc.embers.text=Sky Resources provides for ways to get the <recipe,,embers:shard_ember:0> .
+guide.skyresources.misc.embers.text=(By default) Sky Resources provides for ways to get the <recipe,,embers:shard_ember:0> .
 
 guide.skyresources.misc.enderio.title=Ender IO Support
-guide.skyresources.misc.enderio.text=Sky Resources provides for ways to get the <recipe,,enderio:itemBrokenSpawner:0> .
+guide.skyresources.misc.enderio.text=(By default) Sky Resources provides for ways to get the <recipe,,enderio:itemBrokenSpawner:0> .
 
 guide.skyresources.misc.envtech.title=Environmental Tech Support
-guide.skyresources.misc.envtech.text=Sky Resources provides for ways to get Environmental Tech stone types. \n \n <recipe,,environmentaltech:alabaster:0> and <recipe,,environmentaltech:basalt:0> are obtainable.
+guide.skyresources.misc.envtech.text=(By default) Sky Resources provides for ways to get Environmental Tech stone types. \n \n <recipe,,environmentaltech:alabaster:0> and <recipe,,environmentaltech:basalt:0> are obtainable.
 
 guide.skyresources.misc.forestry.title=Forestry Support
-guide.skyresources.misc.forestry.text=Sky Resources provides a way to get <recipe,,forestry:bee_princess_ge:0> and <recipe,,forestry:bee_drone_ge:0> . \n This is done by making a <recipe,,skyresources:beeattractor:0> . \n The <recipe,,skyresources:beeattractor:0> requires 100 FE/tick and <recipe,,forestry:fluid.seed.oil:0> . \n Every tick, there is a chance for a <recipe,,forestry:bee_princess_ge:0> or <recipe,,forestry:bee_drone_ge:0> to be in the <recipe,,skyresources:beeattractor:0> . \n Stops when given a redstone signal. \n The most common species you'll get depends on the biome, just like hives. You will get species from all hives at a small chance though. \n Note that a <recipe,,forestry:bee_princess_ge:0> is rarer than a <recipe,,forestry:bee_drone_ge:0> .
+guide.skyresources.misc.forestry.text=(By default) Sky Resources provides a way to get <recipe,,forestry:bee_princess_ge:0> and <recipe,,forestry:bee_drone_ge:0> . \n This is done by making a <recipe,,skyresources:beeattractor:0> . \n The <recipe,,skyresources:beeattractor:0> requires 100 RF/tick (by default) and <recipe,,forestry:fluid.seed.oil:0> . \n Every tick, there is a chance for a <recipe,,forestry:bee_princess_ge:0> or <recipe,,forestry:bee_drone_ge:0> to be in the <recipe,,skyresources:beeattractor:0> . \n Stops when given a redstone signal. \n The most common species you'll get depends on the biome, just like hives. You will get species from all hives at a small chance though. \n Note that a <recipe,,forestry:bee_princess_ge:0> is rarer than a <recipe,,forestry:bee_drone_ge:0> .
 
 guide.skyresources.misc.ic2.title=IndustrialCraft 2 Support
-guide.skyresources.misc.ic2.text=Sky Resources provides for ways to get basic IC2 items. \n \n <recipe,,ic2:misc_resource:4> is obtainable as well as the <recipe,,ic2:sapling:0> . \n \n <recipe,,skyresources:TechItemComponent:0> can be used to get <recipe,,ic2:dust:15> . \n \n <recipe,,skyresources:TechItemComponent:1> can be used to get <recipe,,ic2:nuclear:5> and <recipe,,ic2:nuclear:2>
+guide.skyresources.misc.ic2.text=(By default) Sky Resources provides for ways to get basic IC2 items. \n \n <recipe,,ic2:misc_resource:4> is obtainable as well as the <recipe,,ic2:sapling:0> .
 
 guide.skyresources.misc.quantumflux.title=Quantum Flux Support
-guide.skyresources.misc.quantumflux.text=Sky Resources provides for ways to get Quantum Flux items. \n \n <recipe,,quantumflux:graphiteDust:0> is obtainable.
+guide.skyresources.misc.quantumflux.text=(By default) Sky Resources provides for ways to get Quantum Flux items. \n \n <recipe,,quantumflux:graphiteDust:0> is obtainable.
 
 guide.skyresources.misc.integdyn.title=Integrated Dynamics Support
-guide.skyresources.misc.integdyn.text=Sky Resources provides for ways to get Integrated Dynamics items. \n \n <recipe,,integrateddynamics:menril_berries:0> and <recipe,,integrateddynamics:menril_sapling:0> are obtainable.
+guide.skyresources.misc.integdyn.text=(By default) Sky Resources provides for ways to get Integrated Dynamics items. \n \n <recipe,,integrateddynamics:menril_berries:0> and <recipe,,integrateddynamics:menril_sapling:0> are obtainable.
 
 guide.skyresources.misc.extremereactors.title=Extreme Reactors Support
 guide.skyresources.misc.extremereactors.text=Sky Resources provides for ways to get Extreme Reactors items. \n \n <recipe,,bigreactors:dustmetals:0> is obtainable.
 
 guide.skyresources.misc.tinkers.title=Tinkers Construct Support
-guide.skyresources.misc.tinkers.text=Sky Resources provides for ways to get Tinker's Construct slimy items. \n \n All variants of the <recipe,,tconstruct:edible:1> , <recipe,,tconstruct:slime_sapling:0> , and the <recipe,,tconstruct:slime_dirt:0> are obtainable.
+guide.skyresources.misc.tinkers.text=(By default) Sky Resources provides for ways to get Tinker's Construct slimy items. \n \n All variants of the <recipe,,tconstruct:edible:1> , <recipe,,tconstruct:slime_sapling:0> , and the <recipe,,tconstruct:slime_dirt:0> are obtainable.
 
 guide.skyresources.misc.techreborn.title=Tech Reborn Support
-guide.skyresources.misc.techreborn.text=Sky Resources provides for ways to get basic TechReborn items. \n \n <recipe,,techreborn:part:31> is obtainable as well as the <recipe,,techreborn:rubber_sapling:0> .
+guide.skyresources.misc.techreborn.text=(By default) Sky Resources provides for ways to get basic TechReborn items. \n \n <recipe,,techreborn:part:31> is obtainable as well as the <recipe,,techreborn:rubber_sapling:0> .
 
 guide.skyresources.misc.actadd.title=Actually Additions Support
-guide.skyresources.misc.actadd.text=Sky Resources provides for ways to get basic Actually Additions items. \n \n <recipe,,actuallyadditions:item_misc:5> is obtainable. The <recipe,,actuallyadditions:item_rice_seed:0> , <recipe,,actuallyadditions:item_canola_seed:0> , <recipe,,actuallyadditions:item_coffee_seed:0> , <recipe,,actuallyadditions:item_flax_seed:0> are dropped from breaking <recipe,,minecraft:tallgrass:1> .
+guide.skyresources.misc.actadd.text=(By default) Sky Resources provides for ways to get basic Actually Additions items. \n \n <recipe,,actuallyadditions:item_misc:5> is obtainable. The <recipe,,actuallyadditions:item_rice_seed:0> , <recipe,,actuallyadditions:item_canola_seed:0> , <recipe,,actuallyadditions:item_coffee_seed:0> , <recipe,,actuallyadditions:item_flax_seed:0> are dropped from breaking <recipe,,minecraft:tallgrass:1> .
 
 guide.skyresources.misc.ae2.title=Applied Energistics 2 Support
-guide.skyresources.misc.ae2.text=Sky Resources provides for ways to get basic AE2 items. \n \n <recipe,,appliedenergistics2:material:0> , <recipe,,appliedenergistics2:material:1> , <recipe,,appliedenergistics2:sky_stone_block:0> are obtainable as well as the 4 inscriber presses.
+guide.skyresources.misc.ae2.text=(By default) Sky Resources provides for ways to get basic AE2 items. \n \n <recipe,,appliedenergistics2:material:0> , <recipe,,appliedenergistics2:material:1> , <recipe,,appliedenergistics2:sky_stone_block:0> are obtainable as well as the 4 inscriber presses.
 
 guide.skyresources.misc.dracevo.title=Draconic Evolution Support
 guide.skyresources.misc.dracevo.text=Sky Resources provides for ways to get basic Draconic Evolution items. \n \n <recipe,,draconicevolution:draconium_ingot:0> is obtainable.

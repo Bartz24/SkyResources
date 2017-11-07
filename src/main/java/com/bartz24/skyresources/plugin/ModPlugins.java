@@ -10,6 +10,7 @@ import com.bartz24.skyresources.plugin.dracevo.DEPlugin;
 import com.bartz24.skyresources.plugin.embers.EmbersPlugin;
 import com.bartz24.skyresources.plugin.extremereactors.ExtremeReactorsPlugin;
 import com.bartz24.skyresources.plugin.forestry.ForestryPlugin;
+import com.bartz24.skyresources.plugin.ic2.IC2Plugin;
 import com.bartz24.skyresources.plugin.integdyn.IntegratedDynamicsPlugin;
 import com.bartz24.skyresources.plugin.tconstruct.TConPlugin;
 import com.bartz24.skyresources.plugin.techreborn.TechRebornPlugin;
@@ -38,6 +39,8 @@ public class ModPlugins
 		// plugins.add(new EnvTechPlugin());
 		if (Loader.isModLoaded("armorplus"))
 			plugins.add(new ArmorPlusPlugin());
+		if (Loader.isModLoaded("ic2"))
+			plugins.add(new IC2Plugin());
 		if (Loader.isModLoaded("integrateddynamics"))
 			plugins.add(new IntegratedDynamicsPlugin());
 		if (Loader.isModLoaded("bigreactors"))
