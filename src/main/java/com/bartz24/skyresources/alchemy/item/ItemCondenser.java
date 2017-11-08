@@ -37,6 +37,8 @@ import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.items.wrapper.InvWrapper;
 
 public class ItemCondenser extends ItemMachine
 {
@@ -141,13 +143,13 @@ public class ItemCondenser extends ItemMachine
 			{
 				if (tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP))
 				{
-					out = RandomHelper.fillInventory(
-							tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP), out, sim);
+					return ItemHandlerHelper.insertItemStacked(
+							tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP), out, sim).isEmpty();
 				} else if (tile instanceof IInventory)
 				{
-					out = RandomHelper.fillInventory((IInventory) tile, out, sim);
+					return ItemHandlerHelper.insertItemStacked(new InvWrapper((IInventory)tile), out, sim).isEmpty();
 				}
-				return out.isEmpty();
+				return false;
 			}
 
 			if (!sim && out != ItemStack.EMPTY && out.getCount() > 0)
