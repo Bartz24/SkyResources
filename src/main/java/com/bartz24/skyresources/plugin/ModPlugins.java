@@ -12,6 +12,7 @@ import com.bartz24.skyresources.plugin.extremereactors.ExtremeReactorsPlugin;
 import com.bartz24.skyresources.plugin.forestry.ForestryPlugin;
 import com.bartz24.skyresources.plugin.ic2.IC2Plugin;
 import com.bartz24.skyresources.plugin.integdyn.IntegratedDynamicsPlugin;
+import com.bartz24.skyresources.plugin.rockcandy.RockCandyPlugin;
 import com.bartz24.skyresources.plugin.tconstruct.TConPlugin;
 import com.bartz24.skyresources.plugin.techreborn.TechRebornPlugin;
 import com.bartz24.skyresources.plugin.theoneprobe.TOPPlugin;
@@ -25,36 +26,38 @@ public class ModPlugins
 
 	public static void preInit()
 	{
-		if (Loader.isModLoaded("theoneprobe"))
-			plugins.add(new TOPPlugin());
-		if (Loader.isModLoaded("thermalfoundation"))
-			plugins.add(new ThermalPlugin());
-		if (Loader.isModLoaded("forestry"))
-			plugins.add(new ForestryPlugin());
-		if (Loader.isModLoaded("tconstruct"))
-			plugins.add(new TConPlugin());
-		if (Loader.isModLoaded("techreborn"))
-			plugins.add(new TechRebornPlugin());
-		// if (Loader.isModLoaded("environmentaltech"))
-		// plugins.add(new EnvTechPlugin());
+		if (Loader.isModLoaded("actuallyadditions"))
+			plugins.add(new ActAddPlugin());
+		if (Loader.isModLoaded("appliedenergistics2"))
+			plugins.add(new AE2Plugin());
 		if (Loader.isModLoaded("armorplus"))
 			plugins.add(new ArmorPlusPlugin());
+		if (Loader.isModLoaded("crafttweaker"))
+			plugins.add(new CraftTweakerPlugin());
+		if (Loader.isModLoaded("draconicevolution"))
+			plugins.add(new DEPlugin());
+		if (Loader.isModLoaded("embers"))
+			plugins.add(new EmbersPlugin());
+		// if (Loader.isModLoaded("environmentaltech"))
+		// plugins.add(new EnvTechPlugin());
+		if (Loader.isModLoaded("bigreactors"))
+			plugins.add(new ExtremeReactorsPlugin());
+		if (Loader.isModLoaded("forestry"))
+			plugins.add(new ForestryPlugin());
 		if (Loader.isModLoaded("ic2"))
 			plugins.add(new IC2Plugin());
 		if (Loader.isModLoaded("integrateddynamics"))
 			plugins.add(new IntegratedDynamicsPlugin());
-		if (Loader.isModLoaded("bigreactors"))
-			plugins.add(new ExtremeReactorsPlugin());
-		if (Loader.isModLoaded("actuallyadditions"))
-			plugins.add(new ActAddPlugin());
-		if (Loader.isModLoaded("embers"))
-			plugins.add(new EmbersPlugin());
-		if (Loader.isModLoaded("appliedenergistics2"))
-			plugins.add(new AE2Plugin());
-		if (Loader.isModLoaded("draconicevolution"))
-			plugins.add(new DEPlugin());
-		if (Loader.isModLoaded("crafttweaker"))
-			plugins.add(new CraftTweakerPlugin());
+		if (Loader.isModLoaded("rockcandy"))
+			plugins.add(new RockCandyPlugin());
+		if (Loader.isModLoaded("techreborn"))
+			plugins.add(new TechRebornPlugin());
+		if (Loader.isModLoaded("tconstruct"))
+			plugins.add(new TConPlugin());
+		if (Loader.isModLoaded("theoneprobe"))
+			plugins.add(new TOPPlugin());
+		if (Loader.isModLoaded("thermalfoundation"))
+			plugins.add(new ThermalPlugin());
 		if (Loader.isModLoaded("theoneprobe"))
 			plugins.add(new TOPPlugin());
 

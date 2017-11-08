@@ -282,6 +282,24 @@ public class ConfigOptions
 			@Config.Comment("Add pyrotheum as heat source")
 			public boolean addPyrotheumHeatSource = true;
 		}
+		
+		@Config.Comment("Config Settings for Industrial Craft 2")
+		public IndustrialCraftSettings industrialCraftSettings = new IndustrialCraftSettings();
+
+		public class IndustrialCraftSettings
+		{
+			@Config.Comment("Add rubber life infusion and combustion recipes")
+			public boolean addRubberRecipes = true;
+		}
+		
+		@Config.Comment("Config Settings for Rock Candy")
+		public RockCandySettings rockCandySettings = new RockCandySettings();
+
+		public class RockCandySettings
+		{
+			@Config.Comment("Add rock candy combustion recipe")
+			public boolean addRockCandyRecipe = true;
+		}
 	}
 
 	@Config.Comment("Config Settings for the Alchemical Ore Rarity values. Higher numbers are rarer.")
