@@ -138,7 +138,7 @@ public class TileRockCrusher extends TileGenericPower implements ITickable
 	{
 		super.readFromNBT(compound);
 		bufferListRead(compound.getCompoundTag("buffer"));
-		curProgress = compound.getInteger("progress");
+		curProgress = compound.getFloat("progress");
 	}
 
 	public NBTTagCompound bufferListWrite()

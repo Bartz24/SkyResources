@@ -110,6 +110,8 @@ public class ModGuidePages
 
 		SkyResourcesGuide.addPage("rockCleaner", "guide.skyresources.stage3", new ItemStack(ModBlocks.rockCleaner));
 
+		SkyResourcesGuide.addPage("combustionController", "guide.skyresources.stage3", new ItemStack(ModBlocks.combustionController));
+
 		SkyResourcesGuide.addPage("aqueous", "guide.skyresources.stage3", new ItemStack(ModBlocks.aqueousConcentrator));
 
 		SkyResourcesGuide.addPage("stage4", "guide.skyresources.stage4", new ItemStack(ModItems.baseComponent, 1, 3));

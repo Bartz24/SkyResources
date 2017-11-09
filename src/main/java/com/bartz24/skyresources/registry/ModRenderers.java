@@ -102,6 +102,7 @@ public class ModRenderers
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.rockCrusher));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.rockCleaner));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.combustionCollector));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.combustionController));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.quickDropper));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.aqueousConcentrator));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.aqueousDeconcentrator));

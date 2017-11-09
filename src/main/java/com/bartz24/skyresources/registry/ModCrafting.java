@@ -184,6 +184,10 @@ public class ModCrafting
 					new Object[] { "XAX", "XZX", "XYX", 'X', advComponent, 'Y',
 							new ItemStack(ModItems.baseComponent, 1, 1), 'Z', new ItemStack(ModItems.waterExtractor),
 							'A', new ItemStack(Blocks.SAND) });
+			CraftingRegistry
+			.addShapedOreRecipe(new ItemStack(ModBlocks.combustionController),
+					new Object[] { "XXX", "XYX", "XYX", 'X', advComponent, 'Y',
+							circuit });
 		}
 		GameRegistry.addSmelting(ModBlocks.dryCactus, new ItemStack(Items.DYE, 1, 7), 0.2F);
 

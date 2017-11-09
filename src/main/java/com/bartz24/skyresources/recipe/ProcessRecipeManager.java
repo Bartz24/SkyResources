@@ -162,6 +162,20 @@ public class ProcessRecipeManager
 		return null;
 	}
 
+	public ProcessRecipe compareRecipeLess(List<Object> input, float intVal, boolean mergeStacks, ProcessRecipe recipe)
+	{
+		input = mergeStacks ? mergeStacks(input) : input;
+
+		ProcessRecipe rec = new ProcessRecipe(input, intVal, type);
+
+		if (rec.isInputRecipeLess(recipe))
+		{
+			return recipe;
+		}
+
+		return null;
+	}
+
 	public ProcessRecipe getRecipe(Object input, float intVal, boolean forceEqual, boolean mergeStacks)
 	{
 		List<Object> inputs = mergeStacks ? mergeStacks(Collections.singletonList(input))

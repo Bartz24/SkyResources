@@ -15,6 +15,7 @@ import com.bartz24.skyresources.base.block.TransparentBlock;
 import com.bartz24.skyresources.technology.block.BlockAqueousConcentrator;
 import com.bartz24.skyresources.technology.block.BlockAqueousDeconcentrator;
 import com.bartz24.skyresources.technology.block.BlockCombustionCollector;
+import com.bartz24.skyresources.technology.block.BlockCombustionController;
 import com.bartz24.skyresources.technology.block.BlockCrucibleInserter;
 import com.bartz24.skyresources.technology.block.BlockDarkMatterWarper;
 import com.bartz24.skyresources.technology.block.BlockDirtFurnace;
@@ -50,6 +51,7 @@ public class ModBlocks
 	public static Block rockCrusher;
 	public static Block rockCleaner;
 	public static Block combustionCollector;
+	public static Block combustionController;
 	public static Block quickDropper;
 	public static Block aqueousConcentrator;
 	public static Block aqueousDeconcentrator;
@@ -95,6 +97,8 @@ public class ModBlocks
 		rockCleaner = registerBlock(new BlockRockCleaner("rockCleaner", "RockCleaner", 6F, 12F));
 		combustionCollector = registerBlock(
 				new BlockCombustionCollector("combustionCollector", "CombustionCollector", 6F, 12F));
+		combustionController = registerBlock(
+				new BlockCombustionController("combustionController", "CombustionController", 6F, 12F));
 		quickDropper = registerBlock(new BlockQuickDropper("quickDropper", "QuickDropper", 6F, 12F));
 		lifeInfuser = registerBlock(new LifeInfuserBlock("lifeInfuser", "LifeInfuser", 6F, 12F));
 		lifeInjector = registerBlock(new LifeInjectorBlock("lifeInjector", "LifeInjector", 6F, 12F));
