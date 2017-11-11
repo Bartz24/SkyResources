@@ -110,6 +110,7 @@ public class ModRenderers
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.aqueousConcentrator));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.aqueousDeconcentrator));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.fusionTable));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.wildlifeAttractor));
 
 		registerItemRenderer(ModItems.sandstoneInfusionStone);
 		registerItemRenderer(ModItems.redSandstoneInfusionStone);

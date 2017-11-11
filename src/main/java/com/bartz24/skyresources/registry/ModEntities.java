@@ -24,6 +24,7 @@ import com.bartz24.skyresources.technology.tile.TileEndPortalCore;
 import com.bartz24.skyresources.technology.tile.TileQuickDropper;
 import com.bartz24.skyresources.technology.tile.TileRockCleaner;
 import com.bartz24.skyresources.technology.tile.TileRockCrusher;
+import com.bartz24.skyresources.technology.tile.TileWildlifeAttractor;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -53,6 +54,7 @@ public final class ModEntities
 		GameRegistry.registerTileEntity(TileAqueousConcentrator.class, References.ModID + ":aqueousconcentratortile");
 		GameRegistry.registerTileEntity(TileAlchemyFusionTable.class, References.ModID + ":fusiontable");
 		GameRegistry.registerTileEntity(TileBeeAttractor.class, References.ModID + ":beeAttractorTile");
+		GameRegistry.registerTileEntity(TileWildlifeAttractor.class, References.ModID + ":wildlifeAttractorTile");
 
 		EntityRegistry.registerModEntity(new ResourceLocation(References.ModID, "heavysnowball"),
 				EntityHeavySnowball.class, References.ModID + ":heavysnowball", 1, SkyResources.instance, 64, 2, true);

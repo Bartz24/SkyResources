@@ -27,6 +27,8 @@ import com.bartz24.skyresources.technology.block.BlockMiniFreezer;
 import com.bartz24.skyresources.technology.block.BlockQuickDropper;
 import com.bartz24.skyresources.technology.block.BlockRockCleaner;
 import com.bartz24.skyresources.technology.block.BlockRockCrusher;
+import com.bartz24.skyresources.technology.block.BlockWildlifeAttractor;
+import com.bartz24.skyresources.technology.block.BlockWildlifeAttractor;
 import com.bartz24.skyresources.technology.block.FluidDropperBlock;
 
 import net.minecraft.block.Block;
@@ -60,6 +62,7 @@ public class ModBlocks
 	public static Block aqueousDeconcentrator;
 	public static Block casing;
 	public static Block fusionTable;
+	public static Block wildlifeAttractor;
 
 	public static Block compressedCoalBlock;
 	public static Block coalInfusedBlock;
@@ -115,6 +118,8 @@ public class ModBlocks
 		lightFreezer = registerBlock(new BlockLightFreezer("lightFreezer", "lightFreezer", 8F, 12F));
 
 		crucible = registerBlock(new CrucibleBlock("crucible", "Crucible", 2F, 12F));
+		wildlifeAttractor = registerBlock(
+				new BlockWildlifeAttractor("wildlifeAttractor", "wildlifeAttractor", 2F, 12F));
 
 		fluidDropper = registerBlock(new FluidDropperBlock("fluidDropper", "FluidDropper", 2F, 12F));
 

@@ -220,6 +220,10 @@ public class ModCrafting
 		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Blocks.GRASS, 1), 14,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.WHEAT_SEEDS, 4), new ItemStack(Blocks.DIRT))));
 
+		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Blocks.MYCELIUM, 1), 16,
+				new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.BROWN_MUSHROOM, 4),
+						new ItemStack(Blocks.RED_MUSHROOM, 4), new ItemStack(Blocks.DIRT))));
+
 		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Items.APPLE), 10,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.SUGAR, 3),
 						new ItemStack(Blocks.HAY_BLOCK, 1, OreDictionary.WILDCARD_VALUE))));

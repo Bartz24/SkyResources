@@ -21,28 +21,28 @@ public class ConfigOptions
 	public static class ModularMachineSettings
 	{
 		@Config.Comment("Set Machine Speeds")
-		public Map<String, Float> machineSpeed = defaultMachineSpeeds();
+		public Map<String, Double> machineSpeed = defaultMachineSpeeds();
 		@Config.Comment("Set Machine Efficiencies")
-		public Map<String, Float> machineEfficiency = defaultMachineEfficiencies();
+		public Map<String, Double> machineEfficiency = defaultMachineEfficiencies();
 		@Config.Comment("Set Machine Max HU")
 		public Map<String, Integer> machineMaxHU = defaultMachineMaxHUs();
 
-		private Map<String, Float> defaultMachineSpeeds()
+		private Map<String, Double> defaultMachineSpeeds()
 		{
-			Map<String, Float> map = new HashMap();
+			Map<String, Double> map = new HashMap();
 			for (MachineVariants v : MachineVariants.values())
 			{
-				map.put(v.getName(), v.getDefaultRawSpeed());
+				map.put(v.getName(), (double) v.getDefaultRawSpeed());
 			}
 			return map;
 		}
 
-		private Map<String, Float> defaultMachineEfficiencies()
+		private Map<String, Double> defaultMachineEfficiencies()
 		{
-			Map<String, Float> map = new HashMap();
+			Map<String, Double> map = new HashMap();
 			for (MachineVariants v : MachineVariants.values())
 			{
-				map.put(v.getName(), v.getDefaultRawEfficiency());
+				map.put(v.getName(), (double) v.getDefaultRawEfficiency());
 			}
 			return map;
 		}
@@ -64,14 +64,14 @@ public class ConfigOptions
 	public static class ToolSettings
 	{
 		@Config.Comment("Multiplier of knife's material damage")
-		public float knifeBaseDamage = 1.5f;
+		public double knifeBaseDamage = 1.5f;
 		@Config.Comment("Multiplier of knife's material durability")
-		public float knifeBaseDurability = 0.7f;
+		public double knifeBaseDurability = 0.7f;
 
 		@Config.Comment("Multiplier of rock grinder's material damage")
-		public float rockGrinderBaseDamage = 2.5f;
+		public double rockGrinderBaseDamage = 2.5f;
 		@Config.Comment("Multiplier of rock grinder's material durability")
-		public float rockGrinderBaseDurability = 0.8f;
+		public double rockGrinderBaseDurability = 0.8f;
 
 		@Config.Comment("Max amount in Water Extractor")
 		public int waterExtractorCapacity = 4000;
@@ -79,10 +79,10 @@ public class ConfigOptions
 		@Config.Comment("Max Health a Health Gem can store")
 		public int healthGemMaxHealth = 100;
 		@Config.Comment("Percent of health in Health Gem to add to player's health")
-		public float healthGemPercentage = 0.02f;
+		public double healthGemPercentage = 0.02f;
 
 		@Config.Comment("Multiplier of infusion stone's material durability")
-		public float infusionStoneBaseDurability = 1f;
+		public double infusionStoneBaseDurability = 1f;
 		@Config.Comment("Allow infusion stones to bonemeal")
 		public boolean infusionStoneBonemealCapability = true;
 		@Config.Comment("Allow plant matter to bonemeal")
@@ -101,11 +101,11 @@ public class ConfigOptions
 		@Config.Comment("Dirt Furnace Speed")
 		public int dirtFurnaceSpeed = 4;
 		@Config.Comment("Mini Freezer Speed")
-		public float miniFreezerSpeed = 0.25f;
+		public double miniFreezerSpeed = 0.25f;
 		@Config.Comment("Iron Freezer Speed")
-		public float ironFreezerSpeed = 1f;
+		public double ironFreezerSpeed = 1f;
 		@Config.Comment("Light Freezer Speed")
-		public float lightFreezerSpeed = 100f;
+		public double lightFreezerSpeed = 100f;
 		@Config.Comment("Aqueous Concentrator Speed")
 		public int aqueousConcentratorSpeed = 5;
 		@Config.Comment("Aqueous Concentrator RF Rate")
@@ -138,6 +138,17 @@ public class ConfigOptions
 		public int fusionSpeed = 8;
 		@Config.Comment("Smart Combustion Controller Craft Time Rate (Ticks)")
 		public int combustionControllerTicks = 20;
+		@Config.Comment("Wildlife Attractor RF Rate")
+		public int wildlifeAttractorPowerUsage = 40;
+		@Config.Comment("Wildlife Attractor Water Usage Rate")
+		public int wildlifeAttractorWaterUsage = 20;
+		@Config.Comment("Wildlife Attractor Plant Matter Usage Time")
+		public int wildlifeAttractorMatterTime = 320;
+		@Config.Comment("Wildlife Attractor Water Capacity")
+		public int wildlifeAttractorWaterCapacity = 4000;
+		@Config.Comment("Wildlife Attractor Animal Ids")
+		public String[] wildlifeAttractorAnimalIDs = new String[] { "minecraft:sheep", "minecraft:cow",
+				"minecraft:chicken", "minecraft:pig", "minecraft:rabbit", "minecraft:squid", "minecraft:horse" };
 
 		public enum EndPortalDifficultyLevel
 		{
@@ -185,6 +196,19 @@ public class ConfigOptions
 		public boolean addPotatoDrop = true;
 	}
 
+	@Config.Comment("Config Settings for Forestry")
+	public ForestrySettings forestrySettings = new ForestrySettings();
+
+	public class ForestrySettings
+	{
+		@Config.Comment("Bee Attractor RF Rate")
+		public int beeAttractorPowerUsage = 100;
+		@Config.Comment("Bee Attractor Seed Oil Usage Rate")
+		public int beeAttractorSeedOilUsage = 20;
+		@Config.Comment("Bee Attractor Seed Oil Capacity")
+		public int beeAttractorSeedOilCapacity = 4000;
+	}
+
 	@Config.Comment("Config Settings for plugins")
 	public static PluginSettings pluginSettings = new PluginSettings();
 
@@ -204,7 +228,7 @@ public class ConfigOptions
 			@Config.Comment("Add rice to grass drops")
 			public boolean addRiceDrop = true;
 		}
-		
+
 		@Config.Comment("Config Settings for Applied Energistics")
 		public AppliedEnergisticsSettings appliedEnergisticsSettings = new AppliedEnergisticsSettings();
 
@@ -213,7 +237,7 @@ public class ConfigOptions
 			@Config.Comment("Add inscriber press combustion recipes")
 			public boolean addPressRecipes = true;
 		}
-		
+
 		@Config.Comment("Config Settings for Armor Plus")
 		public ArmorPlusSettings armorPlusSettings = new ArmorPlusSettings();
 
@@ -222,7 +246,7 @@ public class ConfigOptions
 			@Config.Comment("Add lava crystal combustion recipe")
 			public boolean addLavaCrystalRecipe = true;
 		}
-		
+
 		@Config.Comment("Config Settings for Embers")
 		public EmbersSettings embersSettings = new EmbersSettings();
 
@@ -231,7 +255,7 @@ public class ConfigOptions
 			@Config.Comment("Add ember shard combustion recipe")
 			public boolean addEmberShardRecipe = true;
 		}
-		
+
 		@Config.Comment("Config Settings for Forestry")
 		public ForestrySettings forestrySettings = new ForestrySettings();
 
@@ -246,7 +270,7 @@ public class ConfigOptions
 			@Config.Comment("Bee Attractor Seed Oil Capacity")
 			public int beeAttractorSeedOilCapacity = 4000;
 		}
-		
+
 		@Config.Comment("Config Settings for Integrated Dynamics")
 		public IntegratedDynamicsSettings integratedDynamicsSettings = new IntegratedDynamicsSettings();
 
@@ -255,7 +279,7 @@ public class ConfigOptions
 			@Config.Comment("Add menril berry/sapling life infusion recipes")
 			public boolean addMenrilRecipes = true;
 		}
-		
+
 		@Config.Comment("Config Settings for Tinkers Construct")
 		public TinkersConstructSettings tinkersConstructSettings = new TinkersConstructSettings();
 
@@ -264,7 +288,7 @@ public class ConfigOptions
 			@Config.Comment("Add slime ball/sapling life infusion and combustion recipes")
 			public boolean addSlimeRecipes = true;
 		}
-		
+
 		@Config.Comment("Config Settings for Tech Reborn")
 		public TechRebornSettings techRebornSettings = new TechRebornSettings();
 
@@ -273,7 +297,7 @@ public class ConfigOptions
 			@Config.Comment("Add rubber life infusion and combustion recipes")
 			public boolean addRubberRecipes = true;
 		}
-		
+
 		@Config.Comment("Config Settings for Thermal Expansion")
 		public ThermalExpansionSettings thermalExpansionSettings = new ThermalExpansionSettings();
 
@@ -284,7 +308,7 @@ public class ConfigOptions
 			@Config.Comment("Add pyrotheum as heat source")
 			public boolean addPyrotheumHeatSource = true;
 		}
-		
+
 		@Config.Comment("Config Settings for Industrial Craft 2")
 		public IndustrialCraftSettings industrialCraftSettings = new IndustrialCraftSettings();
 
@@ -293,7 +317,7 @@ public class ConfigOptions
 			@Config.Comment("Add rubber life infusion and combustion recipes")
 			public boolean addRubberRecipes = true;
 		}
-		
+
 		@Config.Comment("Config Settings for Rock Candy")
 		public RockCandySettings rockCandySettings = new RockCandySettings();
 
