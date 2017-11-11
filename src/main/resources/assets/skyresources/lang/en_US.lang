@@ -460,5 +460,8 @@ guide.skyresources.misc.ae2.text=(By default) Sky Resources provides for ways to
 guide.skyresources.misc.dracevo.title=Draconic Evolution Support
 guide.skyresources.misc.dracevo.text=Sky Resources provides for ways to get basic Draconic Evolution items. \n \n <recipe,,draconicevolution:draconium_ingot:0> is obtainable.
 
+guide.skyresources.misc.extrabees.title=Extra Bees Support
+guide.skyresources.misc.extrabees.text=Sky Resources provides for ways to get basic Extra Bees bees from the <link,Bee_Attractor,skyresources:beeattractor:0,forestry> .
+
 guide.skyresources.misc.rockcandy.title=Rock Candy Support
 guide.skyresources.misc.rockcandy.text=Sky Resources provides for ways to get basic Rock Candy items. \n \n <recipe,,rockcandy:raw_rock_candy:0> is obtainable.

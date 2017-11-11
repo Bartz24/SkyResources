@@ -49,6 +49,7 @@ dependencies {
 	compile files("lib/theoneprobe-1.12-1.4.19.jar")
 	compile files("lib/forestry_1.12.2-5.7.0.209.jar")
 	compile files("lib/industrialcraft-2-2.8.16-ex112.jar")
+	compile files("lib/binnie-mods-1.12.2-2.5.0.88.jar")
 	  
     // real examples
     //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env

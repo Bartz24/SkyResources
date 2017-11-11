@@ -1,6 +1,7 @@
 package com.bartz24.skyresources.plugin;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.bartz24.skyresources.plugin.actuallyadditions.ActAddPlugin;
 import com.bartz24.skyresources.plugin.ae2.AE2Plugin;
@@ -8,6 +9,7 @@ import com.bartz24.skyresources.plugin.armorplus.ArmorPlusPlugin;
 import com.bartz24.skyresources.plugin.ctweaker.CraftTweakerPlugin;
 import com.bartz24.skyresources.plugin.dracevo.DEPlugin;
 import com.bartz24.skyresources.plugin.embers.EmbersPlugin;
+import com.bartz24.skyresources.plugin.extrabees.ExtraBeesPlugin;
 import com.bartz24.skyresources.plugin.extremereactors.ExtremeReactorsPlugin;
 import com.bartz24.skyresources.plugin.forestry.ForestryPlugin;
 import com.bartz24.skyresources.plugin.ic2.IC2Plugin;
@@ -22,46 +24,29 @@ import net.minecraftforge.fml.common.Loader;
 
 public class ModPlugins
 {
-	public static ArrayList<IModPlugin> plugins = new ArrayList<IModPlugin>();
+	public static Map<String, IModPlugin> plugins = new HashMap();
 
 	public static void preInit()
 	{
-		if (Loader.isModLoaded("actuallyadditions"))
-			plugins.add(new ActAddPlugin());
-		if (Loader.isModLoaded("appliedenergistics2"))
-			plugins.add(new AE2Plugin());
-		if (Loader.isModLoaded("armorplus"))
-			plugins.add(new ArmorPlusPlugin());
-		if (Loader.isModLoaded("crafttweaker"))
-			plugins.add(new CraftTweakerPlugin());
-		if (Loader.isModLoaded("draconicevolution"))
-			plugins.add(new DEPlugin());
-		if (Loader.isModLoaded("embers"))
-			plugins.add(new EmbersPlugin());
-		// if (Loader.isModLoaded("environmentaltech"))
-		// plugins.add(new EnvTechPlugin());
-		if (Loader.isModLoaded("bigreactors"))
-			plugins.add(new ExtremeReactorsPlugin());
-		if (Loader.isModLoaded("forestry"))
-			plugins.add(new ForestryPlugin());
-		if (Loader.isModLoaded("ic2"))
-			plugins.add(new IC2Plugin());
-		if (Loader.isModLoaded("integrateddynamics"))
-			plugins.add(new IntegratedDynamicsPlugin());
-		if (Loader.isModLoaded("rockcandy"))
-			plugins.add(new RockCandyPlugin());
-		if (Loader.isModLoaded("techreborn"))
-			plugins.add(new TechRebornPlugin());
-		if (Loader.isModLoaded("tconstruct"))
-			plugins.add(new TConPlugin());
-		if (Loader.isModLoaded("theoneprobe"))
-			plugins.add(new TOPPlugin());
-		if (Loader.isModLoaded("thermalfoundation"))
-			plugins.add(new ThermalPlugin());
-		if (Loader.isModLoaded("theoneprobe"))
-			plugins.add(new TOPPlugin());
+		addPlugin("actuallyadditions", new ActAddPlugin());
+		addPlugin("appliedenergistics2", new AE2Plugin());
+		addPlugin("armorplus", new ArmorPlusPlugin());
+		addPlugin("crafttweaker", new CraftTweakerPlugin());
+		addPlugin("draconicevolution", new DEPlugin());
+		addPlugin("embers", new EmbersPlugin());
+		//addPlugin("environmentaltech", new EnvTechPlugin());
+		addPlugin("extrabees", new ExtraBeesPlugin());
+		addPlugin("bigreactors", new ExtremeReactorsPlugin());
+		addPlugin("forestry", new ForestryPlugin());
+		addPlugin("ic2", new IC2Plugin());
+		addPlugin("integrateddynamics", new IntegratedDynamicsPlugin());
+		addPlugin("rockcandy", new RockCandyPlugin());
+		addPlugin("techreborn", new TechRebornPlugin());
+		addPlugin("tconstruct", new TConPlugin());
+		addPlugin("theoneprobe", new TOPPlugin());
+		addPlugin("thermalfoundation", new ThermalPlugin());
 
-		for (IModPlugin p : plugins)
+		for (IModPlugin p : plugins.values())
 		{
 			p.preInit();
 		}
@@ -74,7 +59,7 @@ public class ModPlugins
 
 	public static void init()
 	{
-		for (IModPlugin p : plugins)
+		for (IModPlugin p : plugins.values())
 		{
 			p.init();
 		}
@@ -82,7 +67,7 @@ public class ModPlugins
 
 	public static void postInit()
 	{
-		for (IModPlugin p : plugins)
+		for (IModPlugin p : plugins.values())
 		{
 			p.postInit();
 		}
@@ -90,9 +75,15 @@ public class ModPlugins
 
 	public static void initRenderers()
 	{
-		for (IModPlugin p : plugins)
+		for (IModPlugin p : plugins.values())
 		{
 			p.initRenderers();
 		}
+	}
+	
+	public static void addPlugin(String modID, IModPlugin plugin)
+	{
+		if (Loader.isModLoaded(modID))
+			plugins.put(modID, plugin);		
 	}
 }

@@ -8,6 +8,8 @@ import java.util.List;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.base.tile.TileGenericPower;
 import com.bartz24.skyresources.config.ConfigOptions;
+import com.bartz24.skyresources.plugin.ModPlugins;
+import com.bartz24.skyresources.plugin.extrabees.ExtraBeesPlugin;
 
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeType;
@@ -28,6 +30,7 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
+import net.minecraftforge.fml.common.Loader;
 
 public class TileBeeAttractor extends TileGenericPower implements ITickable, IFluidHandler
 {
@@ -97,6 +100,12 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 					{
 						List<IHiveDrop> hiveDrops = h.getDrops();
 						drops.addAll(getBeeDrops(hiveDrops));
+					}
+
+					if (Loader.isModLoaded("extrabees"))
+					{
+						drops.addAll(
+								getBeeDrops(((ExtraBeesPlugin) ModPlugins.plugins.get("extrabees")).getAllHiveDrops()));
 					}
 				}
 				smallChance = true;
