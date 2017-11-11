@@ -37,6 +37,8 @@ import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.items.wrapper.InvWrapper;
 
 public class ItemCondenser extends ItemMachine
 {
@@ -99,7 +101,7 @@ public class ItemCondenser extends ItemMachine
 					if (!world.isRemote)
 					{
 						timeCondense++;
-						itemLeft -= recipe.getIntParameter() / (1600f * Math.pow(recipe.getIntParameter(), 0.05f)
+						itemLeft -= Math.pow(recipe.getIntParameter(), 1.3f) / 50f / (12400f * recipe.getIntParameter() / 50f
 								* this.getMachineEfficiency(machineStack, world, pos));
 					}
 				}
@@ -141,13 +143,13 @@ public class ItemCondenser extends ItemMachine
 			{
 				if (tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP))
 				{
-					out = RandomHelper.fillInventory(
-							tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP), out, sim);
+					return ItemHandlerHelper.insertItemStacked(
+							tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP), out, sim).isEmpty();
 				} else if (tile instanceof IInventory)
 				{
-					out = RandomHelper.fillInventory((IInventory) tile, out, sim);
+					return ItemHandlerHelper.insertItemStacked(new InvWrapper((IInventory)tile), out, sim).isEmpty();
 				}
-				return out.isEmpty();
+				return false;
 			}
 
 			if (!sim && out != ItemStack.EMPTY && out.getCount() > 0)
@@ -165,7 +167,7 @@ public class ItemCondenser extends ItemMachine
 
 	public int getTimeToCondense(World world, BlockPos pos, ItemStack machineStack, ProcessRecipe recipe)
 	{
-		return Math.round(recipe.getIntParameter() * 50f / this.getMachineSpeed(machineStack, world, pos));
+		return Math.round(recipe.getIntParameter() / this.getMachineSpeed(machineStack, world, pos));
 	}
 
 	public Block getBlockAbove(World world, BlockPos pos)

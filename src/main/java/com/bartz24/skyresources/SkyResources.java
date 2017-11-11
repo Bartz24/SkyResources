@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 
-@Mod(modid = References.ModID, name = References.ModName, version = References.Version, useMetadata = true, guiFactory = "com.bartz24.skyresources.config.ConfigGuiFactory")
+@Mod(modid = References.ModID, name = References.ModName, version = References.Version, useMetadata = true)
 public class SkyResources
 {
 	@SidedProxy(clientSide = "com.bartz24.skyresources.proxy.ClientProxy", serverSide = "com.bartz24.skyresources.proxy.ServerProxy")

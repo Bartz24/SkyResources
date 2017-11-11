@@ -9,12 +9,24 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class ItemHandlerSpecial extends ItemStackHandler
 {	
+	private int stackLimit = 64;
 
     public ItemHandlerSpecial(int size)
     {
     	super(size);
 		this.slotsNoExtract = new ArrayList<Integer>();
 		this.slotsNoInsert = new ArrayList<Integer>();
+    }
+	
+	public void setSlotLimit(int amount)
+	{
+		stackLimit = Math.min(64, amount);
+	}
+	
+	@Override
+    public int getSlotLimit(int slot)
+    {
+        return stackLimit;
     }
 
     public ItemHandlerSpecial(int size, Integer[] noInsert, Integer[] noExtract)

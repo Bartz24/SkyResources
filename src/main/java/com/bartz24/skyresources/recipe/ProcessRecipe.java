@@ -71,6 +71,11 @@ public class ProcessRecipe
 		return stacksAreValid(recipe, forceEqual) && fluidsValid(recipe, forceEqual) && intValid(recipe);
 	}
 
+	public boolean isInputRecipeLess(ProcessRecipe recipe)
+	{
+		return stacksAreValidLess(recipe) && fluidsValid(recipe, false) && intValid(recipe);
+	}
+
 	public boolean isInputMultiRecipeEqualTo(ProcessRecipe recipe)
 	{
 		return stacksAreValidMulti(recipe) && intValid(recipe);
@@ -204,6 +209,47 @@ public class ProcessRecipe
 		}
 
 		return itemsChecked.size() == inputs.size();
+	}
+
+	boolean stacksAreValidLess(ProcessRecipe recipe)
+	{
+		List<Integer> itemsChecked = new ArrayList();
+		int index = 0;
+		for (Object i2 : recipe.inputs)
+		{
+			boolean valid = false;
+			int index2 = 0;
+			for (Object i : inputs)
+			{
+				if (i instanceof ItemStack && ((ItemStack) i).isEmpty())
+					continue;
+				if (!itemsChecked.contains(index2))
+				{
+					if (i instanceof ItemStack && i2 instanceof String)
+					{
+						int[] ids = OreDictionary.getOreIDs((ItemStack) i);
+						for (int id : ids)
+							if (id == OreDictionary.getOreID(i2.toString()))
+							{
+								valid = true;
+								itemsChecked.add(index2);
+							}
+					} else if (i instanceof ItemStack && i2 instanceof ItemStack)
+						if (ItemHelper.itemStacksEqualOD((ItemStack) i, (ItemStack) i2)
+								&& (((ItemStack) i).getCount() >= ((ItemStack) i2).getCount()))
+						{
+							valid = true;
+							itemsChecked.add(index2);
+						}
+				}
+				index2++;
+			}
+			if (!valid)
+				return false;
+			index++;
+		}
+
+		return itemsChecked.size() == recipe.inputs.size();
 	}
 
 	boolean intValid(ProcessRecipe recipe)

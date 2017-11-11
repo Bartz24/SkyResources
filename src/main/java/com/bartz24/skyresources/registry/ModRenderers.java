@@ -86,10 +86,12 @@ public class ModRenderers
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.coalInfusedBlock));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.sandyNetherrack));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.darkMatterBlock));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.lightMatterBlock));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.heavySnow));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.dryCactus));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.miniFreezer));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.ironFreezer));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.lightFreezer));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.crucible));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.fluidDropper));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.blazePowderBlock));
@@ -102,6 +104,7 @@ public class ModRenderers
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.rockCrusher));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.rockCleaner));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.combustionCollector));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.combustionController));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.quickDropper));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.aqueousConcentrator));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.aqueousDeconcentrator));

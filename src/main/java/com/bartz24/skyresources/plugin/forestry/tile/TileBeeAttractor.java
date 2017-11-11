@@ -7,6 +7,9 @@ import java.util.List;
 
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.base.tile.TileGenericPower;
+import com.bartz24.skyresources.config.ConfigOptions;
+import com.bartz24.skyresources.plugin.ModPlugins;
+import com.bartz24.skyresources.plugin.extrabees.ExtraBeesPlugin;
 
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeType;
@@ -14,7 +17,7 @@ import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IHiveDrop;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
-import forestry.apiculture.PluginApiculture;
+import forestry.apiculture.ModuleApiculture;
 import forestry.apiculture.worldgen.Hive;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,18 +30,19 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
+import net.minecraftforge.fml.common.Loader;
 
 public class TileBeeAttractor extends TileGenericPower implements ITickable, IFluidHandler
 {
 	private FluidTank tank;
-	private int powerUsage = 100;
-	private int fluidUsage = 20;
-	int ticks = 200;
+	private int powerUsage = ConfigOptions.pluginSettings.forestrySettings.beeAttractorPowerUsage;
+	private int fluidUsage = ConfigOptions.pluginSettings.forestrySettings.beeAttractorSeedOilUsage;
+	int ticks = ConfigOptions.pluginSettings.forestrySettings.beeAttractorTime;
 
 	public TileBeeAttractor()
 	{
 		super("beeAttractor", 100000, 2000, 0, 6, new Integer[] { 0, 1, 2, 3, 4, 5 }, null);
-		tank = new FluidTank(4000);
+		tank = new FluidTank(ConfigOptions.pluginSettings.forestrySettings.beeAttractorSeedOilCapacity);
 	}
 
 	@Override
@@ -87,7 +91,7 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 			boolean smallChance = world.rand.nextFloat() <= 0.25f;
 			while (drops.size() == 0)
 			{
-				for (Hive h : PluginApiculture.getHiveRegistry().getHives())
+				for (Hive h : ModuleApiculture.getHiveRegistry().getHives())
 				{
 					Biome biome = world.getBiomeForCoordsBody(getPos());
 					if (smallChance
@@ -96,6 +100,12 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 					{
 						List<IHiveDrop> hiveDrops = h.getDrops();
 						drops.addAll(getBeeDrops(hiveDrops));
+					}
+
+					if (Loader.isModLoaded("extrabees"))
+					{
+						drops.addAll(
+								getBeeDrops(((ExtraBeesPlugin) ModPlugins.plugins.get("extrabees")).getAllHiveDrops()));
 					}
 				}
 				smallChance = true;
@@ -108,9 +118,9 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 			while (beeStack.isEmpty() && tries < 30)
 			{
 				ItemStack stack = drops.get(world.rand.nextInt(drops.size()));
-				if (princess && stack.getItem() == PluginApiculture.getItems().beePrincessGE)
+				if (princess && stack.getItem() == ModuleApiculture.getItems().beePrincessGE)
 					beeStack = stack;
-				else if (!princess && stack.getItem() == PluginApiculture.getItems().beeDroneGE)
+				else if (!princess && stack.getItem() == ModuleApiculture.getItems().beeDroneGE)
 					beeStack = stack;
 				tries++;
 			}

@@ -2,6 +2,7 @@ package com.bartz24.skyresources.base;
 
 import java.util.Locale;
 
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModItems;
 
 import net.minecraft.init.Items;
@@ -25,7 +26,8 @@ public enum MachineVariants implements IStringSerializable
 	SIGNALUM(1362, 1.8f, 3.6f, "FE", 80), 
 	ENDSTONE(2164, 6.6f, 6.6f, new ItemStack(Items.ENDER_PEARL), 2200), 
 	ENDERIUM(3166, 6.8f, 8.0f, "FE", 1200), 
-	DARKMATTER(4042, 100f, 100f, new ItemStack(ModItems.baseComponent, 1, 5), 31415);
+	DARKMATTER(4042, 1f, 100f, new ItemStack(ModItems.baseComponent, 1, 5), 31415),
+	LIGHTMATTER(1566, 100f, 1f, new ItemStack(ModItems.baseComponent, 1, 7), 27183);
 
 	private int maxHeat;
 	private float efficiency;
@@ -50,17 +52,17 @@ public enum MachineVariants implements IStringSerializable
 
 	public int getMaxHeat()
 	{
-		return maxHeat;
+		return ConfigOptions.modularMachineSettings.machineMaxHU.get(getName());
 	}
 
 	public float getRawEfficiency()
 	{
-		return efficiency;
+		return ConfigOptions.modularMachineSettings.machineEfficiency.get(getName());
 	}
 
 	public float getRawSpeed()
 	{
-		return speed;
+		return ConfigOptions.modularMachineSettings.machineSpeed.get(getName());
 	}
 
 	public Object getFuelType()
@@ -71,6 +73,21 @@ public enum MachineVariants implements IStringSerializable
 	public int getRawFuelRate()
 	{
 		return fuelRate;
+	}
+
+	public int getDefaultMaxHeat()
+	{
+		return maxHeat;
+	}
+
+	public float getDefaultRawEfficiency()
+	{
+		return efficiency;
+	}
+
+	public float getDefaultRawSpeed()
+	{
+		return speed;
 	}
 
 	public void setFuel(Object fuelType, int fuelRate)

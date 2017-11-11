@@ -35,8 +35,8 @@ public class ItemRockGrinder extends ItemPickaxe
 	{
 		super(material);
 		toolMaterial = material;
-		this.setMaxDamage((int) (material.getMaxUses() * ConfigOptions.rockGrinderBaseDurability));
-		this.damageVsEntity = ConfigOptions.rockGrinderBaseDamage + material.getDamageVsEntity();
+		this.setMaxDamage((int) (material.getMaxUses() * ConfigOptions.toolSettings.rockGrinderBaseDurability));
+		this.damageVsEntity = ConfigOptions.toolSettings.rockGrinderBaseDamage + material.getDamageVsEntity();
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
 		setRegistryName(registryName);
 		this.setMaxStackSize(1);

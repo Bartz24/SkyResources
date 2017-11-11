@@ -85,6 +85,8 @@ public class JEIPlugin implements IModPlugin
 				References.ModID + ":freezer");
 		registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.ironFreezer, 1, 0),
 				References.ModID + ":freezer");
+		registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.lightFreezer, 1, 0),
+				References.ModID + ":freezer");
 		registry.addRecipeCategoryCraftingItem(new ItemStack(ModItems.waterExtractor),
 				References.ModID + ":waterextractor");
 		registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.aqueousConcentrator),

@@ -50,16 +50,16 @@ public class BlockFreezer extends BlockContainer
 	{
 		return EnumBlockRenderType.MODEL;
 	}
-	
-	public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
-    }
 
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
+	public boolean isOpaqueCube(IBlockState state)
+	{
+		return false;
+	}
+
+	public boolean isFullCube(IBlockState state)
+	{
+		return false;
+	}
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
@@ -81,8 +81,11 @@ public class BlockFreezer extends BlockContainer
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state)
 	{
-		FreezerTile te = (FreezerTile) world.getTileEntity(pos);
-		te.dropInventory();
+		if (world.getTileEntity(pos) instanceof FreezerTile)
+		{
+			FreezerTile te = (FreezerTile) world.getTileEntity(pos);
+			te.dropInventory();
+		}
 		super.breakBlock(world, pos, state);
 	}
 

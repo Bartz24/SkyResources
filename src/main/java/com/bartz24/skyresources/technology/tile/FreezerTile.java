@@ -1,5 +1,6 @@
 package com.bartz24.skyresources.technology.tile;
 
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.technology.block.BlockFreezer;
 import com.bartz24.skyresources.technology.block.BlockFreezer.EnumPartType;
 
@@ -14,10 +15,15 @@ public class FreezerTile extends MiniFreezerTile implements ITickable
 	{
 		super(6, new Integer[] { 3, 4, 5 }, new Integer[] { 0, 1, 2 });
 	}
+	
+	public FreezerTile(int slots, Integer[] noInsert, Integer[] noExtract)
+	{
+		super(slots, noInsert, noExtract);
+	}
 
 	public float getFreezerSpeed()
 	{
-		return 1;
+		return ConfigOptions.machineSettings.ironFreezerSpeed;
 	}
 
 	void updateMulti2x1()

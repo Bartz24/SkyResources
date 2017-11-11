@@ -1,5 +1,7 @@
 package com.bartz24.skyresources.base.entity;
 
+import com.bartz24.skyresources.config.ConfigOptions;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -50,11 +52,11 @@ public class EntityHeavyExplosiveSnowball extends EntityThrowable
 		{
 			if (result.entityHit != null)
 			{
-				int i = 12;
+				int i = ConfigOptions.miscSettings.explosiveHeavySnowballDamage;
 
 				if (result.entityHit instanceof EntityBlaze)
 				{
-					i = 18;
+					i = (int)(ConfigOptions.miscSettings.explosiveHeavySnowballDamage * 1.7f);
 				}
 
 				result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float) i);

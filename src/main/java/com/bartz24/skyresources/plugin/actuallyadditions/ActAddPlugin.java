@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.bartz24.skyresources.base.guide.SkyResourcesGuide;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.plugin.IModPlugin;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 import com.bartz24.skyresources.registry.ModItems;
@@ -31,9 +32,13 @@ public class ActAddPlugin implements IModPlugin
 		Item rice = Item.REGISTRY.getObject(new ResourceLocation("actuallyadditions", "item_rice_seed"));
 		Item misc = Item.REGISTRY.getObject(new ResourceLocation("actuallyadditions", "item_misc"));
 		
+		if(ConfigOptions.pluginSettings.actuallyAdditionsSettings.addCanolaDrop)
 		MinecraftForge.addGrassSeed(new ItemStack(canola), 10);
+		if(ConfigOptions.pluginSettings.actuallyAdditionsSettings.addCoffeeDrop)
 		MinecraftForge.addGrassSeed(new ItemStack(coffee), 10);
+		if(ConfigOptions.pluginSettings.actuallyAdditionsSettings.addFlaxDrop)
 		MinecraftForge.addGrassSeed(new ItemStack(flax), 10);
+		if(ConfigOptions.pluginSettings.actuallyAdditionsSettings.addRiceDrop)
 		MinecraftForge.addGrassSeed(new ItemStack(rice), 10);
 
 		SkyResourcesGuide.addPage("actadd", "guide.skyresources.misc", new ItemStack(misc, 1, 5));

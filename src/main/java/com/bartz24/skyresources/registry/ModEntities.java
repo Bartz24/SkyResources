@@ -13,9 +13,11 @@ import com.bartz24.skyresources.plugin.forestry.tile.TileBeeAttractor;
 import com.bartz24.skyresources.technology.tile.DirtFurnaceTile;
 import com.bartz24.skyresources.technology.tile.FluidDropperTile;
 import com.bartz24.skyresources.technology.tile.FreezerTile;
+import com.bartz24.skyresources.technology.tile.LightFreezerTile;
 import com.bartz24.skyresources.technology.tile.MiniFreezerTile;
 import com.bartz24.skyresources.technology.tile.TileAqueousConcentrator;
 import com.bartz24.skyresources.technology.tile.TileCombustionCollector;
+import com.bartz24.skyresources.technology.tile.TileCombustionController;
 import com.bartz24.skyresources.technology.tile.TileCrucibleInserter;
 import com.bartz24.skyresources.technology.tile.TileDarkMatterWarper;
 import com.bartz24.skyresources.technology.tile.TileEndPortalCore;
@@ -33,6 +35,7 @@ public final class ModEntities
 	{
 		GameRegistry.registerTileEntity(FluidDropperTile.class, References.ModID + ":fluidDroppertile");
 		GameRegistry.registerTileEntity(CrucibleTile.class, References.ModID + ":crucibletile");
+		GameRegistry.registerTileEntity(LightFreezerTile.class, References.ModID + ":lightfreezertile");
 		GameRegistry.registerTileEntity(FreezerTile.class, References.ModID + ":freezertile");
 		GameRegistry.registerTileEntity(MiniFreezerTile.class, References.ModID + ":minifreezertile");
 		GameRegistry.registerTileEntity(DirtFurnaceTile.class, References.ModID + ":dirtfurnacetile");
@@ -45,6 +48,7 @@ public final class ModEntities
 		GameRegistry.registerTileEntity(TileRockCrusher.class, References.ModID + ":rockcrushertile");
 		GameRegistry.registerTileEntity(TileRockCleaner.class, References.ModID + ":rockcleanertile");
 		GameRegistry.registerTileEntity(TileCombustionCollector.class, References.ModID + ":combustioncollectortile");
+		GameRegistry.registerTileEntity(TileCombustionController.class, References.ModID + ":combustioncontrollertile");
 		GameRegistry.registerTileEntity(TileQuickDropper.class, References.ModID + ":quickdroppertile");
 		GameRegistry.registerTileEntity(TileAqueousConcentrator.class, References.ModID + ":aqueousconcentratortile");
 		GameRegistry.registerTileEntity(TileAlchemyFusionTable.class, References.ModID + ":fusiontable");

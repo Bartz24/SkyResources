@@ -3,6 +3,7 @@ package com.bartz24.skyresources.technology.tile;
 import java.util.Arrays;
 
 import com.bartz24.skyresources.base.tile.TileGenericPower;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.recipe.ProcessRecipe;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 import com.bartz24.skyresources.registry.ModBlocks;
@@ -27,7 +28,6 @@ public class TileAqueousConcentrator extends TileGenericPower implements ITickab
 		tank = new FluidTank(4000);
 	}
 
-	private int powerUsage = 80;
 	private int curProgress;
 
 	@Override
@@ -56,12 +56,12 @@ public class TileAqueousConcentrator extends TileGenericPower implements ITickab
 			ProcessRecipe recipe = ProcessRecipeManager.waterExtractorInsertRecipes.getRecipe(
 					Arrays.asList(new Object[] { this.getInventory().getStackInSlot(0), tank.getFluid().copy() }), 0,
 					false, false);
-			if (curProgress < 100 && getEnergyStored() >= powerUsage && recipe != null
+			if (curProgress < 100 && getEnergyStored() >= ConfigOptions.machineSettings.aqueousConcentratorPowerUsage && recipe != null
 					&& tank.getFluidAmount() >= recipe.getIntParameter()
 					&& this.getInventory().insertInternalItem(1, recipe.getOutputs().get(0).copy(), true).isEmpty())
 			{
-				internalExtractEnergy(powerUsage, false);
-				curProgress += 5;
+				internalExtractEnergy(ConfigOptions.machineSettings.aqueousConcentratorPowerUsage, false);
+				curProgress += ConfigOptions.machineSettings.aqueousConcentratorSpeed;
 			} else if (recipe == null)
 				curProgress = 0;
 			if (curProgress >= 100
@@ -80,12 +80,12 @@ public class TileAqueousConcentrator extends TileGenericPower implements ITickab
 	{
 		ProcessRecipe recipe = this.getInventory().getStackInSlot(0).isEmpty() ? null : ProcessRecipeManager.waterExtractorExtractRecipes
 				.getRecipe(this.getInventory().getStackInSlot(0), 0, false, false);
-		if (curProgress < 100 && getEnergyStored() >= powerUsage && recipe != null
+		if (curProgress < 100 && getEnergyStored() >= ConfigOptions.machineSettings.aqueousDeconcentratorPowerUsage && recipe != null
 				&& tank.getFluidAmount() + recipe.getFluidOutputs().get(0).amount <= tank.getCapacity()
 				&& this.getInventory().insertInternalItem(1, recipe.getOutputs().get(0).copy(), true).isEmpty())
 		{
-			internalExtractEnergy(powerUsage, false);
-			curProgress += 10;
+			internalExtractEnergy(ConfigOptions.machineSettings.aqueousDeconcentratorPowerUsage, false);
+			curProgress += ConfigOptions.machineSettings.aqueousDeconcentratorSpeed;
 		} else if (recipe == null)
 			curProgress = 0;
 		if (curProgress >= 100 && this.getInventory().insertInternalItem(1, recipe.getOutputs().get(0).copy(), true).isEmpty()

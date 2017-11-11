@@ -7,8 +7,8 @@ import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModRenderers;
 
 import forestry.api.recipes.RecipeManagers;
-import forestry.apiculture.PluginApiculture;
-import forestry.core.PluginCore;
+import forestry.apiculture.ModuleApiculture;
+import forestry.core.ModuleCore;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -29,10 +29,10 @@ public class ForestryPlugin implements IModPlugin
 		RecipeManagers.carpenterManager.addRecipe(25, FluidRegistry.getFluidStack("seed.oil", 500), ItemStack.EMPTY,
 				new ItemStack(beeAttractor),
 				new Object[] { "XXX", "XYX", "ZZZ", Character.valueOf('X'), "plankWood", Character.valueOf('Y'),
-						PluginCore.items.impregnatedCasing, Character.valueOf('Z'), "ingotBronze" });
+						ModuleCore.items.impregnatedCasing, Character.valueOf('Z'), "ingotBronze" });
 
 		SkyResourcesGuide.addPage("forestry", "guide.skyresources.misc",
-				new ItemStack(PluginApiculture.getItems().beeQueenGE));
+				new ItemStack(ModuleApiculture.getItems().beeQueenGE));
 	}
 
 	public void initRenderers()

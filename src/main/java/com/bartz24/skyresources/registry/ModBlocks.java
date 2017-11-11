@@ -15,11 +15,13 @@ import com.bartz24.skyresources.base.block.TransparentBlock;
 import com.bartz24.skyresources.technology.block.BlockAqueousConcentrator;
 import com.bartz24.skyresources.technology.block.BlockAqueousDeconcentrator;
 import com.bartz24.skyresources.technology.block.BlockCombustionCollector;
+import com.bartz24.skyresources.technology.block.BlockCombustionController;
 import com.bartz24.skyresources.technology.block.BlockCrucibleInserter;
 import com.bartz24.skyresources.technology.block.BlockDarkMatterWarper;
 import com.bartz24.skyresources.technology.block.BlockDirtFurnace;
 import com.bartz24.skyresources.technology.block.BlockEndPortalCore;
 import com.bartz24.skyresources.technology.block.BlockFreezer;
+import com.bartz24.skyresources.technology.block.BlockLightFreezer;
 import com.bartz24.skyresources.technology.block.BlockMiniFreezer;
 import com.bartz24.skyresources.technology.block.BlockQuickDropper;
 import com.bartz24.skyresources.technology.block.BlockRockCleaner;
@@ -42,6 +44,7 @@ public class ModBlocks
 	public static Block fluidDropper;
 	public static Block miniFreezer;
 	public static Block ironFreezer;
+	public static Block lightFreezer;
 	public static Block darkMatterWarper;
 	public static Block endPortalCore;
 	public static Block lifeInfuser;
@@ -50,6 +53,7 @@ public class ModBlocks
 	public static Block rockCrusher;
 	public static Block rockCleaner;
 	public static Block combustionCollector;
+	public static Block combustionController;
 	public static Block quickDropper;
 	public static Block aqueousConcentrator;
 	public static Block aqueousDeconcentrator;
@@ -60,6 +64,7 @@ public class ModBlocks
 	public static Block coalInfusedBlock;
 	public static Block sandyNetherrack;
 	public static Block darkMatterBlock;
+	public static Block lightMatterBlock;
 	public static Block heavySnow;
 
 	public static Block blazePowderBlock;
@@ -84,6 +89,8 @@ public class ModBlocks
 				new BaseBlock(Material.ROCK, "coalInfusedBlock", "CoalInfusedBlock", 6F, 6F, SoundType.STONE));
 		darkMatterBlock = registerBlock(
 				new BaseBlock(Material.ROCK, "darkMatterBlock", "DarkMatterBlock", 10F, 12F, SoundType.STONE));
+		lightMatterBlock = registerBlock(
+				new BaseBlock(Material.ROCK, "lightMatterBlock", "LightMatterBlock", 10F, 12F, SoundType.STONE));
 
 		blazePowderBlock = registerBlock(new BlazePowderBlock(Material.CLAY, "blazePowderBlock", "BlazePowderBlock",
 				0.5F, 0.5F, SoundType.GROUND));
@@ -95,12 +102,15 @@ public class ModBlocks
 		rockCleaner = registerBlock(new BlockRockCleaner("rockCleaner", "RockCleaner", 6F, 12F));
 		combustionCollector = registerBlock(
 				new BlockCombustionCollector("combustionCollector", "CombustionCollector", 6F, 12F));
+		combustionController = registerBlock(
+				new BlockCombustionController("combustionController", "CombustionController", 6F, 12F));
 		quickDropper = registerBlock(new BlockQuickDropper("quickDropper", "QuickDropper", 6F, 12F));
 		lifeInfuser = registerBlock(new LifeInfuserBlock("lifeInfuser", "LifeInfuser", 6F, 12F));
 		lifeInjector = registerBlock(new LifeInjectorBlock("lifeInjector", "LifeInjector", 6F, 12F));
 
 		miniFreezer = registerBlock(new BlockMiniFreezer("miniFreezer", "MiniFreezer", 0.5F, 0.5F));
 		ironFreezer = registerBlock(new BlockFreezer("ironFreezer", "IronFreezer", 2F, 2F));
+		lightFreezer = registerBlock(new BlockLightFreezer("lightFreezer", "lightFreezer", 8F, 12F));
 
 		crucible = registerBlock(new CrucibleBlock("crucible", "Crucible", 2F, 12F));
 

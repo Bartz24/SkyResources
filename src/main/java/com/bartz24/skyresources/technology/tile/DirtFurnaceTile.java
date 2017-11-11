@@ -2,6 +2,7 @@ package com.bartz24.skyresources.technology.tile;
 
 import javax.annotation.Nullable;
 
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.technology.block.BlockDirtFurnace;
 
 import net.minecraft.block.Block;
@@ -232,7 +233,7 @@ public class DirtFurnaceTile extends TileEntity implements ITickable, ISidedInve
 
 		if (this.isBurning())
 		{
-			this.furnaceBurnTime -= 3;
+			this.furnaceBurnTime -= ConfigOptions.machineSettings.dirtFurnaceFuelRate;
 		}
 
 		if (!this.world.isRemote)
@@ -297,7 +298,7 @@ public class DirtFurnaceTile extends TileEntity implements ITickable, ISidedInve
 
 	public int getCookTime(@Nullable ItemStack stack)
 	{
-		return 200;
+		return 800 / ConfigOptions.machineSettings.dirtFurnaceSpeed;
 	}
 
 	/**

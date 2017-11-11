@@ -3,6 +3,7 @@ package com.bartz24.skyresources.technology.tile;
 import java.util.List;
 
 import com.bartz24.skyresources.base.tile.TileGenericPower;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.recipe.ProcessRecipe;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 
@@ -29,7 +30,7 @@ public class TileRockCleaner extends TileGenericPower implements ITickable, IFlu
 		tank = new FluidTank(4000);
 	}
 
-	private int powerUsage = 80;
+	private int powerUsage = ConfigOptions.machineSettings.rockCleanerPowerUsage;
 	private int curProgress;
 
 	private NonNullList<ItemStack> bufferStacks = NonNullList.create();
@@ -53,7 +54,7 @@ public class TileRockCleaner extends TileGenericPower implements ITickable, IFlu
 							&& tank.getFluidAmount() >= 250 && bufferStacks.size() == 0)
 					{
 						internalExtractEnergy(powerUsage, false);
-						curProgress += 5;
+						curProgress += ConfigOptions.machineSettings.rockCleanerSpeed;
 					} else if (!hasRecipes)
 						curProgress = 0;
 					if (curProgress >= 100 && hasRecipes)

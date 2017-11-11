@@ -84,6 +84,12 @@
             "textures": {
                 "all": "skyresources:blocks/darkmatter"
             }
+        },
+        "variant=lightmatter": {
+            "model": "skyresources:casing",
+            "textures": {
+                "all": "skyresources:blocks/lightmatter"
+            }
         }
     }
 }

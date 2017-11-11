@@ -98,6 +98,13 @@
                 "part": "skyresources:items/alchemy",
                 "all": "skyresources:blocks/darkmatter"
             }
+        },
+        "variant=lightmatter": {
+            "model": "skyresources:component",
+            "textures": {
+                "part": "skyresources:items/alchemy",
+                "all": "skyresources:blocks/lightmatter"
+            }
         }
     }
 }

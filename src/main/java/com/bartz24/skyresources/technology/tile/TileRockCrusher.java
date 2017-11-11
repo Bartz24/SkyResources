@@ -4,6 +4,7 @@ import java.util.Collections;
 
 import com.bartz24.skyresources.base.gui.ItemHandlerSpecial;
 import com.bartz24.skyresources.base.tile.TileGenericPower;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.recipe.ProcessRecipe;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 
@@ -29,7 +30,7 @@ public class TileRockCrusher extends TileGenericPower implements ITickable
 		});
 	}
 
-	private int powerUsage = 100;
+	private int powerUsage = ConfigOptions.machineSettings.rockCrusherPowerUsage;
 	private float curProgress;
 
 	private NonNullList<ItemStack> bufferStacks = NonNullList.create();
@@ -52,7 +53,7 @@ public class TileRockCrusher extends TileGenericPower implements ITickable
 					if (curProgress < 100 && getEnergyStored() >= powerUsage && hasRecipes && bufferStacks.size() == 0)
 					{
 						internalExtractEnergy(powerUsage, false);
-						curProgress += 2f;
+						curProgress += ConfigOptions.machineSettings.rockCrusherSpeed;
 					} else if (!hasRecipes)
 						curProgress = 0;
 					if (curProgress >= 100 && hasRecipes)
@@ -137,7 +138,7 @@ public class TileRockCrusher extends TileGenericPower implements ITickable
 	{
 		super.readFromNBT(compound);
 		bufferListRead(compound.getCompoundTag("buffer"));
-		curProgress = compound.getInteger("progress");
+		curProgress = compound.getFloat("progress");
 	}
 
 	public NBTTagCompound bufferListWrite()

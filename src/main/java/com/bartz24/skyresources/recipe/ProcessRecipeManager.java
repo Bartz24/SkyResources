@@ -41,7 +41,7 @@ public class ProcessRecipeManager
 		public void drawJEIInfo(ProcessRecipe rec, Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX,
 				int mouseY)
 		{
-			String s = Float.toString(rec.getIntParameter() * 100) + "%";
+			String s = Math.round(rec.getIntParameter() * 100000f) / 1000f + "%";
 			FontRenderer fontRendererObj = minecraft.fontRenderer;
 			fontRendererObj.drawString(s, 70, 0, java.awt.Color.gray.getRGB());
 		}
@@ -90,14 +90,13 @@ public class ProcessRecipeManager
 		public void drawJEIInfo(ProcessRecipe rec, Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX,
 				int mouseY)
 		{
-			String s = "100% spd: " + Math.round(rec.getIntParameter() * 50f) + " ticks";
+			String s = "100% spd: " + Math.round(rec.getIntParameter()) + " ticks";
 			FontRenderer fontRendererObj = minecraft.fontRenderer;
 			int stringWidth = fontRendererObj.getStringWidth(s);
 			fontRendererObj.drawString(s, 130 - stringWidth, 8, java.awt.Color.gray.getRGB());
-			s = "100% eff: "
-					+ Math.round(rec.getIntParameter() / (1600f * Math.pow(rec.getIntParameter(), 0.05f)) * 1000000f)
-							/ 10000f
-					+ "%/tick";
+			s = "100% eff: " + Math.round(
+					Math.pow(rec.getIntParameter(), 1.3f) / 50f / (12400f * rec.getIntParameter() / 50f) * 1000000f)
+					/ 10000f + "%/tick";
 			stringWidth = fontRendererObj.getStringWidth(s);
 			fontRendererObj.drawString(s, 130 - stringWidth, 50, java.awt.Color.gray.getRGB());
 		}
@@ -158,6 +157,20 @@ public class ProcessRecipeManager
 			{
 				return recipe;
 			}
+		}
+
+		return null;
+	}
+
+	public ProcessRecipe compareRecipeLess(List<Object> input, float intVal, boolean mergeStacks, ProcessRecipe recipe)
+	{
+		input = mergeStacks ? mergeStacks(input) : input;
+
+		ProcessRecipe rec = new ProcessRecipe(input, intVal, type);
+
+		if (rec.isInputRecipeLess(recipe))
+		{
+			return recipe;
 		}
 
 		return null;

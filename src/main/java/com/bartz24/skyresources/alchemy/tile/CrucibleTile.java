@@ -28,11 +28,11 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 {
 	FluidTank tank;
 
-	public static int tankCapacity = ConfigOptions.crucibleCapacity;
+	public static int tankCapacity = ConfigOptions.machineSettings.crucibleCapacity;
 
 	public ItemStack itemIn = ItemStack.EMPTY;
 	public int itemAmount;
-	int maxItemAmount = ConfigOptions.crucibleCapacity;
+	int maxItemAmount = ConfigOptions.machineSettings.crucibleCapacity;
 
 	@Override
 	public IFluidTankProperties[] getTankProperties()
@@ -187,7 +187,7 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 		if (HeatSources.isValidHeatSource(pos.down(), world))
 		{
 			if (HeatSources.getHeatSourceValue(pos.down(), world) > 0)
-				return Math.max(HeatSources.getHeatSourceValue(pos.down(), world), 1);
+				return (int)Math.max((float)HeatSources.getHeatSourceValue(pos.down(), world) * (float)ConfigOptions.machineSettings.crucibleSpeed / 8f, 1);
 		}
 		return 0;
 	}

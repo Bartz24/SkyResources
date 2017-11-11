@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 
 public class ItemHealthGem extends Item implements IHealthBoostItem
 {
-	private final int maxHealth = ConfigOptions.healthGemMaxHealth;
+	private final int maxHealth = ConfigOptions.toolSettings.healthGemMaxHealth;
 
 	public ItemHealthGem()
 	{
@@ -41,7 +41,7 @@ public class ItemHealthGem extends Item implements IHealthBoostItem
 	@Override
 	public int getHealthBoost(ItemStack stack)
 	{
-		return (int) (getCompound(stack).getInteger("health") * ConfigOptions.healthGemPercentage);
+		return (int) (getCompound(stack).getInteger("health") * ConfigOptions.toolSettings.healthGemPercentage);
 	}
 
 	public int getHealthInjected(ItemStack stack)
