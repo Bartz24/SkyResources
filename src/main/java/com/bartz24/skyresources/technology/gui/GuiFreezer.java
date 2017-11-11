@@ -65,7 +65,7 @@ public class GuiFreezer extends GuiContainer
 	{
 		String s = tile.getDisplayName().getUnformattedText();
 		this.fontRenderer.drawString(s, 88 - this.fontRenderer.getStringWidth(s) / 2, 6, 4210752);
-		this.fontRenderer.drawString("Speed: x" + tile.getFreezerSpeed(), 110, 56, 4210752);
+		this.fontRenderer.drawString("Speed: x" + tile.getFreezerSpeed(), 100, 60, 4210752);
 		this.fontRenderer.drawString(this.playerInv.getDisplayName().getUnformattedText(), 8, 72, 4210752);
 
 		drawProgress();

@@ -20,7 +20,7 @@ public class MiniFreezerTile extends TileItemInventory implements ITickable
 
 	public MiniFreezerTile(int slots, Integer[] noInsert, Integer[] noExtract)
 	{
-		super("freezer", 6, noInsert, noExtract);
+		super("freezer", slots, noInsert, noExtract);
 	}
 
 	float[] timeFreeze;

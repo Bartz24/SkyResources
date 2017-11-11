@@ -82,8 +82,12 @@ public class ModCrafting
 				new Object[] { "X", 'X', new ItemStack(ModBlocks.coalInfusedBlock) });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.darkMatterBlock),
 				new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(ModItems.baseComponent, 1, 3) });
+		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.lightMatterBlock),
+				new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(ModItems.baseComponent, 1, 7) });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.baseComponent, 9, 3),
 				new Object[] { "X", 'X', new ItemStack(ModBlocks.darkMatterBlock) });
+		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.baseComponent, 9, 7),
+				new Object[] { "X", 'X', new ItemStack(ModBlocks.lightMatterBlock) });
 		CraftingRegistry.addShapelessOreRecipe(new ItemStack(Blocks.SAPLING, 1, 1),
 				new Object[] { new ItemStack(Blocks.DIRT, 1, OreDictionary.WILDCARD_VALUE),
 						new ItemStack(Items.PUMPKIN_SEEDS), new ItemStack(Items.PUMPKIN_SEEDS),
@@ -106,6 +110,8 @@ public class ModCrafting
 				new Object[] { " X ", "XXX", " X ", 'X', "dustWood" });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.ironFreezer), new Object[] { "XXX", "XZX", "XXX",
 				'X', "ingotFrozenIron", 'Z', new ItemStack(ModBlocks.miniFreezer) });
+		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.lightFreezer), new Object[] { "XXX", "XZX", "XXX",
+				'X', new ItemStack(ModItems.baseComponent, 1, 7), 'Z', new ItemStack(ModBlocks.ironFreezer) });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.dirtFurnace),
 				new Object[] { "X", "Y", 'X', "dirt", 'Y', new ItemStack(ModItems.heatComponent, 1, 0) });
 
@@ -184,10 +190,8 @@ public class ModCrafting
 					new Object[] { "XAX", "XZX", "XYX", 'X', advComponent, 'Y',
 							new ItemStack(ModItems.baseComponent, 1, 1), 'Z', new ItemStack(ModItems.waterExtractor),
 							'A', new ItemStack(Blocks.SAND) });
-			CraftingRegistry
-			.addShapedOreRecipe(new ItemStack(ModBlocks.combustionController),
-					new Object[] { "XXX", "XYX", "XYX", 'X', advComponent, 'Y',
-							circuit });
+			CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.combustionController),
+					new Object[] { "XXX", "XYX", "XYX", 'X', advComponent, 'Y', circuit });
 		}
 		GameRegistry.addSmelting(ModBlocks.dryCactus, new ItemStack(Items.DYE, 1, 7), 0.2F);
 
@@ -339,6 +343,11 @@ public class ModCrafting
 							new ItemStack(OreDictionary.getOres(hardestIngot).get(0).getItem(), 3,
 									OreDictionary.getOres(hardestIngot).get(0).getMetadata()))));
 
+		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModItems.baseComponent, 1, 7), 3400,
+				new ArrayList<Object>(Arrays.asList(new ItemStack(ModBlocks.heavySnow, 5),
+						new ItemStack(ModItems.techComponent, 4, 2), new ItemStack(ModItems.alchemyComponent, 4, 7),
+						new ItemStack(Blocks.END_STONE, 3))));
+
 		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(Items.GLOWSTONE_DUST, 5), 1700,
 				new ArrayList<Object>(
 						Arrays.asList(new ItemStack(Items.REDSTONE, 4), new ItemStack(Items.BLAZE_POWDER, 2))));
@@ -412,8 +421,7 @@ public class ModCrafting
 				ItemStack output = OreDictionary.getOres(itemIngot).get(0).copy();
 				output.setCount(1);
 				ProcessRecipeManager.condenserRecipes.addRecipe(output,
-						(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(i).rarity) * 50f
-								* (float) ItemOreAlchDust.oreInfos.get(i).rarity,
+						(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(i).rarity) * 50f,
 						Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, i),
 								new FluidStack(ModFluids.crystalFluid, 1000)));
 			}
@@ -423,8 +431,7 @@ public class ModCrafting
 				ItemStack output = OreDictionary.getOres(itemOre).get(0).copy();
 				output.setCount(1);
 				ProcessRecipeManager.condenserRecipes.addRecipe(output,
-						(float) Math.pow(1.8f, ItemOreAlchDust.oreInfos.get(i).rarity) * 50f
-						* (float) ItemOreAlchDust.oreInfos.get(i).rarity,
+						(float) Math.pow(1.6f, ItemOreAlchDust.oreInfos.get(i).rarity) * 50f,
 						Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, i),
 								ItemOreAlchDust.oreInfos.get(i).parentBlock));
 			}
@@ -453,8 +460,8 @@ public class ModCrafting
 						new ItemStack(Items.DYE, 2, 4), new ItemStack(ModItems.alchemyComponent, 1, 7))));
 		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 5, 5), 0.035f,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(ModItems.baseComponent, 1, 3),
-						new ItemStack(ModItems.alchemyComponent, 6, 6), new ItemStack(Items.EMERALD, 2),
-						new ItemStack(ModItems.alchemyComponent, 6, 10))));
+						new ItemStack(ModItems.baseComponent, 1, 7), new ItemStack(ModItems.alchemyComponent, 6, 6),
+						new ItemStack(Items.EMERALD, 2), new ItemStack(ModItems.alchemyComponent, 6, 10))));
 
 		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 1, 6), 0.0015f,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.COAL, 1), new ItemStack(Items.GUNPOWDER, 3))));
@@ -555,14 +562,12 @@ public class ModCrafting
 			ingot.setCount(1);
 
 			ProcessRecipeManager.condenserRecipes.addRecipe(ingot,
-					(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(23).rarity) * 50f
-					* (float) ItemOreAlchDust.oreInfos.get(23).rarity, Arrays.asList(
+					(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(23).rarity) * 50f, Arrays.asList(
 							new ItemStack(ModItems.oreAlchDust, 1, 23), new FluidStack(ModFluids.crystalFluid, 1000)));
 			ItemStack ore = OreDictionary.getOres("oreUranium").get(0).copy();
 			ore.setCount(1);
 			ProcessRecipeManager.condenserRecipes.addRecipe(ore,
-					(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(23).rarity) * 50f
-					* (float) ItemOreAlchDust.oreInfos.get(23).rarity,
+					(float) Math.pow(1.6f, ItemOreAlchDust.oreInfos.get(23).rarity) * 50f,
 					Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, 23), new ItemStack(Blocks.STONE)));
 			ItemStack dust = OreDictionary.getOres("dustUranium").get(0).copy();
 			dust.setCount(1);
@@ -584,14 +589,12 @@ public class ModCrafting
 			ingot.setCount(1);
 
 			ProcessRecipeManager.condenserRecipes.addRecipe(ingot,
-					(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(24).rarity) * 50f
-					* (float) ItemOreAlchDust.oreInfos.get(24).rarity, Arrays.asList(
+					(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(24).rarity) * 50f, Arrays.asList(
 							new ItemStack(ModItems.oreAlchDust, 1, 24), new FluidStack(ModFluids.crystalFluid, 1000)));
 			ItemStack ore = OreDictionary.getOres("oreThorium").get(0).copy();
 			ore.setCount(1);
 			ProcessRecipeManager.condenserRecipes.addRecipe(ore,
-					(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(24).rarity) * 50f
-					* (float) ItemOreAlchDust.oreInfos.get(24).rarity,
+					(float) Math.pow(1.6f, ItemOreAlchDust.oreInfos.get(24).rarity) * 50f,
 					Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, 24), new ItemStack(Blocks.STONE)));
 			ItemStack dust = OreDictionary.getOres("dustThorium").get(0).copy();
 			dust.setCount(1);
@@ -665,6 +668,7 @@ public class ModCrafting
 		LootTableList.register(new ResourceLocation(References.ModID, "gameplay/fishing/survivalistjunk"));
 
 		MachineVariants.DARKMATTER.setFuel(new ItemStack(ModItems.baseComponent, 1, 3), 31415);
+		MachineVariants.LIGHTMATTER.setFuel(new ItemStack(ModItems.baseComponent, 1, 7), 27183);
 		MachineVariants.LEAD.setFuel(new ItemStack(ModItems.techComponent, 1, 1), 900);
 	}
 
@@ -688,7 +692,7 @@ public class ModCrafting
 			return alch ? new ItemStack(ModItems.alchemyComponent, 1, 2) : new ItemStack(Items.GUNPOWDER, 1);
 		else if (type <= 7)
 			return alch ? new ItemStack(ModItems.alchemyComponent, 1, 3) : new ItemStack(Items.BLAZE_POWDER, 1);
-		else if (type <= 9)
+		else if (type <= 11)
 			return alch ? new ItemStack(ModItems.alchemyComponent, 1, 4) : new ItemStack(Items.REDSTONE, 1);
 		else
 			return alch ? new ItemStack(ModItems.alchemyComponent, 1, 5) : new ItemStack(Items.GLOWSTONE_DUST, 1);
@@ -732,6 +736,8 @@ public class ModCrafting
 			return getModMaterial("Enderium", diff);
 		case 12:
 			return new ItemStack(ModItems.baseComponent, 1, 3);
+		case 13:
+			return new ItemStack(ModItems.baseComponent, 1, 7);
 		}
 		return null;
 	}
@@ -765,6 +771,8 @@ public class ModCrafting
 		case 11:
 			return getModGear("Enderium");
 		case 12:
+			return new ItemStack(Items.NETHER_STAR);
+		case 13:
 			return new ItemStack(Items.NETHER_STAR);
 		}
 		return null;

@@ -16,6 +16,7 @@ item.skyresources.baseItemComponent.darkMatter.name=Dark Matter
 item.skyresources.baseItemComponent.enrichedBonemeal.name=Enriched Bonemeal
 item.skyresources.baseItemComponent.sawdust.name=Sawdust
 item.skyresources.baseItemComponent.quartzAmp.name=Quartz Amplification Component
+item.skyresources.baseItemComponent.lightMatter.name=Light Matter
 item.skyresources.techItemComponent.stoneCrushed.name=Crushed Stone
 item.skyresources.techItemComponent.radioactiveMix.name=Radioactive Powder Mixture
 item.skyresources.techItemComponent.frozenIronIngot.name=Frozen Iron Ingot
@@ -44,6 +45,7 @@ tile.skyresources.compressedCoalBlock2.name=Adamant Coal Block
 tile.skyresources.compressedNetherrack.name=Hardened Netherrack
 tile.skyresources.sandyNetherrack.name=Sandy Netherrack
 tile.skyresources.darkMatterBlock.name=Dark Matter Block
+tile.skyresources.lightMatterBlock.name=Light Matter Block
 tile.skyresources.coalInfusedBlock.name=Alchemical Coal Block
 tile.skyresources.dryCactus.name=Dehydrated Cactus
 tile.skyresources.BlazePowderBlock.name=Blaze Powder Block
@@ -53,6 +55,7 @@ tile.skyresources.concentrator.name=Concentrator
 tile.skyresources.purificationVessel.name=Purification Vessel
 tile.skyresources.miniFreezer.name=Mini Freezer
 tile.skyresources.ironFreezer.name=Iron Freezer
+tile.skyresources.lightFreezer.name=Light Matter Freezer
 tile.skyresources.heavySnow.name=Heavy Snow
 tile.skyresources.dirtFurnace.name=Dirt Furnace
 tile.skyresources.beeAttractor.name=Bee Attractor
@@ -124,6 +127,7 @@ tile.skyresources.casing.signalum.name=Signalum Casing
 tile.skyresources.casing.endstone.name=End Stone Casing
 tile.skyresources.casing.enderium.name=Enderium Casing
 tile.skyresources.casing.darkmatter.name=Dark Matter Casing
+tile.skyresources.casing.lightmatter.name=Light Matter Casing
 
 item.skyresources.condenser.wood.name=Wooden Condenser
 item.skyresources.condenser.stone.name=Stone Condenser
@@ -138,6 +142,7 @@ item.skyresources.condenser.signalum.name=Signalum Condenser
 item.skyresources.condenser.endstone.name=End Stone Condenser
 item.skyresources.condenser.enderium.name=Enderium Condenser
 item.skyresources.condenser.darkmatter.name=Dark Matter Condenser
+item.skyresources.condenser.lightmatter.name=Light Matter Condenser
 
 item.skyresources.heatprovider.wood.name=Wooden Heat Provider
 item.skyresources.heatprovider.stone.name=Stone Heat Provider
@@ -152,6 +157,7 @@ item.skyresources.heatprovider.signalum.name=Signalum Heat Provider
 item.skyresources.heatprovider.endstone.name=End Stone Heat Provider
 item.skyresources.heatprovider.enderium.name=Enderium Heat Provider
 item.skyresources.heatprovider.darkmatter.name=Dark Matter Heat Provider
+item.skyresources.heatprovider.lightmatter.name=Light Matter Heat Provider
 
 item.skyresources.combustionheater.wood.name=Wooden Combustion Heater
 item.skyresources.combustionheater.stone.name=Stone Combustion Heater
@@ -166,6 +172,7 @@ item.skyresources.combustionheater.signalum.name=Signalum Combustion Heater
 item.skyresources.combustionheater.endstone.name=End Stone Combustion Heater
 item.skyresources.combustionheater.enderium.name=Enderium Combustion Heater
 item.skyresources.combustionheater.darkmatter.name=Dark Matter Combustion Heater
+item.skyresources.combustionheater.lightmatter.name=Light Matter Combustion Heater
 
 item.skyresources.alchemy.wood.name=Wooden Alchemy Component
 item.skyresources.alchemy.stone.name=Stone Alchemy Component
@@ -180,6 +187,7 @@ item.skyresources.alchemy.signalum.name=Signalum Alchemy Component
 item.skyresources.alchemy.endstone.name=End Stone Alchemy Component
 item.skyresources.alchemy.enderium.name=Enderium Alchemy Component
 item.skyresources.alchemy.darkmatter.name=Dark Matter Alchemy Component
+item.skyresources.alchemy.lightmatter.name=Light Matter Alchemy Component
 
 item.skyresources.heat.wood.name=Wooden Heat Component
 item.skyresources.heat.stone.name=Stone Heat Component
@@ -194,6 +202,7 @@ item.skyresources.heat.signalum.name=Signalum Heat Component
 item.skyresources.heat.endstone.name=End Stone Heat Component
 item.skyresources.heat.enderium.name=Enderium Heat Component
 item.skyresources.heat.darkmatter.name=Dark Matter Heat Component
+item.skyresources.heat.lightmatter.name=Light Matter Heat Component
 
 item.skyresources.oreAlchDust.iron.name=Iron Alchemical Ore Dust
 item.skyresources.oreAlchDust.gold.name=Gold Alchemical Ore Dust
@@ -293,7 +302,7 @@ guide.skyresources.stage1.snowIsland.title=Snow Island
 guide.skyresources.stage1.snowIsland.text=First, a warning, don't use the <recipe,,minecraft:pumpkin:0> unless it is required for a recipe or process mentioned! \n \n Your first goal is to get some <recipe,,minecraft:snowball:0> . Shift right-click on the <recipe,,minecraft:snow:0> to get some. You will get mining fatigue for a few seconds. \n Next, you'll want to create a snow golem. This is done by placing 2 <recipe,,minecraft:snow:0> on top of each other, and then a <recipe,,minecraft:pumpkin:0> on top of those <recipe,,minecraft:snow:0> blocks. The golem will continuously make snow layers on the ground that you get snow from. Make sure the golem doesn't fall of or get hurt by rain! If it does die, you can still get a surplus of <recipe,,minecraft:snowball:0> through shift right-clicking on <recipe,,minecraft:snow:0> though. \n Now you want to make a <link,Mini_Freezer,skyresources:minifreezer:0,freezer> . \n Make some <link,Heavy_Snowballs,skyresources:heavysnowball:0,heavySnowball> using the <link,Mini_Freezer,skyresources:minifreezer:0,freezer> which can be made into <recipe,,skyresources:heavysnow:0> . \n Next goal is to build a mob farm (Normal <recipe,,minecraft:snow:0> blocks are not recommended as you may shift-right click it on accident) in order to get some <recipe,,minecraft:bone:0> . \n If you get some <recipe,,minecraft:rotten_flesh:0> , you can make some <recipe,,skyresources:fleshySnowNugget:0> as food. \n Once you get that, you need to make 2 <recipe,,minecraft:dirt:1> , and use 1 of them for a <recipe,,minecraft:sapling:1> ! \n \n You are now done in stage 1! Continue on to <link,Stage_2,minecraft:log:0,stage2> !
 
 guide.skyresources.stage1.freezer.title=Freezers
-guide.skyresources.stage1.freezer.text=The <recipe,,skyresources:minifreezer:0> is the first tier of freezers. The other tier is the <recipe,,skyresources:ironfreezer:0> . \n \n The freezers freeze items into other items. The speed they freeze at depends on how many items are in the freezer, and the speed of the freezer itself. \n The <recipe,,skyresources:minifreezer:0> runs at 0.25x speed, while the <recipe,,skyresources:ironfreezer:0> runs at 1x speed. \n \n Note that the <recipe,,skyresources:ironfreezer:0> is a multiblock. Put 1 block on top of the other as <image,shown_here,skyresources:ironfreezer:0,ironFreezer> . \n \n Place the input items into the top slots of the freezer, and the results will be put into the bottom slots.
+guide.skyresources.stage1.freezer.text=The <recipe,,skyresources:minifreezer:0> is the first tier of freezers. The second tier is the <recipe,,skyresources:ironfreezer:0> . The third tier is the <recipe,,skyresources:lightfreezer:0> . \n \n The freezers freeze items into other items. The speed they freeze at depends on how many items are in the freezer, and the speed of the freezer itself. \n The <recipe,,skyresources:minifreezer:0> runs at 0.25x speed (by default), the <recipe,,skyresources:ironfreezer:0> runs at 1x speed (by default), and the <recipe,,skyresources:lightfreezer:0> runs at 100x speed (by default). \n \n Note that the <recipe,,skyresources:ironfreezer:0> and <recipe,,skyresources:lightfreezer:0> are multiblocks. Put 1 block on top of the other as <image,shown_here,skyresources:ironfreezer:0,ironFreezer> . \n \n Place the input items into the top slots of the freezer, and the results will be put into the bottom slots.
 
 guide.skyresources.stage1.heavySnowball.title=Heavy Snowballs
 guide.skyresources.stage1.heavySnowball.text=The <recipe,,skyresources:heavysnowball:0> and <recipe,,skyresources:heavyexplosivesnowball:0> are used as deadly ammunition against mobs when you have nothing but snow.

@@ -26,7 +26,8 @@ public enum MachineVariants implements IStringSerializable
 	SIGNALUM(1362, 1.8f, 3.6f, "FE", 80), 
 	ENDSTONE(2164, 6.6f, 6.6f, new ItemStack(Items.ENDER_PEARL), 2200), 
 	ENDERIUM(3166, 6.8f, 8.0f, "FE", 1200), 
-	DARKMATTER(4042, 100f, 100f, new ItemStack(ModItems.baseComponent, 1, 5), 31415);
+	DARKMATTER(4042, 1f, 100f, new ItemStack(ModItems.baseComponent, 1, 5), 31415),
+	LIGHTMATTER(1566, 100f, 1f, new ItemStack(ModItems.baseComponent, 1, 7), 27183);
 
 	private int maxHeat;
 	private float efficiency;

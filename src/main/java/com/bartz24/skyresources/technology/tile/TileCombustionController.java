@@ -7,6 +7,7 @@ import java.util.List;
 import com.bartz24.skyresources.ItemHelper;
 import com.bartz24.skyresources.base.tile.TileCasing;
 import com.bartz24.skyresources.base.tile.TileItemInventory;
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.recipe.ProcessRecipe;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 import com.bartz24.skyresources.technology.block.BlockCombustionController;
@@ -157,7 +158,7 @@ public class TileCombustionController extends TileItemInventory implements ITick
 				float mult = 1f - (1f / (1.5f + 0.8f * getHeaterMachine()
 						.getMachineEfficiency(getHeater().machineStored, world, getPosBehind().down())));
 				curHU *= mult;
-				cooldownTicks = 20;
+				cooldownTicks = ConfigOptions.machineSettings.combustionControllerTicks;
 
 				ItemStack stack = recipe.getOutputs().get(0).copy();
 

@@ -13,6 +13,7 @@ import com.bartz24.skyresources.plugin.forestry.tile.TileBeeAttractor;
 import com.bartz24.skyresources.technology.tile.DirtFurnaceTile;
 import com.bartz24.skyresources.technology.tile.FluidDropperTile;
 import com.bartz24.skyresources.technology.tile.FreezerTile;
+import com.bartz24.skyresources.technology.tile.LightFreezerTile;
 import com.bartz24.skyresources.technology.tile.MiniFreezerTile;
 import com.bartz24.skyresources.technology.tile.TileAqueousConcentrator;
 import com.bartz24.skyresources.technology.tile.TileCombustionCollector;
@@ -34,6 +35,7 @@ public final class ModEntities
 	{
 		GameRegistry.registerTileEntity(FluidDropperTile.class, References.ModID + ":fluidDroppertile");
 		GameRegistry.registerTileEntity(CrucibleTile.class, References.ModID + ":crucibletile");
+		GameRegistry.registerTileEntity(LightFreezerTile.class, References.ModID + ":lightfreezertile");
 		GameRegistry.registerTileEntity(FreezerTile.class, References.ModID + ":freezertile");
 		GameRegistry.registerTileEntity(MiniFreezerTile.class, References.ModID + ":minifreezertile");
 		GameRegistry.registerTileEntity(DirtFurnaceTile.class, References.ModID + ":dirtfurnacetile");

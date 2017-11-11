@@ -15,6 +15,11 @@ public class FreezerTile extends MiniFreezerTile implements ITickable
 	{
 		super(6, new Integer[] { 3, 4, 5 }, new Integer[] { 0, 1, 2 });
 	}
+	
+	public FreezerTile(int slots, Integer[] noInsert, Integer[] noExtract)
+	{
+		super(slots, noInsert, noExtract);
+	}
 
 	public float getFreezerSpeed()
 	{

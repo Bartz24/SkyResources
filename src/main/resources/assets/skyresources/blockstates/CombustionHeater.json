@@ -98,6 +98,13 @@
                 "part": "skyresources:blocks/combustion",
                 "all": "skyresources:blocks/darkmatter"
             }
+        },
+        "variant=lightmatter": {
+            "model": "skyresources:machineparttop",
+            "textures": {
+                "part": "skyresources:blocks/combustion",
+                "all": "skyresources:blocks/lightmatter"
+            }
         }
     }
 }

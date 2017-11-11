@@ -105,7 +105,7 @@ public class ConfigOptions
 		@Config.Comment("Iron Freezer Speed")
 		public float ironFreezerSpeed = 1f;
 		@Config.Comment("Light Freezer Speed")
-		public float lightFreezerSpeed = 10f;
+		public float lightFreezerSpeed = 100f;
 		@Config.Comment("Aqueous Concentrator Speed")
 		public int aqueousConcentratorSpeed = 5;
 		@Config.Comment("Aqueous Concentrator RF Rate")
@@ -136,6 +136,8 @@ public class ConfigOptions
 		public int crucibleCapacity = 4000;
 		@Config.Comment("Base Fusion Speed")
 		public int fusionSpeed = 8;
+		@Config.Comment("Smart Combustion Controller Craft Time Rate (Ticks)")
+		public int combustionControllerTicks = 20;
 
 		public enum EndPortalDifficultyLevel
 		{

@@ -37,6 +37,7 @@ public class BaseItemComponent extends Item
 	public static final String enrichedBonemeal = "enrichedBonemeal";
 	public static final String sawdust = "sawdust";
 	public static final String quartzAmp = "quartzAmp";
+	public static final String lightMatter = "lightMatter";
 
 	public BaseItemComponent()
 	{
@@ -59,6 +60,7 @@ public class BaseItemComponent extends Item
 		names.add(4, enrichedBonemeal);
 		names.add(5, sawdust);
 		names.add(6, quartzAmp);
+		names.add(7, lightMatter);
 	}
 
 	@Override

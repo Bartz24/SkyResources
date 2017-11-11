@@ -98,6 +98,13 @@
                 "part": "skyresources:items/heat",
                 "all": "skyresources:blocks/darkmatter"
             }
+        },
+        "variant=lightmatter": {
+            "model": "skyresources:component",
+            "textures": {
+                "part": "skyresources:items/heat",
+                "all": "skyresources:blocks/lightmatter"
+            }
         }
     }
 }
