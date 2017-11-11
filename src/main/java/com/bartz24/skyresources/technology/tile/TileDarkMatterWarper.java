@@ -9,9 +9,11 @@ import com.bartz24.skyresources.registry.ModItems;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityCaveSpider;
+import net.minecraft.entity.monster.EntityIllusionIllager;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
+import net.minecraft.entity.monster.EntityZombieVillager;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
@@ -100,7 +102,19 @@ public class TileDarkMatterWarper extends TileItemInventory implements ITickable
 						blaze.setHealth(blaze.getMaxHealth());
 
 						world.spawnEntity(blaze);
-					} else if (!entity.isDead && (entity instanceof EntityPlayer || entity instanceof EntityAnimal))
+					} else if (!entity.isDead && entity instanceof EntityZombieVillager)
+					{
+						EntityZombieVillager zombie = (EntityZombieVillager) entity;
+						zombie.setDead();
+
+						EntityIllusionIllager illager = new EntityIllusionIllager(world);
+						illager.setLocationAndAngles(zombie.posX, zombie.posY, zombie.posZ, zombie.rotationYaw,
+								zombie.rotationPitch);
+						illager.renderYawOffset = illager.renderYawOffset;
+						illager.setHealth(illager.getMaxHealth());
+
+						world.spawnEntity(illager);
+					}else if (!entity.isDead && (entity instanceof EntityPlayer || entity instanceof EntityAnimal))
 					{
 						if (entity instanceof EntityPlayer
 								&& (!ConfigOptions.machineSettings.darkMatterWarperEffectPlayers
