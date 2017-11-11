@@ -10,6 +10,7 @@ import com.bartz24.skyresources.base.block.BaseBlock;
 import com.bartz24.skyresources.base.block.BlazePowderBlock;
 import com.bartz24.skyresources.base.block.BlockCasing;
 import com.bartz24.skyresources.base.block.BlockDryCactus;
+import com.bartz24.skyresources.base.block.BlockSilverfishDisruptor;
 import com.bartz24.skyresources.base.block.ItemBlockMeta;
 import com.bartz24.skyresources.base.block.TransparentBlock;
 import com.bartz24.skyresources.technology.block.BlockAqueousConcentrator;
@@ -71,6 +72,7 @@ public class ModBlocks
 
 	public static Block dryCactus;
 	public static Block dirtFurnace;
+	public static Block silverfishDisruptor;
 
 	public static Block crystalFluidBlock;
 
@@ -123,6 +125,7 @@ public class ModBlocks
 				new BlockAqueousDeconcentrator("aqueousDeconcentrator", "AqueousDeconcentrator", 2F, 12F));
 
 		dryCactus = registerBlock(new BlockDryCactus());
+		silverfishDisruptor = registerBlock(new BlockSilverfishDisruptor());
 
 		dirtFurnace = registerBlock(new BlockDirtFurnace("dirtFurnace", "DirtFurnace", 0.5F, 0.5F));
 		fusionTable = registerBlock(new BlockAlchemyFusionTable("fusionTable", "FusionTable", 3F, 10F));

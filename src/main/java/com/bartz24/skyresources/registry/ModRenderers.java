@@ -89,6 +89,7 @@ public class ModRenderers
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.lightMatterBlock));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.heavySnow));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.dryCactus));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.silverfishDisruptor));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.miniFreezer));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.ironFreezer));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.lightFreezer));

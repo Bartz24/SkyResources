@@ -7,6 +7,7 @@ import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.config.ConfigOptions.MachineSettings.EndPortalDifficultyLevel;
 import com.bartz24.skyresources.registry.ModBlocks;
 
+import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -15,6 +16,7 @@ import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -35,9 +37,9 @@ public class TileEndPortalCore extends TileItemInventory implements ITickable
 		{
 			if (hasValidMultiblock())
 			{
-				if (world.getTotalWorldTime() % 200 == 0)
-					world.playSound(null, pos, SoundEvents.BLOCK_END_PORTAL_FRAME_FILL, SoundCategory.BLOCKS, 1.0F,
-							1.0F);
+				if (world.getTotalWorldTime() % 60 == 0)
+					world.playSound(null, pos, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.8F,
+							1.0F / (world.rand.nextFloat() * 0.4F + 1.2F));
 				spawnFish();
 
 				if (receivedPulse())
@@ -47,16 +49,19 @@ public class TileEndPortalCore extends TileItemInventory implements ITickable
 
 					for (EntityPlayerMP player : list)
 					{
-						if (!getInventory().getStackInSlot(0).isEmpty()
+						if (hasValidMultiblockTier2() || (!getInventory().getStackInSlot(0).isEmpty()
 								&& getInventory().getStackInSlot(0).isItemEqual(new ItemStack(Items.ENDER_EYE))
-								&& getInventory().getStackInSlot(0).getCount() >= 16)
+								&& getInventory().getStackInSlot(0).getCount() >= 16))
 						{
 							if (player.dimension == 0)
 							{
 								player.changeDimension(1);
-								getInventory().getStackInSlot(0).shrink(16);
-								if (getInventory().getStackInSlot(0).getCount() == 0)
-									getInventory().setStackInSlot(0, ItemStack.EMPTY);
+								if (!hasValidMultiblockTier2())
+								{
+									getInventory().getStackInSlot(0).shrink(16);
+									if (getInventory().getStackInSlot(0).getCount() == 0)
+										getInventory().setStackInSlot(0, ItemStack.EMPTY);
+								}
 							}
 						}
 					}
@@ -72,7 +77,8 @@ public class TileEndPortalCore extends TileItemInventory implements ITickable
 		List<EntitySilverfish> list = world.getEntitiesWithinAABB(EntitySilverfish.class, new AxisAlignedBB(
 				pos.getX() - 4, pos.getY(), pos.getZ() - 4, pos.getX() + 4, pos.getY() + 5F, pos.getZ() + 4));
 		if (ConfigOptions.machineSettings.endPortalMode != EndPortalDifficultyLevel.WUSS
-				&& this.world.getTotalWorldTime() % 800 == 0 && world.rand.nextFloat() <= 0.9f && list.size() < 16)
+				&& this.world.getTotalWorldTime() % 800 == 0 && world.rand.nextFloat() <= 0.9f && list.size() < 16
+				&& !hasValidMultiblockTier2())
 		{
 			EntitySilverfish fish = new EntitySilverfish(world);
 			if (ConfigOptions.machineSettings.endPortalMode == EndPortalDifficultyLevel.NORMAL)
@@ -132,6 +138,51 @@ public class TileEndPortalCore extends TileItemInventory implements ITickable
 
 					if (world.getBlockState(new BlockPos(x, pos.getY(), z)).getBlock() != ModBlocks.darkMatterBlock)
 						return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	public boolean hasValidMultiblockTier2()
+	{
+		BlockPos[] purpurPoses = new BlockPos[] { pos.north(3).west(3), pos.north(3).east(3), pos.south(3).west(3),
+				pos.south(3).east(3) };
+		for (BlockPos pos : purpurPoses)
+		{
+			if (world.getBlockState(pos.up()) != Blocks.PURPUR_PILLAR.getDefaultState()
+					.withProperty(BlockRotatedPillar.AXIS, EnumFacing.Axis.Y))
+				return false;
+			if (world.getBlockState(pos.up(2)) != Blocks.PURPUR_PILLAR.getDefaultState()
+					.withProperty(BlockRotatedPillar.AXIS, EnumFacing.Axis.Y))
+				return false;
+			if (world.getBlockState(pos.up(3)) != Blocks.PURPUR_PILLAR.getDefaultState()
+					.withProperty(BlockRotatedPillar.AXIS, EnumFacing.Axis.Y))
+				return false;
+			if (world.getBlockState(pos.up(4)) != Blocks.PURPUR_PILLAR.getDefaultState()
+					.withProperty(BlockRotatedPillar.AXIS, EnumFacing.Axis.Y))
+				return false;
+			if (world.getBlockState(pos.up(5)) != Blocks.END_ROD.getDefaultState())
+				return false;
+		}
+		BlockPos[] disruptorPoses = new BlockPos[] { pos.north(2).west(2), pos.north(2).east(2), pos.south(2).west(2),
+				pos.south(2).east(2) };
+		for (BlockPos pos : disruptorPoses)
+		{
+			if (world.getBlockState(pos.up(4)).getBlock() != ModBlocks.silverfishDisruptor)
+				return false;
+		}
+
+		for (int x = pos.getX() - 3; x < pos.getX() + 4; x++)
+		{
+			for (int z = pos.getZ() - 3; z < pos.getZ() + 4; z++)
+			{
+				if (Math.abs(pos.getX() - x) > 2 || Math.abs(pos.getZ() - z) > 2)
+				{
+					if (world.getBlockState(new BlockPos(x, pos.getY(), z)).getBlock() != ModBlocks.lightMatterBlock)
+					{
+						return false;
+					}
 				}
 			}
 		}

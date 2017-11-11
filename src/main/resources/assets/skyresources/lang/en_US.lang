@@ -48,6 +48,7 @@ tile.skyresources.darkMatterBlock.name=Dark Matter Block
 tile.skyresources.lightMatterBlock.name=Light Matter Block
 tile.skyresources.coalInfusedBlock.name=Alchemical Coal Block
 tile.skyresources.dryCactus.name=Dehydrated Cactus
+tile.skyresources.silverfishDisruptor.name=Lepisma Saccharina Teleportation Disruptor
 tile.skyresources.BlazePowderBlock.name=Blaze Powder Block
 tile.skyresources.crucible.name=Crucible
 tile.skyresources.fluidDropper.name=Fluid Dropper
@@ -402,6 +403,9 @@ guide.skyresources.stage4.dmWarper.text=The <recipe,,skyresources:DarkMatterWarp
 
 guide.skyresources.stage4.end.title=The End
 guide.skyresources.stage4.end.text=The end portal requires a multiblock structure. The following are needed: \n 1 <recipe,,skyresources:EndPortalCore:0> \n 4 <recipe,,minecraft:diamond_block:0> \n 4 <recipe,,minecraft:gold_block:0> \n 16 <recipe,,skyresources:DarkMatterBlock:0> \n 8 <recipe,,minecraft:end_bricks:0> \n 4 <recipe,,minecraft:glowstone:0> \n \n <image,Multiblock_Setup,skyresources:EndPortalCore:0,end> \n To use the portal, stand on the core, and give the <recipe,,skyresources:EndPortalCore:0> at least 16 <recipe,,minecraft:ender_eye:0> and a redstone pulse (button). \n \n *gl A ilfsiesrvh waenrsp si itaecv nda reyv edsroanug ehwn eht urturscte is valdi! *nl
+
+guide.skyresources.stage4.end2.title=The End-Improved
+guide.skyresources.stage4.end2.text=The improved end portal adds on to the multiblock structure. The following are additionally needed: \n 4 <recipe,,skyresources:silverfishDisruptor:0> \n 4 <recipe,,minecraft:end_rod:0> \n 24 <recipe,,skyresources:lightmatterblock:0> \n 12 <recipe,,minecraft:purpur_pillar:0> \n \n <image,Multiblock_Setup,skyresources:silverfishDisruptor:0,end2> \n This improved portal costs no ender eyes for teleportation and stops the evil invaders from annoying you.
 
 guide.skyresources.stage4.healthGem.title=Health Gem
 guide.skyresources.stage4.healthGem.text=The <recipe,,skyresources:ItemHealthGem:0> is used to boost maximum health and stores health for use in the <link,Life_Infuser,skyresources:LifeInfuser:0,lifeInfuser> . \n Shift right-click to infuse 2 health (or 1 heart). \n You will gain 1 health for every 50 health infused (by default). \n The <recipe,,skyresources:ItemHealthGem:0> can be infused automatically using the <link,Life_Injector,skyresources:lifeInjector:0,lifeInjector> .

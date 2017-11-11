@@ -133,6 +133,9 @@ public class ModCrafting
 
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.darkMatterWarper), new Object[] { "XXX", "XYX",
 				"XXX", 'X', new ItemStack(Blocks.OBSIDIAN), 'Y', new ItemStack(ModItems.baseComponent, 1, 3) });
+		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.silverfishDisruptor),
+				new Object[] { " Y ", " Z ", "XXX", 'X', new ItemStack(ModItems.baseComponent, 1, 3), 'Y',
+						new ItemStack(Items.ENDER_EYE), 'Z', new ItemStack(ModItems.baseComponent, 1, 7) });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.endPortalCore),
 				new Object[] { "BYB", "AZA", "XXX", 'X', new ItemStack(ModBlocks.darkMatterBlock), 'Y',
 						new ItemStack(Items.ENDER_EYE), 'Z', new ItemStack(ModItems.baseComponent, 1, 6), 'A',
