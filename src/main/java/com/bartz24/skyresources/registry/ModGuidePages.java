@@ -102,6 +102,9 @@ public class ModGuidePages
 
 		SkyResourcesGuide.addPage("gemProduction", "guide.skyresources.stage2", new ItemStack(Items.EMERALD));
 
+		SkyResourcesGuide.addPage("wildlifeAttractor", "guide.skyresources.stage2",
+				new ItemStack(ModBlocks.wildlifeAttractor));
+
 		SkyResourcesGuide.addPage("seeds", "guide.skyresources.stage2", new ItemStack(Items.PUMPKIN_SEEDS));
 
 		SkyResourcesGuide.addPage("stage3", "guide.skyresources.stage3", new ItemStack(Blocks.GLOWSTONE));
@@ -173,8 +176,8 @@ public class ModGuidePages
 					addImagePos("end2", new BlockPos(x, -1, z), ModBlocks.darkMatterBlock.getDefaultState());
 			}
 		}
-		IBlockState purpurState = Blocks.PURPUR_PILLAR.getDefaultState()
-				.withProperty(BlockRotatedPillar.AXIS, EnumFacing.Axis.Y);
+		IBlockState purpurState = Blocks.PURPUR_PILLAR.getDefaultState().withProperty(BlockRotatedPillar.AXIS,
+				EnumFacing.Axis.Y);
 		addImagePos("end2", new BlockPos(-2, 0, -2), Blocks.END_BRICKS.getDefaultState());
 		addImagePos("end2", new BlockPos(-2, 1, -2), Blocks.END_BRICKS.getDefaultState());
 		addImagePos("end2", new BlockPos(-2, 2, -2), Blocks.GLOWSTONE.getDefaultState());
