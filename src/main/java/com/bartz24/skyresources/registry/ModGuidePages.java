@@ -26,6 +26,9 @@ public class ModGuidePages
 
 		SkyResourcesGuide.addPage("lifeInfusion", "guide.skyresources.stage1",
 				new ItemStack(ModItems.alchemicalInfusionStone));
+		
+		SkyResourcesGuide.addPage("knife", "guide.skyresources.stage1",
+				new ItemStack(ModItems.cactusKnife));
 
 		SkyResourcesGuide.addPage("snowIsland", "guide.skyresources.stage1", new ItemStack(Blocks.SNOW));
 

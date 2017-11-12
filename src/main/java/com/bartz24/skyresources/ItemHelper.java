@@ -36,6 +36,18 @@ public class ItemHelper
 		rockGrinders.add(new ItemStack(item));
 	}
 
+	private static List<ItemStack> knives = new ArrayList<ItemStack>();
+
+	public static List<ItemStack> getKnives()
+	{
+		return knives;
+	}
+
+	public static void addKnife(Item item)
+	{
+		knives.add(new ItemStack(item));
+	}
+
 	public static IBlockState getBlockStateFromStack(ItemStack stack)
 	{
 		int meta = stack.getMetadata();

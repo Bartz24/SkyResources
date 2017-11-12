@@ -46,6 +46,7 @@ public class ProcessRecipeManager
 			fontRendererObj.drawString(s, 70, 0, java.awt.Color.gray.getRGB());
 		}
 	};
+	public static ProcessRecipeManager knifeRecipes = new ProcessRecipeManager("knife");
 	public static ProcessRecipeManager crucibleRecipes = new ProcessRecipeManager("crucible");
 	public static ProcessRecipeManager freezerRecipes = new ProcessRecipeManager("freezer")
 	{
@@ -82,7 +83,7 @@ public class ProcessRecipeManager
 		{
 			String s = Float.toString(Math.round(rec.getIntParameter() * 100000F) / 1000F) + "%";
 			FontRenderer fontRendererObj = minecraft.fontRenderer;
-			fontRendererObj.drawString(s, 70, 10, java.awt.Color.gray.getRGB());
+			fontRendererObj.drawString(s, 70, 34, java.awt.Color.gray.getRGB());
 		}
 	};
 	public static ProcessRecipeManager condenserRecipes = new ProcessRecipeManager("condenser")

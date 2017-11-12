@@ -12,6 +12,7 @@ import com.bartz24.skyresources.jei.fusion.FusionRecipeCategory;
 import com.bartz24.skyresources.jei.heatsources.HeatSourceHandler;
 import com.bartz24.skyresources.jei.heatsources.HeatSourcesRecipeCategory;
 import com.bartz24.skyresources.jei.infusion.InfusionRecipeCategory;
+import com.bartz24.skyresources.jei.knife.KnifeRecipeCategory;
 import com.bartz24.skyresources.jei.rockgrinder.RockGrinderRecipeCategory;
 import com.bartz24.skyresources.jei.waterextractor.WaterExtractorRecipeCategory;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
@@ -49,6 +50,7 @@ public class JEIPlugin implements IModPlugin
 				new RockGrinderRecipeCategory(jeiHelpers.getGuiHelper()),
 				new CrucibleRecipeCategory(jeiHelpers.getGuiHelper()),
 				new FreezerRecipeCategory(jeiHelpers.getGuiHelper()),
+				new KnifeRecipeCategory(jeiHelpers.getGuiHelper()),
 				new HeatSourcesRecipeCategory(jeiHelpers.getGuiHelper()),
 				new WaterExtractorRecipeCategory(jeiHelpers.getGuiHelper()),
 				new CauldronCleanRecipeCategory(jeiHelpers.getGuiHelper()),
@@ -61,6 +63,7 @@ public class JEIPlugin implements IModPlugin
 		registry.addRecipes(ProcessRecipeManager.rockGrinderRecipes.getRecipes());
 		registry.addRecipes(ProcessRecipeManager.crucibleRecipes.getRecipes());
 		registry.addRecipes(ProcessRecipeManager.freezerRecipes.getRecipes());
+		registry.addRecipes(ProcessRecipeManager.knifeRecipes.getRecipes());
 		registry.addRecipes(HeatSourceHandler.getSources());
 		registry.addRecipes(ProcessRecipeManager.waterExtractorExtractRecipes.getRecipes());
 		registry.addRecipes(ProcessRecipeManager.waterExtractorInsertRecipes.getRecipes());
@@ -100,6 +103,10 @@ public class JEIPlugin implements IModPlugin
 		for (ItemStack i : ItemHelper.getRockGrinders())
 		{
 			registry.addRecipeCategoryCraftingItem(i, References.ModID + ":rockgrinder");
+		}
+		for (ItemStack i : ItemHelper.getKnives())
+		{
+			registry.addRecipeCategoryCraftingItem(i, References.ModID + ":knife");
 		}
 		registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.rockCrusher), References.ModID + ":rockgrinder");
 		for (ItemStack i : ItemHelper.getInfusionStones())

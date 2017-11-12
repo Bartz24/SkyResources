@@ -73,6 +73,7 @@ public class ModRenderers
 		registerItemRenderer(ModItems.heavySnowball);
 		registerItemRenderer(ModItems.heavyExpSnowball);
 		registerItemRenderer(ModItems.cactusKnife);
+		registerItemRenderer(ModItems.stoneKnife);
 		registerItemRenderer(ModItems.ironKnife);
 		registerItemRenderer(ModItems.diamondKnife);
 		registerItemRenderer(ModItems.stoneGrinder);
@@ -139,11 +140,7 @@ public class ModRenderers
 			public ModelResourceLocation getModelLocation(ItemStack stack)
 			{
 				NBTTagCompound tagCompound = stack.getTagCompound();
-				int amount = 0;
-				if (tagCompound != null)
-				{
-					amount = tagCompound.getInteger("amount");
-				}
+				int amount = ((ItemWaterExtractor) stack.getItem()).getTank().getFluidAmount();
 
 				int level = (int) (amount * 6F / ((ItemWaterExtractor) stack.getItem()).getMaxAmount());
 				if (level < 0)
