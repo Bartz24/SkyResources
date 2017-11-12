@@ -10,6 +10,7 @@ import com.bartz24.skyresources.base.block.BaseBlock;
 import com.bartz24.skyresources.base.block.BlazePowderBlock;
 import com.bartz24.skyresources.base.block.BlockCasing;
 import com.bartz24.skyresources.base.block.BlockDryCactus;
+import com.bartz24.skyresources.base.block.BlockSilverfishDisruptor;
 import com.bartz24.skyresources.base.block.ItemBlockMeta;
 import com.bartz24.skyresources.base.block.TransparentBlock;
 import com.bartz24.skyresources.technology.block.BlockAqueousConcentrator;
@@ -26,6 +27,8 @@ import com.bartz24.skyresources.technology.block.BlockMiniFreezer;
 import com.bartz24.skyresources.technology.block.BlockQuickDropper;
 import com.bartz24.skyresources.technology.block.BlockRockCleaner;
 import com.bartz24.skyresources.technology.block.BlockRockCrusher;
+import com.bartz24.skyresources.technology.block.BlockWildlifeAttractor;
+import com.bartz24.skyresources.technology.block.BlockWildlifeAttractor;
 import com.bartz24.skyresources.technology.block.FluidDropperBlock;
 
 import net.minecraft.block.Block;
@@ -59,6 +62,7 @@ public class ModBlocks
 	public static Block aqueousDeconcentrator;
 	public static Block casing;
 	public static Block fusionTable;
+	public static Block wildlifeAttractor;
 
 	public static Block compressedCoalBlock;
 	public static Block coalInfusedBlock;
@@ -71,6 +75,7 @@ public class ModBlocks
 
 	public static Block dryCactus;
 	public static Block dirtFurnace;
+	public static Block silverfishDisruptor;
 
 	public static Block crystalFluidBlock;
 
@@ -113,6 +118,8 @@ public class ModBlocks
 		lightFreezer = registerBlock(new BlockLightFreezer("lightFreezer", "lightFreezer", 8F, 12F));
 
 		crucible = registerBlock(new CrucibleBlock("crucible", "Crucible", 2F, 12F));
+		wildlifeAttractor = registerBlock(
+				new BlockWildlifeAttractor("wildlifeAttractor", "wildlifeAttractor", 2F, 12F));
 
 		fluidDropper = registerBlock(new FluidDropperBlock("fluidDropper", "FluidDropper", 2F, 12F));
 
@@ -123,6 +130,7 @@ public class ModBlocks
 				new BlockAqueousDeconcentrator("aqueousDeconcentrator", "AqueousDeconcentrator", 2F, 12F));
 
 		dryCactus = registerBlock(new BlockDryCactus());
+		silverfishDisruptor = registerBlock(new BlockSilverfishDisruptor());
 
 		dirtFurnace = registerBlock(new BlockDirtFurnace("dirtFurnace", "DirtFurnace", 0.5F, 0.5F));
 		fusionTable = registerBlock(new BlockAlchemyFusionTable("fusionTable", "FusionTable", 3F, 10F));

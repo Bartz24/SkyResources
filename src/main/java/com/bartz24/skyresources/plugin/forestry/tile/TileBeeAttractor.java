@@ -37,7 +37,6 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 	private FluidTank tank;
 	private int powerUsage = ConfigOptions.pluginSettings.forestrySettings.beeAttractorPowerUsage;
 	private int fluidUsage = ConfigOptions.pluginSettings.forestrySettings.beeAttractorSeedOilUsage;
-	int ticks = ConfigOptions.pluginSettings.forestrySettings.beeAttractorTime;
 
 	public TileBeeAttractor()
 	{
@@ -227,7 +226,6 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 	{
 		compound = super.writeToNBT(compound);
 
-		compound.setInteger("Ticks", ticks);
 		tank.writeToNBT(compound);
 
 		return compound;
@@ -238,7 +236,6 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 	{
 		super.readFromNBT(compound);
 
-		ticks = compound.getInteger("Ticks");
 		tank.readFromNBT(compound);
 	}
 

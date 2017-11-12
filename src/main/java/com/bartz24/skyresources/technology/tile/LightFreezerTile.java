@@ -18,7 +18,7 @@ public class LightFreezerTile extends MiniFreezerTile implements ITickable
 
 	public float getFreezerSpeed()
 	{
-		return ConfigOptions.machineSettings.lightFreezerSpeed;
+		return (float) ConfigOptions.machineSettings.lightFreezerSpeed;
 	}
 
 	void updateMulti2x1()

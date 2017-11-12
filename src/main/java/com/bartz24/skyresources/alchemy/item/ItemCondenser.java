@@ -101,7 +101,7 @@ public class ItemCondenser extends ItemMachine
 					if (!world.isRemote)
 					{
 						timeCondense++;
-						itemLeft -= Math.pow(recipe.getIntParameter(), 1.3f) / 50f / (12400f * recipe.getIntParameter() / 50f
+						itemLeft -= Math.pow(recipe.getIntParameter(), 1.3f) / 50f / (2400f * recipe.getIntParameter() / 50f
 								* this.getMachineEfficiency(machineStack, world, pos));
 					}
 				}

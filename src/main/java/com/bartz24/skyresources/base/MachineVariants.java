@@ -57,12 +57,12 @@ public enum MachineVariants implements IStringSerializable
 
 	public float getRawEfficiency()
 	{
-		return ConfigOptions.modularMachineSettings.machineEfficiency.get(getName());
+		return (float)(double)ConfigOptions.modularMachineSettings.machineEfficiency.get(getName());
 	}
 
 	public float getRawSpeed()
 	{
-		return ConfigOptions.modularMachineSettings.machineSpeed.get(getName());
+		return (float)(double)ConfigOptions.modularMachineSettings.machineSpeed.get(getName());
 	}
 
 	public Object getFuelType()

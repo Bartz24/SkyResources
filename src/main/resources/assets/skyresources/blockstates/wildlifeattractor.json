@@ -1,0 +1,19 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "textures": {
+       "down": "skyresources:blocks/wildlifeattractortop",
+         "up": "skyresources:blocks/wildlifeattractortop",
+      "north": "skyresources:blocks/wildlifeattractorside",
+      "south": "skyresources:blocks/wildlifeattractorside",
+       "west": "skyresources:blocks/wildlifeattractorside",
+       "east": "skyresources:blocks/wildlifeattractorside",
+   "particle": "skyresources:blocks/wildlifeattractorside"
+  }
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}]
+  }
+}

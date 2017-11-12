@@ -23,7 +23,7 @@ public class FreezerTile extends MiniFreezerTile implements ITickable
 
 	public float getFreezerSpeed()
 	{
-		return ConfigOptions.machineSettings.ironFreezerSpeed;
+		return (float) ConfigOptions.machineSettings.ironFreezerSpeed;
 	}
 
 	void updateMulti2x1()

@@ -22,7 +22,7 @@ public class ItemKnife extends Item
 			String registryName)
 	{		
 		this.setMaxDamage((int) (material.getMaxUses() * ConfigOptions.toolSettings.knifeBaseDurability));
-		this.damageVsEntity = ConfigOptions.toolSettings.knifeBaseDamage + material.getDamageVsEntity();
+		this.damageVsEntity = (float) (ConfigOptions.toolSettings.knifeBaseDamage + material.getDamageVsEntity());
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
 		setRegistryName(registryName);
 		this.setMaxStackSize(1);

@@ -5,10 +5,12 @@ import java.util.Map;
 
 import com.bartz24.skyresources.base.guide.SkyResourcesGuide;
 
+import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.Loader;
 
@@ -100,6 +102,9 @@ public class ModGuidePages
 
 		SkyResourcesGuide.addPage("gemProduction", "guide.skyresources.stage2", new ItemStack(Items.EMERALD));
 
+		SkyResourcesGuide.addPage("wildlifeAttractor", "guide.skyresources.stage2",
+				new ItemStack(ModBlocks.wildlifeAttractor));
+
 		SkyResourcesGuide.addPage("seeds", "guide.skyresources.stage2", new ItemStack(Items.PUMPKIN_SEEDS));
 
 		SkyResourcesGuide.addPage("stage3", "guide.skyresources.stage3", new ItemStack(Blocks.GLOWSTONE));
@@ -110,7 +115,8 @@ public class ModGuidePages
 
 		SkyResourcesGuide.addPage("rockCleaner", "guide.skyresources.stage3", new ItemStack(ModBlocks.rockCleaner));
 
-		SkyResourcesGuide.addPage("combustionController", "guide.skyresources.stage3", new ItemStack(ModBlocks.combustionController));
+		SkyResourcesGuide.addPage("combustionController", "guide.skyresources.stage3",
+				new ItemStack(ModBlocks.combustionController));
 
 		SkyResourcesGuide.addPage("aqueous", "guide.skyresources.stage3", new ItemStack(ModBlocks.aqueousConcentrator));
 
@@ -128,22 +134,14 @@ public class ModGuidePages
 		addImagePos("end", new BlockPos(1, -1, -1), Blocks.DIAMOND_BLOCK.getDefaultState());
 		addImagePos("end", new BlockPos(-1, -1, 1), Blocks.DIAMOND_BLOCK.getDefaultState());
 		addImagePos("end", new BlockPos(1, -1, 1), Blocks.DIAMOND_BLOCK.getDefaultState());
-		addImagePos("end", new BlockPos(-2, -1, -2), ModBlocks.darkMatterBlock.getDefaultState());
-		addImagePos("end", new BlockPos(-1, -1, -2), ModBlocks.darkMatterBlock.getDefaultState());
-		addImagePos("end", new BlockPos(0, -1, -2), ModBlocks.darkMatterBlock.getDefaultState());
-		addImagePos("end", new BlockPos(1, -1, -2), ModBlocks.darkMatterBlock.getDefaultState());
-		addImagePos("end", new BlockPos(2, -1, -2), ModBlocks.darkMatterBlock.getDefaultState());
-		addImagePos("end", new BlockPos(2, -1, -1), ModBlocks.darkMatterBlock.getDefaultState());
-		addImagePos("end", new BlockPos(2, -1, 0), ModBlocks.darkMatterBlock.getDefaultState());
-		addImagePos("end", new BlockPos(2, -1, 1), ModBlocks.darkMatterBlock.getDefaultState());
-		addImagePos("end", new BlockPos(2, -1, 2), ModBlocks.darkMatterBlock.getDefaultState());
-		addImagePos("end", new BlockPos(1, -1, 2), ModBlocks.darkMatterBlock.getDefaultState());
-		addImagePos("end", new BlockPos(0, -1, 2), ModBlocks.darkMatterBlock.getDefaultState());
-		addImagePos("end", new BlockPos(-1, -1, 2), ModBlocks.darkMatterBlock.getDefaultState());
-		addImagePos("end", new BlockPos(-2, -1, 2), ModBlocks.darkMatterBlock.getDefaultState());
-		addImagePos("end", new BlockPos(-2, -1, 1), ModBlocks.darkMatterBlock.getDefaultState());
-		addImagePos("end", new BlockPos(-2, -1, 0), ModBlocks.darkMatterBlock.getDefaultState());
-		addImagePos("end", new BlockPos(-2, -1, -1), ModBlocks.darkMatterBlock.getDefaultState());
+		for (int x = -2; x <= 2; x++)
+		{
+			for (int z = -2; z <= 2; z++)
+			{
+				if (Math.abs(x) == 2 || Math.abs(z) == 2)
+					addImagePos("end", new BlockPos(x, -1, z), ModBlocks.darkMatterBlock.getDefaultState());
+			}
+		}
 		addImagePos("end", new BlockPos(-2, 0, -2), Blocks.END_BRICKS.getDefaultState());
 		addImagePos("end", new BlockPos(-2, 1, -2), Blocks.END_BRICKS.getDefaultState());
 		addImagePos("end", new BlockPos(-2, 2, -2), Blocks.GLOWSTONE.getDefaultState());
@@ -157,6 +155,66 @@ public class ModGuidePages
 		addImagePos("end", new BlockPos(2, 1, 2), Blocks.END_BRICKS.getDefaultState());
 		addImagePos("end", new BlockPos(2, 2, 2), Blocks.GLOWSTONE.getDefaultState());
 		addImagePos("end", new BlockPos(0, 0, 0), Blocks.STONE_BUTTON.getStateFromMeta(5));
+
+		SkyResourcesGuide.addPage("end2", "guide.skyresources.stage4", new ItemStack(ModBlocks.silverfishDisruptor));
+		addImagePos("end2", new BlockPos(0, -1, 0), ModBlocks.endPortalCore.getDefaultState());
+		addImagePos("end2", new BlockPos(-1, -1, 0), Blocks.GOLD_BLOCK.getDefaultState());
+		addImagePos("end2", new BlockPos(1, -1, 0), Blocks.GOLD_BLOCK.getDefaultState());
+		addImagePos("end2", new BlockPos(0, -1, -1), Blocks.GOLD_BLOCK.getDefaultState());
+		addImagePos("end2", new BlockPos(0, -1, 1), Blocks.GOLD_BLOCK.getDefaultState());
+		addImagePos("end2", new BlockPos(-1, -1, -1), Blocks.DIAMOND_BLOCK.getDefaultState());
+		addImagePos("end2", new BlockPos(1, -1, -1), Blocks.DIAMOND_BLOCK.getDefaultState());
+		addImagePos("end2", new BlockPos(-1, -1, 1), Blocks.DIAMOND_BLOCK.getDefaultState());
+		addImagePos("end2", new BlockPos(1, -1, 1), Blocks.DIAMOND_BLOCK.getDefaultState());
+		for (int x = -3; x <= 3; x++)
+		{
+			for (int z = -3; z <= 3; z++)
+			{
+				if (Math.abs(x) == 3 || Math.abs(z) == 3)
+					addImagePos("end2", new BlockPos(x, -1, z), ModBlocks.lightMatterBlock.getDefaultState());
+				else if (Math.abs(x) == 2 || Math.abs(z) == 2)
+					addImagePos("end2", new BlockPos(x, -1, z), ModBlocks.darkMatterBlock.getDefaultState());
+			}
+		}
+		IBlockState purpurState = Blocks.PURPUR_PILLAR.getDefaultState().withProperty(BlockRotatedPillar.AXIS,
+				EnumFacing.Axis.Y);
+		addImagePos("end2", new BlockPos(-2, 0, -2), Blocks.END_BRICKS.getDefaultState());
+		addImagePos("end2", new BlockPos(-2, 1, -2), Blocks.END_BRICKS.getDefaultState());
+		addImagePos("end2", new BlockPos(-2, 2, -2), Blocks.GLOWSTONE.getDefaultState());
+		addImagePos("end2", new BlockPos(-2, 3, -2), ModBlocks.silverfishDisruptor.getDefaultState());
+		addImagePos("end2", new BlockPos(2, 0, -2), Blocks.END_BRICKS.getDefaultState());
+		addImagePos("end2", new BlockPos(2, 1, -2), Blocks.END_BRICKS.getDefaultState());
+		addImagePos("end2", new BlockPos(2, 2, -2), Blocks.GLOWSTONE.getDefaultState());
+		addImagePos("end2", new BlockPos(2, 3, -2), ModBlocks.silverfishDisruptor.getDefaultState());
+		addImagePos("end2", new BlockPos(-2, 0, 2), Blocks.END_BRICKS.getDefaultState());
+		addImagePos("end2", new BlockPos(-2, 1, 2), Blocks.END_BRICKS.getDefaultState());
+		addImagePos("end2", new BlockPos(-2, 2, 2), Blocks.GLOWSTONE.getDefaultState());
+		addImagePos("end2", new BlockPos(-2, 3, 2), ModBlocks.silverfishDisruptor.getDefaultState());
+		addImagePos("end2", new BlockPos(2, 0, 2), Blocks.END_BRICKS.getDefaultState());
+		addImagePos("end2", new BlockPos(2, 1, 2), Blocks.END_BRICKS.getDefaultState());
+		addImagePos("end2", new BlockPos(2, 2, 2), Blocks.GLOWSTONE.getDefaultState());
+		addImagePos("end2", new BlockPos(2, 3, 2), ModBlocks.silverfishDisruptor.getDefaultState());
+		addImagePos("end2", new BlockPos(-3, 0, -3), purpurState);
+		addImagePos("end2", new BlockPos(-3, 1, -3), purpurState);
+		addImagePos("end2", new BlockPos(-3, 2, -3), purpurState);
+		addImagePos("end2", new BlockPos(-3, 3, -3), purpurState);
+		addImagePos("end2", new BlockPos(-3, 4, -3), Blocks.END_ROD.getDefaultState());
+		addImagePos("end2", new BlockPos(3, 0, -3), purpurState);
+		addImagePos("end2", new BlockPos(3, 1, -3), purpurState);
+		addImagePos("end2", new BlockPos(3, 2, -3), purpurState);
+		addImagePos("end2", new BlockPos(3, 3, -3), purpurState);
+		addImagePos("end2", new BlockPos(3, 4, -3), Blocks.END_ROD.getDefaultState());
+		addImagePos("end2", new BlockPos(-3, 0, 3), purpurState);
+		addImagePos("end2", new BlockPos(-3, 1, 3), purpurState);
+		addImagePos("end2", new BlockPos(-3, 2, 3), purpurState);
+		addImagePos("end2", new BlockPos(-3, 3, 3), purpurState);
+		addImagePos("end2", new BlockPos(-3, 4, 3), Blocks.END_ROD.getDefaultState());
+		addImagePos("end2", new BlockPos(3, 0, 3), purpurState);
+		addImagePos("end2", new BlockPos(3, 1, 3), purpurState);
+		addImagePos("end2", new BlockPos(3, 2, 3), purpurState);
+		addImagePos("end2", new BlockPos(3, 3, 3), purpurState);
+		addImagePos("end2", new BlockPos(3, 4, 3), Blocks.END_ROD.getDefaultState());
+		addImagePos("end2", new BlockPos(0, 0, 0), Blocks.STONE_BUTTON.getStateFromMeta(5));
 
 		SkyResourcesGuide.addPage("healthGem", "guide.skyresources.stage4", new ItemStack(ModItems.healthGem));
 

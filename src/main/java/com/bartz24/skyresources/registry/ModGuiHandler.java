@@ -27,6 +27,7 @@ import com.bartz24.skyresources.technology.gui.GuiFreezer;
 import com.bartz24.skyresources.technology.gui.GuiQuickDropper;
 import com.bartz24.skyresources.technology.gui.GuiRockCleaner;
 import com.bartz24.skyresources.technology.gui.GuiRockCrusher;
+import com.bartz24.skyresources.technology.gui.GuiWildlifeAttractor;
 import com.bartz24.skyresources.technology.gui.container.ContainerAqueousConcentrator;
 import com.bartz24.skyresources.technology.gui.container.ContainerCombustionCollector;
 import com.bartz24.skyresources.technology.gui.container.ContainerCombustionController;
@@ -38,6 +39,7 @@ import com.bartz24.skyresources.technology.gui.container.ContainerFreezer;
 import com.bartz24.skyresources.technology.gui.container.ContainerQuickDropper;
 import com.bartz24.skyresources.technology.gui.container.ContainerRockCleaner;
 import com.bartz24.skyresources.technology.gui.container.ContainerRockCrusher;
+import com.bartz24.skyresources.technology.gui.container.ContainerWildlifeAttractor;
 import com.bartz24.skyresources.technology.tile.DirtFurnaceTile;
 import com.bartz24.skyresources.technology.tile.MiniFreezerTile;
 import com.bartz24.skyresources.technology.tile.TileAqueousConcentrator;
@@ -49,6 +51,7 @@ import com.bartz24.skyresources.technology.tile.TileEndPortalCore;
 import com.bartz24.skyresources.technology.tile.TileQuickDropper;
 import com.bartz24.skyresources.technology.tile.TileRockCleaner;
 import com.bartz24.skyresources.technology.tile.TileRockCrusher;
+import com.bartz24.skyresources.technology.tile.TileWildlifeAttractor;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -72,7 +75,8 @@ public class ModGuiHandler implements IGuiHandler
 	public static final int AqueousConcentratorGUI = 12;
 	public static final int CrucibleInserterGUI = 13;
 	public static final int CombustionControllerGUI = 14;
-	public static final int BeeAttractorGUI = 15;
+	public static final int WildlifeAttractorGUI = 15;
+	public static final int BeeAttractorGUI = 20;
 	public static final int GuideGUI = 25;
 
 	@Override
@@ -124,6 +128,9 @@ public class ModGuiHandler implements IGuiHandler
 		else if (id == CombustionControllerGUI)
 			return new ContainerCombustionController(player.inventory,
 					(TileCombustionController) world.getTileEntity(new BlockPos(x, y, z)));
+		else if (id == WildlifeAttractorGUI)
+			return new ContainerWildlifeAttractor(player.inventory,
+					(TileWildlifeAttractor) world.getTileEntity(new BlockPos(x, y, z)));
 		return null;
 	}
 
@@ -169,6 +176,9 @@ public class ModGuiHandler implements IGuiHandler
 		else if (id == CombustionControllerGUI)
 			return new GuiCombustionController(player.inventory,
 					(TileCombustionController) world.getTileEntity(new BlockPos(x, y, z)));
+		else if (id == WildlifeAttractorGUI)
+			return new GuiWildlifeAttractor(player.inventory,
+					(TileWildlifeAttractor) world.getTileEntity(new BlockPos(x, y, z)));
 		else if (id == GuideGUI)
 			return new GuideGUI();
 

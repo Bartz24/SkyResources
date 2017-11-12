@@ -90,15 +90,19 @@ public class ProcessRecipeManager
 		public void drawJEIInfo(ProcessRecipe rec, Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX,
 				int mouseY)
 		{
-			String s = "100% spd: " + Math.round(rec.getIntParameter()) + " ticks";
+			String s = Math.round(rec.getIntParameter()) + " ticks";
 			FontRenderer fontRendererObj = minecraft.fontRenderer;
 			int stringWidth = fontRendererObj.getStringWidth(s);
-			fontRendererObj.drawString(s, 130 - stringWidth, 8, java.awt.Color.gray.getRGB());
-			s = "100% eff: " + Math.round(
-					Math.pow(rec.getIntParameter(), 1.3f) / 50f / (12400f * rec.getIntParameter() / 50f) * 1000000f)
-					/ 10000f + "%/tick";
+			fontRendererObj.drawString(s, 130 - stringWidth, 34, java.awt.Color.gray.getRGB());
+			double dustPerTick = (double) (Math.pow(rec.getIntParameter(), 1.3f) / 50f
+					/ (2400f * rec.getIntParameter() / 50f));
+			s = Math.round(1 / dustPerTick / rec.getIntParameter() * 10000f) / 10000f
+					+ "x output";
 			stringWidth = fontRendererObj.getStringWidth(s);
-			fontRendererObj.drawString(s, 130 - stringWidth, 50, java.awt.Color.gray.getRGB());
+			fontRendererObj.drawString(s, 130 - stringWidth, 44, java.awt.Color.gray.getRGB());
+			s = "100% spd/eff:";
+			stringWidth = fontRendererObj.getStringWidth(s);
+			fontRendererObj.drawString(s, 50 - stringWidth, 38, java.awt.Color.gray.getRGB());
 		}
 	};
 	public static ProcessRecipeManager fusionRecipes = new ProcessRecipeManager("fusion")

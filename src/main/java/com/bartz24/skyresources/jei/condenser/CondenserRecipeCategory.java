@@ -59,18 +59,18 @@ public class CondenserRecipeCategory extends BlankRecipeCategory
 	@Override
 	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper, IIngredients ingredients)
 	{
-		layout.getItemStacks().init(slotOutput, false, 64, 28);
-		layout.getItemStacks().init(slotInput, true, 1, 35);
+		layout.getItemStacks().init(slotOutput, false, 64, 11);
+		layout.getItemStacks().init(slotInput, true, 1, 18);
 
 		List<List<FluidStack>> fluidInputs = ingredients.getInputs(FluidStack.class);
 		List<List<ItemStack>> inputs = ingredients.getInputs(ItemStack.class);
 		if (fluidInputs.size() > 0)
 		{
-			layout.getFluidStacks().init(slotInputBlock, true, 2, 18);
+			layout.getFluidStacks().init(slotInputBlock, true, 2, 1);
 			layout.getFluidStacks().set(slotInputBlock, fluidInputs.get(0));
 		} else
 		{
-			layout.getItemStacks().init(slotInputBlock, true, 1, 17);
+			layout.getItemStacks().init(slotInputBlock, true, 1, 0);
 			layout.getItemStacks().set(slotInputBlock, inputs.get(1));
 		}
 

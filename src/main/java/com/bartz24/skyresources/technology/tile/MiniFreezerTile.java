@@ -27,7 +27,7 @@ public class MiniFreezerTile extends TileItemInventory implements ITickable
 
 	public float getFreezerSpeed()
 	{
-		return ConfigOptions.machineSettings.miniFreezerSpeed;
+		return (float) ConfigOptions.machineSettings.miniFreezerSpeed;
 	}
 
 	@Override
