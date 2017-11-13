@@ -460,8 +460,7 @@ public class ModCrafting
 				output.setCount(1);
 				ProcessRecipeManager.cauldronCleanRecipes
 						.addRecipe(output,
-								1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(i).rarity + 2.5f), 1.2f))
-										* 6.3f),
+								1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(i).rarity + 2.5f), 3.7f))),
 								new ItemStack(ModItems.techComponent, 1, ItemOreAlchDust.oreInfos.get(i).parentBlock
 										.isItemEqual(new ItemStack(Blocks.NETHERRACK)) ? 3 : 0));
 			}
@@ -590,7 +589,7 @@ public class ModCrafting
 			ItemStack dust = OreDictionary.getOres("dustUranium").get(0).copy();
 			dust.setCount(1);
 			ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dust,
-					1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(23).rarity + 2.5f), 1.2f)) * 6.3f),
+					1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(23).rarity + 2.5f), 3.7f))),
 					new ItemStack(ModItems.techComponent, 1, 0));
 
 			ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.oreAlchDust, 1, 23),
@@ -617,7 +616,7 @@ public class ModCrafting
 			ItemStack dust = OreDictionary.getOres("dustThorium").get(0).copy();
 			dust.setCount(1);
 			ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dust,
-					1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(24).rarity + 2.5f), 1.2f)) *6.3f),
+					1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(24).rarity + 2.5f), 3.7f))),
 					new ItemStack(ModItems.techComponent, 1, 0));
 
 			ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.oreAlchDust, 1, 24),

@@ -17,8 +17,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
@@ -105,7 +107,7 @@ public class TileCombustionController extends TileItemInventory implements ITick
 
 	void craftSingleItem()
 	{
-		if (getHeater() == null || getHeater().machineStored.isEmpty())
+		if (getHeater() == null || getHeater().machineStored.isEmpty() || getHeaterMachine() == null)
 			return;
 		float curHU = getHeater().machineData.getFloat("curHU");
 		ProcessRecipe recipe = recipeToCraft(curHU);
@@ -196,17 +198,19 @@ public class TileCombustionController extends TileItemInventory implements ITick
 
 	BlockPos getPosBehind()
 	{
-		return getPos()
-				.add(getWorld().getBlockState(getPos()).getValue(BlockCombustionController.FACING).getOpposite().getDirectionVec());
+		return getPos().add(getWorld().getBlockState(getPos()).getValue(BlockCombustionController.FACING).getOpposite()
+				.getDirectionVec());
 	}
 
 	TileCasing getHeater()
 	{
-		return (TileCasing) getWorld().getTileEntity(getPosBehind().down());
+		TileEntity te = getWorld().getTileEntity(getPosBehind().down());
+		return te instanceof TileCasing ? (TileCasing) te : null;
 	}
 
 	ItemCombustionHeater getHeaterMachine()
 	{
-		return (ItemCombustionHeater) getHeater().getMachine();
+		Item item = getHeater().getMachine();
+		return item instanceof ItemCombustionHeater ? (ItemCombustionHeater) getHeater().getMachine() : null;
 	}
 }

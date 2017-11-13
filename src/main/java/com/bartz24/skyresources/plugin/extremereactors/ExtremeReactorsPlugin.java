@@ -40,7 +40,7 @@ public class ExtremeReactorsPlugin implements IModPlugin
 		ItemStack dust = OreDictionary.getOres("dustYellorium").get(0).copy();
 		dust.setCount(1);
 		ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dust,
-				1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(22).rarity + 2.5f), 1.2f)) * 6.3f),
+				1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(22).rarity + 2.5f), 3.7f))),
 				new ItemStack(ModItems.techComponent, 1, 0));
 
 		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.oreAlchDust, 1, 22),

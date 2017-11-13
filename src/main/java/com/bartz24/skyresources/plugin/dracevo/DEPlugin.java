@@ -43,7 +43,7 @@ public class DEPlugin implements IModPlugin
 		ItemStack dustDraconium = OreDictionary.getOres("dustDraconium").get(0).copy();
 		dustDraconium.setCount(1);
 		ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dustDraconium,
-				1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(13).rarity + 2.5f), 1.2f)) * 6.3f),
+				1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(13).rarity + 2.5f), 3.7f))),
 				new ItemStack(ModItems.techComponent, 1, 3));
 
 		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.oreAlchDust, 1, 13),
