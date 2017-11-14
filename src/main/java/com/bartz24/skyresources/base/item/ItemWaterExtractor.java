@@ -271,6 +271,7 @@ public class ItemWaterExtractor extends Item implements IFluidHandler
 
 	public void writeToNBT(ItemStack stack)
 	{
+		stack.setTagCompound(new NBTTagCompound());
 		tank.writeToNBT(stack.getTagCompound());
 	}
 
