@@ -24,6 +24,7 @@ item.skyresources.techItemComponent.netherrackCrushed.name=粉碎的地狱岩
 item.skyresources.cactusFruit.name=仙人掌果
 item.skyresources.fleshySnowNugget.name=沾满血肉的雪球
 item.skyresources.cactusCuttingKnife.name=仙人掌切割刀
+item.skyresources.stoneCuttingKnife.name=石制切割刀
 item.skyresources.ironCuttingKnife.name=铁制切割刀
 item.skyresources.diamondCuttingKnife.name=钻石切割刀
 item.skyresources.itemHealthGem.name=生命宝石
@@ -48,6 +49,7 @@ tile.skyresources.darkMatterBlock.name=暗物质块
 tile.skyresources.lightMatterBlock.name=亮物质块
 tile.skyresources.coalInfusedBlock.name=赫耳墨斯煤炭块
 tile.skyresources.dryCactus.name=脱水仙人掌
+tile.skyresources.silverfishDisruptor.name=蠹虫传送干扰器
 tile.skyresources.BlazePowderBlock.name=烈焰粉块
 tile.skyresources.crucible.name=坩埚
 tile.skyresources.fluidDropper.name=漏液器
@@ -72,6 +74,7 @@ tile.skyresources.quickDropper.name=快速漏斗
 tile.skyresources.aqueousConcentrator.name=自动注水器
 tile.skyresources.aqueousDeconcentrator.name=自动抽水器
 tile.skyresources.fusionTable.name=炼金灌注台
+tile.skyresources.wildlifeAttractor.name=野生动物吸引装置
 
 
 tile.fluid.srCrystalFluid.name=液态水晶
@@ -95,6 +98,7 @@ jei.skyresources.recipe.cauldron=炼药锅
 jei.skyresources.recipe.cauldronclean=炼药锅清洗
 jei.skyresources.recipe.waterextractor=抽水器
 jei.skyresources.recipe.fusion=炼金灌注
+jei.skyresources.recipe.knife=切割刀
 
 
 container.skyresources.combustionHeater=氧化加热器
@@ -113,6 +117,7 @@ container.skyresources.quickDropper=快速漏斗
 container.skyresources.aqueousConcentrator=自动注水器
 container.skyresources.fusionTable=炼金灌注台
 container.skyresources.crucibleInserter=坩埚投料器
+container.skyresources.wildlifeAttractor=野生动物吸引装置
 
 tile.skyresources.casing.wood.name=木制框架
 tile.skyresources.casing.stone.name=石制框架
@@ -293,7 +298,10 @@ guide.skyresources.stage1.stage1.title=第1阶段 - 基础
 guide.skyresources.stage1.stage1.text=欢迎来到 Sky Resources 2 的世界！ \n \n 这本指南将其分为了4个不同的阶段。你可以通过左上角的分类按钮来筛选出你在该阶段时 \n 首次需要使用的物品。你也可以搜索你所查找的物品。 \n 该指南中的一些按钮（与物品一同显示）将会打开教程的另一页，或者是通过 JEI 来查询该物品的合成方式， \n 或者是显示多方块结构。 \n \n 如果你有使用 Void Island Control （以下简称为 VIC ），输入 /island create （可选类型）即可创建属于你自己的空岛。 \n 空岛类型包括沙地岛、雪地岛、木头岛、草地岛和水晶花园（如果你安装了 Botania 和 Garden of Glass）。 \n 此外有关于使用VIC的方法，可以通过输入 /island 来查看更多。 \n 根据您的开局，请选择一个类型作为开始。 \n <link,沙地岛,minecraft:sand:1,sandIsland> \n <link,雪地岛,minecraft:snow:0,snowIsland> \n <link,木头岛,minecraft:planks:5,woodIsland> \n <link,草地或水晶花园岛,minecraft:grass:0,grassIsland> \n \n 如果你没有安装 JEI ，那我真的不知道你该如何玩装有 mod 的 Minecraft 。
 
 guide.skyresources.stage1.sandIsland.title=沙地岛
-guide.skyresources.stage1.sandIsland.text=首先，警告一下，至少要留1个 <recipe,,minecraft:cactus:0> 并且除非必要请不要使用 <recipe,,minecraft:sand:1> ！ \n \n 你的首要目标就是获得一些 <recipe,,skyresources:alchemyitemcomponent:0> 。按住Shift键右击 <recipe,,minecraft:cactus:0> 就可以获得。这个过程中你会受到伤害。 \n 接下来，你可能会用到一些 <recipe,,skyresources:cactusfruit:0> 因为它能帮你快速地回复生命。 \n 为了在这个岛上获取一些新的资源，你可能需要一个 <recipe,,skyresources:redsandstoneinfusionstone:0> 。 它会被用在一个叫做 <link,生命灌注,skyresources:redsandstoneinfusionstone:0,lifeInfusion> 的过程中。 \n 你的第一步是使用 <link,生命灌注,skyresources:redsandstoneinfusionstone:0,lifeInfusion> 来增加你的 <recipe,,minecraft:cactus:0> 的产量。 \n 一旦你有了合适数量的仙人掌后，做一个 <recipe,,skyresources:cactusfruitneedle:0> 来制作你的第一个 <recipe,,minecraft:sapling:4> ！ \n 在这之后，制作你的第一块 <recipe,,minecraft:dirt:1> ！ \n \n 现在你已经完成了第1阶段！继续 <link,第2阶段,minecraft:log:0,stage2> 吧！
+guide.skyresources.stage1.sandIsland.text=首先，警告一下，至少要留1个 <recipe,,minecraft:cactus:0> 并且除非必要请不要使用 <recipe,,minecraft:sand:1> ！ \n \n 你的首要目标就是获得一些 <recipe,,skyresources:alchemyitemcomponent:0> 。按住Shift键右击 <recipe,,minecraft:cactus:0> 就可以获得。这个过程中你会受到伤害。现在你需要做一把 <link,切割刀,skyresources:cactusCuttingKnife:0,knife> 。 \n 接下来，你可能会用到一些 <recipe,,skyresources:cactusfruit:0> 因为它能帮你快速地回复生命。 \n 为了在这个岛上获取一些新的资源，你可能需要一个 <recipe,,skyresources:redsandstoneinfusionstone:0> 。 它会被用在一个叫做 <link,生命灌注,skyresources:redsandstoneinfusionstone:0,lifeInfusion> 的过程中。 \n 你的第一步是使用 <link,生命灌注,skyresources:redsandstoneinfusionstone:0,lifeInfusion> 来增加你的 <recipe,,minecraft:cactus:0> 的产量。 \n 一旦你有了合适数量的仙人掌后，做一个 <recipe,,skyresources:cactusfruitneedle:0> 来制作你的第一个 <recipe,,minecraft:sapling:4> ！ \n 在这之后，制作你的第一块 <recipe,,minecraft:dirt:1> ！ \n \n 现在你已经完成了第1阶段！继续 <link,第2阶段,minecraft:log:0,stage2> 吧！
+
+guide.skyresources.stage1.knife.title=切割刀
+guide.skyresources.stage1.knife.text=你可以使用切割刀来切一些特定的物品。 \n 默认情况下有四种切割刀，分别是 <recipe,,skyresources:cactusCuttingKnife:0> 、 <recipe,,skyresources:stoneCuttingKnife:0> 、 <recipe,,skyresources:ironCuttingKnife:0>  \n 以及 <recipe,,skyresources:diamondCuttingKnife:0> 。 \n 只需使用切割刀破坏你要切割的方块即可。
 
 guide.skyresources.stage1.lifeInfusion.title=生命灌注（灌注石）
 guide.skyresources.stage1.lifeInfusion.text=为了完成生命灌注，你首先需要一个灌注石。默认有三种灌注石，分别是 <recipe,,skyresources:redsandstoneinfusionstone:0> 、 <recipe,,skyresources:sandstoneinfusionstone:0> 和 <recipe,,skyresources:alchemicalinfusionstone:0> 。 \n \n 当你拥有一个灌注石后，你可以在JEI中查找到使用它的配方。 \n 盾牌图案上方的物品放置在左手栏。 \n 红心为完成该项生命灌注所需的生命值。 \n 灌注石放在你的主手栏。 \n 方块为你使用灌注石右击的方块。 \n \n 准备就绪后，右击方块，产物将会掉落在地上！ \n \n 该过程可以在其他mod的帮助下通过 <link,生命灌注器,skyresources:lifeinfuser:0,lifeInfuser> 来自动化完成。 \n \n 灌注石也可以像骨粉一样用于植物，只不过这会消耗灌注石的耐久并造成伤害。
@@ -358,6 +366,9 @@ guide.skyresources.stage2.fluidDropper.text=<recipe,,skyresources:fluiddropper:0
 guide.skyresources.stage2.fusionTable.title=炼金灌注台
 guide.skyresources.stage2.fusionTable.text=<recipe,,skyresources:fusionTable:0> 被用来合成炼金物品，并且可以轻松做到自动化。 \n \n 自动化过滤物品的话则需要手动将物品放入物品槽中，而将放入的物品手动取出即可移除过滤 \n （总的来说，你将物品从GUI中放入取出，或者是在管道、漏斗等设备中设置过滤都是可以的）。 \n \n 灌注过程需要诸如 <recipe,,skyresources:alchemyitemcomponent:2> 这样的炼金催化剂放在输出槽旁边的槽位。 \n \n 当有足够的原料及催化剂时，灌注过程就会开始。 \n 获得的产物将基于催化剂的收益率。灌注过程中，输出槽旁边的紫色的收益条将会增长，当收益条达到 100% 时，即可获得一份产物，更高的收益率会使得紫色的收益条增长得更快。
 
+guide.skyresources.stage2.wildlifeAttractor.title=野生动物吸引装置
+guide.skyresources.stage2.wildlifeAttractor.text=<recipe,,skyresources:wildlifeAttractor:0> 将以每30秒大约1只动物的随机几率将动物吸引到该区块的顶部。 \n 需要 40 RF/tick （默认情况下）， 20mB of 水/tick （默认情况下），并且每消耗 1 个 <recipe,,skyresources:baseItemComponent:0> 可以使装置工作 6 秒（默认情况下）。 \n 收到红石信号后会停止工作。
+
 guide.skyresources.stage2.condenser.title=冷凝器
 guide.skyresources.stage2.condenser.text=冷凝器需要放在 <link,框架,skyresources:casing:0,casing> 中使用。 \n \n 冷凝器需要使用一个物品（通常是一种 <recipe,,skyresources:orealchdust:0> ）来冷凝其上方的方块。 \n 冷凝器会在其下方输出产物，要么弹出到世界中，要么输出到一个容器中（只有库存有空间时才会这样， \n 否则冷凝器将自动关闭直到其下方容器有空间为止）。 \n \n 不同种类的冷凝器的效率和工作速度不同。 \n 不同种类的框架决定了其效率。 \n \n 冷凝器可以使用红石信号来控制开关。
 
@@ -386,7 +397,7 @@ guide.skyresources.stage3.rockCleaner.title=洗矿机
 guide.skyresources.stage3.rockCleaner.text=<recipe,,skyresources:rockcleaner:0> 可以代替 <recipe,,minecraft:cauldron:0> 来完成自动化。 \n 需要 80 RF/tick （默认情况下）。 \n 需要 250 mB 的水才能运行。 \n 洗矿机可以提高 2x 的产率！（最大为100%） \n 收到红石信号后会停止工作。
 
 guide.skyresources.stage3.combustionController.title=智能氧化控制器
-guide.skyresources.stage3.combustionController.text=<recipe,,skyresources:combustioncontroller:0> 可以自动化地合成 <link,氧化加热,skyresources:combustionheater:0,combustionHeater> 过程产出的物品。 \n 在机器内设置要合成的物品，越靠近左边的物品合成优先级越高。 \n （默认情况下）每秒合成一份物品。 \n 如果你想做一些复杂的设置，你可以使用物品运输项目来自动更改过滤器。 \n \n 但 <recipe,,skyresources:combustionheater:0> 或者 <recipe,,skyresources:combustionheater:1> 不能使用智能氧化控制器。 \n 收到红石信号后会停止工作。
+guide.skyresources.stage3.combustionController.text=<recipe,,skyresources:combustioncontroller:0> 可以自动化地合成 <link,氧化加热,skyresources:combustionheater:0,combustionHeater> 过程产出的物品。 \n 用它替换掉氧化加热器多方块结构的四个侧面之一即可。 \n 在机器内设置要合成的物品，越靠近左边的物品合成优先级越高。 \n （默认情况下）每秒合成一份物品。 \n 如果你想做一些复杂的设置，你可以使用物品运输项目来自动更改过滤器。 \n \n 但 <recipe,,skyresources:combustionheater:0> 或者 <recipe,,skyresources:combustionheater:1> 不能使用智能氧化控制器。 \n 收到红石信号后会停止工作。
 
 guide.skyresources.stage3.aqueous.title=自动注水器/自动抽水器
 guide.skyresources.stage3.aqueous.text=<recipe,,skyresources:aqueousconcentrator:0> 和 <recipe,,skyresources:aqueousdeconcentrator:0> 分别能够自动化完成 <link,抽水器,skyresources:waterextractor:0,waterExtractor> 的注水和抽水过程。 \n 需要 80 RF/tick （默认情况下）。
@@ -398,16 +409,19 @@ guide.skyresources.stage4.stage4.title=第4阶段 - 超强力材料
 guide.skyresources.stage4.stage4.text=这个阶段为你提供了一些能让加工过程变得更快、燃料效率及催化剂的收益率近乎无尽的科技！ \n \n 要达到这种强大的科技水平，你需要用到 <recipe,,skyresources:baseItemComponent:3> ！ \n \n 该阶段你需要进入 <link,末地,minecraft:ender_eye:0,end> ！
 
 guide.skyresources.stage4.dmWarper.title=暗物质生物转化装置
-guide.skyresources.stage4.dmWarper.text=<recipe,,skyresources:DarkMatterWarper:0> 用来生成一些稀有的怪物。 \n 它需要消耗 <recipe,,skyresources:BaseItemComponent:3> 来运行（默认情况下每6分钟消耗一个暗物质），作用范围为以 <recipe,,skyresources:DarkMatterWarper:0> 为中心 8x8x8 的立方体。 \n 它会将骷髅转化为凋灵骷髅，将墨鱼转化为烈焰人，将蜘蛛转化为洞穴蜘蛛，将僵尸村民转化为村民，并且会对范围内玩家（默认情况下）及动物 \n 造成伤害。
+guide.skyresources.stage4.dmWarper.text=<recipe,,skyresources:DarkMatterWarper:0> 用来生成一些稀有的怪物。 \n 它需要消耗 <recipe,,skyresources:BaseItemComponent:3> 来运行（默认情况下每6分钟消耗一个暗物质），作用范围为以 <recipe,,skyresources:DarkMatterWarper:0> 为中心 8x8x8 的立方体。 \n 它会将骷髅转化为凋灵骷髅，将墨鱼转化为烈焰人，将蜘蛛转化为洞穴蜘蛛，将僵尸村民转化为村民， \n 并且会对范围内玩家（默认情况下）及动物造成伤害。
 
 guide.skyresources.stage4.end.title=末地
-guide.skyresources.stage4.end.text=末地传送门是一个多方块结构。它需要如下材料： \n 1个 <recipe,,skyresources:EndPortalCore:0> \n 4个 <recipe,,minecraft:diamond_block:0> \n 4个 <recipe,,minecraft:gold_block:0> \n 16个 <recipe,,skyresources:DarkMatterBlock:0> \n 8个 <recipe,,minecraft:end_bricks:0> \n 4个 <recipe,,minecraft:glowstone:0> \n \n <image,多方块结构如图所示,skyresources:EndPortalCore:0,end> \n 要使用这个传送门，你需要站在 <recipe,,skyresources:EndPortalCore:0> 上方，并且给予核心至少16个 <recipe,,minecraft:ender_eye:0> ，然后提供一个红石脉冲（按钮即可）。 \n \n *gl yao xinxiao dang gezhe xianwei de goujie xiaosheng shi, ta hui shikai \n chengsheng chongdu! *nl
+guide.skyresources.stage4.end.text=末地传送门是一个多方块结构。它需要如下材料： \n 1个 <recipe,,skyresources:EndPortalCore:0> \n 4 个 <recipe,,minecraft:diamond_block:0> \n 4 个 <recipe,,minecraft:gold_block:0> \n 16个 <recipe,,skyresources:DarkMatterBlock:0> \n 8 个 <recipe,,minecraft:end_bricks:0> \n 4 个 <recipe,,minecraft:glowstone:0> \n \n <image,多方块结构如图所示,skyresources:EndPortalCore:0,end> \n 要使用这个传送门，你需要站在 <recipe,,skyresources:EndPortalCore:0> 上方，并且给予核心至少16个 <recipe,,minecraft:ender_eye:0> ，然后提供一个红石脉冲（按钮即可）。 \n \n *gl yao xinxiao dang gezhe xianwei de goujie xiaosheng shi, ta hui shikai \n chengsheng chongdu! *nl
+
+guide.skyresources.stage4.end2.title=改良末地传送门
+guide.skyresources.stage4.end2.text=对末地传送门进行改良需要对已有多方块结构进行额外的搭建。它需要如下额外的材料： \n 4 个 <recipe,,skyresources:silverfishDisruptor:0> \n 4 个 <recipe,,minecraft:end_rod:0> \n 24 个 <recipe,,skyresources:lightmatterblock:0> \n 16 个 <recipe,,minecraft:purpur_pillar:0> \n \n <image,多方块结构如图所示,skyresources:silverfishDisruptor:0,end2> \n 改良过的在传送过程中将不再消耗末影之眼，且不再生成那些来打扰你的邪恶侵略者。
 
 guide.skyresources.stage4.healthGem.title=生命宝石
 guide.skyresources.stage4.healthGem.text=<recipe,,skyresources:ItemHealthGem:0> 可以用来提高你的最大生命值，并且还可以存储生命值用于 <link,生命灌注器,skyresources:LifeInfuser:0,lifeInfuser> 。 \n 按住Shift键右击即可向其中注入2点生命值（1颗心）。 \n 默认情况下，每当其内部存有50点生命值就会提供1点最大生命值（半颗心）。 \n 使用 <link,生命汲取器,skyresources:lifeInjector:0,lifeInjector> 可以自动为 <recipe,,skyresources:ItemHealthGem:0> 注入生命。
 
 guide.skyresources.stage4.lifeInfuser.title=生命灌注器
-guide.skyresources.stage4.lifeInfuser.text=<recipe,,skyresources:LifeInfuser:0> 用来自动化完成 <link,生命灌注,skyresources:AlchemicalInfusionStone:0,lifeInfusion> 过程。 \n 生命灌注器为一个多方块结构。它需要如下材料： \n 1个 <recipe,,skyresources:LifeInfuser:0> \n 8个 <recipe,,minecraft:log:0> （任意种类的木头皆可） \n 8个 <recipe,,minecraft:leaves:0> （任意种类的树叶皆可） \n 1个 <recipe,,skyresources:DarkMatterBlock:0> \n \n <image,多方块结构如图所示,skyresources:LifeInfuser:0,infuser> \n 要使用生命灌注器，需要将生命宝石放在右侧的槽中，左手要拿的物品放在左侧的槽中，将要进行 \n 生命灌注的方块放在核心下方，然后给予核心一个红石信号（建议按照图示中的摆法通过 <recipe,,skyresources:DarkMatterBlock:0> 来给予红石信号）。 \n 请确保 <link,生命宝石,skyresources:ItemHealthGem:0,healthGem> 中有足够的生命值来完成灌注。
+guide.skyresources.stage4.lifeInfuser.text=<recipe,,skyresources:LifeInfuser:0> 用来自动化完成 <link,生命灌注,skyresources:AlchemicalInfusionStone:0,lifeInfusion> 过程。 \n 生命灌注器为一个多方块结构。它需要如下材料： \n 1 个 <recipe,,skyresources:LifeInfuser:0> \n 8 个 <recipe,,minecraft:log:0> （任意种类的木头皆可） \n 8 个 <recipe,,minecraft:leaves:0> （任意种类的树叶皆可） \n 1 个 <recipe,,skyresources:DarkMatterBlock:0> \n \n <image,多方块结构如图所示,skyresources:LifeInfuser:0,infuser> \n 要使用生命灌注器，需要将生命宝石放在右侧的槽中，左手要拿的物品放在左侧的槽中，将要进行 \n 生命灌注的方块放在核心下方，然后给予核心一个红石信号（建议按照图示中的摆法通过 <recipe,,skyresources:DarkMatterBlock:0> 来给予红石信号）。 \n 请确保 <link,生命宝石,skyresources:ItemHealthGem:0,healthGem> 中有足够的生命值来完成灌注。
 
 guide.skyresources.stage4.lifeInjector.title=生命汲取器
 guide.skyresources.stage4.lifeInjector.text=<recipe,,skyresources:lifeInjector:0> 用来自动化地将生命注入到 <link,生命宝石,skyresources:ItemHealthGem:0,healthGem> 中。 \n \n 它通过吸收上方实体的生命值来获得生命，且每个实体每次最多受到1颗心（2点生命值）的伤害。它能够 \n 杀死玩家、怪物、动物等。
