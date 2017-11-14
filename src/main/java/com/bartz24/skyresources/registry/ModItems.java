@@ -57,6 +57,7 @@ public class ModItems
 	public static Item dirtyGem;
 
 	public static Item cactusKnife;
+	public static Item stoneKnife;
 	public static Item ironKnife;
 	public static Item diamondKnife;
 
@@ -140,6 +141,7 @@ public class ModItems
 		fleshySnowNugget = registerItem(new ModItemFood(4, 1.5F, false, "fleshySnowNugget", "FleshySnowNugget"));
 		cactusKnife = registerItem(
 				new ItemKnife(SkyResources.materialCactusNeedle, "cactusCuttingKnife", "CactusCuttingKnife"));
+		stoneKnife = registerItem(new ItemKnife(ToolMaterial.STONE, "stoneCuttingKnife", "StoneCuttingKnife"));
 		ironKnife = registerItem(new ItemKnife(ToolMaterial.IRON, "ironCuttingKnife", "IronCuttingKnife"));
 		diamondKnife = registerItem(new ItemKnife(ToolMaterial.DIAMOND, "diamondCuttingKnife", "DiamondCuttingKnife"));
 

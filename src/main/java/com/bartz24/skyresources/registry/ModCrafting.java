@@ -37,12 +37,10 @@ public class ModCrafting
 				new Object[] { "XX", 'X', new ItemStack(Items.SNOWBALL) });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.survivalistFishingRod),
 				new Object[] { " X", "XY", 'X', new ItemStack(Items.STICK), 'Y', new ItemStack(Items.STRING) });
-		CraftingRegistry.addShapelessOreRecipe(new ItemStack(ModItems.cactusFruit, 2),
-				new Object[] { new ItemStack(Blocks.CACTUS), "toolCuttingKnife" });
-		CraftingRegistry.addShapelessOreRecipe(new ItemStack(Items.MELON, 9),
-				new Object[] { new ItemStack(Blocks.MELON_BLOCK, 1), "toolCuttingKnife" });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.cactusKnife),
 				new Object[] { " #", "# ", '#', new ItemStack(ModItems.alchemyComponent, 1, 0) });
+		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.stoneKnife), new Object[] { "#  ", "#X ", " #X", 'X',
+				new ItemStack(Items.STICK), '#', new ItemStack(Blocks.COBBLESTONE) });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.ironKnife), new Object[] { "#  ", "#X ", " #X", 'X',
 				new ItemStack(Items.STICK), '#', new ItemStack(Items.IRON_INGOT) });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.diamondKnife), new Object[] { "#  ", "#X ", " #X",
@@ -66,7 +64,7 @@ public class ModCrafting
 						new ItemStack(ModItems.alchemyComponent, 1, 10) });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.alchemyComponent, 1, 9),
 				new Object[] { "X", "X", 'X', new ItemStack(ModItems.alchemyComponent, 1, 7) });
-		CraftingRegistry.addShapelessOreRecipe(new ItemStack(ModItems.baseComponent, 4, 4), Items.ROTTEN_FLESH,
+		CraftingRegistry.addShapelessRecipe(new ItemStack(ModItems.baseComponent, 4, 4), Items.ROTTEN_FLESH,
 				new ItemStack(Items.DYE, 1, 15), new ItemStack(Items.DYE, 1, 15), new ItemStack(Items.DYE, 1, 15));
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.compressedCoalBlock), new Object[] { "XXX", "XYX",
 				"XXX", 'X', new ItemStack(Blocks.COAL_BLOCK), 'Y', new ItemStack(Items.COAL) });
@@ -89,9 +87,11 @@ public class ModCrafting
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.baseComponent, 9, 7),
 				new Object[] { "X", 'X', new ItemStack(ModBlocks.lightMatterBlock) });
 		CraftingRegistry.addShapelessOreRecipe(new ItemStack(Blocks.SAPLING, 1, 1),
-				new Object[] { new ItemStack(Blocks.DIRT, 1, OreDictionary.WILDCARD_VALUE),
-						new ItemStack(Items.PUMPKIN_SEEDS), new ItemStack(Items.PUMPKIN_SEEDS),
+				new Object[] { "dirt", new ItemStack(Items.PUMPKIN_SEEDS), new ItemStack(Items.PUMPKIN_SEEDS),
 						new ItemStack(Items.DYE, 1, 15) });
+		CraftingRegistry.addShapelessRecipe(new ItemStack(Blocks.SAPLING, 1, 1),
+				new Object[] { new ItemStack(Blocks.DIRT, 1, 1), new ItemStack(Items.PUMPKIN_SEEDS),
+						new ItemStack(Items.PUMPKIN_SEEDS), new ItemStack(Items.DYE, 1, 15) });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.baseComponent, 3, 0),
 				new Object[] { " X ", "XXX", " X ", 'X', "treeSapling" });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.baseComponent, 3, 0),
@@ -174,6 +174,10 @@ public class ModCrafting
 				: OreDictionary.getOres("circuitBasic")).size() > 0
 						? (ConfigOptions.miscSettings.advancedRecipes ? "circuitAdvanced" : "circuitBasic")
 						: "blockRedstone";
+
+		String basicCircuit = ConfigOptions.miscSettings.advancedRecipes
+				? (OreDictionary.getOres("circuitBasic").size() > 0 ? "circuitBasic" : "blockRedstone")
+				: "dustRedstone";
 		{
 			CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.baseComponent, 1, 1),
 					new Object[] { "XZX", "XYX", "XZX", 'X', advComponent, 'Y', circuit, 'Z', coalDust });
@@ -195,6 +199,8 @@ public class ModCrafting
 							'A', new ItemStack(Blocks.SAND) });
 			CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.combustionController),
 					new Object[] { "XXX", "XYX", "XYX", 'X', advComponent, 'Y', circuit });
+			CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.wildlifeAttractor), new Object[] { "XXX", "XYX",
+					"XZX", 'X', new ItemStack(Blocks.HAY_BLOCK), 'Y', new ItemStack(Blocks.CHEST), 'Z', basicCircuit });
 		}
 		GameRegistry.addSmelting(ModBlocks.dryCactus, new ItemStack(Items.DYE, 1, 7), 0.2F);
 
@@ -375,6 +381,11 @@ public class ModCrafting
 				new ItemStack(Blocks.NETHERRACK));
 		ProcessRecipeManager.rockGrinderRecipes.addRecipe(new ItemStack(ModItems.baseComponent, 1, 5), 1.5f, "logWood");
 
+		ProcessRecipeManager.knifeRecipes.addRecipe(new ItemStack(ModItems.cactusFruit, 2), 0,
+				new ItemStack(Blocks.CACTUS, 1, OreDictionary.WILDCARD_VALUE));
+		ProcessRecipeManager.knifeRecipes.addRecipe(new ItemStack(Items.MELON, 9), 0,
+				new ItemStack(Blocks.MELON_BLOCK));
+
 		for (int i = 0; i < ModItems.gemList.size(); i++)
 		{
 			String oreName = Strings.isNullOrEmpty(ModItems.gemList.get(i).oreOverride)
@@ -449,8 +460,8 @@ public class ModCrafting
 				output.setCount(1);
 				ProcessRecipeManager.cauldronCleanRecipes
 						.addRecipe(output,
-								1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(i).rarity + 2.5f), 3.1f))
-										* 14.4f),
+								1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(i).rarity + 2.5f), 1.2f))
+										* 6.3f),
 								new ItemStack(ModItems.techComponent, 1, ItemOreAlchDust.oreInfos.get(i).parentBlock
 										.isItemEqual(new ItemStack(Blocks.NETHERRACK)) ? 3 : 0));
 			}
@@ -579,7 +590,7 @@ public class ModCrafting
 			ItemStack dust = OreDictionary.getOres("dustUranium").get(0).copy();
 			dust.setCount(1);
 			ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dust,
-					1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(23).rarity + 2.5f), 3.1f)) * 14.4f),
+					1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(23).rarity + 2.5f), 1.2f)) * 6.3f),
 					new ItemStack(ModItems.techComponent, 1, 0));
 
 			ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.oreAlchDust, 1, 23),
@@ -606,7 +617,7 @@ public class ModCrafting
 			ItemStack dust = OreDictionary.getOres("dustThorium").get(0).copy();
 			dust.setCount(1);
 			ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dust,
-					1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(24).rarity + 2.5f), 3.1f)) * 14.4f),
+					1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(24).rarity + 2.5f), 1.2f)) *6.3f),
 					new ItemStack(ModItems.techComponent, 1, 0));
 
 			ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.oreAlchDust, 1, 24),
@@ -798,13 +809,6 @@ public class ModCrafting
 
 	public static void initOreDict()
 	{
-
-		OreDictionary.registerOre("toolCuttingKnife",
-				new ItemStack(ModItems.cactusKnife, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("toolCuttingKnife",
-				new ItemStack(ModItems.ironKnife, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("toolCuttingKnife",
-				new ItemStack(ModItems.diamondKnife, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("ingotFrozenIron", new ItemStack(ModItems.techComponent, 1, 2));
 		OreDictionary.registerOre("dustWood", new ItemStack(ModItems.baseComponent, 1, 5));
 

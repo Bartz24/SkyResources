@@ -1,7 +1,8 @@
-package com.bartz24.skyresources.jei.cauldronclean;
+package com.bartz24.skyresources.jei.knife;
 
 import java.util.List;
 
+import com.bartz24.skyresources.ItemHelper;
 import com.bartz24.skyresources.References;
 
 import mezz.jei.api.IGuiHelper;
@@ -11,26 +12,25 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 
-public class CauldronCleanRecipeCategory extends BlankRecipeCategory
+public class KnifeRecipeCategory extends BlankRecipeCategory
 {
-	private static final int slotInput = 0;
-	private static final int slotOutput = 1;
-	private static final int slotCauldron = 2;
+	private static final int slotInputStack = 0;
+	private static final int slotInputGrinder = 1;
+	private static final int slotOutput = 2;
 
 	private final IDrawable background;
 
-	private final String localizedName = I18n.translateToLocalFormatted("jei.skyresources.recipe.cauldronclean");
+	private final String localizedName = I18n.translateToLocalFormatted("jei.skyresources.recipe.knife");
 
-	public CauldronCleanRecipeCategory(IGuiHelper guiHelper)
+	public KnifeRecipeCategory(IGuiHelper guiHelper)
 	{
 		super();
-		background = guiHelper.createDrawable(new ResourceLocation(References.ModID, "textures/gui/jei/condenser.png"),
-				0, 0, 86, 50);
+		background = guiHelper.createDrawable(new ResourceLocation(References.ModID, "textures/gui/jei/infusion.png"),
+				32, 0, 96, 50);
 	}
 
 	@Override
@@ -53,23 +53,21 @@ public class CauldronCleanRecipeCategory extends BlankRecipeCategory
 	@Override
 	public String getUid()
 	{
-		return References.ModID + ":cauldronclean";
+		return References.ModID + ":knife";
 	}
 
 	@Override
 	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper, IIngredients ingredients)
 	{
-		layout.getItemStacks().init(slotInput, true, 1, 0);
-		layout.getItemStacks().init(slotOutput, false, 64, 11);
-		layout.getItemStacks().init(slotCauldron, true, 1, 18);
+		layout.getItemStacks().init(slotInputGrinder, true, 0, 1);
+		layout.getItemStacks().init(slotInputStack, true, 21, 29);
+		layout.getItemStacks().init(slotOutput, false, 74, 15);
 
 		List<List<ItemStack>> inputs = ingredients.getInputs(ItemStack.class);
-
-		layout.getItemStacks().set(slotInput, inputs.get(0));
+		layout.getItemStacks().set(slotInputStack, inputs.get(0));
+		layout.getItemStacks().set(slotInputGrinder, ItemHelper.getKnives());
 		List<List<ItemStack>> outputs = ingredients.getOutputs(ItemStack.class);
 		layout.getItemStacks().set(slotOutput, outputs.get(0));
-		layout.getItemStacks().set(slotCauldron, new ItemStack(Items.CAULDRON));
-
 	}
 
 	@Override
@@ -77,4 +75,5 @@ public class CauldronCleanRecipeCategory extends BlankRecipeCategory
 	{
 		return References.ModName;
 	}
+
 }
