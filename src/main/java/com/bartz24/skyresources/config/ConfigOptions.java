@@ -148,7 +148,8 @@ public class ConfigOptions
 		public int wildlifeAttractorWaterCapacity = 4000;
 		@Config.Comment("Wildlife Attractor Animal Ids")
 		public String[] wildlifeAttractorAnimalIDs = new String[] { "minecraft:sheep", "minecraft:cow",
-				"minecraft:chicken", "minecraft:pig", "minecraft:rabbit", "minecraft:squid", "minecraft:horse" };
+				"minecraft:chicken", "minecraft:pig", "minecraft:rabbit", "minecraft:squid", "minecraft:horse",
+				"minecraft:parrot" };
 
 		public enum EndPortalDifficultyLevel
 		{

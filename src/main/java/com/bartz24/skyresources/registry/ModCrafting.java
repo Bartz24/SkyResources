@@ -226,9 +226,8 @@ public class ModCrafting
 		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Blocks.GRASS, 1), 14,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.WHEAT_SEEDS, 4), new ItemStack(Blocks.DIRT))));
 
-		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Blocks.MYCELIUM, 1), 16,
-				new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.BROWN_MUSHROOM, 4),
-						new ItemStack(Blocks.RED_MUSHROOM, 4), new ItemStack(Blocks.DIRT))));
+		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Blocks.MYCELIUM, 1), 16, new ArrayList<Object>(
+				Arrays.asList(new ItemStack(Blocks.BROWN_MUSHROOM, 4), new ItemStack(Blocks.DIRT))));
 
 		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Items.APPLE), 10,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.SUGAR, 3),
@@ -458,11 +457,10 @@ public class ModCrafting
 			{
 				ItemStack output = OreDictionary.getOres(itemDust).get(0).copy();
 				output.setCount(1);
-				ProcessRecipeManager.cauldronCleanRecipes
-						.addRecipe(output,
-								1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(i).rarity + 2.5f), 3.7f))),
-								new ItemStack(ModItems.techComponent, 1, ItemOreAlchDust.oreInfos.get(i).parentBlock
-										.isItemEqual(new ItemStack(Blocks.NETHERRACK)) ? 3 : 0));
+				ProcessRecipeManager.cauldronCleanRecipes.addRecipe(output,
+						1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(i).rarity + 2.5f), 3.7f))),
+						new ItemStack(ModItems.techComponent, 1, ItemOreAlchDust.oreInfos.get(i).parentBlock
+								.isItemEqual(new ItemStack(Blocks.NETHERRACK)) ? 3 : 0));
 			}
 		}
 
@@ -573,59 +571,78 @@ public class ModCrafting
 
 		GameRegistry.registerFuelHandler(new ModFuelHandler());
 
-		if (OreDictionary.getOres("ingotUranium").size() > 0)
+		if (OreDictionary.getOres("ingotUranium").size() > 0 || OreDictionary.getOres("oreUranium").size() > 0)
 		{
-			ItemStack ingot = OreDictionary.getOres("ingotUranium").get(0).copy();
-			ingot.setCount(1);
+			if (OreDictionary.getOres("ingotUranium").size() > 0)
+			{
+				ItemStack ingot = OreDictionary.getOres("ingotUranium").get(0).copy();
+				ingot.setCount(1);
 
-			ProcessRecipeManager.condenserRecipes.addRecipe(ingot,
-					(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(23).rarity) * 50f, Arrays.asList(
-							new ItemStack(ModItems.oreAlchDust, 1, 23), new FluidStack(ModFluids.crystalFluid, 1000)));
+				ProcessRecipeManager.condenserRecipes.addRecipe(ingot,
+						(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(23).rarity) * 50f,
+						Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, 23),
+								new FluidStack(ModFluids.crystalFluid, 1000)));
+			}
 			ItemStack ore = OreDictionary.getOres("oreUranium").get(0).copy();
-			ore.setCount(1);
-			ProcessRecipeManager.condenserRecipes.addRecipe(ore,
-					(float) Math.pow(1.6f, ItemOreAlchDust.oreInfos.get(23).rarity) * 50f,
-					Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, 23), new ItemStack(Blocks.STONE)));
-			ItemStack dust = OreDictionary.getOres("dustUranium").get(0).copy();
-			dust.setCount(1);
-			ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dust,
-					1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(23).rarity + 2.5f), 3.7f))),
-					new ItemStack(ModItems.techComponent, 1, 0));
-
+			if (OreDictionary.getOres("oreUranium").size() > 0)
+			{
+				ore.setCount(1);
+				ProcessRecipeManager.condenserRecipes.addRecipe(ore,
+						(float) Math.pow(1.6f, ItemOreAlchDust.oreInfos.get(23).rarity) * 50f,
+						Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, 23), new ItemStack(Blocks.STONE)));
+			}
 			ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.oreAlchDust, 1, 23),
 					ItemOreAlchDust.oreInfos.get(23).rarity * 0.0008f, new ArrayList<Object>(Arrays
 							.asList(new ItemStack(Items.ROTTEN_FLESH), new ItemStack(ModItems.techComponent, 1, 1))));
-			ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.oreAlchDust, 1, 23),
-					ItemOreAlchDust.oreInfos.get(23).rarity * 0.0021f,
-					new ArrayList<Object>(Arrays.asList(dust, new ItemStack(ModItems.techComponent, 1, 1))));
+			if (OreDictionary.getOres("dustUranium").size() > 0)
+			{
+				ItemStack dust = OreDictionary.getOres("dustUranium").get(0).copy();
+				dust.setCount(1);
+				ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dust,
+						1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(23).rarity + 2.5f), 3.7f))),
+						new ItemStack(ModItems.techComponent, 1, 0));
+				ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.oreAlchDust, 1, 23),
+						ItemOreAlchDust.oreInfos.get(23).rarity * 0.0021f,
+						new ArrayList<Object>(Arrays.asList(dust, new ItemStack(ModItems.techComponent, 1, 1))));
+			}
 		}
 
-		if (OreDictionary.getOres("ingotThorium").size() > 0)
+		if (OreDictionary.getOres("ingotThorium").size() > 0 || OreDictionary.getOres("oreThorium").size() > 0)
 		{
-			ItemStack ingot = OreDictionary.getOres("ingotThorium").get(0).copy();
-			ingot.setCount(1);
+			if (OreDictionary.getOres("ingotThorium").size() > 0)
+			{
+				ItemStack ingot = OreDictionary.getOres("ingotThorium").get(0).copy();
+				ingot.setCount(1);
 
-			ProcessRecipeManager.condenserRecipes.addRecipe(ingot,
-					(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(24).rarity) * 50f, Arrays.asList(
-							new ItemStack(ModItems.oreAlchDust, 1, 24), new FluidStack(ModFluids.crystalFluid, 1000)));
-			ItemStack ore = OreDictionary.getOres("oreThorium").get(0).copy();
-			ore.setCount(1);
-			ProcessRecipeManager.condenserRecipes.addRecipe(ore,
-					(float) Math.pow(1.6f, ItemOreAlchDust.oreInfos.get(24).rarity) * 50f,
-					Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, 24), new ItemStack(Blocks.STONE)));
-			ItemStack dust = OreDictionary.getOres("dustThorium").get(0).copy();
-			dust.setCount(1);
-			ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dust,
-					1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(24).rarity + 2.5f), 3.7f))),
-					new ItemStack(ModItems.techComponent, 1, 0));
+				ProcessRecipeManager.condenserRecipes.addRecipe(ingot,
+						(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(24).rarity) * 50f,
+						Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, 24),
+								new FluidStack(ModFluids.crystalFluid, 1000)));
+			}
+			if (OreDictionary.getOres("oreThorium").size() > 0)
+			{
+				ItemStack ore = OreDictionary.getOres("oreThorium").get(0).copy();
+				ore.setCount(1);
+				ProcessRecipeManager.condenserRecipes.addRecipe(ore,
+						(float) Math.pow(1.6f, ItemOreAlchDust.oreInfos.get(24).rarity) * 50f,
+						Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, 24), new ItemStack(Blocks.STONE)));
+			}
 
 			ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.oreAlchDust, 1, 24),
 					ItemOreAlchDust.oreInfos.get(24).rarity * 0.0008f,
 					new ArrayList<Object>(Arrays.asList(new ItemStack(ModItems.baseComponent, 1, 4),
 							new ItemStack(ModItems.techComponent, 1, 1))));
-			ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.oreAlchDust, 1, 24),
-					ItemOreAlchDust.oreInfos.get(24).rarity * 0.0021f,
-					new ArrayList<Object>(Arrays.asList(dust, new ItemStack(ModItems.techComponent, 1, 1))));
+			if (OreDictionary.getOres("dustThorium").size() > 0)
+			{
+				ItemStack dust = OreDictionary.getOres("dustThorium").get(0).copy();
+				dust.setCount(1);
+				ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dust,
+						1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(24).rarity + 2.5f), 3.7f))),
+						new ItemStack(ModItems.techComponent, 1, 0));
+				ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.oreAlchDust, 1, 24),
+						ItemOreAlchDust.oreInfos.get(24).rarity * 0.0021f,
+						new ArrayList<Object>(Arrays.asList(dust, new ItemStack(ModItems.techComponent, 1, 1))));
+			}
 		}
 		for (GemRegisterInfo i : ModItems.gemList)
 		{
