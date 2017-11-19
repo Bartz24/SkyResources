@@ -132,57 +132,51 @@ public class ItemCombustionHeater extends ItemMachine
 
 	private void getFuel(ItemStack machineStack, World world, BlockPos pos, NBTTagCompound data)
 	{
-		if (getVariant(machineStack).getFuelType().equals("FE"))
+		if (getVariant(machineStack).getFuelType().equals("RF"))
 		{
 			float extract = this.getCasingTile(world, pos)
-					.internalExtractEnergy((int) getMachineFuelPerTick(machineStack, world, pos), false);
+					.internalExtractEnergy((int) getMachineFuelData(machineStack, world, pos)[1], false);
 			if (extract > 0)
 			{
-				data.setFloat("itemHU", extract / getMachineFuelPerHeat(machineStack, world, pos));
-				data.setFloat("huTick", getMachineFuelPerTick(machineStack, world, pos));
+				data.setFloat("itemHU", (float) (extract / (int) getMachineFuelData(machineStack, world, pos)[1])
+						/ getMachineFuelData(machineStack, world, pos)[2]);
+				data.setFloat("huTick", getMachineFuelData(machineStack, world, pos)[0]);
 			}
 		} else if (getVariant(machineStack).getFuelType() instanceof ItemStack
 				&& isValidFuel(machineStack, this.getCasingTile(world, pos).getInventory().getStackInSlot(0)))
 		{
-			data.setFloat("itemHU", getMachineFuelPerHeat(machineStack, world, pos));
-			data.setFloat("huTick", getMachineFuelPerTick(machineStack, world, pos));
+
+			data.setFloat("itemHU",
+					getMachineFuelData(machineStack, world, pos)[1] * getMachineFuelData(machineStack, world, pos)[0]);
+			data.setFloat("huTick", getMachineFuelData(machineStack, world, pos)[0]);
 			this.getCasingTile(world, pos).getInventory().getStackInSlot(0).shrink(1);
 		} else if (getVariant(machineStack).getFuelType() instanceof Fluid
 				&& isValidFuel(machineStack, this.getCasingTile(world, pos).getTank().getFluid())
 				&& this.getCasingTile(world, pos).getTank().drainInternal(1, false) != null
 				&& this.getCasingTile(world, pos).getTank().drainInternal(1, true).amount > 0)
 		{
-			data.setFloat("itemHU", getMachineFuelPerHeat(machineStack, world, pos));
-			data.setFloat("huTick", getMachineFuelPerTick(machineStack, world, pos));
+			data.setFloat("itemHU",
+					getMachineFuelData(machineStack, world, pos)[1] * getMachineFuelData(machineStack, world, pos)[0]);
+			data.setFloat("huTick", getMachineFuelData(machineStack, world, pos)[0]);
 		} else if (getVariant(machineStack).getFuelType().equals("Fuel")
 				&& isValidFuel(machineStack, this.getCasingTile(world, pos).getInventory().getStackInSlot(0)))
 		{
+			float huStored = getMachineFuelData(machineStack, world, pos)[1]
+					* getMachineFuelData(machineStack, world, pos)[0] * TileEntityFurnace
+							.getItemBurnTime(this.getCasingTile(world, pos).getInventory().getStackInSlot(0));
+			System.out.println(huStored + ", " + getMachineFuelData(machineStack, world, pos)[0]);
 			data.setFloat("itemHU",
-					getMachineFuelPerHeat(machineStack, world, pos)
+					getMachineFuelData(machineStack, world, pos)[1] * getMachineFuelData(machineStack, world, pos)[0]
 							* TileEntityFurnace
-									.getItemBurnTime(this.getCasingTile(world, pos).getInventory().getStackInSlot(0))
-							/ 100f);
-			data.setFloat("huTick",
-					getMachineFuelPerTick(machineStack, world, pos)
-							* TileEntityFurnace
-									.getItemBurnTime(this.getCasingTile(world, pos).getInventory().getStackInSlot(0))
-							/ 100f);
+									.getItemBurnTime(this.getCasingTile(world, pos).getInventory().getStackInSlot(0)));
+			data.setFloat("huTick", getMachineFuelData(machineStack, world, pos)[0]);
 			this.getCasingTile(world, pos).getInventory().getStackInSlot(0).shrink(1);
 		} else
 		{
 			data.setFloat("itemHU", 0);
 			data.setFloat("huTick", 0);
 		}
-	}
-
-	public float getMachineFuelPerHeat(ItemStack stack, World world, BlockPos pos)
-	{
-		return (float) Math.pow(super.getMachineFuelPerHeat(stack, world, pos), 0.6f);
-	}
-
-	public float getMachineFuelPerTick(ItemStack stack, World world, BlockPos pos)
-	{
-		return (float) Math.pow(super.getMachineFuelPerTick(stack, world, pos), 0.6f);
+		data.setFloat("maxHU", data.getFloat("itemHU"));
 	}
 
 	public void update(World world, BlockPos pos, ItemStack machineStack, NBTTagCompound data)
@@ -364,12 +358,12 @@ public class ItemCombustionHeater extends ItemMachine
 	// RF Handler
 	public int getMaxEnergy(ItemStack stack)
 	{
-		return getVariant(stack).values()[stack.getMetadata()].getFuelType().equals("FE") ? 100000 : 0;
+		return getVariant(stack).values()[stack.getMetadata()].getFuelType().equals("RF") ? 100000 : 0;
 	}
 
 	public int getMaxReceive(ItemStack stack)
 	{
-		return getVariant(stack).values()[stack.getMetadata()].getFuelType().equals("FE") ? 10000 : 0;
+		return getVariant(stack).values()[stack.getMetadata()].getFuelType().equals("RF") ? 10000 : 0;
 	}
 
 	// Item Handler
@@ -424,6 +418,7 @@ public class ItemCombustionHeater extends ItemMachine
 	{
 		float curHU = tile.machineData.getFloat("curHU");
 		float itemHU = tile.machineData.getFloat("itemHU");
+		float maxHU = tile.machineData.getFloat("maxHU");
 		float huTick = tile.machineData.getFloat("huTick");
 		fontRenderer.drawString("HU: ", 19, 24, 0xFFF3FF17);
 		fontRenderer.drawString("" + (int) curHU, 42, 24, 0xFFF3FF17);
@@ -445,8 +440,8 @@ public class ItemCombustionHeater extends ItemMachine
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 		Minecraft.getMinecraft().getTextureManager()
 				.bindTexture(new ResourceLocation(References.ModID, "textures/gui/guiicons.png"));
-		gui.drawTexturedModalRect(101, 69 - (int) (16f * itemHU / huTick), 26, 77 - (int) (16f * itemHU / huTick), 1,
-				(int) (16f * itemHU / huTick));
+		gui.drawTexturedModalRect(101, 69 - (int) (16f * itemHU / maxHU), 26, 77 - (int) (16f * itemHU / maxHU), 1,
+				(int) (16f * itemHU / maxHU));
 
 		if (this.getMaxEnergy(tile.machineStored) > 0)
 		{

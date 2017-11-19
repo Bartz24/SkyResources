@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.base.MachineVariants;
@@ -30,22 +32,27 @@ public class ItemHeatProvider extends ItemMachine
 {
 	public ItemHeatProvider()
 	{
-		super("heatprovider", ModCreativeTabs.tabTech, false, true, false, true);
+		super("heatprovider", ModCreativeTabs.tabTech, false, true, true, true);
 	}
 
 	public void update(World world, BlockPos pos, ItemStack machineStack, NBTTagCompound data)
 	{
 		if (!world.isRemote)
 		{
-			if (this.getCasingTile(world, pos).getRedstoneSignal() == 0 && data.getFloat("huTick") <= 0)
+			if (this.getCasingTile(world, pos).getRedstoneSignal() == 0 && data.getFloat("itemHU") <= 0)
 				getFuel(machineStack, world, pos, data);
+			if (data.getFloat("itemHU") <= 0)
+				data.setFloat("huTick", 0);
 			else
-			{
-				if (data.getFloat("huTick") <= 0)
-					data.setFloat("itemHU", 0);
-				data.setFloat("huTick", data.getFloat("huTick") - 1);
-			}
+				data.setFloat("itemHU", data.getFloat("itemHU") - 1);
 		}
+	}
+
+	public String[] getFuelDisplay(ItemStack stack, @Nullable World world, BlockPos pos)
+	{
+		String[] list = super.getFuelDisplay(stack, world, pos);
+		list[1] = getHUPerTick(stack, world, pos, useSpeedInfo) + " Heat Value";
+		return list;
 	}
 
 	public boolean isValidFuel(ItemStack machineStack, Object stack)
@@ -64,55 +71,56 @@ public class ItemHeatProvider extends ItemMachine
 
 	private void getFuel(ItemStack machineStack, World world, BlockPos pos, NBTTagCompound data)
 	{
-		if (getVariant(machineStack).getFuelType().equals("FE"))
+		if (getVariant(machineStack).getFuelType().equals("RF"))
 		{
 			float extract = this.getCasingTile(world, pos)
-					.internalExtractEnergy((int) getMachineFuelPerTick(machineStack, world, pos), true);
-			if (extract > getMachineFuelPerHeat(machineStack, world, pos))
+					.internalExtractEnergy((int) Math.ceil(getMachineFuelData(machineStack, world, pos)[1]), false);
+			if (extract > 0)
 			{
-				float mult = extract / getMachineFuelPerTick(machineStack, world, pos);
-				this.getCasingTile(world, pos).internalExtractEnergy((int) extract, false);
-				data.setFloat("itemHU",
-						mult * (float) Math.sqrt(getMachineFuelPerHeat(machineStack, world, pos)
-								* this.getMachineEfficiency(machineStack, world, pos)
-								* this.getMachineEfficiency(machineStack, world, pos) / 16));
-				data.setFloat("huTick", 1);
-				return;
+				data.setFloat("itemHU", (float) (extract / getMachineFuelData(machineStack, world, pos)[1])
+						/ getMachineFuelData(machineStack, world, pos)[2]);
+				data.setFloat("huTick", getMachineFuelData(machineStack, world, pos)[0]);
 			}
 		} else if (getVariant(machineStack).getFuelType() instanceof ItemStack
 				&& isValidFuel(machineStack, this.getCasingTile(world, pos).getInventory().getStackInSlot(0)))
 		{
-			data.setFloat("itemHU", (float)Math.sqrt(getMachineFuelPerHeat(machineStack, world, pos)) / 16f);
+
+			data.setFloat("itemHU",
+					getMachineFuelData(machineStack, world, pos)[1] * getMachineFuelData(machineStack, world, pos)[0]);
+			data.setFloat("huTick", getMachineFuelData(machineStack, world, pos)[0]);
 			this.getCasingTile(world, pos).getInventory().getStackInSlot(0).shrink(1);
-			data.setFloat("huTick", this.getMachineFuelPerTick(machineStack, world, pos));
-			return;
 		} else if (getVariant(machineStack).getFuelType() instanceof Fluid
 				&& isValidFuel(machineStack, this.getCasingTile(world, pos).getTank().getFluid())
 				&& this.getCasingTile(world, pos).getTank().drainInternal(1, false) != null
 				&& this.getCasingTile(world, pos).getTank().drainInternal(1, true).amount > 0)
 		{
-			data.setFloat("itemHU", (float) Math.sqrt(getMachineFuelPerHeat(machineStack, world, pos)) * 5);
-			data.setFloat("huTick", 1);
-			return;
+			data.setFloat("itemHU",
+					getMachineFuelData(machineStack, world, pos)[1] * getMachineFuelData(machineStack, world, pos)[0]);
+			data.setFloat("huTick", getMachineFuelData(machineStack, world, pos)[0]);
 		} else if (getVariant(machineStack).getFuelType().equals("Fuel")
 				&& isValidFuel(machineStack, this.getCasingTile(world, pos).getInventory().getStackInSlot(0)))
 		{
+			float huStored = getMachineFuelData(machineStack, world, pos)[1]
+					* getMachineFuelData(machineStack, world, pos)[0] * TileEntityFurnace
+							.getItemBurnTime(this.getCasingTile(world, pos).getInventory().getStackInSlot(0));
+			System.out.println(huStored + ", " + getMachineFuelData(machineStack, world, pos)[0]);
 			data.setFloat("itemHU",
-					(float) Math.sqrt(getMachineFuelPerHeat(machineStack, world, pos)
+					getMachineFuelData(machineStack, world, pos)[1] * getMachineFuelData(machineStack, world, pos)[0]
 							* TileEntityFurnace
-									.getItemBurnTime(this.getCasingTile(world, pos).getInventory().getStackInSlot(0)))
-							/ 160f);
+									.getItemBurnTime(this.getCasingTile(world, pos).getInventory().getStackInSlot(0)));
+			data.setFloat("huTick", getMachineFuelData(machineStack, world, pos)[0]);
 			this.getCasingTile(world, pos).getInventory().getStackInSlot(0).shrink(1);
-			data.setFloat("huTick", this.getMachineFuelPerTick(machineStack, world, pos));
-			return;
+		} else
+		{
+			data.setFloat("itemHU", 0);
+			data.setFloat("huTick", 0);
 		}
-		data.setFloat("itemHU", 0);
-		data.setFloat("huTick", 0);
+		data.setFloat("maxHU", data.getFloat("itemHU"));
 	}
 
 	public int getHeatProv(ItemStack stack, World world, BlockPos pos)
 	{
-		return (int) Math.pow(this.getCasingTile(world, pos).machineData.getFloat("itemHU"), 0.95f);
+		return (int) this.getCasingTile(world, pos).machineData.getFloat("huTick");
 	}
 
 	public List<Slot> getSlots(TileCasing tile)
@@ -125,12 +133,12 @@ public class ItemHeatProvider extends ItemMachine
 	// RF Handler
 	public int getMaxEnergy(ItemStack stack)
 	{
-		return getVariant(stack).values()[stack.getMetadata()].getFuelType().equals("FE") ? 100000 : 0;
+		return getVariant(stack).values()[stack.getMetadata()].getFuelType().equals("RF") ? 100000 : 0;
 	}
 
 	public int getMaxReceive(ItemStack stack)
 	{
-		return getVariant(stack).values()[stack.getMetadata()].getFuelType().equals("FE") ? 10000 : 0;
+		return getVariant(stack).values()[stack.getMetadata()].getFuelType().equals("RF") ? 10000 : 0;
 	}
 
 	// Item Handler

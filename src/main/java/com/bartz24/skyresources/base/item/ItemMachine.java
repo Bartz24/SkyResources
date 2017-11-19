@@ -30,6 +30,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -97,10 +98,8 @@ public class ItemMachine extends Item
 		}
 		if (useFuelInfo)
 		{
-			tooltip.add(
-					TextFormatting.YELLOW + getVariant(stack).getFuelPerHeatDisplay(useFuelInfo, useEfficiencyInfo));
-			tooltip.add(TextFormatting.YELLOW
-					+ getVariant(stack).getFuelPerTickDisplay(useFuelInfo, useSpeedInfo, useEfficiencyInfo));
+			tooltip.add(TextFormatting.YELLOW + this.getFuelDisplay(stack, worldIn, null)[0]);
+			tooltip.add(TextFormatting.YELLOW + this.getFuelDisplay(stack, worldIn, null)[1]);
 		}
 	}
 
@@ -121,34 +120,71 @@ public class ItemMachine extends Item
 		return getVariant(stack).getRawSpeed();
 	}
 
-	public float getMachineEfficiency(ItemStack stack, World world, BlockPos pos)
+	public float getMachineEfficiency(ItemStack stack, @Nullable World world, BlockPos pos)
 	{
+		if (pos == null)
+			return getVariant(stack).getRawEfficiency();
+
 		return getVariant(stack).getRawEfficiency() * MachineVariants.values()[world.getBlockState(pos).getBlock()
 				.getMetaFromState(world.getBlockState(pos))].getRawEfficiency();
 	}
 
-	public float getMachineFuelPerHeat(ItemStack stack, World world, BlockPos pos)
+	/**
+	 * 
+	 * @param stack
+	 * @param world
+	 * @param pos
+	 * @return float[] RF: 0=HU/tick 1=RF/tick 2=RF/HU. Fuel: 0=HU/tick 1=Fuel
+	 *         Time % 2=Fuel Used/HU 3=Fuel Amount/tick
+	 */
+	public float[] getMachineFuelData(ItemStack stack, World world, BlockPos pos)
 	{
-		if (MachineVariants.values()[stack.getMetadata()].getFuelType().equals("FE"))
-			return getVariant(stack).getHeatNum(useFuelInfo, useEfficiencyInfo) / MachineVariants.values()[world
-					.getBlockState(pos).getBlock().getMetaFromState(world.getBlockState(pos))].getRawEfficiency();
 
-		return getVariant(stack).getHeatNum(useFuelInfo, useEfficiencyInfo) * MachineVariants.values()[world
-				.getBlockState(pos).getBlock().getMetaFromState(world.getBlockState(pos))].getRawEfficiency();
+		if (getVariant(stack).getFuelType().equals("RF"))
+		{
+			float[] data = new float[3];
+			data[0] = getHUPerTick(stack, world, pos, useSpeedInfo);
+			data[1] = rfgetRFPerTick(stack, world, pos, useFuelInfo, useSpeedInfo, useEfficiencyInfo);
+			data[2] = rfgetRFPerHU(stack, world, pos, useFuelInfo, useEfficiencyInfo);
+			return data;
+		} else
+		{
+			float[] data = new float[4];
+			data[0] = getHUPerTick(stack, world, pos, useSpeedInfo);
+			data[1] = fuelgetFuelTimePercent(stack, world, pos, useFuelInfo, useSpeedInfo, useEfficiencyInfo);
+			data[2] = fuelgetAmountPerHU(stack, world, pos, useSpeedInfo, useEfficiencyInfo);
+			data[3] = fuelgetAmountPerTick();
+			return data;
+		}
 	}
 
-	public float getMachineFuelPerTick(ItemStack stack, World world, BlockPos pos)
+	public String[] getFuelDisplay(ItemStack stack, World world, BlockPos pos)
 	{
-		if (MachineVariants.values()[stack.getMetadata()].getFuelType().equals("FE"))
+		String[] list = new String[2];
+		list[1] = getHUPerTick(stack, world, pos, useSpeedInfo) + " HU/tick";
+		if (getVariant(stack).getFuelType().equals("RF"))
 		{
-			return getVariant(stack).getFuelPerTick(useFuelInfo, useSpeedInfo, useEfficiencyInfo)
-					/ MachineVariants.values()[world.getBlockState(pos).getBlock()
-							.getMetaFromState(world.getBlockState(pos))].getRawEfficiency();
+			list[0] = Math.ceil(rfgetRFPerTick(stack, world, pos, useFuelInfo, useSpeedInfo, useEfficiencyInfo))
+					+ " RF/tick";
+		} else if (getVariant(stack).getFuelType().equals("Fuel"))
+		{
+			list[0] = "Furnace Fuels last for x" + Math.floor(
+					fuelgetFuelTimePercent(stack, world, pos, useFuelInfo, useSpeedInfo, useEfficiencyInfo) * 100f)
+					/ 100f + " ticks";
+		} else if (getVariant(stack).getFuelType() instanceof ItemStack)
+		{
+			list[0] = ((ItemStack) getVariant(stack).getFuelType()).getDisplayName() + " lasts for " + Math.floor(
+					fuelgetFuelTimePercent(stack, world, pos, useFuelInfo, useSpeedInfo, useEfficiencyInfo) * 100f)
+					/ 100f + " ticks";
+		} else if (getVariant(stack).getFuelType() instanceof Fluid)
+		{
+			list[0] = ((Fluid) getVariant(stack).getFuelType())
+					.getLocalizedName(new FluidStack((Fluid) getVariant(stack).getFuelType(), 1)) + " lasts for "
+					+ Math.floor(fuelgetFuelTimePercent(stack, world, pos, useFuelInfo, useSpeedInfo, useEfficiencyInfo)
+							* 100f) / 100f
+					+ " ticks";
 		}
-
-		return getVariant(stack).getFuelPerTick(useFuelInfo, useSpeedInfo, useEfficiencyInfo)
-				* MachineVariants.values()[world.getBlockState(pos).getBlock()
-						.getMetaFromState(world.getBlockState(pos))].getRawEfficiency();
+		return list;
 	}
 
 	// GUI
@@ -237,18 +273,21 @@ public class ItemMachine extends Item
 				Minecraft.getMinecraft().getTextureManager()
 						.bindTexture(new ResourceLocation(References.ModID, "textures/gui/guiicons.png"));
 				gui.drawTexturedModalRect(gui.getXSize() - 18, y, 0, 58, 14, 14);
-				String s = Float.toString(Math.round(
-						tile.getMachine().getMachineFuelPerTick(tile.machineStored, tile.getWorld(), tile.getPos())
-								* 100f)
-						/ 100f);
+
+				float fuelAmt = getMachineFuelData(tile.machineStored, tile.getWorld(), tile.getPos())[1];
+				if (!tile.getMachine().getVariant(tile.machineStored).getFuelType().equals("RF"))
+					fuelAmt = getMachineFuelData(tile.machineStored, tile.getWorld(), tile.getPos())[3];
+
+				String s = Float.toString(Math.round(fuelAmt * 100f) / 100f);
 				fontRenderer.drawString(s, gui.getXSize() - fontRenderer.getStringWidth(s) - 24, y + 3, 0xFFF3FF17);
 				if (GuiHelper.isMouseInRect(gui.getGuiLeft() + gui.getXSize() - fontRenderer.getStringWidth(s) - 24,
 						gui.getGuiTop() + y, fontRenderer.getStringWidth(s) + 24, 16, mouseX, mouseY))
 				{
-					hoverString = "Fuel";
+					hoverString = "Fuel/Tick";
 					hoverY = y;
 					hoverX = fontRenderer.getStringWidth(s) + 24;
 				}
+
 			}
 			if (!Strings.isNullOrEmpty(hoverString) && GuiHelper.isMouseInRect(
 					gui.getGuiLeft() + gui.getXSize() - hoverX, gui.getGuiTop() + hoverY, hoverX, 16, mouseX, mouseY))
@@ -309,5 +348,57 @@ public class ItemMachine extends Item
 	public int getHeatProv(ItemStack stack, World world, BlockPos pos)
 	{
 		return 0;
+	}
+
+	public float getHUPerTick(ItemStack stack, World world, BlockPos pos, boolean useSpeedInfo)
+	{
+		float spd = useSpeedInfo ? getMachineSpeed(stack, world, pos) : 1;
+
+		return spd * 10;
+	}
+
+	// RF Calculations
+
+	public float rfgetRFPerHU(ItemStack stack, World world, BlockPos pos, boolean useFuelInfo,
+			boolean useEfficiencyInfo)
+	{
+		if (useFuelInfo)
+		{
+			float rate = getVariant(stack).getRawFuelRate();
+			float eff = useEfficiencyInfo ? getMachineEfficiency(stack, world, pos) : 1;
+
+			return rate / eff;
+		}
+		return 0;
+	}
+
+	public float rfgetRFPerTick(ItemStack stack, World world, BlockPos pos, boolean useFuelInfo, boolean useSpeedInfo,
+			boolean useEfficiencyInfo)
+	{
+		return getHUPerTick(stack, world, pos, useSpeedInfo)
+				* rfgetRFPerHU(stack, world, pos, useFuelInfo, useEfficiencyInfo);
+	}
+
+	// Fuel Calculations
+
+	public float fuelgetAmountPerTick()
+	{
+		return 1;
+	}
+
+	public float fuelgetFuelTimePercent(ItemStack stack, World world, BlockPos pos, boolean useFuelInfo,
+			boolean useSpeedInfo, boolean useEfficiencyInfo)
+	{
+		float rate = useFuelInfo
+				? (getVariant(stack).getFuelType() instanceof ItemStack ? getVariant(stack).getRawFuelRate() : 1) : 1;
+		float spd = useSpeedInfo ? getMachineSpeed(stack, world, pos) : 1;
+		float eff = useEfficiencyInfo ? getMachineEfficiency(stack, world, pos) : 1;
+		return rate / spd * eff;
+	}
+
+	public float fuelgetAmountPerHU(ItemStack stack, World world, BlockPos pos, boolean useSpeedInfo,
+			boolean useEfficiencyInfo)
+	{
+		return getHUPerTick(stack, world, pos, useSpeedInfo) * fuelgetAmountPerTick();
 	}
 }
