@@ -56,7 +56,6 @@ public class ItemKnife extends ItemAxe
 
 		ProcessRecipe recipe = ProcessRecipeManager.knifeRecipes.getRecipe(
 				new ItemStack(state.getBlock(), 1, state.getBlock().getMetaFromState(state)), 0, false, false);
-
 		if (recipe != null)
 		{
 			if (toolMaterial.getHarvestLevel() < block.getHarvestLevel(state))
@@ -82,6 +81,7 @@ public class ItemKnife extends ItemAxe
 
 		ProcessRecipe recipe = ProcessRecipeManager.knifeRecipes.getRecipe(
 				new ItemStack(state.getBlock(), 1, state.getBlock().getMetaFromState(state)), 0, false, false);
+
 		if (recipe != null)
 		{
 			if (!world.isRemote)

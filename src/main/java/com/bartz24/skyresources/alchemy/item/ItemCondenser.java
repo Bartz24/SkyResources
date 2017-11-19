@@ -1,5 +1,6 @@
 package com.bartz24.skyresources.alchemy.item;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -8,9 +9,12 @@ import java.util.Random;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.base.gui.GuiCasing;
+import com.bartz24.skyresources.base.gui.GuiDumpButton;
 import com.bartz24.skyresources.base.gui.SlotSpecial;
 import com.bartz24.skyresources.base.item.ItemMachine;
 import com.bartz24.skyresources.base.tile.TileCasing;
+import com.bartz24.skyresources.network.DumpMessage;
+import com.bartz24.skyresources.network.SkyResourcesPacketHandler;
 import com.bartz24.skyresources.recipe.ProcessRecipe;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
@@ -18,6 +22,7 @@ import com.bartz24.skyresources.registry.ModCreativeTabs;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
@@ -188,6 +193,21 @@ public class ItemCondenser extends ItemMachine
 	public List<Slot> getSlots(TileCasing tile)
 	{
 		return Collections.singletonList(new SlotSpecial(tile.getInventory(), 0, 80, 53));
+	}
+
+	GuiButton dumpButton;
+
+	public void initGui(GuiCasing gui, List<GuiButton> buttonList)
+	{
+		buttonList.add(this.dumpButton = new GuiDumpButton(0, gui.getGuiLeft() + 80, gui.getGuiTop() + 71));
+	}
+
+	public void actionPerformed(TileCasing tile, GuiCasing gui, GuiButton button) throws IOException
+	{
+		if (button == this.dumpButton)
+		{
+			SkyResourcesPacketHandler.instance.sendToServer(new DumpMessage(1, tile.getPos()));
+		}
 	}
 
 	public void drawBackgroundGui(TileCasing tile, GuiCasing gui, FontRenderer fontRenderer, int mouseX, int mouseY)

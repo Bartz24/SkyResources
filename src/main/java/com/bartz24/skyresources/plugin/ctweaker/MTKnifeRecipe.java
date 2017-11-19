@@ -19,7 +19,7 @@ public class MTKnifeRecipe extends MTRecipeBase
 	{
 		addRecipe(
 				new ProcessRecipe(Arrays.asList(CraftTweakerPlugin.toStack(output)),
-						Arrays.asList(CraftTweakerPlugin.toStack(input)), 1, "knife"),
+						Arrays.asList(CraftTweakerPlugin.toStack(input)), 0, "knife"),
 				ProcessRecipeManager.knifeRecipes);
 	}
 	@ZenMethod

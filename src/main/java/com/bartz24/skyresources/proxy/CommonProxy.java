@@ -7,6 +7,7 @@ import com.bartz24.skyresources.base.guide.SkyResourcesGuide;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.events.EventHandler;
 import com.bartz24.skyresources.events.ModBucketHandler;
+import com.bartz24.skyresources.network.SkyResourcesPacketHandler;
 import com.bartz24.skyresources.plugin.ModPlugins;
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModCrafting;
@@ -42,6 +43,7 @@ public class CommonProxy
 		ModCrafting.initOreDict();
 		ModPlugins.preInit();
 
+		SkyResourcesPacketHandler.preInit();
 	}
 
 	public void init(FMLInitializationEvent e)

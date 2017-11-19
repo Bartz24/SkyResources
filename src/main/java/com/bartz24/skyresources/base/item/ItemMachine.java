@@ -1,5 +1,6 @@
 package com.bartz24.skyresources.base.item;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +16,7 @@ import com.google.common.base.Strings;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -164,6 +166,14 @@ public class ItemMachine extends Item
 	public int[] getGuiSize(ItemStack stack)
 	{
 		return new int[] { 176, 166 };
+	}
+
+	public void initGui(GuiCasing gui, List<GuiButton> buttonList)
+	{
+	}
+
+	public void actionPerformed(TileCasing tile, GuiCasing gui, GuiButton button) throws IOException
+	{
 	}
 
 	public void drawBackgroundGui(TileCasing tile, GuiCasing gui, FontRenderer fontRenderer, int mouseX, int mouseY)

@@ -1,12 +1,16 @@
 package com.bartz24.skyresources.base.gui;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.base.tile.TileCasing;
+import com.bartz24.skyresources.network.DumpMessage;
+import com.bartz24.skyresources.network.SkyResourcesPacketHandler;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.inventory.IInventory;
@@ -28,6 +32,21 @@ public class GuiCasing extends GuiContainer
 
 		this.xSize = te.machineStored.isEmpty() ? 176 : te.getMachine().getGuiSize(te.machineStored)[0];
 		this.ySize = te.machineStored.isEmpty() ? 166 : te.getMachine().getGuiSize(te.machineStored)[0];
+	}
+	
+	public void initGui()
+	{
+		super.initGui();
+		if(!tile.machineStored.isEmpty())
+			tile.getMachine().initGui(this, buttonList);
+	}
+
+	@Override
+	protected void actionPerformed(GuiButton button) throws IOException
+	{
+		super.actionPerformed(button);
+		if(!tile.machineStored.isEmpty())
+			tile.getMachine().actionPerformed(tile, this, button);
 	}
 
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
