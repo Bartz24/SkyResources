@@ -99,7 +99,8 @@ public class ItemKnife extends ItemAxe
 			world.destroyBlock(pos, false);
 			return true;
 		}
-		world.destroyBlock(pos, true);		
+		if (!world.isRemote)
+			world.destroyBlock(pos, true);
 		return false;
 
 	}

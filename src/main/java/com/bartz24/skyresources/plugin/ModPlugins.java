@@ -28,23 +28,23 @@ public class ModPlugins
 
 	public static void preInit()
 	{
-		addPlugin("actuallyadditions", new ActAddPlugin());
-		addPlugin("appliedenergistics2", new AE2Plugin());
-		addPlugin("armorplus", new ArmorPlusPlugin());
-		addPlugin("crafttweaker", new CraftTweakerPlugin());
-		addPlugin("draconicevolution", new DEPlugin());
-		addPlugin("embers", new EmbersPlugin());
-		//addPlugin("environmentaltech", new EnvTechPlugin());
-		addPlugin("extrabees", new ExtraBeesPlugin());
-		addPlugin("bigreactors", new ExtremeReactorsPlugin());
-		addPlugin("forestry", new ForestryPlugin());
-		addPlugin("ic2", new IC2Plugin());
-		addPlugin("integrateddynamics", new IntegratedDynamicsPlugin());
-		addPlugin("rockcandy", new RockCandyPlugin());
-		addPlugin("techreborn", new TechRebornPlugin());
-		addPlugin("tconstruct", new TConPlugin());
-		addPlugin("theoneprobe", new TOPPlugin());
-		addPlugin("thermalfoundation", new ThermalPlugin());
+		addPlugin("actuallyadditions", ActAddPlugin.class);
+		addPlugin("appliedenergistics2", AE2Plugin.class);
+		addPlugin("armorplus", ArmorPlusPlugin.class);
+		addPlugin("crafttweaker", CraftTweakerPlugin.class);
+		addPlugin("draconicevolution", DEPlugin.class);
+		addPlugin("embers", EmbersPlugin.class);
+		// addPlugin("environmentaltech", new EnvTechPlugin());
+		addPlugin("extrabees", ExtraBeesPlugin.class);
+		addPlugin("bigreactors", ExtremeReactorsPlugin.class);
+		addPlugin("forestry", ForestryPlugin.class);
+		addPlugin("ic2", IC2Plugin.class);
+		addPlugin("integrateddynamics", IntegratedDynamicsPlugin.class);
+		addPlugin("rockcandy", RockCandyPlugin.class);
+		addPlugin("techreborn", TechRebornPlugin.class);
+		addPlugin("tconstruct", TConPlugin.class);
+		addPlugin("theoneprobe", TOPPlugin.class);
+		addPlugin("thermalfoundation", ThermalPlugin.class);
 
 		for (IModPlugin p : plugins.values())
 		{
@@ -80,10 +80,21 @@ public class ModPlugins
 			p.initRenderers();
 		}
 	}
-	
-	public static void addPlugin(String modID, IModPlugin plugin)
+
+	public static void addPlugin(String modID, Class plugin)
 	{
 		if (Loader.isModLoaded(modID))
-			plugins.put(modID, plugin);		
+		{
+			try
+			{
+				plugins.put(modID, (IModPlugin) plugin.newInstance());
+			} catch (InstantiationException e)
+			{
+				e.printStackTrace();
+			} catch (IllegalAccessException e)
+			{
+				e.printStackTrace();
+			}
+		}
 	}
 }
