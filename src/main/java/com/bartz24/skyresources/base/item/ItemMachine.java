@@ -393,7 +393,7 @@ public class ItemMachine extends Item
 				? (getVariant(stack).getFuelType() instanceof ItemStack ? getVariant(stack).getRawFuelRate() : 1) : 1;
 		float spd = useSpeedInfo ? getMachineSpeed(stack, world, pos) : 1;
 		float eff = useEfficiencyInfo ? getMachineEfficiency(stack, world, pos) : 1;
-		return rate / spd * eff;
+		return rate / getHUPerTick(stack, world, pos, useSpeedInfo) * eff;
 	}
 
 	public float fuelgetAmountPerHU(ItemStack stack, World world, BlockPos pos, boolean useSpeedInfo,
