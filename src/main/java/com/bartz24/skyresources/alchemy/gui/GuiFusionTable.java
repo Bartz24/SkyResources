@@ -1,10 +1,16 @@
 package com.bartz24.skyresources.alchemy.gui;
 
+import java.io.IOException;
+
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.alchemy.gui.container.ContainerFusionTable;
 import com.bartz24.skyresources.alchemy.tile.TileAlchemyFusionTable;
+import com.bartz24.skyresources.base.gui.GuiDumpButton;
+import com.bartz24.skyresources.network.DumpMessage;
+import com.bartz24.skyresources.network.SkyResourcesPacketHandler;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
@@ -27,6 +33,24 @@ public class GuiFusionTable extends GuiContainer
 
 		this.xSize = 176;
 		this.ySize = 181;
+	}
+
+	GuiButton dumpButton;
+
+	public void initGui()
+	{
+		super.initGui();
+		this.buttonList.add(this.dumpButton = new GuiDumpButton(0, this.guiLeft + 115, this.guiTop + 64));
+	}
+
+	@Override
+	protected void actionPerformed(GuiButton button) throws IOException
+	{
+		super.actionPerformed(button);
+		if (button == this.dumpButton)
+		{
+			SkyResourcesPacketHandler.instance.sendToServer(new DumpMessage(0, tile.getPos()));
+		}
 	}
 
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
@@ -61,7 +85,7 @@ public class GuiFusionTable extends GuiContainer
 		this.drawTexturedModalRect(134, 73, 29, 60, 3, 18);
 
 		this.fontRenderer.drawString((Math.round(tile.getCurItemYield() * 100f)) + "%", 140, 78, 4210752);
-		
+
 		height = (int) ((float) tile.getCurItemLeft() * 16f);
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 		Minecraft.getMinecraft().getTextureManager()

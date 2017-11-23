@@ -87,11 +87,9 @@ public class ModCrafting
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.baseComponent, 9, 7),
 				new Object[] { "X", 'X', new ItemStack(ModBlocks.lightMatterBlock) });
 		CraftingRegistry.addShapelessOreRecipe(new ItemStack(Blocks.SAPLING, 1, 1),
-				new Object[] { "dirt", new ItemStack(Items.PUMPKIN_SEEDS), new ItemStack(Items.PUMPKIN_SEEDS),
+				new Object[] { new ItemStack(Blocks.DIRT, 1, OreDictionary.WILDCARD_VALUE),
+						new ItemStack(Items.PUMPKIN_SEEDS), new ItemStack(Items.PUMPKIN_SEEDS),
 						new ItemStack(Items.DYE, 1, 15) });
-		CraftingRegistry.addShapelessRecipe(new ItemStack(Blocks.SAPLING, 1, 1),
-				new Object[] { new ItemStack(Blocks.DIRT, 1, 1), new ItemStack(Items.PUMPKIN_SEEDS),
-						new ItemStack(Items.PUMPKIN_SEEDS), new ItemStack(Items.DYE, 1, 15) });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.baseComponent, 3, 0),
 				new Object[] { " X ", "XXX", " X ", 'X', "treeSapling" });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.baseComponent, 3, 0),
@@ -108,6 +106,12 @@ public class ModCrafting
 				new Object[] { " X ", "XXX", " X ", 'X', "sugarcane" });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.baseComponent, 3, 0),
 				new Object[] { " X ", "XXX", " X ", 'X', "dustWood" });
+		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.baseComponent, 3, 0),
+				new Object[] { " X ", "XXX", " X ", 'X', "listAllveggie" });
+		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.baseComponent, 3, 0),
+				new Object[] { " X ", "XXX", " X ", 'X', "listAllgrain" });
+		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.baseComponent, 3, 0),
+				new Object[] { " X ", "XXX", " X ", 'X', "listAllfruit" });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.ironFreezer), new Object[] { "XXX", "XZX", "XXX",
 				'X', "ingotFrozenIron", 'Z', new ItemStack(ModBlocks.miniFreezer) });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.lightFreezer), new Object[] { "XXX", "XZX", "XXX",

@@ -53,15 +53,12 @@ public class TileEndPortalCore extends TileItemInventory implements ITickable
 								&& getInventory().getStackInSlot(0).isItemEqual(new ItemStack(Items.ENDER_EYE))
 								&& getInventory().getStackInSlot(0).getCount() >= 16))
 						{
-							if (player.dimension == 0)
+							player.changeDimension(1);
+							if (!hasValidMultiblockTier2())
 							{
-								player.changeDimension(1);
-								if (!hasValidMultiblockTier2())
-								{
-									getInventory().getStackInSlot(0).shrink(16);
-									if (getInventory().getStackInSlot(0).getCount() == 0)
-										getInventory().setStackInSlot(0, ItemStack.EMPTY);
-								}
+								getInventory().getStackInSlot(0).shrink(16);
+								if (getInventory().getStackInSlot(0).getCount() == 0)
+									getInventory().setStackInSlot(0, ItemStack.EMPTY);
 							}
 						}
 					}

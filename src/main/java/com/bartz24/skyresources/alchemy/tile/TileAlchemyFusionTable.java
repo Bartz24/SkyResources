@@ -220,6 +220,11 @@ public class TileAlchemyFusionTable extends TileItemInventory implements ITickab
 		return curProgress;
 	}
 
+	public void setCurYield(double amt)
+	{
+		yieldAmount = amt;
+	}
+
 	public double getCurYield()
 	{
 		return yieldAmount;
@@ -228,6 +233,11 @@ public class TileAlchemyFusionTable extends TileItemInventory implements ITickab
 	public float getCurItemYield()
 	{
 		return curCatalystYield;
+	}
+
+	public void setCurItemLeft(float amt)
+	{
+		curCatalystLeft = amt;
 	}
 
 	public float getCurItemLeft()
