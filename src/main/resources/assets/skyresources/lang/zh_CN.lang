@@ -397,7 +397,7 @@ guide.skyresources.stage3.rockCleaner.title=洗矿机
 guide.skyresources.stage3.rockCleaner.text=<recipe,,skyresources:rockcleaner:0> 可以代替 <recipe,,minecraft:cauldron:0> 来完成自动化。 \n 需要 80 RF/tick （默认情况下）。 \n 需要 250 mB 的水才能运行。 \n 洗矿机可以提高 2x 的产率！（最大为100%） \n 收到红石信号后会停止工作。
 
 guide.skyresources.stage3.combustionController.title=智能氧化控制器
-guide.skyresources.stage3.combustionController.text=<recipe,,skyresources:combustioncontroller:0> 可以自动化地合成 <link,氧化加热,skyresources:combustionheater:0,combustionHeater> 过程产出的物品。 \n 用它替换掉氧化加热器多方块结构的四个侧面之一即可。 \n 在机器内设置要合成的物品，越靠近左边的物品合成优先级越高。 \n （默认情况下）每秒合成一份物品。 \n 如果你想做一些复杂的设置，你可以使用物品运输项目来自动更改过滤器。 \n \n 但 <recipe,,skyresources:combustionheater:0> 或者 <recipe,,skyresources:combustionheater:1> 不能使用智能氧化控制器。 \n 收到红石信号后会停止工作。
+guide.skyresources.stage3.combustionController.text=<recipe,,skyresources:combustioncontroller:0> 可以自动化地合成 <link,氧化加热,skyresources:combustionheater:0,combustionHeater> 过程产出的物品。 \n 首先，用它替换掉氧化加热器多方块结构的四个侧面之一并使其背面面向多方块结构的中央。 \n 然后，在机器内设置要合成的物品，越靠近左边的物品合成优先级越高。 \n 向多方块结构中央投入任意数量的原料！它不要求你按照特定比例投入！ \n （默认情况下）每秒合成一份物品并且如果有 <link,Combustion_Collector,skyresources:combustioncollector:0,combustionCollector> 的话则会默认将产物传入其中。 \n 如果你想做一些复杂的设置，你可以使用物品传输装置来自动更改过滤器。 \n \n 但 <recipe,,skyresources:combustionheater:0> 或者 <recipe,,skyresources:combustionheater:1> 不能使用智能氧化控制器。 \n 收到红石信号后会停止工作。
 
 guide.skyresources.stage3.aqueous.title=自动注水器/自动抽水器
 guide.skyresources.stage3.aqueous.text=<recipe,,skyresources:aqueousconcentrator:0> 和 <recipe,,skyresources:aqueousdeconcentrator:0> 分别能够自动化完成 <link,抽水器,skyresources:waterextractor:0,waterExtractor> 的注水和抽水过程。 \n 需要 80 RF/tick （默认情况下）。
@@ -406,7 +406,7 @@ guide.skyresources.misc.nether.title=地狱空岛 (Void Island Control)
 guide.skyresources.misc.nether.text=通常情况下，地狱是一片虚空。现在地狱传送门的位置将与主世界对应，而不是主世界的1/8。 \n 所有地狱中能找到的资源都可以通过其他方式来获得。 \n 地狱的矿石通过 <link,金属制造,skyresources:alchemicalcondenser:0,metalCreation> 过程获得。 \n 地狱中生成的怪物也可以自然生成，或者是通过 <link,暗物质生物转化装置,skyresources:DarkMatterWarper:0,dmWarper> 来得到。
 
 guide.skyresources.stage4.stage4.title=第4阶段 - 超强力材料
-guide.skyresources.stage4.stage4.text=这个阶段为你提供了一些能让加工过程变得更快、燃料效率及催化剂的收益率近乎无尽的科技！ \n \n 要达到这种强大的科技水平，你需要用到 <recipe,,skyresources:baseItemComponent:3> ！ \n \n 该阶段你需要进入 <link,末地,minecraft:ender_eye:0,end> ！
+guide.skyresources.stage4.stage4.text=这个阶段为你提供了一些能让加工过程变得更快、燃料效率及催化剂的收益率近乎无尽的科技！ \n \n 要达到这种强大的科技水平，你需要用到 <recipe,,skyresources:baseItemComponent:3> 及 <recipe,,skyresources:baseItemComponent:7> ！ \n \n 该阶段你需要进入 <link,末地,minecraft:ender_eye:0,end> ！
 
 guide.skyresources.stage4.dmWarper.title=暗物质生物转化装置
 guide.skyresources.stage4.dmWarper.text=<recipe,,skyresources:DarkMatterWarper:0> 用来生成一些稀有的怪物。 \n 它需要消耗 <recipe,,skyresources:BaseItemComponent:3> 来运行（默认情况下每6分钟消耗一个暗物质），作用范围为以 <recipe,,skyresources:DarkMatterWarper:0> 为中心 8x8x8 的立方体。 \n 它会将骷髅转化为凋灵骷髅，将墨鱼转化为烈焰人，将蜘蛛转化为洞穴蜘蛛，将僵尸村民转化为村民， \n 并且会对范围内玩家（默认情况下）及动物造成伤害。
