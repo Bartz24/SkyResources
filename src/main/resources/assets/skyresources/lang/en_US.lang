@@ -133,6 +133,8 @@ tile.skyresources.casing.endstone.name=End Stone Casing
 tile.skyresources.casing.enderium.name=Enderium Casing
 tile.skyresources.casing.darkmatter.name=Dark Matter Casing
 tile.skyresources.casing.lightmatter.name=Light Matter Casing
+tile.skyresources.casing.osmium.name=Osmium Casing
+tile.skyresources.casing.refinedobsidian.name=Refined Obsidian Casing
 
 item.skyresources.condenser.wood.name=Wooden Condenser
 item.skyresources.condenser.stone.name=Stone Condenser
@@ -148,6 +150,8 @@ item.skyresources.condenser.endstone.name=End Stone Condenser
 item.skyresources.condenser.enderium.name=Enderium Condenser
 item.skyresources.condenser.darkmatter.name=Dark Matter Condenser
 item.skyresources.condenser.lightmatter.name=Light Matter Condenser
+item.skyresources.condenser.osmium.name=Osmium Condenser
+item.skyresources.condenser.refinedobsidian.name=Refined Obsidian Condenser
 
 item.skyresources.heatprovider.wood.name=Wooden Heat Provider
 item.skyresources.heatprovider.stone.name=Stone Heat Provider
@@ -163,6 +167,8 @@ item.skyresources.heatprovider.endstone.name=End Stone Heat Provider
 item.skyresources.heatprovider.enderium.name=Enderium Heat Provider
 item.skyresources.heatprovider.darkmatter.name=Dark Matter Heat Provider
 item.skyresources.heatprovider.lightmatter.name=Light Matter Heat Provider
+item.skyresources.heatprovider.osmium.name=Osmium Heat Provider
+item.skyresources.heatprovider.refinedobsidian.name=Refined Obsidian Heat Provider
 
 item.skyresources.combustionheater.wood.name=Wooden Combustion Heater
 item.skyresources.combustionheater.stone.name=Stone Combustion Heater
@@ -178,6 +184,8 @@ item.skyresources.combustionheater.endstone.name=End Stone Combustion Heater
 item.skyresources.combustionheater.enderium.name=Enderium Combustion Heater
 item.skyresources.combustionheater.darkmatter.name=Dark Matter Combustion Heater
 item.skyresources.combustionheater.lightmatter.name=Light Matter Combustion Heater
+item.skyresources.combustionheater.osmium.name=Osmium Combustion Heater
+item.skyresources.combustionheater.refinedobsidian.name=Refined Obsidian Combustion Heater
 
 item.skyresources.alchemy.wood.name=Wooden Alchemy Component
 item.skyresources.alchemy.stone.name=Stone Alchemy Component
@@ -193,6 +201,8 @@ item.skyresources.alchemy.endstone.name=End Stone Alchemy Component
 item.skyresources.alchemy.enderium.name=Enderium Alchemy Component
 item.skyresources.alchemy.darkmatter.name=Dark Matter Alchemy Component
 item.skyresources.alchemy.lightmatter.name=Light Matter Alchemy Component
+item.skyresources.alchemy.osmium.name=Osmium Alchemy Component
+item.skyresources.alchemy.refinedobsidian.name=Refined Obsidian Alchemy Component
 
 item.skyresources.heat.wood.name=Wooden Heat Component
 item.skyresources.heat.stone.name=Stone Heat Component
@@ -208,6 +218,8 @@ item.skyresources.heat.endstone.name=End Stone Heat Component
 item.skyresources.heat.enderium.name=Enderium Heat Component
 item.skyresources.heat.darkmatter.name=Dark Matter Heat Component
 item.skyresources.heat.lightmatter.name=Light Matter Heat Component
+item.skyresources.heat.osmium.name=Osmium Heat Component
+item.skyresources.heat.refinedobsidian.name=Refined Obsidian Heat Component
 
 item.skyresources.oreAlchDust.iron.name=Iron Alchemical Ore Dust
 item.skyresources.oreAlchDust.gold.name=Gold Alchemical Ore Dust

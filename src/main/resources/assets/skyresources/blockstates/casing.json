@@ -90,6 +90,18 @@
             "textures": {
                 "all": "skyresources:blocks/lightmatter"
             }
+        },
+        "variant=osmium": {
+            "model": "skyresources:casing",
+            "textures": {
+                "all": "skyresources:blocks/osmiummachine"
+            }
+        },
+        "variant=refinedobsidian": {
+            "model": "skyresources:casing",
+            "textures": {
+                "all": "skyresources:blocks/refinedobsidianmachine"
+            }
         }
     }
 }

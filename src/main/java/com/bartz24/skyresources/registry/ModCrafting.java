@@ -728,9 +728,9 @@ public class ModCrafting
 	{
 		if (type <= 3)
 			return alch ? new ItemStack(ModItems.alchemyComponent, 1, 2) : new ItemStack(Items.GUNPOWDER, 1);
-		else if (type <= 7)
+		else if (type <= 7 || type == 14)
 			return alch ? new ItemStack(ModItems.alchemyComponent, 1, 3) : new ItemStack(Items.BLAZE_POWDER, 1);
-		else if (type <= 11)
+		else if (type <= 11 || type == 15)
 			return alch ? new ItemStack(ModItems.alchemyComponent, 1, 4) : new ItemStack(Items.REDSTONE, 1);
 		else
 			return alch ? new ItemStack(ModItems.alchemyComponent, 1, 5) : new ItemStack(Items.GLOWSTONE_DUST, 1);
@@ -776,6 +776,10 @@ public class ModCrafting
 			return new ItemStack(ModItems.baseComponent, 1, 3);
 		case 13:
 			return new ItemStack(ModItems.baseComponent, 1, 7);
+		case 14:
+			return getModMaterial("Osmium", diff);
+		case 15:
+			return getModMaterial("RefinedObsidian", diff);
 		}
 		return null;
 	}
@@ -812,6 +816,10 @@ public class ModCrafting
 			return new ItemStack(Items.NETHER_STAR);
 		case 13:
 			return new ItemStack(Items.NETHER_STAR);
+		case 14:
+			return getModGear("Osmium");
+		case 15:
+			return getModGear("RefinedObsidian");
 		}
 		return null;
 	}

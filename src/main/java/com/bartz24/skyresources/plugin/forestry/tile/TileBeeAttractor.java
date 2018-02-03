@@ -95,7 +95,7 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 					Biome biome = world.getBiomeForCoordsBody(getPos());
 					if (smallChance
 							|| (h.isGoodBiome(biome) && h.isGoodHumidity(EnumHumidity.getFromValue(biome.getRainfall()))
-									&& h.isGoodTemperature(EnumTemperature.getFromValue(biome.getTemperature()))))
+									&& h.isGoodTemperature(EnumTemperature.getFromValue(biome.getDefaultTemperature()))))
 					{
 						List<IHiveDrop> hiveDrops = h.getDrops();
 						drops.addAll(getBeeDrops(hiveDrops));

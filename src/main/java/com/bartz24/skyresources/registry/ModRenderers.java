@@ -181,7 +181,7 @@ public class ModRenderers
 		{
 
 			@Override
-			public int getColorFromItemstack(ItemStack stack, int tintIndex)
+			public int colorMultiplier(ItemStack stack, int tintIndex)
 			{
 				if (stack.getMetadata() < 0 || stack.getMetadata() >= ItemOreAlchDust.getNames().size())
 					return -1;
@@ -195,7 +195,7 @@ public class ModRenderers
 		{
 
 			@Override
-			public int getColorFromItemstack(ItemStack stack, int tintIndex)
+			public int colorMultiplier(ItemStack stack, int tintIndex)
 			{
 				if (stack.getMetadata() < 0 || stack.getMetadata() >= ModItems.gemList.size())
 					return -1;

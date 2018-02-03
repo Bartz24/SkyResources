@@ -209,7 +209,7 @@ public class EntitySurvivalistHook extends EntityFishHook
 					this.checkCollision();
 				}
 
-				if (!this.inGround && !this.onGround && !this.isCollidedHorizontally)
+				if (!this.inGround && !this.onGround && !this.collidedHorizontally)
 				{
 					++this.ticksInAir;
 				} else
@@ -285,7 +285,7 @@ public class EntitySurvivalistHook extends EntityFishHook
 		boolean flag1 = itemstack1.getItem() == ModItems.survivalistFishingRod;
 
 		if (!this.angler.isDead && this.angler.isEntityAlive() && (flag || flag1)
-				&& this.getDistanceSqToEntity(this.angler) <= 1024.0D)
+				&& this.getDistanceSq(this.angler) <= 1024.0D)
 		{
 			return false;
 		} else

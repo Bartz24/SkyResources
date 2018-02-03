@@ -20,12 +20,14 @@ public enum MachineVariants implements IStringSerializable
 	ELECTRUM(1878, 1.3f, 2.4f, "RF", 10), 
 	NETHERBRICK(3072, 0.4f, 1.6f, new ItemStack(Items.BLAZE_POWDER), 300), 
 	LEAD(328, 0.9f, 2.9f, new ItemStack(ModItems.techComponent, 1, 1), 6000), 
-	MANYULLYN(2324, 3.6f, 1.9f, FluidRegistry.LAVA, 1), 
+	MANYULLYN(2324, 7.4f, 3.1f, FluidRegistry.LAVA, 1), 
 	SIGNALUM(1362, 1.8f, 3.6f, "RF", 10), 
 	ENDSTONE(2164, 6.6f, 6.6f, new ItemStack(Items.ENDER_PEARL), 2200), 
 	ENDERIUM(3166, 6.8f, 8.0f, "RF", 10), 
 	DARKMATTER(4042, 1f, 100f, new ItemStack(ModItems.baseComponent, 1, 5), 31415), 
-	LIGHTMATTER(1566, 100f,	1f, new ItemStack(ModItems.baseComponent, 1, 7), 27183);
+	LIGHTMATTER(1566, 100f,	1f, new ItemStack(ModItems.baseComponent, 1, 7), 27183), 
+	OSMIUM(3033, 1.3f, 0.3f, "RF", 10), 
+	REFINEDOBSIDIAN(3768, 12.4f, 2.1f, "RF", 10);
 
 	private int maxHeat;
 	private float efficiency;

@@ -33,7 +33,7 @@ public class ItemKnife extends ItemAxe
 
 	public ItemKnife(ToolMaterial material, String unlocalizedName, String registryName)
 	{
-		super(material, (float) (ConfigOptions.toolSettings.knifeBaseDamage + material.getDamageVsEntity()), -3);
+		super(material, (float) (ConfigOptions.toolSettings.knifeBaseDamage + material.getAttackDamage()), -3);
 		toolMaterial = material;
 		this.setMaxDamage((int) (material.getMaxUses() * ConfigOptions.toolSettings.knifeBaseDurability));
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
@@ -46,7 +46,7 @@ public class ItemKnife extends ItemAxe
 	}
 
 	@Override
-	public float getStrVsBlock(ItemStack stack, IBlockState state)
+	public float getDestroySpeed(ItemStack stack, IBlockState state)
 	{
 		Block block = state.getBlock();
 
@@ -59,13 +59,13 @@ public class ItemKnife extends ItemAxe
 		if (recipe != null)
 		{
 			if (toolMaterial.getHarvestLevel() < block.getHarvestLevel(state))
-				return super.getStrVsBlock(stack, state);
+				return super.getDestroySpeed(stack, state);
 			else
 			{
-				return toolMaterial.getEfficiencyOnProperMaterial();
+				return toolMaterial.getEfficiency();
 			}
 		}
-		return super.getStrVsBlock(stack, state);
+		return super.getDestroySpeed(stack, state);
 
 	}
 

@@ -46,7 +46,7 @@ public class GuiCasing extends GuiContainer
 	{
 		super.actionPerformed(button);
 		if(!tile.machineStored.isEmpty())
-			tile.getMachine().actionPerformed(tile, this, button);
+			tile.getMachine().actionPerformed(tile, this, button.id);
 	}
 
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
