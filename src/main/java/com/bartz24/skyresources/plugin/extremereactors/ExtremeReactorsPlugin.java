@@ -7,6 +7,7 @@ import com.bartz24.skyresources.alchemy.item.ItemOreAlchDust;
 import com.bartz24.skyresources.base.guide.SkyResourcesGuide;
 import com.bartz24.skyresources.plugin.IModPlugin;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
+import com.bartz24.skyresources.registry.ModCrafting;
 import com.bartz24.skyresources.registry.ModFluids;
 import com.bartz24.skyresources.registry.ModItems;
 
@@ -26,18 +27,18 @@ public class ExtremeReactorsPlugin implements IModPlugin
 
 	public void init()
 	{
-		ItemStack ingot = OreDictionary.getOres("ingotYellorium").get(0).copy();
+		ItemStack ingot = ModCrafting.getModPriority(OreDictionary.getOres("ingotYellorium")).copy();
 		ingot.setCount(1);
 		
 		ProcessRecipeManager.condenserRecipes.addRecipe(ingot,
 				(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(22).rarity) * 50f, Arrays.asList(
 						new ItemStack(ModItems.oreAlchDust, 1, 22), new FluidStack(ModFluids.crystalFluid, 1000)));
-		ItemStack ore = OreDictionary.getOres("oreYellorium").get(0).copy();
+		ItemStack ore = ModCrafting.getModPriority(OreDictionary.getOres("oreYellorium")).copy();
 		ore.setCount(1);
 		ProcessRecipeManager.condenserRecipes.addRecipe(ore,
 				(float) Math.pow(1.6f, ItemOreAlchDust.oreInfos.get(22).rarity) * 50f,
 				Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, 22), new ItemStack(Blocks.STONE)));
-		ItemStack dust = OreDictionary.getOres("dustYellorium").get(0).copy();
+		ItemStack dust = ModCrafting.getModPriority(OreDictionary.getOres("dustYellorium")).copy();
 		dust.setCount(1);
 		ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dust,
 				1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(22).rarity + 2.5f), 3.7f))),

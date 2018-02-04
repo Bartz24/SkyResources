@@ -195,6 +195,9 @@ public class ConfigOptions
 		public boolean addCarrotDrop = true;
 		@Config.Comment("Add potatoes to grass drops")
 		public boolean addPotatoDrop = true;
+		@Config.Comment("Mod priorities for materials like ingots and dusts")
+		public String[] modResourcePriorities = new String[] { "minecraft", "thermalfoundation", "immersiveengineering", "mekanism",
+				"tconstruct", "ic2", "techreborn", "forestry", "embers" };
 	}
 
 	@Config.Comment("Config Settings for Forestry")

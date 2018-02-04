@@ -29,7 +29,7 @@ public class DEPlugin implements IModPlugin
 
 	public void init()
 	{
-		ItemStack ingotDraconium = OreDictionary.getOres("ingotDraconium").get(0).copy();
+		ItemStack ingotDraconium = ModCrafting.getModPriority(OreDictionary.getOres("ingotDraconium")).copy();
 		ingotDraconium.setCount(1);
 		ProcessRecipeManager.condenserRecipes.addRecipe(ingotDraconium,
 				(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(13).rarity) * 50f, Arrays.asList(

@@ -65,7 +65,7 @@ public class VICPlugin implements IModPlugin
 							new FluidTank(ModFluids.crystalFluid, 1000, 100),
 							new FluidStack(ModFluids.crystalFluid, 1000));
 					world.setBlockState(pos.east(), ModBlocks.magmafiedStone.getDefaultState(), 2);
-					world.setBlockState(pos, ModBlocks.magmafiedStone.getDefaultState(), 2);
+					world.setBlockState(pos, Blocks.SOUL_SAND.getDefaultState(), 2);
 					world.setBlockState(pos.west(), Blocks.SOUL_SAND.getDefaultState(), 2);
 					world.setBlockState(pos.east().north(), Blocks.SOUL_SAND.getDefaultState(), 2);
 					world.setBlockState(pos.north(), ModBlocks.magmafiedStone.getDefaultState(), 2);
