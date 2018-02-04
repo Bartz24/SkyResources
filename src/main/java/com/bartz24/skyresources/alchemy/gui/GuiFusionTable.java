@@ -78,7 +78,7 @@ public class GuiFusionTable extends GuiContainer
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 		this.mc.getTextureManager().bindTexture(new ResourceLocation(References.ModID, "textures/gui/fusiontable.png"));
 		int height = (int) ((float) tile.getProgress() / 100f * 17f);
-		this.drawTexturedModalRect(this.guiLeft + 7, this.guiTop + 51, 0,181, 162, height);
+		this.drawTexturedModalRect(7, 51, 0,181, 162, height);
 
 		height = (int) ((float) tile.getCurYield() * 26f);
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);

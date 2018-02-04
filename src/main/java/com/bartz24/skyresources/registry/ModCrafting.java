@@ -10,7 +10,6 @@ import com.bartz24.skyresources.alchemy.FusionCatalysts;
 import com.bartz24.skyresources.alchemy.item.ItemOreAlchDust;
 import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.base.MachineVariants;
-import com.bartz24.skyresources.base.ModFuelHandler;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 import com.bartz24.skyresources.technology.item.GemRegisterInfo;
@@ -211,6 +210,8 @@ public class ModCrafting
 		GameRegistry.addSmelting(ModBlocks.dryCactus, new ItemStack(Items.DYE, 1, 7), 0.2F);
 
 		GameRegistry.addSmelting(new ItemStack(ModItems.baseComponent, 1, 0), new ItemStack(Items.COAL, 1, 1), 0.1F);
+		
+		GameRegistry.addSmelting(new ItemStack(ModBlocks.petrifiedWood), new ItemStack(Items.COAL, 1, 1), 0.1F);
 
 		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Blocks.SAPLING, 1, 4), 10,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(ModItems.alchemyComponent, 10, 0),
@@ -238,9 +239,6 @@ public class ModCrafting
 		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Items.APPLE), 10,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.SUGAR, 3),
 						new ItemStack(Blocks.HAY_BLOCK, 1, OreDictionary.WILDCARD_VALUE))));
-
-		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Blocks.SAPLING, 1, 5), 19, new ArrayList<Object>(
-				Arrays.asList(new ItemStack(Items.GUNPOWDER, 10), new ItemStack(Blocks.SAPLING, 1, 0))));
 
 		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Blocks.SAPLING, 1, 3), 19,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.DYE, 10, 3), "treeSapling")));
@@ -504,6 +502,8 @@ public class ModCrafting
 		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModBlocks.petrifiedWood), 0.001f,
 				new ArrayList<Object>(
 						Arrays.asList("logWood", new ItemStack(Items.ROTTEN_FLESH), new ItemStack(Items.COAL))));
+		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(Blocks.DIRT), 0.0012f, new ArrayList<Object>(
+				Arrays.asList(new ItemStack(Blocks.SOUL_SAND), new ItemStack(ModItems.baseComponent, 3, 4))));
 
 		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 2, 1), 0.001f,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.GLASS))));
@@ -583,8 +583,6 @@ public class ModCrafting
 		FusionCatalysts.addCatalyst(new ItemStack(ModItems.alchemyComponent, 1, 3), 1.75f);
 		FusionCatalysts.addCatalyst(new ItemStack(ModItems.alchemyComponent, 1, 4), 4.50f);
 		FusionCatalysts.addCatalyst(new ItemStack(ModItems.alchemyComponent, 1, 5), 32.00f);
-
-		GameRegistry.registerFuelHandler(new ModFuelHandler());
 
 		if (OreDictionary.getOres("ingotUranium").size() > 0 || OreDictionary.getOres("oreUranium").size() > 0)
 		{

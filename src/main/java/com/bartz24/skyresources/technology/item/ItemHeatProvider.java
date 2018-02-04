@@ -103,7 +103,6 @@ public class ItemHeatProvider extends ItemMachine
 			float huStored = getMachineFuelData(machineStack, world, pos)[1]
 					* getMachineFuelData(machineStack, world, pos)[0] * TileEntityFurnace
 							.getItemBurnTime(this.getCasingTile(world, pos).getInventory().getStackInSlot(0));
-			System.out.println(huStored + ", " + getMachineFuelData(machineStack, world, pos)[0]);
 			data.setFloat("itemHU",
 					getMachineFuelData(machineStack, world, pos)[1] * getMachineFuelData(machineStack, world, pos)[0]
 							* TileEntityFurnace
@@ -189,6 +188,18 @@ public class ItemHeatProvider extends ItemMachine
 	{
 		fontRenderer.drawString(getHeatProv(tile.machineStored, tile.getWorld(), tile.getPos()) + " Heat", 19, 24,
 				0xFFF3FF17);
+		float itemHU = tile.machineData.getFloat("itemHU");
+		float maxHU = tile.machineData.getFloat("maxHU");
+		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
+		Minecraft.getMinecraft().getTextureManager()
+				.bindTexture(new ResourceLocation(References.ModID, "textures/gui/guiicons.png"));
+		gui.drawTexturedModalRect(100, 52, 29, 60, 3, 18);
+
+		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
+		Minecraft.getMinecraft().getTextureManager()
+				.bindTexture(new ResourceLocation(References.ModID, "textures/gui/guiicons.png"));
+		gui.drawTexturedModalRect(101, 69 - (int) (16f * itemHU / maxHU), 26, 77 - (int) (16f * itemHU / maxHU), 1,
+				(int) (16f * itemHU / maxHU));
 
 		if (this.getMaxEnergy(tile.machineStored) > 0)
 		{
