@@ -19,6 +19,10 @@ public class ModFuelHandler implements IFuelHandler
 			return 30000;
 		else if(fuel.isItemEqual(new ItemStack(ModBlocks.compressedCoalBlock)))
 			return 128000;
+		else if(fuel.isItemEqual(new ItemStack(ModBlocks.petrifiedWood)))
+			return 2400;
+		else if(fuel.isItemEqual(new ItemStack(ModBlocks.petrifiedPlanks)))
+			return 600;
 		
 		return 0;
 	}

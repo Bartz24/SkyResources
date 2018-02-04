@@ -327,6 +327,15 @@ public class ConfigOptions
 			@Config.Comment("Add rock candy combustion recipe")
 			public boolean addRockCandyRecipe = true;
 		}
+
+		@Config.Comment("Config Settings for Void Island Control")
+		public VoidIslandControlSettings voidIslandControlSettings = new VoidIslandControlSettings();
+
+		public class VoidIslandControlSettings
+		{
+			@Config.Comment("Enable the special Void Island Control magma island")
+			public boolean enableMagmaIsland = true;
+		}
 	}
 
 	@Config.Comment("Config Settings for the Alchemical Ore Rarity values. Higher numbers are rarer.")

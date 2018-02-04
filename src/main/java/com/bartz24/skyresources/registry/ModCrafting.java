@@ -167,6 +167,8 @@ public class ModCrafting
 						new Object[] { "XZX", "XYX", "X X", 'X', "plankWood", 'Y',
 								new ItemStack(ModItems.alchComponent, 1, 1), 'Z',
 								new ItemStack(ModItems.alchemyComponent, 1, 2) });
+		CraftingRegistry.addShapelessOreRecipe(new ItemStack(ModBlocks.petrifiedPlanks, 4),
+				new Object[] { new ItemStack(ModBlocks.petrifiedWood) });
 
 		Object advComponent = getModMaterial("Steel", ConfigOptions.miscSettings.advancedRecipes) != null
 				? getModMaterial("Steel", ConfigOptions.miscSettings.advancedRecipes)
@@ -493,6 +495,15 @@ public class ModCrafting
 		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 1, 10), 0.03f,
 				new ArrayList<Object>(
 						Arrays.asList(new ItemStack(Items.DIAMOND, 1), new ItemStack(Items.REDSTONE, 8))));
+		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(Blocks.SAPLING, 1, 5), 0.0015f,
+				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.NETHER_WART), new ItemStack(Items.GUNPOWDER, 2),
+						new ItemStack(Items.ROTTEN_FLESH, 1))));
+		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModBlocks.magmafiedStone), 0.009f,
+				new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.MAGMA), new ItemStack(Blocks.STONE),
+						new ItemStack(ModItems.alchemyComponent, 2, 6))));
+		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModBlocks.petrifiedWood), 0.001f,
+				new ArrayList<Object>(
+						Arrays.asList("logWood", new ItemStack(Items.ROTTEN_FLESH), new ItemStack(Items.COAL))));
 
 		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 2, 1), 0.001f,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.GLASS))));
@@ -587,9 +598,9 @@ public class ModCrafting
 						Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, 23),
 								new FluidStack(ModFluids.crystalFluid, 1000)));
 			}
-			ItemStack ore = OreDictionary.getOres("oreUranium").get(0).copy();
 			if (OreDictionary.getOres("oreUranium").size() > 0)
 			{
+				ItemStack ore = OreDictionary.getOres("oreUranium").get(0).copy();
 				ore.setCount(1);
 				ProcessRecipeManager.condenserRecipes.addRecipe(ore,
 						(float) Math.pow(1.6f, ItemOreAlchDust.oreInfos.get(23).rarity) * 50f,
@@ -839,6 +850,8 @@ public class ModCrafting
 	{
 		OreDictionary.registerOre("ingotFrozenIron", new ItemStack(ModItems.techComponent, 1, 2));
 		OreDictionary.registerOre("dustWood", new ItemStack(ModItems.baseComponent, 1, 5));
+		OreDictionary.registerOre("logWood", new ItemStack(ModBlocks.petrifiedWood));
+		OreDictionary.registerOre("plankWood", new ItemStack(ModBlocks.petrifiedPlanks));
 
 	}
 

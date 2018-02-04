@@ -5,6 +5,7 @@ import java.util.Arrays;
 import com.bartz24.skyresources.recipe.ProcessRecipe;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 
+import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -15,24 +16,24 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class MTWaterExtractorExtractRecipe extends MTRecipeBase
 {
 	@ZenMethod
-	public static void addRecipe(int waterOut, IItemStack output, IItemStack input)
+	public static void addRecipe(int waterOut, IItemStack output, IIngredient input)
 	{
 		addRecipe(
 				new ProcessRecipe(
 						Arrays.asList(CraftTweakerPlugin.toStack(output),
 								new FluidStack(FluidRegistry.WATER, waterOut)),
-						Arrays.asList(CraftTweakerPlugin.toStack(input)), 0, "waterextractor-extract"),
+						Arrays.asList(CraftTweakerPlugin.toObject(input)), 0, "waterextractor-extract"),
 				ProcessRecipeManager.waterExtractorExtractRecipes);
 	}
 
 	@ZenMethod
-	public static void removeRecipe(int waterOut, IItemStack output, IItemStack input)
+	public static void removeRecipe(int waterOut, IItemStack output, IIngredient input)
 	{
 		removeRecipe(
 				new ProcessRecipe(
 						Arrays.asList(CraftTweakerPlugin.toStack(output),
 								new FluidStack(FluidRegistry.WATER, waterOut)),
-						Arrays.asList(CraftTweakerPlugin.toStack(input)), 0, "waterextractor-extract"),
+						Arrays.asList(CraftTweakerPlugin.toObject(input)), 0, "waterextractor-extract"),
 				ProcessRecipeManager.waterExtractorExtractRecipes);
 	}
 

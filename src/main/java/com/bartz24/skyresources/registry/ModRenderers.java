@@ -97,6 +97,9 @@ public class ModRenderers
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.crucible));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.fluidDropper));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.blazePowderBlock));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.petrifiedWood));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.petrifiedPlanks));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.magmafiedStone));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.dirtFurnace));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.darkMatterWarper));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.endPortalCore));

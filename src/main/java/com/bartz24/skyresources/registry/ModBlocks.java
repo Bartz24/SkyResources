@@ -12,6 +12,7 @@ import com.bartz24.skyresources.base.block.BlockCasing;
 import com.bartz24.skyresources.base.block.BlockDryCactus;
 import com.bartz24.skyresources.base.block.BlockSilverfishDisruptor;
 import com.bartz24.skyresources.base.block.ItemBlockMeta;
+import com.bartz24.skyresources.base.block.MagmafiedStoneBlock;
 import com.bartz24.skyresources.base.block.TransparentBlock;
 import com.bartz24.skyresources.technology.block.BlockAqueousConcentrator;
 import com.bartz24.skyresources.technology.block.BlockAqueousDeconcentrator;
@@ -27,7 +28,6 @@ import com.bartz24.skyresources.technology.block.BlockMiniFreezer;
 import com.bartz24.skyresources.technology.block.BlockQuickDropper;
 import com.bartz24.skyresources.technology.block.BlockRockCleaner;
 import com.bartz24.skyresources.technology.block.BlockRockCrusher;
-import com.bartz24.skyresources.technology.block.BlockWildlifeAttractor;
 import com.bartz24.skyresources.technology.block.BlockWildlifeAttractor;
 import com.bartz24.skyresources.technology.block.FluidDropperBlock;
 
@@ -72,6 +72,9 @@ public class ModBlocks
 	public static Block heavySnow;
 
 	public static Block blazePowderBlock;
+	public static Block petrifiedWood;
+	public static Block petrifiedPlanks;
+	public static Block magmafiedStone;
 
 	public static Block dryCactus;
 	public static Block dirtFurnace;
@@ -99,6 +102,12 @@ public class ModBlocks
 
 		blazePowderBlock = registerBlock(new BlazePowderBlock(Material.CLAY, "blazePowderBlock", "BlazePowderBlock",
 				0.5F, 0.5F, SoundType.GROUND));
+		petrifiedWood = registerBlock(
+				new BaseBlock(Material.WOOD, "petrifiedWood", "PetrifiedWood", 1.5F, 0.5F, SoundType.WOOD));
+		petrifiedPlanks = registerBlock(
+				new BaseBlock(Material.WOOD, "petrifiedPlanks", "PetrifiedPlanks", 1.5F, 0.5F, SoundType.WOOD));
+		magmafiedStone = registerBlock(
+				new MagmafiedStoneBlock(Material.ROCK, "magmafiedStone", "magmafiedStone", 2F, 1F, SoundType.STONE));
 		heavySnow = registerBlock(new BaseBlock(Material.CLAY, "heavySnow", "HeavySnow", 0.5F, 0.5F, SoundType.SNOW));
 
 		darkMatterWarper = registerBlock(new BlockDarkMatterWarper("darkMatterWarper", "DarkMatterWarper", 8F, 12F));
