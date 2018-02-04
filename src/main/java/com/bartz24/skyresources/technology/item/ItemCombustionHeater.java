@@ -420,6 +420,8 @@ public class ItemCombustionHeater extends ItemMachine
 		float huTick = tile.machineData.getFloat("huTick");
 		fontRenderer.drawString("HU: ", 19, 24, 0xFFF3FF17);
 		fontRenderer.drawString("" + (int) curHU, 42, 24, 0xFFF3FF17);
+		fontRenderer.drawString("+ " + (int) huTick + " HU/t",
+				gui.getXSize()-8 - fontRenderer.getStringWidth("+ " + (int) huTick + " HU/t"), 64, 0xFFF3FF17);
 		fontRenderer.drawString("Max: ", 19, 32, 0xFFF3FF17);
 		fontRenderer.drawString("" + (int) getMaxHU(tile.getWorld(), tile.getPos()), 42, 32, 0xFFF3FF17);
 
