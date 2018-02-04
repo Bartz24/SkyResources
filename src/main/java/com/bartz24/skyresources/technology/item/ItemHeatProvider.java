@@ -77,8 +77,7 @@ public class ItemHeatProvider extends ItemMachine
 					.internalExtractEnergy((int) Math.ceil(getMachineFuelData(machineStack, world, pos)[1]), false);
 			if (extract > 0)
 			{
-				data.setFloat("itemHU", (float) (extract / getMachineFuelData(machineStack, world, pos)[1])
-						/ getMachineFuelData(machineStack, world, pos)[2]);
+				data.setFloat("itemHU", extract / getMachineFuelData(machineStack, world, pos)[2]);
 				data.setFloat("huTick", getMachineFuelData(machineStack, world, pos)[0]);
 			}
 		} else if (getVariant(machineStack).getFuelType() instanceof ItemStack

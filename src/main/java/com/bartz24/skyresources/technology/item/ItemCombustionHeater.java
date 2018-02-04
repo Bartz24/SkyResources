@@ -163,7 +163,6 @@ public class ItemCombustionHeater extends ItemMachine
 			float huStored = getMachineFuelData(machineStack, world, pos)[1]
 					* getMachineFuelData(machineStack, world, pos)[0] * TileEntityFurnace
 							.getItemBurnTime(this.getCasingTile(world, pos).getInventory().getStackInSlot(0));
-			System.out.println(huStored + ", " + getMachineFuelData(machineStack, world, pos)[0]);
 			data.setFloat("itemHU",
 					getMachineFuelData(machineStack, world, pos)[1] * getMachineFuelData(machineStack, world, pos)[0]
 							* TileEntityFurnace
