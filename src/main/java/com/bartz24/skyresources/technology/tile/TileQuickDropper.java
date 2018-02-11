@@ -4,6 +4,7 @@ import com.bartz24.skyresources.base.tile.TileItemInventory;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 
 public class TileQuickDropper extends TileItemInventory implements ITickable
@@ -19,7 +20,7 @@ public class TileQuickDropper extends TileItemInventory implements ITickable
 		if (!world.isRemote)
 		{
 			updateRedstone();
-			if (this.getRedstoneSignal() == 0 && world.isAirBlock(pos.down())
+			if (this.getRedstoneSignal() == 0 && !world.isSideSolid(pos.down(), EnumFacing.UP)
 					&& !this.getInventory().getStackInSlot(0).isEmpty())
 			{
 				EntityItem item = new EntityItem(world, pos.down().getX() + 0.5f, pos.down().getY() + 0.5f,
