@@ -390,6 +390,26 @@ public class ModCrafting
 		ProcessRecipeManager.knifeRecipes.addRecipe(new ItemStack(Items.MELON, 9), 0,
 				new ItemStack(Blocks.MELON_BLOCK));
 
+		for (int i = 0; i < 4; i++)
+		{
+			ProcessRecipeManager.knifeRecipes.addRecipe(new ItemStack(Blocks.PLANKS, 6, i), 0,
+					new ItemStack(Blocks.LOG, 1, i));
+		}
+		for (int i = 0; i < 2; i++)
+		{
+			ProcessRecipeManager.knifeRecipes.addRecipe(new ItemStack(Blocks.PLANKS, 6, i + 4), 0,
+					new ItemStack(Blocks.LOG2, 1, i));
+		}
+		for (int i = 0; i < 6; i++)
+		{
+			ProcessRecipeManager.knifeRecipes.addRecipe(new ItemStack(Items.STICK, 6), 0,
+					new ItemStack(Blocks.PLANKS, 1, i));
+		}
+		ProcessRecipeManager.knifeRecipes.addRecipe(new ItemStack(ModBlocks.petrifiedPlanks, 6), 0,
+				new ItemStack(ModBlocks.petrifiedWood));
+		ProcessRecipeManager.knifeRecipes.addRecipe(new ItemStack(Items.STICK, 6), 0,
+				new ItemStack(ModBlocks.petrifiedPlanks));
+
 		for (int i = 0; i < ModItems.gemList.size(); i++)
 		{
 			String oreName = Strings.isNullOrEmpty(ModItems.gemList.get(i).oreOverride)
@@ -664,7 +684,8 @@ public class ModCrafting
 					: i.oreOverride;
 			if (OreDictionary.getOres(oreName).size() > 0)
 			{
-				ProcessRecipeManager.cauldronCleanRecipes.addRecipe(getModPriority(OreDictionary.getOres(oreName)).copy(), 1F,
+				ProcessRecipeManager.cauldronCleanRecipes.addRecipe(
+						getModPriority(OreDictionary.getOres(oreName)).copy(), 1F,
 						new ItemStack(ModItems.dirtyGem, 1, ModItems.gemList.indexOf(i)));
 			}
 		}

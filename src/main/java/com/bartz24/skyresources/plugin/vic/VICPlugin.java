@@ -48,6 +48,7 @@ public class VICPlugin implements IModPlugin
 					BlockPos pos = new BlockPos(spawn.getX(), spawn.getY() - 3, spawn.getZ());
 					world.setBlockState(pos.east().south().up(), ModBlocks.petrifiedWood.getDefaultState(), 2);
 					world.setBlockState(pos.east().south().up(2), ModBlocks.petrifiedWood.getDefaultState(), 2);
+					world.setBlockState(pos.east().south(2).up(2), ModBlocks.petrifiedWood.getDefaultState(), 2);
 					world.setBlockState(pos.east().south().up(3), ModBlocks.petrifiedWood.getDefaultState(), 2);
 					world.setBlockState(pos.south().up(4), ModBlocks.petrifiedWood.getDefaultState(), 2);
 					world.setBlockState(pos.west().up(), ModBlocks.petrifiedWood.getDefaultState(), 2);
@@ -68,7 +69,7 @@ public class VICPlugin implements IModPlugin
 					world.setBlockState(pos, Blocks.SOUL_SAND.getDefaultState(), 2);
 					world.setBlockState(pos.west(), Blocks.SOUL_SAND.getDefaultState(), 2);
 					world.setBlockState(pos.east().north(), Blocks.SOUL_SAND.getDefaultState(), 2);
-					world.setBlockState(pos.north(), ModBlocks.magmafiedStone.getDefaultState(), 2);
+					world.setBlockState(pos.north(), Blocks.SOUL_SAND.getDefaultState(), 2);
 					world.setBlockState(pos.west().north(), ModBlocks.magmafiedStone.getDefaultState(), 2);
 
 					changeBiome(spawn.getX(), spawn.getZ(), world);

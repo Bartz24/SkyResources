@@ -6,7 +6,6 @@ import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.base.guide.SkyResourcesGuide;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.events.EventHandler;
-import com.bartz24.skyresources.events.ModBucketHandler;
 import com.bartz24.skyresources.network.SkyResourcesPacketHandler;
 import com.bartz24.skyresources.plugin.ModPlugins;
 import com.bartz24.skyresources.registry.ModBlocks;
@@ -33,7 +32,6 @@ public class CommonProxy
 		ModBlocks.init();
 		ModItems.init();
 
-
 		new HeatSources();
 		new FusionCatalysts();
 		new SkyResourcesGuide();
@@ -50,7 +48,6 @@ public class CommonProxy
 	{
 		MinecraftForge.EVENT_BUS.register(events);
 		MinecraftForge.EVENT_BUS.register(new ConfigOptions());
-		MinecraftForge.EVENT_BUS.register(new ModBucketHandler());
 		NetworkRegistry.INSTANCE.registerGuiHandler(SkyResources.instance, new ModGuiHandler());
 		ModEntities.init();
 		ModCrafting.init();
