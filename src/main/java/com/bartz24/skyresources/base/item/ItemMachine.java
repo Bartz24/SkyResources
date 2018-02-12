@@ -16,7 +16,6 @@ import com.google.common.base.Strings;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -204,11 +203,11 @@ public class ItemMachine extends Item
 		return new int[] { 176, 166 };
 	}
 
-	public void initGui(GuiCasing gui, List<GuiButton> buttonList)
+	public void initGui(GuiCasing gui, List buttonList)
 	{
 	}
 
-	public void actionPerformed(TileCasing tile, GuiCasing gui, GuiButton button) throws IOException
+	public void actionPerformed(TileCasing tile, GuiCasing gui, int buttonClicked) throws IOException
 	{
 	}
 

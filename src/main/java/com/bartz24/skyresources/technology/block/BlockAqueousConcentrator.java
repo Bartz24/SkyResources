@@ -47,7 +47,7 @@ public class BlockAqueousConcentrator extends BlockContainer
 		this.setHardness(hardness);
 		this.setResistance(resistance);
 		this.setRegistryName(registryName);
-		this.isBlockContainer = true;
+		this.hasTileEntity = true;
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 

@@ -105,6 +105,20 @@
                 "part": "skyresources:items/heat",
                 "all": "skyresources:blocks/lightmatter"
             }
+        },
+        "variant=osmium": {
+            "model": "skyresources:component",
+            "textures": {
+                "part": "skyresources:items/heat",
+                "all": "skyresources:blocks/osmiummachine"
+            }
+        },
+        "variant=refinedobsidian": {
+            "model": "skyresources:component",
+            "textures": {
+                "part": "skyresources:items/heat",
+                "all": "skyresources:blocks/refinedobsidianmachine"
+            }
         }
     }
 }

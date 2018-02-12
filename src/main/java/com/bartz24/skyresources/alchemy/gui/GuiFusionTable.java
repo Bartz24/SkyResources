@@ -78,7 +78,13 @@ public class GuiFusionTable extends GuiContainer
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 		this.mc.getTextureManager().bindTexture(new ResourceLocation(References.ModID, "textures/gui/fusiontable.png"));
 		int height = (int) ((float) tile.getProgress() / 100f * 17f);
-		this.drawTexturedModalRect(7, 51, 0, 181, 162, height);
+		this.drawTexturedModalRect(7, 51, 0,181, 162, height);
+
+		height = (int) ((float) tile.getCurYield() * 26f);
+		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
+		this.mc.getTextureManager().bindTexture(new ResourceLocation(References.ModID, "textures/gui/fusiontable.png"));
+		this.drawTexturedModalRect(103, 69, 176, 0, 3, 26);
+		this.drawTexturedModalRect(104, 95 - height, 179, 26 - height, 1, height);
 
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 		this.mc.getTextureManager().bindTexture(new ResourceLocation(References.ModID, "textures/gui/guiicons.png"));
@@ -91,12 +97,6 @@ public class GuiFusionTable extends GuiContainer
 		Minecraft.getMinecraft().getTextureManager()
 				.bindTexture(new ResourceLocation(References.ModID, "textures/gui/guiicons.png"));
 		this.drawTexturedModalRect(135, 90 - height, 26, 77 - height, 1, height);
-
-		height = (int) ((float) tile.getCurYield() * 26f);
-		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
-		this.mc.getTextureManager().bindTexture(new ResourceLocation(References.ModID, "textures/gui/fusiontable.png"));
-		this.drawTexturedModalRect(103, 69, 176, 0, 3, 26);
-		this.drawTexturedModalRect(104, 95 - height, 179, 26 - height, 1, height);
 
 		for (int i = 0; i < 9; i++)
 		{

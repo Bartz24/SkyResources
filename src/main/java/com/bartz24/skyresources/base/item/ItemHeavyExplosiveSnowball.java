@@ -41,7 +41,7 @@ public class ItemHeavyExplosiveSnowball extends Item
 		{
 			EntityHeavyExplosiveSnowball entitysnowball = new EntityHeavyExplosiveSnowball(
 					world, player);
-			entitysnowball.setHeadingFromThrower(player, player.rotationPitch,
+			entitysnowball.shoot(player, player.rotationPitch,
 					player.rotationYaw, 0.0F, 1.5F, 1.0F);
 			world.spawnEntity(entitysnowball);
 		}

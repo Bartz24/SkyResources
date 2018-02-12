@@ -45,6 +45,10 @@ public class ModGuidePages
 
 		SkyResourcesGuide.addPage("grassIsland", "guide.skyresources.stage1", new ItemStack(Blocks.GRASS));
 
+		SkyResourcesGuide.addPage("magmaIsland", "guide.skyresources.stage1", new ItemStack(ModBlocks.petrifiedWood));
+
+		SkyResourcesGuide.addPage("magmaStone", "guide.skyresources.stage1", new ItemStack(ModBlocks.magmafiedStone));
+
 		SkyResourcesGuide.addPage("stage2", "guide.skyresources.stage2", new ItemStack(Blocks.LOG));
 
 		SkyResourcesGuide.addPage("casing", "guide.skyresources.stage2", new ItemStack(ModBlocks.casing));

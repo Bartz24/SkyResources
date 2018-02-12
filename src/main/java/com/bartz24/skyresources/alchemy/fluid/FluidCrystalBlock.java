@@ -7,7 +7,8 @@ import javax.annotation.Nullable;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.registry.ModFluids;
 
-import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.MaterialLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
@@ -24,10 +25,10 @@ public class FluidCrystalBlock extends BlockFluidClassic
 
 	public FluidCrystalBlock()
 	{
-		super(ModFluids.crystalFluid, Material.WATER);
+		super(ModFluids.crystalFluid, new MaterialLiquid(MapColor.SILVER));
 		this.setUnlocalizedName(ModFluids.crystalFluid.getUnlocalizedName());
 		this.setRegistryName(RandomHelper.capatilizeString(ModFluids.crystalFluid.getUnlocalizedName()));
-        this.displacements.put(this, false);
+		this.displacements.put(this, false);
 	}
 
 	@Override
@@ -39,8 +40,8 @@ public class FluidCrystalBlock extends BlockFluidClassic
 
 	public boolean isNotFlowing(World world, BlockPos pos, IBlockState state)
 	{
-		BlockPos[] checkPos = new BlockPos[]
-		{ pos.add(1, 0, 0), pos.add(-1, 0, 0), pos.add(0, 0, 1), pos.add(0, 0, -1) };
+		BlockPos[] checkPos = new BlockPos[] { pos.add(1, 0, 0), pos.add(-1, 0, 0), pos.add(0, 0, 1),
+				pos.add(0, 0, -1) };
 		for (BlockPos pos2 : checkPos)
 		{
 			if (world.getBlockState(pos2).getBlock() == this)
@@ -55,16 +56,18 @@ public class FluidCrystalBlock extends BlockFluidClassic
 
 		return true;
 	}
-	
-	@Override
-    public boolean canDisplace(IBlockAccess world, BlockPos pos){
-        return !world.getBlockState(pos).getMaterial().isLiquid() && super.canDisplace(world, pos);
-    }
 
-    @Override
-    public boolean displaceIfPossible(World world, BlockPos pos){
-        return !world.getBlockState(pos).getMaterial().isLiquid() && super.displaceIfPossible(world, pos);
-    }
+	@Override
+	public boolean canDisplace(IBlockAccess world, BlockPos pos)
+	{
+		return !world.getBlockState(pos).getMaterial().isLiquid() && super.canDisplace(world, pos);
+	}
+
+	@Override
+	public boolean displaceIfPossible(World world, BlockPos pos)
+	{
+		return !world.getBlockState(pos).getMaterial().isLiquid() && super.displaceIfPossible(world, pos);
+	}
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
@@ -79,8 +82,7 @@ public class FluidCrystalBlock extends BlockFluidClassic
 	}
 
 	@Nullable
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn,
-			BlockPos pos)
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
 	{
 		return NULL_AABB;
 	}

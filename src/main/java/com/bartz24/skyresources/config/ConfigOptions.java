@@ -195,6 +195,9 @@ public class ConfigOptions
 		public boolean addCarrotDrop = true;
 		@Config.Comment("Add potatoes to grass drops")
 		public boolean addPotatoDrop = true;
+		@Config.Comment("Mod priorities for materials like ingots and dusts")
+		public String[] modResourcePriorities = new String[] { "minecraft", "thermalfoundation", "immersiveengineering", "mekanism",
+				"tconstruct", "ic2", "techreborn", "forestry", "embers" };
 	}
 
 	@Config.Comment("Config Settings for Forestry")
@@ -326,6 +329,15 @@ public class ConfigOptions
 		{
 			@Config.Comment("Add rock candy combustion recipe")
 			public boolean addRockCandyRecipe = true;
+		}
+
+		@Config.Comment("Config Settings for Void Island Control")
+		public VoidIslandControlSettings voidIslandControlSettings = new VoidIslandControlSettings();
+
+		public class VoidIslandControlSettings
+		{
+			@Config.Comment("Enable the special Void Island Control magma island")
+			public boolean enableMagmaIsland = true;
 		}
 	}
 

@@ -10,7 +10,6 @@ import com.bartz24.skyresources.alchemy.FusionCatalysts;
 import com.bartz24.skyresources.alchemy.item.ItemOreAlchDust;
 import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.base.MachineVariants;
-import com.bartz24.skyresources.base.ModFuelHandler;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 import com.bartz24.skyresources.technology.item.GemRegisterInfo;
@@ -21,6 +20,7 @@ import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionUtils;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.MinecraftForge;
@@ -167,6 +167,8 @@ public class ModCrafting
 						new Object[] { "XZX", "XYX", "X X", 'X', "plankWood", 'Y',
 								new ItemStack(ModItems.alchComponent, 1, 1), 'Z',
 								new ItemStack(ModItems.alchemyComponent, 1, 2) });
+		CraftingRegistry.addShapelessOreRecipe(new ItemStack(ModBlocks.petrifiedPlanks, 4),
+				new Object[] { new ItemStack(ModBlocks.petrifiedWood) });
 
 		Object advComponent = getModMaterial("Steel", ConfigOptions.miscSettings.advancedRecipes) != null
 				? getModMaterial("Steel", ConfigOptions.miscSettings.advancedRecipes)
@@ -210,6 +212,8 @@ public class ModCrafting
 
 		GameRegistry.addSmelting(new ItemStack(ModItems.baseComponent, 1, 0), new ItemStack(Items.COAL, 1, 1), 0.1F);
 
+		GameRegistry.addSmelting(new ItemStack(ModBlocks.petrifiedWood), new ItemStack(Items.COAL, 1, 1), 0.1F);
+
 		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Blocks.SAPLING, 1, 4), 10,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(ModItems.alchemyComponent, 10, 0),
 						new ItemStack(ModBlocks.cactusFruitNeedle))));
@@ -236,9 +240,6 @@ public class ModCrafting
 		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Items.APPLE), 10,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.SUGAR, 3),
 						new ItemStack(Blocks.HAY_BLOCK, 1, OreDictionary.WILDCARD_VALUE))));
-
-		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Blocks.SAPLING, 1, 5), 19, new ArrayList<Object>(
-				Arrays.asList(new ItemStack(Items.GUNPOWDER, 10), new ItemStack(Blocks.SAPLING, 1, 0))));
 
 		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Blocks.SAPLING, 1, 3), 19,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.DYE, 10, 3), "treeSapling")));
@@ -348,16 +349,16 @@ public class ModCrafting
 			ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModItems.baseComponent, 1, 3), 2900,
 					new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.SOUL_SAND, 5),
 							new ItemStack(ModBlocks.compressedCoalBlock, 3),
-							new ItemStack(OreDictionary.getOres(hardestIngot).get(0).getItem(), 3,
-									OreDictionary.getOres(hardestIngot).get(0).getMetadata()),
-							new ItemStack(OreDictionary.getOres(hardestIngot2).get(0).getItem(), 3,
-									OreDictionary.getOres(hardestIngot2).get(0).getMetadata()))));
+							new ItemStack(getModPriority(OreDictionary.getOres(hardestIngot)).getItem(), 3,
+									getModPriority(OreDictionary.getOres(hardestIngot)).getMetadata()),
+							new ItemStack(getModPriority(OreDictionary.getOres(hardestIngot2)).getItem(), 3,
+									getModPriority(OreDictionary.getOres(hardestIngot2)).getMetadata()))));
 		else
 			ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModItems.baseComponent, 1, 3), 2900,
 					new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.SOUL_SAND, 5),
 							new ItemStack(ModBlocks.compressedCoalBlock, 3),
-							new ItemStack(OreDictionary.getOres(hardestIngot).get(0).getItem(), 3,
-									OreDictionary.getOres(hardestIngot).get(0).getMetadata()))));
+							new ItemStack(getModPriority(OreDictionary.getOres(hardestIngot)).getItem(), 3,
+									getModPriority(OreDictionary.getOres(hardestIngot)).getMetadata()))));
 
 		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModItems.baseComponent, 1, 7), 3400,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(ModBlocks.heavySnow, 5),
@@ -388,6 +389,26 @@ public class ModCrafting
 				new ItemStack(Blocks.CACTUS, 1, OreDictionary.WILDCARD_VALUE));
 		ProcessRecipeManager.knifeRecipes.addRecipe(new ItemStack(Items.MELON, 9), 0,
 				new ItemStack(Blocks.MELON_BLOCK));
+
+		for (int i = 0; i < 4; i++)
+		{
+			ProcessRecipeManager.knifeRecipes.addRecipe(new ItemStack(Blocks.PLANKS, 6, i), 0,
+					new ItemStack(Blocks.LOG, 1, i));
+		}
+		for (int i = 0; i < 2; i++)
+		{
+			ProcessRecipeManager.knifeRecipes.addRecipe(new ItemStack(Blocks.PLANKS, 6, i + 4), 0,
+					new ItemStack(Blocks.LOG2, 1, i));
+		}
+		for (int i = 0; i < 6; i++)
+		{
+			ProcessRecipeManager.knifeRecipes.addRecipe(new ItemStack(Items.STICK, 6), 0,
+					new ItemStack(Blocks.PLANKS, 1, i));
+		}
+		ProcessRecipeManager.knifeRecipes.addRecipe(new ItemStack(ModBlocks.petrifiedPlanks, 6), 0,
+				new ItemStack(ModBlocks.petrifiedWood));
+		ProcessRecipeManager.knifeRecipes.addRecipe(new ItemStack(Items.STICK, 6), 0,
+				new ItemStack(ModBlocks.petrifiedPlanks));
 
 		for (int i = 0; i < ModItems.gemList.size(); i++)
 		{
@@ -439,7 +460,7 @@ public class ModCrafting
 			String itemIngot = "ingot" + RandomHelper.capatilizeString(ItemOreAlchDust.oreInfos.get(i).name);
 			if (OreDictionary.getOres(itemIngot).size() > 0)
 			{
-				ItemStack output = OreDictionary.getOres(itemIngot).get(0).copy();
+				ItemStack output = getModPriority(OreDictionary.getOres(itemIngot)).copy();
 				output.setCount(1);
 				ProcessRecipeManager.condenserRecipes.addRecipe(output,
 						(float) Math.pow(1.4f, ItemOreAlchDust.oreInfos.get(i).rarity) * 50f,
@@ -449,7 +470,7 @@ public class ModCrafting
 			String itemOre = "ore" + RandomHelper.capatilizeString(ItemOreAlchDust.oreInfos.get(i).name);
 			if (OreDictionary.getOres(itemOre).size() > 0)
 			{
-				ItemStack output = OreDictionary.getOres(itemOre).get(0).copy();
+				ItemStack output = getModPriority(OreDictionary.getOres(itemOre)).copy();
 				output.setCount(1);
 				ProcessRecipeManager.condenserRecipes.addRecipe(output,
 						(float) Math.pow(1.6f, ItemOreAlchDust.oreInfos.get(i).rarity) * 50f,
@@ -459,7 +480,7 @@ public class ModCrafting
 			String itemDust = "dust" + RandomHelper.capatilizeString(ItemOreAlchDust.oreInfos.get(i).name);
 			if (OreDictionary.getOres(itemDust).size() > 0)
 			{
-				ItemStack output = OreDictionary.getOres(itemDust).get(0).copy();
+				ItemStack output = getModPriority(OreDictionary.getOres(itemDust)).copy();
 				output.setCount(1);
 				ProcessRecipeManager.cauldronCleanRecipes.addRecipe(output,
 						1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(i).rarity + 2.5f), 3.7f))),
@@ -493,6 +514,17 @@ public class ModCrafting
 		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 1, 10), 0.03f,
 				new ArrayList<Object>(
 						Arrays.asList(new ItemStack(Items.DIAMOND, 1), new ItemStack(Items.REDSTONE, 8))));
+		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(Blocks.SAPLING, 1, 5), 0.0015f,
+				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.NETHER_WART), new ItemStack(Items.GUNPOWDER, 2),
+						new ItemStack(Items.ROTTEN_FLESH, 1))));
+		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModBlocks.magmafiedStone), 0.009f,
+				new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.MAGMA), new ItemStack(Blocks.STONE),
+						new ItemStack(ModItems.alchemyComponent, 2, 6))));
+		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModBlocks.petrifiedWood), 0.001f,
+				new ArrayList<Object>(
+						Arrays.asList("logWood", new ItemStack(Items.ROTTEN_FLESH), new ItemStack(Items.COAL))));
+		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(Blocks.DIRT), 0.0012f, new ArrayList<Object>(
+				Arrays.asList(new ItemStack(Blocks.SOUL_SAND), new ItemStack(ModItems.baseComponent, 3, 4))));
 
 		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 2, 1), 0.001f,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.GLASS))));
@@ -513,7 +545,7 @@ public class ModCrafting
 		componentsOreDust.add(new ItemStack(Blocks.CLAY)); // lead 4
 		componentsOreDust.add(new ItemStack(Items.DYE, 1, 4)); // cobalt 6
 		componentsOreDust.add(new ItemStack(Items.MAGMA_CREAM)); // ardite 6
-		componentsOreDust.add(new ItemStack(Items.CLAY_BALL)); // osmium 3
+		componentsOreDust.add(new ItemStack(Items.CLAY_BALL)); // osmium 6
 		componentsOreDust.add(null); // draconium 9
 		componentsOreDust.add(new ItemStack(Items.COAL, 1, 1)); // titanium 6
 		componentsOreDust.add(new ItemStack(Blocks.OBSIDIAN)); // tungsten 6
@@ -573,13 +605,11 @@ public class ModCrafting
 		FusionCatalysts.addCatalyst(new ItemStack(ModItems.alchemyComponent, 1, 4), 4.50f);
 		FusionCatalysts.addCatalyst(new ItemStack(ModItems.alchemyComponent, 1, 5), 32.00f);
 
-		GameRegistry.registerFuelHandler(new ModFuelHandler());
-
 		if (OreDictionary.getOres("ingotUranium").size() > 0 || OreDictionary.getOres("oreUranium").size() > 0)
 		{
 			if (OreDictionary.getOres("ingotUranium").size() > 0)
 			{
-				ItemStack ingot = OreDictionary.getOres("ingotUranium").get(0).copy();
+				ItemStack ingot = getModPriority(OreDictionary.getOres("ingotUranium")).copy();
 				ingot.setCount(1);
 
 				ProcessRecipeManager.condenserRecipes.addRecipe(ingot,
@@ -587,9 +617,9 @@ public class ModCrafting
 						Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, 23),
 								new FluidStack(ModFluids.crystalFluid, 1000)));
 			}
-			ItemStack ore = OreDictionary.getOres("oreUranium").get(0).copy();
 			if (OreDictionary.getOres("oreUranium").size() > 0)
 			{
+				ItemStack ore = getModPriority(OreDictionary.getOres("oreUranium")).copy();
 				ore.setCount(1);
 				ProcessRecipeManager.condenserRecipes.addRecipe(ore,
 						(float) Math.pow(1.6f, ItemOreAlchDust.oreInfos.get(23).rarity) * 50f,
@@ -600,7 +630,7 @@ public class ModCrafting
 							.asList(new ItemStack(Items.ROTTEN_FLESH), new ItemStack(ModItems.techComponent, 1, 1))));
 			if (OreDictionary.getOres("dustUranium").size() > 0)
 			{
-				ItemStack dust = OreDictionary.getOres("dustUranium").get(0).copy();
+				ItemStack dust = getModPriority(OreDictionary.getOres("dustUranium")).copy();
 				dust.setCount(1);
 				ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dust,
 						1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(23).rarity + 2.5f), 3.7f))),
@@ -615,7 +645,7 @@ public class ModCrafting
 		{
 			if (OreDictionary.getOres("ingotThorium").size() > 0)
 			{
-				ItemStack ingot = OreDictionary.getOres("ingotThorium").get(0).copy();
+				ItemStack ingot = getModPriority(OreDictionary.getOres("ingotThorium")).copy();
 				ingot.setCount(1);
 
 				ProcessRecipeManager.condenserRecipes.addRecipe(ingot,
@@ -625,7 +655,7 @@ public class ModCrafting
 			}
 			if (OreDictionary.getOres("oreThorium").size() > 0)
 			{
-				ItemStack ore = OreDictionary.getOres("oreThorium").get(0).copy();
+				ItemStack ore = getModPriority(OreDictionary.getOres("oreThorium")).copy();
 				ore.setCount(1);
 				ProcessRecipeManager.condenserRecipes.addRecipe(ore,
 						(float) Math.pow(1.6f, ItemOreAlchDust.oreInfos.get(24).rarity) * 50f,
@@ -638,7 +668,7 @@ public class ModCrafting
 							new ItemStack(ModItems.techComponent, 1, 1))));
 			if (OreDictionary.getOres("dustThorium").size() > 0)
 			{
-				ItemStack dust = OreDictionary.getOres("dustThorium").get(0).copy();
+				ItemStack dust = getModPriority(OreDictionary.getOres("dustThorium")).copy();
 				dust.setCount(1);
 				ProcessRecipeManager.cauldronCleanRecipes.addRecipe(dust,
 						1f / (((float) Math.pow((ItemOreAlchDust.oreInfos.get(24).rarity + 2.5f), 3.7f))),
@@ -654,7 +684,8 @@ public class ModCrafting
 					: i.oreOverride;
 			if (OreDictionary.getOres(oreName).size() > 0)
 			{
-				ProcessRecipeManager.cauldronCleanRecipes.addRecipe(OreDictionary.getOres(oreName).get(0), 1F,
+				ProcessRecipeManager.cauldronCleanRecipes.addRecipe(
+						getModPriority(OreDictionary.getOres(oreName)).copy(), 1F,
 						new ItemStack(ModItems.dirtyGem, 1, ModItems.gemList.indexOf(i)));
 			}
 		}
@@ -728,9 +759,9 @@ public class ModCrafting
 	{
 		if (type <= 3)
 			return alch ? new ItemStack(ModItems.alchemyComponent, 1, 2) : new ItemStack(Items.GUNPOWDER, 1);
-		else if (type <= 7)
+		else if (type <= 7 || type == 14)
 			return alch ? new ItemStack(ModItems.alchemyComponent, 1, 3) : new ItemStack(Items.BLAZE_POWDER, 1);
-		else if (type <= 11)
+		else if (type <= 11 || type == 15)
 			return alch ? new ItemStack(ModItems.alchemyComponent, 1, 4) : new ItemStack(Items.REDSTONE, 1);
 		else
 			return alch ? new ItemStack(ModItems.alchemyComponent, 1, 5) : new ItemStack(Items.GLOWSTONE_DUST, 1);
@@ -776,6 +807,10 @@ public class ModCrafting
 			return new ItemStack(ModItems.baseComponent, 1, 3);
 		case 13:
 			return new ItemStack(ModItems.baseComponent, 1, 7);
+		case 14:
+			return getModMaterial("Osmium", diff);
+		case 15:
+			return getModMaterial("RefinedObsidian", diff);
 		}
 		return null;
 	}
@@ -812,6 +847,10 @@ public class ModCrafting
 			return new ItemStack(Items.NETHER_STAR);
 		case 13:
 			return new ItemStack(Items.NETHER_STAR);
+		case 14:
+			return getModGear("Osmium");
+		case 15:
+			return getModGear("RefinedObsidian");
 		}
 		return null;
 	}
@@ -831,6 +870,8 @@ public class ModCrafting
 	{
 		OreDictionary.registerOre("ingotFrozenIron", new ItemStack(ModItems.techComponent, 1, 2));
 		OreDictionary.registerOre("dustWood", new ItemStack(ModItems.baseComponent, 1, 5));
+		OreDictionary.registerOre("logWood", new ItemStack(ModBlocks.petrifiedWood));
+		OreDictionary.registerOre("plankWood", new ItemStack(ModBlocks.petrifiedPlanks));
 
 	}
 
@@ -842,6 +883,27 @@ public class ModCrafting
 		}
 		HeatSources.ctRecipes();
 		FusionCatalysts.ctRecipes();
+	}
+
+	public static ItemStack getModPriority(NonNullList<ItemStack> stacks)
+	{
+		if (stacks.size() == 0)
+			return ItemStack.EMPTY;
+		ItemStack curPriority = ItemStack.EMPTY;
+		List<String> modNames = Arrays.asList(ConfigOptions.miscSettings.modResourcePriorities);
+		for (ItemStack s : stacks)
+		{
+			if (curPriority.isEmpty() && !s.isEmpty())
+				curPriority = s;
+
+			if (s == curPriority || s.isEmpty())
+				continue;
+			int indexNew = modNames.indexOf(s.getItem().delegate.name().getResourceDomain());
+			int indexCur = modNames.indexOf(curPriority.getItem().delegate.name().getResourceDomain());
+			if (indexNew >= 0 && indexNew < indexCur)
+				curPriority = s;
+		}
+		return curPriority;
 	}
 
 }

@@ -43,7 +43,7 @@ public class CrucibleBlock extends BlockContainer
 		this.setHardness(hardness);
 		this.setResistance(resistance);
 		this.setRegistryName(registryName);
-		this.isBlockContainer = true;
+		this.hasTileEntity = true;
 	}
 
 	@Override
@@ -99,11 +99,11 @@ public class CrucibleBlock extends BlockContainer
 	{
 		if (!world.isRemote)
 		{
-			if (!player.getHeldItem(hand).isEmpty() && FluidUtil.getFluidContained(player.getHeldItem(hand)) == null)
+			if (!player.getHeldItem(hand).isEmpty())
 			{
 				CrucibleTile tile = (CrucibleTile) world.getTileEntity(pos);
 				FluidActionResult result = FluidUtil
-				.tryFillContainer(player.getHeldItem(hand), tile.getTank(), 1000, player, true);
+				.tryFillContainer(player.getHeldItem(hand), tile.getTank(), tile.getTank().getFluidAmount(), player, true);
 				
 				if (result.success)
 				{
@@ -123,7 +123,7 @@ public class CrucibleBlock extends BlockContainer
 				return true;
 			}
 		}
-		return false;
+		return true;
 	}
 
 	@Override

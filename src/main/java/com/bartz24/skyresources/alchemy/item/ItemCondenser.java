@@ -6,15 +6,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.base.gui.GuiCasing;
-import com.bartz24.skyresources.base.gui.GuiDumpButton;
 import com.bartz24.skyresources.base.gui.SlotSpecial;
 import com.bartz24.skyresources.base.item.ItemMachine;
 import com.bartz24.skyresources.base.tile.TileCasing;
-import com.bartz24.skyresources.network.DumpMessage;
-import com.bartz24.skyresources.network.SkyResourcesPacketHandler;
+import com.bartz24.skyresources.events.ClientEventHandler;
 import com.bartz24.skyresources.recipe.ProcessRecipe;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
@@ -22,7 +19,6 @@ import com.bartz24.skyresources.registry.ModCreativeTabs;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
@@ -106,8 +102,8 @@ public class ItemCondenser extends ItemMachine
 					if (!world.isRemote)
 					{
 						timeCondense++;
-						itemLeft -= Math.pow(recipe.getIntParameter(), 1.3f) / 50f / (2400f * recipe.getIntParameter() / 50f
-								* this.getMachineEfficiency(machineStack, world, pos));
+						itemLeft -= Math.pow(recipe.getIntParameter(), 1.3f) / 50f / (2400f * recipe.getIntParameter()
+								/ 50f * this.getMachineEfficiency(machineStack, world, pos));
 					}
 				}
 			} else if (!world.isRemote)
@@ -149,10 +145,11 @@ public class ItemCondenser extends ItemMachine
 				if (tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP))
 				{
 					return ItemHandlerHelper.insertItemStacked(
-							tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP), out, sim).isEmpty();
+							tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP), out, sim)
+							.isEmpty();
 				} else if (tile instanceof IInventory)
 				{
-					return ItemHandlerHelper.insertItemStacked(new InvWrapper((IInventory)tile), out, sim).isEmpty();
+					return ItemHandlerHelper.insertItemStacked(new InvWrapper((IInventory) tile), out, sim).isEmpty();
 				}
 				return false;
 			}
@@ -195,19 +192,14 @@ public class ItemCondenser extends ItemMachine
 		return Collections.singletonList(new SlotSpecial(tile.getInventory(), 0, 80, 53));
 	}
 
-	GuiButton dumpButton;
-
-	public void initGui(GuiCasing gui, List<GuiButton> buttonList)
+	public void initGui(GuiCasing gui, List buttonList)
 	{
-		buttonList.add(this.dumpButton = new GuiDumpButton(0, gui.getGuiLeft() + 80, gui.getGuiTop() + 71));
+		ClientEventHandler.initGui(gui, buttonList);
 	}
 
-	public void actionPerformed(TileCasing tile, GuiCasing gui, GuiButton button) throws IOException
+	public void actionPerformed(TileCasing tile, GuiCasing gui, int buttonClicked) throws IOException
 	{
-		if (button == this.dumpButton)
-		{
-			SkyResourcesPacketHandler.instance.sendToServer(new DumpMessage(1, tile.getPos()));
-		}
+		ClientEventHandler.actionPerformed(0, tile, gui, buttonClicked);
 	}
 
 	public void drawBackgroundGui(TileCasing tile, GuiCasing gui, FontRenderer fontRenderer, int mouseX, int mouseY)

@@ -64,13 +64,13 @@ public class ItemInfusionStone extends Item
 			{
 				if (!world.isRemote)
 				{
-					player.attackEntityFrom(DamageSource.MAGIC, recipe.getIntParameter());
 					player.dropItem(recipe.getOutputs().get(0).copy(), false);
 					if (offHand != ItemStack.EMPTY)
 						offHand.shrink(recipe.getInputs().get(0) instanceof ItemStack
 								? ((ItemStack) recipe.getInputs().get(0)).getCount() : 1);
 
 					stack.damageItem(1, player);
+					player.attackEntityFrom(DamageSource.MAGIC, recipe.getIntParameter());
 				}
 				world.setBlockToAir(pos);
 			} else

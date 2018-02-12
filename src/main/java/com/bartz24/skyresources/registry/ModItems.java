@@ -159,14 +159,14 @@ public class ModItems
 				new ItemSurvivalFishingRod("survivalistFishingRod", "SurvivalistFishingRod"));
 	}
 
-	private static Item registerItem(Item item, String name)
+	public static Item registerItem(Item item, String name)
 	{
 		GameData.register_impl(item.setRegistryName(new ResourceLocation(References.ModID, name)));
 
 		return item;
 	}
 
-	private static Item registerItem(Item item)
+	public static Item registerItem(Item item)
 	{
 		if (item.getRegistryName() == null)
 		{

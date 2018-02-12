@@ -38,7 +38,7 @@ public class ItemOreAlchDust extends Item
 		map.put("lead", 4);
 		map.put("cobalt", 6);
 		map.put("ardite", 6);
-		map.put("osmium", 3);
+		map.put("osmium", 6);
 		map.put("draconium", 9);
 		map.put("titanium", 6);
 		map.put("tungsten", 6);

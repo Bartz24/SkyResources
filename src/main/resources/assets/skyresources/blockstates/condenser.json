@@ -105,6 +105,20 @@
                 "part": "skyresources:blocks/condenser",
                 "all": "skyresources:blocks/lightmatter"
             }
+        },
+        "variant=osmium": {
+            "model": "skyresources:machineparttop",
+            "textures": {
+                "part": "skyresources:blocks/condenser",
+                "all": "skyresources:blocks/osmiummachine"
+            }
+        },
+        "variant=refinedobsidian": {
+            "model": "skyresources:machineparttop",
+            "textures": {
+                "part": "skyresources:blocks/condenser",
+                "all": "skyresources:blocks/refinedobsidianmachine"
+            }
         }
     }
 }

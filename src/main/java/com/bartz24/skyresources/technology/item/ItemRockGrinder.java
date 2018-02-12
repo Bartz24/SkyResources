@@ -36,7 +36,7 @@ public class ItemRockGrinder extends ItemPickaxe
 		super(material);
 		toolMaterial = material;
 		this.setMaxDamage((int) (material.getMaxUses() * ConfigOptions.toolSettings.rockGrinderBaseDurability));
-		this.damageVsEntity = (float) (ConfigOptions.toolSettings.rockGrinderBaseDamage + material.getDamageVsEntity());
+		this.damageVsEntity = (float) (ConfigOptions.toolSettings.rockGrinderBaseDamage + material.getAttackDamage());
 		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
 		setRegistryName(registryName);
 		this.setMaxStackSize(1);
@@ -47,7 +47,7 @@ public class ItemRockGrinder extends ItemPickaxe
 	}
 
 	@Override
-	public float getStrVsBlock(ItemStack stack, IBlockState state)
+	public float getDestroySpeed(ItemStack stack, IBlockState state)
 	{
 		Block block = state.getBlock();
 
@@ -62,7 +62,7 @@ public class ItemRockGrinder extends ItemPickaxe
 					return 0.5F;
 				else
 				{
-					return toolMaterial.getEfficiencyOnProperMaterial();
+					return toolMaterial.getEfficiency();
 				}
 			}
 		}

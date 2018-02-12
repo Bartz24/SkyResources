@@ -12,6 +12,7 @@ import com.bartz24.skyresources.base.block.BlockCasing;
 import com.bartz24.skyresources.base.block.BlockDryCactus;
 import com.bartz24.skyresources.base.block.BlockSilverfishDisruptor;
 import com.bartz24.skyresources.base.block.ItemBlockMeta;
+import com.bartz24.skyresources.base.block.MagmafiedStoneBlock;
 import com.bartz24.skyresources.base.block.TransparentBlock;
 import com.bartz24.skyresources.technology.block.BlockAqueousConcentrator;
 import com.bartz24.skyresources.technology.block.BlockAqueousDeconcentrator;
@@ -28,13 +29,14 @@ import com.bartz24.skyresources.technology.block.BlockQuickDropper;
 import com.bartz24.skyresources.technology.block.BlockRockCleaner;
 import com.bartz24.skyresources.technology.block.BlockRockCrusher;
 import com.bartz24.skyresources.technology.block.BlockWildlifeAttractor;
-import com.bartz24.skyresources.technology.block.BlockWildlifeAttractor;
 import com.bartz24.skyresources.technology.block.FluidDropperBlock;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.registries.GameData;
@@ -72,6 +74,9 @@ public class ModBlocks
 	public static Block heavySnow;
 
 	public static Block blazePowderBlock;
+	public static Block petrifiedWood;
+	public static Block petrifiedPlanks;
+	public static Block magmafiedStone;
 
 	public static Block dryCactus;
 	public static Block dirtFurnace;
@@ -99,6 +104,12 @@ public class ModBlocks
 
 		blazePowderBlock = registerBlock(new BlazePowderBlock(Material.CLAY, "blazePowderBlock", "BlazePowderBlock",
 				0.5F, 0.5F, SoundType.GROUND));
+		petrifiedWood = registerBlock(
+				new BaseBlock(Material.WOOD, "petrifiedWood", "PetrifiedWood", 1.5F, 0.5F, SoundType.WOOD), 2400);
+		petrifiedPlanks = registerBlock(
+				new BaseBlock(Material.WOOD, "petrifiedPlanks", "PetrifiedPlanks", 1.5F, 0.5F, SoundType.WOOD), 600);
+		magmafiedStone = registerBlock(
+				new MagmafiedStoneBlock(Material.ROCK, "magmafiedStone", "magmafiedStone", 2F, 1F, SoundType.STONE));
 		heavySnow = registerBlock(new BaseBlock(Material.CLAY, "heavySnow", "HeavySnow", 0.5F, 0.5F, SoundType.SNOW));
 
 		darkMatterWarper = registerBlock(new BlockDarkMatterWarper("darkMatterWarper", "DarkMatterWarper", 8F, 12F));
@@ -165,6 +176,21 @@ public class ModBlocks
 	{
 		GameData.register_impl(block);
 		GameData.register_impl(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+
+		return block;
+	}
+
+	public static Block registerBlock(Block block, int fuelBurnTime)
+	{
+		GameData.register_impl(block);
+		Item item = new ItemBlock(block)
+		{
+			public int getItemBurnTime(ItemStack stack)
+			{
+				return fuelBurnTime;
+			}
+		};
+		GameData.register_impl(item.setRegistryName(block.getRegistryName()));
 
 		return block;
 	}

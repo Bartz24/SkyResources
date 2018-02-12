@@ -10,6 +10,7 @@ import com.bartz24.skyresources.base.ModKeyBindings;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.recipe.ProcessRecipe;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
+import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModGuiHandler;
 import com.bartz24.skyresources.registry.ModItems;
 
@@ -27,10 +28,13 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
+import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
+@EventBusSubscriber
 public class EventHandler
 {
 	@SubscribeEvent
@@ -164,5 +168,16 @@ public class EventHandler
 						player.getPosition().getY(), player.getPosition().getZ());
 			}
 		}
+	}
+
+	@SubscribeEvent
+	public void fuelTime(FurnaceFuelBurnTimeEvent event)
+	{
+		if (event.getItemStack().isItemEqual(new ItemStack(ModItems.alchemyComponent, 1, 6)))
+			event.setBurnTime(3000);
+		else if (event.getItemStack().isItemEqual(new ItemStack(ModBlocks.coalInfusedBlock)))
+			event.setBurnTime(30000);
+		else if (event.getItemStack().isItemEqual(new ItemStack(ModBlocks.compressedCoalBlock)))
+			event.setBurnTime(128000);
 	}
 }

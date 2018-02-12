@@ -19,6 +19,7 @@ import com.bartz24.skyresources.plugin.tconstruct.TConPlugin;
 import com.bartz24.skyresources.plugin.techreborn.TechRebornPlugin;
 import com.bartz24.skyresources.plugin.theoneprobe.TOPPlugin;
 import com.bartz24.skyresources.plugin.thermal.ThermalPlugin;
+import com.bartz24.skyresources.plugin.vic.VICPlugin;
 
 import net.minecraftforge.fml.common.Loader;
 
@@ -45,6 +46,7 @@ public class ModPlugins
 		addPlugin("tconstruct", TConPlugin.class);
 		addPlugin("theoneprobe", TOPPlugin.class);
 		addPlugin("thermalfoundation", ThermalPlugin.class);
+		addPlugin("voidislandcontrol", VICPlugin.class);
 
 		for (IModPlugin p : plugins.values())
 		{

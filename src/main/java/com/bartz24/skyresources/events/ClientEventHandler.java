@@ -1,10 +1,19 @@
 package com.bartz24.skyresources.events;
 
+import java.io.IOException;
+import java.util.List;
+
 import com.bartz24.skyresources.InfoToast;
 import com.bartz24.skyresources.alchemy.FusionCatalysts;
+import com.bartz24.skyresources.base.gui.GuiCasing;
+import com.bartz24.skyresources.base.gui.GuiDumpButton;
+import com.bartz24.skyresources.base.tile.TileCasing;
 import com.bartz24.skyresources.config.ConfigOptions;
+import com.bartz24.skyresources.network.DumpMessage;
+import com.bartz24.skyresources.network.SkyResourcesPacketHandler;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
@@ -41,6 +50,20 @@ public class ClientEventHandler
 		{
 			event.getToolTip().add(TextFormatting.AQUA + "Catalyst Yield: "
 					+ (int) (FusionCatalysts.getCatalystValue(stack) * 100f) + "%");
+		}
+	}
+
+	public static void initGui(GuiCasing gui, List<GuiButton> buttonList)
+	{
+		buttonList.add(new GuiDumpButton(0, gui.getGuiLeft() + 80, gui.getGuiTop() + 71));
+	}
+
+	public static void actionPerformed(int buttonID, TileCasing tile, GuiCasing gui, int buttonClicked)
+			throws IOException
+	{
+		if (buttonClicked == buttonID)
+		{
+			SkyResourcesPacketHandler.instance.sendToServer(new DumpMessage(1, tile.getPos()));
 		}
 	}
 }

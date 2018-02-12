@@ -46,7 +46,7 @@ public class BlockCasing extends BlockContainer implements IMetaBlockName
 		this.setHardness(hardness);
 		this.setResistance(resistance);
 		this.setRegistryName(registryName);
-		this.isBlockContainer = true;
+		this.hasTileEntity = true;
 	}
 
 	public Material getMaterial(IBlockState state)
