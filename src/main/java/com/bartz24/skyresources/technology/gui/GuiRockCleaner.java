@@ -84,7 +84,7 @@ public class GuiRockCleaner extends GuiContainer
 			int l = (this.height - this.ySize) / 2;
 			List list = new ArrayList();
 			list.add(TextFormatting.RED + "Power:");
-			list.add(TextFormatting.RED + (tile.getEnergyStored() + " FE / " + tile.getMaxEnergyStored() + " FE"));
+			list.add(TextFormatting.RED + (tile.getEnergyStored() + " RF / " + tile.getMaxEnergyStored() + " RF"));
 			this.drawHoveringText(list, mouseX - k, mouseY - l, fontRenderer);
 		} else if (GuiHelper.isMouseInRect(142 + guiLeft, 30 + guiTop, 16, 59, mouseX, mouseY))
 		{
