@@ -97,13 +97,13 @@ public class EventHandler
 									if (event.getWorld().rand.nextFloat() <= rec.getIntParameter())
 									{
 										RandomHelper.spawnItemInWorld(event.getWorld(), rec.getOutputs().get(0).copy(),
-												event.getPos());
+												event.getPos().up());
 									}
 							}
 							if (validIn)
 							{
 								item.shrink(1);
-								if (event.getWorld().rand.nextFloat() < 0.4F)
+								if (event.getWorld().rand.nextFloat() < 0.16F)
 									new BlockCauldron().setWaterLevel(event.getWorld(), event.getPos(),
 											event.getWorld().getBlockState(event.getPos()), i - 1);
 								if (item.getCount() == 0)

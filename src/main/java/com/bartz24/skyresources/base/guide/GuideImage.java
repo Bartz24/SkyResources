@@ -7,12 +7,14 @@ import org.lwjgl.opengl.GL11;
 
 import com.bartz24.skyresources.registry.ModGuidePages;
 
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
@@ -27,6 +29,7 @@ public class GuideImage
 {
 	public Map<BlockPos, IBlockState> blocks = new HashMap();
 	public Map<BlockPos, IBlockState> drawBlocks = new HashMap();
+	public Map<BlockPos, TileEntity> drawTEs = new HashMap();
 	public String imgAddress;
 
 	public ImageWorld world = new ImageWorld(this);
@@ -40,7 +43,7 @@ public class GuideImage
 			blocks = new HashMap();
 	}
 
-	public void draw(Minecraft mc, int x, int y, int width, int height)
+	public void draw(Minecraft mc, int x, int y, int width, int height, float partialTicks)
 	{
 		BlockRendererDispatcher renderer = mc.getBlockRendererDispatcher();
 		GlStateManager.pushMatrix();
@@ -70,14 +73,21 @@ public class GuideImage
 		Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 		Tessellator.getInstance().getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
 		drawBlocks.clear();
+		for (BlockPos pos : drawTEs.keySet())
+		{
+			Minecraft.getMinecraft().world.removeTileEntity(pos);
+		}
+		drawTEs.clear();
 		for (BlockPos pos : blocks.keySet())
 		{
 			if (pos.getY() <= layer)
+			{
 				drawBlocks.put(pos, blocks.get(pos));
+			}
 		}
 		for (BlockPos pos : drawBlocks.keySet())
 		{
-				renderer.renderBlock(drawBlocks.get(pos), pos, world, Tessellator.getInstance().getBuffer());
+			renderer.renderBlock(drawBlocks.get(pos), pos, world, Tessellator.getInstance().getBuffer());
 		}
 		Tessellator.getInstance().draw();
 		GlStateManager.popMatrix();
@@ -130,7 +140,7 @@ public class GuideImage
 
 		public TileEntity getTileEntity(BlockPos pos)
 		{
-			return null;
+			return image.drawTEs.get(pos);
 		}
 	}
 }

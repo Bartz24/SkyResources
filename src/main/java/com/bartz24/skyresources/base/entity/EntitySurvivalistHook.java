@@ -179,7 +179,7 @@ public class EntitySurvivalistHook extends EntityFishHook
 			BlockPos blockpos = new BlockPos(this);
 			IBlockState iblockstate = this.world.getBlockState(blockpos);
 
-			if (iblockstate.getMaterial() == Material.WATER)
+			if (iblockstate.getBlock() == Blocks.WATER || iblockstate.getBlock() == Blocks.FLOWING_WATER)
 			{
 				f = BlockLiquid.getBlockLiquidHeight(iblockstate, this.world, blockpos);
 			}
@@ -262,7 +262,7 @@ public class EntitySurvivalistHook extends EntityFishHook
 				}
 			}
 
-			if (iblockstate.getMaterial() != Material.WATER)
+			if (iblockstate.getBlock() != Blocks.WATER && iblockstate.getBlock() != Blocks.FLOWING_WATER)
 			{
 				this.motionY -= 0.03D;
 			}

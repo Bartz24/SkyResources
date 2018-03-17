@@ -179,8 +179,6 @@ public class ConfigOptions
 		public int heavySnowballDamage = 8;
 		@Config.Comment("Explosive Heavy Snowball Damage Dealt")
 		public int explosiveHeavySnowballDamage = 12;
-		@Config.Comment("Makes certain recipes require more advanced components")
-		public boolean advancedRecipes = false;
 		@Config.Comment("Forces all gem types to be enabled")
 		public boolean allowAllGemTypes = false;
 		@Config.Comment("Add beetroot seeds to grass drops")

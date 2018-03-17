@@ -4,5 +4,5 @@ public class References
 {
 	public static final String ModID = "skyresources";
 	public static final String ModName = "Sky Resources 2";	
-	public static final String Version = "2.2.2";	
+	public static final String Version = "2.2.3";	
 }

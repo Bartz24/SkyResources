@@ -79,7 +79,6 @@ public class ModGuidePages
 		SkyResourcesGuide.addPage("rockGrinder", "guide.skyresources.stage2", new ItemStack(ModItems.stoneGrinder));
 
 		SkyResourcesGuide.addPage("metalCreation", "guide.skyresources.stage2", new ItemStack(ModItems.oreAlchDust));
-		addImagePos("crystalSetup", new BlockPos(0, -2, 0), Blocks.HOPPER.getDefaultState());
 		addImagePos("crystalSetup", new BlockPos(0, -1, 0), ModBlocks.casing.getDefaultState());
 		addImagePos("crystalSetup", new BlockPos(-1, 0, 0), Blocks.GLASS.getDefaultState());
 		addImagePos("crystalSetup", new BlockPos(0, 0, 1), Blocks.GLASS.getDefaultState());

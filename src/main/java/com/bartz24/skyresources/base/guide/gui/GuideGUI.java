@@ -87,7 +87,7 @@ public class GuideGUI extends GuiScreen
 		} else
 		{
 			this.closeButton.drawButton(mc, mouseX, mouseY, partialTicks);
-			this.currentImage.draw(this.mc, this.width / 2 - 128, this.height / 2 - 128, 256, 256);
+			this.currentImage.draw(this.mc, this.width / 2 - 128, this.height / 2 - 128, 256, 256, partialTicks);
 		}
 	}
 
