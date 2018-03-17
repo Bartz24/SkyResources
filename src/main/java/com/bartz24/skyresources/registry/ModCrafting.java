@@ -236,9 +236,17 @@ public class ModCrafting
 		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Blocks.SAPLING, 1, 2), 19,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.DYE, 10, 15), "treeSapling")));
 
-		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Items.REEDS), 19,
+		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Items.REEDS), 17,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.SPECKLED_MELON, 3),
 						new ItemStack(Blocks.PUMPKIN, 1, OreDictionary.WILDCARD_VALUE))));
+		
+		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Blocks.CHORUS_FLOWER), 19,
+				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.CHORUS_FRUIT_POPPED, 3),
+						new ItemStack(Blocks.RED_MUSHROOM))));
+
+		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Items.CHORUS_FRUIT), 12,
+				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.ENDER_EYE, 4),
+						new ItemStack(Blocks.MELON_BLOCK, 1, OreDictionary.WILDCARD_VALUE))));
 
 		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Items.NETHER_WART), 12,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.SPIDER_EYE, 4),
