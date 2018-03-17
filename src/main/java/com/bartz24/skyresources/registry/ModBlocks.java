@@ -11,6 +11,7 @@ import com.bartz24.skyresources.base.block.BlazePowderBlock;
 import com.bartz24.skyresources.base.block.BlockCasing;
 import com.bartz24.skyresources.base.block.BlockDryCactus;
 import com.bartz24.skyresources.base.block.BlockSilverfishDisruptor;
+import com.bartz24.skyresources.base.block.ClearBlock;
 import com.bartz24.skyresources.base.block.ItemBlockMeta;
 import com.bartz24.skyresources.base.block.MagmafiedStoneBlock;
 import com.bartz24.skyresources.base.block.TransparentBlock;
@@ -60,6 +61,7 @@ public class ModBlocks
 	public static Block combustionCollector;
 	public static Block combustionController;
 	public static Block quickDropper;
+	public static Block alchemicalGlass;
 	public static Block aqueousConcentrator;
 	public static Block aqueousDeconcentrator;
 	public static Block casing;
@@ -106,6 +108,8 @@ public class ModBlocks
 				0.5F, 0.5F, SoundType.GROUND));
 		petrifiedWood = registerBlock(
 				new BaseBlock(Material.WOOD, "petrifiedWood", "PetrifiedWood", 1.5F, 0.5F, SoundType.WOOD), 2400);
+		alchemicalGlass = registerBlock(
+				new ClearBlock(Material.GLASS, "alchemicalGlass", "AlchemicalGlass", 1.0F, 0.5F, SoundType.GLASS));
 		petrifiedPlanks = registerBlock(
 				new BaseBlock(Material.WOOD, "petrifiedPlanks", "PetrifiedPlanks", 1.5F, 0.5F, SoundType.WOOD), 600);
 		magmafiedStone = registerBlock(

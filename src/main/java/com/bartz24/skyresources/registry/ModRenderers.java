@@ -84,6 +84,7 @@ public class ModRenderers
 		registerItemRenderer(ModItems.survivalistFishingRod);
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.cactusFruitNeedle));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.compressedCoalBlock));
+		registerItemRenderer(Item.getItemFromBlock(ModBlocks.alchemicalGlass));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.coalInfusedBlock));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.sandyNetherrack));
 		registerItemRenderer(Item.getItemFromBlock(ModBlocks.darkMatterBlock));

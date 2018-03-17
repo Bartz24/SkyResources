@@ -38,7 +38,7 @@ public class DEPlugin implements IModPlugin
 				Block.REGISTRY.getObject(new ResourceLocation("draconicevolution", "draconium_ore")), 1, 2);
 		oreDraconium.setCount(1);
 		ProcessRecipeManager.condenserRecipes.addRecipe(oreDraconium,
-				(float) Math.pow(1.6f, ItemOreAlchDust.oreInfos.get(13).rarity) * 50f,
+				(float) Math.pow(1.72f, ItemOreAlchDust.oreInfos.get(13).rarity) * 62f,
 				Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, 13), new ItemStack(Blocks.END_STONE)));
 		ItemStack dustDraconium = OreDictionary.getOres("dustDraconium").get(0).copy();
 		dustDraconium.setCount(1);

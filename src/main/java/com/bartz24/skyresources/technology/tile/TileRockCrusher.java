@@ -65,7 +65,7 @@ public class TileRockCrusher extends TileGenericPower implements ITickable
 						{
 							if (r != null && recMachine.isInputRecipeEqualTo(r, false))
 							{
-								float chance = r.getIntParameter() * 3f;
+								float chance = r.getIntParameter() * 1.2f;
 								while (chance >= 1)
 								{
 									bufferStacks.add(r.getOutputs().get(0).copy());
