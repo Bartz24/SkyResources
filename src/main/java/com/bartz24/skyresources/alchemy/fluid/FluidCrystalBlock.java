@@ -7,8 +7,7 @@ import javax.annotation.Nullable;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.registry.ModFluids;
 
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.MaterialLiquid;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
@@ -25,7 +24,7 @@ public class FluidCrystalBlock extends BlockFluidClassic
 
 	public FluidCrystalBlock()
 	{
-		super(ModFluids.crystalFluid, new MaterialLiquid(MapColor.SILVER));
+		super(ModFluids.crystalFluid, Material.WATER);
 		this.setUnlocalizedName(ModFluids.crystalFluid.getUnlocalizedName());
 		this.setRegistryName(RandomHelper.capatilizeString(ModFluids.crystalFluid.getUnlocalizedName()));
 		this.displacements.put(this, false);

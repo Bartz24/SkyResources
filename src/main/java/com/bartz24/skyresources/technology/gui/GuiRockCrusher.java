@@ -77,7 +77,7 @@ public class GuiRockCrusher extends GuiContainer
 			int l = (this.height - this.ySize) / 2;
 			List list = new ArrayList();
 			list.add(TextFormatting.RED + "Power:");
-			list.add(TextFormatting.RED + (tile.getEnergyStored() + " FE / " + tile.getMaxEnergyStored() + " FE"));
+			list.add(TextFormatting.RED + (tile.getEnergyStored() + " RF / " + tile.getMaxEnergyStored() + " RF"));
 			this.drawHoveringText(list, mouseX - k, mouseY - l, fontRenderer);
 		}
 	}

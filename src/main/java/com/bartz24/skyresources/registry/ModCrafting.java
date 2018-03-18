@@ -158,10 +158,7 @@ public class ModCrafting
 				new Object[] { "XYX", "X X", "X X", 'X', "ingotIron", 'Y', new ItemStack(Blocks.DROPPER) });
 		CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.baseComponent, 1, 6),
 				new Object[] { "XYX", "XZX", "XZX", 'X', new ItemStack(Items.QUARTZ), 'Y',
-						ConfigOptions.miscSettings.advancedRecipes ? new ItemStack(ModItems.alchemyComponent, 1, 10)
-								: new ItemStack(Items.DYE, 1, 4),
-						'Z', ConfigOptions.miscSettings.advancedRecipes ? new ItemStack(ModItems.alchemyComponent, 1, 7)
-								: new ItemStack(Items.GLOWSTONE_DUST) });
+						new ItemStack(Items.DYE, 1, 4), 'Z', new ItemStack(Items.GLOWSTONE_DUST) });
 		CraftingRegistry
 				.addShapedOreRecipe(new ItemStack(ModBlocks.fusionTable),
 						new Object[] { "XZX", "XYX", "X X", 'X', "plankWood", 'Y',
@@ -170,20 +167,11 @@ public class ModCrafting
 		CraftingRegistry.addShapelessOreRecipe(new ItemStack(ModBlocks.petrifiedPlanks, 4),
 				new Object[] { new ItemStack(ModBlocks.petrifiedWood) });
 
-		Object advComponent = getModMaterial("Steel", ConfigOptions.miscSettings.advancedRecipes) != null
-				? getModMaterial("Steel", ConfigOptions.miscSettings.advancedRecipes)
-				: getModMaterial("ElectricalSteel", ConfigOptions.miscSettings.advancedRecipes) != null
-						? getModMaterial("ElectricalSteel", ConfigOptions.miscSettings.advancedRecipes)
-						: getModMaterial("Iron", ConfigOptions.miscSettings.advancedRecipes);
+		Object advComponent = getModMaterial("Steel") != null ? getModMaterial("Steel")
+				: getModMaterial("ElectricalSteel") != null ? getModMaterial("ElectricalSteel")
+						: getModMaterial("Iron");
 		String coalDust = OreDictionary.getOres("dustCoal").size() > 0 ? "dustCoal" : "dustRedstone";
-		String circuit = (ConfigOptions.miscSettings.advancedRecipes ? OreDictionary.getOres("circuitAdvanced")
-				: OreDictionary.getOres("circuitBasic")).size() > 0
-						? (ConfigOptions.miscSettings.advancedRecipes ? "circuitAdvanced" : "circuitBasic")
-						: "blockRedstone";
-
-		String basicCircuit = ConfigOptions.miscSettings.advancedRecipes
-				? (OreDictionary.getOres("circuitBasic").size() > 0 ? "circuitBasic" : "blockRedstone")
-				: "dustRedstone";
+		String circuit = OreDictionary.getOres("circuitBasic").size() > 0 ? "circuitBasic" : "blockRedstone";
 		{
 			CraftingRegistry.addShapedOreRecipe(new ItemStack(ModItems.baseComponent, 1, 1),
 					new Object[] { "XZX", "XYX", "XZX", 'X', advComponent, 'Y', circuit, 'Z', coalDust });
@@ -205,8 +193,9 @@ public class ModCrafting
 							'A', new ItemStack(Blocks.SAND) });
 			CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.combustionController),
 					new Object[] { "XXX", "XYX", "XYX", 'X', advComponent, 'Y', circuit });
-			CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.wildlifeAttractor), new Object[] { "XXX", "XYX",
-					"XZX", 'X', new ItemStack(Blocks.HAY_BLOCK), 'Y', new ItemStack(Blocks.CHEST), 'Z', basicCircuit });
+			CraftingRegistry.addShapedOreRecipe(new ItemStack(ModBlocks.wildlifeAttractor),
+					new Object[] { "XXX", "XYX", "XZX", 'X', new ItemStack(Blocks.HAY_BLOCK), 'Y',
+							new ItemStack(Blocks.CHEST), 'Z', new ItemStack(Items.REDSTONE) });
 		}
 		GameRegistry.addSmelting(ModBlocks.dryCactus, new ItemStack(Items.DYE, 1, 7), 0.2F);
 
@@ -247,9 +236,17 @@ public class ModCrafting
 		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Blocks.SAPLING, 1, 2), 19,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.DYE, 10, 15), "treeSapling")));
 
-		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Items.REEDS), 19,
+		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Items.REEDS), 17,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.SPECKLED_MELON, 3),
 						new ItemStack(Blocks.PUMPKIN, 1, OreDictionary.WILDCARD_VALUE))));
+		
+		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Blocks.CHORUS_FLOWER), 19,
+				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.CHORUS_FRUIT_POPPED, 3),
+						new ItemStack(Blocks.RED_MUSHROOM))));
+
+		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Items.CHORUS_FRUIT), 12,
+				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.ENDER_EYE, 4),
+						new ItemStack(Blocks.MELON_BLOCK, 1, OreDictionary.WILDCARD_VALUE))));
 
 		ProcessRecipeManager.infusionRecipes.addRecipe(new ItemStack(Items.NETHER_WART), 12,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.SPIDER_EYE, 4),
@@ -308,8 +305,8 @@ public class ModCrafting
 		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(Items.PRISMARINE_SHARD, 4), 1900,
 				new ArrayList<Object>(
 						Arrays.asList(new ItemStack(Items.QUARTZ, 4), new ItemStack(Blocks.MOSSY_COBBLESTONE))));
-		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(Items.PRISMARINE_CRYSTALS, 4), 2100,
-				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.QUARTZ, 4), new ItemStack(Blocks.GLASS, 3))));
+		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(Items.PRISMARINE_CRYSTALS, 4), 1440,
+				new ArrayList<Object>(Arrays.asList(new ItemStack(Items.QUARTZ, 1), new ItemStack(Blocks.GLASS, 3))));
 
 		ItemStack waterBottle = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER);
 
@@ -320,45 +317,54 @@ public class ModCrafting
 				new ArrayList<Object>(
 						Arrays.asList(new ItemStack(Blocks.COBBLESTONE, 8), new ItemStack(Items.BLAZE_POWDER, 3))));
 
-		String hardestIngot = "ingotIron";
+		String hardestIngot = "ingotGold";
 		String hardestIngot2 = "ingotIron";
+		String hardestIngot3 = "ingotBrick";
 		if (OreDictionary.getOres("ingotSteel").size() > 0)
-			hardestIngot = "ingotSteel";
-		if (ConfigOptions.miscSettings.advancedRecipes && OreDictionary.getOres("ingotTungsten").size() > 0)
 		{
+			hardestIngot3 = hardestIngot2.substring(0);
+			hardestIngot2 = hardestIngot.substring(0);
+			hardestIngot = "ingotSteel";
+		}
+		if (OreDictionary.getOres("ingotTungsten").size() > 0)
+		{
+			hardestIngot3 = hardestIngot2.substring(0);
 			hardestIngot2 = hardestIngot.substring(0);
 			hardestIngot = "ingotTungsten";
 		}
-		if (ConfigOptions.miscSettings.advancedRecipes && OreDictionary.getOres("ingotPlatinum").size() > 0)
+		if (OreDictionary.getOres("ingotPlatinum").size() > 0)
 		{
+			hardestIngot3 = hardestIngot2.substring(0);
 			hardestIngot2 = hardestIngot.substring(0);
 			hardestIngot = "ingotPlatinum";
 		}
-		if (ConfigOptions.miscSettings.advancedRecipes && OreDictionary.getOres("ingotEnderium").size() > 0)
+		if (OreDictionary.getOres("ingotEnderium").size() > 0)
 		{
+			hardestIngot3 = hardestIngot2.substring(0);
 			hardestIngot2 = hardestIngot.substring(0);
 			hardestIngot = "ingotEnderium";
 		}
-		if (ConfigOptions.miscSettings.advancedRecipes && OreDictionary.getOres("ingotTungstensteel").size() > 0)
+		if (OreDictionary.getOres("ingotRefinedObsidian").size() > 0)
 		{
+			hardestIngot3 = hardestIngot2.substring(0);
+			hardestIngot2 = hardestIngot.substring(0);
+			hardestIngot = "ingotRefinedObsidian";
+		}
+		if (OreDictionary.getOres("ingotTungstensteel").size() > 0)
+		{
+			hardestIngot3 = hardestIngot2.substring(0);
 			hardestIngot2 = hardestIngot.substring(0);
 			hardestIngot = "ingotTungstensteel";
 		}
-
-		if (ConfigOptions.miscSettings.advancedRecipes)
-			ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModItems.baseComponent, 1, 3), 2900,
-					new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.SOUL_SAND, 5),
-							new ItemStack(ModBlocks.compressedCoalBlock, 3),
-							new ItemStack(getModPriority(OreDictionary.getOres(hardestIngot)).getItem(), 3,
-									getModPriority(OreDictionary.getOres(hardestIngot)).getMetadata()),
-							new ItemStack(getModPriority(OreDictionary.getOres(hardestIngot2)).getItem(), 3,
-									getModPriority(OreDictionary.getOres(hardestIngot2)).getMetadata()))));
-		else
-			ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModItems.baseComponent, 1, 3), 2900,
-					new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.SOUL_SAND, 5),
-							new ItemStack(ModBlocks.compressedCoalBlock, 3),
-							new ItemStack(getModPriority(OreDictionary.getOres(hardestIngot)).getItem(), 3,
-									getModPriority(OreDictionary.getOres(hardestIngot)).getMetadata()))));
+		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModItems.baseComponent, 1, 3), 2900,
+				new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.SOUL_SAND, 5),
+						new ItemStack(ModBlocks.compressedCoalBlock, 3),
+						new ItemStack(getModPriority(OreDictionary.getOres(hardestIngot)).getItem(), 1,
+								getModPriority(OreDictionary.getOres(hardestIngot)).getMetadata()),
+						new ItemStack(getModPriority(OreDictionary.getOres(hardestIngot2)).getItem(), 2,
+								getModPriority(OreDictionary.getOres(hardestIngot2)).getMetadata()),
+						new ItemStack(getModPriority(OreDictionary.getOres(hardestIngot3)).getItem(), 4,
+								getModPriority(OreDictionary.getOres(hardestIngot3)).getMetadata()))));
 
 		ProcessRecipeManager.combustionRecipes.addRecipe(new ItemStack(ModItems.baseComponent, 1, 7), 3400,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(ModBlocks.heavySnow, 5),
@@ -379,9 +385,9 @@ public class ModCrafting
 		ProcessRecipeManager.rockGrinderRecipes.addRecipe(new ItemStack(Blocks.SAND), 1, new ItemStack(Blocks.GRAVEL));
 		ProcessRecipeManager.rockGrinderRecipes.addRecipe(new ItemStack(Items.FLINT), .3f,
 				new ItemStack(Blocks.GRAVEL));
-		ProcessRecipeManager.rockGrinderRecipes.addRecipe(new ItemStack(ModItems.techComponent, 1, 0), 1,
+		ProcessRecipeManager.rockGrinderRecipes.addRecipe(new ItemStack(ModItems.techComponent, 1, 0), 0.44f,
 				new ItemStack(Blocks.STONE));
-		ProcessRecipeManager.rockGrinderRecipes.addRecipe(new ItemStack(ModItems.techComponent, 1, 3), 1,
+		ProcessRecipeManager.rockGrinderRecipes.addRecipe(new ItemStack(ModItems.techComponent, 1, 3), 0.44f,
 				new ItemStack(Blocks.NETHERRACK));
 		ProcessRecipeManager.rockGrinderRecipes.addRecipe(new ItemStack(ModItems.baseComponent, 1, 5), 1.5f, "logWood");
 
@@ -473,7 +479,7 @@ public class ModCrafting
 				ItemStack output = getModPriority(OreDictionary.getOres(itemOre)).copy();
 				output.setCount(1);
 				ProcessRecipeManager.condenserRecipes.addRecipe(output,
-						(float) Math.pow(1.6f, ItemOreAlchDust.oreInfos.get(i).rarity) * 50f,
+						(float) Math.pow(1.72f, ItemOreAlchDust.oreInfos.get(i).rarity) * 62f,
 						Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, i),
 								ItemOreAlchDust.oreInfos.get(i).parentBlock));
 			}
@@ -520,6 +526,11 @@ public class ModCrafting
 		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModBlocks.magmafiedStone), 0.009f,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.MAGMA), new ItemStack(Blocks.STONE),
 						new ItemStack(ModItems.alchemyComponent, 2, 6))));
+		ProcessRecipeManager.fusionRecipes
+				.addRecipe(new ItemStack(ModBlocks.alchemicalGlass), 0.004f,
+						new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.SAND),
+								new ItemStack(ModItems.alchemyComponent, 1, 1),
+								new ItemStack(Items.PRISMARINE_CRYSTALS))));
 		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModBlocks.petrifiedWood), 0.001f,
 				new ArrayList<Object>(
 						Arrays.asList("logWood", new ItemStack(Items.ROTTEN_FLESH), new ItemStack(Items.COAL))));
@@ -528,8 +539,10 @@ public class ModCrafting
 
 		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 2, 1), 0.001f,
 				new ArrayList<Object>(Arrays.asList(new ItemStack(Blocks.GLASS))));
-		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(Blocks.DIRT), 0.005f, new ArrayList<Object>(
-				Arrays.asList(new ItemStack(Blocks.SAND), new ItemStack(ModItems.baseComponent, 6, 0))));
+		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.alchemyComponent, 16, 1), 0.006f,
+				new ArrayList<Object>(Arrays.asList(new ItemStack(ModBlocks.alchemicalGlass))));
+		ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(Blocks.DIRT), 0.008f,
+				new ArrayList<Object>(Arrays.asList(new ItemStack(ModItems.baseComponent, 6, 0))));
 
 		List<ItemStack> componentsOreDust = new ArrayList();
 		componentsOreDust.add(new ItemStack(Items.ROTTEN_FLESH)); // iron 3
@@ -622,7 +635,7 @@ public class ModCrafting
 				ItemStack ore = getModPriority(OreDictionary.getOres("oreUranium")).copy();
 				ore.setCount(1);
 				ProcessRecipeManager.condenserRecipes.addRecipe(ore,
-						(float) Math.pow(1.6f, ItemOreAlchDust.oreInfos.get(23).rarity) * 50f,
+						(float) Math.pow(1.72f, ItemOreAlchDust.oreInfos.get(23).rarity) * 62f,
 						Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, 23), new ItemStack(Blocks.STONE)));
 			}
 			ProcessRecipeManager.fusionRecipes.addRecipe(new ItemStack(ModItems.oreAlchDust, 1, 23),
@@ -658,7 +671,7 @@ public class ModCrafting
 				ItemStack ore = getModPriority(OreDictionary.getOres("oreThorium")).copy();
 				ore.setCount(1);
 				ProcessRecipeManager.condenserRecipes.addRecipe(ore,
-						(float) Math.pow(1.6f, ItemOreAlchDust.oreInfos.get(24).rarity) * 50f,
+						(float) Math.pow(1.72f, ItemOreAlchDust.oreInfos.get(24).rarity) * 62f,
 						Arrays.asList(new ItemStack(ModItems.oreAlchDust, 1, 24), new ItemStack(Blocks.STONE)));
 			}
 
@@ -692,8 +705,8 @@ public class ModCrafting
 
 		for (int i = 0; i < MachineVariants.values().length; i++)
 		{
-			Object material = getMaterial(i, ConfigOptions.miscSettings.advancedRecipes);
-			Object altMaterial = getAltMaterial(i, ConfigOptions.miscSettings.advancedRecipes);
+			Object material = getMaterial(i);
+			Object altMaterial = getAltMaterial(i);
 			Object materialDust = getMaterialDust(i, false);
 			Object materialAlch = getMaterialDust(i, true);
 			Object materialGear = getGear(i);
@@ -767,15 +780,15 @@ public class ModCrafting
 			return alch ? new ItemStack(ModItems.alchemyComponent, 1, 5) : new ItemStack(Items.GLOWSTONE_DUST, 1);
 	}
 
-	private static Object getAltMaterial(int type, boolean diff)
+	private static Object getAltMaterial(int type)
 	{
 		if (type == 0)
 			return "plankWood";
 
-		return getMaterial(type, diff);
+		return getMaterial(type);
 	}
 
-	private static Object getMaterial(int type, boolean diff)
+	private static Object getMaterial(int type)
 	{
 		switch (type)
 		{
@@ -784,33 +797,33 @@ public class ModCrafting
 		case 1:
 			return new ItemStack(Blocks.STONE);
 		case 2:
-			return getModMaterial("Bronze", diff);
+			return getModMaterial("Bronze");
 		case 3:
-			return getModMaterial("Iron", diff);
+			return getModMaterial("Iron");
 		case 4:
-			return getModMaterial("Steel", diff);
+			return getModMaterial("Steel");
 		case 5:
-			return getModMaterial("Electrum", diff);
+			return getModMaterial("Electrum");
 		case 6:
 			return new ItemStack(Items.NETHERBRICK);
 		case 7:
-			return getModMaterial("Lead", diff);
+			return getModMaterial("Lead");
 		case 8:
-			return getModMaterial("Manyullyn", diff);
+			return getModMaterial("Manyullyn");
 		case 9:
-			return getModMaterial("Signalum", diff);
+			return getModMaterial("Signalum");
 		case 10:
 			return new ItemStack(Blocks.END_STONE);
 		case 11:
-			return getModMaterial("Enderium", diff);
+			return getModMaterial("Enderium");
 		case 12:
 			return new ItemStack(ModItems.baseComponent, 1, 3);
 		case 13:
 			return new ItemStack(ModItems.baseComponent, 1, 7);
 		case 14:
-			return getModMaterial("Osmium", diff);
+			return getModMaterial("Osmium");
 		case 15:
-			return getModMaterial("RefinedObsidian", diff);
+			return getModMaterial("RefinedObsidian");
 		}
 		return null;
 	}
@@ -855,10 +868,9 @@ public class ModCrafting
 		return null;
 	}
 
-	private static Object getModMaterial(String type, boolean diff)
+	private static Object getModMaterial(String type)
 	{
-		return (diff && OreDictionary.getOres("plate" + type).size() > 0) ? ("plate" + type)
-				: (OreDictionary.getOres("ingot" + type).size() > 0 ? ("ingot" + type) : null);
+		return (OreDictionary.getOres("ingot" + type).size() > 0 ? ("ingot" + type) : null);
 	}
 
 	private static Object getModGear(String type)
