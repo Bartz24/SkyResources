@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = References.ModID, name = References.ModName, version = References.Version, dependencies = "after:mekanism", useMetadata = true)
+@Mod(modid = References.ModID, name = References.ModName, version = References.Version, useMetadata = true)
 public class SkyResources
 {
 	@SidedProxy(clientSide = "com.bartz24.skyresources.proxy.ClientProxy", serverSide = "com.bartz24.skyresources.proxy.ServerProxy")
