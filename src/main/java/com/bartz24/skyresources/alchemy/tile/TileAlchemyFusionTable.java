@@ -80,6 +80,10 @@ public class TileAlchemyFusionTable extends TileItemInventory implements ITickab
 							if (!s.isEmpty() && s.isItemEqual(this.getInventory().getStackInSlot(i + 1)))
 							{
 								this.getInventory().getStackInSlot(i + 1).shrink(s.getCount());
+								if (this.getInventory().getStackInSlot(i + 1).IsEmpty())
+								{
+									this.getInventory().setStackInSlot(i + 1, ItemStack.Empty);
+								}
 								success = true;
 								break;
 							}
@@ -111,6 +115,10 @@ public class TileAlchemyFusionTable extends TileItemInventory implements ITickab
 				this.curCatalystLeft += 1;
 				this.curCatalystYield = FusionCatalysts.getCatalystValue(this.getInventory().getStackInSlot(0));
 				this.getInventory().getStackInSlot(0).shrink(1);
+				if (this.getInventory().getStackInSlot(0).IsEmpty())
+				{
+					this.getInventory().setStackInSlot(0, ItemStack.Empty);
+				}
 			}
 		}
 		if (curProgress >= (int) (800f / (float) ConfigOptions.machineSettings.fusionSpeed))
