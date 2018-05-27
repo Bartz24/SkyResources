@@ -3,6 +3,7 @@ package com.bartz24.skyresources.technology.block;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
+import com.bartz24.skyresources.base.block.BlockMachine;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModGuiHandler;
 import com.bartz24.skyresources.technology.tile.TileWildlifeAttractor;
@@ -22,7 +23,7 @@ import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidUtil;
 
-public class BlockWildlifeAttractor extends BlockContainer
+public class BlockWildlifeAttractor extends BlockMachine
 {
 
 	public BlockWildlifeAttractor(String unlocalizedName, String registryName, float hardness, float resistance)
@@ -46,15 +47,6 @@ public class BlockWildlifeAttractor extends BlockContainer
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileWildlifeAttractor();
-	}
-
-	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state)
-	{
-		TileWildlifeAttractor te = (TileWildlifeAttractor) world.getTileEntity(pos);
-		te.dropInventory();
-
-		super.breakBlock(world, pos, state);
 	}
 
 	@Override

@@ -26,7 +26,7 @@ public class TileRockCleaner extends TileGenericPower implements ITickable, IFlu
 {
 	public TileRockCleaner()
 	{
-		super("rockCleaner", 100000, 2000, 0, 4, new Integer[] { 1, 2, 3 }, new Integer[] { 0 });
+		super("rockCleaner", 100000, 2000, 0, 4, new int[] { 1, 2, 3 }, new int[] { 0 });
 		tank = new FluidTank(4000);
 	}
 
@@ -82,9 +82,8 @@ public class TileRockCleaner extends TileGenericPower implements ITickable, IFlu
 					}
 				}
 			}
-			updateRedstone();
-			this.markDirty();
 		}
+		this.markDirty();
 	}
 
 	public void addToOutput(int slot)

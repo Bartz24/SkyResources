@@ -32,7 +32,7 @@ public class TileDarkMatterWarper extends TileItemInventory implements ITickable
 {
 	public TileDarkMatterWarper()
 	{
-		super("darkMatterWarper", 1, null, new Integer[] { 0 });
+		super("darkMatterWarper", 1, null, new int[] { 0 });
 	}
 
 	private int burnTime;

@@ -556,7 +556,7 @@ public class ModCrafting
 		componentsOreDust.add(new ItemStack(ModItems.baseComponent, 1, 4)); // aluminum
 																			// 4
 		componentsOreDust.add(new ItemStack(Blocks.CLAY)); // lead 4
-		componentsOreDust.add(new ItemStack(Items.DYE, 1, 4)); // cobalt 6
+		componentsOreDust.add(new ItemStack(Items.DYE, 1, 12)); // cobalt 6
 		componentsOreDust.add(new ItemStack(Items.MAGMA_CREAM)); // ardite 6
 		componentsOreDust.add(new ItemStack(Items.CLAY_BALL)); // osmium 6
 		componentsOreDust.add(null); // draconium 9

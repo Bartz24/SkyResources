@@ -182,9 +182,9 @@ public class ItemCondenser extends ItemMachine
 		return 1;
 	}
 
-	public Integer[] getExtractBlacklist(ItemStack stack)
+	public int[] getExtractBlacklist(ItemStack stack)
 	{
-		return new Integer[] { 0 };
+		return new int[] { 0 };
 	}
 
 	public List<Slot> getSlots(TileCasing tile)

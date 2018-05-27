@@ -6,6 +6,6 @@ public class TileCrucibleInserter extends TileItemInventory
 {
 	public TileCrucibleInserter()
 	{
-		super("crucibleInserter", 1, null, new Integer[] { 0 });
+		super("crucibleInserter", 1, null, new int[] { 0 });
 	}
 }

@@ -20,12 +20,4 @@ public class BlockLightFreezer extends BlockFreezer
 	{
 		return new LightFreezerTile();
 	}
-
-	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state)
-	{
-		LightFreezerTile te = (LightFreezerTile) world.getTileEntity(pos);
-		te.dropInventory();
-		super.breakBlock(world, pos, state);
-	}
 }

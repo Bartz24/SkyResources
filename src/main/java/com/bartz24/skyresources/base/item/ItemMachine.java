@@ -322,14 +322,14 @@ public class ItemMachine extends Item
 		return 0;
 	}
 
-	public Integer[] getInsertBlacklist(ItemStack stack)
+	public int[] getInsertBlacklist(ItemStack stack)
 	{
-		return new Integer[0];
+		return new int[0];
 	}
 
-	public Integer[] getExtractBlacklist(ItemStack stack)
+	public int[] getExtractBlacklist(ItemStack stack)
 	{
-		return new Integer[0];
+		return new int[0];
 	}
 
 	// Fluid Handler

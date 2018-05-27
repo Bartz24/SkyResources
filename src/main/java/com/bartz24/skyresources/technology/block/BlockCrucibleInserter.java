@@ -2,6 +2,7 @@ package com.bartz24.skyresources.technology.block;
 
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
+import com.bartz24.skyresources.base.block.BlockMachine;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModGuiHandler;
 import com.bartz24.skyresources.technology.tile.TileCrucibleInserter;
@@ -21,7 +22,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockCrucibleInserter extends BlockContainer
+public class BlockCrucibleInserter extends BlockMachine
 {
     
 	public BlockCrucibleInserter(String unlocalizedName, String registryName, float hardness,
@@ -76,15 +77,6 @@ public class BlockCrucibleInserter extends BlockContainer
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileCrucibleInserter();
-	}
-	
-	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state)
-	{
-		TileCrucibleInserter te = (TileCrucibleInserter) world.getTileEntity(pos);
-		te.dropInventory();
-
-		super.breakBlock(world, pos, state);
 	}
 
 	@Override

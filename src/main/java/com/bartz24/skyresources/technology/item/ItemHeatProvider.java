@@ -146,9 +146,9 @@ public class ItemHeatProvider extends ItemMachine
 		return variant.getFuelType().equals("Fuel") || variant.getFuelType() instanceof ItemStack ? 1 : 0;
 	}
 
-	public Integer[] getExtractBlacklist(ItemStack stack)
+	public int[] getExtractBlacklist(ItemStack stack)
 	{
-		return getItemSlots(stack) == 1 ? new Integer[] { 0 } : new Integer[0];
+		return getItemSlots(stack) == 1 ? new int[] { 0 } : new int[0];
 	}
 
 	// Fluid Handler

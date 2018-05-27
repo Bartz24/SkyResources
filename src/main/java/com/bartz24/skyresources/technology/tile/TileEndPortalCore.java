@@ -27,7 +27,7 @@ public class TileEndPortalCore extends TileItemInventory implements ITickable
 
 	public TileEndPortalCore()
 	{
-		super("endPortalCore", 1, null, new Integer[] { 0 });
+		super("endPortalCore", 1, null, new int[] { 0 });
 	}
 
 	@Override
@@ -63,10 +63,9 @@ public class TileEndPortalCore extends TileItemInventory implements ITickable
 						}
 					}
 				}
-				updateRedstone();
 			}
-			this.markDirty();
 		}
+		this.markDirty();
 	}
 
 	void spawnFish()

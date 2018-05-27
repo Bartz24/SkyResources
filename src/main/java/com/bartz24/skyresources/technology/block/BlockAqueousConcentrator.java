@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
+import com.bartz24.skyresources.base.block.BlockMachine;
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModGuiHandler;
@@ -35,7 +36,7 @@ import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidUtil;
 
-public class BlockAqueousConcentrator extends BlockContainer
+public class BlockAqueousConcentrator extends BlockMachine
 {
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
@@ -191,14 +192,5 @@ public class BlockAqueousConcentrator extends BlockContainer
 					pos.getZ());
 		}
 		return true;
-	}
-
-	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state)
-	{
-		TileAqueousConcentrator te = (TileAqueousConcentrator) world.getTileEntity(pos);
-		te.dropInventory();
-
-		super.breakBlock(world, pos, state);
 	}
 }

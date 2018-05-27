@@ -15,10 +15,10 @@ public class MiniFreezerTile extends TileItemInventory implements ITickable
 {
 	public MiniFreezerTile()
 	{
-		super("freezer", 2, new Integer[] { 1 }, new Integer[] { 0 });
+		super("freezer", 2, new int[] { 1 }, new int[] { 0 });
 	}
 
-	public MiniFreezerTile(int slots, Integer[] noInsert, Integer[] noExtract)
+	public MiniFreezerTile(int slots, int[] noInsert, int[] noExtract)
 	{
 		super("freezer", slots, noInsert, noExtract);
 	}

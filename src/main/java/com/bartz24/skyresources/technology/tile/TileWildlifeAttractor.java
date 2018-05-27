@@ -30,7 +30,7 @@ public class TileWildlifeAttractor extends TileGenericPower implements ITickable
 
 	public TileWildlifeAttractor()
 	{
-		super("wildlifeAttractor", 100000, 2000, 0, 1, null, new Integer[] { 0 });
+		super("wildlifeAttractor", 100000, 2000, 0, 1, null, new int[] { 0 });
 		tank = new FluidTank(ConfigOptions.machineSettings.wildlifeAttractorWaterCapacity);
 	}
 
@@ -39,7 +39,6 @@ public class TileWildlifeAttractor extends TileGenericPower implements ITickable
 	{
 		if (!world.isRemote)
 		{
-			updateRedstone();
 			if (this.getRedstoneSignal() == 0)
 			{
 				if (matterLeft <= 0)
@@ -62,7 +61,6 @@ public class TileWildlifeAttractor extends TileGenericPower implements ITickable
 			}
 		}
 		markDirty();
-		world.notifyBlockUpdate(getPos(), world.getBlockState(getPos()), world.getBlockState(getPos()), 3);
 	}
 
 	public int getMatterLeft()

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.bartz24.skyresources.alchemy.FusionCatalysts;
 import com.bartz24.skyresources.alchemy.item.ItemHealthGem;
 import com.bartz24.skyresources.alchemy.item.ItemInfusionStone;
 import com.bartz24.skyresources.base.gui.ItemHandlerSpecial;
@@ -23,12 +24,14 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.oredict.OreDictionary;
 
+import javax.annotation.Nonnull;
+
 public class LifeInfuserTile extends TileItemInventory implements ITickable
 {
 	public LifeInfuserTile()
 	{
-		super("lifeInfuser", 2, null, new Integer[] { 1 });
-		this.setInventory(new ItemHandlerSpecial(3, null, new Integer[] { 1 })
+		super("lifeInfuser", 2, null, new int[] { 1 });
+		this.setInventory(new ItemHandlerSpecial(3, null, new int[] { 1 })
 		{
 			protected void onContentsChanged(int slot)
 			{
@@ -36,11 +39,11 @@ public class LifeInfuserTile extends TileItemInventory implements ITickable
 				LifeInfuserTile.this.markDirty();
 			}
 
-			public boolean isItemValid(int slot, ItemStack stack)
-			{
-				if (slot == 0)
-					return stack.getItem() instanceof ItemHealthGem;
-				return super.isItemValid(slot, stack);
+			public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+				if (slot == 0 && !(stack.getItem() instanceof ItemHealthGem)) {
+					return stack;
+				}
+				return super.insertItem(slot, stack, simulate);
 			}
 		});
 	}
@@ -54,8 +57,6 @@ public class LifeInfuserTile extends TileItemInventory implements ITickable
 		{
 			craftItem();
 		}
-
-		updateRedstone();
 	}
 
 	public boolean hasValidMultiblock()

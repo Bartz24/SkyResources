@@ -94,11 +94,19 @@ public class TileBase extends TileEntity
 	    this.readFromNBT(tag);
 	  }
 
-	public void markDirty()
-	{
+	public void markDirty() {
 		super.markDirty();
-		world.notifyBlockUpdate(getPos(), world.getBlockState(getPos()), world.getBlockState(getPos()), 3);
+		if (world != null && !world.isRemote)
+			world.notifyBlockUpdate(getPos(), world.getBlockState(getPos()), world.getBlockState(getPos()), 0);
+	}
 
+	public void markDirtyBlockUpdate() {
+		super.markDirty();
+		if (world != null && !world.isRemote) {
+			world.notifyBlockUpdate(getPos(), world.getBlockState(getPos()), world.getBlockState(getPos()), 0);
+			world.notifyBlockUpdate(getPos(), world.getBlockState(getPos()), world.getBlockState(getPos()), 3);
+			world.notifyNeighborsOfStateChange(pos, blockType, true);
+		}
 	}
 
 	@Override

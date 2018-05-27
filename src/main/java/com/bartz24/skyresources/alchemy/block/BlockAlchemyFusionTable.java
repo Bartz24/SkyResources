@@ -3,6 +3,7 @@ package com.bartz24.skyresources.alchemy.block;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.alchemy.tile.TileAlchemyFusionTable;
+import com.bartz24.skyresources.base.block.BlockMachine;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModGuiHandler;
 
@@ -17,7 +18,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockAlchemyFusionTable extends BlockContainer
+public class BlockAlchemyFusionTable extends BlockMachine
 {
 
 	public BlockAlchemyFusionTable(String unlocalizedName, String registryName, float hardness, float resistance)
@@ -41,15 +42,6 @@ public class BlockAlchemyFusionTable extends BlockContainer
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileAlchemyFusionTable();
-	}
-
-	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state)
-	{
-		TileAlchemyFusionTable te = (TileAlchemyFusionTable) world.getTileEntity(pos);
-		te.dropInventory();
-
-		super.breakBlock(world, pos, state);
 	}
 
 	@Override

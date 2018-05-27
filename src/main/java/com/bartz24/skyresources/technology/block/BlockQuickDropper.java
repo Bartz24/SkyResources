@@ -2,6 +2,7 @@ package com.bartz24.skyresources.technology.block;
 
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
+import com.bartz24.skyresources.base.block.BlockMachine;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModGuiHandler;
 import com.bartz24.skyresources.technology.tile.TileQuickDropper;
@@ -17,7 +18,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockQuickDropper extends BlockContainer
+public class BlockQuickDropper extends BlockMachine
 {
     
 	public BlockQuickDropper(String unlocalizedName, String registryName, float hardness,
@@ -42,15 +43,6 @@ public class BlockQuickDropper extends BlockContainer
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileQuickDropper();
-	}
-
-	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state)
-	{
-		TileQuickDropper te = (TileQuickDropper) world.getTileEntity(pos);
-		te.dropInventory();
-
-		super.breakBlock(world, pos, state);
 	}
 
 	@Override

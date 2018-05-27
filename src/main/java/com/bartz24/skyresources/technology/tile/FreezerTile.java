@@ -13,10 +13,10 @@ public class FreezerTile extends MiniFreezerTile implements ITickable
 {
 	public FreezerTile()
 	{
-		super(6, new Integer[] { 3, 4, 5 }, new Integer[] { 0, 1, 2 });
+		super(6, new int[] { 3, 4, 5 }, new int[] { 0, 1, 2 });
 	}
 	
-	public FreezerTile(int slots, Integer[] noInsert, Integer[] noExtract)
+	public FreezerTile(int slots, int[] noInsert, int[] noExtract)
 	{
 		super(slots, noInsert, noExtract);
 	}

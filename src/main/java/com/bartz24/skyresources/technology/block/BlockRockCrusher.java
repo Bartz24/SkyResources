@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
+import com.bartz24.skyresources.base.block.BlockMachine;
 import com.bartz24.skyresources.registry.ModBlocks;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModGuiHandler;
@@ -31,7 +32,7 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockRockCrusher extends BlockContainer
+public class BlockRockCrusher extends BlockMachine
 {
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	public BlockRockCrusher(String unlocalizedName, String registryName, float hardness, float resistance)
@@ -156,14 +157,5 @@ public class BlockRockCrusher extends BlockContainer
 					pos.getZ());
 		}
 		return true;
-	}
-
-	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state)
-	{
-		TileRockCrusher te = (TileRockCrusher) world.getTileEntity(pos);
-		te.dropInventory();
-
-		super.breakBlock(world, pos, state);
 	}
 }

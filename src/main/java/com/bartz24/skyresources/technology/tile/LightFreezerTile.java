@@ -13,7 +13,7 @@ public class LightFreezerTile extends MiniFreezerTile implements ITickable
 {
 	public LightFreezerTile()
 	{
-		super(10, new Integer[] { 5, 6, 7, 8, 9 }, new Integer[] { 0, 1, 2, 3, 4 });
+		super(10, new int[] { 5, 6, 7, 8, 9 }, new int[] { 0, 1, 2, 3, 4 });
 	}
 
 	public float getFreezerSpeed()

@@ -24,7 +24,7 @@ public class TileAqueousConcentrator extends TileGenericPower implements ITickab
 {
 	public TileAqueousConcentrator()
 	{
-		super("aqueousConcentrator", 100000, 2000, 0, 2, new Integer[] { 1 }, new Integer[] { 0 });
+		super("aqueousConcentrator", 100000, 2000, 0, 2, new int[] { 1 }, new int[] { 0 });
 		tank = new FluidTank(4000);
 	}
 

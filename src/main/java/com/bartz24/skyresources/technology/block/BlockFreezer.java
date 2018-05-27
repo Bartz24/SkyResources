@@ -2,6 +2,7 @@ package com.bartz24.skyresources.technology.block;
 
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
+import com.bartz24.skyresources.base.block.BlockMachine;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModGuiHandler;
 import com.bartz24.skyresources.technology.tile.FreezerTile;
@@ -27,7 +28,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockFreezer extends BlockContainer
+public class BlockFreezer extends BlockMachine
 {
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	public static final PropertyEnum<EnumPartType> PART = PropertyEnum.<EnumPartType> create("part",
@@ -76,17 +77,6 @@ public class BlockFreezer extends BlockContainer
 	public int damageDropped(IBlockState blockstate)
 	{
 		return 0;
-	}
-
-	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state)
-	{
-		if (world.getTileEntity(pos) instanceof FreezerTile)
-		{
-			FreezerTile te = (FreezerTile) world.getTileEntity(pos);
-			te.dropInventory();
-		}
-		super.breakBlock(world, pos, state);
 	}
 
 	@Override

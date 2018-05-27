@@ -40,7 +40,7 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 
 	public TileBeeAttractor()
 	{
-		super("beeAttractor", 100000, 2000, 0, 6, new Integer[] { 0, 1, 2, 3, 4, 5 }, null);
+		super("beeAttractor", 100000, 2000, 0, 6, new int[] { 0, 1, 2, 3, 4, 5 }, null);
 		tank = new FluidTank(ConfigOptions.pluginSettings.forestrySettings.beeAttractorSeedOilCapacity);
 	}
 
@@ -49,7 +49,6 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 	{
 		if (!world.isRemote)
 		{
-			updateRedstone();
 			if (this.getRedstoneSignal() == 0)
 			{
 				if (tank.getFluidAmount() >= fluidUsage && tank.getFluid().getFluid().getName().equals("seed.oil")
@@ -68,7 +67,6 @@ public class TileBeeAttractor extends TileGenericPower implements ITickable, IFl
 			}
 		}
 		markDirty();
-		world.notifyBlockUpdate(getPos(), world.getBlockState(getPos()), world.getBlockState(getPos()), 3);
 	}
 
 	boolean isInvFull()

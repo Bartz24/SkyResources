@@ -17,8 +17,8 @@ public class TileGenericPower extends TileItemInventory implements IEnergyStorag
 		maxExtract = maxOut;
 	}
 
-	public TileGenericPower(String name, int maxPower, int maxIn, int maxOut, int invSlots, Integer[] noInsert,
-			Integer[] noExtract)
+	public TileGenericPower(String name, int maxPower, int maxIn, int maxOut, int invSlots, int[] noInsert,
+			int[] noExtract)
 	{
 		super(name, invSlots, noInsert, noExtract);
 		maxEnergy = maxPower;

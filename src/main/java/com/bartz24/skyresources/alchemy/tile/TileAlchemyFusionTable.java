@@ -1,6 +1,7 @@
 package com.bartz24.skyresources.alchemy.tile;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.bartz24.skyresources.alchemy.FusionCatalysts;
@@ -18,6 +19,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.oredict.OreDictionary;
 
+import javax.annotation.Nonnull;
+
 public class TileAlchemyFusionTable extends TileItemInventory implements ITickable
 {
 	private NonNullList<ItemStack> filter = NonNullList.withSize(9, ItemStack.EMPTY);
@@ -31,9 +34,9 @@ public class TileAlchemyFusionTable extends TileItemInventory implements ITickab
 
 	public TileAlchemyFusionTable()
 	{
-		super("fusionTable", 11, new Integer[] { 10 }, new Integer[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+		super("fusionTable", 11, new int[] { 10 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
 		this.setInventory(
-				new ItemHandlerSpecial(11, new Integer[] { 10 }, new Integer[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 })
+				new ItemHandlerSpecial(11, new int[] { 10 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 })
 				{
 					protected void onContentsChanged(int slot)
 					{
@@ -41,13 +44,13 @@ public class TileAlchemyFusionTable extends TileItemInventory implements ITickab
 						TileAlchemyFusionTable.this.markDirty();
 					}
 
-					public boolean isItemValid(int slot, ItemStack stack)
-					{
-						if (slot == 0)
-							return FusionCatalysts.isCatalyst(stack);
-						else if (slot < 10)
-							return stack.isItemEqual(TileAlchemyFusionTable.this.filter.get(slot - 1));
-						return super.isItemValid(slot, stack);
+					public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+						if (slot == 0 && !FusionCatalysts.isCatalyst(stack)) {
+							return stack;
+						}
+						else if (slot < 10 && !stack.isItemEqual(TileAlchemyFusionTable.this.filter.get(slot - 1)))
+							return stack;
+						return super.insertItem(slot, stack, simulate);
 					}
 				});
 	}

@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.alchemy.tile.CrucibleTile;
+import com.bartz24.skyresources.base.block.BlockMachine;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 
@@ -27,7 +28,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidUtil;
 
-public class CrucibleBlock extends BlockContainer
+public class CrucibleBlock extends BlockMachine
 {
 	protected static final AxisAlignedBB AABB_LEGS = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3125D, 1.0D);
 	protected static final AxisAlignedBB AABB_WALL_NORTH = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.125D);

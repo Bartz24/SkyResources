@@ -23,6 +23,11 @@ repositories {
 		name "Jared"
 		url "http://maven.blamejared.com/"
 	}
+    maven {
+        // location of the maven that hosts JEI files
+        name = "Progwml6 maven"
+        url = "http://dvs1.progwml6.com/files/maven"
+    }
 }
 
 minecraft {
@@ -44,9 +49,11 @@ dependencies {
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"
     //compile "some.group:artifact:version"
-      
-	compile files("lib/jei_1.12.2-4.8.0.111.jar")
-	compile files("lib/theoneprobe-1.12-1.4.19.jar")
+
+    deobfProvided "mezz.jei:jei_1.12.2:4.8.5.159:api"
+    runtime "mezz.jei:jei_1.12.2:4.8.5.159"
+
+	compile files("lib/theoneprobe-1.12-1.4.21.jar")
 	compile files("lib/forestry_1.12.2-5.7.0.209.jar")
 	compile files("lib/industrialcraft-2-2.8.16-ex112.jar")
 	compile files("lib/binnie-mods-1.12.2-2.5.0.88.jar")

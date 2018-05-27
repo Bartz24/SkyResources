@@ -89,7 +89,6 @@ public class FluidDropperTile extends TileBase implements ITickable, IFluidHandl
 	{
 		if (!world.isRemote)
 		{
-			updateRedstone();
 			pullFromAround();
 
 			if (tank.getFluidAmount() >= 1000 && world.isAirBlock(pos.down()))

@@ -126,9 +126,8 @@ public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
 					itemIn = ItemStack.EMPTY;
 
 			}
-			markDirty();
-			world.notifyBlockUpdate(getPos(), world.getBlockState(getPos()), world.getBlockState(getPos()), 3);
 		}
+		markDirty();
 	}
 
 	private void insertStack(ItemStack stack)

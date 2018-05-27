@@ -1,6 +1,7 @@
 package com.bartz24.skyresources.technology.block;
 
 import com.bartz24.skyresources.References;
+import com.bartz24.skyresources.base.block.BlockMachine;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.technology.tile.FluidDropperTile;
 
@@ -13,7 +14,7 @@ import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class FluidDropperBlock extends BlockContainer
+public class FluidDropperBlock extends BlockMachine
 {
 
 	public FluidDropperBlock(String unlocalizedName,

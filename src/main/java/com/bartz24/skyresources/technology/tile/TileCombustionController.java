@@ -66,9 +66,8 @@ public class TileCombustionController extends TileItemInventory implements ITick
 				craftSingleItem();
 			} else if (cooldownTicks > 0)
 				cooldownTicks--;
-			updateRedstone();
-			this.markDirty();
 		}
+		this.markDirty();
 	}
 
 	public ProcessRecipe recipeToCraft(float curHU)

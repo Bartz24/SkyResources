@@ -19,7 +19,6 @@ public class TileQuickDropper extends TileItemInventory implements ITickable
 	{
 		if (!world.isRemote)
 		{
-			updateRedstone();
 			if (this.getRedstoneSignal() == 0 && !world.isSideSolid(pos.down(), EnumFacing.UP)
 					&& !this.getInventory().getStackInSlot(0).isEmpty())
 			{
@@ -31,7 +30,7 @@ public class TileQuickDropper extends TileItemInventory implements ITickable
 				world.spawnEntity(item);
 				this.getInventory().setStackInSlot(0, ItemStack.EMPTY);
 			}
-			this.markDirty();
 		}
+		this.markDirty();
 	}
 }

@@ -26,7 +26,7 @@ public class TileItemInventory extends TileBase
 		};
 	}
 
-	public TileItemInventory(String name, int slots, Integer[] noInsert, Integer[] noExtract)
+	public TileItemInventory(String name, int slots, int[] noInsert, int[] noExtract)
 	{
 		super(name);
 		inventory = new ItemHandlerSpecial(slots, noInsert, noExtract)

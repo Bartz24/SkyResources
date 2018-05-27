@@ -2,6 +2,7 @@ package com.bartz24.skyresources.technology.block;
 
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
+import com.bartz24.skyresources.base.block.BlockMachine;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModGuiHandler;
 import com.bartz24.skyresources.technology.tile.TileCombustionCollector;
@@ -17,7 +18,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockCombustionCollector extends BlockContainer
+public class BlockCombustionCollector extends BlockMachine
 {
 
 	public BlockCombustionCollector(String unlocalizedName, String registryName, float hardness, float resistance)
@@ -41,15 +42,6 @@ public class BlockCombustionCollector extends BlockContainer
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileCombustionCollector();
-	}
-
-	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state)
-	{
-		TileCombustionCollector te = (TileCombustionCollector) world.getTileEntity(pos);
-		te.dropInventory();
-
-		super.breakBlock(world, pos, state);
 	}
 
 	@Override

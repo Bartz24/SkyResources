@@ -3,6 +3,7 @@ package com.bartz24.skyresources.alchemy.block;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
 import com.bartz24.skyresources.alchemy.tile.LifeInfuserTile;
+import com.bartz24.skyresources.base.block.BlockMachine;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModGuiHandler;
 
@@ -22,7 +23,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class LifeInfuserBlock extends BlockContainer
+public class LifeInfuserBlock extends BlockMachine
 {
 
 	public LifeInfuserBlock(String unlocalizedName, String registryName, float hardness,
@@ -77,15 +78,6 @@ public class LifeInfuserBlock extends BlockContainer
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new LifeInfuserTile();
-	}
-
-	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state)
-	{
-		LifeInfuserTile te = (LifeInfuserTile) world.getTileEntity(pos);
-		te.dropInventory();
-
-		super.breakBlock(world, pos, state);
 	}
 
 	@Override

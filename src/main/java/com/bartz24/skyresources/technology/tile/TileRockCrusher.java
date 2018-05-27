@@ -19,8 +19,8 @@ public class TileRockCrusher extends TileGenericPower implements ITickable
 {
 	public TileRockCrusher()
 	{
-		super("rockCrusher", 100000, 2000, 0, 4, new Integer[] { 1, 2, 3 }, new Integer[] { 0 });
-		this.setInventory(new ItemHandlerSpecial(4, new Integer[] { 1, 2, 3 }, new Integer[] { 0 })
+		super("rockCrusher", 100000, 2000, 0, 4, new int[] { 1, 2, 3 }, new int[] { 0 });
+		this.setInventory(new ItemHandlerSpecial(4, new int[] { 1, 2, 3 }, new int[] { 0 })
 		{
 			protected void onContentsChanged(int slot)
 			{
@@ -80,7 +80,6 @@ public class TileRockCrusher extends TileGenericPower implements ITickable
 					}
 				}
 			}
-			updateRedstone();
 			this.markDirty();
 		}
 	}
