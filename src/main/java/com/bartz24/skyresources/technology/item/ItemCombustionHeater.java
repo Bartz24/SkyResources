@@ -310,7 +310,7 @@ public class ItemCombustionHeater extends ItemMachine
 					}
 					if (!stack.isEmpty())
 					{
-						Entity entity = new EntityItem(world, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F,
+						Entity entity = new EntityItem(world, pos.getX() + 0.5F, pos.getY() + 1.5F, pos.getZ() + 0.5F,
 								stack);
 						world.spawnEntity(entity);
 					}
@@ -319,7 +319,7 @@ public class ItemCombustionHeater extends ItemMachine
 				{
 					if (items.get(item2) > 0)
 					{
-						EntityItem entity = new EntityItem(world, pos.getX() + 0.5F, pos.getY() + 0.5F,
+						EntityItem entity = new EntityItem(world, pos.getX() + 0.5F, pos.getY() + 1.5F,
 								pos.getZ() + 0.5F, item2);
 						entity.getItem().setCount(items.get(item2));
 						world.spawnEntity(entity);
