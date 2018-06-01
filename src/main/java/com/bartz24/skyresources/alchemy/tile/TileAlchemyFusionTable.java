@@ -48,7 +48,7 @@ public class TileAlchemyFusionTable extends TileItemInventory implements ITickab
 						if (slot == 0 && !FusionCatalysts.isCatalyst(stack)) {
 							return stack;
 						}
-						else if (slot < 10 && !stack.isItemEqual(TileAlchemyFusionTable.this.filter.get(slot - 1)))
+						if (slot > 0 && slot < 10 && !stack.isItemEqual(TileAlchemyFusionTable.this.filter.get(slot - 1)))
 							return stack;
 						return super.insertItem(slot, stack, simulate);
 					}
