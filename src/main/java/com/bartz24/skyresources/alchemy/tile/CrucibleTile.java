@@ -1,13 +1,10 @@
 package com.bartz24.skyresources.alchemy.tile;
 
-import java.util.List;
-
 import com.bartz24.skyresources.base.HeatSources;
 import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.recipe.ProcessRecipe;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 import com.bartz24.skyresources.technology.tile.TileCrucibleInserter;
-
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -24,195 +21,188 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
-public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler
-{
-	FluidTank tank;
+import java.util.List;
 
-	public static int tankCapacity = ConfigOptions.machineSettings.crucibleCapacity;
+public class CrucibleTile extends TileEntity implements ITickable, IFluidHandler {
+    FluidTank tank;
 
-	public ItemStack itemIn = ItemStack.EMPTY;
-	public int itemAmount;
-	int maxItemAmount = ConfigOptions.machineSettings.crucibleCapacity;
+    public static int tankCapacity = ConfigOptions.machineSettings.crucibleCapacity;
 
-	@Override
-	public IFluidTankProperties[] getTankProperties()
-	{
-		return tank.getTankProperties();
-	}
+    public ItemStack itemIn = ItemStack.EMPTY;
+    public int itemAmount;
+    int maxItemAmount = ConfigOptions.machineSettings.crucibleCapacity;
 
-	@Override
-	public int fill(FluidStack resource, boolean doFill)
-	{
-		if (resource != null)
-		{
-			int filled = tank.fill(resource, doFill);
+    @Override
+    public IFluidTankProperties[] getTankProperties() {
+        return tank.getTankProperties();
+    }
 
-			return filled;
-		}
+    @Override
+    public int fill(FluidStack resource, boolean doFill) {
+        if (resource != null) {
+            int filled = tank.fill(resource, doFill);
+            markDirty();
 
-		return 0;
-	}
+            return filled;
+        }
 
-	@Override
-	public FluidStack drain(FluidStack resource, boolean doDrain)
-	{
-		if (resource != null)
-		{
-			return tank.drain(resource.amount, doDrain);
-		}
+        return 0;
+    }
 
-		return null;
-	}
+    @Override
+    public FluidStack drain(FluidStack resource, boolean doDrain) {
+        if (resource != null) {
+            markDirty();
+            return tank.drain(resource.amount, doDrain);
+        }
 
-	@Override
-	public FluidStack drain(int maxDrain, boolean doDrain)
-	{
-		return tank.drain(maxDrain, doDrain);
-	}
+        return null;
+    }
 
-	public FluidTank getTank()
-	{
-		return tank;
-	}
+    @Override
+    public FluidStack drain(int maxDrain, boolean doDrain) {
+        return tank.drain(maxDrain, doDrain);
+    }
 
-	public CrucibleTile()
-	{
-		tank = new FluidTank(tankCapacity);
-	}
+    public FluidTank getTank() {
+        return tank;
+    }
 
-	@Override
-	public SPacketUpdateTileEntity getUpdatePacket()
-	{
-		NBTTagCompound nbtTag = new NBTTagCompound();
-		this.writeToNBT(nbtTag);
-		return new SPacketUpdateTileEntity(getPos(), 1, nbtTag);
-	}
+    public CrucibleTile() {
+        tank = new FluidTank(tankCapacity);
+    }
 
-	@Override
-	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet)
-	{
-		super.onDataPacket(net, packet);
-		this.readFromNBT(packet.getNbtCompound());
-	}
+    @Override
+    public SPacketUpdateTileEntity getUpdatePacket() {
+        NBTTagCompound nbtTag = new NBTTagCompound();
+        this.writeToNBT(nbtTag);
+        return new SPacketUpdateTileEntity(getPos(), 1, nbtTag);
+    }
 
-	@Override
-	public void update()
-	{
-		if (!world.isRemote)
-		{
-			List<EntityItem> list = world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(pos.getX(),
-					pos.getY() + 0.2, pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1));
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
+        super.onDataPacket(net, packet);
+        this.readFromNBT(packet.getNbtCompound());
+    }
 
-			for (EntityItem entity : list)
-			{
-				insertStack(entity.getItem());
-			}
-			TileEntity tile = world.getTileEntity(pos.up());
-			if (tile != null && tile instanceof TileCrucibleInserter
-					&& !((TileCrucibleInserter) tile).getInventory().getStackInSlot(0).isEmpty())
-				insertStack(((TileCrucibleInserter) tile).getInventory().getStackInSlot(0));
+    @Override
+    public void update() {
+        if (!world.isRemote) {
+            List<EntityItem> list = world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(pos.getX(),
+                    pos.getY() + 0.2, pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1));
 
-			if (itemAmount > 0)
-			{
-				int val = Math.min(getHeatSourceVal(), itemAmount);
-				if (itemIn != ItemStack.EMPTY && val > 0 && tank.getFluidAmount() + val <= tank.getCapacity())
-				{
-					ProcessRecipe recipe = ProcessRecipeManager.crucibleRecipes.getRecipe(itemIn, 0, false, false);
-					tank.fill(new FluidStack(recipe.getFluidOutputs().get(0), val), true);
-					itemAmount -= val;
-				}
+            for (EntityItem entity : list) {
+                insertStack(entity.getItem());
+            }
+            TileEntity tile = world.getTileEntity(pos.up());
+            if (tile != null && tile instanceof TileCrucibleInserter
+                    && !((TileCrucibleInserter) tile).getInventory().getStackInSlot(0).isEmpty())
+                insertStack(((TileCrucibleInserter) tile).getInventory().getStackInSlot(0));
 
-				if (tank.getFluidAmount() == 0 && itemAmount == 0)
-					itemIn = ItemStack.EMPTY;
+            if (itemAmount > 0) {
+                int val = Math.min(getHeatSourceVal(), itemAmount);
+                if (itemIn != ItemStack.EMPTY && val > 0 && tank.getFluidAmount() + val <= tank.getCapacity()) {
+                    ProcessRecipe recipe = ProcessRecipeManager.crucibleRecipes.getRecipe(itemIn, 0, false, false);
+                    tank.fill(new FluidStack(recipe.getFluidOutputs().get(0), val), true);
+                    itemAmount -= val;
+                }
 
-			}
-		}
-		markDirty();
-	}
+                if (tank.getFluidAmount() == 0 && itemAmount == 0) {
+                    itemIn = ItemStack.EMPTY;
+                }
+                markDirty();
 
-	private void insertStack(ItemStack stack)
-	{
-		ProcessRecipe recipe = ProcessRecipeManager.crucibleRecipes.getRecipe(stack, 0, false, false);
 
-		int amount = recipe == null ? 0 : recipe.getFluidOutputs().get(0).amount;
-		if (itemAmount + amount <= maxItemAmount && recipe != null)
-		{
-			ItemStack input = (ItemStack) recipe.getInputs().get(0);
+            }
+        }
+    }
 
-			if (tank.getFluid() == null || tank.getFluid().getFluid() == null)
-			{
-				this.itemIn = input;
-			}
+    private void insertStack(ItemStack stack) {
+        ProcessRecipe recipe = ProcessRecipeManager.crucibleRecipes.getRecipe(stack, 0, false, false);
 
-			if (itemIn == input)
-			{
-				itemAmount += amount;
-				stack.shrink(1);
-			}
-		}
-	}
+        int amount = recipe == null ? 0 : recipe.getFluidOutputs().get(0).amount;
+        if (itemAmount + amount <= maxItemAmount && recipe != null) {
+            ItemStack input = (ItemStack) recipe.getInputs().get(0);
 
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound)
-	{
-		super.writeToNBT(compound);
+            if (tank.getFluid() == null || tank.getFluid().getFluid() == null) {
+                this.itemIn = input;
+            }
 
-		tank.writeToNBT(compound);
+            if (itemIn == input) {
+                itemAmount += amount;
+                stack.shrink(1);
+            }
+            markDirty();
+        }
+    }
 
-		compound.setInteger("amount", itemAmount);
-		NBTTagCompound stackTag = new NBTTagCompound();
-		if (itemIn != ItemStack.EMPTY)
-			itemIn.writeToNBT(stackTag);
-		compound.setTag("Item", stackTag);
+    public void markDirty() {
+        super.markDirty();
+        if (world != null && !world.isRemote)
+            world.notifyBlockUpdate(getPos(), world.getBlockState(getPos()), world.getBlockState(getPos()), 0);
+    }
 
-		return compound;
-	}
+    public void markDirtyBlockUpdate() {
+        super.markDirty();
+        if (world != null && !world.isRemote) {
+            world.notifyBlockUpdate(getPos(), world.getBlockState(getPos()), world.getBlockState(getPos()), 0);
+            world.notifyBlockUpdate(getPos(), world.getBlockState(getPos()), world.getBlockState(getPos()), 3);
+            world.notifyNeighborsOfStateChange(pos, blockType, true);
+        }
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound compound)
-	{
-		super.readFromNBT(compound);
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        super.writeToNBT(compound);
 
-		tank.readFromNBT(compound);
+        tank.writeToNBT(compound);
 
-		itemAmount = compound.getInteger("amount");
-		NBTTagCompound stackTag = compound.getCompoundTag("Item");
-		if (stackTag != null)
-			itemIn = new ItemStack(stackTag);
-	}
+        compound.setInteger("amount", itemAmount);
+        NBTTagCompound stackTag = new NBTTagCompound();
+        if (itemIn != ItemStack.EMPTY)
+            itemIn.writeToNBT(stackTag);
+        compound.setTag("Item", stackTag);
 
-	int getHeatSourceVal()
-	{
-		if (HeatSources.isValidHeatSource(pos.down(), world))
-		{
-			if (HeatSources.getHeatSourceValue(pos.down(), world) > 0)
-				return (int)Math.max((float)HeatSources.getHeatSourceValue(pos.down(), world) * (float)ConfigOptions.machineSettings.crucibleSpeed / 8f, 1);
-		}
-		return 0;
-	}
+        return compound;
+    }
 
-	public int getItemAmount()
-	{
-		return itemAmount;
-	}
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        super.readFromNBT(compound);
 
-	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing)
-	{
-		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-		{
-			return true;
-		}
-		return super.hasCapability(capability, facing);
-	}
+        tank.readFromNBT(compound);
 
-	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing)
-	{
-		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-		{
-			return (T) this;
-		}
-		return super.getCapability(capability, facing);
-	}
+        itemAmount = compound.getInteger("amount");
+        NBTTagCompound stackTag = compound.getCompoundTag("Item");
+        if (stackTag != null)
+            itemIn = new ItemStack(stackTag);
+    }
+
+    int getHeatSourceVal() {
+        if (HeatSources.isValidHeatSource(pos.down(), world)) {
+            if (HeatSources.getHeatSourceValue(pos.down(), world) > 0)
+                return (int) Math.max((float) HeatSources.getHeatSourceValue(pos.down(), world) * (float) ConfigOptions.machineSettings.crucibleSpeed / 8f, 1);
+        }
+        return 0;
+    }
+
+    public int getItemAmount() {
+        return itemAmount;
+    }
+
+    @Override
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+            return true;
+        }
+        return super.hasCapability(capability, facing);
+    }
+
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+            return (T) this;
+        }
+        return super.getCapability(capability, facing);
+    }
 }

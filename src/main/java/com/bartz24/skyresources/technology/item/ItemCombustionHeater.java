@@ -1,10 +1,5 @@
 package com.bartz24.skyresources.technology.item;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.base.MachineVariants;
@@ -17,7 +12,6 @@ import com.bartz24.skyresources.recipe.ProcessRecipe;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.technology.tile.TileCombustionCollector;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.client.Minecraft;
@@ -41,6 +35,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
 public class ItemCombustionHeater extends ItemMachine
 {
@@ -236,6 +235,8 @@ public class ItemCombustionHeater extends ItemMachine
 		{
 			world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, pos.getX(), pos.getY() + 1.5D, pos.getZ(), 0.0D,
 					0.0D, 0.0D, new int[0]);
+			if (MachineVariants.values()[world.getBlockState(pos).getBlock()
+					.getMetaFromState(world.getBlockState(pos))].getRawSpeed() < 2.0)
 			world.playSound((EntityPlayer) null, pos.getX() + 0.5, pos.getY() + 1.5D, pos.getZ() + 0.5,
 					SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 4.0F,
 					(1.0F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F) * 0.7F);
@@ -310,7 +311,7 @@ public class ItemCombustionHeater extends ItemMachine
 					}
 					if (!stack.isEmpty())
 					{
-						Entity entity = new EntityItem(world, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F,
+						Entity entity = new EntityItem(world, pos.getX() + 0.5F, pos.getY() + 1.5F, pos.getZ() + 0.5F,
 								stack);
 						world.spawnEntity(entity);
 					}
@@ -319,7 +320,7 @@ public class ItemCombustionHeater extends ItemMachine
 				{
 					if (items.get(item2) > 0)
 					{
-						EntityItem entity = new EntityItem(world, pos.getX() + 0.5F, pos.getY() + 0.5F,
+						EntityItem entity = new EntityItem(world, pos.getX() + 1.5F, pos.getY() + 0.5F,
 								pos.getZ() + 0.5F, item2);
 						entity.getItem().setCount(items.get(item2));
 						world.spawnEntity(entity);

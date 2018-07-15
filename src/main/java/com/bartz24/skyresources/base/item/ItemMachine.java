@@ -160,24 +160,25 @@ public class ItemMachine extends Item
 	public String[] getFuelDisplay(ItemStack stack, World world, BlockPos pos)
 	{
 		String[] list = new String[2];
-		list[1] = getHUPerTick(stack, world, pos, useSpeedInfo) + " HU/tick";
+		list[0] = "Fuel: ";
+		list[1] = TextFormatting.RED.toString() + getHUPerTick(stack, world, pos, useSpeedInfo) + " HU/tick" + TextFormatting.YELLOW;
 		if (getVariant(stack).getFuelType().equals("RF"))
 		{
-			list[0] = Math.ceil(rfgetRFPerTick(stack, world, pos, useFuelInfo, useSpeedInfo, useEfficiencyInfo))
+			list[0] += Math.ceil(rfgetRFPerTick(stack, world, pos, useFuelInfo, useSpeedInfo, useEfficiencyInfo))
 					+ " RF/tick";
 		} else if (getVariant(stack).getFuelType().equals("Fuel"))
 		{
-			list[0] = "Furnace Fuels last for x" + Math.floor(
+			list[0] += "Furnace Fuels last for x" + Math.floor(
 					fuelgetFuelTimePercent(stack, world, pos, useFuelInfo, useSpeedInfo, useEfficiencyInfo) * 100f)
 					/ 100f + " ticks";
 		} else if (getVariant(stack).getFuelType() instanceof ItemStack)
 		{
-			list[0] = ((ItemStack) getVariant(stack).getFuelType()).getDisplayName() + " lasts for " + Math.floor(
+			list[0] += ((ItemStack) getVariant(stack).getFuelType()).getDisplayName() + " lasts for " + Math.floor(
 					fuelgetFuelTimePercent(stack, world, pos, useFuelInfo, useSpeedInfo, useEfficiencyInfo) * 100f)
 					/ 100f + " ticks";
 		} else if (getVariant(stack).getFuelType() instanceof Fluid)
 		{
-			list[0] = ((Fluid) getVariant(stack).getFuelType())
+			list[0] += ((Fluid) getVariant(stack).getFuelType())
 					.getLocalizedName(new FluidStack((Fluid) getVariant(stack).getFuelType(), 1)) + " lasts for "
 					+ Math.floor(fuelgetFuelTimePercent(stack, world, pos, useFuelInfo, useSpeedInfo, useEfficiencyInfo)
 							* 100f) / 100f

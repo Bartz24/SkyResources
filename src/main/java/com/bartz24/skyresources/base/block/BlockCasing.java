@@ -1,9 +1,5 @@
 package com.bartz24.skyresources.base.block;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import com.bartz24.skyresources.RandomHelper;
 import com.bartz24.skyresources.References;
 import com.bartz24.skyresources.SkyResources;
@@ -12,7 +8,6 @@ import com.bartz24.skyresources.base.item.ItemMachine;
 import com.bartz24.skyresources.base.tile.TileCasing;
 import com.bartz24.skyresources.registry.ModCreativeTabs;
 import com.bartz24.skyresources.registry.ModGuiHandler;
-
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -34,150 +29,131 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockCasing extends BlockContainer implements IMetaBlockName
-{
-	public static final PropertyEnum<MachineVariants> variant = PropertyEnum.create("variant", MachineVariants.class);
+import javax.annotation.Nullable;
+import java.util.List;
 
-	public BlockCasing(String unlocalizedName, String registryName, float hardness, float resistance)
-	{
-		super(Material.ROCK);
-		this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
-		this.setCreativeTab(ModCreativeTabs.tabMain);
-		this.setHardness(hardness);
-		this.setResistance(resistance);
-		this.setRegistryName(registryName);
-		this.hasTileEntity = true;
-	}
+public class BlockCasing extends BlockContainer implements IMetaBlockName {
+    public static final PropertyEnum<MachineVariants> variant = PropertyEnum.create("variant", MachineVariants.class);
 
-	public Material getMaterial(IBlockState state)
-	{
-		return this.getMetaFromState(state) == 0 ? Material.WOOD : Material.ROCK;
-	}
+    public BlockCasing(String unlocalizedName, String registryName, float hardness, float resistance) {
+        super(Material.ROCK);
+        this.setUnlocalizedName(References.ModID + "." + unlocalizedName);
+        this.setCreativeTab(ModCreativeTabs.tabMain);
+        this.setHardness(hardness);
+        this.setResistance(resistance);
+        this.setRegistryName(registryName);
+        this.hasTileEntity = true;
+    }
 
-	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
-	}
+    public Material getMaterial(IBlockState state) {
+        return this.getMetaFromState(state) == 0 ? Material.WOOD : Material.ROCK;
+    }
 
-	@Override
-	public boolean isFullCube(IBlockState state)
-	{
-		return false;
-	}
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
 
-	@Override
-	public EnumBlockRenderType getRenderType(IBlockState state)
-	{
-		return EnumBlockRenderType.MODEL;
-	}
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
 
-	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta)
-	{
-		return new TileCasing();
-	}
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.MODEL;
+    }
 
-	@Override
-	public BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, variant);
-	}
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
+        return new TileCasing();
+    }
 
-	@Override
-	public int getMetaFromState(IBlockState state)
-	{
-		return state.getValue(variant).ordinal();
-	}
+    @Override
+    public BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, variant);
+    }
 
-	@Override
-	public int damageDropped(IBlockState state)
-	{
-		return getMetaFromState(state);
-	}
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        return state.getValue(variant).ordinal();
+    }
 
-	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
-		if (meta >= MachineVariants.values().length || meta < 0)
-		{
-			meta = 0;
-		}
-		return getDefaultState().withProperty(variant, MachineVariants.values()[meta]);
-	}
+    @Override
+    public int damageDropped(IBlockState state) {
+        return getMetaFromState(state);
+    }
 
-	@Override
-	public void getSubBlocks(CreativeTabs par2, NonNullList<ItemStack> par3)
-	{
-		for (int i = 0; i < MachineVariants.values().length; i++)
-			par3.add(new ItemStack(this, 1, i));
-	}
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+        if (meta >= MachineVariants.values().length || meta < 0) {
+            meta = 0;
+        }
+        return getDefaultState().withProperty(variant, MachineVariants.values()[meta]);
+    }
 
-	@Override
-	public String getSpecialName(ItemStack stack)
-	{
-		return MachineVariants.values()[stack.getMetadata()].getName();
-	}
+    @Override
+    public void getSubBlocks(CreativeTabs par2, NonNullList<ItemStack> par3) {
+        for (int i = 0; i < MachineVariants.values().length; i++)
+            par3.add(new ItemStack(this, 1, i));
+    }
 
-	@Override
-	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos,
-			EntityPlayer player)
-	{
-		return new ItemStack(this, 1, this.getMetaFromState(world.getBlockState(pos)));
-	}
+    @Override
+    public String getSpecialName(ItemStack stack) {
+        return MachineVariants.values()[stack.getMetadata()].getName();
+    }
 
-	public MachineVariants getVariant(ItemStack stack)
-	{
-		return MachineVariants.values()[stack.getMetadata()];
-	}
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos,
+                                  EntityPlayer player) {
+        return new ItemStack(this, 1, this.getMetaFromState(world.getBlockState(pos)));
+    }
 
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
-	{
-		tooltip.add(TextFormatting.GREEN + "Efficiency: "
-				+ (int) (Math.ceil(getVariant(stack).getRawEfficiency() * 10f) * 10f) + "%");
+    public MachineVariants getVariant(ItemStack stack) {
+        return MachineVariants.values()[stack.getMetadata()];
+    }
 
-		tooltip.add(TextFormatting.RED + "Max HU: " + getVariant(stack).getMaxHeat());
-	}
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+        tooltip.add(TextFormatting.GREEN + "Efficiency: "
+                + (int) (Math.ceil(getVariant(stack).getRawEfficiency() * 10f) * 10f) + "%");
 
-	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
-			EnumFacing side, float hitX, float hitY, float hitZ)
-	{
-		if (!world.isRemote)
-		{
-			if (((TileCasing) world.getTileEntity(pos)).machineStored.isEmpty())
-			{
-				if (player.getHeldItem(hand).getItem() instanceof ItemMachine)
-				{
-					ItemStack machine = player.getHeldItem(hand).copy();
-					machine.setCount(1);
-					((TileCasing) world.getTileEntity(pos)).setMachine(machine, player);
-					player.getHeldItem(hand).shrink(1);
-				}
-				return true;
-			} else
-			{
-				if (player.isSneaking() && player.getHeldItem(hand).isEmpty())
-				{
-					RandomHelper.spawnItemInWorld(world, ((TileCasing) world.getTileEntity(pos)).machineStored,
-							new BlockPos(player.posX, player.posY, player.posZ));
-					((TileCasing) world.getTileEntity(pos)).setMachine(ItemStack.EMPTY, player);
-				} else
-					player.openGui(SkyResources.instance, ModGuiHandler.CasingGUI, world, pos.getX(), pos.getY(),
-							pos.getZ());
-				return true;
-			}
-		}
-		return true;
-	}
+        tooltip.add(TextFormatting.RED + "Max HU: " + getVariant(stack).getMaxHeat());
+        if (getVariant(stack).getRawSpeed() >= 2.0)
+            tooltip.add(TextFormatting.DARK_RED + "MUFFLER");
+    }
 
-	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state)
-	{
-		TileCasing te = (TileCasing) world.getTileEntity(pos);
-		te.dropInventory();
+    @Override
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
+                                    EnumFacing side, float hitX, float hitY, float hitZ) {
+        if (!world.isRemote) {
+            if (((TileCasing) world.getTileEntity(pos)).machineStored.isEmpty()) {
+                if (player.getHeldItem(hand).getItem() instanceof ItemMachine) {
+                    ItemStack machine = player.getHeldItem(hand).copy();
+                    machine.setCount(1);
+                    ((TileCasing) world.getTileEntity(pos)).setMachine(machine, player);
+                    player.getHeldItem(hand).shrink(1);
+                }
+                return true;
+            } else {
+                if (player.isSneaking() && player.getHeldItem(hand).isEmpty()) {
+                    RandomHelper.spawnItemInWorld(world, ((TileCasing) world.getTileEntity(pos)).machineStored,
+                            new BlockPos(player.posX, player.posY, player.posZ));
+                    ((TileCasing) world.getTileEntity(pos)).setMachine(ItemStack.EMPTY, player);
+                } else
+                    player.openGui(SkyResources.instance, ModGuiHandler.CasingGUI, world, pos.getX(), pos.getY(),
+                            pos.getZ());
+                return true;
+            }
+        }
+        return true;
+    }
 
-		super.breakBlock(world, pos, state);
-	}
+    @Override
+    public void breakBlock(World world, BlockPos pos, IBlockState state) {
+        TileCasing te = (TileCasing) world.getTileEntity(pos);
+        te.dropInventory();
+
+        super.breakBlock(world, pos, state);
+    }
 }

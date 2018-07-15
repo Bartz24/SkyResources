@@ -24,6 +24,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
@@ -51,7 +52,7 @@ public class ItemHeatProvider extends ItemMachine
 	public String[] getFuelDisplay(ItemStack stack, @Nullable World world, BlockPos pos)
 	{
 		String[] list = super.getFuelDisplay(stack, world, pos);
-		list[1] = getHUPerTick(stack, world, pos, useSpeedInfo) + " Heat Value";
+		list[1] = TextFormatting.RED.toString() + getHUPerTick(stack, world, pos, useSpeedInfo) + " Heat Value" + TextFormatting.YELLOW;
 		return list;
 	}
 
