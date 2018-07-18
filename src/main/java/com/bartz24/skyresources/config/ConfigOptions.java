@@ -198,19 +198,6 @@ public class ConfigOptions
 				"tconstruct", "ic2", "techreborn", "forestry", "embers" };
 	}
 
-	@Config.Comment("Config Settings for Forestry")
-	public ForestrySettings forestrySettings = new ForestrySettings();
-
-	public class ForestrySettings
-	{
-		@Config.Comment("Bee Attractor RF Rate")
-		public int beeAttractorPowerUsage = 100;
-		@Config.Comment("Bee Attractor Seed Oil Usage Rate")
-		public int beeAttractorSeedOilUsage = 20;
-		@Config.Comment("Bee Attractor Seed Oil Capacity")
-		public int beeAttractorSeedOilCapacity = 4000;
-	}
-
 	@Config.Comment("Config Settings for plugins")
 	public static PluginSettings pluginSettings = new PluginSettings();
 
@@ -221,6 +208,8 @@ public class ConfigOptions
 
 		public class ActuallyAdditionsSettings
 		{
+			@Config.Comment("Disable the Actually Additions plugin from loading")
+			public boolean disableActuallyAdditionsPlugin = false;
 			@Config.Comment("Add canola to grass drops")
 			public boolean addCanolaDrop = true;
 			@Config.Comment("Add coffee to grass drops")
@@ -236,6 +225,8 @@ public class ConfigOptions
 
 		public class AppliedEnergisticsSettings
 		{
+			@Config.Comment("Disable the Applied Energistics plugin from loading")
+			public boolean disableAppliedEnergisticsPlugin = false;
 			@Config.Comment("Add inscriber press combustion recipes")
 			public boolean addPressRecipes = true;
 		}
@@ -245,6 +236,8 @@ public class ConfigOptions
 
 		public class ArmorPlusSettings
 		{
+			@Config.Comment("Disable the Armor Plus plugin from loading")
+			public boolean disableArmorPlusPlugin = false;
 			@Config.Comment("Add lava crystal combustion recipe")
 			public boolean addLavaCrystalRecipe = true;
 		}
@@ -254,6 +247,8 @@ public class ConfigOptions
 
 		public class EmbersSettings
 		{
+			@Config.Comment("Disable the Embers plugin from loading")
+			public boolean disableEmbersPlugin = false;
 			@Config.Comment("Add ember shard combustion recipe")
 			public boolean addEmberShardRecipe = true;
 		}
@@ -263,6 +258,8 @@ public class ConfigOptions
 
 		public class ForestrySettings
 		{
+			@Config.Comment("Disable the Forestry plugin from loading")
+			public boolean disableForestryPlugin = false;
 			@Config.Comment("Bee Attractor Time per cycle")
 			public int beeAttractorTime = 200;
 			@Config.Comment("Bee Attractor RF Rate")
@@ -278,6 +275,8 @@ public class ConfigOptions
 
 		public class IntegratedDynamicsSettings
 		{
+			@Config.Comment("Disable the Integrated Dynamics plugin from loading")
+			public boolean disableIntegratedDynamicsPlugin = false;
 			@Config.Comment("Add menril berry/sapling life infusion recipes")
 			public boolean addMenrilRecipes = true;
 		}
@@ -287,6 +286,8 @@ public class ConfigOptions
 
 		public class TinkersConstructSettings
 		{
+			@Config.Comment("Disable the Tinkers Construct plugin from loading")
+			public boolean disableTinkersConstructPlugin = false;
 			@Config.Comment("Add slime ball/sapling life infusion and combustion recipes")
 			public boolean addSlimeRecipes = true;
 		}
@@ -296,6 +297,8 @@ public class ConfigOptions
 
 		public class TechRebornSettings
 		{
+			@Config.Comment("Disable the Tech Reborn plugin from loading")
+			public boolean disableTechRebornPlugin = false;
 			@Config.Comment("Add rubber life infusion and combustion recipes")
 			public boolean addRubberRecipes = true;
 		}
@@ -305,6 +308,8 @@ public class ConfigOptions
 
 		public class ThermalExpansionSettings
 		{
+			@Config.Comment("Disable the Thermal Expansion plugin from loading")
+			public boolean disableThermalExpansionPlugin = false;
 			@Config.Comment("Add crystal fluid and lava recipes to magma crucible")
 			public boolean addSpecialMagmaCrucibleRecipes = true;
 			@Config.Comment("Add pyrotheum as heat source")
@@ -316,6 +321,8 @@ public class ConfigOptions
 
 		public class IndustrialCraftSettings
 		{
+			@Config.Comment("Disable the Industrial Craft plugin from loading")
+			public boolean disableIndustrialCraftPlugin = false;
 			@Config.Comment("Add rubber life infusion and combustion recipes")
 			public boolean addRubberRecipes = true;
 		}
@@ -325,6 +332,8 @@ public class ConfigOptions
 
 		public class RockCandySettings
 		{
+			@Config.Comment("Disable the Rock Candy plugin from loading")
+			public boolean disableRockCandyPlugin = false;
 			@Config.Comment("Add rock candy combustion recipe")
 			public boolean addRockCandyRecipe = true;
 		}
@@ -334,6 +343,8 @@ public class ConfigOptions
 
 		public class VoidIslandControlSettings
 		{
+			@Config.Comment("Disable the Void Island Control plugin from loading")
+			public boolean disableVoidIslandControlPlugin = false;
 			@Config.Comment("Enable the special Void Island Control magma island")
 			public boolean enableMagmaIsland = true;
 		}

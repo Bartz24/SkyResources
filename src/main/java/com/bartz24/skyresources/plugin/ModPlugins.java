@@ -3,6 +3,7 @@ package com.bartz24.skyresources.plugin;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.bartz24.skyresources.config.ConfigOptions;
 import com.bartz24.skyresources.plugin.actuallyadditions.ActAddPlugin;
 import com.bartz24.skyresources.plugin.ae2.AE2Plugin;
 import com.bartz24.skyresources.plugin.armorplus.ArmorPlusPlugin;
@@ -29,24 +30,24 @@ public class ModPlugins
 
 	public static void preInit()
 	{
-		addPlugin("actuallyadditions", ActAddPlugin.class);
-		addPlugin("appliedenergistics2", AE2Plugin.class);
-		addPlugin("armorplus", ArmorPlusPlugin.class);
-		addPlugin("crafttweaker", CraftTweakerPlugin.class);
-		addPlugin("draconicevolution", DEPlugin.class);
-		addPlugin("embers", EmbersPlugin.class);
+		addPlugin("actuallyadditions", ActAddPlugin.class, ConfigOptions.pluginSettings.actuallyAdditionsSettings.disableActuallyAdditionsPlugin);
+		addPlugin("appliedenergistics2", AE2Plugin.class, ConfigOptions.pluginSettings.appliedEnergisticsSettings.disableAppliedEnergisticsPlugin);
+		addPlugin("armorplus", ArmorPlusPlugin.class, ConfigOptions.pluginSettings.armorPlusSettings.disableArmorPlusPlugin);
+		addPlugin("crafttweaker", CraftTweakerPlugin.class, false);
+		addPlugin("draconicevolution", DEPlugin.class, false);
+		addPlugin("embers", EmbersPlugin.class, ConfigOptions.pluginSettings.embersSettings.disableEmbersPlugin);
 		// addPlugin("environmentaltech", new EnvTechPlugin());
-		addPlugin("extrabees", ExtraBeesPlugin.class);
-		addPlugin("bigreactors", ExtremeReactorsPlugin.class);
-		addPlugin("forestry", ForestryPlugin.class);
-		addPlugin("ic2", IC2Plugin.class);
-		addPlugin("integrateddynamics", IntegratedDynamicsPlugin.class);
-		addPlugin("rockcandy", RockCandyPlugin.class);
-		addPlugin("techreborn", TechRebornPlugin.class);
-		addPlugin("tconstruct", TConPlugin.class);
-		addPlugin("theoneprobe", TOPPlugin.class);
-		addPlugin("thermalfoundation", ThermalPlugin.class);
-		addPlugin("voidislandcontrol", VICPlugin.class);
+		addPlugin("extrabees", ExtraBeesPlugin.class, ConfigOptions.pluginSettings.forestrySettings.disableForestryPlugin);
+		addPlugin("bigreactors", ExtremeReactorsPlugin.class, false);
+		addPlugin("forestry", ForestryPlugin.class, ConfigOptions.pluginSettings.forestrySettings.disableForestryPlugin);
+		addPlugin("ic2", IC2Plugin.class, ConfigOptions.pluginSettings.industrialCraftSettings.disableIndustrialCraftPlugin);
+		addPlugin("integrateddynamics", IntegratedDynamicsPlugin.class, ConfigOptions.pluginSettings.integratedDynamicsSettings.disableIntegratedDynamicsPlugin);
+		addPlugin("rockcandy", RockCandyPlugin.class, ConfigOptions.pluginSettings.rockCandySettings.disableRockCandyPlugin);
+		addPlugin("techreborn", TechRebornPlugin.class, ConfigOptions.pluginSettings.techRebornSettings.disableTechRebornPlugin);
+		addPlugin("tconstruct", TConPlugin.class, ConfigOptions.pluginSettings.tinkersConstructSettings.disableTinkersConstructPlugin);
+		addPlugin("theoneprobe", TOPPlugin.class, false);
+		addPlugin("thermalfoundation", ThermalPlugin.class, ConfigOptions.pluginSettings.thermalExpansionSettings.disableThermalExpansionPlugin);
+		addPlugin("voidislandcontrol", VICPlugin.class, ConfigOptions.pluginSettings.voidIslandControlSettings.disableVoidIslandControlPlugin);
 
 		for (IModPlugin p : plugins.values())
 		{
@@ -83,9 +84,9 @@ public class ModPlugins
 		}
 	}
 
-	public static void addPlugin(String modID, Class plugin)
+	public static void addPlugin(String modID, Class plugin, boolean disabled)
 	{
-		if (Loader.isModLoaded(modID))
+		if (Loader.isModLoaded(modID) && !disabled)
 		{
 			try
 			{
