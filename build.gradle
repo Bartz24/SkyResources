@@ -9,7 +9,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "2.3.5"
+version = "2.3.6"
 group= "com.bartz24.skyresources" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "skyresources"
 
@@ -46,8 +46,8 @@ minecraft {
 dependencies {
 	compile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.8.9"
 
-    deobfProvided "mezz.jei:jei_1.12.2:4.9.1.188:api"
-    runtime "mezz.jei:jei_1.12.2:4.9.1.188"
+    deobfProvided "mezz.jei:jei_1.12.2:4.12.0.215:api"
+    runtime "mezz.jei:jei_1.12.2:4.12.0.215"
 
 	compile files("lib/theoneprobe-1.12-1.4.23.jar")
 	compile files("lib/forestry_1.12.2-5.8.1.322.jar")

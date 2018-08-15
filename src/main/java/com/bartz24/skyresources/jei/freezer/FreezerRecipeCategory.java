@@ -29,7 +29,7 @@ public class FreezerRecipeCategory extends BlankRecipeCategory
 	{
 		super();
 		background = guiHelper.createDrawable(
-				new ResourceLocation(References.ModID, "textures/gui/jei/concentrator.png"), 0, 40, 90, 40);
+				new ResourceLocation(References.ModID, "textures/gui/jei/freezer.png"), 0, 0, 100, 40);
 	}
 
 	@Override
@@ -58,8 +58,8 @@ public class FreezerRecipeCategory extends BlankRecipeCategory
 	@Override
 	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper, IIngredients ingredients)
 	{
-		layout.getItemStacks().init(slotInputStack, true, 1, 5);
-		layout.getItemStacks().init(slotOutput, false, 64, 5);
+		layout.getItemStacks().init(slotInputStack, true, 7, 12);
+		layout.getItemStacks().init(slotOutput, false, 70, 12);
 
 		List<List<ItemStack>> inputs = ingredients.getInputs(ItemStack.class);
 		layout.getItemStacks().set(slotInputStack, inputs.get(0));

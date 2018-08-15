@@ -100,6 +100,7 @@ public class GuiFreezer extends GuiContainer
 	void drawProgress()
 	{
 		GL11.glEnable(GL11.GL_BLEND);
+		this.zLevel += 300;
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 0.9f);
 		this.mc.getTextureManager().bindTexture(new ResourceLocation("textures/blocks/ice_packed.png"));
 
@@ -118,6 +119,7 @@ public class GuiFreezer extends GuiContainer
 			}
 		}
 		GL11.glDisable(GL11.GL_BLEND);
+		this.zLevel -= 300;
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 	}
 }

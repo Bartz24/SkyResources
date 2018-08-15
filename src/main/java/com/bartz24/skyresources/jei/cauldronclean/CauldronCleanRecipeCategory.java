@@ -30,7 +30,7 @@ public class CauldronCleanRecipeCategory extends BlankRecipeCategory
 	{
 		super();
 		background = guiHelper.createDrawable(new ResourceLocation(References.ModID, "textures/gui/jei/condenser.png"),
-				0, 0, 86, 50);
+				0, 0, 126, 50);
 	}
 
 	@Override
@@ -59,9 +59,9 @@ public class CauldronCleanRecipeCategory extends BlankRecipeCategory
 	@Override
 	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper, IIngredients ingredients)
 	{
-		layout.getItemStacks().init(slotInput, true, 1, 0);
-		layout.getItemStacks().init(slotOutput, false, 64, 11);
-		layout.getItemStacks().init(slotCauldron, true, 1, 18);
+		layout.getItemStacks().init(slotInput, true, 21, 0);
+		layout.getItemStacks().init(slotOutput, false, 84, 11);
+		layout.getItemStacks().init(slotCauldron, true, 21, 20);
 
 		List<List<ItemStack>> inputs = ingredients.getInputs(ItemStack.class);
 

@@ -30,7 +30,7 @@ public class CondenserRecipeCategory extends BlankRecipeCategory
 	{
 		super();
 		background = guiHelper.createDrawable(new ResourceLocation(References.ModID, "textures/gui/jei/condenser.png"),
-				0, 0, 86, 65);
+				0, 0, 126, 65);
 	}
 
 	@Override
@@ -59,18 +59,18 @@ public class CondenserRecipeCategory extends BlankRecipeCategory
 	@Override
 	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper, IIngredients ingredients)
 	{
-		layout.getItemStacks().init(slotOutput, false, 64, 11);
-		layout.getItemStacks().init(slotInput, true, 1, 18);
+		layout.getItemStacks().init(slotOutput, false, 84, 11);
+		layout.getItemStacks().init(slotInput, true, 21, 20);
 
 		List<List<FluidStack>> fluidInputs = ingredients.getInputs(FluidStack.class);
 		List<List<ItemStack>> inputs = ingredients.getInputs(ItemStack.class);
 		if (fluidInputs.size() > 0)
 		{
-			layout.getFluidStacks().init(slotInputBlock, true, 2, 1);
+			layout.getFluidStacks().init(slotInputBlock, true, 22, 1);
 			layout.getFluidStacks().set(slotInputBlock, fluidInputs.get(0));
 		} else
 		{
-			layout.getItemStacks().init(slotInputBlock, true, 1, 0);
+			layout.getItemStacks().init(slotInputBlock, true, 21, 0);
 			layout.getItemStacks().set(slotInputBlock, inputs.get(1));
 		}
 

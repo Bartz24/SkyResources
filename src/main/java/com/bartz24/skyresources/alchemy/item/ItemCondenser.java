@@ -14,6 +14,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
@@ -35,6 +36,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
@@ -48,6 +50,15 @@ public class ItemCondenser extends ItemMachine {
 
     public void update(World world, BlockPos pos, ItemStack machineStack, NBTTagCompound data) {
         condense(world, pos, machineStack, data);
+
+
+        if (!world.isRemote) {
+            BlockPos[] poses = new BlockPos[]{pos.east(), pos.west(), pos.south(), pos.north()};
+            for (BlockPos posAdj : poses) {
+                if (world.getBlockState(posAdj).getBlock() instanceof BlockFluidBase && world.getBlockState(posAdj).getValue(BlockFluidBase.LEVEL) > 0)
+                    world.setBlockToAir(posAdj);
+            }
+        }
     }
 
     void condense(World world, BlockPos pos, ItemStack machineStack, NBTTagCompound data) {
@@ -237,6 +248,18 @@ public class ItemCondenser extends ItemMachine {
                     (int) ((float) timeCondense
                             / (float) getTimeToCondense(tile.getWorld(), tile.getPos(), tile.machineStored, recipe)
                             * 24f));
+
+            double dustPerTick = (double) (Math.pow(recipe.getIntParameter(), 1.3f) / 50f
+                    / (2400f * recipe.getIntParameter() / 50f));
+            String s = (Math.round(1 / dustPerTick / recipe.getIntParameter() * itemLeft * getMachineSpeed(tile.machineStored, tile.getWorld(), tile.getPos()) * getMachineEfficiency(tile.machineStored, tile.getWorld(), tile.getPos()) * 10000f) / 10000f) + "";
+            fontRenderer.drawString(s, 28, 51, Color.GRAY.getRGB());
+            fontRenderer.drawString("Expected from", 6, 24, Color.GRAY.getRGB());
+            fontRenderer.drawString("remaining input", 6, 34, Color.GRAY.getRGB());
+            ItemStack stack = recipe.getOutputs().get(0).copy();
+            stack.setCount(1);
+            RenderHelper.enableGUIStandardItemLighting();
+            gui.getItemRender().renderItemAndEffectIntoGUI(stack,  10, 47);
+            RenderHelper.disableStandardItemLighting();
         }
 
         super.drawForegroundGui(tile, gui, fontRenderer, mouseX, mouseY);

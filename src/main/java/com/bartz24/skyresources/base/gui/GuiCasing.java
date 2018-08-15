@@ -13,6 +13,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -22,6 +23,11 @@ public class GuiCasing extends GuiContainer
 
 	private IInventory playerInv;
 	private TileCasing tile;
+
+	public RenderItem getItemRender()
+	{
+		return itemRender;
+	}
 
 	public GuiCasing(IInventory playerInv, TileCasing te)
 	{

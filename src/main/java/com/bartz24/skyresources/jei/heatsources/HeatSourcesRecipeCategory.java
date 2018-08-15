@@ -26,7 +26,7 @@ public class HeatSourcesRecipeCategory extends BlankRecipeCategory
 	{
 		super();
 		background = guiHelper.createDrawable(
-				new ResourceLocation(References.ModID, "textures/gui/jei/concentrator.png"), 20, 0, 70, 25);
+				new ResourceLocation(References.ModID, "textures/gui/jei/blank.png"), 20, 0, 110, 25);
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class HeatSourcesRecipeCategory extends BlankRecipeCategory
 	@Override
 	public void setRecipe(IRecipeLayout layout, IRecipeWrapper wrapper, IIngredients ingredients)
 	{
-		layout.getItemStacks().init(slotInputStack, true, 1, 5);
+		layout.getItemStacks().init(slotInputStack, true, 0, 2);
 
 		List<List<ItemStack>> inputs = ingredients.getInputs(ItemStack.class);
 		if (inputs != null && inputs.size() > 0)
