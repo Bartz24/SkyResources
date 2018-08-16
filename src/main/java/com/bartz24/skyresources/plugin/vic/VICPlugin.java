@@ -25,7 +25,7 @@ public class VICPlugin implements IModPlugin
 	{
 		if (com.bartz24.skyresources.config.ConfigOptions.pluginSettings.voidIslandControlSettings.enableMagmaIsland)
 		{
-			IslandManager.registerIsland(new IslandGen("magma")
+			IslandManager.registerIsland(new IslandGen("magma", new BlockPos(0, 2, 0))
 			{
 				public void generate(World world, BlockPos spawn)
 				{
