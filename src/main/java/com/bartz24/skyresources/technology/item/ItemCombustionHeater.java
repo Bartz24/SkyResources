@@ -316,14 +316,17 @@ public class ItemCombustionHeater extends ItemMachine
 						world.spawnEntity(entity);
 					}
 				}
-				for (ItemStack item2 : items.keySet().toArray(new ItemStack[items.size()]))
+				for (ItemStack item2 : items.keySet())
 				{
-					if (items.get(item2) > 0)
+					int remaining = items.get(item2);
+					while (remaining > 0)
 					{
+						int amount = Math.min(item2.getMaxStackSize(), remaining);
 						EntityItem entity = new EntityItem(world, pos.getX() + 0.5F, pos.getY() + 1.5F,
-								pos.getZ() + 0.5F, item2);
-						entity.getItem().setCount(items.get(item2));
+								pos.getZ() + 0.5F, item2.copy());
+						entity.getItem().setCount(amount);
 						world.spawnEntity(entity);
+						remaining -= amount;
 					}
 				}
 			}
