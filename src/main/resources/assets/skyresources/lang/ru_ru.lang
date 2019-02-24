@@ -1,0 +1,507 @@
+//Translated by Yaroslavik
+item.skyresources.alchemyItemComponent.cactusNeedle.name=Игла кактуса
+item.skyresources.alchemyItemComponent.crystalShard.name=Кристальный осколок
+item.skyresources.alchemyItemComponent.alchDust1.name=Пыль примуса
+item.skyresources.alchemyItemComponent.alchDust2.name=Пыль секунда
+item.skyresources.alchemyItemComponent.alchDust3.name=Пыль тертиуса
+item.skyresources.alchemyItemComponent.alchDust4.name=Пыль квартуса
+item.skyresources.alchemyItemComponent.alchCoal.name=Алхимический уголь
+item.skyresources.alchemyItemComponent.alchGoldIngot.name=Алхимический золотой слиток
+item.skyresources.alchemyItemComponent.alchIronIngot.name=Алхимический железный слиток
+item.skyresources.alchemyItemComponent.alchGoldNeedle.name=Алхимическая золотая игла
+item.skyresources.alchemyItemComponent.alchDiamond.name=Алхимический алмаз
+item.skyresources.baseItemComponent.plantMatter.name=Био-материя
+item.skyresources.baseItemComponent.steelPowerComponent.name=Продвинутый компонент питания.
+item.skyresources.baseItemComponent.frozenIronCoolingComponent.name=Железный охлаждающий компонент.
+item.skyresources.baseItemComponent.darkMatter.name=Черная материя
+item.skyresources.baseItemComponent.enrichedBonemeal.name=Обогащенная костная мука
+item.skyresources.baseItemComponent.sawdust.name=Древесные опилки
+item.skyresources.baseItemComponent.quartzAmp.name=Кварцевый компонент усиления
+item.skyresources.baseItemComponent.lightMatter.name=Светлая материя
+item.skyresources.techItemComponent.stoneCrushed.name=Bзмельченный камень
+item.skyresources.techItemComponent.radioactiveMix.name=Радиоактивный порошок
+item.skyresources.techItemComponent.frozenIronIngot.name=Слиток замороженного железа
+item.skyresources.techItemComponent.netherrackCrushed.name=Измельченный адский камень
+item.skyresources.cactusFruit.name=Кактусовый фрукт
+item.skyresources.fleshySnowNugget.name=Мясистый снежный комок
+item.skyresources.cactusCuttingKnife.name=Кактусовый нож
+item.skyresources.stoneCuttingKnife.name=Каменный нож
+item.skyresources.ironCuttingKnife.name=Железный нож
+item.skyresources.diamondCuttingKnife.name=Алмазный нож
+item.skyresources.itemHealthGem.name=Самоцвет здоровья
+item.skyresources.waterExtractor.name=Экстрактор воды
+item.skyresources.sandstoneInfusionStone.name=Песчаный наполняющий камень
+item.skyresources.redSandstoneInfusionStone.name=Красный наполняющий камень
+item.skyresources.alchemicalInfusionStone.name=Алхимический наполняющий камень
+item.skyresources.crystalFluidBucket.name=Кристальное ведро
+item.skyresources.stoneGrinder.name=Каменный дробильный молот
+item.skyresources.ironGrinder.name=Железный дробильный молот
+item.skyresources.diamondGrinder.name=Алмазный дробильный молот
+item.skyresources.heavySnowball.name=Тяжелый снежок
+item.skyresources.heavyExplosiveSnowball.name=Взрывной тяжелый снежок
+item.skyresources.survivalistFishingRod.name=Удочка выживающего
+
+tile.skyresources.cactusFruitNeedle.name=Фрукт кактуса на игле
+tile.skyresources.compressedCoalBlock.name=Закаленный угольный блок
+tile.skyresources.compressedCoalBlock2.name=Несокрушимый угольный блок
+tile.skyresources.compressedNetherrack.name=Закаленный адский камень
+tile.skyresources.sandyNetherrack.name=Песчаный адский камень
+tile.skyresources.alchemicalGlass.name=Алхемическое стекло
+tile.skyresources.darkMatterBlock.name=Блок черной материи
+tile.skyresources.lightMatterBlock.name=Блок светлой материи
+tile.skyresources.coalInfusedBlock.name=Алхимический угольный блок
+tile.skyresources.dryCactus.name=Обезвоженный кактус
+tile.skyresources.silverfishDisruptor.name=Разрушитель чешуйниц
+tile.skyresources.BlazePowderBlock.name=Блок огненного порошка
+tile.skyresources.petrifiedWood.name=Окаменелое дерево
+tile.skyresources.petrifiedPlanks.name=Доски из окаменелого дерева
+tile.skyresources.magmafiedStone.name=Магма-камень
+tile.skyresources.crucible.name=Тигель
+tile.skyresources.fluidDropper.name=Жидкостный выбрасыватель
+tile.skyresources.concentrator.name=Концентратор
+tile.skyresources.purificationVessel.name=Очистительный резервуар
+tile.skyresources.miniFreezer.name=Мини морозильник
+tile.skyresources.ironFreezer.name=Железный морозильник
+tile.skyresources.lightFreezer.name=Морозильник из светлой материи
+tile.skyresources.heavySnow.name=Тяжелый снег
+tile.skyresources.dirtFurnace.name=Грязевая печь
+tile.skyresources.beeAttractor.name=Пчелиный притягиватель
+tile.skyresources.darkMatterWarper.name=Сжигатель темной материи
+tile.skyresources.endPortalCore.name=Ядро края
+tile.skyresources.lifeInfuser.name=Ядро инфузии жизни
+tile.skyresources.lifeInjector.name=Инъектор жизни
+tile.skyresources.crucibleInserter.name=Наполнитель тигля
+tile.skyresources.rockCrusher.name=Камнедробилка
+tile.skyresources.rockCleaner.name=Очиститель
+tile.skyresources.combustionCollector.name=Коллектор сгорания
+tile.skyresources.combustionController.name=Смарт-контроллер сгорания
+tile.skyresources.quickDropper.name=Быстрый выбрасыватель
+tile.skyresources.aqueousConcentrator.name=Водный концентратор
+tile.skyresources.aqueousDeconcentrator.name=Водный деконцентратор
+tile.skyresources.fusionTable.name=Алхимический стол инфузии
+tile.skyresources.wildlifeAttractor.name=Притягиватель мобов
+
+
+tile.fluid.srCrystalFluid.name=Кристаллическая жидкость
+
+
+jei.skyresources.desc.cactusNeedle=Получается с помощью щелчка правой кнопкой мыши на блоке кактуса.\n\nПРИМЕЧАНИЕ: Вы получите урон.
+jei.skyresources.desc.blazePowderBlock=При размещении над источником тепла превращается в лаву.\n\nПРИМЕЧАНИЕ: Лучшие источники тепла, как правило, быстрее.
+
+jei.skyresources.recipe.healthNeeded=Необходимо здоровья:
+jei.skyresources.recipe.rightClickOn=Щелкните правой кнопкой мыши на
+jei.skyresources.recipe.infusion=Наполнение жизнью
+jei.skyresources.recipe.combustion=Горение
+jei.skyresources.recipe.rockgrinder=Дробильный молот
+jei.skyresources.recipe.crucible=Тигель
+jei.skyresources.recipe.concentrator=Концентратор
+jei.skyresources.recipe.condenser=Конденсатор
+jei.skyresources.recipe.purificationVessel=Очистительный резервуар
+jei.skyresources.recipe.freezer=Морозильник
+jei.skyresources.recipe.heatsources=Источники тепла
+jei.skyresources.recipe.cauldron=Котел
+jei.skyresources.recipe.cauldronclean=Очистка в котле
+jei.skyresources.recipe.waterextractor=Экстрактор воды
+jei.skyresources.recipe.fusion=Алхимический синтез
+jei.skyresources.recipe.knife=Нож
+
+
+container.skyresources.combustionHeater=Нагреватель
+container.skyresources.concentrator=Концентратор
+container.skyresources.freezer=Морозильник
+container.skyresources.beeAttractor=Пчелиный притягиватель
+container.skyresources.darkMatterWarper=Сжигатель темной материи
+container.skyresources.endPortalCore=Ядро края
+container.skyresources.lifeInfuser=Ядро инфузии жизни
+container.skyresources.lifeInjector=Инъектор жизни
+container.skyresources.rockCrusher=Камнедробилка
+container.skyresources.rockCleaner=Очиститель
+container.skyresources.combustionCollector=Коллектор сгорания
+container.skyresources.combustionController=Смарт-контроллер сгорания
+container.skyresources.quickDropper=Быстрый выбрасыватель
+container.skyresources.aqueousConcentrator=Водный концентратор
+container.skyresources.fusionTable=Алхимический стол инфузии
+container.skyresources.crucibleInserter=Наполнитель тигля
+container.skyresources.wildlifeAttractor=Притягиватель мобов
+
+tile.skyresources.casing.wood.name=Деревянный корпус
+tile.skyresources.casing.stone.name=Каменный корпус
+tile.skyresources.casing.bronze.name=Бронзовый корпус
+tile.skyresources.casing.iron.name=Железный корпус
+tile.skyresources.casing.steel.name=Стальной корпус
+tile.skyresources.casing.electrum.name=Электриумовый корпус
+tile.skyresources.casing.netherbrick.name=Корпус из адского камня
+tile.skyresources.casing.lead.name=Свинцовый корпус
+tile.skyresources.casing.manyullyn.name=Манулиновый корпус
+tile.skyresources.casing.signalum.name=Сигналиумовый корпус
+tile.skyresources.casing.endstone.name=Корпус из камня края
+tile.skyresources.casing.enderium.name=Эндериумовый корпус
+tile.skyresources.casing.darkmatter.name=Корпус из черной материи
+tile.skyresources.casing.lightmatter.name=Корпус из светлой материи
+tile.skyresources.casing.osmium.name=Осмиумовый корпус
+tile.skyresources.casing.refinedobsidian.name=Корпус из очищенного обсидиана
+
+item.skyresources.condenser.wood.name=Деревянный конденсатор
+item.skyresources.condenser.stone.name=Каменный конденсатор
+item.skyresources.condenser.bronze.name=Бронзовый конденсатор
+item.skyresources.condenser.iron.name=Железный конденсатор
+item.skyresources.condenser.steel.name=Стальной конденсатор
+item.skyresources.condenser.electrum.name=Электриумовый конденсатор
+item.skyresources.condenser.netherbrick.name=Конденсатор из адского камня
+item.skyresources.condenser.lead.name=Свинцовый конденсатор
+item.skyresources.condenser.manyullyn.name=Манулиновый конденсатор
+item.skyresources.condenser.signalum.name=Сигналиумовый конденсатор
+item.skyresources.condenser.endstone.name=Конденсатор из камня края
+item.skyresources.condenser.enderium.name=Эндериумовый конденсатор
+item.skyresources.condenser.darkmatter.name=Конденсатор из черной материи
+item.skyresources.condenser.lightmatter.name=Конденсатор из светлой материи
+item.skyresources.condenser.osmium.name=Осмиумовый конденсатор
+item.skyresources.condenser.refinedobsidian.name=Конденсатор из очищенного обсидиана
+
+item.skyresources.heatprovider.wood.name=Деревянный источник тепла
+item.skyresources.heatprovider.stone.name=Каменный источник тепла
+item.skyresources.heatprovider.bronze.name=Бронзовый источник тепла
+item.skyresources.heatprovider.iron.name=Железный источник тепла
+item.skyresources.heatprovider.steel.name=Стальной источник тепла
+item.skyresources.heatprovider.electrum.name=Электриумовый источник тепла
+item.skyresources.heatprovider.netherbrick.name=Источник тепла из адского камня
+item.skyresources.heatprovider.lead.name=Свинцовый источник тепла
+item.skyresources.heatprovider.manyullyn.name=Манулиновый источник тепла
+item.skyresources.heatprovider.signalum.name=Сигналиумовый источник тепла
+item.skyresources.heatprovider.endstone.name=Источник тепла из камня края
+item.skyresources.heatprovider.enderium.name=Эндериумовый источник тепла
+item.skyresources.heatprovider.darkmatter.name=Источник тепла из черной материи
+item.skyresources.heatprovider.lightmatter.name=Источник тепла из светлой материи
+item.skyresources.heatprovider.osmium.name=Осмиумовый источник тепла
+item.skyresources.heatprovider.refinedobsidian.name=Источник тепла из очищенного обсидиана
+
+item.skyresources.combustionheater.wood.name=Деревянный нагреватель
+item.skyresources.combustionheater.stone.name=Каменный нагреватель
+item.skyresources.combustionheater.bronze.name=Бронзовый нагреватель
+item.skyresources.combustionheater.iron.name=Железный нагреватель
+item.skyresources.combustionheater.steel.name=Стальной нагреватель
+item.skyresources.combustionheater.electrum.name=Электриумовый нагреватель
+item.skyresources.combustionheater.netherbrick.name=Нагреватель из адского камня
+item.skyresources.combustionheater.lead.name=Свинцовый нагреватель
+item.skyresources.combustionheater.manyullyn.name=Манулиновый нагреватель
+item.skyresources.combustionheater.signalum.name=Сигналиумовый нагреватель
+item.skyresources.combustionheater.endstone.name=Нагреватель из камня края
+item.skyresources.combustionheater.enderium.name=Эндериумовый нагреватель
+item.skyresources.combustionheater.darkmatter.name=Нагреватель из черной материи
+item.skyresources.combustionheater.lightmatter.name=Нагреватель из светлой материи
+item.skyresources.combustionheater.osmium.name=Осмиумовый нагреватель
+item.skyresources.combustionheater.refinedobsidian.name=Нагреватель из очищенного обсидиана
+
+item.skyresources.alchemy.wood.name=Деревянный алхимический компонент
+item.skyresources.alchemy.stone.name=Каменный алхимический компонент
+item.skyresources.alchemy.bronze.name=Бронзовый алхимический компонент
+item.skyresources.alchemy.iron.name=Железный алхимический компонент
+item.skyresources.alchemy.steel.name=Стальной алхимический компонент
+item.skyresources.alchemy.electrum.name=Электриумовый алхимический компонент
+item.skyresources.alchemy.netherbrick.name=Алхимический компонент из адского камня
+item.skyresources.alchemy.lead.name=Свинцовый алхимический компонент
+item.skyresources.alchemy.manyullyn.name=Манулиновый алхимический компонент
+item.skyresources.alchemy.signalum.name=Сигналиумовый алхимический компонент
+item.skyresources.alchemy.endstone.name=Алхимический компонент из камня края
+item.skyresources.alchemy.enderium.name=Эндериумовый алхимический компонент
+item.skyresources.alchemy.darkmatter.name=Алхимический компонент из черной материи
+item.skyresources.alchemy.lightmatter.name=Алхимический компонент из светлой материи
+item.skyresources.alchemy.osmium.name=Осмиумовый алхимический компонент
+item.skyresources.alchemy.refinedobsidian.name=Алхимический компонент из очищенного обсидиана
+
+item.skyresources.heat.wood.name=Деревянный тепловой компонент
+item.skyresources.heat.stone.name=Каменный тепловой компонент
+item.skyresources.heat.bronze.name=Бронзовый тепловой компонент
+item.skyresources.heat.iron.name=Железный тепловой компонент
+item.skyresources.heat.steel.name=Стальной тепловой компонент
+item.skyresources.heat.electrum.name=Электриумовый тепловой компонент
+item.skyresources.heat.netherbrick.name=Тепловой компонент из адского камня
+item.skyresources.heat.lead.name=Свинцовый тепловой компонент
+item.skyresources.heat.manyullyn.name=Манулиновый тепловой компонент
+item.skyresources.heat.signalum.name=Сигналиумовый тепловой компонент
+item.skyresources.heat.endstone.name=Тепловой компонент из камня края
+item.skyresources.heat.enderium.name=Эндериумовый тепловой компонент
+item.skyresources.heat.darkmatter.name=Тепловой компонент из черной материи
+item.skyresources.heat.lightmatter.name=Тепловой компонент из светлой материи
+item.skyresources.heat.osmium.name=Осмиумовый тепловой компонент
+item.skyresources.heat.refinedobsidian.name=Тепловой компонент из очищенного обсидиана
+
+item.skyresources.oreAlchDust.iron.name=Железная алхимическая рудная пыль
+item.skyresources.oreAlchDust.gold.name=Золотая алхимическая рудная пыль
+item.skyresources.oreAlchDust.copper.name=Медная алхимическая рудная пыль
+item.skyresources.oreAlchDust.tin.name=Оловянная алхимическая рудная пыль
+item.skyresources.oreAlchDust.silver.name=Серебрянная алхимическая рудная пыль
+item.skyresources.oreAlchDust.zinc.name=Цинковая алхимическая рудная пыль
+item.skyresources.oreAlchDust.nickel.name=Никелевая алхимическая рудная пыль
+item.skyresources.oreAlchDust.platinum.name=Платиновая алхимическая рудная пыль
+item.skyresources.oreAlchDust.aluminum.name=Алюминивая алхимическая рудная пыль
+item.skyresources.oreAlchDust.lead.name=Свинцовая алхимическая рудная пыль
+item.skyresources.oreAlchDust.cobalt.name=Алхимическая рудная пыль кобальта
+item.skyresources.oreAlchDust.ardite.name=Алхимическая рудная пыль ардита
+item.skyresources.oreAlchDust.osmium.name=Осмиумовая алхимическая рудная пыль
+item.skyresources.oreAlchDust.draconium.name=Дракониевая алхимическая рудная пыль
+item.skyresources.oreAlchDust.tungsten.name=Вольфрамовая алхимическая рудная пыль
+item.skyresources.oreAlchDust.titanium.name=Татановая алхимическая рудная пыль
+item.skyresources.oreAlchDust.chrome.name=Хромовая алхимическая рудная пыль
+item.skyresources.oreAlchDust.iridium.name=Тридиумовая алхимическая рудная пыль
+item.skyresources.oreAlchDust.magnesium.name=Магниевая алхимическая рудная пыль
+item.skyresources.oreAlchDust.lithium.name=Литиевая алхимическая рудная пыль
+item.skyresources.oreAlchDust.boron.name=Алхимическая рудная пыль бора
+item.skyresources.oreAlchDust.mithril.name=Мифриловая алхимическая рудная пыль
+item.skyresources.oreAlchDust.yellorium.name=Йеллориумовая алхимическая рудная пыль
+item.skyresources.oreAlchDust.uranium.name=Урановая алхимическая рудная пыль
+item.skyresources.oreAlchDust.thorium.name=Ториевая алхимическая рудная пыль
+
+item.skyresources.dirtyGem.emerald.name=Неочищенный изумруд
+item.skyresources.dirtyGem.diamond.name=Неочищенный алмаз
+item.skyresources.dirtyGem.ruby.name=Неочищенный Рубин
+item.skyresources.dirtyGem.peridot.name=Неочищенный перидот
+item.skyresources.dirtyGem.sapphire.name=Неочищенный сапфир
+item.skyresources.dirtyGem.redGarnet.name=Неочищенный красный гранат
+item.skyresources.dirtyGem.yellowGarnet.name=Неочищенный желтый гранат
+item.skyresources.dirtyGem.apatite.name=Неочищенный апатит
+item.skyresources.dirtyGem.amber.name=Неочищенный янтарь
+item.skyresources.dirtyGem.lepidolite.name=Неочищенный лепидолит
+item.skyresources.dirtyGem.malachite.name=Неочищенный малахит
+item.skyresources.dirtyGem.onyx.name=Неочищенный оникс
+item.skyresources.dirtyGem.moldavite.name=Неочищенный молдавит
+item.skyresources.dirtyGem.agate.name=Неочищенный агат
+item.skyresources.dirtyGem.opal.name=Неочищенный опал
+item.skyresources.dirtyGem.amethyst.name=Неочищенный аметист
+item.skyresources.dirtyGem.jasper.name=Неочищенный джаспер
+item.skyresources.dirtyGem.aquamarine.name=Неочищенный аквамарин
+item.skyresources.dirtyGem.heliodor.name=Неочищенный гелиодор
+item.skyresources.dirtyGem.turquoise.name=Неочищенная бирюза
+item.skyresources.dirtyGem.moonstone.name=Неочищенный лунный камень
+item.skyresources.dirtyGem.morganite.name=Неочищенный морганит
+item.skyresources.dirtyGem.carnelian.name=Неочищенный сердолик
+item.skyresources.dirtyGem.beryl.name=Неочищенный берилл
+item.skyresources.dirtyGem.goldenBeryl.name=Неочищенный золотой берилл
+item.skyresources.dirtyGem.citrine.name=Неочищенный йитрин
+item.skyresources.dirtyGem.indicolite.name=Неочищенный индиколит
+item.skyresources.dirtyGem.garnet.name=Неочищенный гранат
+item.skyresources.dirtyGem.topaz.name=Неочищенный топаз
+item.skyresources.dirtyGem.ametrine.name=Неочищенный аметрин
+item.skyresources.dirtyGem.tanzanite.name=Неочищенный танзанит
+item.skyresources.dirtyGem.violetSapphire.name=Неочищенный фиолетовый сапфир
+item.skyresources.dirtyGem.alexandrite.name=Неочищенный александрит
+item.skyresources.dirtyGem.blueTopaz.name=Неочищенный синий топаз
+item.skyresources.dirtyGem.spinel.name=Неочищенный шпинель
+item.skyresources.dirtyGem.iolite.name=Неочищенный ийолит
+item.skyresources.dirtyGem.blackDiamond.name=Неочищенный черный алмаз
+item.skyresources.dirtyGem.chaos.name=Неочищенный хаос
+item.skyresources.dirtyGem.enderEssence.name=Неочищенная эссенция эндера
+item.skyresources.dirtyGem.dark.name=Неочищенный темный камень
+item.skyresources.dirtyGem.quartz.name=Неочищенный кварц
+item.skyresources.dirtyGem.lapis.name=Неочищенный лазурит
+item.skyresources.dirtyGem.quartzBlack.name=Неочищенный черный кварц
+item.skyresources.dirtyGem.certus.name=Неочищенный чистый кварц
+
+itemGroup.skyresources.tabMain=Sky Resources:Главный
+itemGroup.skyresources.tabAlchemy=Sky Resources:Алхимия
+itemGroup.skyresources.tabTech=Sky Resources:Технологии
+
+fluid.srCrystalFluid=Кристаллическая жидкость
+
+key.skyresources.guide=Открыть руководство
+
+guide.skyresources.stage1=Стадия 1
+guide.skyresources.stage2=Стадия 2
+guide.skyresources.stage3=Стадия 3
+guide.skyresources.stage4=Стадия 4
+guide.skyresources.misc=Разное
+
+guide.skyresources.stage1.stage1.title=Стадия 1-Основы
+guide.skyresources.stage1.stage1.text=Добро пожаловать в Sky Resources 2! \n \n Это руководство разделено на 4 этапа. Вы можете переключать категории в левом верхнем углу, чтобы удобно ориентироваться в этапах развития, необходимых вам в тот, или иной момент. Вы так же можете искать то, что вам необходимо. \n Некоторые кнопки в этом руководстве (показаны вместе с элементами) переходят на другую страницу руководства, показывают рецепт этого элемента из JEI или предоставляют инструкцию по использованию элемента. \n \n Если вы играете с Void Island Control, введите  /island create (опционально тип) для создания вашего собственного острова. \n Типы: sand(Песчанный), snow(Снежный), wood(Деревянный), grass(Травяной), либо gog (если установлены Botania и Garden of Glass). \n Чтобы получить дополнительную помощь по VIC, введите /island . \n В зависимости от того, с чего вы начнете, выберите один из островов для начала. \n <link,Sand_Island,minecraft:sand:1,sandIsland> \n <link,Snow_Island,minecraft:snow:0,snowIsland> \n <link,Wood_Island,minecraft:planks:5,woodIsland> \n <link,Grass_Island_or_GoG_Island,minecraft:grass:0,grassIsland> \n <link,Magma_Island_(DIFFICULT),skyresources:petrifiedWood:0,magmaIsland> \n \n Если у Вас нет JEI, Вы вряд ли сможете нормально здесь играть.
+
+guide.skyresources.stage1.sandIsland.title=Песчаный остров
+guide.skyresources.stage1.sandIsland.text=Во-первых, несколько предупреждений, оставьте хотя бы один <recipe,,minecraft:cactus:0> и не используйте <recipe,,minecraft:sand:1> если это не требуется для упомянутого рецепта! \n \n Ваша первая цель - получить <recipe,,skyresources:alchemyitemcomponent:0> . Нажмите Shift правой кнопкой мыши на <recipe,,minecraft:cactus:0> чтобы получить её. Вы получите урон. Теперь вам нужно <link,Cutting_Knife,skyresources:cactusCuttingKnife:0,knife> . \n Далее вам понадобятся некоторые <recipe,,skyresources:cactusfruit:0> так как они очень помогают в восстановлении здоровья. \n Чтобы получить новые предметы на этом острове, вам нужно получить <recipe,,skyresources:redsandstoneinfusionstone:0> . Это используется для процесса под названием <link,Life_Infusion,skyresources:redsandstoneinfusionstone:0,lifeInfusion> . \n Используя <link,Life_Infusion,skyresources:redsandstoneinfusionstone:0,lifeInfusion> , ваш первый шаг - нарастить производство <recipe,,minecraft:cactus:0> . \n Как только вы получите приличное количество, создайте <recipe,,skyresources:cactusfruitneedle:0> чтобы сделать свой первый <recipe,,minecraft:sapling:4> ! \n  После этого сделайте свой первый <recipe,,minecraft:dirt:1> ! \n \n Вы завершили первый этап! Перейдите к <link,Stage_2,minecraft:log:0,stage2> !
+
+guide.skyresources.stage1.knife.title=Нож
+guide.skyresources.stage1.knife.text=Режущий нож позволяет игроку разрезать определенные предметы. \n Изначально, существует 4 типа ножей: <recipe,,skyresources:cactusCuttingKnife:0> , <recipe,,skyresources:stoneCuttingKnife:0> , <recipe,,skyresources:ironCuttingKnife:0> , и <recipe,,skyresources:diamondCuttingKnife:0> . \n Для использования - просто сломайте блок ножом.
+
+guide.skyresources.stage1.lifeInfusion.title=Инфузия жизни (Камень инфузии)
+guide.skyresources.stage1.lifeInfusion.text=Для того, чтобы сделать инфузию жизни, первое, что вам нужно, это узнать тип инфузионного камня. Изначально их 3, <recipe,,skyresources:redsandstoneinfusionstone:0> , <recipe,,skyresources:sandstoneinfusionstone:0> ,  <recipe,,skyresources:alchemicalinfusionstone:0> . \n \n После того, как у вас появиться один, проверьте рецепт для элемента, который вам нужен в JEI. \n Предмет над щитом - тот, что отправляться с руки. \n Сердца это количество здоровья, необходимое для инфузии (вливания). \n Инфузионный камень держится в вашей главной руке. \n Блок - это блок, на который вы щелкаете инфузионным камнем. \n \n Как только вы выполните настройку, щелкните правой кнопкой мыши на блоке, и вы выбросите результат на землю! \n \n Этот процесс можно автоматизировать с помощью других модов, используя <link,Life_Infuser,skyresources:lifeinfuser:0,lifeInfuser> . \n \n Инфузионные камни также действуют как костная мука, если используются на растениях. Камень и ты сам получишь урон.
+
+guide.skyresources.stage1.snowIsland.title=Снежный остров
+guide.skyresources.stage1.snowIsland.text=Во-первых, предупреждение, не используйте <recipe,,minecraft:pumpkin:0> если это не требуется для упомянутого рецепта или процесса! \n \n Ваша первая цель - получить <recipe,,minecraft:snowball:0> . Нажмите Shift+ПКМ на <recipe,,minecraft:snow:0> чтобы получить его. Вы получите усталость от добычи на несколько секунд. \n Далее вы захотите создать снежного голема. Это делается путем размещения 2 <recipe,,minecraft:snow:0> друг над другом, а затем <recipe,,minecraft:pumpkin:0> поверх этих блоков <recipe,,minecraft:snow:0>.  Голем будет постоянно образовывать снежные слои на земле, из которой вы получаете снег. Убедитесь в том, чтобы голем не упал и не пострадал от дождя! Если он все-таки умрет, вы все равно можете получить излишек <recipe,,minecraft:snowball:0> через shift+ПКМ на <recipe,,minecraft:snow:0>. \n Теперь вы хотите создать <link,Mini_Freezer,skyresources:minifreezer:0,freezer> . \n Создайте несколько <link,Heavy_Snowballs,skyresources:heavysnowball:0,heavySnowball> используя <link,Mini_Freezer,skyresources:minifreezer:0,freezer> которые можно превратить в <recipe,,skyresources:heavysnow:0> . \n Следующая цель - построить ферму мобов (Блоки <recipe,,minecraft:snow:0> не рекомендуются, так как вы можете случайно щелкнуть по ней ПКМ) чтобы получить <recipe,,minecraft:bone:0> . \n Если вы получите <recipe,,minecraft:rotten_flesh:0> , вы можете сделать немного <recipe,,skyresources:fleshySnowNugget:0> в качестве еды. \n После того, как вы получите это, вам нужно сделать 2 <recipe,,minecraft:dirt:1> , и использовать 1 из них для <recipe,,minecraft:sapling:1> ! \n \n Теперь Вы завершили первый этап! Перейдите к <link,Stage_2,minecraft:log:0,stage2> !
+
+guide.skyresources.stage1.freezer.title=Морозильники
+guide.skyresources.stage1.freezer.text=<recipe,,skyresources:minifreezer:0> это первый уровень морозильников. Второй уровень - <recipe,,skyresources:ironfreezer:0> . Третий уровень - <recipe,,skyresources:lightfreezer:0> . \n \n Морозильные камеры замораживают предметы, и превращают их в другие. Скорость, с которой они замерзают, зависит от количества предметов в морозильнике и скорости самого морозильника. \n <recipe,,skyresources:minifreezer:0> работает со скоростью 0,25x (по умолчанию), the <recipe,,skyresources:ironfreezer:0> работает со скоростью 1x (по умолчанию) и <recipe,,skyresources:lightfreezer:0> работает со скоростью 100x (по умолчанию). \n \n Обратите внимание, что <recipe,,skyresources:ironfreezer:0> и <recipe,,skyresources:lightfreezer:0> являются мультиблоками. Поместите 1 блок поверх другого как <image,shown_here,skyresources:ironfreezer:0,ironFreezer> . \n \n Поместите необходимые элементы в верхние слоты морозильной камеры, а результаты будут помещены в нижние слоты.
+
+guide.skyresources.stage1.heavySnowball.title=Тяжелые снежки
+guide.skyresources.stage1.heavySnowball.text=The <recipe,,skyresources:heavysnowball:0> и <recipe,,skyresources:heavyexplosivesnowball:0> используются как смертоносные боеприпасы против мобов, когда у вас нет ничего, кроме снега.
+
+guide.skyresources.stage1.woodIsland.title=Деревянный остров
+guide.skyresources.stage1.woodIsland.text=Во-первых, вы захотите найти немного <recipe,,minecraft:string:0> . Используя их, создайте <link,Survivalist_Fishing_Rod,skyresources:survivalistfishingrod:0,survFish> . \n \n  Продолжайте ловить рыбу, пока не получите <recipe,,minecraft:dirt:0> и <recipe,,minecraft:sapling:0> любой разновидности! \n \n Вы завершили первую стадию! Перейдите к <link,Stage_2,minecraft:log:0,stage2> !
+
+guide.skyresources.stage1.survFish.title=Удочка выживающего
+guide.skyresources.stage1.survFish.text=The <recipe,,skyresources:survivalistfishingrod:0> - это более дешевая удочка, используемая для ловли в основном мусора и рыбы. Наиболее ценными предметами, которые можно ловить, являются <recipe,,minecraft:dirt:0> и любой ванильный <recipe,,minecraft:sapling:0> . \n Эта удочка имеет более высокую скорость ловли и не ломается.
+
+guide.skyresources.stage1.grassIsland.title=Травяной или gog-остров
+guide.skyresources.stage1.grassIsland.text=Травяной и gog-острова пропускают этап 1. \n Это связано с доступностью <recipe,,minecraft:dirt:0> и дерева на этих островах. \n GoG пропускает несколько шагов развития из-за наличия способа получения <recipe,,minecraft:cobblestone:0> . Перейдите к <link,Stage_2,minecraft:log:0,stage2> !
+
+guide.skyresources.stage1.magmaIsland.title=Магма-остров (СЛОЖНО)
+guide.skyresources.stage1.magmaIsland.text=Магма-остров является самым сложным островом, поскольку он использует методы, в основном применяемые в <link,Stage_2,minecraft:log:0,stage2> . Этот остров не рекомендуется для новичков! Здесь ограничены <recipe,,skyresources:petrifiedWood:0> , используйте его с осторожностью. \n Вы также можете использовать <link,Cutting_Knife,skyresources:stoneCuttingKnife:0,knife>  чтобы получить больше от <recipe,,skyresources:petrifiedWood:0> . \n <recipe,,skyresources:petrifiedWood:0> используется как топливо для 12 переплавлений на единицу <recipe,,skyresources:petrifiedPlanks:0> для 3-х переплавлений на единицу. \n \n Первым шагом является получение <recipe,,minecraft:cobblestone:0> using the <link,Magmafied_Stone,skyresources:magmafiedStone:0,magmaStone> . \n Следующим шагом является постройка моб-фермы. \n Теперь перейдите к <link,combustion,skyresources:combustionheater:0,combustionHeater> чтобы создать <link,Alchemical_Fusion_Table,skyresources:fusionTable:0,fusionTable> . \n Теперь, когда он у вас есть, вы можете создать 4 <recipe,,minecraft:sapling:5> ! Кроме того, создайте несколько <recipe,,minecraft:dirt:0> в <link,Alchemical_Fusion_Table,skyresources:fusionTable:0,fusionTable> . \n \n Вы завершили первую стадию! Перейдите к <link,Stage_2,minecraft:log:0,stage2> !
+
+guide.skyresources.stage1.magmaStone.title=Магма камень
+guide.skyresources.stage1.magmaStone.text=<recipe,,skyresources:magmafiedStone:0> странно взаимодействует с кристаллической жидкостью. Когда <recipe,,skyresources:magmafiedStone:0> находится рядом с кристаллической жидкостью, он случайным образом создаёт <recipe,,minecraft:cobblestone:0> ! Чем больше сторон окружено кристаллической жидкостью, тем больше <recipe,,minecraft:cobblestone:0> вы получите.
+
+guide.skyresources.stage2.stage2.title=Этап 2 - Производство ресурсов
+guide.skyresources.stage2.stage2.text=Этот этап является наиболее важным этапом, поскольку он предоставляет все способы для получения почти всех основных ресурсов! \n \n Очень важно научиться использовать все, что показано в этом разделе руководства! \n \n Вы не пройдёте эту стадию, пока не получите <recipe,,minecraft:glowstone_dust:0> для перехода в <link,Stage_3,minecraft:glowstone:0,stage3> !
+
+guide.skyresources.stage2.seeds.title=Семена
+guide.skyresources.stage2.seeds.text=(По умолчанию) Семена ванили, включая <recipe,,minecraft:wheat_seeds:0> , <recipe,,minecraft:melon_seeds:0> , <recipe,,minecraft:pumpkin_seeds:0> , <recipe,,minecraft:beetroot_seeds:0> , <recipe,,minecraft:carrot:0> , <recipe,,minecraft:potato:0> и <recipe,,minecraft:dye:3> выпадают из <recipe,,minecraft:tallgrass:1> .
+
+guide.skyresources.stage2.casing.title=Рамки
+guide.skyresources.stage2.casing.text=Рамки - это блоки, которые используются несколькими механизмами: <link,Combustion_Heaters,skyresources:combustionheater:0,combustionHeater> , <link,Heat_Providers,skyresources:heatprovider:0,heatProvider> , и <link,Condensers,skyresources:condenser:0,condenser> . \n \n Вставьте одну из этих машин, щелкнув ей правой кнопкой мыши на рамку. Вынуть её можно нажав shift+ПКМ. \n \n Различные варианты рамок влияют на эффективность, экономичность, максимальную HU и т.д. \n \n ПРИМЕЧАНИЕ: Рамки, показанные в установках / структурах, пусты. Убедитесь, что вы вставили правильный механизм для конструкции!
+
+guide.skyresources.stage2.combustionHeater.title=Нагреватели
+guide.skyresources.stage2.combustionHeater.text=Нагреватели устанавливаются в <link,Casings,skyresources:casing:0,casing> . \n Инструкция по установке МУЛЬТИБЛОКА находится ниже! \n \n ПРОЦЕСС СОЗДАНИЯ: \n Убедитесь, что структура верная. \n Бросьте предметы внутрь структуры (над нагревателем) и убедитесь, что количество предметов совпадает с указанным в рецепте. ПРИМЕЧАНИЕ: вы можете положить несколько предметов за раз, если HU будет достаточно для единоразового создания всех. \n Нажмите кнопку на нагревателе или подайте на него сигнал красного камня. \n Если что-то взорвалось (внутри структуры), всё работает правильно! \n Теперь вы можете забрать полученные предметы! \n \n Чтобы установить мультиструктуру нагревателя, проверьте его конструкцию как: <image,shown_here,skyresources:combustionheater:0,combustion> при использовании <recipe,,skyresources:combustionheater:0> , первого, который вы, вероятно, будете использовать. После этого поместите механизм в рамку. Обратите внимание, что во всех вариантах используется одинаковая форма структуры. \n \n Различные варианты нагревателей используют разные виды топлива, это влияет на экономичность потребления топлива, доступность рецептов, и влияют на скорость сгорания топлива. \n Различные варианты рамки влияют на максимальный HU конструкции, и эффективность использования топлива. \n \n При построении структуры убедитесь, что используемые блоки валидны. Все остальные блоки должны быть твердыми в стороне, обращенной к центру структуры. \n \n <recipe,,skyresources:combustionheater:0> позволяет использовать деревянные и стеклянные блоки. \n Также работает с <recipe,,minecraft:trapdoor:0> ! \n <recipe,,skyresources:combustionheater:1> позволяет использовать каменные и стеклянные блоки. \n Все остальные позволяют использовать металлические, каменные и стеклянные блоки. \n \n Процесс пожет быть автоматизирован с помощью <recipe,,minecraft:dropper:0> , <link,Quick_Dropper,skyresources:quickdropper:0,quickDropper> , и <link,Combustion_Collector,skyresources:combustioncollector:0,combustionCollector> . Просто убедитесь, что тип блока является валидным для структуры!
+
+guide.skyresources.stage2.waterExtractor.title=Экстрактор воды
+guide.skyresources.stage2.waterExtractor.text=<recipe,,skyresources:waterextractor:0> используется для хранения, экстрагирования, размещения и залития воды. \n Все рецепты экстрагирования и размещения есть в JEI. Проверьте использование в рецептах <recipe,,skyresources:waterextractor:0> . \n Он (по умолчанию) вмещает 4000mB воды. \n Удерживайте ПКМ на блоке и отпустите через некоторое время. Он так же собирает блоки воды (источники). \n Для размещения блока воды в экстракторе должно быть минимум 1000mB воды. После этого нажмите shift+ПКМ для размещения блока воды в мире. \n Чтобы залить воду в блоки, у Вас должно быть необходимое количество воды. После этого щелкните правой кнопкой мыши на блок. \n Экстрактор воды может быть автоматизирован с помощью <link,Aqueous_Concentrator_and_Deconcentrator,skyresources:aqueousconcentrator:0,aqueous> .
+
+guide.skyresources.stage2.dirtFurnace.title=Грязевая печь
+guide.skyresources.stage2.dirtFurnace.text=Используйте <recipe,,skyresources:dirtfurnace:0> для получения факелов, и другим плавящимся предметам без генератора булыжника.
+
+guide.skyresources.stage2.lavaBlaze.title=Лава и блок огненного порошка
+guide.skyresources.stage2.lavaBlaze.text=<recipe,,skyresources:blazepowderblock:0> используется для создания лавы. \n Для получения лавы, разместите блок огненного порошка над <link,heat_source,minecraft:torch:0,heatSources> как показано <image,shown_here,skyresources:blazepowderblock:0,lava> . Лава заменит <recipe,,skyresources:blazepowderblock:0> . \n Примечание: вы захотите установить свою первую лаву на месте для генератора <recipe,,minecraft:cobblestone:0> . \n \n Лаву так же можно получить с помощью <link,Crucible,skyresources:Crucible:0,crucible> .
+
+guide.skyresources.stage2.heatSources.title=Источники тепла
+guide.skyresources.stage2.heatSources.text=Источники тепла обычно используются в связке с функциональными блоками. \n Источники тепла подходят для следующих блоков: \n <link,Crucible,skyresources:crucible:0,crucible> \n <link,Blaze_Powder_Block,skyresources:blazepowderblock:0,lavaBlaze> \n \n Список источников тепла можно узнать в JEI. \n Найдите взаимодействие нескольких источников, таких как <recipe,,minecraft:torch:0> и <recipe,,minecraft:obsidian:0> между собой, а затем нажмите на категорию с источниками тепла, что бы увидеть все источники тепла. \n Источниками тепла являются <link,Heat_Providers,skyresources:heatProvider:0,heatProvider> .
+
+guide.skyresources.stage2.heatProvider.title=Источники тепла
+guide.skyresources.stage2.heatProvider.text=Источники тепла используются в <link,Casings,skyresources:casing:0,casing> . \n источник тепла используется как мощный <link,heat_sources,minecraft:torch:0,heatSources> но требует особый вид топлива. \n \n Различные варианты источников тепла используют разные виды топлива, влияют на экономичность и эффективность. \n Различные варианты рамок влияют на тепловую эффективность. \n \n Всё это можно отключать с помощью красного сигнала.
+
+guide.skyresources.stage2.rockGrinder.title=Дробильный молот
+guide.skyresources.stage2.rockGrinder.text=Дробильный молот позволяет игроку дробить булыжник в гравий, гравий в песок и многое другое. \n По умолчанию существует 3 разновидности: <recipe,,skyresources:stonegrinder:0> , <recipe,,skyresources:irongrinder:0> , и <recipe,,skyresources:diamondgrinder:0> . \n Дробильный молот можно автоматизировать с помощью <link,Rock_Crusher,skyresources:rockcrusher:0,rockCrusher> .
+
+guide.skyresources.stage2.metalCreation.title=Создание металла
+guide.skyresources.stage2.metalCreation.text=Данный процесс обеспечит Вас слитками и рудами. Это руководство предоставит основную начальную информацию по созданию слитков. Переход к более продвинутым установками привнесёт большую пользу. Вам НЕ обязательно использовать тот же вариант машин, который используется в показанной настройке. \n \n Для начальной установки вам понадобится <link,Alchemical_Fusion_Table,skyresources:fusionTable:0,fusionTable> , <link,Crucible,skyresources:crucible:0,crucible> , 2 <link,Fluid_Droppers,skyresources:fluiddropper:0,fluidDropper> , и <link,Condenser_with_a_Casing,skyresources:condenser:0,condenser> . <image,View_Setup_Here,skyresources:crucible:0,crystalSetup> . \n \n Бросьте <recipe,,skyresources:alchemyitemcomponent:1> в <link,Crucible,skyresources:crucible:0,crucible> и выбранную вами алхимическую пыль в <link,Condenser,skyresources:condenser:0,condenser> . \n Подождите некоторое время, и вы увидите кристаллическую жидкость над <link,Condenser,skyresources:condenser:0,condenser> а затем слиток должен выскочить под ним (или в инвентаре ниже)!
+
+guide.skyresources.stage2.crucible.title=Тигель
+guide.skyresources.stage2.crucible.text=<recipe,,skyresources:crucible:0> используется для плавления некоторых предметов. \n Для работы требуется <link,heat_source,minecraft:torch:0,heatSources> . \n Опустите предмет, и он превратится в жидкость. \n Это можно автоматизировать с помощью <link,Crucible_Inserter,skyresources:crucibleinserter:0,crucibleInserter> .
+
+guide.skyresources.stage2.fluidDropper.title=Жидкостный выбрасыватель
+guide.skyresources.stage2.fluidDropper.text=<recipe,,skyresources:fluiddropper:0> будет вытягивать жидкости из резервуаров рядом с ним и помещать источник под собой, когда у него есть хотя бы 1 ведро. \n Это полезно для автоматизации вывода <link,Crucible,skyresources:crucible:0,crucible> .
+
+guide.skyresources.stage2.fusionTable.title=Стол инфузии
+guide.skyresources.stage2.fusionTable.text=<recipe,,skyresources:fusionTable:0> используется для создания алхимических предметов и может быть легко автоматизирован. \n \n Фильтр для автоматизации устанавливается вручную, вставляя предметы в слоты для крафта. Фильтр устанавливается таким образом и управляется путем извлечения элементов него ВРУЧНУЮ (в основном, вы вставляете или извлекаете элементы в GUI, и это устанавливает фильтр для труб, воронок и т.д.). \n \n Для процесса синтеза необходим катализатор, такой как <recipe,,skyresources:alchemyitemcomponent:2> в слоте рядом с выходом. \n \n  Как только будет достаточно предметов для крафта и катализа, начнется крафтинг. \n The result will yield based on the catalyst's yield rate. Результат будет основываться на скорости выхода катализатора. Когда идет инфузия фиолетовая полоса прогресса рядом со слотом результата заполняется, и как только она достигает 100%, вы получаете 1 комплект предметов, поэтому более высокая эффективность приводит к тому, что фиолетовая полоса заполняется быстрее.
+
+guide.skyresources.stage2.wildlifeAttractor.title=Притягиватель мобов
+guide.skyresources.stage2.wildlifeAttractor.text=<recipe,,skyresources:wildlifeAttractor:0> будет привлекать случайных животных в мир в верхней части блока со случайной скоростью примерно 1 животное каждые 30 секунд. \n Требует 40 RF/tick(по умолчанию) , 20mB воды/tick(по умолчанию) , и <recipe,,skyresources:baseItemComponent:0> который используется 6 секунд (по умолчанию). \n Останавливается при подаче красного сигнала.
+
+guide.skyresources.stage2.condenser.title=Конденсатор
+guide.skyresources.stage2.condenser.text=Конденсаторы используются в <link,Casings,skyresources:casing:0,casing> . \n \n конденсаторам требуется элемент (обычно это один их <recipe,,skyresources:orealchdust:0> ) чтобы использовать для уплотнения блока выше. \n конденсаторы будут выводить результат под себя либо в мир, либо в инвентарь (только если в инвентаре есть место, в противном случае конденсатор выключится и будет ждать, пока у появится место). \n \n Различные варианты конденсаторов влияют на эффективность и скорость. \n Различные варианты рамки влияют на эффективность. \n \n Управляется красным сигналом.
+
+guide.skyresources.stage2.crucibleInserter.title=Наполнитель тигля
+guide.skyresources.stage2.crucibleInserter.text=<recipe,,skyresources:crucibleinserter:0> используется для автоматического наполнения  <link,crucible,skyresources:crucible:0,crucible> . \n Поместите предметы в <recipe,,skyresources:crucibleinserter:0> используя GUI, трубы, и т.п.
+
+guide.skyresources.stage2.combustionCollector.title=Коллектор сгорания
+guide.skyresources.stage2.combustionCollector.text=<recipe,,skyresources:combustioncollector:0> используется для автоматического сбора предметов при <link,combustion,skyresources:combustionheater:0,combustionHeater> . \n Предметы отправляются в <recipe,,skyresources:combustioncollector:0> после каждого процесса крафта, что позволяет создавать больше крафтеров, так как крафтинг будет непрерывным из-за "зависания" результатов. \n \n Это не может использоваться с <recipe,,skyresources:combustionheater:0> или <recipe,,skyresources:combustionheater:1> .
+
+guide.skyresources.stage2.crushedStone.title=Пыль (Производство рудной пыли)
+guide.skyresources.stage2.crushedStone.text=Рудная пыль получается с помощью этого процесса. \n Сначала используйте <link,rock_grinder,skyresources:StoneGrinder:0,rockGrinder> на <recipe,,minecraft:stone:0> чтобы получить <recipe,,skyresources:techitemcomponent:0> и  <recipe,,minecraft:netherrack:0> чтобы получить <recipe,,skyresources:techitemcomponent:3> . \n затем щелкните ПКМ на измельченный камень, чтобы <recipe,,minecraft:cauldron:0> был заполнен водой. Это не будет работать если в словаре руд не будет пыли для данной руды. Пыль может падать в зависимости от их редкости. \n <recipe,,minecraft:cauldron:0> можно автоматизировать с помощью <link,Rock_Cleaner,skyresources:rockcleaner:0,rockCleaner> .
+
+guide.skyresources.stage2.gemProduction.title=Производство драгоценных камней
+guide.skyresources.stage2.gemProduction.text=Такие драгоценные камни, как изумруды, алмазы, и т.п. - получают с помощью этого процесса. \n Сперва, используйте <link,rock_grinder,skyresources:StoneGrinder:0,rockGrinder> на камне, чтобы получить неочищенные драгоценные камни, такие как <recipe,,skyresources:DirtyGem:0> . У них достаточно низкий шанс выпадения. \n Затем щелкните правой кнопкой мыши по неочищенный драгоценным камням на <recipe,,minecraft:cauldron:0> заполненным водой чтобы очистить и получить чистые драгоценные камни. Это не будет работать если драгоценных камней нет в словаре руд. \n <recipe,,minecraft:cauldron:0> можно автоматизировать с помощью <link,Rock_Cleaner,skyresources:rockcleaner:0,rockCleaner> .
+
+guide.skyresources.stage3.stage3.title=Этап 3 - Продвинутая Автоматизация/Машины
+guide.skyresources.stage3.stage3.text=Этот этап позволит вам улучшить ваши технологии и процессы, чтобы быть быстрее и эффективнее с топливом, катализаторами и т.д.! \n \n Все предметы с этого этапа - новые, но теперь они позволят вам улучшить ваши прежние механизмы! \n \n На этом этапе вы до тех пор, пока не получите <recipe,,skyresources:baseItemComponent:3> для <link,Stage_4,skyresources:baseItemComponent:3,stage4> !
+
+guide.skyresources.stage3.quickDropper.title=Быстрый выбрасыватель
+guide.skyresources.stage3.quickDropper.text=<recipe,,skyresources:quickdropper:0> используется для сброса всего стека предметов за раз без импульса красного камня. \n останавливается, когда подается сигнал красного камня. \n \n ЭТО НЕ МОЖЕТ использоваться с <recipe,,skyresources:combustionheater:0> или <recipe,,skyresources:combustionheater:1> .
+
+guide.skyresources.stage3.rockCrusher.title=Камнедробилка
+guide.skyresources.stage3.rockCrusher.text=<recipe,,skyresources:rockcrusher:0> автоматизирует <link,rock_grinding,skyresources:stonegrinder:0,rockGrinder> . \n Требует 100 RF/tick. (по умолчанию) \n Дает 1.2x удачу! \n останавливается при подаче красного камня.
+
+guide.skyresources.stage3.rockCleaner.title=Очиститель
+guide.skyresources.stage3.rockCleaner.text=<recipe,,skyresources:rockcleaner:0> автоматизирует <recipe,,minecraft:cauldron:0> . \n (default) Requires 80 RF/tick. (by default) \n Needs 250 mB to run. \n Gives a 2x fortune yield! (Maximum of 100% chance) \n Stops when given a redstone signal.
+
+guide.skyresources.stage3.combustionController.title=Смарт-контроллер сгорания
+guide.skyresources.stage3.combustionController.text=<recipe,,skyresources:combustioncontroller:0> используется для автоматического создания предметов во время <link,combustion,skyresources:combustionheater:0,combustionHeater> . \n Во-первых, замените один из боковых блоков конструкции задней частью контроллера, обращенной к середине конструкции. \n Теперь разместите предметы, которые нужно обработать в машине, более близкие предметы слева будут созданы перед тем, как создавать предметы справа от фильтра. \n Добавьте в камеру столько предметов, сколько захотите! Соотношение НЕ важно! \n Контроллер будет генерировать 1 компонент элементов каждую секунду (по умолчанию), и результаты будут отправляться в <link,Combustion_Collector,skyresources:combustioncollector:0,combustionCollector> если таковой имеется. \n Фильтр может быть автоматически изменен с использованием элементов транспортировки, если вы хотите настроить сложные параметры. \n \n ЭТО НЕ МОЖЕТ использоваться с <recipe,,skyresources:combustionheater:0> или <recipe,,skyresources:combustionheater:1> . \n Останавливается при подаче красного сигнала.
+
+guide.skyresources.stage3.aqueous.title=Водный концентратор/деконцентратор
+guide.skyresources.stage3.aqueous.text=<recipe,,skyresources:aqueousconcentrator:0> и <recipe,,skyresources:aqueousdeconcentrator:0> автоматизируют <link,Water_Extractor,skyresources:waterextractor:0,waterExtractor> вставляя и извлекая соотвтественно. \n Требует 80 RF/tick. (по умолчанию)
+
+guide.skyresources.misc.nether.title=Адская пустота (Void Island Control)
+guide.skyresources.misc.nether.text=Ад (возможно) пустота. Адские порталы ссылаются на ту же позицию, что и в обычном мире. Ад больше не равен 1/8 размера. \n Все ресурсы, которые обычно можно найти в пустоте, теперь можно добыть другими способами. \n Адские руды получают с помощью <link,metal_creation,skyresources:alchemicalcondenser:0,metalCreation> . \n Адских мобов можно найти либо естественным образом, либо используя <link,Dark_Matter_Warper,skyresources:DarkMatterWarper:0,dmWarper> .
+
+guide.skyresources.stage4.stage4.title=Этап 4 - чрезвычайно мощные машины
+guide.skyresources.stage4.stage4.text=Этот этап позволит вам улучшить ваши технологии и процессы, чтобы быть быстрее и почти бесконечно эффективнее с топливом, катализаторами и т.д.! \n \n Достигните высот с помощью <recipe,,skyresources:baseItemComponent:3> и <recipe,,skyresources:baseItemComponent:7> ! \n \n На этом этапе вы переходите к <link,The_End,minecraft:ender_eye:0,end> !
+
+guide.skyresources.stage4.dmWarper.title=Сжигатель темной материи
+guide.skyresources.stage4.dmWarper.text=<recipe,,skyresources:DarkMatterWarper:0> используется для получения редких мобов.  \n Потребляет <recipe,,skyresources:BaseItemComponent:3> для запуска (по умолчанию требуется 6 минут для получения результата) и работает на территории 8x8x8 вокруг <recipe,,skyresources:DarkMatterWarper:0> . \n Превращает скелетов в сухие скелеты, кальмаров в ифритов, пауков в пещерных пауков, жителей-зомби в разбойников а так же ранит игроков и животных (по умолчанию).
+
+guide.skyresources.stage4.end.title=Край
+guide.skyresources.stage4.end.text=Портал в край требует создание многоблочной структуры. Необходиы следующие предметы: \n 1 <recipe,,skyresources:EndPortalCore:0> \n 4 <recipe,,minecraft:diamond_block:0> \n 4 <recipe,,minecraft:gold_block:0> \n 16 <recipe,,skyresources:DarkMatterBlock:0> \n 8 <recipe,,minecraft:end_bricks:0> \n 4 <recipe,,minecraft:glowstone:0> \n \n <image,Multiblock_Setup,skyresources:EndPortalCore:0,end> \n Чтобы использовать портал, встаньте на ядро и разместите <recipe,,skyresources:EndPortalCore:0> не менее 16 <recipe,,minecraft:ender_eye:0> и подайте красный сигнал (кнопкой). \n \n *gl A ilfsiesrvh waenrsp si itaecv nda reyv edsroanug ehwn eht urturscte is valdi! *nl
+
+guide.skyresources.stage4.end2.title=Крайне-улучшенный
+guide.skyresources.stage4.end2.text=Улучшенный портал в край дополняет многоблочную структуру. Дополнительно необходимо следующее: \n 4 <recipe,,skyresources:silverfishDisruptor:0> \n 4 <recipe,,minecraft:end_rod:0> \n 24 <recipe,,skyresources:lightmatterblock:0> \n 16 <recipe,,minecraft:purpur_pillar:0> \n \n <image,Multiblock_Setup,skyresources:silverfishDisruptor:0,end2> \n  Этот улучшенный портал не требует никаких глаз для телепортации и не дает злым захватчикам тревожить вас.
+
+guide.skyresources.stage4.healthGem.title=Самоцвет здоровья
+guide.skyresources.stage4.healthGem.text=<recipe,,skyresources:ItemHealthGem:0> используется для повышения максимального здоровья и сохранения здоровья для использования в <link,Life_Infuser,skyresources:LifeInfuser:0,lifeInfuser> . \n Shift+ПКМ чтобы добавить 2 здоровья (или 1 сердце). \n Вы получите 1 единицу здоровья за каждые 50 добавленных единиц (по умолчанию). \n <recipe,,skyresources:ItemHealthGem:0> может быть добавлен автоматически с помощью <link,Life_Injector,skyresources:lifeInjector:0,lifeInjector> .
+
+guide.skyresources.stage4.lifeInfuser.title=Ядро инфузии жизни
+guide.skyresources.stage4.lifeInfuser.text=<recipe,,skyresources:LifeInfuser:0> используется для автоматизации <link,Life_Infusion,skyresources:AlchemicalInfusionStone:0,lifeInfusion> . \n Ядро инфузии жизни требует многоблочную структуру. Необходимо следующее: \n 1 <recipe,,skyresources:LifeInfuser:0> \n 8 <recipe,,minecraft:log:0> (любой тип дерева) \n 8 <recipe,,minecraft:leaves:0> (любой тип листвы) \n 1 <recipe,,skyresources:DarkMatterBlock:0> \n \n <image,Multiblock_Setup,skyresources:LifeInfuser:0,infuser> \n Чтобы использовать его, поместите камень здоровья справа , снимите с левой руки предмет, поместите блок, проникающий ниже ядра, и дайте ядру импульс красного камня, через <recipe,,skyresources:DarkMatterBlock:0> работает лучше всего. \n Убедитесь, что у <link,Health_Gem,skyresources:ItemHealthGem:0,healthGem>  достаточно здоровья для инфузии.
+
+guide.skyresources.stage4.lifeInjector.title=Инъектор жизни
+guide.skyresources.stage4.lifeInjector.text=<recipe,,skyresources:lifeInjector:0> используется для автоматического ввода жизни в <link,Health_Gem,skyresources:ItemHealthGem:0,healthGem> . \n \n Он работает нанося урон сущностям, находящимся на нем, максимум 1 сердце на сущность. Это убьет игроков, мобов, животных и т.д.
+
+guide.skyresources.misc.minetweaker.title=CraftTweaker
+guide.skyresources.misc.minetweaker.text=Чтобы получить поддержку CraftTweaker, перейдите к \n http://crafttweaker.readthedocs.io/en/latest/ и выберете раздел the Sky Resources 2
+
+guide.skyresources.misc.thermal.title=Поддержка Thermal Expansion/Foundation
+guide.skyresources.misc.thermal.text=(По умолчанию) Sky Resources позволяет использовать пиротиум как <link,heat_source,minecraft:torch:0,heatSources> . Некоторые <link,Crucible_Recipes,skyresources:crucible:0,crucible> также добавлены к магма-тигелю!
+
+guide.skyresources.misc.armorplus.title=Поддержка Armor Plus
+guide.skyresources.misc.armorplus.text=(По умолчанию) Sky Resources предоставляет способы получения <recipe,,armorplus:lava_crystal:0> .
+
+guide.skyresources.misc.embers.title=Поддержка Embers
+guide.skyresources.misc.embers.text=(По умолчанию) Sky Resources предоставляет способы получить <recipe,,embers:shard_ember:0> .
+
+guide.skyresources.misc.enderio.title=Поддержка Ender IO
+guide.skyresources.misc.enderio.text=(По умолчанию) Sky Resources предоставляет способы получить <recipe,,enderio:itemBrokenSpawner:0> .
+
+guide.skyresources.misc.envtech.title=Поддержка Environmental Tech
+guide.skyresources.misc.envtech.text=(По умолчанию) Sky Resources предоставляет способы получить Environmental Tech типы камней. \n \n <recipe,,environmentaltech:alabaster:0> и <recipe,,environmentaltech:basalt:0> доступны.
+
+guide.skyresources.misc.forestry.title=Поддержка Forestry
+guide.skyresources.misc.forestry.text=(По умолчанию) Sky Resources предоставляет способы получить <recipe,,forestry:bee_princess_ge:0> и <recipe,,forestry:bee_drone_ge:0> . \n Это делается путем создания <recipe,,skyresources:beeattractor:0> . \n <recipe,,skyresources:beeattractor:0> требует 100 RF/tick (по умолчанию) и <recipe,,forestry:fluid.seed.oil:0> . \n каждый тик есть шанс для <recipe,,forestry:bee_princess_ge:0> или <recipe,,forestry:bee_drone_ge:0> появиться в <recipe,,skyresources:beeattractor:0> . \n Останавливаеться красным сигналом. \n Наиболее распространенный вид, который вы получите, зависит от биома. Вы будете получать виды из всех ульев с небольшой вероятностью. \n Обратите внимание, что <recipe,,forestry:bee_princess_ge:0> является более редким, чем <recipe,,forestry:bee_drone_ge:0> .
+
+guide.skyresources.misc.ic2.title=Поддержка IndustrialCraft 2
+guide.skyresources.misc.ic2.text=(По умолчанию) Sky Resources предоставляет способы получить базовые предметы IC2. \n \n <recipe,,ic2:misc_resource:4> - можно получить, а также <recipe,,ic2:sapling:0> .
+
+guide.skyresources.misc.quantumflux.title=Поддержка Quantum Flux
+guide.skyresources.misc.quantumflux.text=(По умолчанию) Sky Resources предоставляет способы получить предметы Quantum Flux. \n \n <recipe,,quantumflux:graphiteDust:0> можно получить.
+
+guide.skyresources.misc.integdyn.title=Поддержка Integrated Dynamics
+guide.skyresources.misc.integdyn.text=(По умолчанию) Sky Resources предоставляет способы получить предметы Integrated Dynamics. \n \n <recipe,,integrateddynamics:menril_berries:0> и <recipe,,integrateddynamics:menril_sapling:0> можно получить.
+
+guide.skyresources.misc.extremereactors.title=Поддержка Extreme Reactors
+guide.skyresources.misc.extremereactors.text=Sky Resources предлагает способы получения предметов из Extreme Reactors. \n \n <recipe,,bigreactors:dustmetals:0> можно получить.
+
+guide.skyresources.misc.tinkers.title=Поддержка Tinkers Construct
+guide.skyresources.misc.tinkers.text=(По умолчанию) Sky Resources предоставляет способы получить Tinker's Construct слизистые предметы. \n \n Все варианты <recipe,,tconstruct:edible:1> , <recipe,,tconstruct:slime_sapling:0> , и <recipe,,tconstruct:slime_dirt:0> можно получить.
+
+guide.skyresources.misc.techreborn.title=Поддержка Tech Reborn
+guide.skyresources.misc.techreborn.text=(По умолчанию) Sky Resources предоставляет способы получить базовые предметы TechReborn. \n \n <recipe,,techreborn:part:31> можно получить также как и <recipe,,techreborn:rubber_sapling:0> .
+
+guide.skyresources.misc.actadd.title=Поддержка Actually Additions
+guide.skyresources.misc.actadd.text=(По умолчанию) Sky Resources предоставляет способы получить базовые предметы Actually Additions. \n \n <recipe,,actuallyadditions:item_misc:5> можно получить. <recipe,,actuallyadditions:item_rice_seed:0> , <recipe,,actuallyadditions:item_canola_seed:0> , <recipe,,actuallyadditions:item_coffee_seed:0> , <recipe,,actuallyadditions:item_flax_seed:0> выпадают при разрушении <recipe,,minecraft:tallgrass:1> .
+
+guide.skyresources.misc.ae2.title=Поддержка Applied Energistics 2
+guide.skyresources.misc.ae2.text=(По умолчанию) Sky Resources предоставляет способы получить базовые предметы AE2. \n \n <recipe,,appliedenergistics2:material:0> , <recipe,,appliedenergistics2:material:1> , <recipe,,appliedenergistics2:sky_stone_block:0> доступны так же как и 4 печатных пресса.
+
+guide.skyresources.misc.dracevo.title=Поддержка Draconic Evolution
+guide.skyresources.misc.dracevo.text=Sky Resources предоставляет способы получить базовые предметы Draconic Evolution. \n \n <recipe,,draconicevolution:draconium_ingot:0> можно получить.
+
+guide.skyresources.misc.extrabees.title=Поддержка Extra Bees
+guide.skyresources.misc.extrabees.text=Sky Resources предоставляет способы получения основных пчел Extra Bee из <link,Bee_Attractor,skyresources:beeattractor:0,forestry> .
+
+guide.skyresources.misc.rockcandy.title=Поддержка Rock Candy
+guide.skyresources.misc.rockcandy.text=Sky Resources предоставляет способы получить базовые предметы Rock Candy. \n \n <recipe,,rockcandy:raw_rock_candy:0> можно получить.
+
+guide.skyresources.misc.vic.title=Void Island Control Support
+guide.skyresources.misc.vic.text=Sky Resources добавляет специальный остров в Void Island Control, <link,Magma_Island,skyresources:petrifiedWood:0,magmaIsland> .
