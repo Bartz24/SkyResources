@@ -104,7 +104,7 @@ public class EventHandler
 							{
 								item.shrink(1);
 								if (event.getWorld().rand.nextFloat() < 0.16F)
-									new BlockCauldron().setWaterLevel(event.getWorld(), event.getPos(),
+									Blocks.CAULDRON.setWaterLevel(event.getWorld(), event.getPos(),
 											event.getWorld().getBlockState(event.getPos()), i - 1);
 								if (item.getCount() == 0)
 									event.getEntityPlayer().setHeldItem(EnumHand.MAIN_HAND, ItemStack.EMPTY);
@@ -120,7 +120,7 @@ public class EventHandler
 	@SubscribeEvent
 	public void onPlayerTickEvent(PlayerTickEvent event)
 	{
-		if (!event.player.world.isRemote)
+		if (!event.player.world.isRemote && event.player.ticksExisted % 20 == 0)
 		{
 			EntityPlayer player = event.player;
 

@@ -155,7 +155,7 @@ public class TileCasing extends TileGenericPower implements IFluidHandler, ITick
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return (T) this.getInventory();
-        } else if (hasCapability(capability, facing)) {
+        } else if (capability == CapabilityEnergy.ENERGY || capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
             return (T) this;
         }
         return super.getCapability(capability, facing);

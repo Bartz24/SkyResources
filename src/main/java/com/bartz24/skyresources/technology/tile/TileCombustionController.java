@@ -1,10 +1,7 @@
 package com.bartz24.skyresources.technology.tile;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import com.bartz24.skyresources.ItemHelper;
+import com.bartz24.skyresources.base.MachineVariants;
 import com.bartz24.skyresources.base.tile.TileCasing;
 import com.bartz24.skyresources.base.tile.TileItemInventory;
 import com.bartz24.skyresources.config.ConfigOptions;
@@ -12,7 +9,6 @@ import com.bartz24.skyresources.recipe.ProcessRecipe;
 import com.bartz24.skyresources.recipe.ProcessRecipeManager;
 import com.bartz24.skyresources.technology.block.BlockCombustionController;
 import com.bartz24.skyresources.technology.item.ItemCombustionHeater;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,189 +23,165 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 
-public class TileCombustionController extends TileItemInventory implements ITickable
-{
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
-	public int cooldownTicks = 0;
+public class TileCombustionController extends TileItemInventory implements ITickable {
 
-	public TileCombustionController()
-	{
-		super("combustionController", 5);
-		this.getInventory().setSlotLimit(1);
-	}
+    public int cooldownTicks = 0;
 
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound)
-	{
-		compound = super.writeToNBT(compound);
+    public TileCombustionController() {
+        super("combustionController", 5);
+        this.getInventory().setSlotLimit(1);
+    }
 
-		compound.setInteger("cooldown", cooldownTicks);
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        compound = super.writeToNBT(compound);
 
-		return compound;
-	}
+        compound.setInteger("cooldown", cooldownTicks);
 
-	@Override
-	public void readFromNBT(NBTTagCompound compound)
-	{
-		super.readFromNBT(compound);
-		cooldownTicks = compound.getInteger("cooldown");
-	}
+        return compound;
+    }
 
-	@Override
-	public void update()
-	{
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        super.readFromNBT(compound);
+        cooldownTicks = compound.getInteger("cooldown");
+    }
 
-		if (!this.world.isRemote)
-		{
-			if (this.getRedstoneSignal() == 0 && cooldownTicks <= 0)
-			{
-				craftSingleItem();
-			} else if (cooldownTicks > 0)
-				cooldownTicks--;
-		}
-		this.markDirty();
-	}
+    @Override
+    public void update() {
 
-	public ProcessRecipe recipeToCraft(float curHU)
-	{
-		List<EntityItem> list = getWorld().getEntitiesWithinAABB(EntityItem.class,
-				new AxisAlignedBB(getPosBehind().getX(), getPosBehind().getY(), getPosBehind().getZ(),
-						getPosBehind().getX() + 1, getPosBehind().getY() + 1, getPosBehind().getZ() + 1));
+        if (!this.world.isRemote) {
+            if (this.getRedstoneSignal() == 0 && cooldownTicks <= 0) {
+                craftSingleItem();
+            } else if (cooldownTicks > 0)
+                cooldownTicks--;
+        }
+        this.markDirty();
+    }
 
-		List<Object> items = new ArrayList<Object>();
+    public ProcessRecipe recipeToCraft(float curHU) {
+        List<EntityItem> list = getWorld().getEntitiesWithinAABB(EntityItem.class,
+                new AxisAlignedBB(getPosBehind().getX(), getPosBehind().getY(), getPosBehind().getZ(),
+                        getPosBehind().getX() + 1, getPosBehind().getY() + 1, getPosBehind().getZ() + 1));
 
-		for (EntityItem i : list)
-		{
-			items.add(i.getItem());
-		}
+        List<Object> items = new ArrayList<Object>();
 
-		List<ProcessRecipe> recipes = ProcessRecipeManager.combustionRecipes.getRecipes();
+        for (EntityItem i : list) {
+            items.add(i.getItem());
+        }
 
-		for (int i = 0; i < getInventory().getSlots(); i++)
-		{
-			ItemStack stack = getInventory().getStackInSlot(i);
-			if (!stack.isEmpty())
-			{
-				for (ProcessRecipe r : recipes)
-				{
-					if (ItemHelper.itemStacksEqualOD(r.getOutputs().get(0), stack))
-					{
-						if (ProcessRecipeManager.combustionRecipes.compareRecipeLess(items, curHU, true, r) != null)
-							return r;
-					}
-				}
-			}
-		}
+        List<ProcessRecipe> recipes = ProcessRecipeManager.combustionRecipes.getRecipes();
 
-		return null;
-	}
+        for (int i = 0; i < getInventory().getSlots(); i++) {
+            ItemStack stack = getInventory().getStackInSlot(i);
+            if (!stack.isEmpty()) {
+                for (ProcessRecipe r : recipes) {
+                    if (ItemHelper.itemStacksEqualOD(r.getOutputs().get(0), stack)) {
+                        if (ProcessRecipeManager.combustionRecipes.compareRecipeLess(items, curHU, true, r) != null)
+                            return r;
+                    }
+                }
+            }
+        }
 
-	void craftSingleItem()
-	{
-		if (getHeater() == null || getHeater().machineStored.isEmpty() || getHeaterMachine() == null)
-			return;
-		float curHU = getHeater().machineData.getFloat("curHU");
-		ProcessRecipe recipe = recipeToCraft(curHU);
-		if (recipe != null)
-		{
-			world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, getPosBehind().getX(), getPosBehind().getY() + 0.5D,
-					getPosBehind().getZ(), 0.0D, 0.0D, 0.0D, new int[0]);
-			world.playSound((EntityPlayer) null, getPosBehind().getX() + 0.5, getPosBehind().getY() + 0.5D,
-					getPosBehind().getZ() + 0.5, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 4.0F,
-					(1.0F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F) * 0.7F);
+        return null;
+    }
 
-			if (!world.isRemote)
-			{
-				List<EntityItem> list = getWorld().getEntitiesWithinAABB(EntityItem.class,
-						new AxisAlignedBB(getPosBehind().getX(), getPosBehind().getY(), getPosBehind().getZ(),
-								getPosBehind().getX() + 1, getPosBehind().getY() + 1, getPosBehind().getZ() + 1));
+    void craftSingleItem() {
+        if (getHeater() == null || getHeater().machineStored.isEmpty() || getHeaterMachine() == null)
+            return;
+        float curHU = getHeater().machineData.getFloat("curHU");
+        ProcessRecipe recipe = recipeToCraft(curHU);
+        if (recipe != null) {
+            world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, getPosBehind().getX(), getPosBehind().getY() + 0.5D,
+                    getPosBehind().getZ(), 0.0D, 0.0D, 0.0D, new int[0]);
+            if (MachineVariants.values()[world.getBlockState(pos).getBlock()
+                    .getMetaFromState(world.getBlockState(pos))].getRawSpeed() < 2.0)
+                world.playSound((EntityPlayer) null, getPosBehind().getX() + 0.5, getPosBehind().getY() + 0.5D,
+                        getPosBehind().getZ() + 0.5, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 4.0F,
+                        (1.0F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F) * 0.7F);
 
-				HashMap<ItemStack, Integer> items = new HashMap();
-				for (EntityItem o : list)
-				{
-					ItemStack i = o.getItem().copy();
-					int count = i.getCount();
-					i.setCount(1);
-					boolean added = false;
-					for (ItemStack i2 : items.keySet())
-					{
-						if (i2.isItemEqual(i))
-						{
-							items.put(i2, items.get(i2) + count);
-							added = true;
-						}
-					}
-					if (!added)
-						items.put(i, count);
-					o.setDead();
+            if (!world.isRemote) {
+                List<EntityItem> list = getWorld().getEntitiesWithinAABB(EntityItem.class,
+                        new AxisAlignedBB(getPosBehind().getX(), getPosBehind().getY(), getPosBehind().getZ(),
+                                getPosBehind().getX() + 1, getPosBehind().getY() + 1, getPosBehind().getZ() + 1));
 
-				}
+                HashMap<ItemStack, Integer> items = new HashMap();
+                for (EntityItem o : list) {
+                    ItemStack i = o.getItem().copy();
+                    int count = i.getCount();
+                    i.setCount(1);
+                    boolean added = false;
+                    for (ItemStack i2 : items.keySet()) {
+                        if (i2.isItemEqual(i)) {
+                            items.put(i2, items.get(i2) + count);
+                            added = true;
+                        }
+                    }
+                    if (!added)
+                        items.put(i, count);
+                    o.setDead();
 
-				for (Object recStack : recipe.getInputs())
-				{
-					for (ItemStack item2 : items.keySet().toArray(new ItemStack[items.size()]))
-					{
-						if (item2.isItemEqual((ItemStack) recStack))
-						{
-							items.put(item2, items.get(item2) - ((ItemStack) recStack).getCount());
-						}
-					}
-				}
+                }
 
-				float mult = 1f - (1f / (1.5f + 0.8f * getHeaterMachine()
-						.getMachineEfficiency(getHeater().machineStored, world, getPosBehind().down())));
-				curHU *= mult;
-				cooldownTicks = ConfigOptions.machineSettings.combustionControllerTicks;
+                for (Object recStack : recipe.getInputs()) {
+                    for (ItemStack item2 : items.keySet().toArray(new ItemStack[items.size()])) {
+                        if (item2.isItemEqual((ItemStack) recStack)) {
+                            items.put(item2, items.get(item2) - ((ItemStack) recStack).getCount());
+                        }
+                    }
+                }
 
-				ItemStack stack = recipe.getOutputs().get(0).copy();
+                float mult = 1f - (1f / (1.5f + 0.8f * getHeaterMachine()
+                        .getMachineEfficiency(getHeater().machineStored, world, getPosBehind().down())));
+                curHU *= mult;
+                cooldownTicks = ConfigOptions.machineSettings.combustionControllerTicks;
 
-				TileCombustionCollector collector = getHeaterMachine().getCollector(world, getPosBehind().down());
-				if (collector != null)
-				{
-					for (int i = 0; i < 5; i++)
-					{
-						if (!stack.isEmpty())
-							stack = collector.getInventory().insertItem(i, stack, false);
-						else
-							break;
-					}
-				}
-				if (!stack.isEmpty())
-				{
-					Entity entity = new EntityItem(world, getPosBehind().getX() + 0.5F, getPosBehind().getY() + 0.5F,
-							getPosBehind().getZ() + 0.5F, stack);
-					world.spawnEntity(entity);
-				}
-				for (ItemStack item2 : items.keySet().toArray(new ItemStack[items.size()]))
-				{
-					if (items.get(item2) > 0)
-					{
-						EntityItem entity = new EntityItem(world, getPosBehind().getX() + 0.5F,
-								getPosBehind().getY() + 0.5F, getPosBehind().getZ() + 0.5F, item2);
-						entity.getItem().setCount(items.get(item2));
-						world.spawnEntity(entity);
-					}
-				}
-			}
-		}
-		getHeater().machineData.setFloat("curHU", curHU);
-	}
+                ItemStack stack = recipe.getOutputs().get(0).copy();
 
-	BlockPos getPosBehind()
-	{
-		return getPos().add(getWorld().getBlockState(getPos()).getValue(BlockCombustionController.FACING).getOpposite()
-				.getDirectionVec());
-	}
+                TileCombustionCollector collector = getHeaterMachine().getCollector(world, getPosBehind().down());
+                if (collector != null) {
+                    for (int i = 0; i < 5; i++) {
+                        if (!stack.isEmpty())
+                            stack = collector.getInventory().insertItem(i, stack, false);
+                        else
+                            break;
+                    }
+                }
+                if (!stack.isEmpty()) {
+                    Entity entity = new EntityItem(world, getPosBehind().getX() + 0.5F, getPosBehind().getY() + 0.5F,
+                            getPosBehind().getZ() + 0.5F, stack);
+                    world.spawnEntity(entity);
+                }
+                for (ItemStack item2 : items.keySet().toArray(new ItemStack[items.size()])) {
+                    if (items.get(item2) > 0) {
+                        EntityItem entity = new EntityItem(world, getPosBehind().getX() + 0.5F,
+                                getPosBehind().getY() + 0.5F, getPosBehind().getZ() + 0.5F, item2);
+                        entity.getItem().setCount(items.get(item2));
+                        world.spawnEntity(entity);
+                    }
+                }
+            }
+        }
+        getHeater().machineData.setFloat("curHU", curHU);
+    }
 
-	TileCasing getHeater()
-	{
-		TileEntity te = getWorld().getTileEntity(getPosBehind().down());
-		return te instanceof TileCasing ? (TileCasing) te : null;
-	}
+    BlockPos getPosBehind() {
+        return getPos().add(getWorld().getBlockState(getPos()).getValue(BlockCombustionController.FACING).getOpposite()
+                .getDirectionVec());
+    }
 
-	ItemCombustionHeater getHeaterMachine()
-	{
-		Item item = getHeater().getMachine();
-		return item instanceof ItemCombustionHeater ? (ItemCombustionHeater) getHeater().getMachine() : null;
-	}
+    TileCasing getHeater() {
+        TileEntity te = getWorld().getTileEntity(getPosBehind().down());
+        return te instanceof TileCasing ? (TileCasing) te : null;
+    }
+
+    ItemCombustionHeater getHeaterMachine() {
+        Item item = getHeater().getMachine();
+        return item instanceof ItemCombustionHeater ? (ItemCombustionHeater) getHeater().getMachine() : null;
+    }
 }
